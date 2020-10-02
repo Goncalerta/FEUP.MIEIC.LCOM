@@ -1,8 +1,8 @@
 # LCOM Project
 
-LCOM Project for group T&lt;n&gt;G&lt;p&gt;&lt;q&gt;.
+LCOM Project for group T9G03.
 
 Group members:
 
-1. &lt;first name&gt; &lt;family name&gt; (&lt;email address&gt;)
-2. &lt;first name&gt; &lt;family name&gt; (&lt;email address&gt;)
+1. Diogo Costa (up201906731@fe.up.pt)
+2. Pedro Correia (up201905348£fe.up.pt)
