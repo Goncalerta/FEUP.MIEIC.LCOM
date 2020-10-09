@@ -55,4 +55,8 @@
 
 /**@}*/
 
+#define MASK_BASE BIT(0)
+#define MASK_MODE (BIT(1) | BIT(2) | BIT(3))
+#define MASK_INITIAL (BIT(4) | BIT(5))
+
 #endif /* _LCOM_I8254_H */
