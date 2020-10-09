@@ -6,9 +6,11 @@
 #include "i8254.h"
 
 int (timer_set_frequency)(uint8_t timer, uint32_t freq) {
-  /* To be implemented by the students */
-  printf("%s is not yet implemented!\n", __func__);
-
+  if ((timer >= 0) && (timer <= 2)) {
+    uint8_t config;
+    timer_get_conf(timer, &config);
+      
+  }  
   return 1;
 }
 
