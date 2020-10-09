@@ -3,9 +3,10 @@
 #include <stdint.h>
 
 int(util_get_LSB)(uint16_t val, uint8_t *lsb) {
-  /* To be implemented by the students */
-  printf("%s is not yet implemented!\n", __func__);
-
+  if (lsb != NULL) {
+    *lsb = (uint8_t) val;
+    return 0;
+  }
   return 1;
 }
 
