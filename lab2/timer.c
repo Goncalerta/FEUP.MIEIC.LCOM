@@ -30,16 +30,12 @@ int (timer_set_frequency)(uint8_t timer, uint32_t freq) {
     // freq = clock/div <=> div = clock/freq
     uint16_t div = TIMER_FREQ / freq;
     uint8_t div_LSB, div_MSB;
-    if (util_get_LSB(div, &div_LSB) || util_get_MSB(div, &div_MSB)) {
-      return 1;
-    }
-    
-    if (sys_outb(TIMER_CTRL, c_word) 
-     || sys_outb(TIMER(timer), div_LSB) 
-     || sys_outb(TIMER(timer), div_MSB)) {
-      return 1;
-    }
-    return 0;
+   
+    return (util_get_LSB(div, &div_LSB)
+         || util_get_MSB(div, &div_MSB)
+         || sys_outb(TIMER_CTRL, c_word) 
+         || sys_outb(TIMER(timer), div_LSB) 
+         || sys_outb(TIMER(timer), div_MSB));
   }  
   return 1;
 }
