@@ -34,7 +34,7 @@ void (timer_int_handler)() {
 }
 
 int (timer_get_conf)(uint8_t timer, uint8_t *st) {
-  int read_back_command = TIMER_RB_CMD | TIMER_RB_STATUS_ | TIMER_RB_SEL(timer);
+  u32_t read_back_command = TIMER_RB_CMD | TIMER_RB_COUNT_ | TIMER_RB_SEL(timer);
   int fail = sys_outb(TIMER_CTRL, read_back_command);
   if(fail) return fail;
 
