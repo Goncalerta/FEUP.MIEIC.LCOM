@@ -34,6 +34,8 @@ void (timer_int_handler)() {
 }
 
 int (timer_get_conf)(uint8_t timer, uint8_t *st) {
+  if (timer > 2) return 1;
+
   u32_t read_back_command = TIMER_RB_CMD | TIMER_RB_COUNT_ | TIMER_RB_SEL(timer);
   int fail = sys_outb(TIMER_CTRL, read_back_command);
   if(fail) return fail;
@@ -43,6 +45,8 @@ int (timer_get_conf)(uint8_t timer, uint8_t *st) {
 
 int (timer_display_conf)(uint8_t timer, uint8_t st,
                         enum timer_status_field field) {
+  if (timer > 2) return 1;
+  
   union timer_status_field_val conf;
   switch (field) {
     case tsf_all: 
