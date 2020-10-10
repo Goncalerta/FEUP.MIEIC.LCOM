@@ -66,12 +66,12 @@ int (timer_display_conf)(uint8_t timer, uint8_t st,
       break;
     case tsf_mode: 
       conf.count_mode = (uint8_t) ((st & MASK_MODE) >> 1); 
+      if (conf.count_mode >= 6) conf.count_mode -= 4;
       break;
     case tsf_base: 
       conf.bcd = (bool) (st & MASK_BASE); 
       break;
   }
-  timer_print_config(timer, field, conf);
 
-  return 1;
+  return timer_print_config(timer, field, conf);
 }

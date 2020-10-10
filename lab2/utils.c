@@ -24,6 +24,6 @@ int (util_sys_inb)(int port, uint8_t *value) {
   int fail = sys_inb(port, &value_32b);
   if(fail) return fail;
 
-  *value = (uint8_t) value_32b;
+  *value = (uint8_t) (value_32b & 0xff);
   return 0;
 }
