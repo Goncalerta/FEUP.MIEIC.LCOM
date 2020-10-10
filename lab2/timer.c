@@ -6,13 +6,14 @@
 #include "i8254.h"
 
 int (timer_set_frequency)(uint8_t timer, uint32_t freq) {
-  if ((timer >= 0) && (timer <= 2)) {
+  if ((timer >= 0) && (timer <= 2) 
+   && (freq >= 19) && (freq <= TIMER_FREQ)) {
+
     uint8_t config, c_word;
     if(timer_get_conf(timer, &config))
       return 1;
     
-    switch (timer)
-    {
+    switch (timer) {
     case 0:
       c_word = TIMER_SEL0;
       break;
