@@ -64,7 +64,8 @@ int(timer_test_int)(uint8_t time) {
                 if (msg.m_notify.interrupts & BIT(bit_no)) { /* subscribed interrupt */
                   timer_int_handler();
                   if (interruptCounter % 60 == 0) {
-                    timer_print_elapsed_time();
+                    if(timer_print_elapsed_time() != OK)
+                      return 1;
                   }
                 }
                 break;

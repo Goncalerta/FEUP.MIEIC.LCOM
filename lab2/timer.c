@@ -6,7 +6,7 @@
 #include "i8254.h"
 
 int interruptCounter = 0;
-int hookId = 0; //TODO is this correct?
+int hookId;
 
 int (timer_set_frequency)(uint8_t timer, uint32_t freq) {
   if ((timer >= 0) && (timer <= 2) 
