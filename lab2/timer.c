@@ -5,6 +5,9 @@
 
 #include "i8254.h"
 
+int interruptCounter = 0;
+int hookId = 0; //TODO is this correct?
+
 int (timer_set_frequency)(uint8_t timer, uint32_t freq) {
   if ((timer >= 0) && (timer <= 2) 
    && (freq >= 19) && (freq <= TIMER_FREQ)) {
@@ -41,22 +44,16 @@ int (timer_set_frequency)(uint8_t timer, uint32_t freq) {
 }
 
 int (timer_subscribe_int)(uint8_t *bit_no) {
-    /* To be implemented by the students */
-  printf("%s is not yet implemented!\n", __func__);
-
-  return 1;
+  hookId = *bit_no;
+  return sys_irqsetpolicy(TIMER0_IRQ, IRQ_REENABLE, &hookId);
 }
 
 int (timer_unsubscribe_int)() {
-  /* To be implemented by the students */
-  printf("%s is not yet implemented!\n", __func__);
-
-  return 1;
+  return sys_irqrmpolicy(&hookId);
 }
 
 void (timer_int_handler)() {
-  /* To be implemented by the students */
-  printf("%s is not yet implemented!\n", __func__);
+  interruptCounter++;
 }
 
 int (timer_get_conf)(uint8_t timer, uint8_t *st) {
