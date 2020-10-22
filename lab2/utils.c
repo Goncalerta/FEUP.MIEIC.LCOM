@@ -25,5 +25,10 @@ int (util_sys_inb)(int port, uint8_t *value) {
   if(fail) return fail;
 
   *value = (uint8_t) (value_32b & 0xff);
+  
+#ifdef LAB3
+  cnt++;
+#endif
+
   return 0;
 }
