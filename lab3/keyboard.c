@@ -3,11 +3,10 @@
 #include "i8042.h"
 
 int (keyboard_subscribe_int)(uint8_t *bit_no) {
-  // TODO
-  return 0;
+  hookId = *bit_no;
+  return sys_irqsetpolicy(KEYBOARD_IRQ, IRQ_REENABLE | IRQ_EXCLUSIVE, &hookId);
 }
 
 int (keyboard_unsubscribe_int)() {
-  // TODO
-  return 0;
+  return sys_irqrmpolicy(&hookId);
 }
