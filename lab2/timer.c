@@ -5,7 +5,7 @@
 
 #include "i8254.h"
 
-int interruptCounter = 0;
+int interrupt_counter = 0;
 int hookId;
 
 int (timer_set_frequency)(uint8_t timer, uint32_t freq) {
@@ -53,7 +53,7 @@ int (timer_unsubscribe_int)() {
 }
 
 void (timer_int_handler)() {
-  interruptCounter++;
+  interrupt_counter++;
 }
 
 int (timer_get_conf)(uint8_t timer, uint8_t *st) {
