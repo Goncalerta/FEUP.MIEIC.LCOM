@@ -39,7 +39,6 @@ int(kbd_test_scan)() {
   message msg;
   uint8_t bit_no = KEYBOARD_IRQ;
   int r;
-  bool make;
   uint8_t bytes[] = {FIRST_BYTE_TWO_BYTE_SCANCODE, 0}; // some initilization so that bytes[0] != ESC_BREAK_CODE
   bool reading_2nd_byte = false;
   uint8_t size;
@@ -59,30 +58,29 @@ int(kbd_test_scan)() {
         case HARDWARE: /* hardware interrupt notification */				
           if (msg.m_notify.interrupts & BIT(bit_no)) { /* subscribed interrupt */
             kbc_ih();
+            // if (ih_return) 
+            //     return 1;
             
             if (reading_2nd_byte) {
               bytes[1] = scancode;
-              make = (scancode & BREAKCODE_BIT) == 0;
+              bool make = is_break_code(scancode);
               size = 2;
               reading_2nd_byte = false;
               if(kbd_print_scancode(make, size, bytes))
-                return 1;
+                // return 1;
+                break;
             } else {
-              switch (scancode)
-              {
-              case FIRST_BYTE_TWO_BYTE_SCANCODE:
-                reading_2nd_byte = true;
-                bytes[0] = FIRST_BYTE_TWO_BYTE_SCANCODE;
-                break;
-              
-              default: // 1 byte scancode
-                bytes[0] = scancode;
-                make = (scancode & BREAKCODE_BIT) == 0;
-                size = 1;
-                if(kbd_print_scancode(make, size, bytes))
-                  return 1;
-                break;
-              }
+                if (scancode == FIRST_BYTE_TWO_BYTE_SCANCODE) {
+                    // reading_2nd_byte = true;
+                    // bytes[0] = FIRST_BYTE_TWO_BYTE_SCANCODE;
+                } else {
+                    bytes[0] = scancode;
+                    bool make = is_break_code(scancode);
+                    size = 1;
+                    if(kbd_print_scancode(make, size, bytes))
+                    //   return 1;
+                        break;
+                }
             }
           }
           break;
@@ -93,8 +91,8 @@ int(kbd_test_scan)() {
         /* no standard messages expected: do nothing */
     }
   }
-  
-  return kbd_print_no_sysinb(cnt) && keyboard_unsubscribe_int();
+
+  return keyboard_unsubscribe_int() || kbd_print_no_sysinb(cnt);
 }
 
 int(kbd_test_poll)() {

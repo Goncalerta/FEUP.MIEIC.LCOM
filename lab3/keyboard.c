@@ -3,7 +3,6 @@
 #include "i8042.h"
 
 int hook_id;
-uint8_t scancode;
 
 int (keyboard_subscribe_int)(uint8_t *bit_no) {
   hook_id = *bit_no;
@@ -15,7 +14,7 @@ int (keyboard_unsubscribe_int)() {
 }
 
 void (kbc_ih)() {
-  kbc_read_data(&scancode);
+  ih_return = kbc_read_data(&scancode);
 }
 
 int (kbc_issue_command)(uint8_t cmd) {
@@ -48,4 +47,8 @@ int (kbc_read_data)(uint8_t *data) {
     tickdelay(micros_to_ticks(DELAY_US)); // e.g. tickdelay()
   }
   return 1;
+}
+
+bool (is_break_code)(uint8_t scancode) {
+    return (scancode & BREAKCODE_BIT) == 0;
 }
