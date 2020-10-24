@@ -21,6 +21,13 @@
 #define KBC_ST_REG 0x64
 #define KBC_CMD_REG 0x64
 
+#define CMD_READ_BYTE 0x20
+#define CMD_WRITE_BYTE 0x60
+#define CMD_CHECK_KBC 0xAA
+#define CMD_CHECK_IF 0xAB
+#define CMD_DISABLE_IF 0xAD
+#define CMD_ENABLE_IF 0xAE
+
 #define KBC_ST_IBF BIT(1)
 #define KBC_OBF BIT(0)
 #define KBC_PAR_ERR BIT(7)

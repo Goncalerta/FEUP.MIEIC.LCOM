@@ -41,13 +41,12 @@ int(kbd_test_scan)() {
   int r;
   uint8_t bytes[] = {FIRST_BYTE_TWO_BYTE_SCANCODE, 0}; // some initilization so that bytes[0] != ESC_BREAK_CODE
   bool reading_2nd_byte = false;
-  uint8_t size;
 
   if (keyboard_subscribe_int(&bit_no)) {
     return 1;
   }
   
-  while( bytes[0] != ESC_BREAK_CODE ) { /* You may want to use a different condition */
+  while( bytes[0] != ESC_BREAK_CODE ) {
     /* Get a request message. */
     if ( (r = driver_receive(ANY, &msg, &ipc_status)) != 0 ) { 
       printf("driver_receive failed with: %d", r);
@@ -59,27 +58,26 @@ int(kbd_test_scan)() {
           if (msg.m_notify.interrupts & BIT(bit_no)) { /* subscribed interrupt */
             kbc_ih();
             // if (ih_return) 
-            //     return 1;
+            //     return 1; TODO this fails test?!
             
             if (reading_2nd_byte) {
               bytes[1] = scancode;
               bool make = is_break_code(scancode);
-              size = 2;
+              uint8_t size = 2;
               reading_2nd_byte = false;
               if(kbd_print_scancode(make, size, bytes))
                 // return 1;
-                break;
+                break; // TODO break so keyboard is still unsubscribed. Probably should still return 1 in the end. Is this necessary?
             } else {
+                bytes[0] = scancode;
                 if (scancode == FIRST_BYTE_TWO_BYTE_SCANCODE) {
-                    // reading_2nd_byte = true;
-                    // bytes[0] = FIRST_BYTE_TWO_BYTE_SCANCODE;
+                    reading_2nd_byte = true;
                 } else {
-                    bytes[0] = scancode;
                     bool make = is_break_code(scancode);
-                    size = 1;
+                    uint8_t size = 1;
                     if(kbd_print_scancode(make, size, bytes))
                     //   return 1;
-                        break;
+                        break; // TODO break so keyboard is still unsubscribed. Probably should still return 1 in the end. Is this necessary?
                 }
             }
           }
@@ -100,6 +98,38 @@ int(kbd_test_poll)() {
   printf("%s is not yet implemented!\n", __func__);
 
   return 1;
+
+//   uint8_t bytes[] = {FIRST_BYTE_TWO_BYTE_SCANCODE, 0}; // some initilization so that bytes[0] != ESC_BREAK_CODE
+//   bool reading_2nd_byte = false;
+
+//   while( bytes[0] != ESC_BREAK_CODE ) {
+//     kbc_ih();
+//     // if (ih_return) 
+//     //     return 1; TODO this fails test?!
+    
+//     if (reading_2nd_byte) {
+//         bytes[1] = scancode;
+//         bool make = is_break_code(scancode);
+//         uint8_t size = 2;
+//         reading_2nd_byte = false;
+//         if(kbd_print_scancode(make, size, bytes))
+//         // return 1;
+//         break; // TODO break so keyboard is still unsubscribed. Probably should still return 1 in the end. Is this necessary?
+//     } else {
+//         bytes[0] = scancode;
+//         if (scancode == FIRST_BYTE_TWO_BYTE_SCANCODE) {
+//             reading_2nd_byte = true;
+//         } else {
+//             bool make = is_break_code(scancode);
+//             uint8_t size = 1;
+//             if(kbd_print_scancode(make, size, bytes))
+//             //   return 1;
+//                 break; // TODO break so keyboard is still unsubscribed. Probably should still return 1 in the end. Is this necessary?
+//         }
+//     }  
+//   }
+
+//   return kbc_issue_command(CMD_ENABLE_IF) || kbd_print_no_sysinb(cnt);
 }
 
 int(kbd_test_timed_scan)(uint8_t n) {
