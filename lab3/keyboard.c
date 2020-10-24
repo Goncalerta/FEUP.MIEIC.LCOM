@@ -28,7 +28,7 @@ int (kbc_issue_command)(uint8_t cmd) {
     if( (stat & KBC_ST_IBF) == 0 ) {
       return sys_outb(KBC_CMD_REG, cmd); /*no args command*/
     }
-    tickdelay(micros_to_ticks(DELAY_US)); // e.g. tickdelay()
+    tickdelay(micros_to_ticks(DELAY_US));
   }
   return 1;
 }

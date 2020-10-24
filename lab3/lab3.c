@@ -44,8 +44,9 @@ int(kbd_test_scan)() {
   bool reading_2nd_byte = false;
   uint8_t size;
 
-  if (keyboard_subscribe_int(&bit_no))
+  if (keyboard_subscribe_int(&bit_no)) {
     return 1;
+  }
   
   while( bytes[0] != ESC_BREAK_CODE ) { /* You may want to use a different condition */
     /* Get a request message. */
@@ -92,6 +93,7 @@ int(kbd_test_scan)() {
         /* no standard messages expected: do nothing */
     }
   }
+  
   return kbd_print_no_sysinb(cnt) && keyboard_unsubscribe_int();
 }
 

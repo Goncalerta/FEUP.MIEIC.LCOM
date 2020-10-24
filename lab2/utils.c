@@ -2,7 +2,9 @@
 
 #include <stdint.h>
 
+#ifdef LAB3
 extern uint32_t cnt;
+#endif
 
 int(util_get_LSB)(uint16_t val, uint8_t *lsb) {
   if (lsb != NULL) {

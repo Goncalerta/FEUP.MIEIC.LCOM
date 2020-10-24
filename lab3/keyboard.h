@@ -3,11 +3,9 @@
 
 uint8_t scancode;
 
-int (keyboard_subscribe_int)(uint8_t *bit_no); // see lab2; use IRQ_EXCLUSIVE
+int (keyboard_subscribe_int)(uint8_t *bit_no);
 
 int (keyboard_unsubscribe_int)();
-
-void (kbc_ih)();
 
 int (kbc_issue_command)(uint8_t cmd);
 
