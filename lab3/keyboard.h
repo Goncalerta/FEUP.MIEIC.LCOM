@@ -12,6 +12,8 @@ int (kbc_issue_command)(uint8_t cmd);
 
 int (kbc_read_data)(uint8_t *data);
 
-bool (is_break_code)(uint8_t scancode);
+int (kbc_read_byte_command)(uint8_t *command_byte);
+
+int (kbc_write_byte_command)(uint8_t command_byte);
 
 #endif /* __KEYBOARD_H */

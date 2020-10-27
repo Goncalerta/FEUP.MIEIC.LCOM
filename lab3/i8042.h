@@ -28,8 +28,12 @@
 #define CMD_DISABLE_IF 0xAD
 #define CMD_ENABLE_IF 0xAE
 
+#define CMD_BYTE_DISABLE_KBD_IF BIT(4)
+#define CMD_BYTE_ENABLE_KBD_INT BIT(0)
+
 #define KBC_ST_IBF BIT(1)
 #define KBC_OBF BIT(0)
+#define KBC_AUX BIT(5)
 #define KBC_PAR_ERR BIT(7)
 #define KBC_TO_ERR BIT(6)
 
