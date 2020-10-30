@@ -2,15 +2,15 @@
 #include "keyboard.h"
 #include "i8042.h"
 
-int hook_id;
+int hook_id_kbd;
 
 int (keyboard_subscribe_int)(uint8_t *bit_no) {
-  hook_id = *bit_no;
-  return sys_irqsetpolicy(KEYBOARD_IRQ, IRQ_REENABLE | IRQ_EXCLUSIVE, &hook_id);
+  hook_id_kbd = *bit_no;
+  return sys_irqsetpolicy(KEYBOARD_IRQ, IRQ_REENABLE | IRQ_EXCLUSIVE, &hook_id_kbd);
 }
 
 int (keyboard_unsubscribe_int)() {
-  return sys_irqrmpolicy(&hook_id);
+  return sys_irqrmpolicy(&hook_id_kbd);
 }
 
 void (kbc_ih)() {
@@ -20,10 +20,7 @@ void (kbc_ih)() {
 int (kbc_issue_command)(uint8_t cmd) {
   uint8_t stat;
 
-  while (1) {
-      // TODO To make your code resilient to failures in the
-      // KBC/keyboard, it should give up after “enough time” for
-      // the KBC to send a previous command/data to the KBD.
+  for (int i = 0; i < 5; i++) {
     if(util_sys_inb(KBC_ST_REG, &stat)) 
       return 1;
     /*loop while 8042 input buffer is not empty*/
@@ -38,15 +35,16 @@ int (kbc_issue_command)(uint8_t cmd) {
 int (kbc_read_data)(uint8_t *data) {
   uint8_t stat;
 
-  while(1) {
-      // TODO It is not robust against failures in the KBC/keyboard
+  for (int i = 0; i < 5; i++) {
     if(util_sys_inb(KBC_ST_REG, &stat))
       return 1;
     /*loop while 8042 output buffer is empty*/
     if( (stat & KBC_OBF) && !(stat & KBC_AUX) ) {
       if(util_sys_inb(KBC_OUT_BUF, data))
         return 1;
-      return (stat & (KBC_PAR_ERR | KBC_TO_ERR)) != 0; // TODO should these parity/timeout errors cause stop the loop or just discard the data and continue?
+      if ((stat & (KBC_PAR_ERR | KBC_TO_ERR)) != 0)
+        return 2;
+      return 0;
     }
     tickdelay(micros_to_ticks(DELAY_US)); 
   }
