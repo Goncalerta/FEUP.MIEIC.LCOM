@@ -6,7 +6,7 @@ void (kbc_ih)() {
   ih_return = kbc_read_data(&scancode, 0);
 }
 
-int (kbc_write_reg)(uint8_t reg, uint8_t value) {
+int (kbc_write_reg)(int reg, uint8_t value) {
   uint8_t stat;
 
   for (int i = 0; i < 5; i++) {

@@ -4,7 +4,7 @@
 uint8_t scancode;
 int ih_return;
 
-int (kbc_write_reg)(uint8_t r, uint8_t value);
+int (kbc_write_reg)(int r, uint8_t value);
 
 int (kbc_issue_cmd)(uint8_t cmd);
 

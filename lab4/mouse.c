@@ -17,7 +17,7 @@ int (write_byte_to_mouse)(uint8_t cmd) {
             return 1;
         if (kbc_pass_cmd_arg(cmd))
             return 1;
-        if (kbc_read_data(&ack, 0))
+        if (util_sys_inb(KBC_OUT_BUF, &ack))
             return 1;
     } while (ack != ACK);
 

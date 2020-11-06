@@ -42,7 +42,7 @@ int (mouse_test_packet)(uint32_t cnt) {
     uint8_t raw_bytes[3] = {0, 0, 0};
     struct packet pp;
 
-    if (mouse_enable_data_reporting())
+    if (mouse_enable_dr())
         return 1; 
 
     if (mouse_subscribe_int(&bit_no))
