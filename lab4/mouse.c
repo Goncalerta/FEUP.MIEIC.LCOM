@@ -9,35 +9,27 @@ void (mouse_ih)() {
   ih_return = kbc_read_data(&packet_byte, 1);
 }
 
-int (mouse_enable_dr)() {
-    // TODO
-    return 0;
-}
-
-int (mouse_disable_dr)() {
+int (write_byte_to_mouse)(uint8_t cmd) {
     uint8_t ack;
 
     do {
-        if (kbc_issue_command(CMD_WRITE_BYTE_TO_MS))
+        if (kbc_issue_cmd(CMD_WRITE_BYTE_TO_MS))
             return 1;
-
-        uint8_t stat;
-        for (int i = 0; i < 5; i++) {
-            if(util_sys_inb(KBC_ST_REG, &stat)) 
+        if (kbc_pass_cmd_arg(cmd))
             return 1;
-            /*loop while 8042 input buffer is not empty*/
-            if( (stat & KBC_ST_IBF) == 0 ) {
-                sys_outb( KBC_CMD_ARGUMENTS_REG, MS_DISABLE_DATA_REPORTING);
-                break; 
-            }
-            tickdelay(micros_to_ticks(DELAY_US));
-        }
-
-        if (util_sys_inb(KBC_OUT_BUF, &ack))
+        if (kbc_read_data(&ack, 0))
             return 1;
     } while (ack != ACK);
 
     return 0;
+}
+
+int (mouse_enable_dr)() {
+    return write_byte_to_mouse(MS_ENABLE_DATA_REPORTING);
+}
+
+int (mouse_disable_dr)() {
+    return write_byte_to_mouse(MS_DISABLE_DATA_REPORTING);
 }
 
 int (mouse_subscribe_int)(uint8_t *bit_no) {

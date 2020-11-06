@@ -3,6 +3,8 @@
 
 uint8_t packet_byte;
 
+int (write_byte_to_mouse)(uint8_t cmd);
+
 int (mouse_enable_dr)();
 
 int (mouse_disable_dr)();
