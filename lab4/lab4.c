@@ -34,21 +34,20 @@ int main(int argc, char *argv[]) {
   return 0;
 }
 
-
 int (mouse_test_packet)(uint32_t cnt) {
-    int ipc_status;
+    int ipc_status, r;
     message msg;
-    uint8_t bit_no = MOUSE_IRQ;
-    int r;
+    uint8_t bit_no;
     int fail = 0;
+
     int packet_part = 0;
     uint8_t raw_bytes[3] = {0, 0, 0};
     struct packet pp;
 
-    if (mouse_enable_dr())
+    if (mouse_enable_dr() != OK)
         return 1; 
 
-    if (mouse_subscribe_int(&bit_no))
+    if (mouse_subscribe_int(&bit_no) != OK)
         return 1;
 
     while( cnt > 0 ) { 
@@ -62,16 +61,17 @@ int (mouse_test_packet)(uint32_t cnt) {
             case HARDWARE: /* hardware interrupt notification */				
                 if (msg.m_notify.interrupts & BIT(bit_no)) { /* subscribed interrupt */
                     mouse_ih();
-                    if (ih_return == 1) {
+                    if (mouse_ih_return == 1) {
                         fail = 1;
                         break;
-                    } else if (ih_return == 2) {
+                    } else if (mouse_ih_return == 2) {
                         continue;
                     }
 
                     switch (packet_part) {
                     case 0:
-                        if(!mouse_is_valid_first_byte_packet(packet_byte)) continue;
+                        if(!mouse_is_valid_first_byte_packet(packet_byte)) 
+                            continue;
                         raw_bytes[0] = packet_byte;
                         packet_part++;
                         break;
@@ -97,26 +97,25 @@ int (mouse_test_packet)(uint32_t cnt) {
         }
     }
 
-    if (mouse_unsubscribe_int()) return 1;
+    if (mouse_unsubscribe_int() != OK) 
+        return 1;
     
-    if (mouse_disable_dr()) return 1; 
+    if (mouse_disable_dr() != OK) 
+        return 1; 
 
     return fail;
 }
-// TODO "If the device is in Stream mode (the default) and has been enabled with an Enable (0xF4) command, then the host should disable the device with a Disable (0xF5) command before sending any other command." Synaptics TouchPad Interfacing Guide, pg. 33
-
-// TODO “When the host gets an 0xFE response, it should retry the offending command. If an argument byte elicits an 0xFE response, the host should retransmit the entire command, not just the argument byte.” Synaptics TouhcPad Interfacing Guide, pg. 31
 
 int (mouse_test_async)(uint8_t idle_time) {
-    int ipc_status;
+    int ipc_status, r;
     message msg;
-    uint8_t bit_no_mouse = MOUSE_IRQ;
-    uint8_t bit_no_timer = TIMER0_IRQ;
-    int r;
+    uint8_t bit_no_mouse, bit_no_timer;
     int fail = 0;
+
     int packet_part = 0;
     uint8_t raw_bytes[3] = {0, 0, 0};
     struct packet pp;
+
     int timer_frequency = sys_hz();
 
     if (timer_subscribe_int(&bit_no_timer))
@@ -139,12 +138,13 @@ int (mouse_test_async)(uint8_t idle_time) {
             case HARDWARE: /* hardware interrupt notification */				
                 if (msg.m_notify.interrupts & BIT(bit_no_mouse)) { /* subscribed interrupt */
                     mouse_ih();
-                    if (ih_return == 1) {
+                    if (mouse_ih_return == 1) {
                         fail = 1;
                         break;
-                    } else if (ih_return == 2) {
+                    } else if (mouse_ih_return == 2) {
                         continue;
                     }
+
                     interrupt_counter = 0;
                     switch (packet_part) {
                     case 0:
@@ -177,23 +177,142 @@ int (mouse_test_async)(uint8_t idle_time) {
         }
     }
 
-    if (mouse_unsubscribe_int()) return 1;
+    if (mouse_unsubscribe_int() != OK) 
+        return 1;
     
-    if (mouse_disable_dr()) return 1; 
+    if (mouse_disable_dr() != OK) 
+        return 1; 
 
-    if (timer_unsubscribe_int()) return 1;
+    if (timer_unsubscribe_int() != OK) 
+        return 1;
 
     return fail;
 }
 
 int (mouse_test_gesture)(uint8_t x_len, uint8_t tolerance) {
-    /* To be completed */
-    printf("%s: under construction\n", __func__);
-    return 1;
+    int ipc_status, r;
+    message msg;
+    uint8_t bit_no;
+    int fail = 0;
+
+    int packet_part = 0;
+    uint8_t raw_bytes[3] = {0, 0, 0};
+    struct packet pp;
+    enum mouse_gesture_state gesture_state = STATE_BEGIN;
+    uint8_t x_displ;
+
+    if (mouse_enable_dr() != OK)
+        return 1; 
+
+    if (mouse_subscribe_int(&bit_no) != OK)
+        return 1;
+
+    while( gesture_state != STATE_RB_RELEASED ) { 
+        /* Get a request message. */
+        if ( (r = driver_receive(ANY, &msg, &ipc_status)) != 0 ) { 
+            printf("driver_receive failed with: %d", r);
+            continue;
+        }
+        if (is_ipc_notify(ipc_status)) { /* received notification */
+            switch (_ENDPOINT_P(msg.m_source)) {
+            case HARDWARE: /* hardware interrupt notification */				
+                if (msg.m_notify.interrupts & BIT(bit_no)) { /* subscribed interrupt */
+                    mouse_ih();
+                    if (mouse_ih_return == 1) {
+                        fail = 1;
+                        break;
+                    } else if (mouse_ih_return == 2) {
+                        continue;
+                    }
+
+                    switch (packet_part) {
+                    case 0:
+                        if(!mouse_is_valid_first_byte_packet(packet_byte)) 
+                            continue;
+                        raw_bytes[0] = packet_byte;
+                        packet_part++;
+                        break;
+                    case 1:
+                        raw_bytes[1] = packet_byte;
+                        packet_part++;
+                        break;
+                    case 2:
+                        raw_bytes[2] = packet_byte;
+                        mouse_parse_packet(raw_bytes, &pp);
+                        packet_part = 0;
+                        mouse_print_packet(&pp);
+                        mouse_update_gesture_state(x_len, tolerance, pp, &gesture_state, &x_displ);
+                        break;
+                    }   
+                }
+                break;
+            default:
+                break; /* no other notifications expected: do nothing */	
+            }
+        } else { /* received a standard message, not a notification */
+            /* no standard messages expected: do nothing */
+        }
+    }
+
+    if (mouse_unsubscribe_int() != OK) 
+        return 1;
+    
+    if (mouse_disable_dr() != OK) 
+        return 1; 
+
+    return fail;
 }
 
 int (mouse_test_remote)(uint16_t period, uint8_t cnt) {
-    /* To be completed */
-    printf("%s(%u, %u): under construction\n", __func__, period, cnt);
-    return 1;
+    int packet_part = 0;
+    uint8_t raw_bytes[3] = {0, 0, 0};
+    struct packet pp;
+    bool fail = false;
+
+    while( cnt > 0 ) { 
+        if (write_byte_to_mouse(MS_READ_DATA) != OK)
+            return 1;
+        int result = kbc_read_data(&packet_byte, true);
+        if (result == 1) {
+            fail = 1;
+            break;
+        } else if (result == 2) {
+            continue;
+        }
+
+        switch (packet_part) {
+        case 0:
+            if(!mouse_is_valid_first_byte_packet(packet_byte)) 
+                continue;
+            raw_bytes[0] = packet_byte;
+            packet_part++;
+            break;
+        case 1:
+            raw_bytes[1] = packet_byte;
+            packet_part++;
+            break;
+        case 2:
+            raw_bytes[2] = packet_byte;
+            mouse_parse_packet(raw_bytes, &pp);
+            mouse_print_packet(&pp);
+            packet_part = 0;
+            cnt--;
+            break;
+        }
+        tickdelay(micros_to_ticks(period));
+    }
+
+    if (mouse_disable_dr() != OK) 
+        return 1;
+        
+    if (mouse_set_stream_mode() != OK)
+        return 1;
+
+    if (mouse_disable_dr() != OK) 
+        return 1; 
+    
+    if (kbc_write_command_byte(minix_get_dflt_kbc_cmd_byte()) != OK)
+        return 1;
+
+    return fail;
 }

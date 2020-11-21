@@ -11,7 +11,6 @@ int kbc_write_reg(int reg, uint8_t write) {
         if( (stat & KBC_ST_IBF) == 0 ) {
             if (sys_outb(reg, write) != OK)
                 return 1; 
-            return 0;
         }
         tickdelay(micros_to_ticks(DELAY_US));
     }
@@ -26,14 +25,12 @@ int kbc_issue_argument(uint8_t arg) {
     return kbc_write_reg(KBC_ARG_REG, arg);
 }
 
-int kbc_read_data(uint8_t *data, bool mouse_data) {
+int kbc_read_data(uint8_t *data) {
     uint8_t stat;
     for (int i = 0; i < 5; i++) {
         if (util_sys_inb(KBC_ST_REG, &stat))
             return 1;
-
-        bool read_data_from_mouse = stat & KBC_AUX;
-        if ( (stat & KBC_OBF) && (read_data_from_mouse == mouse_data) ) {
+        if ( (stat & KBC_OBF) && ((stat & KBC_AUX) == 0) ) {
             if (util_sys_inb(KBC_OUT_BUF, data))
                 return 1;
                 

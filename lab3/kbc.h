@@ -10,7 +10,7 @@ int (kbc_issue_command)(uint8_t cmd);
 
 int (kbc_issue_argument)(uint8_t arg);
 
-int (kbc_read_data)(uint8_t *data, bool mouse_data);
+int (kbc_read_data)(uint8_t *data);
 
 int (kbc_read_command_byte)(uint8_t *byte);
 
