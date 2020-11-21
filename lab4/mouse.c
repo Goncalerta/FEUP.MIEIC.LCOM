@@ -103,7 +103,7 @@ int (write_byte_to_mouse)(uint8_t cmd) {
             return 1;
         if (util_sys_inb(KBC_OUT_BUF, &ack) != OK)
             return 1;
-    } while (ack != ACK);
+    } while (ack != ACK); //TODO não tem que se fazer tickdelays entre iterações?
 
     return 0;
 }
