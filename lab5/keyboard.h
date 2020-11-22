@@ -2,18 +2,18 @@
 #define __KEYBOARD_H
 
 uint8_t scancode;
-int ih_return;
+int kbc_ih_return;
 
-int (keyboard_subscribe_int)(uint8_t *bit_no);
+int (kbd_subscribe_int)(uint8_t *bit_no);
 
-int (keyboard_unsubscribe_int)();
+int (kbd_unsubscribe_int)();
 
-int (kbc_issue_command)(uint8_t cmd);
+bool (is_make_code)(uint8_t scancode);
 
-int (kbc_read_data)(uint8_t *data);
+int (kbd_enable_interrupts)();
 
-int (kbc_read_byte_command)(uint8_t *command_byte);
+int (kbd_update_scancode)(uint8_t scancode, uint8_t *size, uint8_t *bytes);
 
-int (kbc_write_byte_command)(uint8_t command_byte);
+int (kbd_display_scancode)(uint8_t scancode, uint8_t *size, uint8_t *bytes);
 
 #endif /* __KEYBOARD_H */

@@ -36,14 +36,15 @@ int main(int argc, char *argv[]) {
 }
 
 int(video_test_init)(uint16_t mode, uint8_t delay) {
-  if (vg_init(mode) == NULL) {
-    return 1;
-  }
-  tickdelay(micros_to_ticks(delay * SECONDS_TO_MICROS));
-  if (vg_exit()) {
-    return 1;
-  }
-  return 0;
+    if (vg_init(mode) == NULL) 
+        return 1;
+    
+    tickdelay(micros_to_ticks(delay * SECONDS_TO_MICROS));
+
+    if (vg_exit() != OK) 
+        return 1;
+    
+    return 0;
 }
 
 /*The test of these functions is based essentially on the contents of the frame-buffer upon calling vg_exit(). Therefore, you should invoke VBE function 0x02, Set VBE Mode, with bit 15 of the BX register cleared, thus ensuring that the display memory is cleared after switching to the desired graphics mode.*/
@@ -51,66 +52,63 @@ int(video_test_init)(uint16_t mode, uint8_t delay) {
 int(video_test_rectangle)(uint16_t mode, uint16_t x, uint16_t y,
                           uint16_t width, uint16_t height, uint32_t color) {
   
-  int ipc_status;
-  message msg;
-  uint8_t bit_no = KEYBOARD_IRQ;
-  int r;
-  uint8_t bytes[] = {0, 0};
-  bool reading_2nd_byte = false;
-  int fail = 0;
+    int ipc_status, r;
+    message msg;
+    uint8_t bit_no;
+    bool fail = false;
 
-  if (vg_init(mode) == NULL) {
-    return 1;
-  }
-  if (vg_draw_rectangle(x, y, width, height, color)) {
-    return 1;
-  }
+    uint8_t bytes[] = {0, 0};
+    uint8_t size = 1;
 
-  if (keyboard_subscribe_int(&bit_no))
-    return 1;
-  
-  while( bytes[0] != ESC_BREAK_CODE ) {
-    /* Get a request message. */
-    if ( (r = driver_receive(ANY, &msg, &ipc_status)) != 0 ) { 
-      printf("driver_receive failed with: %d", r);
-      continue;
-    }
-    if (is_ipc_notify(ipc_status)) { /* received notification */
-      switch (_ENDPOINT_P(msg.m_source)) {
-        case HARDWARE: /* hardware interrupt notification */				
-          if (msg.m_notify.interrupts & BIT(bit_no)) { /* subscribed interrupt */
-            kbc_ih();
-            if (ih_return == 1) {
-              fail = 1;
-              break;
-            } else if (ih_return == 2) {
-              continue;
+    if (vg_init(mode) == NULL) 
+        return 1;
+
+    if (vg_draw_rectangle(x, y, width, height, color) != OK) 
+        return 1;
+    
+    if (kbd_subscribe_int(&bit_no))
+        return 1;
+    
+
+    while( bytes[0] != ESC_BREAK_CODE ) {
+        /* Get a request message. */
+        if ( (r = driver_receive(ANY, &msg, &ipc_status)) != 0 ) { 
+            printf("driver_receive failed with: %d", r);
+            continue;
+        }
+        if (is_ipc_notify(ipc_status)) { /* received notification */
+            switch (_ENDPOINT_P(msg.m_source)) {
+            case HARDWARE: /* hardware interrupt notification */				
+                if (msg.m_notify.interrupts & BIT(bit_no)) { /* subscribed interrupt */
+                    kbc_ih();
+                    if (kbc_ih_return == 1) {
+                        fail = true;
+                        break;
+                    } else if (kbc_ih_return == 2) {
+                        continue;
+                    }
+                
+                    if (kbd_update_scancode(scancode, &size, bytes) != OK) {
+                        fail = true;
+                        break;
+                    }
+                }
+                break;
+            default:
+                break; /* no other notifications expected: do nothing */	
             }
-            
-            if (reading_2nd_byte) {
-              bytes[1] = scancode;
-              reading_2nd_byte = false;
-            } else {
-              bytes[0] = scancode;
-              if (scancode == FIRST_BYTE_TWO_BYTE_SCANCODE) {
-                reading_2nd_byte = true;
-              }
-            }
-          }
-          break;
-        default:
-          break; /* no other notifications expected: do nothing */	
-      }
-    } else { /* received a standard message, not a notification */
-        /* no standard messages expected: do nothing */
+        } else { /* received a standard message, not a notification */
+            /* no standard messages expected: do nothing */
+        }
     }
-  }
+    
+    if (kbd_unsubscribe_int() != OK)
+        return 1;
 
-  if (vg_exit()) {
-    return 1;
-  }
-  
-  return keyboard_unsubscribe_int() || fail;
+    if (vg_exit() != OK)
+        return 1;
+
+    return fail;
 }
 
 int(video_test_pattern)(uint16_t mode, uint8_t no_rectangles, uint32_t first, uint8_t step) {

@@ -1,6 +1,8 @@
 {
     "files.associations": {
         "xiosbase": "c",
-        "ios": "c"
+        "ios": "c",
+        "map": "c",
+        "__tree": "c"
     }
 }
