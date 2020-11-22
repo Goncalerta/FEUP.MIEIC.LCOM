@@ -3,6 +3,8 @@
         "xiosbase": "c",
         "ios": "c",
         "map": "c",
-        "__tree": "c"
+        "__tree": "c",
+        "utility": "c",
+        "memory": "c"
     }
 }

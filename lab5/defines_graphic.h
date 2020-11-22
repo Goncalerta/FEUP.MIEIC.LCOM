@@ -13,7 +13,10 @@
 
 #define BIOS_VIDEO_SERVICES 0x10
 
-#define COLOR_BYTE(val,n) (val>>(n*8))
-#define COLOR_CAP_BYTES_NUM(n) (0xFFFFFFFF >> 2*(4-n)) /* 1 <= n <= 4*/
+#define MEMORY_MODEL_DIRECT_COLOR 0x06
+
+#define COLOR_BYTE(val, n) ((val) >> (n*8))
+#define COLOR_CAP_BYTES_NUM(n) (0xffffffff >> 2*(4-(n))) /* 1 <= n <= 4*/
+#define COLOR_MASK(size, offset) ((0xffffffff >> (32-(size))) << (offset))
 
 #endif /* _DEFINES_GRAPHIC_H */

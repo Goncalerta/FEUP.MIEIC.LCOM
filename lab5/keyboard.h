@@ -1,6 +1,8 @@
 #ifndef __KEYBOARD_H
 #define __KEYBOARD_H
 
+#include <lcom/lcf.h>
+
 uint8_t scancode;
 int kbc_ih_return;
 
