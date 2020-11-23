@@ -220,6 +220,35 @@ int (vg_draw_sprite)(xpm_image_t img, uint16_t x, uint16_t y) {
             for (uint8_t k = 0; k < bytes_per_pixel; k++) {
                 color += img.bytes[(i + j * img.width) * bytes_per_pixel] << (8 * k);
             }
+
+            switch (img.type) {
+                case XPM_INDEXED:
+                    if (color == 0)
+                        continue;
+                    break;
+                case XPM_1_5_5_5:
+                case XPM_GRAY_1_5_5_5:
+                    if (color == TRANSPARENCY_COLOR_1_5_5_5)
+                        continue;
+                    break;
+                case XPM_5_6_5:
+                case XPM_GRAY_5_6_5:
+                    if (color == CHROMA_KEY_GREEN_565)
+                        continue;
+                    break;
+                case XPM_8_8_8:
+                case XPM_GRAY_8_8_8:
+                    if (color == CHROMA_KEY_GREEN_888)
+                        continue;
+                    break;
+                case XPM_8_8_8_8:
+                case XPM_GRAY_8_8_8_8:
+                    if (color == TRANSPARENCY_COLOR_8_8_8_8)
+                        continue;
+                    break;
+                case INVALID_XPM:
+                    return 1;
+            }
             if (vg_draw_pixel(x + i, y + j, color) != OK)
                 return 1;
         }

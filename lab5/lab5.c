@@ -186,6 +186,7 @@ int(video_test_xpm)(xpm_map_t xpm, uint16_t x, uint16_t y) {
 
     xpm_image_t img;
     xpm_load(xpm, XPM_INDEXED, &img); // TODO should we do something with return value?
+
     if (vg_draw_sprite(img, x, y) != OK)
         return 1;
     
