@@ -5,6 +5,19 @@
         "map": "c",
         "__tree": "c",
         "utility": "c",
-        "memory": "c"
+        "memory": "c",
+        "chrono": "c",
+        "complex": "c",
+        "functional": "c",
+        "ratio": "c",
+        "tuple": "c",
+        "type_traits": "c",
+        "xmemory0": "c",
+        "xtr1common": "c",
+        "xutility": "c",
+        "__functional_base": "c",
+        "__functional_base_03": "c",
+        "__tuple": "c",
+        "limits": "c"
     }
 }

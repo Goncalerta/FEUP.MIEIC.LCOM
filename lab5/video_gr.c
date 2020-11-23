@@ -169,16 +169,19 @@ int (vg_draw_rectangle)(uint16_t x, uint16_t y, uint16_t width, uint16_t height,
     return 0;
 }
 
+//OWN FUNCTION
 void (vg_parse_color)(uint32_t color, uint8_t *red, uint8_t *green, uint8_t *blue) {
     *blue = color & COLOR_MASK(blue_mask_size, 0);
     *green = color & COLOR_MASK(green_mask_size, blue_mask_size);
     *red = color & COLOR_MASK(red_mask_size, blue_mask_size + green_mask_size);
 }
 
+//OWN FUNCTION
 uint32_t (vg_create_color)(uint8_t red, uint8_t green, uint8_t blue) {
     return blue | (green << blue_mask_size) | (red << (blue_mask_size + green_mask_size));
 }
 
+//OWN FUNCTION
 int (vg_draw_pattern)(uint8_t no_rectangles, uint32_t first, uint8_t step) {
     uint16_t width = h_res/no_rectangles;
     uint16_t height = v_res/no_rectangles;
@@ -187,7 +190,7 @@ int (vg_draw_pattern)(uint8_t no_rectangles, uint32_t first, uint8_t step) {
     if (direct_color_mode) {
         vg_parse_color(first, &first_red, &first_green, &first_blue);
     }
-    
+
     for (uint16_t row = 0; row < no_rectangles; row++) {
         for (uint16_t col = 0; col < no_rectangles; col++) {
             uint32_t color;
@@ -205,5 +208,22 @@ int (vg_draw_pattern)(uint8_t no_rectangles, uint32_t first, uint8_t step) {
         }
     }
 
+    return 0;
+}
+
+//OWN FUNCTION
+int (vg_draw_sprite)(xpm_image_t img, uint16_t x, uint16_t y) {
+    for (uint16_t i = 0; i < img.width; i++) {
+        for (uint16_t j = 0; j < img.height; j++) {
+            uint8_t bytes_per_pixel = ceil(bits_per_pixel/8.0);
+            uint32_t color = 0;
+            for (uint8_t k = 0; k < bytes_per_pixel; k++) {
+                color += img.bytes[(i + j * img.width) * bytes_per_pixel] << (8 * k);
+            }
+            if (vg_draw_pixel(x + i, y + j, color) != OK)
+                return 1;
+        }
+    }
+    
     return 0;
 }
