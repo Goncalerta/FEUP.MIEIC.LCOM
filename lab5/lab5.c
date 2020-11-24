@@ -11,6 +11,9 @@
 #include "defines_graphic.h"
 #include "i8042.h"
 #include "keyboard.h"
+#include "sprite.h"
+
+int interrupt_counter;
 
 int main(int argc, char *argv[]) {
   // sets the language of LCF messages (can be either EN-US or PT-PT)
@@ -185,9 +188,10 @@ int(video_test_xpm)(xpm_map_t xpm, uint16_t x, uint16_t y) {
         return 1;
 
     xpm_image_t img;
-    xpm_load(xpm, XPM_INDEXED, &img); // TODO should we do something with return value?
+    if (xpm_load(xpm, XPM_INDEXED, &img) == NULL)
+        return 1;
 
-    if (vg_draw_sprite(img, x, y) != OK)
+    if (vg_draw_img(img, x, y) != OK)
         return 1;
     
     if (kbd_subscribe_int(&bit_no))
@@ -237,11 +241,127 @@ int(video_test_xpm)(xpm_map_t xpm, uint16_t x, uint16_t y) {
 
 int(video_test_move)(xpm_map_t xpm, uint16_t xi, uint16_t yi, uint16_t xf, uint16_t yf,
                      int16_t speed, uint8_t fr_rate) {
-  /* To be completed */
-  printf("%s(%8p, %u, %u, %u, %u, %d, %u): under construction\n",
-         __func__, xpm, xi, yi, xf, yf, speed, fr_rate);
+    uint16_t mode = 0x105;
+    int ipc_status, r;
+    message msg;
+    uint8_t kbd_bit_no, timer_bit_no;
+    bool fail = false;
 
-  return 1;
+    uint8_t bytes[] = {0, 0};
+    uint8_t size = 1;
+
+    uint8_t interrupts_per_frame = sys_hz() / fr_rate;
+    if (interrupts_per_frame == 0)
+        return 1;
+
+    if (vg_init(mode) == NULL) 
+        return 1;
+
+    if (xi != xf && yi != yf)
+        return 1; // Only horizontal and vertical movement is allowed
+
+    int xspeed = 0, yspeed = 0, s;
+
+    if (speed >= 0) {
+        s = speed;
+    } else {
+        s = 1; // Negative speeds represent number of frames necessary for displacement of 1 pixel
+               // so the speed in each displacement is 1 pixel
+    }
+
+    if (xf > xi) { // Going to the right
+        xspeed = s;
+    } else if (xf < xi) { // Going to the left
+        xspeed = -s;
+    } else if (yf > yi) { // Going downwards
+        yspeed = s;
+    } else { // Going upwards
+        yspeed = -s;
+    }
+
+    Sprite *sprite = create_sprite(xpm, xi, yi, xspeed, yspeed);
+    if (sprite == NULL)
+        return 1;
+
+    if (draw_sprite(sprite) != OK)
+        return 1;
+
+    if (timer_subscribe_int(&timer_bit_no)) 
+        return 1;
+
+    if (kbd_subscribe_int(&kbd_bit_no))
+        return 1;
+    
+    while( bytes[0] != ESC_BREAK_CODE ) {
+        /* Get a request message. */
+        if ( (r = driver_receive(ANY, &msg, &ipc_status)) != 0 ) { 
+            printf("driver_receive failed with: %d", r);
+            continue;
+        }
+        if (is_ipc_notify(ipc_status)) { /* received notification */
+            switch (_ENDPOINT_P(msg.m_source)) {
+            case HARDWARE: /* hardware interrupt notification */				
+                if (msg.m_notify.interrupts & BIT(kbd_bit_no)) { /* subscribed interrupt */
+                    kbc_ih();
+                    if (kbc_ih_return == 1) {
+                        fail = true;
+                        break;
+                    } else if (kbc_ih_return == 2) {
+                        continue;
+                    }
+                
+                    if (kbd_update_scancode(scancode, &size, bytes) != OK) {
+                        fail = true;
+                        break;
+                    }
+                }
+                if (msg.m_notify.interrupts & BIT(timer_bit_no)) {
+                    timer_int_handler();
+                    
+                    if (interrupt_counter % interrupts_per_frame == 0) {
+                        if (speed >= 0 || interrupt_counter % (-speed * interrupts_per_frame) == 0) {
+                            if (sprite->x != xf || sprite->y != yf) {
+                                if ((xf > sprite->x && xf < sprite->x + sprite->xspeed)
+                                    || (xf < sprite->x && xf > sprite->x + sprite->xspeed)
+                                    || (yf > sprite->y && yf < sprite->y + sprite->yspeed)
+                                    || (yf < sprite->y && yf > sprite->y + sprite->yspeed)) {
+                                    sprite->x = xf;
+                                    sprite->y = yf;
+                                } else {
+                                    animate_sprite(sprite);
+                                }
+                            } else {
+                                sprite->xspeed = 0;
+                                sprite->yspeed = 0;
+                                speed = 0;
+                            }
+                        }
+
+                        if (vg_clear() != OK)
+                            return 1;
+                        if (draw_sprite(sprite) != OK)
+                            return 1;
+                    }
+                }
+                break;
+            default:
+                break; /* no other notifications expected: do nothing */	
+            }
+        } else { /* received a standard message, not a notification */
+            /* no standard messages expected: do nothing */
+        }
+    }
+    
+    if (kbd_unsubscribe_int() != OK)
+        return 1;
+    
+    if (timer_unsubscribe_int() != OK) 
+        return 1;
+
+    if (vg_exit() != OK)
+        return 1;
+
+    return fail;
 }
 
 int(video_test_controller)() {

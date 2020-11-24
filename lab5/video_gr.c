@@ -52,7 +52,8 @@ int (vg_vbe_change_mode)(uint16_t mode) {
 
 int vbe_get_mode_inf(uint16_t mode, vbe_mode_info_t *vmi) {
     mmap_t map;
-    lm_alloc(sizeof(vbe_mode_info_t), &map); // TODO should we do anything with the return type or is map.virt enough
+    if (lm_alloc(sizeof(vbe_mode_info_t), &map) == NULL)
+        return 1;
 
     struct reg86 r86;
     memset(&r86, 0, sizeof(r86));
@@ -212,7 +213,7 @@ int (vg_draw_pattern)(uint8_t no_rectangles, uint32_t first, uint8_t step) {
 }
 
 //OWN FUNCTION
-int (vg_draw_sprite)(xpm_image_t img, uint16_t x, uint16_t y) {
+int (vg_draw_img)(xpm_image_t img, uint16_t x, uint16_t y) {
     for (uint16_t i = 0; i < img.width; i++) {
         for (uint16_t j = 0; j < img.height; j++) {
             uint8_t bytes_per_pixel = ceil(bits_per_pixel/8.0);
@@ -221,38 +222,21 @@ int (vg_draw_sprite)(xpm_image_t img, uint16_t x, uint16_t y) {
                 color += img.bytes[(i + j * img.width) * bytes_per_pixel] << (8 * k);
             }
 
-            switch (img.type) {
-                case XPM_INDEXED:
-                    if (color == 0)
-                        continue;
-                    break;
-                case XPM_1_5_5_5:
-                case XPM_GRAY_1_5_5_5:
-                    if (color == TRANSPARENCY_COLOR_1_5_5_5)
-                        continue;
-                    break;
-                case XPM_5_6_5:
-                case XPM_GRAY_5_6_5:
-                    if (color == CHROMA_KEY_GREEN_565)
-                        continue;
-                    break;
-                case XPM_8_8_8:
-                case XPM_GRAY_8_8_8:
-                    if (color == CHROMA_KEY_GREEN_888)
-                        continue;
-                    break;
-                case XPM_8_8_8_8:
-                case XPM_GRAY_8_8_8_8:
-                    if (color == TRANSPARENCY_COLOR_8_8_8_8)
-                        continue;
-                    break;
-                case INVALID_XPM:
-                    return 1;
-            }
+            if (color == xpm_transparency_color(img.type)) 
+                continue;
+
             if (vg_draw_pixel(x + i, y + j, color) != OK)
                 return 1;
         }
     }
     
+    return 0;
+}
+
+//OWN FUNCTION
+int (vg_clear)() {
+    for (int i = 0; i < ceil(bits_per_pixel * h_res * v_res / 8.0); i++) {
+        ((uint8_t *)video_mem)[i] = 0; // TODO maybe setmem or something like that may be more efficient?
+    }
     return 0;
 }
