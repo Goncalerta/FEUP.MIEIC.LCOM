@@ -5,6 +5,7 @@
 #include "defines_graphic.h"
 
 static void *video_mem;         /* frame-buffer VM address */
+static void *aux_mem;
 static unsigned h_res;	        /* Horizontal resolution in pixels */
 static unsigned v_res;	        /* Vertical resolution in pixels */
 static unsigned bits_per_pixel; /* Number of VRAM bits per pixel */
@@ -120,12 +121,30 @@ void *(vg_init)(uint16_t mode) {
     if(video_mem == MAP_FAILED)
         panic("couldn't map video memory");
 
+    aux_mem = malloc(vram_size);
+
+    if(aux_mem == NULL){
+        printf("Error creating secondary video memory buffer.\n");
+        return NULL;
+    }
+
     if(vg_vbe_change_mode(mode)) {
         printf("Error while changing mode.\n");
         return NULL;
     }
 
     return video_mem;
+}
+
+//OWN FUNCTION
+void flip_buff() {
+    memcpy(video_mem, aux_mem, h_res * v_res * ceil(bits_per_pixel/8.0));
+}
+
+//OWN FUNCTION
+int (vg_finish)() {
+    free(aux_mem);
+    return vg_exit();
 }
 
 //OWN FUNCTION
@@ -138,7 +157,7 @@ int (vg_draw_pixel)(uint16_t x, uint16_t y, uint32_t color) {
     }
     uint8_t bytes_per_pixel = ceil(bits_per_pixel/8.0);
 
-    uint8_t *pixel_mem_pos = (uint8_t*) video_mem + (y * h_res * bytes_per_pixel) + (x * bytes_per_pixel);
+    uint8_t *pixel_mem_pos = (uint8_t*) aux_mem + (y * h_res * bytes_per_pixel) + (x * bytes_per_pixel);
 
     if (color > COLOR_CAP_BYTES_NUM(bytes_per_pixel)) {
         printf("Invlid color argument. Too large\n");
@@ -236,7 +255,7 @@ int (vg_draw_img)(xpm_image_t img, uint16_t x, uint16_t y) {
 //OWN FUNCTION
 int (vg_clear)() {
     for (int i = 0; i < ceil(bits_per_pixel * h_res * v_res / 8.0); i++) {
-        ((uint8_t *)video_mem)[i] = 0; // TODO maybe setmem or something like that may be more efficient?
+        ((uint8_t *)aux_mem)[i] = 0; // TODO maybe setmem or something like that may be more efficient?
     }
     return 0;
 }
