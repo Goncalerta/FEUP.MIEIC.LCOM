@@ -37,22 +37,23 @@ void (kbc_ih)() {
     kbd_ih_return = 0;
 }
 
-bool is_make_code(uint8_t scancode) {
+bool kbd_is_make_code(uint8_t scancode) {
     return (scancode & BREAKCODE_BIT) == 0;
 }
 
-bool scancode_ready() {
+bool kbd_scancode_ready() {
     return should_retrieve;
 }
 
-int handle_scancode() {
+int kbd_handle_scancode() {
     if (!should_retrieve)
         return 1;
     
+    // TODO
     if (scancode_bytes_counter == 1)
-        printf("handle_scancode is not yet implemented. scancode: %d", scancode_bytes[0]);
+        printf("kbd_handle_scancode is not yet implemented. scancode: %d\n", scancode_bytes[0]);
     else if (scancode_bytes_counter == 2)
-        printf("handle_scancode is not yet implemented. scancode: %d, %d", scancode_bytes[0], scancode_bytes[1]);
+        printf("kbd_handle_scancode is not yet implemented. scancode: %d, %d\n", scancode_bytes[0], scancode_bytes[1]);
     
     scancode_bytes_counter = 0;
     should_retrieve = false;

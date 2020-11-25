@@ -9,11 +9,11 @@ int kbd_subscribe_int(uint8_t *bit_no);
 
 int kbd_unsubscribe_int();
 
-bool is_make_code(uint8_t scancode);
+bool kbd_is_make_code(uint8_t scancode);
 
-bool scancode_ready();
+bool kbd_scancode_ready();
 
-int handle_scancode();
+int kbd_handle_scancode();
 
 int kbd_enable_interrupts();
 

@@ -10,7 +10,8 @@ int kbc_write_reg(int reg, uint8_t write) {
         /* loop while 8042 input buffer is not empty */
         if( (stat & KBC_ST_IBF) == 0 ) {
             if (sys_outb(reg, write) != OK)
-                return 1; 
+                return 1;
+            return 0;
         }
         tickdelay(micros_to_ticks(DELAY_US));
     }
