@@ -341,7 +341,8 @@ int(video_test_move)(xpm_map_t xpm, uint16_t xi, uint16_t yi, uint16_t xf, uint1
                             return 1;
                         if (draw_sprite(sprite) != OK)
                             return 1;
-                        flip_buff();
+                        if (flip_page())
+                            return 1;
                     }
                 }
                 break;
@@ -359,15 +360,19 @@ int(video_test_move)(xpm_map_t xpm, uint16_t xi, uint16_t yi, uint16_t xf, uint1
     if (timer_unsubscribe_int() != OK) 
         return 1;
 
-    if (vg_finish() != OK)
+    if (vg_exit() != OK)
         return 1;
 
     return fail;
 }
 
 int(video_test_controller)() {
-  /* To be completed */
-  printf("%s(): under construction\n", __func__);
+    vg_vbe_contr_info_t info_p;
+    if (vbe_get_contr_info(&info_p) != OK)
+        return 1;
 
-  return 1;
+    if (vg_display_vbe_contr_info(&info_p) != OK)
+        return 1;
+
+    return 0;
 }

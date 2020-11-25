@@ -4,8 +4,9 @@
 #include "video_gr.h"
 #include "defines_graphic.h"
 
-static void *video_mem;         /* frame-buffer VM address */
-static void *aux_mem;
+static void *video_buf1;         /* frame-buffer VM address */
+static void *video_buf2;
+bool buf1_is_primary = true;
 static unsigned h_res;	        /* Horizontal resolution in pixels */
 static unsigned v_res;	        /* Vertical resolution in pixels */
 static unsigned bits_per_pixel; /* Number of VRAM bits per pixel */
@@ -13,6 +14,26 @@ static uint8_t red_mask_size;
 static uint8_t green_mask_size;
 static uint8_t blue_mask_size;
 static bool direct_color_mode;
+
+//OWN FUNCTION [UNUSED]
+/*
+static void *get_front_buffer() {
+    if (buf1_is_primary) {
+        return video_buf1;
+    } else {
+        return video_buf2;
+    }
+}
+*/
+
+//OWN FUNCTION
+static void *get_back_buffer() {
+    if (buf1_is_primary) {
+        return video_buf2;
+    } else {
+        return video_buf1;
+    }
+}
 
 //OWN FUNCTION
 void (vg_set_global_var_screen)(vbe_mode_info_t *vmi) {
@@ -38,7 +59,7 @@ int (vg_vbe_change_mode)(uint16_t mode) {
     r86.al = VBE_FUNCTION_SET_MODE;
     r86.bx = mode | VBE_LINEAR_FRAME_BUFFER_MODEL;
 
-    if(sys_int86(&r86)) {
+    if(sys_int86(&r86) != OK) {
         printf("Error in %s",__func__);
         return 1;
     }
@@ -50,6 +71,71 @@ int (vg_vbe_change_mode)(uint16_t mode) {
     return 0;
 }
 
+//OWN FUNCTION
+int vbe_set_display_start(uint16_t first_pixel_in_scanline, uint16_t first_scanline) {
+    struct reg86 r86;
+    
+    /* Specify the appropriate register values */
+    
+    memset(&r86, 0, sizeof(r86));	/* zero the structure */
+
+    r86.intno = BIOS_VIDEO_SERVICES;
+    r86.ah = VBE_CALL_AH;
+    r86.al = VBE_FUNCTION_SET_GET_DISPLAY_START;
+    r86.bl = SET_DISPLAY_START_DURING_VERTICAL_RETRACE;
+    r86.cx = first_pixel_in_scanline;
+    r86.dx = first_scanline;
+    
+    if(sys_int86(&r86) != OK) {
+        printf("Error in %s",__func__);
+        return 1;
+    }
+    if (r86.ah != VBE_FUNCTION_AH_SUCCESS) {
+        printf("Error in %s",__func__);
+        return 1;
+    }
+    
+    return 0;
+}
+
+//OWN FUNCTION
+int vbe_get_contr_info(vg_vbe_contr_info_t *info_p) {
+    mmap_t map;
+    if (lm_alloc(sizeof(vg_vbe_contr_info_t), &map) == NULL)
+        return 1;
+
+    strcpy(((vg_vbe_contr_info_t*) map.virt)->VBESignature, "VBE2");
+
+    struct reg86 r86;
+    memset(&r86, 0, sizeof(r86));
+
+    r86.intno = BIOS_VIDEO_SERVICES;
+    r86.ah = VBE_CALL_AH;
+    r86.al = VBE_FUNCTION_GET_CONTR_INFO;
+    r86.es = PB2BASE(map.phys);
+    r86.di = PB2OFF(map.phys);
+
+    if(sys_int86(&r86) != OK) {
+        printf("Error in %s",__func__);
+        if (!lm_free(&map))
+            panic("couldn't free memory");
+        return 1;
+    }
+
+    if (!lm_free(&map))
+        panic("couldn't free memory");
+
+    if (r86.ah != VBE_FUNCTION_AH_SUCCESS) {
+        printf("Error in %s",__func__);
+        return 1;
+    }
+
+    // TODO convert physical adresses to pointers
+    //      right now this function does NOT work properly
+    *info_p = *((vg_vbe_contr_info_t*) map.virt);
+    
+    return 0;
+}
 
 int vbe_get_mode_inf(uint16_t mode, vbe_mode_info_t *vmi) {
     mmap_t map;
@@ -66,7 +152,7 @@ int vbe_get_mode_inf(uint16_t mode, vbe_mode_info_t *vmi) {
     r86.es = PB2BASE(map.phys);
     r86.di = PB2OFF(map.phys);
 
-    if(sys_int86(&r86)) {
+    if(sys_int86(&r86) != OK) {
         printf("Error in %s",__func__);
         if (!lm_free(&map))
             panic("couldn't free memory");
@@ -86,12 +172,10 @@ int vbe_get_mode_inf(uint16_t mode, vbe_mode_info_t *vmi) {
     return 0;
 }
 
-
 void *(vg_init)(uint16_t mode) {
-    struct minix_mem_range mr;
-    unsigned int vram_base;  /* VRAM's physical addresss */
-    unsigned int vram_size;  /* VRAM's size, but you can use the frame-buffer size, instead */
-    int r;			    
+    struct minix_mem_range mr1;
+    struct minix_mem_range mr2;
+    unsigned int vram_base, vram_size;
 
     /* Use VBE function 0x01 to initialize vram_base and vram_size */ 
     vbe_mode_info_t vmi;
@@ -103,48 +187,49 @@ void *(vg_init)(uint16_t mode) {
     vg_set_global_var_screen(&vmi);
 
     vram_base = vmi.PhysBasePtr;
+    vram_size = h_res * v_res * ceil(bits_per_pixel/8.0); // TODO shouldn't bits_per_pixel be a multiple of 8 already?
 
-    vram_size = h_res * v_res * ceil(bits_per_pixel/8.0);
 
     /* Allow memory mapping */
+    mr1.mr_base = vram_base;
+    mr1.mr_limit = mr1.mr_base + vram_size;
+    mr2.mr_base = mr1.mr_limit;
+    mr2.mr_limit = mr2.mr_base + vram_size;
 
-    mr.mr_base = vram_base;
-    mr.mr_limit = mr.mr_base + vram_size;
-
-    if((r = sys_privctl(SELF, SYS_PRIV_ADD_MEM, &mr)) != OK)
+    int r;
+    if((r = sys_privctl(SELF, SYS_PRIV_ADD_MEM, &mr1)) != OK)
+        panic("sys_privctl (ADD_MEM) failed: %d\n", r);
+    if((r = sys_privctl(SELF, SYS_PRIV_ADD_MEM, &mr2)) != OK)
         panic("sys_privctl (ADD_MEM) failed: %d\n", r);
 
     /* Map memory */
-
-    video_mem = vm_map_phys(SELF, (void *) mr.mr_base, vram_size);
-
-    if(video_mem == MAP_FAILED)
+    video_buf1 = vm_map_phys(SELF, (void *) mr1.mr_base, vram_size);
+    if(video_buf1 == MAP_FAILED)
         panic("couldn't map video memory");
 
-    aux_mem = malloc(vram_size);
-
-    if(aux_mem == NULL){
-        printf("Error creating secondary video memory buffer.\n");
-        return NULL;
-    }
+    video_buf2 = vm_map_phys(SELF, (void *) mr2.mr_base, vram_size);
+    if(video_buf2 == MAP_FAILED)
+        panic("couldn't map video memory");
 
     if(vg_vbe_change_mode(mode)) {
         printf("Error while changing mode.\n");
         return NULL;
     }
 
-    return video_mem;
+    return video_buf1;
 }
 
 //OWN FUNCTION
-void flip_buff() {
-    memcpy(video_mem, aux_mem, h_res * v_res * ceil(bits_per_pixel/8.0));
-}
-
-//OWN FUNCTION
-int (vg_finish)() {
-    free(aux_mem);
-    return vg_exit();
+int flip_page() {
+    if (buf1_is_primary) {
+        if (vbe_set_display_start(0, v_res))
+            return 1;
+    } else {
+        if (vbe_set_display_start(0, 0))
+            return 1;
+    }
+    buf1_is_primary = !buf1_is_primary;
+    return 0;
 }
 
 //OWN FUNCTION
@@ -157,7 +242,7 @@ int (vg_draw_pixel)(uint16_t x, uint16_t y, uint32_t color) {
     }
     uint8_t bytes_per_pixel = ceil(bits_per_pixel/8.0);
 
-    uint8_t *pixel_mem_pos = (uint8_t*) aux_mem + (y * h_res * bytes_per_pixel) + (x * bytes_per_pixel);
+    uint8_t *pixel_mem_pos = (uint8_t*) get_back_buffer() + (y * h_res * bytes_per_pixel) + (x * bytes_per_pixel);
 
     if (color > COLOR_CAP_BYTES_NUM(bytes_per_pixel)) {
         printf("Invlid color argument. Too large\n");
@@ -255,7 +340,7 @@ int (vg_draw_img)(xpm_image_t img, uint16_t x, uint16_t y) {
 //OWN FUNCTION
 int (vg_clear)() {
     for (int i = 0; i < ceil(bits_per_pixel * h_res * v_res / 8.0); i++) {
-        ((uint8_t *)aux_mem)[i] = 0; // TODO maybe setmem or something like that may be more efficient?
+        ((uint8_t *) get_back_buffer())[i] = 0; // TODO maybe setmem or something like that may be more efficient?
     }
     return 0;
 }
