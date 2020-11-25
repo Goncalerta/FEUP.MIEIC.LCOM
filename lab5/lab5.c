@@ -126,7 +126,13 @@ int(video_test_pattern)(uint16_t mode, uint8_t no_rectangles, uint32_t first, ui
     if (vg_init(mode) == NULL) 
         return 1;
 
+    if (vg_clear())
+        return 1;
+
     if (vg_draw_pattern(no_rectangles, first, step) != OK) 
+        return 1;
+
+    if (flip_page())
         return 1;
     
     if (kbd_subscribe_int(&bit_no))
@@ -191,7 +197,13 @@ int(video_test_xpm)(xpm_map_t xpm, uint16_t x, uint16_t y) {
     if (xpm_load(xpm, XPM_INDEXED, &img) == NULL)
         return 1;
 
+    if (vg_clear())
+        return 1;
+
     if (vg_draw_img(img, x, y) != OK)
+        return 1;
+
+    if (flip_page())
         return 1;
     
     if (kbd_subscribe_int(&bit_no))
@@ -283,7 +295,13 @@ int(video_test_move)(xpm_map_t xpm, uint16_t xi, uint16_t yi, uint16_t xf, uint1
     if (sprite == NULL)
         return 1;
 
+    if (vg_clear())
+        return 1;
+
     if (draw_sprite(sprite) != OK)
+        return 1;
+    
+    if (flip_page())
         return 1;
 
     if (timer_subscribe_int(&timer_bit_no)) 
