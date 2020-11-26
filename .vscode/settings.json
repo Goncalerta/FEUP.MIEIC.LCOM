@@ -19,6 +19,8 @@
         "__functional_base_03": "c",
         "__tuple": "c",
         "limits": "c",
-        "cmath": "c"
+        "cmath": "c",
+        "iterator": "c",
+        "cstdlib": "c"
     }
 }

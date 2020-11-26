@@ -1,6 +1,8 @@
 #ifndef __MOUSE_H
 #define __MOUSE_H
 
+#include <lcom/lcf.h>
+
 int mouse_ih_return;
 
 int mouse_subscribe_int(uint8_t *bit_no);
