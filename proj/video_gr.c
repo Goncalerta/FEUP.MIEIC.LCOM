@@ -8,8 +8,8 @@
 static void *video_buf1;         /* frame-buffer VM address */
 static void *video_buf2;
 static bool buf1_is_primary = true;
-static unsigned h_res;	        /* Horizontal resolution in pixels */
-static unsigned v_res;	        /* Vertical resolution in pixels */
+static uint16_t h_res;	        /* Horizontal resolution in pixels */
+static uint16_t v_res;	        /* Vertical resolution in pixels */
 static unsigned bits_per_pixel; /* Number of VRAM bits per pixel */
 static uint8_t red_mask_size;
 static uint8_t green_mask_size;
@@ -81,12 +81,20 @@ void *(vg_init)(uint16_t mode) {
     return video_buf1;
 }
 
-static int vg_draw_pixel(uint16_t x, uint16_t y, uint32_t color) {
-    if ((x >= h_res) || (y >v_res)) {
+uint16_t vg_get_hres() {
+    return h_res;
+}
+
+uint16_t vg_get_vres() {
+    return v_res;
+}
+
+int vg_draw_pixel(uint16_t x, uint16_t y, uint32_t color) {
+    if ((x >= h_res) || (y > v_res)) {
         // TODO rectangles outside borders are failing because of this. maybe just not paint the pixel instead of error?
         //      another option is to check in draw functions before drawing pixel
-        printf("Error trying to print outside the screen limits.\n"); 
-        return 1;
+        //printf("Error trying to print outside the screen limits.\n"); 
+        return 0;
     }
     uint8_t bytes_per_pixel = ceil(bits_per_pixel/8.0);
 
@@ -111,6 +119,15 @@ int (vg_draw_hline)(uint16_t x, uint16_t y, uint16_t len, uint32_t color) {
     return 0;
 }
 
+int (vg_draw_vline)(uint16_t x, uint16_t y, uint16_t len, uint32_t color) {
+    for (uint16_t i = 0; i < len; i++) {
+        if (vg_draw_pixel(x, y + i, color)) {
+            return 1;
+        }
+    }
+    return 0;
+}
+
 int (vg_draw_rectangle)(uint16_t x, uint16_t y, uint16_t width, uint16_t height, uint32_t color) {
     for (uint16_t i = 0; i < height; i++) {
         if(vg_draw_hline(x, y+i, width, color))
@@ -128,6 +145,36 @@ static void vg_parse_color(uint32_t color, uint8_t *red, uint8_t *green, uint8_t
 
 static uint32_t vg_create_color(uint8_t red, uint8_t green, uint8_t blue) {
     return blue | (green << blue_mask_size) | (red << (blue_mask_size + green_mask_size));
+}
+
+int vg_draw_circle(uint16_t x, uint16_t y, uint16_t radius,  uint32_t color) {
+    int32_t top_left_x = x - radius;
+    int32_t top_left_y = y - radius;
+    int32_t max_distance = radius * radius;
+    int32_t x32 = x, y32 = y; // So that calculations don't overflow
+    
+    for (int32_t i = top_left_x; i <= top_left_x + 2*radius; i++) {
+        for (int32_t j = top_left_y; j <= top_left_y + 2*radius; j++) {
+            if ((x32-i) * (x32-i) + (y32-j) * (y32-j) <= max_distance) {
+                if (vg_draw_pixel(i, j, color)) {
+                    return 1;
+                }
+            }
+        }
+    }
+
+    return 0;
+}
+
+int vg_draw_line(int16_t x1, int16_t y1, int16_t x2, int16_t y2, uint32_t color) {
+
+    // for (int16_t x = x1; x <= x2; x++) {
+    //    int16_t y = (x - x1) * (y2 - y1) / (x2 - x1) + y1;
+    //    if (vg_draw_pixel(x, y, color) != OK)
+    //        return 1;
+    // }
+
+    // return 0;
 }
 
 int vg_draw_pattern(uint8_t no_rectangles, uint32_t first, uint8_t step) {
