@@ -51,9 +51,9 @@ int kbd_handle_scancode() {
     
     // TODO
     if (scancode_bytes_counter == 1)
-        printf("kbd_handle_scancode is not yet implemented. scancode: %d\n", scancode_bytes[0]);
+        printf("%s is not yet implemented. scancode: %d\n", __func__, scancode_bytes[0]);
     else if (scancode_bytes_counter == 2)
-        printf("kbd_handle_scancode is not yet implemented. scancode: %d, %d\n", scancode_bytes[0], scancode_bytes[1]);
+        printf("%s is not yet implemented. scancode: %d, %d\n", __func__, scancode_bytes[0], scancode_bytes[1]);
     
     scancode_bytes_counter = 0;
     should_retrieve = false;
