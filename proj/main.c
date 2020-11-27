@@ -39,14 +39,15 @@ int main(int argc, char *argv[]) {
 }
 
 int draw_frame() {
+    canvas_draw_frame(0);
     // TODO
     //if (vg_clear() != OK)
     //    return 1;
     //vg_draw_line(20, 20, 50, 21, 0x000000ff);
     //if (canvas_draw_strokes() != OK)
     //    return 1;
-    //if (vg_flip_page() != OK)
-    //    return 1;
+    if (vg_flip_page() != OK)
+       return 1;
     return 0;
 }
 
@@ -76,8 +77,9 @@ int (proj_main_loop)(int argc, char *argv[]) {
     if (mouse_subscribe_int(&mouse_irq_set) != OK) 
         return 1;
 
-    //bool pressing = false;
+    bool pressing, prb = false;
     cursor_init();
+    canvas_init(vg_get_hres(), vg_get_vres());
     canvas_new_stroke(0x00ff0000);
     int ipc_status, r;
     message msg;
@@ -106,17 +108,26 @@ int (proj_main_loop)(int argc, char *argv[]) {
 
                         update_cursor(&p);
                         
-                        //if (p.lb) {
-                        //    if (!pressing) {
-                        //        canvas_new_stroke(0x00ff0000);
-                        //        pressing = true;
-                        //    }
+                        if (p.lb) {
+                            if (!pressing) {
+                                canvas_new_stroke(0x00ff0000);
+                                pressing = true;
+                            }
+                            canvas_new_stroke_atom(cursor_get_x(), cursor_get_y());
+                            canvas_draw_last_atom();
+                        } else if (pressing) {
+                           pressing = false;
+                        } 
 
-                        canvas_new_stroke_atom(cursor_get_x(), cursor_get_y());
-                        canvas_draw_last_atom();
-                        //} else if (pressing) {
-                        //    pressing = false;
-                        //} 
+                        if (p.rb) {
+                            if (!prb) {
+                                prb = true;
+                                canvas_undo_stroke();
+                                canvas_draw_strokes();
+                            }
+                        } else {
+                            prb =false;
+                        }
                         // TODO
                         //printf("mouse packets are not yet handled\n");
                         //mouse_print_packet(&p);
@@ -134,7 +145,7 @@ int (proj_main_loop)(int argc, char *argv[]) {
                             printf("kbd_handle_scancode failed\n");
                             continue;
                         }
-
+                        
                         // TODO
                     } 
                 }
@@ -154,6 +165,7 @@ int (proj_main_loop)(int argc, char *argv[]) {
         }
     }
 
+    canvas_exit();
     if (clear_canvas() != OK)
         return 1;
 

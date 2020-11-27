@@ -23,4 +23,21 @@
 #define COLOR_CAP_BYTES_NUM(n) (0xffffffff >> 2*(4-(n))) /* 1 <= n <= 4*/
 #define COLOR_MASK(size, offset) ((0xffffffff >> (32-(size))) << (offset))
 
+typedef struct video_buffer_t {
+    void *buf;
+    uint16_t h_res;	        /* Horizontal resolution in pixels */
+    uint16_t v_res;	        /* Vertical resolution in pixels */
+    unsigned bits_per_pixel; /* Number of VRAM bits per pixel */
+} video_buffer_t;
+
+int vb_draw_pixel(video_buffer_t buf, uint16_t x, uint16_t y, uint32_t color);
+int vb_fill_screen(video_buffer_t buf, uint32_t color);
+int vb_draw_hline(video_buffer_t buf, uint16_t x, uint16_t y, uint16_t len, uint32_t color);
+int vb_draw_vline(video_buffer_t buf, uint16_t x, uint16_t y, uint16_t len, uint32_t color);
+int vb_draw_line(video_buffer_t buf, int16_t x1, int16_t y1, int16_t x2, int16_t y2, uint32_t color);
+int vb_draw_rectangle(video_buffer_t buf, uint16_t x, uint16_t y, uint16_t width, uint16_t height, uint32_t color);
+// int vb_draw_pattern(video_buffer_t buf, uint8_t no_rectangles, uint32_t first, uint8_t step);
+int vb_draw_circle(video_buffer_t buf, uint16_t x, uint16_t y, uint16_t radius,  uint32_t color);
+int vb_draw_img(video_buffer_t buf, xpm_image_t img, uint16_t x, uint16_t y);
+
 #endif /* _GRAPHICS_H */

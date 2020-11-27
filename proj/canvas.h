@@ -14,6 +14,9 @@ typedef struct stroke {
     struct stroke *next, *prev;
 } stroke;
 
+int canvas_init(uint16_t width, uint16_t height);
+int canvas_exit();
+int canvas_draw_frame(uint16_t y);
 int canvas_draw_last_atom();
 int clear_canvas();
 int canvas_clear_undone();
