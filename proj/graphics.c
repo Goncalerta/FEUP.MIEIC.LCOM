@@ -100,14 +100,19 @@ int vb_draw_circle(video_buffer_t buf, uint16_t x, uint16_t y, uint16_t radius, 
     return 0;
 }
 
-int vb_draw_line(video_buffer_t buf, int16_t x1, int16_t y1, int16_t x2, int16_t y2, uint32_t color) {
+int vb_draw_line(video_buffer_t buf, int16_t x1, int16_t y1, int16_t x2, int16_t y2, uint32_t color, uint16_t width) {
     if (y1 == y2) {
         if (x2 < x1) {
             int16_t temp = x2;
             x2 = x1;
             x1 = temp;
         }
-        return vb_draw_hline(buf, x1, y1, x2 - x1, color);
+        for (uint16_t x = x1; x <= x2; x++) {
+            if (vb_draw_circle(buf, x, y1, width, color) != OK) {
+                return 1;
+            }
+        }
+        return 0;
     }
     if (x1 == x2) {
         if (y2 < y1) {
@@ -115,44 +120,26 @@ int vb_draw_line(video_buffer_t buf, int16_t x1, int16_t y1, int16_t x2, int16_t
             y2 = y1;
             y1 = temp;
         }
-        return vb_draw_vline(buf, x1, y1, y2 - y1, color);
-    }
-
-    int dx = abs(x2-x1), sx = x1 < x2 ? 1 : -1; 
-    int dy = abs(y2-y1), sy = y1 < y2 ? 1 : -1; 
-    int err = dx-dy, e2, x3, y3;
-    float ed = dx+dy == 0 ? 1 : sqrt((float)dx*dx+(float)dy*dy);
-    float wd = 1;
-    
-    while (1) {
-        if (vb_draw_pixel(buf, x1, y1, color) != OK)
-            return 1;
-        
-        e2 = err; x3 = x1;
-        if (2*e2 >= -dx) {
-            for (e2 += dy, y3 = y1; e2 < ed*wd && (y2 != y3 || dx > dy); e2 += dx)
-                if (vb_draw_pixel(buf, x1, y3 += sy, color) != OK)
-                    return 1;
-            if (x1 == x2) break;
-            e2 = err; err -= dy; x1 += sx; 
-        } 
-        if (2*e2 <= dy) {
-            for (e2 = dx-e2; e2 < ed*wd && (x2 != x3 || dx < dy); e2 += dy)
-                if (vb_draw_pixel(buf, x3 += sx, y1, color) != OK)
-                    return 1;
-            if (y1 == y2) break;
-            err += dx; y1 += sy; 
+        for (uint16_t y = y1; y <= y2; y++) {
+            if (vb_draw_circle(buf, x1, y, width, color) != OK) {
+                return 1;
+            }
         }
+        return 0;
     }
+
+    int dx =  abs(x2-x1), sx = x1<x2 ? 1 : -1;
+    int dy = -abs(y2-y1), sy = y1<y2 ? 1 : -1; 
+    int err = dx+dy, e2;
+ 
+    while (x1 != x2 || y1 != y2) {
+        vb_draw_circle(buf, x1, y1, width, color);
+        e2 = 2*err;
+        if (e2 >= dy) { err += dy; x1 += sx; }
+        if (e2 <= dx) { err += dx; y1 += sy; }
+    }
+
     return 0;
-
-    // for (int16_t x = x1; x <= x2; x++) {
-    //    int16_t y = (x - x1) * (y2 - y1) / (x2 - x1) + y1;
-    //    if (vg_draw_pixel(x, y, color) != OK)
-    //        return 1;
-    // }
-
-    // return 0;
 }
 
 // int vg_draw_pattern(video_buffer_t buf, uint8_t no_rectangles, uint32_t first, uint8_t step) {

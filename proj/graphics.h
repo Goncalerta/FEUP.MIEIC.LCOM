@@ -34,7 +34,7 @@ int vb_draw_pixel(video_buffer_t buf, uint16_t x, uint16_t y, uint32_t color);
 int vb_fill_screen(video_buffer_t buf, uint32_t color);
 int vb_draw_hline(video_buffer_t buf, uint16_t x, uint16_t y, uint16_t len, uint32_t color);
 int vb_draw_vline(video_buffer_t buf, uint16_t x, uint16_t y, uint16_t len, uint32_t color);
-int vb_draw_line(video_buffer_t buf, int16_t x1, int16_t y1, int16_t x2, int16_t y2, uint32_t color);
+int vb_draw_line(video_buffer_t buf, int16_t x1, int16_t y1, int16_t x2, int16_t y2, uint32_t color, uint16_t width);
 int vb_draw_rectangle(video_buffer_t buf, uint16_t x, uint16_t y, uint16_t width, uint16_t height, uint32_t color);
 // int vb_draw_pattern(video_buffer_t buf, uint8_t no_rectangles, uint32_t first, uint8_t step);
 int vb_draw_circle(video_buffer_t buf, uint16_t x, uint16_t y, uint16_t radius,  uint32_t color);

@@ -4,6 +4,7 @@
 #include "video_gr.h"
 #include "graphics.h"
 
+#define CANVAS_WIDTH 5
 static stroke *first, *last, *undone;
 static video_buffer_t canvas_buf; // current picture drawn in buffer - copied into vcard back buffer
 
@@ -28,15 +29,19 @@ static int canvas_draw_atom_line(stroke_atom atom1, stroke_atom atom2, uint32_t 
     uint16_t x2 = atom2.x;
     uint16_t y2 = atom2.y;
 
-    if (vb_draw_line(canvas_buf, x1, y1, x2, y2, color) != OK)
+    if (vb_draw_line(canvas_buf, x1, y1, x2, y2, color, CANVAS_WIDTH) != OK)
         return 1;
     
     return 0;
 }
 
 static int canvas_draw_last_atom() {
-    if (last->num_atoms == 1) return 0; // TODO draw a single atom
-    return canvas_draw_atom_line(last->atoms[last->num_atoms-2], last->atoms[last->num_atoms-1], last->color);
+    if (last->num_atoms == 1) {
+        stroke_atom atom = last->atoms[0];
+        return vb_draw_circle(canvas_buf, atom.x, atom.y, CANVAS_WIDTH, last->color);
+    } else {
+        return canvas_draw_atom_line(last->atoms[last->num_atoms-2], last->atoms[last->num_atoms-1], last->color);
+    }
 }
 
 static int canvas_draw_stroke(stroke *stroke) {
