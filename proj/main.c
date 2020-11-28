@@ -78,7 +78,7 @@ int (proj_main_loop)(int argc, char *argv[]) {
     if (mouse_subscribe_int(&mouse_irq_set) != OK) 
         return 1;
 
-    bool pressing, prb = false;
+    bool pressing, prb, pmb = false;
     cursor_init();
     canvas_init(vg_get_hres(), vg_get_vres());
     canvas_new_stroke(0x00ff0000);
@@ -111,11 +111,10 @@ int (proj_main_loop)(int argc, char *argv[]) {
                         
                         if (p.lb) {
                             if (!pressing) {
-                                canvas_new_stroke(0x00ff0000);
+                                canvas_new_stroke(0x000033ff);
                                 pressing = true;
                             }
                             canvas_new_stroke_atom(cursor_get_x(), cursor_get_y());
-                            canvas_draw_last_atom();
                         } else if (pressing) {
                            pressing = false;
                         } 
@@ -124,14 +123,18 @@ int (proj_main_loop)(int argc, char *argv[]) {
                             if (!prb) {
                                 prb = true;
                                 canvas_undo_stroke();
-                                canvas_draw_strokes();
                             }
                         } else {
                             prb =false;
                         }
-                        // TODO
-                        //printf("mouse packets are not yet handled\n");
-                        //mouse_print_packet(&p);
+                        if (p.mb) {
+                            if (!pmb) {
+                                pmb = true;
+                                canvas_redo_stroke();
+                            }
+                        } else {
+                            pmb = false;
+                        }
                     }
                 }
                 if (msg.m_notify.interrupts & BIT(kbd_irq_set)) {

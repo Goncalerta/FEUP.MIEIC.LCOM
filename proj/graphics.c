@@ -14,7 +14,7 @@ int vb_draw_pixel(video_buffer_t buf, uint16_t x, uint16_t y, uint32_t color) {
         //printf("Error trying to print outside the screen limits.\n"); 
         return 0;
     }
-    uint8_t bytes_per_pixel = ceil(buf.bits_per_pixel/8.0);
+    uint8_t bytes_per_pixel = buf.bits_per_pixel / 8;
 
     uint8_t *pixel_mem_pos = (uint8_t*) buf.buf + (y * buf.h_res * bytes_per_pixel) + (x * bytes_per_pixel);
 
@@ -29,7 +29,7 @@ int vb_draw_pixel(video_buffer_t buf, uint16_t x, uint16_t y, uint32_t color) {
 }
 
 int vb_fill_screen(video_buffer_t buf, uint32_t color) {
-    uint8_t bytes_per_pixel = ceil(buf.bits_per_pixel/8.0);
+    uint8_t bytes_per_pixel = buf.bits_per_pixel / 8;
 
     uint8_t *pixel_mem_pos = (uint8_t*) buf.buf;
 
@@ -190,7 +190,7 @@ int vb_draw_line(video_buffer_t buf, int16_t x1, int16_t y1, int16_t x2, int16_t
 int vb_draw_img(video_buffer_t buf, xpm_image_t img, uint16_t x, uint16_t y) {
     for (uint16_t i = 0; i < img.width; i++) {
         for (uint16_t j = 0; j < img.height; j++) {
-            uint8_t bytes_per_pixel = ceil(buf.bits_per_pixel/8.0);
+            uint8_t bytes_per_pixel = buf.bits_per_pixel / 8;
             uint32_t color = 0;
             for (uint8_t k = 0; k < bytes_per_pixel; k++) {
                 color += img.bytes[(i + j * img.width) * bytes_per_pixel] << (8 * k);

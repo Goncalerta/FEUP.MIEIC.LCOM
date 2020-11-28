@@ -40,7 +40,7 @@ void *(vg_init)(uint16_t mode) {
     vg_set_global_var_screen(&vmi);
 
     vram_base = vmi.PhysBasePtr;
-    vram_size = buf1.h_res * buf1.v_res * ceil(buf1.bits_per_pixel/8.0); // TODO isn't bits_per_pixel be a multiple of 8 already?
+    vram_size = buf1.h_res * buf1.v_res * buf1.bits_per_pixel / 8; // TODO isn't bits_per_pixel be a multiple of 8 already?
 
     /* Allow memory mapping */
     mr1.mr_base = vram_base;
@@ -96,7 +96,7 @@ int vg_flip_page() {
 }
 
 int vg_clear() {
-    for (int i = 0; i < ceil(buf1.bits_per_pixel * buf1.h_res * buf1.v_res / 8.0); i++) {
+    for (unsigned int i = 0; i < buf1.bits_per_pixel * buf1.h_res * buf1.v_res / 8; i++) {
         ((uint8_t *) vg_get_back_buffer().buf)[i] = 0; // TODO maybe setmem or something like that may be more efficient?
     }
     return 0;

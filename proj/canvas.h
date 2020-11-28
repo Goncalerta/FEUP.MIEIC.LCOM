@@ -4,7 +4,7 @@
 #include <lcom/lcf.h>
 
 typedef struct stroke_atom {
-    uint16_t x, y; // TODO should atoms be absolute or relative?
+    uint16_t x, y;
 } stroke_atom;
 
 typedef struct stroke {
@@ -17,13 +17,11 @@ typedef struct stroke {
 int canvas_init(uint16_t width, uint16_t height);
 int canvas_exit();
 int canvas_draw_frame(uint16_t y);
-int canvas_draw_last_atom();
 int clear_canvas();
 int canvas_clear_undone();
 int canvas_new_stroke(uint32_t color);
 int canvas_new_stroke_atom(uint16_t x, uint16_t y);
 int canvas_undo_stroke();
 int canvas_redo_stroke();
-int canvas_draw_strokes();
 
 #endif /* __CANVAS_H */
