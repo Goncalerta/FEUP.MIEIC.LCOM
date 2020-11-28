@@ -3,7 +3,7 @@
 
 #include <lcom/lcf.h>
 
-int load_font();
+int load_font(enum xpm_image_type type);
 
 int draw_char(char c, uint16_t x, uint16_t y);
 

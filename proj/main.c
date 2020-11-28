@@ -12,6 +12,7 @@
 #include "video_gr.h"
 #include "canvas.h"
 #include "cursor.h"
+#include "font.h"
 extern int interrupt_counter;
 
 int main(int argc, char *argv[]) {
