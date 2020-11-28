@@ -6,19 +6,14 @@
 
 static stroke *first, *last, *undone;
 static video_buffer_t canvas_buf; // current picture drawn in buffer - copied into vcard back buffer
-static video_buffer_t base_buf; // base buffer - can't be undone any further
 
 int canvas_init(uint16_t width, uint16_t height) {
-    canvas_buf.h_res = base_buf.h_res = width;
-    canvas_buf.v_res = base_buf.v_res = height;
-    canvas_buf.bits_per_pixel = base_buf.bits_per_pixel = vg_get_bits_per_pixel();
-    
-    size_t buffer_size = sizeof(uint8_t) * width * height * base_buf.bits_per_pixel / 8;
-    canvas_buf.buf = malloc(buffer_size);
-    base_buf.buf = malloc(buffer_size);
+    canvas_buf.h_res = width;
+    canvas_buf.v_res = height;
+    canvas_buf.bits_per_pixel = vg_get_bits_per_pixel();
+    canvas_buf.buf = malloc(sizeof(uint8_t) * width * height * canvas_buf.bits_per_pixel / 8);
     
     vb_fill_screen(canvas_buf, 0x00ffffff);
-    vb_fill_screen(base_buf, 0x00ffffff);
 
     first = NULL;
     last = NULL;
@@ -54,7 +49,7 @@ static int canvas_draw_stroke(stroke *stroke) {
 }
 
 static int canvas_redraw_strokes() {
-    memcpy(canvas_buf.buf, base_buf.buf, sizeof(uint8_t) * canvas_buf.h_res * canvas_buf.v_res * canvas_buf.bits_per_pixel / 8);
+    vb_fill_screen(canvas_buf, 0x00ffffff);
 
     stroke *current = first;
     while (current != NULL) {
@@ -97,7 +92,6 @@ int canvas_exit() {
     if (clear_canvas() != OK)
         return 1;
     free(canvas_buf.buf);
-    free(base_buf.buf);
     return 0;
 }
 
@@ -113,7 +107,6 @@ int canvas_new_stroke(uint32_t color) {
         first = s;
         last = s;
     } else {
-        printf("STROKE: %d\n", last->num_atoms);
         s->prev = last;
         last->next = s;
         last = s;
