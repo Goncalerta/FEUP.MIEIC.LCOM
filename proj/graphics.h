@@ -27,7 +27,7 @@ typedef struct video_buffer_t {
     void *buf;
     uint16_t h_res;	        /* Horizontal resolution in pixels */
     uint16_t v_res;	        /* Vertical resolution in pixels */
-    unsigned bits_per_pixel; /* Number of VRAM bits per pixel */
+    size_t bytes_per_pixel; /* Number of VRAM bytes per pixel */
 } video_buffer_t;
 
 int vb_draw_pixel(video_buffer_t buf, uint16_t x, uint16_t y, uint32_t color);

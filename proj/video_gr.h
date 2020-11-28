@@ -8,7 +8,7 @@
 video_buffer_t vg_get_back_buffer();
 uint16_t vg_get_hres();
 uint16_t vg_get_vres();
-uint16_t vg_get_bits_per_pixel();
+uint16_t vg_get_bytes_per_pixel();
 int vg_flip_page();
 int vg_clear();
 

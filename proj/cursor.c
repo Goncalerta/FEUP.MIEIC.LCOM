@@ -6,8 +6,8 @@ static int16_t cursor_x, cursor_y;
 //static xpm_image_t cursor_arrow, cursor_write;
 
 void cursor_init() {
-    cursor_x = 200;
-    cursor_y = 200;
+    cursor_x = vg_get_hres() / 2;
+    cursor_y = vg_get_vres() / 2;
 }
 
 int16_t cursor_get_x() {

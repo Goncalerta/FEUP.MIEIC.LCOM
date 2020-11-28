@@ -18,7 +18,8 @@ video_buffer_t vg_get_back_buffer() {
 static void vg_set_global_var_screen(vbe_mode_info_t *vmi) {
     buf1.h_res = buf2.h_res = vmi->XResolution;
     buf1.v_res = buf2.v_res = vmi->YResolution;
-    buf1.bits_per_pixel = buf2.bits_per_pixel = vmi->BitsPerPixel;
+    buf1.bytes_per_pixel = buf2.bytes_per_pixel = ceil(vmi->BitsPerPixel / 8.0);
+
     // red_mask_size = vmi->RedMaskSize;
     // green_mask_size = vmi->RedMaskSize;
     // blue_mask_size = vmi->RedMaskSize;
@@ -40,7 +41,7 @@ void *(vg_init)(uint16_t mode) {
     vg_set_global_var_screen(&vmi);
 
     vram_base = vmi.PhysBasePtr;
-    vram_size = buf1.h_res * buf1.v_res * buf1.bits_per_pixel / 8; // TODO isn't bits_per_pixel be a multiple of 8 already?
+    vram_size = buf1.h_res * buf1.v_res * buf1.bytes_per_pixel;
 
     /* Allow memory mapping */
     mr1.mr_base = vram_base;
@@ -79,8 +80,8 @@ uint16_t vg_get_vres() {
     return buf1.v_res;
 }
 
-uint16_t vg_get_bits_per_pixel() {
-    return buf1.bits_per_pixel;
+uint16_t vg_get_bytes_per_pixel() {
+    return buf1.bytes_per_pixel;
 }
 
 int vg_flip_page() {
@@ -96,7 +97,7 @@ int vg_flip_page() {
 }
 
 int vg_clear() {
-    for (unsigned int i = 0; i < buf1.bits_per_pixel * buf1.h_res * buf1.v_res / 8; i++) {
+    for (unsigned int i = 0; i < buf1.bytes_per_pixel * buf1.h_res * buf1.v_res / 8; i++) {
         ((uint8_t *) vg_get_back_buffer().buf)[i] = 0; // TODO maybe setmem or something like that may be more efficient?
     }
     return 0;

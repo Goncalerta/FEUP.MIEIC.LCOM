@@ -10,8 +10,8 @@ static video_buffer_t canvas_buf; // current picture drawn in buffer - copied in
 int canvas_init(uint16_t width, uint16_t height) {
     canvas_buf.h_res = width;
     canvas_buf.v_res = height;
-    canvas_buf.bits_per_pixel = vg_get_bits_per_pixel();
-    canvas_buf.buf = malloc(sizeof(uint8_t) * width * height * canvas_buf.bits_per_pixel / 8);
+    canvas_buf.bytes_per_pixel = vg_get_bytes_per_pixel();
+    canvas_buf.buf = malloc(sizeof(uint8_t) * width * height * canvas_buf.bytes_per_pixel);
     
     vb_fill_screen(canvas_buf, 0x00ffffff);
 
@@ -191,8 +191,8 @@ int canvas_redo_stroke() {
 }
 
 int canvas_draw_frame(uint16_t y) {
-    uint8_t *buf_pos = (uint8_t*) vg_get_back_buffer().buf + y * vg_get_hres() * vg_get_bits_per_pixel() / 8;
-    size_t size = sizeof(uint8_t) * canvas_buf.h_res * canvas_buf.v_res * canvas_buf.bits_per_pixel / 8;
+    uint8_t *buf_pos = (uint8_t*) vg_get_back_buffer().buf + y * vg_get_hres() * vg_get_bytes_per_pixel();
+    size_t size = sizeof(uint8_t) * canvas_buf.h_res * canvas_buf.v_res * canvas_buf.bytes_per_pixel;
     memcpy(buf_pos, canvas_buf.buf, size);
     return 0;
 }
