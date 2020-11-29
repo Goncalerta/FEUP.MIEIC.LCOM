@@ -1,10 +1,10 @@
 // IMPORTANT: you must include the following line in all your C files
 #include <lcom/lcf.h>
-
+#include <lcom/liblm.h>
 #include <lcom/proj.h>
 
+#include <stdbool.h>
 #include <stdint.h>
-#include <stdio.h>
 
 // Any header files included below this line should have been created by you
 #include "keyboard.h"
@@ -39,11 +39,11 @@ int main(int argc, char *argv[]) {
   return 0;
 }
 
-int draw_frame() {
+static int draw_frame() {
     if (canvas_draw_frame(0) != OK)
        return 1;
     if (cursor_draw(CURSOR_PAINT) != OK)
-        return 1;
+       return 1;
     if (vg_flip_page() != OK)
         return 1;
     return 0;
@@ -52,6 +52,7 @@ int draw_frame() {
 int (proj_main_loop)(int argc, char *argv[]) {
     uint8_t timer_irq_set, kbd_irq_set, mouse_irq_set;
     uint16_t mode = 0x118;
+    enum xpm_image_type image_type = XPM_8_8_8;
 
     if (vg_init(mode) == NULL) 
         return 1;
@@ -68,14 +69,15 @@ int (proj_main_loop)(int argc, char *argv[]) {
     if (mouse_subscribe_int(&mouse_irq_set) != OK) 
         return 1;
 
-    font_load(XPM_8_8_8); // mode dependent
+    font_load(image_type);
     KBD_STATE kbd_state; kbd_state.key = NO_KEY;
-    cursor_init();
+    cursor_init(image_type);
     canvas_init(vg_get_hres(), vg_get_vres());
 
     int ipc_status, r;
+    bool end = false;
     message msg;
-    while ( true ) { /* You may want to use a different condition */
+    while ( !end ) { /* You may want to use a different condition */
         /* Get a request message. */
         if ( (r = driver_receive(ANY, &msg, &ipc_status)) != 0) { 
             printf("driver_receive failed with: %d\n", r);
@@ -144,6 +146,10 @@ int (proj_main_loop)(int argc, char *argv[]) {
 
                         if (kbd_state.key == CHAR && kbd_state.char_key == 'Y' && kbd_is_ctrl_pressed()) {
                             canvas_redo_stroke(); // no need to crash if empty
+                        }
+
+                        if (kbd_state.key == ESC) {
+                            end = true;
                         }
                         
                         // TODO

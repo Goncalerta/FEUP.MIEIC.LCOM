@@ -2,11 +2,12 @@
 PROG=proj
 
 # source code files to be compiled
-SRCS = main.c utils.c timer.c kbc.c keyboard.c mouse.c vbe.c video_gr.c graphics.c cursor.c canvas.c font.c
+SRCS = proj.c utils.c timer.c kbc.c keyboard.c mouse.c vbe.c video_gr.c graphics.c cursor.c canvas.c font.c
 
 # additional compilation flags
 # "-Wall -Wextra -Werror -I . -std=c11 -Wno-unused-parameter" are already set
-CFLAGS += -pedantic
+# __LCOM_OPTIMIZED__ disables most of the LCF's overhead (and functionality!)
+CFLAGS += -pedantic #-D __LCOM_OPTIMIZED__
 
 # list of library dependencies (for Lab 2, only LCF library)
 DPADD += ${LIBLCF}
