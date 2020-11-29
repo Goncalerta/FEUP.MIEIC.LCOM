@@ -127,13 +127,13 @@ int (proj_main_loop)(int argc, char *argv[]) {
 
                         // just to check if it's correct
                         if (kbd_state.key == CHAR && !kbd_is_ctrl_pressed()) {
-                            if (font_draw_char(kbd_state.char_key, 10, 10) != 0) {
+                            if (font_draw_char(vg_get_back_buffer(), kbd_state.char_key, 10, 10) != 0) {
                                 printf("font_draw_char failed\n");
                             }
                         }
                         if (kbd_state.key == ENTER) {
                             char test_string[] = "TESTE 12";
-                            if (font_draw_string(test_string, 30, 10) != 0) {
+                            if (font_draw_string(vg_get_back_buffer(), test_string, 30, 10) != 0) {
                                 printf("font_draw_string failed\n");
                             }
                         }

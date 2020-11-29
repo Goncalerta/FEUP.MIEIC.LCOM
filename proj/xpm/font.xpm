@@ -1,16 +1,12 @@
-#ifndef __PIXMAP_FONT_H
-#define __PIXMAP_FONT_H
+#ifndef FONT_XPM
+#define FONT_XPM
 
 #include <lcom/lcf.h>
 
-#define FONT_CHAR_WIDTH 18
-#define FONT_CHAR_HEIGHT 18
-#define FONT_CHAR_SPACE_X 2
-#define FONT_CHAR_SPACE_Y 4
-
-const char * const font_xpm[] = {
+/* XPM */
+static const char * const font_xpm[] = {
 "524 70 2 1",
-" 	c #FFFFFF",
+" 	c None",
 ".	c #000000",
 "                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            ",
 "                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            ",
@@ -82,5 +78,5 @@ const char * const font_xpm[] = {
 "                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            ",
 "                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            ",
 "                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            "};
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
-#endif /* __PIXMAP_FONT_H */
+                                                                                             
+#endif /* FONT_XPM */
