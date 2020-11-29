@@ -191,12 +191,38 @@ int vb_draw_line(video_buffer_t buf, int16_t x1, int16_t y1, int16_t x2, int16_t
 //     return 0;
 // }
 
-int vb_draw_img(video_buffer_t buf, xpm_image_t img, uint16_t x, uint16_t y) {
-    for (uint16_t i = 0; i < img.width; i++) {
-        for (uint16_t j = 0; j < img.height; j++) {
+// int vb_draw_img(video_buffer_t buf, xpm_image_t img, uint16_t x, uint16_t y) {
+//     for (uint16_t i = 0; i < img.width; i++) {
+//         for (uint16_t j = 0; j < img.height; j++) {
+//             uint32_t color = 0;
+//             for (uint8_t k = 0; k < buf.bytes_per_pixel; k++) {
+//                 color += img.bytes[(i + j * img.width) * buf.bytes_per_pixel] << (8 * k);
+//             }
+
+//             if (color == xpm_transparency_color(img.type)) 
+//                 continue;
+
+//             if (vb_draw_pixel(buf, x + i, y + j, color) != OK)
+//                 return 1;
+//         }
+//     }
+    
+//     return 0;
+// }
+
+/* to draw a whole image pass: img_start_x = 0; img_start_y = 0; img_delta_x = img.width; img_delta_y = img.height */
+int vb_draw_img(video_buffer_t buf, xpm_image_t img, uint16_t img_start_x, uint16_t img_start_y, uint16_t img_delta_x, uint16_t img_delta_y, uint16_t x, uint16_t y) {
+    if	((img_start_x + img_delta_x > img.width) || (img_start_y + img_delta_y > img.height)) {
+        printf("Invalid region of image to draw (out of bounds).\n");
+        printf("%d %d %d        %d %d %d\n", img_start_x, img_delta_x, img.width, img_start_y, img_delta_y, img.height);
+        return 1;
+    }
+
+    for (uint16_t j = 0; j < img_delta_y; j++) {
+        for (uint16_t i = 0; i < img_delta_x; i++) {
             uint32_t color = 0;
             for (uint8_t k = 0; k < buf.bytes_per_pixel; k++) {
-                color += img.bytes[(i + j * img.width) * buf.bytes_per_pixel] << (8 * k);
+                color += img.bytes[(i + img_start_x + (j+img_start_y) * img.width) * buf.bytes_per_pixel] << (8 * k);
             }
 
             if (color == xpm_transparency_color(img.type)) 
