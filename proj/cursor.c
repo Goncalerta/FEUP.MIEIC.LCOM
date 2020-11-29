@@ -81,6 +81,7 @@ int cursor_draw(cursor_state state) {
         break;
     case CURSOR_PAINT:
         return vb_draw_circle(vg_get_back_buffer(), cursor_x, cursor_y, CANVAS_WIDTH, 0x000033ff);
+        // return vb_draw_circle(vg_get_back_buffer(), cursor_x, cursor_y, 10, 0x000033ff); // TODO color and thickness from game state
     case CURSOR_WRITE:
         // TODO
         // draw_img(cursor_write, cursor_x, cursor_y);

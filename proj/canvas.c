@@ -7,28 +7,13 @@
 static stroke *first, *last, *undone;
 static video_buffer_t canvas_buf; // current picture drawn in buffer - copied into vcard back buffer
 
-int canvas_init(uint16_t width, uint16_t height) {
-    canvas_buf.h_res = width;
-    canvas_buf.v_res = height;
-    canvas_buf.bytes_per_pixel = vg_get_bytes_per_pixel();
-    canvas_buf.buf = malloc(sizeof(uint8_t) * width * height * canvas_buf.bytes_per_pixel);
-    
-    vb_fill_screen(canvas_buf, 0x00ffffff);
-
-    first = NULL;
-    last = NULL;
-    undone = NULL;
-
-    return 0;
-}
-
-static int canvas_draw_atom_line(stroke_atom atom1, stroke_atom atom2, uint32_t color) {
+static int canvas_draw_atom_line(stroke_atom atom1, stroke_atom atom2, uint32_t color, uint16_t thickness) {
     uint16_t x1 = atom1.x;
     uint16_t y1 = atom1.y;
     uint16_t x2 = atom2.x;
     uint16_t y2 = atom2.y;
 
-    if (vb_draw_line(canvas_buf, x1, y1, x2, y2, color, CANVAS_WIDTH) != OK)
+    if (vb_draw_line(canvas_buf, x1, y1, x2, y2, color, thickness) != OK)
         return 1;
     
     return 0;
@@ -37,19 +22,21 @@ static int canvas_draw_atom_line(stroke_atom atom1, stroke_atom atom2, uint32_t 
 static int canvas_draw_last_atom() {
     if (last->num_atoms == 1) {
         stroke_atom atom = last->atoms[0];
-        return vb_draw_circle(canvas_buf, atom.x, atom.y, CANVAS_WIDTH, last->color);
+        return vb_draw_circle(canvas_buf, atom.x, atom.y, last->thickness, last->color);
     } else {
-        return canvas_draw_atom_line(last->atoms[last->num_atoms-2], last->atoms[last->num_atoms-1], last->color);
+        stroke_atom atom1 = last->atoms[last->num_atoms-2];
+        stroke_atom atom2 = last->atoms[last->num_atoms-1];
+        return canvas_draw_atom_line(atom1, atom2, last->color, last->thickness);
     }
 }
 
 static int canvas_draw_stroke(stroke *stroke) {
     stroke_atom first_atom = stroke->atoms[0];
-    if (vb_draw_circle(canvas_buf, first_atom.x, first_atom.y, CANVAS_WIDTH, stroke->color))
+    if (vb_draw_circle(canvas_buf, first_atom.x, first_atom.y, stroke->thickness, stroke->color))
         return 1;
 
     for (size_t i = 1; i < stroke->num_atoms; i++) {
-        if (canvas_draw_atom_line(stroke->atoms[i-1], stroke->atoms[i], stroke->color) != OK)
+        if (canvas_draw_atom_line(stroke->atoms[i-1], stroke->atoms[i], stroke->color, stroke->thickness) != OK)
             return 1;
     }
 
@@ -69,6 +56,33 @@ static int canvas_redraw_strokes() {
     return 0;
 }
 
+int canvas_init(uint16_t width, uint16_t height) {
+    canvas_buf.h_res = width;
+    canvas_buf.v_res = height;
+    canvas_buf.bytes_per_pixel = vg_get_bytes_per_pixel();
+    canvas_buf.buf = malloc(sizeof(uint8_t) * width * height * canvas_buf.bytes_per_pixel);
+    
+    vb_fill_screen(canvas_buf, 0x00ffffff);
+
+    first = NULL;
+    last = NULL;
+    undone = NULL;
+
+    return 0;
+}
+
+static int canvas_clear_undone() {
+    stroke *current = undone;
+    while (current != NULL) {
+        stroke *prev = current->prev;
+        free(current);
+        current = prev;
+    }
+    
+    undone = NULL;
+    return 0;
+}
+
 int clear_canvas() {
     stroke *current = last;
     while (current != NULL) {
@@ -84,18 +98,6 @@ int clear_canvas() {
     return 0;
 }
 
-int canvas_clear_undone() {
-    stroke *current = undone;
-    while (current != NULL) {
-        stroke *prev = current->prev;
-        free(current);
-        current = prev;
-    }
-    
-    undone = NULL;
-    return 0;
-}
-
 int canvas_exit() {
     if (clear_canvas() != OK)
         return 1;
@@ -103,10 +105,11 @@ int canvas_exit() {
     return 0;
 }
 
-int canvas_new_stroke(uint32_t color) {
+int canvas_new_stroke(uint32_t color, uint16_t thickness) {
     stroke *s = malloc(sizeof(stroke));
     s->atoms = NULL;
     s->color = color;
+    s->thickness = thickness;
     s->next = NULL;
     s->prev = NULL;
     s->num_atoms = 0;

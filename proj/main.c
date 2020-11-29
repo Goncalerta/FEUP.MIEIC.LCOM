@@ -99,14 +99,8 @@ int (proj_main_loop)(int argc, char *argv[]) {
 
                         if (cursor_set_lb_state(p.lb)) {
                             if (p.lb) {
-                                if (canvas_new_stroke(0x000033ff) != OK)
+                                if (canvas_new_stroke(0x000033ff, 10) != OK)
                                     return 1;
-                            }
-                        }
-
-                        if (cursor_set_rb_state(p.rb)) {
-                            if (p.rb) {
-                                canvas_undo_stroke(); // no need to crash if empty
                             }
                         }
 
