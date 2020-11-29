@@ -8,7 +8,7 @@
 // static bool direct_color_mode;
 
 int vb_draw_pixel(video_buffer_t buf, uint16_t x, uint16_t y, uint32_t color) {
-    if ((x >= buf.h_res) || (y > buf.v_res)) {
+    if ((x >= buf.h_res) || (y >= buf.v_res)) {
         // TODO rectangles outside borders are failing because of this. maybe just not paint the pixel instead of error?
         //      another option is to check in draw functions before drawing pixel
         //printf("Error trying to print outside the screen limits.\n"); 
@@ -101,61 +101,61 @@ int vb_draw_circle(video_buffer_t buf, uint16_t x, uint16_t y, uint16_t radius, 
 }
 
 int vb_draw_line(video_buffer_t buf, int16_t x1, int16_t y1, int16_t x2, int16_t y2, uint32_t color, uint16_t width) {
-    // TODO implement width
-    if (y1 == y2) {
-        if (x2 < x1) {
-            int16_t temp = x2;
-            x2 = x1;
-            x1 = temp;
-        }
-        for (uint16_t x = x1; x <= x2; x++) {
-            // if (vb_draw_circle(buf, x, y1, width, color) != OK) {
-            //     return 1;
-            // }
-            if (vb_draw_pixel(buf, x, y1, color) != OK) {
-                return 1;
-            }
-        }
-        return 0;
-    }
-    if (x1 == x2) {
-        if (y2 < y1) {
-            int16_t temp = y2;
-            y2 = y1;
-            y1 = temp;
-        }
-        for (uint16_t y = y1; y <= y2; y++) {
-            // if (vb_draw_circle(buf, x1, y, width, color) != OK) {
-            //     return 1;
-            // }
-            if (vb_draw_pixel(buf, x1, y, color) != OK) {
-                return 1;
-            }
-        }
-        return 0;
-    }
+    // TODO is this optimization worth it?
+    // if (y1 == y2) {
+    //     if (x2 < x1) {
+    //         int16_t temp = x2;
+    //         x2 = x1;
+    //         x1 = temp;
+    //     }
+    //     for (uint16_t x = x1; x <= x2; x++) {
+    //         if (vb_draw_circle(buf, x, y1, width, color) != OK) {
+    //             return 1;
+    //         }
+    //         // if (vb_draw_pixel(buf, x, y1, color) != OK) {
+    //         //     return 1;
+    //         // }
+    //     }
+    //     return 0;
+    // }
+    // if (x1 == x2) {
+    //     if (y2 < y1) {
+    //         int16_t temp = y2;
+    //         y2 = y1;
+    //         y1 = temp;
+    //     }
+    //     for (uint16_t y = y1; y <= y2; y++) {
+    //         if (vb_draw_circle(buf, x1, y, width, color) != OK) {
+    //             return 1;
+    //         }
+    //         // if (vb_draw_pixel(buf, x1, y, color) != OK) {
+    //         //     return 1;
+    //         // }
+    //     }
+    //     return 0;
+    // }
 
-    int dx = abs(x2-x1); 
-    int sx = x1 < x2 ? 1 : -1;
-    int dy = abs(y2-y1); 
-    int sy = y1 < y2 ? 1 : -1; 
-    int err = dx - dy, e2;
+    int dx = abs(x2 - x1); 
+    int sx = x1 < x2? 1 : -1;
+    int dy = abs(y2 - y1); 
+    int sy = y1 < y2? 1 : -1; 
+    int err = dx - dy;
  
     while (x1 != x2 || y1 != y2) {
-        // if (vb_draw_circle(buf, x1, y1, width, color) != OK) {
-        //     return 1;
-        // }
-        if (vb_draw_pixel(buf, x1, y1, color) != OK) {
+        if (vb_draw_circle(buf, x1, y1, width, color) != OK) {
             return 1;
         }
-        e2 = 2*err;
-        if (e2 >= -dy) { 
-            err -= dy; 
-            x1 += sx; 
+        // if (vb_draw_pixel(buf, x1, y1, color) != OK) {
+        //     return 1;
+        // }
+        int e2 = 2*err;
+        if (e2 >= -dy) {
+            err -= dy;
+            x1 += sx;
         }
-        if (e2 <= dx) { 
-            err += dx; 
-            y1 += sy; 
+        if (e2 <= dx) {
+            err += dx;
+            y1 += sy;
         }
     }
 
