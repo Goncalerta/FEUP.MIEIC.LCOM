@@ -78,6 +78,7 @@ int (proj_main_loop)(int argc, char *argv[]) {
     if (mouse_subscribe_int(&mouse_irq_set) != OK) 
         return 1;
 
+    KBD_STATE kbd_state; kbd_state.key = NO_KEY;
     bool pressing, prb, pmb = false;
     cursor_init();
     canvas_init(vg_get_hres(), vg_get_vres());
@@ -143,15 +144,20 @@ int (proj_main_loop)(int argc, char *argv[]) {
                         printf("keyboard interrupt handler failed\n");
                         continue;
                     }
-                    
                     if (kbd_scancode_ready()) {
-                        if (kbd_handle_scancode() != OK) {
+                        if (kbd_handle_scancode(&kbd_state) != OK) {
                             printf("kbd_handle_scancode failed\n");
                             continue;
                         }
+                        // just to check if it's correct
+                        if (kbd_state.key == CHAR) {
+                            printf("%c", kbd_state.char_key);
+                        } else {
+                            printf("%d\n", kbd_state.key);
+                        }
                         
                         // TODO
-                    } 
+                    }
                 }
                 if (msg.m_notify.interrupts & BIT(timer_irq_set)) {
                     timer_int_handler();
