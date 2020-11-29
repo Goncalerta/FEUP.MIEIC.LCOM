@@ -20,7 +20,7 @@
 #define MEMORY_MODEL_DIRECT_COLOR 0x06
 
 #define COLOR_BYTE(val, n) ((val) >> (n*8))
-#define COLOR_CAP_BYTES_NUM(n) (0xffffffff >> 2*(4-(n))) /* 1 <= n <= 4*/
+#define COLOR_CAP_BYTES_NUM(n) (0xffffffff >> 8*(4-(n))) /* 1 <= n <= 4*/
 #define COLOR_MASK(size, offset) ((0xffffffff >> (32-(size))) << (offset))
 
 typedef struct video_buffer_t {
@@ -38,6 +38,7 @@ int vb_draw_line(video_buffer_t buf, int16_t x1, int16_t y1, int16_t x2, int16_t
 int vb_draw_rectangle(video_buffer_t buf, uint16_t x, uint16_t y, uint16_t width, uint16_t height, uint32_t color);
 // int vb_draw_pattern(video_buffer_t buf, uint8_t no_rectangles, uint32_t first, uint8_t step);
 int vb_draw_circle(video_buffer_t buf, uint16_t x, uint16_t y, uint16_t radius,  uint32_t color);
-int vb_draw_img(video_buffer_t buf, xpm_image_t img, uint16_t x, uint16_t y);
+// int vb_draw_img(video_buffer_t buf, xpm_image_t img, uint16_t x, uint16_t y);
+int vb_draw_img(video_buffer_t buf, xpm_image_t img, uint16_t img_start_x, uint16_t img_start_y, uint16_t img_delta_x, uint16_t img_delta_y, uint16_t x, uint16_t y);
 
 #endif /* _GRAPHICS_H */

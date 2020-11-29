@@ -68,6 +68,7 @@ int (proj_main_loop)(int argc, char *argv[]) {
     if (mouse_subscribe_int(&mouse_irq_set) != OK) 
         return 1;
 
+    font_load(XPM_8_8_8); // mode dependent
     KBD_STATE kbd_state; kbd_state.key = NO_KEY;
     cursor_init();
     canvas_init(vg_get_hres(), vg_get_vres());
@@ -121,12 +122,20 @@ int (proj_main_loop)(int argc, char *argv[]) {
                             printf("kbd_handle_scancode failed\n");
                             continue;
                         }
+
                         // just to check if it's correct
-                        if (kbd_state.key == CHAR) {
-                            printf("%c", kbd_state.char_key);
-                        } else {
-                            printf("%d\n", kbd_state.key);
+                        if (kbd_state.key == CHAR && !kbd_is_ctrl_pressed()) {
+                            if (font_draw_char(kbd_state.char_key, 10, 10) != 0) {
+                                printf("font_draw_char failed\n");
+                            }
                         }
+                        if (kbd_state.key == ENTER) {
+                            char test_string[] = "TESTE 12";
+                            if (font_draw_string(test_string, 30, 10) != 0) {
+                                printf("font_draw_string failed\n");
+                            }
+                        }
+                        // ^^
 
                         // just so I can test undo and redo without having to use mouse's middle button
                         if (kbd_state.key == CHAR && kbd_state.char_key == 'Z' && kbd_is_ctrl_pressed()) {
