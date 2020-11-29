@@ -4,7 +4,6 @@
 #include "video_gr.h"
 #include "graphics.h"
 
-#define CANVAS_WIDTH 1
 static stroke *first, *last, *undone;
 static video_buffer_t canvas_buf; // current picture drawn in buffer - copied into vcard back buffer
 

@@ -1,8 +1,10 @@
 #include <lcom/lcf.h>
 #include "cursor.h"
 #include "video_gr.h"
+#include "canvas.h"
 
 static int16_t cursor_x, cursor_y;
+static bool is_lb_pressed = false, is_rb_pressed = false;
 //static xpm_image_t cursor_arrow, cursor_write;
 
 void cursor_init() {
@@ -18,9 +20,9 @@ int16_t cursor_get_y() {
     return cursor_y;
 }
 
-void update_cursor(struct packet *p) {
-    cursor_x += p->delta_x;
-    cursor_y -= p->delta_y;
+void cursor_move(int16_t dx, int16_t dy) {
+    cursor_x += dx;
+    cursor_y -= dy;
 
     if (cursor_x < 0)
         cursor_x = 0;
@@ -32,19 +34,58 @@ void update_cursor(struct packet *p) {
         cursor_y = vg_get_vres();
 }
 
-void cursor_draw(cursor_state state) {
+bool cursor_is_lb_pressed() {
+    return is_lb_pressed;
+}
+
+bool cursor_is_rb_pressed() {
+    return is_rb_pressed;
+}
+
+bool cursor_set_lb_state(bool pressed) {
+    if (pressed) {
+        if (!is_lb_pressed) {
+            is_lb_pressed = true;
+            return true;
+        }
+    } else {
+        if (is_lb_pressed) {
+            is_lb_pressed = false;
+            return true;
+        }
+    }
+    return false;
+}
+
+bool cursor_set_rb_state(bool pressed) {
+    if (pressed) {
+        if (!is_rb_pressed) {
+            is_rb_pressed = true;
+            return true;
+        }
+    } else {
+        if (is_rb_pressed) {
+            is_rb_pressed = false;
+            return true;
+        }
+    }
+
+    return false;
+}
+
+int cursor_draw(cursor_state state) {
     switch (state) {
     case CURSOR_ARROW:
         // TODO
         // draw_img(cursor_arrow, cursor_x, cursor_y);
         break;
     case CURSOR_PAINT:
-        // TODO
-        // draw_circle(x, y, CURSOR_RADIUS, selected_color)
-        break;
+        return vb_draw_circle(vg_get_back_buffer(), cursor_x, cursor_y, CANVAS_WIDTH, 0x000033ff);
     case CURSOR_WRITE:
         // TODO
         // draw_img(cursor_write, cursor_x, cursor_y);
         break;
     }
+
+    return 0;
 }

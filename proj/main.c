@@ -40,15 +40,12 @@ int main(int argc, char *argv[]) {
 }
 
 int draw_frame() {
-    canvas_draw_frame(0);
-    // TODO
-    //if (vg_clear() != OK)
-    //    return 1;
-    //vg_draw_line(20, 20, 50, 21, 0x000000ff);
-    //if (canvas_draw_strokes() != OK)
-    //    return 1;
-    if (vg_flip_page() != OK)
+    if (canvas_draw_frame(0) != OK)
        return 1;
+    if (cursor_draw(CURSOR_PAINT) != OK)
+        return 1;
+    if (vg_flip_page() != OK)
+        return 1;
     return 0;
 }
 
@@ -62,13 +59,6 @@ int (proj_main_loop)(int argc, char *argv[]) {
     if (timer_subscribe_int(&timer_irq_set) != OK) 
         return 1;
 
-    if (vg_clear() != OK)
-        return 1;
-    if (vg_flip_page() != OK)
-        return 1;
-    if (vg_clear() != OK)
-        return 1;
-
     if (kbd_subscribe_int(&kbd_irq_set) != OK) 
         return 1;
 
@@ -78,13 +68,12 @@ int (proj_main_loop)(int argc, char *argv[]) {
     if (mouse_subscribe_int(&mouse_irq_set) != OK) 
         return 1;
 
-    bool pressing, prb, pmb = false;
     cursor_init();
     canvas_init(vg_get_hres(), vg_get_vres());
-    canvas_new_stroke(0x00ff0000);
+
     int ipc_status, r;
     message msg;
-    while ( interrupt_counter < 600 ) { /* You may want to use a different condition */
+    while ( true ) { /* You may want to use a different condition */
         /* Get a request message. */
         if ( (r = driver_receive(ANY, &msg, &ipc_status)) != 0) { 
             printf("driver_receive failed with: %d\n", r);
@@ -107,33 +96,22 @@ int (proj_main_loop)(int argc, char *argv[]) {
                             continue;
                         }
 
-                        update_cursor(&p);
-                        
-                        if (p.lb) {
-                            if (!pressing) {
-                                canvas_new_stroke(0x000033ff);
-                                pressing = true;
+                        if (cursor_set_lb_state(p.lb)) {
+                            if (p.lb) {
+                                if (canvas_new_stroke(0x000033ff) != OK)
+                                    return 1;
                             }
-                            canvas_new_stroke_atom(cursor_get_x(), cursor_get_y());
-                        } else if (pressing) {
-                           pressing = false;
-                        } 
-
-                        if (p.rb) {
-                            if (!prb) {
-                                prb = true;
-                                canvas_undo_stroke();
-                            }
-                        } else {
-                            prb =false;
                         }
-                        if (p.mb) {
-                            if (!pmb) {
-                                pmb = true;
-                                canvas_redo_stroke();
+
+                        if (cursor_set_rb_state(p.rb)) {
+                            if (p.rb) {
+                                canvas_undo_stroke(); // no need to crash if empty
                             }
-                        } else {
-                            pmb = false;
+                        }
+
+                        cursor_move(p.delta_x, p.delta_y);
+                        if (p.lb) {
+                            canvas_new_stroke_atom(cursor_get_x(), cursor_get_y());
                         }
                     }
                 }

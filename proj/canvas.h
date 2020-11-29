@@ -3,6 +3,8 @@
 
 #include <lcom/lcf.h>
 
+#define CANVAS_WIDTH 10
+
 typedef struct stroke_atom {
     uint16_t x, y;
 } stroke_atom;
