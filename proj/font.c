@@ -1,20 +1,19 @@
 #include <lcom/lcf.h>
 #include "font.h"
-#include "pixmap_font.h"
+#include "xpm/font.xpm"
 #include "graphics.h"
 #include "video_gr.h"
 
 static xpm_image_t font;
 
 int font_load(enum xpm_image_type type) {
-    xpm_map_t xpm = font_xpm;
-    if (xpm_load(xpm, type, &font) == NULL) {
+    if (xpm_load(font_xpm, type, &font) == NULL) {
         return 1;
     }
     return 0;
 }
 
-int font_draw_char(char c, uint16_t x, uint16_t y) {
+int font_draw_char(video_buffer_t buf, char c, uint16_t x, uint16_t y) {
     uint16_t char_start_x = 0;
     uint16_t char_start_y = 0;
     
@@ -39,7 +38,7 @@ int font_draw_char(char c, uint16_t x, uint16_t y) {
     	
     }
     
-    vb_draw_img(vg_get_back_buffer(), font, char_start_x, char_start_y, FONT_CHAR_WIDTH, FONT_CHAR_HEIGHT, x, y);
+    vb_draw_img(buf, font, char_start_x, char_start_y, FONT_CHAR_WIDTH, FONT_CHAR_HEIGHT, x, y);
     
     //using to debug
     vg_flip_page();
@@ -49,10 +48,10 @@ int font_draw_char(char c, uint16_t x, uint16_t y) {
     return 0;
 }
 
-int font_draw_string(char string[], uint16_t x, uint16_t y) {
+int font_draw_string(video_buffer_t buf, char string[], uint16_t x, uint16_t y) {
     for (int i = 0; string[i] != '\0'; i++) {
         // TODO it may need adjustments in spacing...
-        if (font_draw_char(string[i], x + i*(FONT_CHAR_WIDTH + FONT_CHAR_SPACE_X), y) != 0) {
+        if (font_draw_char(buf, string[i], x + i*(FONT_CHAR_WIDTH + FONT_CHAR_SPACE_X), y) != 0) {
             printf("font_draw_char error\n");
             return 1;
         }
@@ -65,8 +64,3 @@ int font_draw_string(char string[], uint16_t x, uint16_t y) {
 }
 
 //TODO cursor é de formato diferente, talvez implementar como sprite até para poder "piscar"
-
-/*
-load_font(XPM_8_8_8);
-draw_char(0,0,0);
-*/
