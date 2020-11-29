@@ -3,11 +3,16 @@
 #include "video_gr.h"
 #include "canvas.h"
 
+#include "xpm/cursor_arrow.xpm"
+#include "xpm/cursor_write.xpm"
+
 static int16_t cursor_x, cursor_y;
 static bool is_lb_pressed = false, is_rb_pressed = false;
-//static xpm_image_t cursor_arrow, cursor_write;
+static xpm_image_t cursor_arrow, cursor_write;
 
-void cursor_init() {
+void cursor_init(enum xpm_image_type type) {
+    xpm_load(xpm_cursor_arrow, type, &cursor_arrow);
+    xpm_load(xpm_cursor_write, type, &cursor_write);
     cursor_x = vg_get_hres() / 2;
     cursor_y = vg_get_vres() / 2;
 }
@@ -76,17 +81,10 @@ bool cursor_set_rb_state(bool pressed) {
 int cursor_draw(cursor_state state) {
     switch (state) {
     case CURSOR_ARROW:
-        // TODO
-        // draw_img(cursor_arrow, cursor_x, cursor_y);
-        break;
+        return vb_draw_img(vg_get_back_buffer(), cursor_arrow, 0, 0, 24, 24, cursor_x - 12, cursor_y - 12);
     case CURSOR_PAINT:
-        return vb_draw_circle(vg_get_back_buffer(), cursor_x, cursor_y, CANVAS_WIDTH, 0x000033ff);
-        // return vb_draw_circle(vg_get_back_buffer(), cursor_x, cursor_y, 10, 0x000033ff); // TODO color and thickness from game state
+        return vb_draw_circle(vg_get_back_buffer(), cursor_x, cursor_y, 10, 0x000033ff); // TODO color and thickness from game state
     case CURSOR_WRITE:
-        // TODO
-        // draw_img(cursor_write, cursor_x, cursor_y);
-        break;
+        return vb_draw_img(vg_get_back_buffer(), cursor_write, 0, 0, 24, 24, cursor_x - 12, cursor_y - 12);
     }
-
-    return 0;
 }
