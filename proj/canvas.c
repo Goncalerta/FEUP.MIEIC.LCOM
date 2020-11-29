@@ -44,6 +44,10 @@ static int canvas_draw_last_atom() {
 }
 
 static int canvas_draw_stroke(stroke *stroke) {
+    stroke_atom first_atom = stroke->atoms[0];
+    if (vb_draw_circle(canvas_buf, first_atom.x, first_atom.y, CANVAS_WIDTH, stroke->color))
+        return 1;
+
     for (size_t i = 1; i < stroke->num_atoms; i++) {
         if (canvas_draw_atom_line(stroke->atoms[i-1], stroke->atoms[i], stroke->color) != OK)
             return 1;
