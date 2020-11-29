@@ -83,7 +83,11 @@ int cursor_draw(cursor_state state) {
     case CURSOR_ARROW:
         return vb_draw_img(vg_get_back_buffer(), cursor_arrow, 0, 0, 24, 24, cursor_x - 12, cursor_y - 12);
     case CURSOR_PAINT:
-        return vb_draw_circle(vg_get_back_buffer(), cursor_x, cursor_y, 10, 0x000033ff); // TODO color and thickness from game state
+        if (vb_draw_circle(vg_get_back_buffer(), cursor_x, cursor_y, 10+2, 0x00434343) != OK) 
+            return 1; 
+        if (vb_draw_circle(vg_get_back_buffer(), cursor_x, cursor_y, 10, 0x000033ff) != OK) // TODO color and thickness from game state
+            return 1; 
+        return 0;
     case CURSOR_WRITE:
         return vb_draw_img(vg_get_back_buffer(), cursor_write, 0, 0, 24, 24, cursor_x - 12, cursor_y - 12);
     }

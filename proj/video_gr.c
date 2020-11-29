@@ -86,10 +86,10 @@ uint16_t vg_get_bytes_per_pixel() {
 
 int vg_flip_page() {
     if (buf1_is_primary) {
-        if (vbe_set_display_start(0, buf1.v_res))
+        if (vbe_set_display_start(0, buf1.v_res) != OK)
             return 1;
     } else {
-        if (vbe_set_display_start(0, 0))
+        if (vbe_set_display_start(0, 0) != OK)
             return 1;
     }
     buf1_is_primary = !buf1_is_primary;
