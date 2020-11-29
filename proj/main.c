@@ -133,6 +133,15 @@ int (proj_main_loop)(int argc, char *argv[]) {
                         } else {
                             printf("%d\n", kbd_state.key);
                         }
+
+                        // just so I can test undo and redo without having to use mouse's middle button
+                        if (kbd_state.key == CHAR && kbd_state.char_key == 'Z' && kbd_is_ctrl_pressed()) {
+                            canvas_undo_stroke(); // no need to crash if empty
+                        }
+
+                        if (kbd_state.key == CHAR && kbd_state.char_key == 'Y' && kbd_is_ctrl_pressed()) {
+                            canvas_redo_stroke(); // no need to crash if empty
+                        }
                         
                         // TODO
                     }
