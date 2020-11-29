@@ -16,4 +16,6 @@ int kbc_read_command_byte(uint8_t *byte);
 
 int kbc_write_command_byte(uint8_t byte);
 
+int kbc_flush();
+
 #endif /* __KBC_H */

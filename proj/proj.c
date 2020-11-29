@@ -9,6 +9,7 @@
 // Any header files included below this line should have been created by you
 #include "keyboard.h"
 #include "mouse.h"
+#include "kbc.h"
 #include "video_gr.h"
 #include "canvas.h"
 #include "cursor.h"
@@ -182,6 +183,9 @@ int (proj_main_loop)(int argc, char *argv[]) {
         return 1;
     
     if (mouse_disable_dr() != OK) 
+        return 1;
+    
+    if (kbc_flush() != OK)
         return 1;
 
     if (timer_unsubscribe_int() != OK)

@@ -7,7 +7,7 @@
 static int hook_id_kbd = KEYBOARD_IRQ;
 static uint8_t scancode_bytes[2];
 static size_t scancode_bytes_counter = 0;
-bool should_retrieve = false;
+static bool should_retrieve = false;
 
 static bool ctrl_pressed = false;
 static uint16_t last_make_code = 0x0000; //TODO confirmar que este não existe/não da para obter o break code correspondente
