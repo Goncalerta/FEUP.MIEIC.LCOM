@@ -196,7 +196,7 @@ int vb_draw_img(video_buffer_t buf, xpm_image_t img, uint16_t x, uint16_t y) {
         for (uint16_t j = 0; j < img.height; j++) {
             uint32_t color = 0;
             for (uint8_t k = 0; k < buf.bytes_per_pixel; k++) {
-                color += img.bytes[(i + j * img.width) * buf.bytes_per_pixel] << (8 * k);
+                color += img.bytes[(i + j * img.width) * buf.bytes_per_pixel + k] << (8 * k);
             }
 
             if (color == xpm_transparency_color(img.type)) 

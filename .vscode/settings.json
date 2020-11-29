@@ -21,6 +21,7 @@
         "limits": "c",
         "cmath": "c",
         "iterator": "c",
-        "cstdlib": "c"
+        "cstdlib": "c",
+        "*.xpm": "c"
     }
 }
