@@ -5,7 +5,7 @@
 
 #include "i8254.h"
 
-int interrupt_counter = 0;
+unsigned int interrupt_counter = 0;
 static int hook_id_timer = TIMER0_IRQ;
 
 int (timer_set_frequency)(uint8_t timer, uint32_t freq) {

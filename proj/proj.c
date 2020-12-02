@@ -7,14 +7,15 @@
 #include <stdint.h>
 
 // Any header files included below this line should have been created by you
+#include "kbc.h"
 #include "keyboard.h"
 #include "mouse.h"
-#include "kbc.h"
 #include "video_gr.h"
 #include "canvas.h"
 #include "cursor.h"
 #include "font.h"
-extern int interrupt_counter;
+#include "dispatcher.h"
+extern unsigned int interrupt_counter;
 
 int main(int argc, char *argv[]) {
   // sets the language of LCF messages (can be either EN-US or PT-PT)
@@ -40,20 +41,10 @@ int main(int argc, char *argv[]) {
   return 0;
 }
 
-static int draw_frame() {
-    if (canvas_draw_frame(0) != OK)
-       return 1;
-    if (cursor_draw(CURSOR_PAINT) != OK)
-       return 1;
-    if (vg_flip_page() != OK)
-        return 1;
-    return 0;
-}
-
 int (proj_main_loop)(int argc, char *argv[]) {
-    uint8_t timer_irq_set, kbd_irq_set, mouse_irq_set;
     uint16_t mode = 0x118;
     enum xpm_image_type image_type = XPM_8_8_8;
+    uint8_t timer_irq_set, kbd_irq_set, mouse_irq_set;
 
     if (vg_init(mode) == NULL) 
         return 1;
@@ -76,9 +67,8 @@ int (proj_main_loop)(int argc, char *argv[]) {
     canvas_init(vg_get_hres(), vg_get_vres());
 
     int ipc_status, r;
-    bool end = false;
     message msg;
-    while ( !end ) { /* You may want to use a different condition */
+    while ( !should_end() ) {
         /* Get a request message. */
         if ( (r = driver_receive(ANY, &msg, &ipc_status)) != 0) { 
             printf("driver_receive failed with: %d\n", r);
@@ -101,16 +91,9 @@ int (proj_main_loop)(int argc, char *argv[]) {
                             continue;
                         }
 
-                        if (cursor_set_lb_state(p.lb)) {
-                            if (p.lb) {
-                                if (canvas_new_stroke(0x000033ff, 10) != OK)
-                                    return 1;
-                            }
-                        }
-
-                        cursor_move(p.delta_x, p.delta_y);
-                        if (p.lb) {
-                            canvas_new_stroke_atom(cursor_get_x(), cursor_get_y());
+                        if (dispatch_mouse_packet(p) != OK) {
+                            printf("dispatch_mouse_packet failed\n");
+                            continue;
                         }
                     }
                 }
@@ -126,41 +109,18 @@ int (proj_main_loop)(int argc, char *argv[]) {
                             continue;
                         }
 
-                        // just to check if it's correct
-                        if (kbd_state.key == CHAR && !kbd_is_ctrl_pressed()) {
-                            if (font_draw_char(vg_get_back_buffer(), kbd_state.char_key, 10, 10) != 0) {
-                                printf("font_draw_char failed\n");
-                            }
+                        if (dispatch_keyboard_event(kbd_state) != OK) {
+                            printf("dispatch_keyboard_event failed\n");
+                            continue;
                         }
-                        if (kbd_state.key == ENTER) {
-                            char test_string[] = "TESTE 12";
-                            if (font_draw_string(vg_get_back_buffer(), test_string, 30, 10) != 0) {
-                                printf("font_draw_string failed\n");
-                            }
-                        }
-                        // ^^
-
-                        // just so I can test undo and redo without having to use mouse's middle button
-                        if (kbd_state.key == CHAR && kbd_state.char_key == 'Z' && kbd_is_ctrl_pressed()) {
-                            canvas_undo_stroke(); // no need to crash if empty
-                        }
-
-                        if (kbd_state.key == CHAR && kbd_state.char_key == 'Y' && kbd_is_ctrl_pressed()) {
-                            canvas_redo_stroke(); // no need to crash if empty
-                        }
-
-                        if (kbd_state.key == ESC) {
-                            end = true;
-                        }
-                        
-                        // TODO
                     }
                 }
                 if (msg.m_notify.interrupts & BIT(timer_irq_set)) {
                     timer_int_handler();
 
-                    if (draw_frame() != OK) {
+                    if (dispatch_timer_tick(interrupt_counter) != OK) {
                         printf("error while drawing frame\n");
+                        continue;
                     }
                 }
                 break;
@@ -172,8 +132,7 @@ int (proj_main_loop)(int argc, char *argv[]) {
         }
     }
 
-    canvas_exit();
-    if (clear_canvas() != OK)
+    if (canvas_exit() != OK)
         return 1;
 
     if (kbd_unsubscribe_int() != OK)
