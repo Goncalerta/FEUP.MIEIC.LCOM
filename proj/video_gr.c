@@ -4,10 +4,10 @@
 #include "video_gr.h"
 #include "vbe.h"
 
-static video_buffer_t buf1, buf2;
+static frame_buffer_t buf1, buf2;
 static bool buf1_is_primary = true;
 
-video_buffer_t vg_get_back_buffer() {
+frame_buffer_t vg_get_back_buffer() {
     if (buf1_is_primary) {
         return buf2;
     } else {

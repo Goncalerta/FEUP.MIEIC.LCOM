@@ -13,7 +13,7 @@ int font_load(enum xpm_image_type type) {
     return 0;
 }
 
-int font_draw_char(video_buffer_t buf, char c, uint16_t x, uint16_t y) {
+int font_draw_char(frame_buffer_t buf, char c, uint16_t x, uint16_t y) {
     uint16_t char_start_x = 0;
     uint16_t char_start_y = 0;
     
@@ -48,7 +48,7 @@ int font_draw_char(video_buffer_t buf, char c, uint16_t x, uint16_t y) {
     return 0;
 }
 
-int font_draw_string(video_buffer_t buf, char string[], uint16_t x, uint16_t y) {
+int font_draw_string(frame_buffer_t buf, char string[], uint16_t x, uint16_t y) {
     for (int i = 0; string[i] != '\0'; i++) {
         // TODO it may need adjustments in spacing...
         if (font_draw_char(buf, string[i], x + i*(FONT_CHAR_WIDTH + FONT_CHAR_SPACE_X), y) != 0) {

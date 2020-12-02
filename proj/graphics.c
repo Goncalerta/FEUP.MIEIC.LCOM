@@ -7,7 +7,7 @@
 // static uint8_t blue_mask_size;
 // static bool direct_color_mode;
 
-int vb_draw_pixel(video_buffer_t buf, uint16_t x, uint16_t y, uint32_t color) {
+int vb_draw_pixel(frame_buffer_t buf, uint16_t x, uint16_t y, uint32_t color) {
     if ((x >= buf.h_res) || (y >= buf.v_res)) {
         // TODO rectangles outside borders are failing because of this. maybe just not paint the pixel instead of error?
         //      another option is to check in draw functions before drawing pixel
@@ -27,7 +27,7 @@ int vb_draw_pixel(video_buffer_t buf, uint16_t x, uint16_t y, uint32_t color) {
     return 0;
 }
 
-int vb_fill_screen(video_buffer_t buf, uint32_t color) {
+int vb_fill_screen(frame_buffer_t buf, uint32_t color) {
     uint8_t *pixel_mem_pos = (uint8_t*) buf.buf;
 
     if (color > COLOR_CAP_BYTES_NUM(buf.bytes_per_pixel)) {
@@ -44,7 +44,7 @@ int vb_fill_screen(video_buffer_t buf, uint32_t color) {
     return 0;
 }
 
-int vb_draw_hline(video_buffer_t buf, uint16_t x, uint16_t y, uint16_t len, uint32_t color) {
+int vb_draw_hline(frame_buffer_t buf, uint16_t x, uint16_t y, uint16_t len, uint32_t color) {
     for (uint16_t i = 0; i < len; i++) {
         if (vb_draw_pixel(buf, x + i, y, color)) {
             return 1;
@@ -53,7 +53,7 @@ int vb_draw_hline(video_buffer_t buf, uint16_t x, uint16_t y, uint16_t len, uint
     return 0;
 }
 
-int vb_draw_vline(video_buffer_t buf, uint16_t x, uint16_t y, uint16_t len, uint32_t color) {
+int vb_draw_vline(frame_buffer_t buf, uint16_t x, uint16_t y, uint16_t len, uint32_t color) {
     for (uint16_t i = 0; i < len; i++) {
         if (vb_draw_pixel(buf, x, y + i, color)) {
             return 1;
@@ -62,7 +62,7 @@ int vb_draw_vline(video_buffer_t buf, uint16_t x, uint16_t y, uint16_t len, uint
     return 0;
 }
 
-int vb_draw_rectangle(video_buffer_t buf, uint16_t x, uint16_t y, uint16_t width, uint16_t height, uint32_t color) {
+int vb_draw_rectangle(frame_buffer_t buf, uint16_t x, uint16_t y, uint16_t width, uint16_t height, uint32_t color) {
     for (uint16_t i = 0; i < height; i++) {
         if(vb_draw_hline(buf, x, y+i, width, color))
             return 1;
@@ -81,7 +81,7 @@ int vb_draw_rectangle(video_buffer_t buf, uint16_t x, uint16_t y, uint16_t width
 //     return blue | (green << blue_mask_size) | (red << (blue_mask_size + green_mask_size));
 // }
 
-int vb_draw_circle(video_buffer_t buf, uint16_t x, uint16_t y, uint16_t radius,  uint32_t color) {
+int vb_draw_circle(frame_buffer_t buf, uint16_t x, uint16_t y, uint16_t radius,  uint32_t color) {
     int32_t top_left_x = x - radius;
     int32_t top_left_y = y - radius;
     int32_t max_distance = radius * radius;
@@ -100,7 +100,7 @@ int vb_draw_circle(video_buffer_t buf, uint16_t x, uint16_t y, uint16_t radius, 
     return 0;
 }
 
-int vb_draw_line(video_buffer_t buf, int16_t x1, int16_t y1, int16_t x2, int16_t y2, uint32_t color, uint16_t width) {
+int vb_draw_line(frame_buffer_t buf, int16_t x1, int16_t y1, int16_t x2, int16_t y2, uint32_t color, uint16_t width) {
     // TODO is this optimization worth it?
     // if (y1 == y2) {
     //     if (x2 < x1) {
@@ -162,7 +162,7 @@ int vb_draw_line(video_buffer_t buf, int16_t x1, int16_t y1, int16_t x2, int16_t
     return 0;
 }
 
-// int vg_draw_pattern(video_buffer_t buf, uint8_t no_rectangles, uint32_t first, uint8_t step) {
+// int vg_draw_pattern(frame_buffer_t buf, uint8_t no_rectangles, uint32_t first, uint8_t step) {
 //     uint16_t width = h_res/no_rectangles;
 //     uint16_t height = v_res/no_rectangles;
 
@@ -191,7 +191,7 @@ int vb_draw_line(video_buffer_t buf, int16_t x1, int16_t y1, int16_t x2, int16_t
 //     return 0;
 // }
 
-// int vb_draw_img(video_buffer_t buf, xpm_image_t img, uint16_t x, uint16_t y) {
+// int vb_draw_img(frame_buffer_t buf, xpm_image_t img, uint16_t x, uint16_t y) {
 //     for (uint16_t i = 0; i < img.width; i++) {
 //         for (uint16_t j = 0; j < img.height; j++) {
 //             uint32_t color = 0;
@@ -211,7 +211,7 @@ int vb_draw_line(video_buffer_t buf, int16_t x1, int16_t y1, int16_t x2, int16_t
 // }
 
 /* to draw a whole image pass: img_start_x = 0; img_start_y = 0; img_delta_x = img.width; img_delta_y = img.height */
-int vb_draw_img(video_buffer_t buf, xpm_image_t img, uint16_t img_start_x, uint16_t img_start_y, uint16_t img_delta_x, uint16_t img_delta_y, uint16_t x, uint16_t y) {
+int vb_draw_img(frame_buffer_t buf, xpm_image_t img, uint16_t img_start_x, uint16_t img_start_y, uint16_t img_delta_x, uint16_t img_delta_y, uint16_t x, uint16_t y) {
     if	((img_start_x + img_delta_x > img.width) || (img_start_y + img_delta_y > img.height)) {
         printf("Invalid region of image to draw (out of bounds).\n");
         printf("%d %d %d        %d %d %d\n", img_start_x, img_delta_x, img.width, img_start_y, img_delta_y, img.height);

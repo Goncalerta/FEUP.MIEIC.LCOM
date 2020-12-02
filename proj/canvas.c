@@ -5,7 +5,7 @@
 #include "graphics.h"
 
 static stroke *first, *last, *undone;
-static video_buffer_t canvas_buf; // current picture drawn in buffer - copied into vcard back buffer
+static frame_buffer_t canvas_buf; // current picture drawn in buffer - copied into vcard back buffer
 
 static int canvas_draw_atom_line(stroke_atom atom1, stroke_atom atom2, uint32_t color, uint16_t thickness) {
     uint16_t x1 = atom1.x;
