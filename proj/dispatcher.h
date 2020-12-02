@@ -6,7 +6,7 @@
 
 int dispatch_mouse_packet(struct packet p);
 int dispatch_keyboard_event(KBD_STATE s);
-int dispatch_timer_tick(unsigned int interrupt_counter);
+int dispatch_timer_tick();
 int draw_frame();
 bool should_end();
 

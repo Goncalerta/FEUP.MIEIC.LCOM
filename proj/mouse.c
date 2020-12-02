@@ -2,6 +2,7 @@
 #include "mouse.h"
 #include "kbc.h"
 #include "i8042.h"
+#include "dispatcher.h"
 
 static int hook_id_mouse = 2;
 static uint8_t raw_packet[3];
@@ -22,16 +23,33 @@ int mouse_unsubscribe_int() {
 
 void (mouse_ih)() {
     if (packet_byte_counter >= 3) {
-        mouse_ih_return = 1;
+        printf("mouse interrupt handler failed\n");
         return;
     }
     
-    mouse_ih_return = kbc_read_data(&raw_packet[packet_byte_counter++]);
+    if (kbc_read_data(&raw_packet[packet_byte_counter++]) != OK) {
+        printf("mouse interrupt handler failed\n");
+        return;
+    }
 
-    if (mouse_ih_return == OK && packet_byte_counter == 1) {
+    if (packet_byte_counter == 1) {
         if (!mouse_is_valid_first_byte_packet(raw_packet[0])) {
-            mouse_ih_return = 1;
+            printf("unexpected mouse packet byte\n");
             packet_byte_counter = 0;
+            return;
+        }
+    }
+
+    if (mouse_packet_ready()) {
+        struct packet p;
+        if (mouse_retrieve_packet(&p) != OK) {
+            printf("mouse_retrieve_packet failed\n");
+            return;
+        }
+
+        if (dispatch_mouse_packet(p) != OK) {
+            printf("dispatch_mouse_packet failed\n");
+            return;
         }
     }
 }

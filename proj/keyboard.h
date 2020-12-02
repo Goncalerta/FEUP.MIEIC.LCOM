@@ -23,8 +23,6 @@ typedef struct KBD_STATE {
     char char_key; // to use when (key == CHAR)
 } KBD_STATE;
 
-int kbd_ih_return;
-
 int kbd_subscribe_int(uint8_t *bit_no);
 
 int kbd_unsubscribe_int();

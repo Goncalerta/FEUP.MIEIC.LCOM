@@ -3,8 +3,6 @@
 
 #include <lcom/lcf.h>
 
-int mouse_ih_return;
-
 int mouse_subscribe_int(uint8_t *bit_no);
 
 int mouse_unsubscribe_int();

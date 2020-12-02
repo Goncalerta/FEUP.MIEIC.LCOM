@@ -15,7 +15,6 @@
 #include "cursor.h"
 #include "font.h"
 #include "dispatcher.h"
-extern unsigned int interrupt_counter;
 
 int main(int argc, char *argv[]) {
   // sets the language of LCF messages (can be either EN-US or PT-PT)
@@ -62,7 +61,7 @@ int (proj_main_loop)(int argc, char *argv[]) {
         return 1;
 
     font_load(image_type);
-    KBD_STATE kbd_state; kbd_state.key = NO_KEY;
+    
     cursor_init(image_type);
     canvas_init(vg_get_hres(), vg_get_vres());
 
@@ -79,49 +78,12 @@ int (proj_main_loop)(int argc, char *argv[]) {
             case HARDWARE: /* hardware interrupt notification */				
                 if (msg.m_notify.interrupts & BIT(mouse_irq_set)) {
                     mouse_ih();
-                    if (mouse_ih_return != OK) {
-                        printf("mouse interrupt handler failed\n");
-                        continue;
-                    }
-
-                    if (mouse_packet_ready()) {
-                        struct packet p;
-                        if (mouse_retrieve_packet(&p) != OK) {
-                            printf("mouse_retrieve_packet failed\n");
-                            continue;
-                        }
-
-                        if (dispatch_mouse_packet(p) != OK) {
-                            printf("dispatch_mouse_packet failed\n");
-                            continue;
-                        }
-                    }
                 }
                 if (msg.m_notify.interrupts & BIT(kbd_irq_set)) {
                     kbc_ih();
-                    if (kbd_ih_return != OK) {
-                        printf("keyboard interrupt handler failed\n");
-                        continue;
-                    }
-                    if (kbd_scancode_ready()) {
-                        if (kbd_handle_scancode(&kbd_state) != OK) {
-                            printf("kbd_handle_scancode failed\n");
-                            continue;
-                        }
-
-                        if (dispatch_keyboard_event(kbd_state) != OK) {
-                            printf("dispatch_keyboard_event failed\n");
-                            continue;
-                        }
-                    }
                 }
                 if (msg.m_notify.interrupts & BIT(timer_irq_set)) {
                     timer_int_handler();
-
-                    if (dispatch_timer_tick(interrupt_counter) != OK) {
-                        printf("error while drawing frame\n");
-                        continue;
-                    }
                 }
                 break;
             default:

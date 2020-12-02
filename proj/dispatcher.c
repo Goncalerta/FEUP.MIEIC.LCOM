@@ -59,7 +59,7 @@ int dispatch_keyboard_event(KBD_STATE pressed_key) {
     return 0;
 }
 
-int dispatch_timer_tick(unsigned int interrupt_counter) {
+int dispatch_timer_tick() {
     if (draw_frame() != OK) {
         printf("error while drawing frame\n");
         return 1;

@@ -3,6 +3,7 @@
 #include "kbc.h"
 #include "i8042.h"
 #include "scan_codes.h"
+#include "dispatcher.h"
 
 static int hook_id_kbd = KEYBOARD_IRQ;
 static uint8_t scancode_bytes[2];
@@ -11,7 +12,6 @@ static bool should_retrieve = false;
 
 static bool ctrl_pressed = false;
 static uint16_t last_make_code = 0x0000; //TODO confirmar que este não existe/não da para obter o break code correspondente
-
 
 int kbd_subscribe_int(uint8_t *bit_no) {
     *bit_no = hook_id_kbd;
@@ -23,14 +23,16 @@ int kbd_unsubscribe_int() {
 }
 
 void (kbc_ih)() {
+    static KBD_STATE kbd_state = { .key = NO_KEY };
+
     if (should_retrieve) {
-        kbd_ih_return = 1;
+        printf("keyboard interrupt handler failed\n");
         return;
     }
 
     uint8_t data; 
     if (kbc_read_data(&data)) {
-        kbd_ih_return = 1;
+        printf("keyboard interrupt handler failed\n");
         return;
     }
 
@@ -39,7 +41,17 @@ void (kbc_ih)() {
         should_retrieve = true;
     }
 
-    kbd_ih_return = 0;
+    if (kbd_scancode_ready()) {
+        if (kbd_handle_scancode(&kbd_state) != OK) {
+            printf("kbd_handle_scancode failed\n");
+            return;
+        }
+
+        if (dispatch_keyboard_event(kbd_state) != OK) {
+            printf("dispatch_keyboard_event failed\n");
+            return;
+        }
+    }
 }
 
 bool kbd_is_make_code(uint8_t scancode) {
