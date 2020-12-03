@@ -23,5 +23,7 @@ int canvas_new_stroke(uint32_t color, uint16_t thickness);
 int canvas_new_stroke_atom(uint16_t x, uint16_t y);
 int canvas_undo_stroke();
 int canvas_redo_stroke();
+bool canvas_is_hovering(uint16_t x, uint16_t y);
+int canvas_update_state(bool hovering, bool lb, bool rb);
 
 #endif /* __CANVAS_H */

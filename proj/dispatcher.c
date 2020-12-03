@@ -10,19 +10,34 @@
 
 static bool end = false;
 
+int event_new_stroke(bool primary_button) {
+    if (primary_button) {
+        if (canvas_new_stroke(0x000033ff, 10) != OK)
+            return 1;
+    } else {
+        if (canvas_new_stroke(0x00FFFFFF, 10) != OK)
+            return 1;
+    }
+    
+    return 0;
+}
+
+int event_new_atom(uint16_t x, uint16_t y) {
+    if (canvas_new_stroke_atom(x, y) != OK)
+        return 1;
+    return 0;
+}
+
 int dispatch_mouse_packet(struct packet p) {
-    if (cursor_set_lb_state(p.lb)) {
-        if (p.lb) {
-            if (canvas_new_stroke(0x000033ff, 10) != OK)
-                return 1;
-        }
-    }
-
     cursor_move(p.delta_x, p.delta_y);
-    if (p.lb) {
-        canvas_new_stroke_atom(cursor_get_x(), cursor_get_y());
-    }
+    bool hovering = false;
 
+    if (!hovering && canvas_is_hovering(cursor_get_x(), cursor_get_y())) {
+        hovering = true;
+        cursor_set_state(CURSOR_PAINT);
+        if (canvas_update_state(hovering, p.lb, p.rb) != OK)
+            return 1;
+    }
 
     return 0;
 }

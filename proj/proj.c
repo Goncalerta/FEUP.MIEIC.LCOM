@@ -60,10 +60,12 @@ int (proj_main_loop)(int argc, char *argv[]) {
     if (mouse_subscribe_int(&mouse_irq_set) != OK) 
         return 1;
 
+    // INIT game assets
+    // TODO probably move those to a more appropriate place later in the project
     font_load(image_type);
-    
     cursor_init(image_type);
     canvas_init(vg_get_hres(), vg_get_vres());
+    // ^^
 
     int ipc_status, r;
     message msg;
@@ -94,9 +96,12 @@ int (proj_main_loop)(int argc, char *argv[]) {
         }
     }
 
+    // EXIT game assets
+    // TODO probably move those to a more appropriate place later in the project
     if (canvas_exit() != OK)
         return 1;
-
+    // ^^
+    
     if (kbd_unsubscribe_int() != OK)
         return 1;
 

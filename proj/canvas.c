@@ -3,7 +3,17 @@
 #include "canvas.h"
 #include "video_gr.h"
 #include "graphics.h"
+#include "dispatcher.h"
+#include "cursor.h"
 
+typedef enum canvas_state_t {
+    CANVAS_STATE_NORMAL,
+    CANVAS_STATE_HOVERING,
+    CANVAS_STATE_PRESSING_LB,
+    CANVAS_STATE_PRESSING_RB,
+} canvas_state_t;
+
+static canvas_state_t state;
 static stroke *first, *last, *undone;
 static frame_buffer_t canvas_buf; // current picture drawn in buffer - copied into vcard back buffer
 
@@ -57,6 +67,8 @@ static int canvas_redraw_strokes() {
 }
 
 int canvas_init(uint16_t width, uint16_t height) {
+    state = CANVAS_STATE_NORMAL;
+
     canvas_buf.h_res = width;
     canvas_buf.v_res = height;
     canvas_buf.bytes_per_pixel = vg_get_bytes_per_pixel();
@@ -205,5 +217,73 @@ int canvas_draw_frame(uint16_t y) {
     uint8_t *buf_pos = (uint8_t*) vg_get_back_buffer().buf + y * vg_get_hres() * vg_get_bytes_per_pixel();
     size_t size = sizeof(uint8_t) * canvas_buf.h_res * canvas_buf.v_res * canvas_buf.bytes_per_pixel;
     memcpy(buf_pos, canvas_buf.buf, size);
+    return 0;
+}
+
+bool canvas_is_hovering(uint16_t x, uint16_t y) {
+    return y <= canvas_buf.v_res;
+}
+
+int canvas_update_state(bool hovering, bool lb, bool rb) {
+    switch (state) {
+    case CANVAS_STATE_NORMAL:
+        if (hovering && !(lb || rb)) {
+            state = CANVAS_STATE_HOVERING;
+        }
+        break;
+    
+    case CANVAS_STATE_HOVERING:
+        if (hovering) {
+            if (lb && rb) {
+                state = CANVAS_STATE_NORMAL;
+            } else if (lb && !rb) {
+                state = CANVAS_STATE_PRESSING_LB;
+                if (event_new_stroke(true) != OK)
+                    return 1;
+                if (event_new_atom(cursor_get_x(), cursor_get_y()) != OK)
+                    return 1;
+            } else if (rb && !lb) {
+                state = CANVAS_STATE_PRESSING_RB;
+                if (event_new_stroke(false) != OK)
+                    return 1;
+                if (event_new_atom(cursor_get_x(), cursor_get_y()) != OK)
+                    return 1;
+            }
+        } else {
+            state = CANVAS_STATE_NORMAL;
+        }
+        break;
+
+    case CANVAS_STATE_PRESSING_LB:
+        if (lb && rb) {
+            state = CANVAS_STATE_NORMAL;
+        } else if (lb && !rb) {
+            if (event_new_atom(cursor_get_x(), cursor_get_y()) != OK)
+                return 1;
+        } else if (!lb && rb) {
+            state = CANVAS_STATE_PRESSING_RB;
+            if (event_new_stroke(false) != OK)
+                return 1;
+        } else {
+            state = CANVAS_STATE_HOVERING;
+        }
+        break;
+
+    case CANVAS_STATE_PRESSING_RB:
+        if (lb && rb) {
+            state = CANVAS_STATE_NORMAL;
+        } else if (rb && !lb) {
+            if (event_new_atom(cursor_get_x(), cursor_get_y()) != OK)
+                return 1;
+        } else if (!rb && lb) {
+            state = CANVAS_STATE_PRESSING_LB;
+            if (event_new_stroke(true) != OK)
+                return 1;
+        } else {
+            state = CANVAS_STATE_HOVERING;
+        }
+        break;
+    }
+
     return 0;
 }
