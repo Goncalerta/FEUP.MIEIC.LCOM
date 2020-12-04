@@ -75,6 +75,13 @@ int vbe_get_mode_inf(uint16_t mode, vbe_mode_info_t *vmi) {
         return 1;
     }
 
+    if (memcpy(vmi, map.virt, sizeof(vbe_mode_info_t)) == NULL) {
+        printf("Error copying info in %s\n", __func__);
+        if (!lm_free(&map))
+            panic("couldn't free memory");
+        return 1;
+    }
+
     if (!lm_free(&map))
         panic("couldn't free memory");
 
@@ -82,8 +89,5 @@ int vbe_get_mode_inf(uint16_t mode, vbe_mode_info_t *vmi) {
         printf("Error in %s",__func__);
         return 1;
     }
-
-    *vmi = *((vbe_mode_info_t*) map.virt);
-    
     return 0;
 }

@@ -21,11 +21,39 @@ int vb_draw_pixel(frame_buffer_t buf, uint16_t x, uint16_t y, uint32_t color) {
         printf("Invlid color argument. Too large\n");
         return 1;
     }
+    // 1)
     for (uint8_t i = 0; i < buf.bytes_per_pixel; i++) {
         *(pixel_mem_pos+i) = (uint8_t) COLOR_BYTE(color, i);
     }
+    // or ? (see comment bellow)
+    // 2)
+    // if (memcpy(pixel_mem_pos, &color, buf.bytes_per_pixel) == NULL) {
+    //     printf("Error painting.\n");
+    //     return 1;
+    // }
     return 0;
 }
+
+/*
+From: 1111111100000000 (2Byte)
+(little endian)
+ |_0|_0|_0|_0|_0|_0|_0|_0|_1|_1|_1|_1|_1|_1|_1|_1|__| ...
+   0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 ...
+
+(big endian)
+ |_1|_1|_1|_1|_1|_1|_1|_1|_0|_0|_0|_0|_0|_0|_0|_0|__| ...
+   0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 ...
+
+
+To: 1Byte
+ |0|0|0|0|0|0|0|0|_|_| ... or  |1|1|1|1|1|1|1|1|_|_| ... ?
+  0 1 2 3 4 5 6 7 8 9 ...       0 1 2 3 4 5 6 7 8 9 ...
+
+does the endianness matter? do we need to take that it into account?
+or both 1) and 2) work with both
+
+-para ser +seguro, podemos obter uma variavel com a cor útil e usar o memcpy dessa var e não do parâmetro color
+*/
 
 int vb_fill_screen(frame_buffer_t buf, uint32_t color) {
     uint8_t *pixel_mem_pos = (uint8_t*) buf.buf;
