@@ -5,7 +5,7 @@
 #include "keyboard.h"
 
 int dispatch_mouse_packet(struct packet p);
-int dispatch_keyboard_event(KBD_STATE s);
+int dispatch_keyboard_event(kbd_state s);
 int dispatch_timer_tick();
 int draw_frame();
 int event_new_stroke(bool primary_button);

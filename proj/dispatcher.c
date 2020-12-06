@@ -42,17 +42,11 @@ int dispatch_mouse_packet(struct packet p) {
     return 0;
 }
 
-int dispatch_keyboard_event(KBD_STATE pressed_key) {
+int dispatch_keyboard_event(kbd_state pressed_key) {
     // just to check if it's correct
     if (pressed_key.key == CHAR && !kbd_is_ctrl_pressed()) {
         if (font_draw_char(vg_get_back_buffer(), pressed_key.char_key, 10, 10) != 0) {
             printf("font_draw_char failed\n");
-        }
-    }
-    if (pressed_key.key == ENTER) {
-        char test_string[] = "TESTE 12";
-        if (font_draw_string(vg_get_back_buffer(), test_string, 30, 10) != 0) {
-            printf("font_draw_string failed\n");
         }
     }
     // ^^

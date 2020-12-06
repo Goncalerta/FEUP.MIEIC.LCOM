@@ -3,7 +3,7 @@
 
 #include <lcom/lcf.h>
 
-enum KBD_KEY { // this way we can add more actions if needed
+enum kbd_key { // this way we can add more actions if needed
     NO_KEY,
     CHAR,         // when a key of a letter or number is pressed
     CTRL,
@@ -18,10 +18,10 @@ enum KBD_KEY { // this way we can add more actions if needed
     ARROW_RIGHT
 };
 
-typedef struct KBD_STATE {
-    enum KBD_KEY key;
+typedef struct kbd_state {
+    enum kbd_key key;
     char char_key; // to use when (key == CHAR)
-} KBD_STATE;
+} kbd_state;
 
 int kbd_subscribe_int(uint8_t *bit_no);
 
@@ -31,7 +31,7 @@ bool kbd_is_make_code(uint8_t scancode);
 
 bool kbd_scancode_ready();
 
-int kbd_handle_scancode(KBD_STATE *kbd_state);
+int kbd_handle_scancode(kbd_state *kbd_state);
 
 int kbd_enable_interrupts();
 

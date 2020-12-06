@@ -23,7 +23,7 @@ int kbd_unsubscribe_int() {
 }
 
 void (kbc_ih)() {
-    static KBD_STATE kbd_state = { .key = NO_KEY };
+    static kbd_state kbd_state = { .key = NO_KEY };
 
     if (should_retrieve) {
         printf("keyboard interrupt handler failed\n");
@@ -62,7 +62,7 @@ bool kbd_scancode_ready() {
     return should_retrieve;
 }
 
-int kbd_handle_scancode(KBD_STATE *kbd_state) {
+int kbd_handle_scancode(kbd_state *kbd_state) {
     if (!should_retrieve)
         return 1;
     
