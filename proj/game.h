@@ -4,8 +4,14 @@
 #include <lcom/lcf.h>
 
 #define GAME_BAR_COLOR 0x00dddddd
-#define GAME_BAR_HEIGHT 200
+#define GAME_BAR_COLOR_DARK 0x00aaaaaa
+#define GAME_BAR_HEIGHT 150
+#define GAME_BAR_PADDING 5
+#define GAME_BAR_INNER_HEIGHT ((GAME_BAR_HEIGHT) - (GAME_BAR_PADDING))
 
+int game_load_assets(enum xpm_image_type type);
+int game_start_round();
+void game_round_timer_tick();
 int draw_game_bar();
 
 #endif /* __GAME_H */

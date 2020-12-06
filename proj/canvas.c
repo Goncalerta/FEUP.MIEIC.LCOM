@@ -100,6 +100,7 @@ int clear_canvas() {
     last = NULL;
 
     canvas_clear_undone();
+    vb_fill_screen(canvas_buf, 0x00ffffff);
     return 0;
 }
 

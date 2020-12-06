@@ -13,6 +13,13 @@ static bool end = false;
 
 int event_new_game() {
     canvas_init(vg_get_hres(), vg_get_vres() - GAME_BAR_HEIGHT);
+    game_start_round();
+    return 0;
+}
+
+int event_end_round() {
+    clear_canvas();
+    game_start_round();
     return 0;
 }
 
@@ -79,6 +86,7 @@ int dispatch_keyboard_event(kbd_state pressed_key) {
 }
 
 int dispatch_timer_tick() {
+    game_round_timer_tick();
     if (draw_frame() != OK) {
         printf("error while drawing frame\n");
         return 1;
