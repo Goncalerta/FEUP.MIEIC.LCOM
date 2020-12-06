@@ -64,7 +64,7 @@ int (proj_main_loop)(int argc, char *argv[]) {
     // TODO probably move those to a more appropriate place later in the project
     font_load(image_type);
     cursor_init(image_type);
-    canvas_init(vg_get_hres(), vg_get_vres());
+    event_new_game();
     // ^^
 
     int ipc_status, r;

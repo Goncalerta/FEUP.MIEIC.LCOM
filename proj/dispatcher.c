@@ -7,8 +7,14 @@
 #include "canvas.h"
 #include "cursor.h"
 #include "font.h"
+#include "game.h"
 
 static bool end = false;
+
+int event_new_game() {
+    canvas_init(vg_get_hres(), vg_get_vres() - GAME_BAR_HEIGHT);
+    return 0;
+}
 
 int event_new_stroke(bool primary_button) {
     if (primary_button) {
@@ -34,10 +40,14 @@ int dispatch_mouse_packet(struct packet p) {
 
     if (!hovering && canvas_is_hovering(cursor_get_x(), cursor_get_y())) {
         hovering = true;
-        cursor_set_state(CURSOR_PAINT);
-        if (canvas_update_state(hovering, p.lb, p.rb) != OK)
-            return 1;
     }
+    if (canvas_update_state(hovering, p.lb, p.rb) != OK)
+        return 1;
+    
+    if (canvas_get_state() != CANVAS_STATE_NORMAL)
+        cursor_set_state(CURSOR_PAINT);
+    else 
+        cursor_set_state(CURSOR_ARROW);
 
     return 0;
 }
@@ -85,9 +95,11 @@ int dispatch_timer_tick() {
 
 int draw_frame() {
     if (canvas_draw_frame(0) != OK)
-       return 1;
+        return 1;
+    if (draw_game_bar() != OK)
+        return 1;
     if (cursor_draw(CURSOR_PAINT) != OK)
-       return 1;
+        return 1;
     if (vg_flip_page() != OK)
         return 1;
     return 0;

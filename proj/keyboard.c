@@ -76,6 +76,7 @@ int kbd_handle_scancode(KBD_STATE *kbd_state) {
         return 1;
     }
     
+    // TODO use kbd_is_make_code(code) instead?
     if (IS_BREAK_CODE(code)) {
         if (code == BREAK_CODE(MAKE_CTRL)) {
             ctrl_pressed = false;

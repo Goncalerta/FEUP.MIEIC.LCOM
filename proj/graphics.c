@@ -8,12 +8,8 @@
 // static bool direct_color_mode;
 
 int vb_draw_pixel(frame_buffer_t buf, uint16_t x, uint16_t y, uint32_t color) {
-    if ((x >= buf.h_res) || (y >= buf.v_res)) {
-        // TODO rectangles outside borders are failing because of this. maybe just not paint the pixel instead of error?
-        //      another option is to check in draw functions before drawing pixel
-        //printf("Error trying to print outside the screen limits.\n"); 
+    if ((x >= buf.h_res) || (y >= buf.v_res))
         return 0;
-    }
 
     uint8_t *pixel_mem_pos = (uint8_t*) buf.buf + (y * buf.h_res * buf.bytes_per_pixel) + (x * buf.bytes_per_pixel);
 
@@ -21,16 +17,11 @@ int vb_draw_pixel(frame_buffer_t buf, uint16_t x, uint16_t y, uint32_t color) {
         printf("Invlid color argument. Too large\n");
         return 1;
     }
-    // 1)
-    for (uint8_t i = 0; i < buf.bytes_per_pixel; i++) {
-        *(pixel_mem_pos+i) = (uint8_t) COLOR_BYTE(color, i);
+
+    if (memcpy(pixel_mem_pos, &color, buf.bytes_per_pixel) == NULL) {
+        printf("Error painting.\n");
+        return 1;
     }
-    // or ? (see comment bellow)
-    // 2)
-    // if (memcpy(pixel_mem_pos, &color, buf.bytes_per_pixel) == NULL) {
-    //     printf("Error painting.\n");
-    //     return 1;
-    // }
     return 0;
 }
 
@@ -74,6 +65,7 @@ int vb_fill_screen(frame_buffer_t buf, uint32_t color) {
 
 int vb_draw_hline(frame_buffer_t buf, uint16_t x, uint16_t y, uint16_t len, uint32_t color) {
     for (uint16_t i = 0; i < len; i++) {
+        // TODO for efficiency, maybe copy all bytes at once, checking the color and out of screen only one
         if (vb_draw_pixel(buf, x + i, y, color)) {
             return 1;
         }
@@ -83,6 +75,7 @@ int vb_draw_hline(frame_buffer_t buf, uint16_t x, uint16_t y, uint16_t len, uint
 
 int vb_draw_vline(frame_buffer_t buf, uint16_t x, uint16_t y, uint16_t len, uint32_t color) {
     for (uint16_t i = 0; i < len; i++) {
+        // TODO for efficiency, maybe copy all bytes at once, checking the color and out of screen only one
         if (vb_draw_pixel(buf, x, y + i, color)) {
             return 1;
         }

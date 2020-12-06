@@ -6,13 +6,6 @@
 #include "dispatcher.h"
 #include "cursor.h"
 
-typedef enum canvas_state_t {
-    CANVAS_STATE_NORMAL,
-    CANVAS_STATE_HOVERING,
-    CANVAS_STATE_PRESSING_LB,
-    CANVAS_STATE_PRESSING_RB,
-} canvas_state_t;
-
 static canvas_state_t state;
 static stroke *first, *last, *undone;
 static frame_buffer_t canvas_buf; // current picture drawn in buffer - copied into vcard back buffer
@@ -151,6 +144,16 @@ int canvas_new_stroke_atom(uint16_t x, uint16_t y) {
     if (last->atoms == NULL)
         return 1;
 
+    // If the atom is out of the canvas, it doens't need to be too far
+    // from the edge, because it is not visible. For efficiency, the
+    // atom is drawn close to the edge, with a tolerance equal to the thickness
+    // (so the line goes completely out of the screen).
+    if (x > canvas_buf.h_res + last->thickness) 
+        x = canvas_buf.h_res + last->thickness;
+
+    if (y > canvas_buf.v_res + last->thickness)
+        y = canvas_buf.v_res + last->thickness;
+    
     last->atoms[last->num_atoms - 1].x = x;
     last->atoms[last->num_atoms - 1].y = y;
     
@@ -224,6 +227,10 @@ bool canvas_is_hovering(uint16_t x, uint16_t y) {
     return y <= canvas_buf.v_res;
 }
 
+canvas_state_t canvas_get_state() {
+    return state;
+}
+
 int canvas_update_state(bool hovering, bool lb, bool rb) {
     switch (state) {
     case CANVAS_STATE_NORMAL:
@@ -264,6 +271,7 @@ int canvas_update_state(bool hovering, bool lb, bool rb) {
             state = CANVAS_STATE_PRESSING_RB;
             if (event_new_stroke(false) != OK)
                 return 1;
+            // TODO why didn't I add here "event_new_atom"?
         } else {
             state = CANVAS_STATE_HOVERING;
         }

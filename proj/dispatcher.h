@@ -10,6 +10,7 @@ int dispatch_timer_tick();
 int draw_frame();
 int event_new_stroke(bool primary_button);
 int event_new_atom(uint16_t x, uint16_t y);
+int event_new_game();
 bool should_end();
 
 #endif /* __DISPATCHER_H */

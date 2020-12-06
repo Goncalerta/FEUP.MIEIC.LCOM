@@ -18,6 +18,7 @@ enum KBD_KEY { // this way we can add more actions if needed
     ARROW_RIGHT
 };
 
+// TODO maybe kbd_event_t or something along those lines would be a better name
 typedef struct KBD_STATE {
     enum KBD_KEY key;
     char char_key; // to use when (key == CHAR)
