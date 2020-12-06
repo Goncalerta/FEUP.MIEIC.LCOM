@@ -8,6 +8,7 @@ static xpm_image_t font;
 
 int font_load(enum xpm_image_type type) {
     if (xpm_load(font_xpm, type, &font) == NULL) {
+        printf("Erro loading font\n");
         return 1;
     }
     return 0;
@@ -28,30 +29,30 @@ int font_draw_char(frame_buffer_t buf, char c, uint16_t x, uint16_t y) {
     } else if (c == ' ') {
         return 0; // no need to draw space
     	
-    } else if (c == ':') { 
-    	printf("':' draw not yet implemented\n");
-    	return 1;
-    	
     } else {
     	printf("Invalid char to draw: %c\n", c);
     	return 1;
-    	
     }
     
-    vb_draw_img(buf, font, char_start_x, char_start_y, FONT_CHAR_WIDTH, FONT_CHAR_HEIGHT, x, y);
+    if (vb_draw_img(buf, font, char_start_x, char_start_y, FONT_CHAR_WIDTH, FONT_CHAR_HEIGHT, x, y) != 0) {
+        return 1;
+    }
     
     //using to debug
-    vg_flip_page();
-    tickdelay(micros_to_ticks(SECONDS_TO_MICROS*1));
+    //vg_flip_page();
+    //tickdelay(micros_to_ticks(SECONDS_TO_MICROS*1));
     //^^
     
     return 0;
 }
 
-int font_draw_string(frame_buffer_t buf, char string[], uint16_t x, uint16_t y) {
-    for (int i = 0; string[i] != '\0'; i++) {
-        // TODO it may need adjustments in spacing...
-        if (font_draw_char(buf, string[i], x + i*(FONT_CHAR_WIDTH + FONT_CHAR_SPACE_X), y) != 0) {
+int font_draw_string(frame_buffer_t buf, char string[], uint16_t x, uint16_t y, uint8_t start, uint8_t size) {
+    for (int i = 0; string[i] != '\0' && i < start + size; i++) {
+        if (i < start) {
+            continue;
+        }
+
+        if (font_draw_char(buf, string[i], x + (i-start)*CHAR_SPACE, y) != 0) {
             printf("font_draw_char error\n");
             return 1;
         }
@@ -63,4 +64,13 @@ int font_draw_string(frame_buffer_t buf, char string[], uint16_t x, uint16_t y) 
     return 0;
 }
 
-//TODO cursor é de formato diferente, talvez implementar como sprite até para poder "piscar"
+int font_draw_cursor(frame_buffer_t buf, uint16_t x, uint16_t y) {
+    uint16_t cursor_start_x = FONT_CHAR_SPACE_X;
+    uint16_t cursor_start_y = 3*FONT_CHAR_SPACE_Y + 2*FONT_CHAR_HEIGHT;
+    
+    if (vb_draw_img(buf, font, cursor_start_x, cursor_start_y, FONT_CURSOR_WIDTH, FONT_CURSOR_HEIGHT, x, y) != 0) {
+        printf("Error drawing cursor\n");
+        return 1;
+    }
+    return 0;
+}
