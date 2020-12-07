@@ -42,6 +42,8 @@ void text_box_select(text_boxes tex_box);
 
 void text_box_unselect(text_boxes tex_box);
 
+bool is_text_box_selected(text_boxes tex_box);
+
 void text_box_react(text_boxes tex_box, kbd_state kbd_event);
 
 // TODO text_box_clear using free()

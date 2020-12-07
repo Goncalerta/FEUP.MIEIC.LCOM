@@ -1,12 +1,13 @@
 #include "textbox.h"
 
-static text_box text_box_guesser;
+static text_box text_box_guesser; // TODO array de text_boxes para poder selecionar a que está selected
+                                  // isto porque só vai estar selecionada no máximo uma
+                                  // not sure se é boa idea fazer assim
 // ...
 // static char *clip_board;
 
-static text_box* text_box_search(text_boxes t_box) {
-    switch (t_box)
-    {
+static text_box* text_box_search(text_boxes tex_box) {
+    switch (tex_box) {
     case GUESSER:
         return &text_box_guesser;
         break;
@@ -14,16 +15,19 @@ static text_box* text_box_search(text_boxes t_box) {
 }
 
 void text_box_initiate(text_boxes tex_box) {
+    text_box *t_box = text_box_search(tex_box);
+
+    t_box->word = "";
+    t_box->cursor_pos = 0;
+    t_box->select_pos = 0;
+    t_box->start_display = 0;
+    t_box->is_selected = false;
+
     switch (tex_box) {
     case GUESSER:
-        text_box_guesser.word = "";
-        text_box_guesser.cursor_pos = 0;
-        text_box_guesser.select_pos = 0;
-        text_box_guesser.start_display = 0;
         text_box_guesser.x = TEXT_BOX_GUESS_X;
         text_box_guesser.y = TEXT_BOX_GUESS_Y;
         text_box_guesser.display_size = TEXT_BOX_GUESS_DISPLAY_SIZE;
-        text_box_guesser.is_selected = false;
         break;
     }
 }
@@ -91,6 +95,11 @@ void text_box_select(text_boxes tex_box) {
 void text_box_unselect(text_boxes tex_box) {
     text_box *t_box = text_box_search(tex_box);
     t_box->is_selected = false;
+}
+
+bool is_text_box_selected(text_boxes tex_box) {
+    text_box *t_box = text_box_search(tex_box);
+    return t_box->is_selected;
 }
 
 void text_box_react(text_boxes tex_box, kbd_state kbd_event) {
