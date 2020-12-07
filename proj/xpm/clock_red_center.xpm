@@ -1,10 +1,10 @@
-#ifndef CLOCK_XPM
-#define CLOCK_XPM
+#ifndef CLOCK_RED_CENTER_XPM
+#define CLOCK_RED_CENTER_XPM
 
 #include <lcom/lcf.h>
 
 /* XPM */
-static const char * const xpm_clock[] = {
+static const char * const xpm_clock_red_center[] = {
 /* columns rows colors chars-per-pixel */
 "100 100 6 1 ",
 "  c #000000",
@@ -116,4 +116,4 @@ static const char * const xpm_clock[] = {
 "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
 };
 
-#endif /* CLOCK_XPM */
+#endif /* CLOCK_RED_CENTER_XPM */

@@ -6,20 +6,26 @@
 #include "font.h"
 #include "dispatcher.h"
 
-#include "xpm/clock.xpm"
+#include "xpm/clock_red_left.xpm"
+#include "xpm/clock_red_center.xpm"
+#include "xpm/clock_red_right.xpm"
 
 #define ROUND_SECONDS 60
+#define RED_CLOCK_THRESHOLD 10
 
-static xpm_image_t clock_img;
+static xpm_animation_t clock_frames;
+static int clock_frames_timer;
 static int round_timer;
+static size_t current_clock_frame;
 
 int game_load_assets(enum xpm_image_type type) {
-    xpm_load(xpm_clock, type, &clock_img);
+    xpm_load_animation(&clock_frames, type, 3, xpm_clock_red_left, xpm_clock_red_center, xpm_clock_red_right);
 
     return 0;
 }
 
 int game_start_round() {
+    current_clock_frame = 1;
     round_timer = ROUND_SECONDS * 60;
     return 0;
 }
@@ -29,6 +35,18 @@ void game_round_timer_tick() {
         event_end_round();
     else
         round_timer--;
+
+    clock_frames_timer+=2;
+    if (clock_frames_timer == 10) {
+        clock_frames.current_frame = 0;
+    } else if (clock_frames_timer == 30) {
+        clock_frames.current_frame = 1;
+    } else if (clock_frames_timer == 40) {
+        clock_frames.current_frame = 2;
+    } else if (clock_frames_timer == 60) {
+        clock_frames.current_frame = 1;
+        clock_frames_timer = 0;
+    }
 }
 
 int draw_game_bar() {
@@ -40,8 +58,8 @@ int draw_game_bar() {
     if (vb_draw_rectangle(buf, 0, buf.v_res - GAME_BAR_INNER_HEIGHT, buf.h_res, GAME_BAR_INNER_HEIGHT, GAME_BAR_COLOR) != OK)
         return 1;
 
-    if (vb_draw_img(buf, clock_img, 0, 0, clock_img.width, clock_img.height, 
-        buf.h_res - 200, buf.v_res - (GAME_BAR_INNER_HEIGHT + clock_img.height)/2) != OK)
+    if (vb_draw_animation_frame(buf, clock_frames, buf.h_res - 200, 
+                                buf.v_res - (GAME_BAR_INNER_HEIGHT + clock_frames.height)/2) != OK)
         return 1;
 
     char seconds_to_end_round[2];

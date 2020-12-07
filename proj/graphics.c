@@ -1,5 +1,6 @@
 #include <lcom/lcf.h>
 #include <math.h>
+#include <stdarg.h>
 #include "graphics.h"
 
 // static uint8_t red_mask_size;
@@ -254,5 +255,34 @@ int vb_draw_img(frame_buffer_t buf, xpm_image_t img, uint16_t img_start_x, uint1
         }
     }
     
+    return 0;
+}
+
+int vb_draw_animation_frame(frame_buffer_t buf, xpm_animation_t anim, uint16_t x, uint16_t y) {
+    return vb_draw_img(buf, anim.frames[anim.current_frame], 0, 0, anim.width, anim.height, x, y);
+}
+
+int xpm_load_animation(xpm_animation_t *anim, enum xpm_image_type type, size_t number_of_frames, ...) {
+    anim->number_of_frames = number_of_frames;
+    anim->current_frame = 0;
+    anim->frames = malloc(number_of_frames * sizeof(xpm_image_t));
+
+    xpm_image_t img;
+
+    va_list ap;
+    va_start(ap, number_of_frames);
+    for (size_t i = 0; i < number_of_frames; i++) {
+        xpm_map_t frame = va_arg(ap, xpm_map_t);
+        xpm_load(frame, type, &img);
+        anim->frames[i] = img;
+    }
+    va_end(ap);
+
+    if (number_of_frames == 0) 
+        return 1;
+    
+    anim->width = anim->frames[0].width;
+    anim->height = anim->frames[0].height;
+
     return 0;
 }
