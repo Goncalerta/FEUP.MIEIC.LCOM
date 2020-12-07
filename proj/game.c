@@ -9,6 +9,9 @@
 #include "xpm/clock_red_left.xpm"
 #include "xpm/clock_red_center.xpm"
 #include "xpm/clock_red_right.xpm"
+#include "xpm/clock_gray_left.xpm"
+#include "xpm/clock_gray_center.xpm"
+#include "xpm/clock_gray_right.xpm"
 
 #define ROUND_SECONDS 60
 #define RED_CLOCK_THRESHOLD 10
@@ -19,7 +22,9 @@ static int round_timer;
 static size_t current_clock_frame;
 
 int game_load_assets(enum xpm_image_type type) {
-    xpm_load_animation(&clock_frames, type, 3, xpm_clock_red_left, xpm_clock_red_center, xpm_clock_red_right);
+    xpm_load_animation(&clock_frames, type, 6, 
+                       xpm_clock_gray_left, xpm_clock_gray_center, xpm_clock_gray_right,
+                       xpm_clock_red_left, xpm_clock_red_center, xpm_clock_red_right);
 
     return 0;
 }
@@ -36,15 +41,19 @@ void game_round_timer_tick() {
     else
         round_timer--;
 
-    clock_frames_timer+=2;
+    bool almost_over = round_timer <= RED_CLOCK_THRESHOLD * 60;
+    if (almost_over && clock_frames_timer % 2 == 1)
+        clock_frames_timer++;
+
+    clock_frames_timer += almost_over? 2 : 1;
     if (clock_frames_timer == 10) {
-        clock_frames.current_frame = 0;
+        clock_frames.current_frame = almost_over? 3 : 0;
     } else if (clock_frames_timer == 30) {
-        clock_frames.current_frame = 1;
+        clock_frames.current_frame = almost_over? 4 : 1;
     } else if (clock_frames_timer == 40) {
-        clock_frames.current_frame = 2;
-    } else if (clock_frames_timer == 60) {
-        clock_frames.current_frame = 1;
+        clock_frames.current_frame = almost_over? 5 : 2;
+    } else if (clock_frames_timer >= 60) {
+        clock_frames.current_frame = almost_over? 4 : 1;
         clock_frames_timer = 0;
     }
 }
