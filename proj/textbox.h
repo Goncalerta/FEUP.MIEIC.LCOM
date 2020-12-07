@@ -4,6 +4,8 @@
 #include <lcom/lcf.h>
 #include <stdbool.h>
 #include "font.h"
+#include "keyboard.h"
+
 
 #define TEXT_BOX_BEG_END_SPACE 4
 #define TEXT_BOX_TOP_BOT_SPACE 8
@@ -25,9 +27,23 @@ typedef struct text_box {
     uint8_t  select_pos; // relative to the string // used to select letters with mouse
     uint8_t  start_display; // first char pos displayed in the text_box
     uint8_t  display_size; // num of chars displayed at the same time
+    bool     is_selected;
 } text_box;
 
-int text_box_draw(frame_buffer_t buf, text_box t_box, bool is_cursor_to_draw, bool is_selected);
+typedef enum text_boxes {
+    GUESSER
+} text_boxes;
 
+void text_box_initiate(text_boxes tex_box);
+
+int text_box_draw(frame_buffer_t buf, text_boxes tex_box, bool is_cursor_to_draw);
+
+void text_box_select(text_boxes tex_box);
+
+void text_box_unselect(text_boxes tex_box);
+
+void text_box_react(text_boxes tex_box, kbd_state kbd_event);
+
+// TODO text_box_clear using free()
 
 #endif /* __TEXTBOX_H */

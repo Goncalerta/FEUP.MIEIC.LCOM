@@ -68,6 +68,7 @@ int (proj_main_loop)(int argc, char *argv[]) {
     game_load_assets(image_type);
     cursor_init(image_type);
     event_new_game();
+    text_box_initiate(GUESSER);
     // ^^
 
     int ipc_status, r;
@@ -87,17 +88,8 @@ int (proj_main_loop)(int argc, char *argv[]) {
                 if (msg.m_notify.interrupts & BIT(kbd_irq_set)) {
                     kbc_ih();
                     //using to debug
-                     if (0) { 
-                         text_box t_box;
-                         char * word = "AI QUE GIRO";
-                         t_box.word = word;
-                         t_box.cursor_pos = 11;
-                         t_box.select_pos = 7;
-                         t_box.start_display = 3;
-                         t_box.x = TEXT_BOX_GUESS_X;
-                         t_box.y = TEXT_BOX_GUESS_Y;
-                         t_box.display_size = TEXT_BOX_GUESS_DISPLAY_SIZE;
-                         if (text_box_draw(vg_get_back_buffer(), t_box, true, true) != 0) {
+                     if (0) {
+                         if (text_box_draw(vg_get_back_buffer(), GUESSER, true) != 0) {
                              printf("text_box_draw failed\n");
                              return 1;
                          }

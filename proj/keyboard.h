@@ -3,7 +3,7 @@
 
 #include <lcom/lcf.h>
 
-enum kbd_key { // this way we can add more actions if needed
+typedef enum kbd_key { // this way we can add more actions if needed
     NO_KEY,
     CHAR,         // when a key of a letter or number is pressed
     CTRL,
@@ -16,11 +16,11 @@ enum kbd_key { // this way we can add more actions if needed
     ARROW_DOWN,
     ARROW_LEFT,
     ARROW_RIGHT
-};
+} kbd_key;
 
 // TODO maybe kbd_event_t or something along those lines would be a better name
 typedef struct kbd_state {
-    enum kbd_key key;
+    kbd_key key;
     char char_key; // to use when (key == CHAR)
 } kbd_state;
 
