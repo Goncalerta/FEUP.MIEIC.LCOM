@@ -87,27 +87,23 @@ int (proj_main_loop)(int argc, char *argv[]) {
                 if (msg.m_notify.interrupts & BIT(kbd_irq_set)) {
                     kbc_ih();
                     //using to debug
-                    // if (1) { 
-                    //     text_box t_box;
-                    //     char * word = "AI QUE GIRO";
-                    //     t_box.word = word;
-                    //     t_box.cursor_pos = 11;
-                    //     t_box.select_pos = 7;
-                    //     t_box.start_display = 3;
-                    //     t_box.x_pos = TEXT_BOX_GUESS_X;
-                    //     t_box.y_pos = TEXT_BOX_GUESS_Y;
-                    //     t_box.height = TEXT_BOX_GUESS_HEIGHT;
-                    //     t_box.width = TEXT_BOX_GUESS_WIDTH;
-                    //     t_box.display_size = TEXT_BOX_GUESS_DISPLAY_SIZE;
-                    //     t_box.beg_end_space = TEXT_BOX_GUESS_BEG_END_SPACE;
-                    //     t_box.top_bot_space = TEXT_BOX_GUESS_TOP_BOT_SPACE;
-                    //     if (text_box_draw(vg_get_back_buffer(), t_box, true) != 0) {
-                    //         printf("text_box_draw failed\n");
-                    //         return 1;
-                    //     }
-                    //     vg_flip_page();
-                    //     tickdelay(micros_to_ticks(SECONDS_TO_MICROS*2));
-                    // }
+                     if (0) { 
+                         text_box t_box;
+                         char * word = "AI QUE GIRO";
+                         t_box.word = word;
+                         t_box.cursor_pos = 11;
+                         t_box.select_pos = 7;
+                         t_box.start_display = 3;
+                         t_box.x = TEXT_BOX_GUESS_X;
+                         t_box.y = TEXT_BOX_GUESS_Y;
+                         t_box.display_size = TEXT_BOX_GUESS_DISPLAY_SIZE;
+                         if (text_box_draw(vg_get_back_buffer(), t_box, true, true) != 0) {
+                             printf("text_box_draw failed\n");
+                             return 1;
+                         }
+                         vg_flip_page();
+                         tickdelay(micros_to_ticks(SECONDS_TO_MICROS*2));
+                     }
                     //^^
                 }
                 if (msg.m_notify.interrupts & BIT(timer_irq_set)) {
