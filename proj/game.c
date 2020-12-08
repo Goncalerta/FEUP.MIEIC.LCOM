@@ -56,6 +56,7 @@ static size_t current_clock_frame;
 static int score;
 static int round;
 
+static text_box_t text_box_guesser;
 static button_t b_pencil, b_eraser, b_color, b_thickness, b_undo, b_redo;
 
 int game_guess_word(char *guess) {
@@ -178,14 +179,15 @@ int game_load_assets(enum xpm_image_type type) {
 
     dispatcher_bind_buttons(6, &b_pencil, &b_eraser, &b_color, &b_thickness, &b_undo, &b_redo);
 
+    new_text_box(&text_box_guesser, TEXT_BOX_GUESSER_X, TEXT_BOX_GUESSER_Y, TEXT_BOX_GUESSER_DISPLAY_SIZE);
+    dispatcher_bind_text_box(&text_box_guesser);
+
     score = 0;
     round = 0;
     return 0;
 }
 
 int game_start_round() {
-    text_box_initiate(GUESSER);
-    text_box_select(GUESSER);
     round++;
     current_clock_frame = 1;
     clock_frames_timer = 0;
@@ -257,7 +259,7 @@ int draw_game_bar() {
     if (font_draw_string(buf, "GUESS THE WORD", TEXT_BOX_GUESS_X, 670, 0, 14) != OK)
         return 1;
 
-    text_box_draw(buf, GUESSER, true);
+    text_box_draw(buf, text_box_guesser, (round_timer % 60) < 30);
 
     // TODO dont use magic numbers like 400 without variables
     y = buf.v_res - GAME_BAR_INNER_HEIGHT + 7;
