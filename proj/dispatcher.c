@@ -127,7 +127,6 @@ int dispatch_keyboard_event(kbd_state pressed_key) {
     }
     // TODO o keyboard só afeta o que está selecionado
 
-    // just so I can test undo and redo without having to use mouse's middle button
     if (pressed_key.key == CHAR && pressed_key.char_key == 'Z' && kbd_is_ctrl_pressed()) {
         canvas_undo_stroke(); // no need to crash if empty
     }
