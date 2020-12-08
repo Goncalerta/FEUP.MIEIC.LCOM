@@ -13,11 +13,12 @@
 #include "xpm/clock_right.xpm"
 
 #define ROUND_SECONDS 60
+#define BUTTONS_LEN 75
 
 static xpm_animation_t clock_frames;
 static const uint32_t canvas_pallete[] = {
-    // black, blue, red, green, yellow, pink, purple, orange, bluish gray, gray
-    0x000000, 0x1E88E5, 0xD50000, 0x2E7D32, 0xFFEB3B, 0xEC407A, 0x4A148C, 0xFF6D00, 0x263238, 0x424242
+    // black, blue, red, green, yellow, pink, purple, orange, brown, gray
+    0x000000, 0x1E88E5, 0xD50000, 0x2E7D32, 0xFFEB3B, 0xEC407A, 0x4A148C, 0xFF6D00, 0x5d4037, 0x424242
 };
 
 static size_t selected_color;
@@ -27,12 +28,13 @@ static size_t current_clock_frame;
 static int score;
 static int round;
 
-static button_t test;
+static button_t b_pencil, b_erasor, b_color, b_thickness, b_undo, b_redo;
 int noop() {
     selected_color++;
     if (selected_color >= 10) {
         selected_color = 0;
     }
+    button_set_circle_icon(&b_color, 15, canvas_pallete[selected_color]);
     return 0;
 }
 
@@ -44,8 +46,29 @@ int game_load_assets(enum xpm_image_type type) {
     xpm_load_animation(&clock_frames, type, 3, 
                        xpm_clock_red_left, xpm_clock_red_center, xpm_clock_red_right);
     frame_buffer_t buf = vg_get_back_buffer();
-    new_button(&test, buf.h_res - 85, 10, 75, 75, noop);
-    dispatcher_bind_buttons(1, &test);
+
+    uint16_t button_margin = 10;
+    uint16_t button_y = button_margin;
+    new_button(&b_pencil, buf.h_res - BUTTONS_LEN - button_margin, button_y, BUTTONS_LEN, BUTTONS_LEN, noop);
+    
+    button_y += BUTTONS_LEN + button_margin;
+    new_button(&b_erasor, buf.h_res - BUTTONS_LEN - button_margin, button_y, BUTTONS_LEN, BUTTONS_LEN, noop);
+
+    button_y += BUTTONS_LEN + button_margin;
+    new_button(&b_color, buf.h_res - BUTTONS_LEN - button_margin, button_y, BUTTONS_LEN, BUTTONS_LEN, noop);
+    button_set_circle_icon(&b_color, 15, canvas_pallete[selected_color]);
+
+    button_y += BUTTONS_LEN + button_margin;
+    new_button(&b_thickness, buf.h_res - BUTTONS_LEN - button_margin, button_y, BUTTONS_LEN, BUTTONS_LEN, noop);
+
+    button_y += BUTTONS_LEN + button_margin;
+    new_button(&b_undo, buf.h_res - BUTTONS_LEN - button_margin, button_y, BUTTONS_LEN, BUTTONS_LEN, noop);
+
+    button_y += BUTTONS_LEN + button_margin;
+    new_button(&b_redo, buf.h_res - BUTTONS_LEN - button_margin, button_y, BUTTONS_LEN, BUTTONS_LEN, noop);
+
+    dispatcher_bind_buttons(6, &b_pencil, &b_erasor, &b_color, &b_thickness, &b_undo, &b_redo);
+
     score = 0;
     round = 0;
     return 0;
@@ -127,7 +150,12 @@ int draw_game_bar() {
         return 1;
 
     text_box_draw(buf, GUESSER, true);
-    button_draw(buf, test);
+    button_draw(buf, b_pencil);
+    button_draw(buf, b_erasor);
+    button_draw(buf, b_color);
+    button_draw(buf, b_thickness);
+    button_draw(buf, b_undo);
+    button_draw(buf, b_redo);
 
     return 0;
 }

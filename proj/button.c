@@ -16,8 +16,20 @@ int new_button(button_t *button, uint16_t x, uint16_t y, uint16_t width, uint16_
     button->height = height;
     button->action = action;
     button->state = BUTTON_NORMAL;
+    button->icon.type = BUTTON_ICON_NONE;
 
     return 0;
+}
+
+void button_set_xpm_icon(button_t *button, xpm_image_t icon) {
+    button->icon.type = BUTTON_ICON_XPM;
+    button->icon.attributes.img = icon;
+}
+
+void button_set_circle_icon(button_t *button, uint16_t radius, uint32_t color) {
+    button->icon.type = BUTTON_ICON_CIRCLE;
+    button->icon.attributes.circle.radius = radius;
+    button->icon.attributes.circle.color = color;
 }
 
 bool button_is_hovering(button_t button, uint16_t x, uint16_t y) {
@@ -46,9 +58,25 @@ int button_draw(frame_buffer_t buf, button_t button) {
                           button.width - 2*BUTTON_MARGIN, button.height - 2*BUTTON_MARGIN, fill_color))
         return 1;
 
+    uint16_t x, y;
+    switch (button.icon.type) {
+    case BUTTON_ICON_XPM:
+        x = button.x + (button.width - button.icon.attributes.img.width) / 2;
+        y = button.y + (button.height - button.icon.attributes.img.height) / 2;
+        if (vb_draw_img(buf, button.icon.attributes.img, 0, 0, button.icon.attributes.img.width, button.icon.attributes.img.height, x, y) != OK)
+            return 1;
+        break;
+    case BUTTON_ICON_CIRCLE:
+        x = button.x + button.width/2;
+        y = button.y + button.height/2;
+        if (vb_draw_circle(buf, x, y, button.icon.attributes.circle.radius, button.icon.attributes.circle.color) != OK)
+            return 1;
+        break;
+    default:
+        break;
+    } 
+
     return 0;
-    // TODO
-    // draw_img(sb.icon, sb.x, sb.y);
 }
 
 int button_update_state(button_t *button, bool hovering, bool lb, bool rb) {
