@@ -5,6 +5,7 @@
 #include "graphics.h"
 #include "dispatcher.h"
 #include "cursor.h"
+#include "game.h"
 
 static canvas_state_t state;
 static stroke *first, *last, *undone;
@@ -251,6 +252,7 @@ int canvas_update_state(bool hovering, bool lb, bool rb) {
                 if (event_new_atom(cursor_get_x(), cursor_get_y()) != OK)
                     return 1;
             } else if (rb && !lb) {
+                game_toggle_pencil_eraser();
                 state = CANVAS_STATE_PRESSING_RB;
                 if (event_new_stroke(false) != OK)
                     return 1;
@@ -269,6 +271,7 @@ int canvas_update_state(bool hovering, bool lb, bool rb) {
             if (event_new_atom(cursor_get_x(), cursor_get_y()) != OK)
                 return 1;
         } else if (!lb && rb) {
+            game_toggle_pencil_eraser();
             state = CANVAS_STATE_PRESSING_RB;
             if (event_new_stroke(false) != OK)
                 return 1;
@@ -280,16 +283,19 @@ int canvas_update_state(bool hovering, bool lb, bool rb) {
 
     case CANVAS_STATE_PRESSING_RB:
         if (lb && rb) {
+            game_toggle_pencil_eraser();
             state = CANVAS_STATE_NORMAL;
         } else if (rb && !lb) {
             if (event_new_atom(cursor_get_x(), cursor_get_y()) != OK)
                 return 1;
         } else if (!rb && lb) {
+            game_toggle_pencil_eraser();
             state = CANVAS_STATE_PRESSING_LB;
             if (event_new_stroke(true) != OK)
                 return 1;
         } else {
-            state = hovering? CANVAS_STATE_HOVERING : CANVAS_STATE_NORMAL;
+            game_toggle_pencil_eraser();
+            state = hovering? CANVAS_STATE_HOVERING : CANVAS_STATE_NORMAL;   
         }
         break;
     }

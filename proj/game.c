@@ -27,6 +27,7 @@ static const uint32_t canvas_pallete[] = {
 static const uint16_t valid_thickness[] = {
     1, 10, 20
 };
+static bool is_pencil_primary;
 static size_t selected_color;
 static size_t selected_thickness;
 static int clock_frames_timer;
@@ -36,7 +37,7 @@ static int score;
 static int round;
 
 static button_t b_pencil, b_eraser, b_color, b_thickness, b_undo, b_redo;
-int noop() {
+int game_change_selected_color() {
     selected_color++;
     if (selected_color >= 10) {
         selected_color = 0;
@@ -45,8 +46,50 @@ int noop() {
     return 0;
 }
 
+int game_change_selected_thickness() {
+    selected_thickness++;
+    if (selected_thickness >= 3) {
+        selected_thickness = 0;
+    }
+    button_set_circle_icon(&b_thickness, valid_thickness[selected_thickness], 0x000000);
+    return 0;
+}
+
 uint32_t game_get_selected_color() {
-    return canvas_pallete[selected_color];
+    if (is_pencil_primary)
+        return canvas_pallete[selected_color];
+    else
+        return 0x00FFFFFF;
+}
+
+uint16_t game_get_selected_thickness() {
+    return valid_thickness[selected_thickness];
+}
+
+bool game_is_pencil_primary() {
+    return is_pencil_primary;
+}
+
+void game_toggle_pencil_eraser() {
+    if (is_pencil_primary) {
+        game_set_eraser_primary();
+    } else {
+        game_set_pencil_primary();
+    }
+}
+
+int game_set_pencil_primary() {
+    is_pencil_primary = true;
+    button_set_border_active(&b_pencil);
+    button_unset_border_active(&b_eraser);
+    return 0;
+}
+
+int game_set_eraser_primary() {
+    is_pencil_primary = false;
+    button_set_border_active(&b_eraser);
+    button_unset_border_active(&b_pencil);
+    return 0;
 }
 
 int game_load_assets(enum xpm_image_type type) {
@@ -56,38 +99,40 @@ int game_load_assets(enum xpm_image_type type) {
 
     selected_color = 0;
     selected_thickness = 1;
+    is_pencil_primary = true;
 
     uint16_t button_margin = 10;
     uint16_t button_y = button_margin;
     xpm_image_t pencil;
     xpm_load(xpm_pencil, type, &pencil);
-    new_button(&b_pencil, buf.h_res - BUTTONS_LEN - button_margin, button_y, BUTTONS_LEN, BUTTONS_LEN, noop);
+    new_button(&b_pencil, buf.h_res - BUTTONS_LEN - button_margin, button_y, BUTTONS_LEN, BUTTONS_LEN, game_set_pencil_primary);
     button_set_xpm_icon(&b_pencil, pencil);
+    button_set_border_active(&b_pencil);
 
     button_y += BUTTONS_LEN + button_margin;
     xpm_image_t eraser;
     xpm_load(xpm_eraser, type, &eraser);
-    new_button(&b_eraser, buf.h_res - BUTTONS_LEN - button_margin, button_y, BUTTONS_LEN, BUTTONS_LEN, noop);
+    new_button(&b_eraser, buf.h_res - BUTTONS_LEN - button_margin, button_y, BUTTONS_LEN, BUTTONS_LEN, game_set_eraser_primary);
     button_set_xpm_icon(&b_eraser, eraser);
 
     button_y += BUTTONS_LEN + button_margin;
-    new_button(&b_color, buf.h_res - BUTTONS_LEN - button_margin, button_y, BUTTONS_LEN, BUTTONS_LEN, noop);
+    new_button(&b_color, buf.h_res - BUTTONS_LEN - button_margin, button_y, BUTTONS_LEN, BUTTONS_LEN, game_change_selected_color);
     button_set_circle_icon(&b_color, 15, canvas_pallete[selected_color]);
 
     button_y += BUTTONS_LEN + button_margin;
-    new_button(&b_thickness, buf.h_res - BUTTONS_LEN - button_margin, button_y, BUTTONS_LEN, BUTTONS_LEN, noop);
+    new_button(&b_thickness, buf.h_res - BUTTONS_LEN - button_margin, button_y, BUTTONS_LEN, BUTTONS_LEN, game_change_selected_thickness);
     button_set_circle_icon(&b_thickness, valid_thickness[selected_thickness], 0x000000);
 
     button_y += BUTTONS_LEN + button_margin;
     xpm_image_t undo_arrow;
     xpm_load(xpm_undo_arrow, type, &undo_arrow);
-    new_button(&b_undo, buf.h_res - BUTTONS_LEN - button_margin, button_y, BUTTONS_LEN, BUTTONS_LEN, noop);
+    new_button(&b_undo, buf.h_res - BUTTONS_LEN - button_margin, button_y, BUTTONS_LEN, BUTTONS_LEN, event_undo);
     button_set_xpm_icon(&b_undo, undo_arrow);
 
     button_y += BUTTONS_LEN + button_margin;
     xpm_image_t redo_arrow;
     xpm_load(xpm_redo_arrow, type, &redo_arrow);
-    new_button(&b_redo, buf.h_res - BUTTONS_LEN - button_margin, button_y, BUTTONS_LEN, BUTTONS_LEN, noop);
+    new_button(&b_redo, buf.h_res - BUTTONS_LEN - button_margin, button_y, BUTTONS_LEN, BUTTONS_LEN, event_redo);
     button_set_xpm_icon(&b_redo, redo_arrow);
 
     dispatcher_bind_buttons(6, &b_pencil, &b_eraser, &b_color, &b_thickness, &b_undo, &b_redo);

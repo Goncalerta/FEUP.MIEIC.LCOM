@@ -1,9 +1,8 @@
 #include <lcom/lcf.h>
 #include "button.h"
 
-// static xpm_image_t sb_normal, sb_hovering, sb_pressing, tb_normal, tb_hovering, tb_pressing;
-
 #define BUTTON_BORDER_COLOR 0x00aaaaaa
+#define BUTTON_BORDER_ACTIVE_COLOR 0x0043A047
 #define BUTTON_FILL_NORMAL_COLOR 0x00dddddd
 #define BUTTON_FILL_HOVERING_COLOR 0x00eeeeee
 #define BUTTON_FILL_PRESSING_COLOR 0x00999999
@@ -17,8 +16,17 @@ int new_button(button_t *button, uint16_t x, uint16_t y, uint16_t width, uint16_
     button->action = action;
     button->state = BUTTON_NORMAL;
     button->icon.type = BUTTON_ICON_NONE;
+    button->active_border = false;
 
     return 0;
+}
+
+void button_set_border_active(button_t *button) {
+    button->active_border = true;
+}
+
+void button_unset_border_active(button_t *button) {
+    button->active_border = false;
 }
 
 void button_set_xpm_icon(button_t *button, xpm_image_t icon) {
@@ -38,6 +46,7 @@ bool button_is_hovering(button_t button, uint16_t x, uint16_t y) {
 }
 
 int button_draw(frame_buffer_t buf, button_t button) {
+    uint32_t border_color = button.active_border? BUTTON_BORDER_ACTIVE_COLOR : BUTTON_BORDER_COLOR;
     uint32_t fill_color;
     switch (button.state) {
     case BUTTON_NORMAL:
@@ -52,7 +61,7 @@ int button_draw(frame_buffer_t buf, button_t button) {
         break;
     }
 
-    if (vb_draw_rectangle(buf, button.x, button.y, button.width, button.height, BUTTON_BORDER_COLOR))
+    if (vb_draw_rectangle(buf, button.x, button.y, button.width, button.height, border_color))
         return 1;
     if (vb_draw_rectangle(buf, button.x + BUTTON_MARGIN, button.y + BUTTON_MARGIN, 
                           button.width - 2*BUTTON_MARGIN, button.height - 2*BUTTON_MARGIN, fill_color))
@@ -121,7 +130,6 @@ int button_update_state(button_t *button, bool hovering, bool lb, bool rb) {
         }
         break;
     }
-
 
     return 0;
 }

@@ -30,11 +30,14 @@ typedef struct button_t {
     button_state state;
     button_action action;
     button_icon_t icon;
+    bool active_border;
 } button_t;
 
 int new_button(button_t *button, uint16_t x, uint16_t y, uint16_t width, uint16_t height, button_action action);
 void button_set_xpm_icon(button_t *button, xpm_image_t icon);
 void button_set_circle_icon(button_t *button, uint16_t radius, uint32_t color);
+void button_set_border_active(button_t *button);
+void button_unset_border_active(button_t *button);
 bool button_is_hovering(button_t button, uint16_t x, uint16_t y);
 int button_draw(frame_buffer_t buf, button_t button);
 int button_update_state(button_t *button, bool hovering, bool lb, bool rb);

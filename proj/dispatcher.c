@@ -46,14 +46,19 @@ int event_end_round() {
 }
 
 int event_new_stroke(bool primary_button) {
-    if (primary_button) {
-        if (canvas_new_stroke(game_get_selected_color(), 10) != OK)
-            return 1;
-    } else {
-        if (canvas_new_stroke(0x00FFFFFF, 10) != OK)
-            return 1;
-    }
+    if (canvas_new_stroke(game_get_selected_color(), game_get_selected_thickness()) != OK)
+        return 1;
     
+    return 0;
+}
+
+int event_undo() {
+    canvas_undo_stroke();
+    return 0;
+}
+
+int event_redo() {
+    canvas_redo_stroke();
     return 0;
 }
 
@@ -88,10 +93,9 @@ int dispatch_mouse_packet(struct packet p) {
             return 1;
     }
     
-    
     if (canvas_get_state() != CANVAS_STATE_NORMAL)
         cursor_set_state(CURSOR_PAINT);
-    else 
+    else
         cursor_set_state(CURSOR_ARROW);
 
     return 0;
@@ -132,7 +136,7 @@ int draw_frame() {
         return 1;
     if (draw_game_bar() != OK)
         return 1;
-    if (cursor_draw(CURSOR_PAINT) != OK)
+    if (cursor_draw() != OK)
         return 1;
     if (vg_flip_page() != OK)
         return 1;
