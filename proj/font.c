@@ -37,12 +37,7 @@ int font_draw_char(frame_buffer_t buf, char c, uint16_t x, uint16_t y) {
     if (vb_draw_img(buf, font, char_start_x, char_start_y, FONT_CHAR_WIDTH, FONT_CHAR_HEIGHT, x, y) != 0) {
         return 1;
     }
-    
-    //using to debug
-    //vg_flip_page();
-    //tickdelay(micros_to_ticks(SECONDS_TO_MICROS*1));
-    //^^
-    
+
     return 0;
 }
 
@@ -56,21 +51,6 @@ int font_draw_string(frame_buffer_t buf, char string[], uint16_t x, uint16_t y, 
             printf("font_draw_char error\n");
             return 1;
         }
-    }
-    //using to debug
-    //vg_flip_page();
-    //tickdelay(micros_to_ticks(SECONDS_TO_MICROS*1));
-    // ^^
-    return 0;
-}
-
-int font_draw_cursor(frame_buffer_t buf, uint16_t x, uint16_t y) {
-    uint16_t cursor_start_x = FONT_CHAR_SPACE_X;
-    uint16_t cursor_start_y = 3*FONT_CHAR_SPACE_Y + 2*FONT_CHAR_HEIGHT;
-    
-    if (vb_draw_img(buf, font, cursor_start_x, cursor_start_y, FONT_CURSOR_WIDTH, FONT_CURSOR_HEIGHT, x, y) != 0) {
-        printf("Error drawing cursor\n");
-        return 1;
     }
     return 0;
 }

@@ -43,6 +43,7 @@ int main(int argc, char *argv[]) {
 }
 
 int (proj_main_loop)(int argc, char *argv[]) {
+    printf("here\n");
     uint16_t mode = 0x118;
     enum xpm_image_type image_type = XPM_8_8_8;
     uint8_t timer_irq_set, kbd_irq_set, mouse_irq_set;
@@ -68,7 +69,6 @@ int (proj_main_loop)(int argc, char *argv[]) {
     game_load_assets(image_type);
     cursor_init(image_type);
     event_new_game();
-    text_box_initiate(GUESSER);
     // ^^
 
     int ipc_status, r;
@@ -87,16 +87,6 @@ int (proj_main_loop)(int argc, char *argv[]) {
                 }
                 if (msg.m_notify.interrupts & BIT(kbd_irq_set)) {
                     kbc_ih();
-                    //using to debug
-                     if (0) {
-                         if (text_box_draw(vg_get_back_buffer(), GUESSER, true) != 0) {
-                             printf("text_box_draw failed\n");
-                             return 1;
-                         }
-                         vg_flip_page();
-                         tickdelay(micros_to_ticks(SECONDS_TO_MICROS*2));
-                     }
-                    //^^
                 }
                 if (msg.m_notify.interrupts & BIT(timer_irq_set)) {
                     timer_int_handler();

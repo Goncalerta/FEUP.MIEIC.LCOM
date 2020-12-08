@@ -15,6 +15,7 @@
 static bool end = false;
 size_t num_listening_buttons = 0;
 static button_t **listening_buttons = NULL;
+static text_box_t * text_box_guesser = NULL;
 
 int dispatcher_bind_buttons(size_t number_of_buttons, ...) {
     if (listening_buttons != NULL)
@@ -30,6 +31,11 @@ int dispatcher_bind_buttons(size_t number_of_buttons, ...) {
     }
     va_end(ap);
 
+    return 0;
+}
+
+int dispatcher_bind_text_box(text_box_t *text_box) {
+    text_box_guesser = text_box;
     return 0;
 }
 
@@ -84,6 +90,15 @@ int dispatch_mouse_packet(struct packet p) {
         }
     }
 
+    if (!hovering && text_box_is_hovering(*text_box_guesser, cursor_get_x(), cursor_get_y())) {
+        hovering = true;
+        if (text_box_update_state(text_box_guesser, true, p.lb, p.rb) != OK)
+            return 1;
+    } else {
+        if (text_box_update_state(text_box_guesser, false, p.lb, p.rb) != OK)
+            return 1;
+    }
+
     if (!hovering && canvas_is_hovering(cursor_get_x(), cursor_get_y())) {
         hovering = true;
         if (canvas_update_state(true, p.lb, p.rb) != OK)
@@ -93,16 +108,24 @@ int dispatch_mouse_packet(struct packet p) {
             return 1;
     }
     
-    if (canvas_get_state() != CANVAS_STATE_NORMAL)
+    if (canvas_get_state() != CANVAS_STATE_NORMAL) {
         cursor_set_state(CURSOR_PAINT);
-    else
-        cursor_set_state(CURSOR_ARROW);
+    }  else {
+        if (text_box_guesser->state != TEXT_BOX_NORMAL) {
+            cursor_set_state(CURSOR_WRITE);
+        } else {
+            cursor_set_state(CURSOR_ARROW);
+        }
+    }
 
     return 0;
 }
 
 int dispatch_keyboard_event(kbd_state pressed_key) {
-    text_box_react(GUESSER, pressed_key);
+    if (text_box_react_kbd(text_box_guesser, pressed_key) != OK) {
+        return 1;
+    }
+    // TODO o keyboard só afeta o que está selecionado
 
     // just so I can test undo and redo without having to use mouse's middle button
     if (pressed_key.key == CHAR && pressed_key.char_key == 'Z' && kbd_is_ctrl_pressed()) {
