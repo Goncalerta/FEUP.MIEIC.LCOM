@@ -11,6 +11,10 @@
 #include "xpm/clock_left.xpm"
 #include "xpm/clock_center.xpm"
 #include "xpm/clock_right.xpm"
+#include "xpm/pencil.xpm"
+#include "xpm/eraser.xpm"
+#include "xpm/undo_arrow.xpm"
+#include "xpm/redo_arrow.xpm"
 
 #define ROUND_SECONDS 60
 #define BUTTONS_LEN 75
@@ -20,15 +24,18 @@ static const uint32_t canvas_pallete[] = {
     // black, blue, red, green, yellow, pink, purple, orange, brown, gray
     0x000000, 0x1E88E5, 0xD50000, 0x2E7D32, 0xFFEB3B, 0xEC407A, 0x4A148C, 0xFF6D00, 0x5d4037, 0x424242
 };
-
+static const uint16_t valid_thickness[] = {
+    1, 10, 20
+};
 static size_t selected_color;
+static size_t selected_thickness;
 static int clock_frames_timer;
 static int round_timer;
 static size_t current_clock_frame;
 static int score;
 static int round;
 
-static button_t b_pencil, b_erasor, b_color, b_thickness, b_undo, b_redo;
+static button_t b_pencil, b_eraser, b_color, b_thickness, b_undo, b_redo;
 int noop() {
     selected_color++;
     if (selected_color >= 10) {
@@ -47,12 +54,21 @@ int game_load_assets(enum xpm_image_type type) {
                        xpm_clock_red_left, xpm_clock_red_center, xpm_clock_red_right);
     frame_buffer_t buf = vg_get_back_buffer();
 
+    selected_color = 0;
+    selected_thickness = 1;
+
     uint16_t button_margin = 10;
     uint16_t button_y = button_margin;
+    xpm_image_t pencil;
+    xpm_load(xpm_pencil, type, &pencil);
     new_button(&b_pencil, buf.h_res - BUTTONS_LEN - button_margin, button_y, BUTTONS_LEN, BUTTONS_LEN, noop);
-    
+    button_set_xpm_icon(&b_pencil, pencil);
+
     button_y += BUTTONS_LEN + button_margin;
-    new_button(&b_erasor, buf.h_res - BUTTONS_LEN - button_margin, button_y, BUTTONS_LEN, BUTTONS_LEN, noop);
+    xpm_image_t eraser;
+    xpm_load(xpm_eraser, type, &eraser);
+    new_button(&b_eraser, buf.h_res - BUTTONS_LEN - button_margin, button_y, BUTTONS_LEN, BUTTONS_LEN, noop);
+    button_set_xpm_icon(&b_eraser, eraser);
 
     button_y += BUTTONS_LEN + button_margin;
     new_button(&b_color, buf.h_res - BUTTONS_LEN - button_margin, button_y, BUTTONS_LEN, BUTTONS_LEN, noop);
@@ -60,14 +76,21 @@ int game_load_assets(enum xpm_image_type type) {
 
     button_y += BUTTONS_LEN + button_margin;
     new_button(&b_thickness, buf.h_res - BUTTONS_LEN - button_margin, button_y, BUTTONS_LEN, BUTTONS_LEN, noop);
+    button_set_circle_icon(&b_thickness, valid_thickness[selected_thickness], 0x000000);
 
     button_y += BUTTONS_LEN + button_margin;
+    xpm_image_t undo_arrow;
+    xpm_load(xpm_undo_arrow, type, &undo_arrow);
     new_button(&b_undo, buf.h_res - BUTTONS_LEN - button_margin, button_y, BUTTONS_LEN, BUTTONS_LEN, noop);
+    button_set_xpm_icon(&b_undo, undo_arrow);
 
     button_y += BUTTONS_LEN + button_margin;
+    xpm_image_t redo_arrow;
+    xpm_load(xpm_redo_arrow, type, &redo_arrow);
     new_button(&b_redo, buf.h_res - BUTTONS_LEN - button_margin, button_y, BUTTONS_LEN, BUTTONS_LEN, noop);
+    button_set_xpm_icon(&b_redo, redo_arrow);
 
-    dispatcher_bind_buttons(6, &b_pencil, &b_erasor, &b_color, &b_thickness, &b_undo, &b_redo);
+    dispatcher_bind_buttons(6, &b_pencil, &b_eraser, &b_color, &b_thickness, &b_undo, &b_redo);
 
     score = 0;
     round = 0;
@@ -151,7 +174,7 @@ int draw_game_bar() {
 
     text_box_draw(buf, GUESSER, true);
     button_draw(buf, b_pencil);
-    button_draw(buf, b_erasor);
+    button_draw(buf, b_eraser);
     button_draw(buf, b_color);
     button_draw(buf, b_thickness);
     button_draw(buf, b_undo);
