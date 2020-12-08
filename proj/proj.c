@@ -68,7 +68,6 @@ int (proj_main_loop)(int argc, char *argv[]) {
     game_load_assets(image_type);
     cursor_init(image_type);
     event_new_game();
-    text_box_initiate(GUESSER);
     // ^^
 
     int ipc_status, r;

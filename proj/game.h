@@ -9,6 +9,7 @@
 #define GAME_BAR_PADDING 5
 #define GAME_BAR_INNER_HEIGHT ((GAME_BAR_HEIGHT) - (GAME_BAR_PADDING))
 
+int game_guess_word(char *guess);
 uint32_t game_get_selected_color();
 uint16_t game_get_selected_thickness();
 bool game_is_pencil_primary();

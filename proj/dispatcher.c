@@ -117,7 +117,6 @@ int dispatch_keyboard_event(kbd_state pressed_key) {
         end = true;
     }
     
-    // TODO
     return 0;
 }
 

@@ -15,16 +15,36 @@
 #include "xpm/eraser.xpm"
 #include "xpm/undo_arrow.xpm"
 #include "xpm/redo_arrow.xpm"
+#include "xpm/tick.xpm"
+#include "xpm/cross.xpm"
 
 #define ROUND_SECONDS 60
 #define BUTTONS_LEN 75
 
+// #define WORD_LIST_SIZE 8
+// static char *word_list[WORD_LIST_SIZE] = {
+//     "house", "tornado", "shoelace", "truck", "fear", "career", "lake", "christmas"
+// };
+
+typedef struct guess_t {
+    char *guess;
+    bool correct;
+} guess_t;
+
+#define MAX_GUESSES 5
+static size_t num_guesses;
+static guess_t guesses[MAX_GUESSES];
+
+static xpm_image_t tick_img;
+static xpm_image_t cross_img;
 static xpm_animation_t clock_frames;
-static const uint32_t canvas_pallete[] = {
+#define NUM_COLORS_AVAILABLE 10
+static const uint32_t canvas_pallete[NUM_COLORS_AVAILABLE] = {
     // black, blue, red, green, yellow, pink, purple, orange, brown, gray
     0x000000, 0x1E88E5, 0xD50000, 0x2E7D32, 0xFFEB3B, 0xEC407A, 0x4A148C, 0xFF6D00, 0x5d4037, 0x424242
 };
-static const uint16_t valid_thickness[] = {
+#define NUM_THICKNESSES_AVAILABLE 3
+static const uint16_t valid_thickness[NUM_THICKNESSES_AVAILABLE] = {
     1, 10, 20
 };
 static bool is_pencil_primary;
@@ -37,9 +57,27 @@ static int score;
 static int round;
 
 static button_t b_pencil, b_eraser, b_color, b_thickness, b_undo, b_redo;
+
+int game_guess_word(char *guess) {
+    guess_t g;
+    g.guess = guess;
+    g.correct = false;
+    if (num_guesses == MAX_GUESSES) {
+        for (int i = 1; i < MAX_GUESSES; i++) {
+            guesses[i-1] = guesses[i];
+        }
+        guesses[MAX_GUESSES - 1] = g;
+    } else {
+        guesses[num_guesses] = g;
+        num_guesses++;
+    }
+
+    return 0;
+}
+
 int game_change_selected_color() {
     selected_color++;
-    if (selected_color >= 10) {
+    if (selected_color >= NUM_COLORS_AVAILABLE) {
         selected_color = 0;
     }
     button_set_circle_icon(&b_color, 15, canvas_pallete[selected_color]);
@@ -48,7 +86,7 @@ int game_change_selected_color() {
 
 int game_change_selected_thickness() {
     selected_thickness++;
-    if (selected_thickness >= 3) {
+    if (selected_thickness >= NUM_THICKNESSES_AVAILABLE) {
         selected_thickness = 0;
     }
     button_set_circle_icon(&b_thickness, valid_thickness[selected_thickness], 0x000000);
@@ -100,6 +138,9 @@ int game_load_assets(enum xpm_image_type type) {
     selected_color = 0;
     selected_thickness = 1;
     is_pencil_primary = true;
+    num_guesses = 0;
+    xpm_load(xpm_tick, type, &tick_img);
+    xpm_load(xpm_cross, type, &cross_img);
 
     uint16_t button_margin = 10;
     uint16_t button_y = button_margin;
@@ -194,30 +235,49 @@ int draw_game_bar() {
     int score_margin_small = 5;
     int score_margin_big = (GAME_BAR_INNER_HEIGHT - 4*FONT_CHAR_HEIGHT - 2*score_margin_small) / 3;
     int y = buf.v_res - GAME_BAR_INNER_HEIGHT + score_margin_big;
-    if (font_draw_string(buf, "SCORE", buf.h_res - 350, 
-                         y, 0, 5) != OK)
+    if (font_draw_string(buf, "SCORE", buf.h_res - 350, y, 0, 5) != OK)
         return 1;
 
     char score_display[5];
     y += FONT_CHAR_HEIGHT + score_margin_small;
     sprintf(score_display, "%05d", score);
-    if (font_draw_string(buf, score_display, buf.h_res - 350, 
-                         y, 0, 5) != OK)
+    if (font_draw_string(buf, score_display, buf.h_res - 350, y, 0, 5) != OK)
         return 1;
 
     y += FONT_CHAR_HEIGHT + score_margin_big;
-    if (font_draw_string(buf, "ROUND", buf.h_res - 350, 
-                         y, 0, 5) != OK)
+    if (font_draw_string(buf, "ROUND", buf.h_res - 350, y, 0, 5) != OK)
         return 1;
 
     char round_display[5];
     y += FONT_CHAR_HEIGHT + score_margin_small;
     sprintf(round_display, "%5d", round);
-    if (font_draw_string(buf, round_display, buf.h_res - 350, 
-                         y, 0, 5) != OK)
+    if (font_draw_string(buf, round_display, buf.h_res - 350, y, 0, 5) != OK)
+        return 1;
+
+    if (font_draw_string(buf, "GUESS THE WORD", TEXT_BOX_GUESS_X, 670, 0, 14) != OK)
         return 1;
 
     text_box_draw(buf, GUESSER, true);
+
+    // TODO dont use magic numbers like 400 without variables
+    y = buf.v_res - GAME_BAR_INNER_HEIGHT + 7;
+    for (size_t i = 0; i < num_guesses; i++) {
+        if (guesses[i].correct) {
+            if (vb_draw_img(buf, tick_img, 0, 0, tick_img.width, tick_img.height, 350, y) != OK)
+                return 1;
+        } else {
+            if (vb_draw_img(buf, cross_img, 0, 0, tick_img.width, tick_img.height, 350, y) != OK)
+                return 1;
+        }
+
+        // TODO get rid of that meaningless 100
+        if (font_draw_string(buf, guesses[i].guess, 371, y, 0, 100) != OK)
+            return 1;
+
+        y += FONT_CHAR_HEIGHT + 10;
+    }
+
+    // TODO draw buttons doesn't belong here
     button_draw(buf, b_pencil);
     button_draw(buf, b_eraser);
     button_draw(buf, b_color);

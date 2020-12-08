@@ -13,7 +13,7 @@
 #define TEXT_BOX_WIDTH(display_size) ((display_size) * CHAR_SPACE + 2*TEXT_BOX_BEG_END_SPACE)
 
 #define TEXT_BOX_GUESS_X 30 //TODO ajustar para o certo
-#define TEXT_BOX_GUESS_Y 680 //TODO ajustar para o certo
+#define TEXT_BOX_GUESS_Y 700 //TODO ajustar para o certo
 #define TEXT_BOX_GUESS_DISPLAY_SIZE 13 //TODO acertar se necessário
 
 #define COLOR_HIGHLIGHTED_TEXT 0xaaffff //TODO adicionar header com #defines de cores (?)
