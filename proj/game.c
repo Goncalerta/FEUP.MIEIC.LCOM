@@ -17,6 +17,7 @@
 #include "xpm/redo_arrow.xpm"
 #include "xpm/tick.xpm"
 #include "xpm/cross.xpm"
+#include "xpm/correct.xpm"
 
 #define ROUND_SECONDS 60
 #define BUTTONS_LEN 75
@@ -35,8 +36,9 @@ typedef struct guess_t {
 static size_t num_guesses;
 static guess_t guesses[MAX_GUESSES];
 
-static xpm_image_t tick_img;
-static xpm_image_t cross_img;
+
+static xpm_image_t tick_img, cross_img;
+static xpm_image_t correct_message;
 static xpm_animation_t clock_frames;
 #define NUM_COLORS_AVAILABLE 10
 static const uint32_t canvas_pallete[NUM_COLORS_AVAILABLE] = {
@@ -142,6 +144,7 @@ int game_load_assets(enum xpm_image_type type) {
     num_guesses = 0;
     xpm_load(xpm_tick, type, &tick_img);
     xpm_load(xpm_cross, type, &cross_img);
+    xpm_load(xpm_correct, type, &correct_message);
 
     uint16_t button_margin = 10;
     uint16_t button_y = button_margin;
@@ -278,6 +281,10 @@ int draw_game_bar() {
 
         y += FONT_CHAR_HEIGHT + 10;
     }
+
+    // TODO 
+    // uint16_t offset = clock_frames_timer % 30 >= 15? -3 : 3;
+    // vb_draw_img(buf, correct_message, 0, 0, correct_message.width, correct_message.height, (buf.h_res - correct_message.width) / 2 + offset, 20);
 
     // TODO draw buttons doesn't belong here
     button_draw(buf, b_pencil);
