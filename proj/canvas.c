@@ -274,7 +274,7 @@ int canvas_update_state(bool hovering, bool lb, bool rb) {
                 return 1;
             // TODO why didn't I add here "event_new_atom"?
         } else {
-            state = CANVAS_STATE_HOVERING;
+            state = hovering? CANVAS_STATE_HOVERING : CANVAS_STATE_NORMAL;
         }
         break;
 
@@ -289,7 +289,7 @@ int canvas_update_state(bool hovering, bool lb, bool rb) {
             if (event_new_stroke(true) != OK)
                 return 1;
         } else {
-            state = CANVAS_STATE_HOVERING;
+            state = hovering? CANVAS_STATE_HOVERING : CANVAS_STATE_NORMAL;
         }
         break;
     }

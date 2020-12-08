@@ -9,6 +9,7 @@
 #define GAME_BAR_PADDING 5
 #define GAME_BAR_INNER_HEIGHT ((GAME_BAR_HEIGHT) - (GAME_BAR_PADDING))
 
+uint32_t game_get_selected_color();
 int game_load_assets(enum xpm_image_type type);
 int game_start_round();
 void game_round_timer_tick();
