@@ -8,7 +8,6 @@ typedef enum kbd_key { // this way we can add more actions if needed
     CHAR,         // when a key of a letter or number is pressed
     CTRL,
     ENTER,
-    SPACE,
     BACK_SPACE,
     ESC,
     DEL,

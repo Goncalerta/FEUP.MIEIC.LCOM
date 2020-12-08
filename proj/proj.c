@@ -43,7 +43,6 @@ int main(int argc, char *argv[]) {
 }
 
 int (proj_main_loop)(int argc, char *argv[]) {
-    printf("here\n");
     uint16_t mode = 0x118;
     enum xpm_image_type image_type = XPM_8_8_8;
     uint8_t timer_irq_set, kbd_irq_set, mouse_irq_set;
