@@ -20,7 +20,7 @@
 #define TEXT_BOX_BORDER_COLOR 0x0000aa
 
 #define TEXT_BOX_GUESSER_X 30 //TODO ajustar para o certo
-#define TEXT_BOX_GUESSER_Y 680 //TODO ajustar para o certo
+#define TEXT_BOX_GUESSER_Y 700 //TODO ajustar para o certo
 #define TEXT_BOX_GUESSER_DISPLAY_SIZE 13 //TODO acertar se necessário
 
 

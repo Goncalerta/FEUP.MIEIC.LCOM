@@ -256,7 +256,7 @@ int draw_game_bar() {
     if (font_draw_string(buf, round_display, buf.h_res - 350, y, 0, 5) != OK)
         return 1;
 
-    if (font_draw_string(buf, "GUESS THE WORD", TEXT_BOX_GUESS_X, 670, 0, 14) != OK)
+    if (font_draw_string(buf, "GUESS THE WORD", TEXT_BOX_GUESSER_X, 670, 0, 14) != OK)
         return 1;
 
     text_box_draw(buf, text_box_guesser, (round_timer % 60) < 30);
