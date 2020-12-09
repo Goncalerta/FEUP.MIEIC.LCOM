@@ -20,7 +20,7 @@ typedef enum kbd_key { // this way we can add more actions if needed
 typedef struct kbd_event_t {
     kbd_key key;
     char char_key; // to use when (key == CHAR)
-    bool is_ctrl_pressed; // easier to send the "packet" when the rtc is implemented (using 2 KBD's)
+    bool is_ctrl_pressed; // easier to send the "packet" when the serial port is implemented (using 2 KBD's)
 } kbd_event_t;
 
 int kbd_subscribe_int(uint8_t *bit_no);
