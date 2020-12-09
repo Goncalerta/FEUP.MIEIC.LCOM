@@ -8,7 +8,7 @@
 int dispatcher_bind_buttons(size_t number_of_buttons, ...);
 int dispatcher_bind_text_box(text_box_t *text_box); // TODO se chegarmos a ter mais, fazer semelhante à dos botões
 int dispatch_mouse_packet(struct packet p);
-int dispatch_keyboard_event(kbd_state s);
+int dispatch_keyboard_event(kbd_event_t s);
 int dispatch_timer_tick();
 int draw_frame();
 int event_new_stroke(bool primary_button);

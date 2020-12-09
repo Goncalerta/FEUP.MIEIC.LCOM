@@ -1,7 +1,7 @@
 #include "textbox.h"
 
 #define TEXT_BOX_CURSOR_HEIGHT 22
-#define TEXT_BOX_CURSOR_COLOR 0x999999
+#define TEXT_BOX_CURSOR_COLOR 0x000000
 
 #define TEXT_BOX_BEG_END_SPACE 4
 #define TEXT_BOX_TOP_BOT_SPACE 8
@@ -24,6 +24,7 @@ void new_text_box(text_box_t *text_box, uint16_t x, uint16_t y, uint8_t display_
     text_box->select_pos = 0;
     text_box->start_display = 0;
     text_box->state = TEXT_BOX_NORMAL;
+    text_box->is_ready = false;
 
     text_box->x = x;
     text_box->y = y;
@@ -118,14 +119,34 @@ int text_box_update_state(text_box_t *text_box, bool hovering, bool lb, bool rb)
     return 0;
 }
 
-int text_box_react_kbd(text_box_t *text_box, kbd_state kbd_event) {
+static int text_box_delete_selected(text_box_t *text_box) {
+    if (text_box->cursor_pos == text_box->select_pos) {
+        return 0;
+    }
+    
+    uint8_t from = text_box->cursor_pos < text_box->select_pos ? text_box->cursor_pos : text_box->select_pos;
+    uint8_t to = text_box->cursor_pos > text_box->select_pos ? text_box->cursor_pos : text_box->select_pos;
+
+    if (memmove(text_box->word + from, text_box->word + to, text_box->word_size-from+1) == NULL) {
+        printf("Error while deleting selected\n");
+        return 1;
+    }
+    text_box->word = realloc(text_box->word, text_box->word_size + (to-from) + 1);
+    
+    text_box->cursor_pos = text_box->select_pos = from;
+    text_box->word_size -= (to-from);
+
+    return 0;
+}
+
+int text_box_react_kbd(text_box_t *text_box, kbd_event_t kbd_event) {
     if (text_box->state != TEXT_BOX_SELECTED) {
         return 0;
     }
-    // TODO ainda falta ir ajustando que parte da palavra fica visivel na text_box
+
     switch (kbd_event.key) {
     case CHAR:
-        if (kbd_is_ctrl_pressed()) {
+        if (kbd_event.is_ctrl_pressed) {
             switch (kbd_event.char_key) {
             case 'C':
                 if (text_box->cursor_pos != text_box->select_pos) {
@@ -147,38 +168,41 @@ int text_box_react_kbd(text_box_t *text_box, kbd_state kbd_event) {
             
             case 'V':
                 if (text_box->cursor_pos != text_box->select_pos) {
-                    //TODO
-                } else {
-                    text_box->word = realloc(text_box->word, text_box->word_size + clip_board_size + 1);
-                    if (memmove(text_box->word + text_box->cursor_pos+clip_board_size, text_box->word + text_box->cursor_pos, text_box->word_size-text_box->cursor_pos+1) == NULL) {
-                        printf("Error while CTRL+V\n");
+                    // TODO mantain this way or avoid reallocating down and up as is being done now?
+                    if (text_box_delete_selected(text_box) != 0) {
                         return 1;
                     }
-                    if (memmove(text_box->word + text_box->cursor_pos, clip_board, clip_board_size) == NULL) {
-                        printf("Error while CTRL+V\n");
-                        return 1;
-                    }
-                    text_box->cursor_pos += clip_board_size;
-                    text_box->select_pos = text_box->cursor_pos;
-                    text_box->word_size += clip_board_size;
-                    // TODO adjust start_display if needed
                 }
+
+                text_box->word = realloc(text_box->word, text_box->word_size + clip_board_size + 1);
+                if (memmove(text_box->word + text_box->cursor_pos+clip_board_size, text_box->word + text_box->cursor_pos, text_box->word_size-text_box->cursor_pos+1) == NULL) {
+                    printf("Error while CTRL+V\n");
+                    return 1;
+                }
+                if (memmove(text_box->word + text_box->cursor_pos, clip_board, clip_board_size) == NULL) {
+                    printf("Error while CTRL+V\n");
+                    return 1;
+                }
+                text_box->cursor_pos += clip_board_size;
+                text_box->select_pos = text_box->cursor_pos;
+                text_box->word_size += clip_board_size;
                 break;
             }
         } else {
             if (text_box->cursor_pos != text_box->select_pos) {
-                //TODO
-            } else {
-                text_box->word = realloc(text_box->word, text_box->word_size + 2); // 2 = 1 + 1 ('\0' + new char)
-                if (memmove(text_box->word + text_box->cursor_pos+1, text_box->word + text_box->cursor_pos, text_box->word_size-text_box->cursor_pos+1) == NULL) {
-                    printf("Error while writing\n");
+                if (text_box_delete_selected(text_box) != 0) {
                     return 1;
                 }
-                text_box->word[text_box->cursor_pos++] = kbd_event.char_key;
-                text_box->select_pos = text_box->cursor_pos;
-                text_box->word_size++;
-                // TODO adjust start_display if needed
             }
+
+            text_box->word = realloc(text_box->word, text_box->word_size + 2); // 2 = 1 + 1 ('\0' + new char)
+            if (memmove(text_box->word + text_box->cursor_pos+1, text_box->word + text_box->cursor_pos, text_box->word_size-text_box->cursor_pos+1) == NULL) {
+                printf("Error while writing\n");
+                return 1;
+            }
+            text_box->word[text_box->cursor_pos++] = kbd_event.char_key;
+            text_box->select_pos = text_box->cursor_pos;
+            text_box->word_size++;
         }
         break;
     
@@ -188,17 +212,19 @@ int text_box_react_kbd(text_box_t *text_box, kbd_state kbd_event) {
         }
 
         if (text_box->cursor_pos != text_box->select_pos) {
-            //TODO
+            if (text_box_delete_selected(text_box) != 0) {
+                return 1;
+            }
         } else {
-            text_box->word = realloc(text_box->word, text_box->word_size);
             if (memmove(text_box->word + text_box->cursor_pos-1, text_box->word + text_box->cursor_pos, text_box->word_size-text_box->cursor_pos+1) == NULL) {
                 printf("Error while deleting\n");
                 return 1;
             }
+            text_box->word = realloc(text_box->word, text_box->word_size);
+
             text_box->cursor_pos--;
             text_box->select_pos = text_box->cursor_pos;
-            text_box->word_size--;
-            // TODO adjust start_display if needed
+            text_box->word_size--; 
         }
         break;
     
@@ -208,15 +234,17 @@ int text_box_react_kbd(text_box_t *text_box, kbd_state kbd_event) {
         }
 
         if (text_box->cursor_pos != text_box->select_pos) {
-            //TODO
+            if (text_box_delete_selected(text_box) != 0) {
+                return 1;
+            }
         } else {
-            text_box->word = realloc(text_box->word, text_box->word_size);
             if (memmove(text_box->word + text_box->cursor_pos, text_box->word + text_box->cursor_pos+1, text_box->word_size-text_box->cursor_pos+1) == NULL) {
                 printf("Error while deleting\n");
                 return 1;
             }
+            text_box->word = realloc(text_box->word, text_box->word_size);
+
             text_box->word_size--;
-            // TODO adjust start_display if needed
         }
         break;
     
@@ -224,11 +252,8 @@ int text_box_react_kbd(text_box_t *text_box, kbd_state kbd_event) {
         if (text_box->cursor_pos > 0) {
             text_box->cursor_pos--;
         }
-        if (!kbd_is_ctrl_pressed()) {
+        if (!kbd_event.is_ctrl_pressed) {
             text_box->select_pos = text_box->cursor_pos;
-        }
-        if (text_box->cursor_pos < text_box->start_display) {
-            text_box->start_display--;
         }
         break;
 
@@ -236,21 +261,71 @@ int text_box_react_kbd(text_box_t *text_box, kbd_state kbd_event) {
         if (text_box->cursor_pos < text_box->word_size) {
             text_box->cursor_pos++;
         }
-        if (!kbd_is_ctrl_pressed()) {
+        if (!kbd_event.is_ctrl_pressed) {
             text_box->select_pos = text_box->cursor_pos;
-        }
-        if (text_box->cursor_pos > text_box->start_display + text_box->display_size) {
-            text_box->start_display++;
         }
         break;
     
     case ENTER:
-        // TODO forwards the word to somewhere (?)
+        text_box->is_ready = true;
         break;
     
     default:
         break;
     }
+
+    // adjusting the display
+    if (text_box->cursor_pos > text_box->start_display + text_box->display_size) {
+        text_box->start_display = text_box->cursor_pos - text_box->display_size;
+    } else if (text_box->cursor_pos < text_box->start_display) {
+        text_box->start_display = text_box->cursor_pos;
+    }
     
+    return 0;
+}
+
+int text_box_retrieve_if_ready(text_box_t *text_box, char * content) {
+    if (!text_box->is_ready) {
+        return 0;
+    }
+
+    if (content == NULL) {
+        content = malloc(text_box->word_size + 1);
+    } else {
+        content = realloc(content, text_box->word_size + 1);
+    }
+
+    if (memcpy(content, text_box->word, text_box->word_size + 1) == NULL) {
+        printf("Error while retrieving\n");
+        return 1;
+    }
+    
+    // text box clean up
+    text_box->word = realloc(text_box->word, sizeof('\0'));
+    text_box->word[0] = '\0';
+    text_box->word_size = 0;
+    text_box->cursor_pos = 0;
+    text_box->select_pos = 0;
+    text_box->start_display = 0;
+    text_box->is_ready = false;
+
+    return 0;
+}
+
+int text_box_exit(text_box_t *text_box) {
+    if (text_box->word == NULL) {
+        return 0;
+    }
+
+    free(text_box->word);
+    return 0;
+}
+
+int text_box_clip_board_exit() {
+    if (clip_board == NULL) {
+        return 0;
+    }
+
+    free(clip_board);
     return 0;
 }

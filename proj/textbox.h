@@ -25,6 +25,7 @@ typedef struct text_box_t {
     uint8_t  start_display; // first char pos displayed in the text_box
     uint8_t  display_size;  // num of chars displayed at the same time
     text_box_state state;
+    bool     is_ready;
 } text_box_t;
 
 
@@ -38,10 +39,12 @@ bool text_box_is_hovering(text_box_t text_box, uint16_t x, uint16_t y);
 
 int text_box_update_state(text_box_t *text_box, bool hovering, bool lb, bool rb);
 
-int text_box_react_kbd(text_box_t *text_box, kbd_state kbd_event);
+int text_box_react_kbd(text_box_t *text_box, kbd_event_t kbd_event);
 
-// TODO text_box_free using free()
+int text_box_retrieve_if_ready(text_box_t *text_box, char* text_box_content);
 
-// TODO text_box_clip_board_free to free() the clip_board id != NULL
+int text_box_exit(text_box_t *text_box); // TODO where's the best place to call this?
+
+int text_box_clip_board_exit(); // TODO where's the best place to call this?
 
 #endif /* __TEXTBOX_H */

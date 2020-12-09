@@ -10,7 +10,6 @@ static uint8_t scancode_bytes[2];
 static size_t scancode_bytes_counter = 0;
 static bool should_retrieve = false;
 
-static bool ctrl_pressed = false;
 static uint16_t last_make_code = 0x0000; //TODO confirmar que este não existe/não da para obter o break code correspondente
 
 int kbd_subscribe_int(uint8_t *bit_no) {
@@ -23,7 +22,7 @@ int kbd_unsubscribe_int() {
 }
 
 void (kbc_ih)() {
-    static kbd_state kbd_state = { .key = NO_KEY };
+    static kbd_event_t kbd_state = { .key = NO_KEY };
 
     if (should_retrieve) {
         printf("keyboard interrupt handler failed\n");
@@ -62,7 +61,7 @@ bool kbd_scancode_ready() {
     return should_retrieve;
 }
 
-int kbd_handle_scancode(kbd_state *kbd_state) {
+int kbd_handle_scancode(kbd_event_t *kbd_state) {
     if (!should_retrieve)
         return 1;
     
@@ -79,18 +78,20 @@ int kbd_handle_scancode(kbd_state *kbd_state) {
     // TODO use kbd_is_make_code(code) instead?
     if (IS_BREAK_CODE(code)) {
         if (code == BREAK_CODE(MAKE_CTRL)) {
-            ctrl_pressed = false;
-	        	kbd_state->key = NO_KEY;
+            kbd_state->is_ctrl_pressed = false;
+	        kbd_state->key = NO_KEY;
         } else if (code == BREAK_CODE(last_make_code)) {
             kbd_state->key = NO_KEY;
-	        	last_make_code = 0x0000;
+	        last_make_code = 0x0000;
         } //else {} // other break codes
     	            // mantain the kbd_state
             
     } else { // make code
         switch(code) {
-	    case MAKE_CTRL:        ctrl_pressed = true;
-	                           kbd_state->key = CTRL;        break;
+	    case MAKE_CTRL:
+	        kbd_state->key = CTRL;
+            kbd_state->is_ctrl_pressed = true;
+            break;
 	                                     
 	    case MAKE_ENTER:       kbd_state->key = ENTER;       break;
 	    case MAKE_BACK_SPACE:  kbd_state->key = BACK_SPACE;  break;
@@ -158,8 +159,4 @@ int kbd_enable_interrupts() {
     if (kbc_write_command_byte(cmd)) 
         return 1;
     return 0;
-}
-
-bool kbd_is_ctrl_pressed() {
-    return ctrl_pressed;
 }

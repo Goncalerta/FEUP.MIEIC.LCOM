@@ -17,11 +17,11 @@ typedef enum kbd_key { // this way we can add more actions if needed
     ARROW_RIGHT
 } kbd_key;
 
-// TODO maybe kbd_event_t or something along those lines would be a better name
-typedef struct kbd_state {
+typedef struct kbd_event_t {
     kbd_key key;
     char char_key; // to use when (key == CHAR)
-} kbd_state;
+    bool is_ctrl_pressed; // easier to send the "packet" when the rtc is implemented (using 2 KBD's)
+} kbd_event_t;
 
 int kbd_subscribe_int(uint8_t *bit_no);
 
@@ -31,10 +31,8 @@ bool kbd_is_make_code(uint8_t scancode);
 
 bool kbd_scancode_ready();
 
-int kbd_handle_scancode(kbd_state *kbd_state);
+int kbd_handle_scancode(kbd_event_t *kbd_state);
 
 int kbd_enable_interrupts();
-
-bool kbd_is_ctrl_pressed();
 
 #endif /* __KEYBOARD_H */

@@ -16,6 +16,7 @@ static bool end = false;
 size_t num_listening_buttons = 0;
 static button_t **listening_buttons = NULL;
 static text_box_t * text_box_guesser = NULL;
+static char *guess = NULL; //TODO not sure if the right place and right way
 
 int dispatcher_bind_buttons(size_t number_of_buttons, ...) {
     if (listening_buttons != NULL)
@@ -121,21 +122,26 @@ int dispatch_mouse_packet(struct packet p) {
     return 0;
 }
 
-int dispatch_keyboard_event(kbd_state pressed_key) {
-    if (text_box_react_kbd(text_box_guesser, pressed_key) != OK) {
+int dispatch_keyboard_event(kbd_event_t kbd_event) {
+    if (text_box_react_kbd(text_box_guesser, kbd_event) != OK) {
         return 1;
     }
-    // TODO o keyboard só afeta o que está selecionado
+    //TODO not sure if the right place and right way
+    if (text_box_retrieve_if_ready(text_box_guesser, guess) != OK) {
+        return 1;
+    }
+    
+    // TODO o keyboard só afetar o que está selecionado
 
-    if (pressed_key.key == CHAR && pressed_key.char_key == 'Z' && kbd_is_ctrl_pressed()) {
+    if (kbd_event.key == CHAR && kbd_event.char_key == 'Z' && kbd_event.is_ctrl_pressed) {
         canvas_undo_stroke(); // no need to crash if empty
     }
 
-    if (pressed_key.key == CHAR && pressed_key.char_key == 'Y' && kbd_is_ctrl_pressed()) {
+    if (kbd_event.key == CHAR && kbd_event.char_key == 'Y' && kbd_event.is_ctrl_pressed) {
         canvas_redo_stroke(); // no need to crash if empty
     }
 
-    if (pressed_key.key == ESC) {
+    if (kbd_event.key == ESC) {
         end = true;
     }
     
