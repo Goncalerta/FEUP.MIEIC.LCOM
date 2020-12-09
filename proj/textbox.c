@@ -39,7 +39,7 @@ int text_box_draw(frame_buffer_t buf, text_box_t text_box, bool is_cursor_to_dra
         return 1;
     }
 
-    if (text_box.state == TEXT_BOX_SELECTED) { // draw boarder
+    if (text_box.state == TEXT_BOX_SELECTED || text_box.state == TEXT_BOX_PRESSING) { // draw boarder
         if (vb_draw_hline(buf, text_box.x, text_box.y, TEXT_BOX_WIDTH(text_box.display_size), TEXT_BOX_BORDER_COLOR) != 0)
             return 1;
         if (vb_draw_hline(buf, text_box.x, text_box.y + TEXT_BOX_HEIGHT - 1, TEXT_BOX_WIDTH(text_box.display_size), TEXT_BOX_BORDER_COLOR) != 0)
@@ -92,10 +92,18 @@ bool text_box_is_hovering(text_box_t text_box, uint16_t x, uint16_t y) {
         && y < text_box.y + TEXT_BOX_HEIGHT;
 }
 
-int text_box_update_state(text_box_t *text_box, bool hovering, bool lb, bool rb) {
+int text_box_update_state(text_box_t *text_box, bool hovering, bool lb, bool rb, uint16_t x, uint16_t y) {
+    uint8_t mouse_pos = (x - text_box->x)/CHAR_SPACE; // valid if hovering
+    mouse_pos += text_box->start_display;
+
+    // adjustments
+    if (mouse_pos > text_box->word_size) {
+        mouse_pos = text_box->word_size;
+    }
+     
     switch (text_box->state) {
     case TEXT_BOX_NORMAL:
-        if (hovering && !(lb || rb)) {
+        if (hovering) {
             text_box->state = TEXT_BOX_HOVERING;
         }
         break;
@@ -104,6 +112,7 @@ int text_box_update_state(text_box_t *text_box, bool hovering, bool lb, bool rb)
         if (hovering) {
             if (lb && !rb) {
                 text_box->state = TEXT_BOX_SELECTED;
+                text_box->cursor_pos = text_box->select_pos = mouse_pos;
             }
         } else {
             text_box->state = TEXT_BOX_NORMAL;
@@ -111,8 +120,31 @@ int text_box_update_state(text_box_t *text_box, bool hovering, bool lb, bool rb)
         break;
 
     case TEXT_BOX_SELECTED:
-        if (!hovering) {
-            text_box->state = TEXT_BOX_NORMAL;
+        if (hovering) {
+           if (lb && !rb) {
+                text_box->state = TEXT_BOX_PRESSING;
+                text_box->cursor_pos = text_box->select_pos = mouse_pos;
+            }
+        } else {
+             text_box->state = TEXT_BOX_NORMAL;
+        }
+        break;
+    
+    case TEXT_BOX_PRESSING:
+        if (hovering) {
+            if (!(lb || rb)) {
+                text_box->state = TEXT_BOX_SELECTED;
+            } else if (lb && !rb) {
+                text_box->cursor_pos = mouse_pos;
+            } 
+        } else {
+             text_box->state = TEXT_BOX_NORMAL;
+        }
+
+        if (mouse_pos == text_box->start_display && mouse_pos > 0) {
+            text_box->start_display--;
+        } else if (mouse_pos == text_box->start_display + text_box->display_size) {
+            text_box->start_display++;
         }
         break;
     }
@@ -187,6 +219,15 @@ int text_box_react_kbd(text_box_t *text_box, kbd_event_t kbd_event) {
                 text_box->select_pos = text_box->cursor_pos;
                 text_box->word_size += clip_board_size;
                 break;
+
+            case 'X': // TODO isto assim parece muito "aldrabado"?
+                kbd_event.char_key = 'C';
+                if (text_box_react_kbd(text_box, kbd_event) != 0)
+                    return 1;
+                if (text_box_delete_selected(text_box) != 0) {
+                    return 1;
+                }
+                break;
             }
         } else {
             if (text_box->cursor_pos != text_box->select_pos) {
@@ -207,15 +248,15 @@ int text_box_react_kbd(text_box_t *text_box, kbd_event_t kbd_event) {
         break;
     
     case BACK_SPACE:
-        if (text_box->cursor_pos == 0) {
-            return 0;
-        }
-
         if (text_box->cursor_pos != text_box->select_pos) {
             if (text_box_delete_selected(text_box) != 0) {
                 return 1;
             }
         } else {
+            if (text_box->cursor_pos == 0) {
+                return 0;
+            }
+            
             if (memmove(text_box->word + text_box->cursor_pos-1, text_box->word + text_box->cursor_pos, text_box->word_size-text_box->cursor_pos+1) == NULL) {
                 printf("Error while deleting\n");
                 return 1;

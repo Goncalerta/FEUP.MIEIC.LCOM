@@ -13,7 +13,8 @@
 typedef enum text_box_state {
     TEXT_BOX_NORMAL,
     TEXT_BOX_HOVERING,
-    TEXT_BOX_SELECTED
+    TEXT_BOX_SELECTED,
+    TEXT_BOX_PRESSING
 } text_box_state;
 
 typedef struct text_box_t {
@@ -37,7 +38,7 @@ int text_box_draw(frame_buffer_t buf, text_box_t text_box, bool is_cursor_to_dra
 
 bool text_box_is_hovering(text_box_t text_box, uint16_t x, uint16_t y);
 
-int text_box_update_state(text_box_t *text_box, bool hovering, bool lb, bool rb);
+int text_box_update_state(text_box_t *text_box, bool hovering, bool lb, bool rb, uint16_t x, uint16_t y);
 
 int text_box_react_kbd(text_box_t *text_box, kbd_event_t kbd_event);
 

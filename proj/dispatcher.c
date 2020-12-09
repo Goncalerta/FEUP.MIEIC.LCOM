@@ -93,10 +93,10 @@ int dispatch_mouse_packet(struct packet p) {
 
     if (!hovering && text_box_is_hovering(*text_box_guesser, cursor_get_x(), cursor_get_y())) {
         hovering = true;
-        if (text_box_update_state(text_box_guesser, true, p.lb, p.rb) != OK)
+        if (text_box_update_state(text_box_guesser, true, p.lb, p.rb, cursor_get_x(), cursor_get_y()) != OK)
             return 1;
     } else {
-        if (text_box_update_state(text_box_guesser, false, p.lb, p.rb) != OK)
+        if (text_box_update_state(text_box_guesser, false, p.lb, p.rb, cursor_get_x(), cursor_get_y()) != OK)
             return 1;
     }
 
