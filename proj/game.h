@@ -9,6 +9,12 @@
 #define GAME_BAR_PADDING 5
 #define GAME_BAR_INNER_HEIGHT ((GAME_BAR_HEIGHT) - (GAME_BAR_PADDING))
 
+typedef enum game_state_t {
+    ROUND_ONGOING,
+    GAME_OVER,
+    ROUND_CORRECT_GUESS
+} game_state_t;
+
 int game_guess_word(char *guess);
 uint32_t game_get_selected_color();
 uint16_t game_get_selected_thickness();

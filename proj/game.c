@@ -1,4 +1,5 @@
 #include <lcom/lcf.h>
+#include <stdlib.h> 
 
 #include "game.h"
 #include "graphics.h"
@@ -18,14 +19,19 @@
 #include "xpm/tick.xpm"
 #include "xpm/cross.xpm"
 #include "xpm/correct.xpm"
+#include "xpm/gameover.xpm"
 
 #define ROUND_SECONDS 60
 #define BUTTONS_LEN 75
+#define END_ROUND_DELAY 3
+#define WRONG_GUESS_PENALTY 5
 
-// #define WORD_LIST_SIZE 8
-// static char *word_list[WORD_LIST_SIZE] = {
-//     "house", "tornado", "shoelace", "truck", "fear", "career", "lake", "christmas"
-// };
+#define WORD_LIST_SIZE 8
+static char *word_list[WORD_LIST_SIZE] = {
+    "HOUSE", "TORNADO", "SHOELACE", "TRUCK", "FEAR", "CAREER", "LAKE", "CHRISTMAS"
+};
+
+static game_state_t game_state;
 
 typedef struct guess_t {
     char *guess;
@@ -35,10 +41,10 @@ typedef struct guess_t {
 #define MAX_GUESSES 5
 static size_t num_guesses;
 static guess_t guesses[MAX_GUESSES];
-
+static char *correct_guess;
 
 static xpm_image_t tick_img, cross_img;
-static xpm_image_t correct_message;
+static xpm_image_t correct_message, game_over_message;
 static xpm_animation_t clock_frames;
 #define NUM_COLORS_AVAILABLE 10
 static const uint32_t canvas_pallete[NUM_COLORS_AVAILABLE] = {
@@ -53,6 +59,7 @@ static bool is_pencil_primary;
 static size_t selected_color;
 static size_t selected_thickness;
 static int clock_frames_timer;
+static int end_screen_timer;
 static int round_timer;
 static size_t current_clock_frame;
 static int score;
@@ -61,10 +68,25 @@ static int round;
 static text_box_t text_box_guesser;
 static button_t b_pencil, b_eraser, b_color, b_thickness, b_undo, b_redo;
 
+
+int game_correct_guess() {
+    clock_frames.current_frame = 0;
+    end_screen_timer = END_ROUND_DELAY * 60;
+    game_state = ROUND_CORRECT_GUESS;
+    return 0;
+}
+
+int game_over() {
+    clock_frames.current_frame = 0;
+    end_screen_timer = END_ROUND_DELAY * 60;
+    game_state = GAME_OVER;
+    return 0;
+}
+
 int game_guess_word(char *guess) {
     guess_t g;
     g.guess = guess;
-    g.correct = false;
+    g.correct = strcmp(guess, correct_guess) == 0;
     if (num_guesses == MAX_GUESSES) {
         for (int i = 1; i < MAX_GUESSES; i++) {
             guesses[i-1] = guesses[i];
@@ -75,8 +97,16 @@ int game_guess_word(char *guess) {
         num_guesses++;
     }
 
+    if (g.correct) {
+        if (game_correct_guess() != 0)
+            return 1;
+    } else {
+        round_timer -= 60 * WRONG_GUESS_PENALTY;
+    }
+
     return 0;
 }
+
 
 int game_change_selected_color() {
     selected_color++;
@@ -142,9 +172,11 @@ int game_load_assets(enum xpm_image_type type) {
     selected_thickness = 1;
     is_pencil_primary = true;
     num_guesses = 0;
+    correct_guess = word_list[rand() % WORD_LIST_SIZE];
     xpm_load(xpm_tick, type, &tick_img);
     xpm_load(xpm_cross, type, &cross_img);
     xpm_load(xpm_correct, type, &correct_message);
+    xpm_load(xpm_gameover, type, &game_over_message);
 
     uint16_t button_margin = 10;
     uint16_t button_y = button_margin;
@@ -192,6 +224,7 @@ int game_load_assets(enum xpm_image_type type) {
 
 int game_start_round() {
     round++;
+    game_state = ROUND_ONGOING;
     current_clock_frame = 1;
     clock_frames_timer = 0;
     round_timer = ROUND_SECONDS * 60;
@@ -199,22 +232,34 @@ int game_start_round() {
 }
 
 void game_round_timer_tick() {
-    if (round_timer == 0)
-        event_end_round();
-    else
-       round_timer--;
-
     clock_frames_timer++;
-    if (clock_frames_timer == 10) {
-        clock_frames.current_frame = 0;
-    } else if (clock_frames_timer == 30) {
-        clock_frames.current_frame = 1;
-    } else if (clock_frames_timer == 40) {
-        clock_frames.current_frame = 2;
-    } else if (clock_frames_timer >= 60) {
-        clock_frames.current_frame = 1;
-        clock_frames_timer = 0;
-    }
+    switch (game_state) {
+    case ROUND_ONGOING:
+        if (round_timer == 0)
+            game_over();
+        else
+            round_timer--;
+
+        if (clock_frames_timer == 10) {
+            clock_frames.current_frame = 0;
+        } else if (clock_frames_timer == 30) {
+            clock_frames.current_frame = 1;
+        } else if (clock_frames_timer == 40) {
+            clock_frames.current_frame = 2;
+        } else if (clock_frames_timer >= 60) {
+            clock_frames.current_frame = 1;
+            clock_frames_timer = 0;
+        }
+
+        break;
+    case GAME_OVER:
+    case ROUND_CORRECT_GUESS:
+        if (end_screen_timer != 0) end_screen_timer--;
+        if (end_screen_timer == 0) {
+            event_end_round();
+        }
+        break;
+    } 
 }
 
 int draw_game_bar() {
@@ -283,8 +328,13 @@ int draw_game_bar() {
     }
 
     // TODO 
-    // uint16_t offset = clock_frames_timer % 30 >= 15? -3 : 3;
-    // vb_draw_img(buf, correct_message, 0, 0, correct_message.width, correct_message.height, (buf.h_res - correct_message.width) / 2 + offset, 20);
+    if (game_state == GAME_OVER) {
+        uint16_t offset = clock_frames_timer % 30 >= 15? -3 : 3;
+        vb_draw_img(buf, game_over_message, 0, 0, game_over_message.width, game_over_message.height, (buf.h_res - game_over_message.width) / 2 + offset, 20);
+    } else if (game_state == ROUND_CORRECT_GUESS) {
+        uint16_t offset = clock_frames_timer % 30 >= 15? -3 : 3;
+        vb_draw_img(buf, correct_message, 0, 0, correct_message.width, correct_message.height, (buf.h_res - correct_message.width) / 2 + offset, 20);
+    }
 
     // TODO draw buttons doesn't belong here
     button_draw(buf, b_pencil);

@@ -42,7 +42,7 @@ int text_box_update_state(text_box_t *text_box, bool hovering, bool lb, bool rb,
 
 int text_box_react_kbd(text_box_t *text_box, kbd_event_t kbd_event);
 
-int text_box_retrieve_if_ready(text_box_t *text_box, char* text_box_content);
+int text_box_retrieve_if_ready(text_box_t *text_box, char **text_box_content);
 
 int text_box_exit(text_box_t *text_box); // TODO where's the best place to call this?
 
