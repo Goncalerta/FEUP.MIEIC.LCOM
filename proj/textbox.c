@@ -1,5 +1,9 @@
 #include "textbox.h"
 
+/* TODO
+ *  * When the user presses somewhere outside the textbox (it stops being active), it may be a good idea to stop highlighting selected characters 
+ */
+
 #define TEXT_BOX_CURSOR_HEIGHT 22
 #define TEXT_BOX_CURSOR_COLOR 0x000000
 
@@ -125,7 +129,7 @@ int text_box_update_state(text_box_t *text_box, bool hovering, bool lb, bool rb,
                 text_box->state = TEXT_BOX_PRESSING;
                 text_box->cursor_pos = text_box->select_pos = mouse_pos;
             }
-        } else {
+        } else if (lb || rb) {
              text_box->state = TEXT_BOX_NORMAL;
         }
         break;
@@ -136,9 +140,7 @@ int text_box_update_state(text_box_t *text_box, bool hovering, bool lb, bool rb,
                 text_box->state = TEXT_BOX_SELECTED;
             } else if (lb && !rb) {
                 text_box->cursor_pos = mouse_pos;
-            } 
-        } else {
-             text_box->state = TEXT_BOX_NORMAL;
+            }
         }
 
         if (mouse_pos == text_box->start_display && mouse_pos > 0) {
@@ -325,18 +327,18 @@ int text_box_react_kbd(text_box_t *text_box, kbd_event_t kbd_event) {
     return 0;
 }
 
-int text_box_retrieve_if_ready(text_box_t *text_box, char * content) {
+int text_box_retrieve_if_ready(text_box_t *text_box, char **content) {
     if (!text_box->is_ready) {
         return 0;
     }
 
-    if (content == NULL) {
-        content = malloc(text_box->word_size + 1);
+    if (*content == NULL) {
+        *content = malloc(text_box->word_size + 1);
     } else {
-        content = realloc(content, text_box->word_size + 1);
+        *content = realloc(content, text_box->word_size + 1);
     }
 
-    if (memcpy(content, text_box->word, text_box->word_size + 1) == NULL) {
+    if (memcpy(*content, text_box->word, text_box->word_size + 1) == NULL) {
         printf("Error while retrieving\n");
         return 1;
     }

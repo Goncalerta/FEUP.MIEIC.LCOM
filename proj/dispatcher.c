@@ -16,7 +16,6 @@ static bool end = false;
 size_t num_listening_buttons = 0;
 static button_t **listening_buttons = NULL;
 static text_box_t * text_box_guesser = NULL;
-static char *guess = NULL; //TODO not sure if the right place and right way
 
 int dispatcher_bind_buttons(size_t number_of_buttons, ...) {
     if (listening_buttons != NULL)
@@ -126,11 +125,19 @@ int dispatch_keyboard_event(kbd_event_t kbd_event) {
     if (text_box_react_kbd(text_box_guesser, kbd_event) != OK) {
         return 1;
     }
+    
     //TODO not sure if the right place and right way
-    if (text_box_retrieve_if_ready(text_box_guesser, guess) != OK) {
+    char *guess = NULL;
+    if (text_box_retrieve_if_ready(text_box_guesser, &guess) != OK) {
         return 1;
     }
-    
+
+    if (guess != NULL && strncmp(guess, "", 1)) {
+        if (game_guess_word(guess) != OK) {
+            return 1;
+        }
+    }
+
     // TODO o keyboard só afetar o que está selecionado
 
     if (kbd_event.key == CHAR && kbd_event.char_key == 'Z' && kbd_event.is_ctrl_pressed) {
