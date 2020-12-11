@@ -2,6 +2,9 @@
 
 /* TODO
  *  * When the user presses somewhere outside the textbox (it stops being active), it may be a good idea to stop highlighting selected characters 
+ *  * [NITPICK] Acho que seria melhor que o textbox tivesse internamente um relogio para saber se desenha o cursor ou nao. Quando a textbox fica ativa, o relogio podia ser atualizado para garantir que começa sempre com o cursor a mostra
+ *  * Quando o tamanho do texto ultrapassa o limite de caracteres visiveis e apaga-se um (backspace), prob os caracteres mostrados deviam dar shift para a esquerda
+ *  * Talvez permitir limitar o numero de caracteres? Isto porque senao uma palavra grande nao vai poder ser mostrada na lista de guesses falhados anyway
  */
 
 #define TEXT_BOX_CURSOR_HEIGHT 22
@@ -107,7 +110,7 @@ int text_box_update_state(text_box_t *text_box, bool hovering, bool lb, bool rb,
      
     switch (text_box->state) {
     case TEXT_BOX_NORMAL:
-        if (hovering) {
+        if (hovering && !(lb || rb)) {
             text_box->state = TEXT_BOX_HOVERING;
         }
         break;
