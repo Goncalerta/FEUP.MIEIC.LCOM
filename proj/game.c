@@ -21,6 +21,10 @@
 #include "xpm/correct.xpm"
 #include "xpm/gameover.xpm"
 
+/* TODO
+ *  * Deixar de dar para adivinhar no intervalo entre rondas/fim de jogo. Ao fazer muitas tentativas durante esse tempo, o "round_timer" fica negativo e até acaba por crashar o jogo. (ver linha 290)
+ */
+
 #define ROUND_SECONDS 60
 #define BUTTONS_LEN 75
 #define END_ROUND_DELAY 3
@@ -214,7 +218,7 @@ int game_load_assets(enum xpm_image_type type) {
 
     dispatcher_bind_buttons(6, &b_pencil, &b_eraser, &b_color, &b_thickness, &b_undo, &b_redo);
 
-    new_text_box(&text_box_guesser, TEXT_BOX_GUESSER_X, TEXT_BOX_GUESSER_Y, TEXT_BOX_GUESSER_DISPLAY_SIZE);
+    new_text_box(&text_box_guesser, TEXT_BOX_GUESSER_X, TEXT_BOX_GUESSER_Y, TEXT_BOX_GUESSER_DISPLAY_SIZE, TEXT_BOX_MAX_ACCEPTED_WORD_SIZE);
     dispatcher_bind_text_box(&text_box_guesser);
 
     score = 0;
@@ -233,6 +237,8 @@ int game_start_round() {
 
 void game_round_timer_tick() {
     clock_frames_timer++;
+    text_box_clock_tick(&text_box_guesser);
+
     switch (game_state) {
     case ROUND_ONGOING:
         if (round_timer == 0)
@@ -277,6 +283,13 @@ int draw_game_bar() {
 
     char seconds_to_end_round[2];
     sprintf(seconds_to_end_round, "%02d", (round_timer + 59)/60);
+
+    // TODO valor fica negativo se errar depois do final da ronda ((enter) repetidamente)
+    // e o font_draw_char não suporta '-' e dá erro
+    if (round_timer < -59)
+        printf("valor fica negativo ---->    %d\n",(round_timer + 59)/60);
+    // ^^
+    
     if (font_draw_string(buf, seconds_to_end_round, buf.h_res - 75, 
                          buf.v_res - (GAME_BAR_INNER_HEIGHT + FONT_CHAR_HEIGHT)/2, 0, 2) != OK)
         return 1;
@@ -307,7 +320,8 @@ int draw_game_bar() {
     if (font_draw_string(buf, "GUESS THE WORD", TEXT_BOX_GUESSER_X, 670, 0, 14) != OK)
         return 1;
 
-    text_box_draw(buf, text_box_guesser, (round_timer % 60) < 30);
+    if (text_box_draw(buf, text_box_guesser) != OK)
+        return 1;
 
     // TODO dont use magic numbers like 400 without variables
     y = buf.v_res - GAME_BAR_INNER_HEIGHT + 7;

@@ -1,13 +1,8 @@
+#include <lcom/lcf.h>
 #include "textbox.h"
 
-/* TODO
- *  * When the user presses somewhere outside the textbox (it stops being active), it may be a good idea to stop highlighting selected characters 
- *  * [NITPICK] Acho que seria melhor que o textbox tivesse internamente um relogio para saber se desenha o cursor ou nao. Quando a textbox fica ativa, o relogio podia ser atualizado para garantir que começa sempre com o cursor a mostra
- *  * Quando o tamanho do texto ultrapassa o limite de caracteres visiveis e apaga-se um (backspace), prob os caracteres mostrados deviam dar shift para a esquerda
- *  * Talvez permitir limitar o numero de caracteres? Isto porque senao uma palavra grande nao vai poder ser mostrada na lista de guesses falhados anyway
- */
 
-#define TEXT_BOX_CURSOR_HEIGHT 22
+#define TEXT_BOX_CURSOR_HEIGHT (FONT_CHAR_HEIGHT + 4)
 #define TEXT_BOX_CURSOR_COLOR 0x000000
 
 #define TEXT_BOX_BEG_END_SPACE 4
@@ -23,7 +18,7 @@
 static char *clip_board = NULL; // not saving the '\0' char
 static uint8_t clip_board_size = 0;
 
-void new_text_box(text_box_t *text_box, uint16_t x, uint16_t y, uint8_t display_size) {
+void new_text_box(text_box_t *text_box, uint16_t x, uint16_t y, uint8_t display_size, uint8_t max_accepted_size) {
     text_box->word = malloc(sizeof('\0'));
     text_box->word[0] = '\0';
     text_box->word_size = 0;
@@ -32,13 +27,19 @@ void new_text_box(text_box_t *text_box, uint16_t x, uint16_t y, uint8_t display_
     text_box->start_display = 0;
     text_box->state = TEXT_BOX_NORMAL;
     text_box->is_ready = false;
+    text_box->cursor_clock = 0;
 
     text_box->x = x;
     text_box->y = y;
     text_box->display_size = display_size;
+    text_box->max_accepted_size = max_accepted_size;
 }
 
-int text_box_draw(frame_buffer_t buf, text_box_t text_box, bool is_cursor_to_draw) {
+void text_box_clock_tick(text_box_t *text_box) {
+    text_box->cursor_clock = (text_box->cursor_clock + 1) % 60; // TODO passar o 60 para #define ?
+}
+
+int text_box_draw(frame_buffer_t buf, text_box_t text_box) {
     uint32_t text_box_color = text_box.state == TEXT_BOX_NORMAL ? TEXT_BOX_NORMAL_COLOR : TEXT_BOX_HOVERING_COLOR;
 
     if (vb_draw_rectangle(buf, text_box.x, text_box.y, TEXT_BOX_WIDTH(text_box.display_size), TEXT_BOX_HEIGHT, text_box_color) != 0) {
@@ -57,7 +58,7 @@ int text_box_draw(frame_buffer_t buf, text_box_t text_box, bool is_cursor_to_dra
             return 1;
     }
     
-    if (text_box.cursor_pos != text_box.select_pos) { // highlight
+    if (text_box.cursor_pos != text_box.select_pos && (text_box.state == TEXT_BOX_SELECTED || text_box.state == TEXT_BOX_PRESSING)) { // highlight
         int start = text_box.cursor_pos < text_box.select_pos ? text_box.cursor_pos : text_box.select_pos; // relative to string
         int end = text_box.cursor_pos > text_box.select_pos ? text_box.cursor_pos : text_box.select_pos; // retlative to string
 
@@ -80,7 +81,8 @@ int text_box_draw(frame_buffer_t buf, text_box_t text_box, bool is_cursor_to_dra
         return 1;
     }
 
-    if (is_cursor_to_draw && text_box.state == TEXT_BOX_SELECTED) {
+    // TODO passar o 30 para #define ?
+    if ((text_box.cursor_clock < 30) && (text_box.state == TEXT_BOX_SELECTED || text_box.state == TEXT_BOX_PRESSING)) { // cursor
         uint16_t cursor_x = text_box.x + TEXT_BOX_BEG_END_SPACE + (text_box.cursor_pos - text_box.start_display)*CHAR_SPACE;
         uint16_t cursor_y = text_box.y + TEXT_BOX_TOP_BOT_SPACE - (TEXT_BOX_CURSOR_HEIGHT - FONT_CHAR_HEIGHT)/2;
 
@@ -100,14 +102,21 @@ bool text_box_is_hovering(text_box_t text_box, uint16_t x, uint16_t y) {
 }
 
 int text_box_update_state(text_box_t *text_box, bool hovering, bool lb, bool rb, uint16_t x, uint16_t y) {
-    uint8_t mouse_pos = (x - text_box->x)/CHAR_SPACE; // valid if hovering
+    int8_t mouse_pos = (x - text_box->x)/CHAR_SPACE;
     mouse_pos += text_box->start_display;
 
     // adjustments
     if (mouse_pos > text_box->word_size) {
         mouse_pos = text_box->word_size;
+    } else if (mouse_pos < 0) {
+        mouse_pos = 0;
     }
-     
+
+    if (lb && !rb) {
+        text_box->cursor_pos = mouse_pos;
+        text_box->cursor_clock = 0;
+    }
+
     switch (text_box->state) {
     case TEXT_BOX_NORMAL:
         if (hovering && !(lb || rb)) {
@@ -119,7 +128,7 @@ int text_box_update_state(text_box_t *text_box, bool hovering, bool lb, bool rb,
         if (hovering) {
             if (lb && !rb) {
                 text_box->state = TEXT_BOX_SELECTED;
-                text_box->cursor_pos = text_box->select_pos = mouse_pos;
+                text_box->select_pos = text_box->cursor_pos;
             }
         } else {
             text_box->state = TEXT_BOX_NORMAL;
@@ -130,7 +139,7 @@ int text_box_update_state(text_box_t *text_box, bool hovering, bool lb, bool rb,
         if (hovering) {
            if (lb && !rb) {
                 text_box->state = TEXT_BOX_PRESSING;
-                text_box->cursor_pos = text_box->select_pos = mouse_pos;
+                text_box->select_pos = text_box->cursor_pos;
             }
         } else if (lb || rb) {
              text_box->state = TEXT_BOX_NORMAL;
@@ -138,12 +147,8 @@ int text_box_update_state(text_box_t *text_box, bool hovering, bool lb, bool rb,
         break;
     
     case TEXT_BOX_PRESSING:
-        if (hovering) {
-            if (!(lb || rb)) {
-                text_box->state = TEXT_BOX_SELECTED;
-            } else if (lb && !rb) {
-                text_box->cursor_pos = mouse_pos;
-            }
+        if (!(lb || rb)) {
+            text_box->state = TEXT_BOX_SELECTED;
         }
 
         if (mouse_pos == text_box->start_display && mouse_pos > 0) {
@@ -180,6 +185,8 @@ int text_box_react_kbd(text_box_t *text_box, kbd_event_t kbd_event) {
     if (text_box->state != TEXT_BOX_SELECTED) {
         return 0;
     }
+
+    text_box->cursor_clock = 0;
 
     switch (kbd_event.key) {
     case CHAR:
@@ -268,9 +275,13 @@ int text_box_react_kbd(text_box_t *text_box, kbd_event_t kbd_event) {
             }
             text_box->word = realloc(text_box->word, text_box->word_size);
 
+            if (text_box->start_display > 0) {
+                text_box->start_display--;
+            }
+
             text_box->cursor_pos--;
             text_box->select_pos = text_box->cursor_pos;
-            text_box->word_size--; 
+            text_box->word_size--;
         }
         break;
     
@@ -313,7 +324,11 @@ int text_box_react_kbd(text_box_t *text_box, kbd_event_t kbd_event) {
         break;
     
     case ENTER:
-        text_box->is_ready = true;
+        if (text_box->word_size <= text_box->max_accepted_size) {
+            text_box->is_ready = true;
+        } else {
+            // TODO some kind of warning to user? or simply not?
+        }
         break;
     
     default:

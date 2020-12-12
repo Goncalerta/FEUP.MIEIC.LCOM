@@ -8,7 +8,8 @@
 
 #define TEXT_BOX_GUESSER_X 30 //TODO ajustar para o certo
 #define TEXT_BOX_GUESSER_Y 700 //TODO ajustar para o certo
-#define TEXT_BOX_GUESSER_DISPLAY_SIZE 13 //TODO acertar se necessário
+#define TEXT_BOX_GUESSER_DISPLAY_SIZE 13 //TODO ajustar para o certo
+#define TEXT_BOX_MAX_ACCEPTED_WORD_SIZE 12 //TODO ajustar para o certo
 
 typedef enum text_box_state {
     TEXT_BOX_NORMAL,
@@ -27,14 +28,18 @@ typedef struct text_box_t {
     uint8_t  display_size;  // num of chars displayed at the same time
     text_box_state state;
     bool     is_ready;
+    uint8_t  max_accepted_size;
+    uint8_t  cursor_clock;
 } text_box_t;
 
 
-void new_text_box(text_box_t *text_box, uint16_t x, uint16_t y, uint8_t display_size);
+void new_text_box(text_box_t *text_box, uint16_t x, uint16_t y, uint8_t display_size, uint8_t max_accepted_size);
+
+void text_box_clock_tick(text_box_t *text_box);
 
 /* is_cursor_to_draw is used to coordinate with the game ticks
 if text_box is not selected, the cursor is not drawn*/
-int text_box_draw(frame_buffer_t buf, text_box_t text_box, bool is_cursor_to_draw);
+int text_box_draw(frame_buffer_t buf, text_box_t text_box);
 
 bool text_box_is_hovering(text_box_t text_box, uint16_t x, uint16_t y);
 

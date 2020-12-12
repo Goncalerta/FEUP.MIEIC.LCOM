@@ -29,7 +29,7 @@ int kbd_unsubscribe_int();
 
 bool kbd_is_make_code(uint8_t scancode);
 
-bool kbd_scancode_ready();
+//bool kbd_scancode_ready(); // outdated for now
 
 int kbd_handle_scancode(kbd_event_t *kbd_state);
 

@@ -40,7 +40,7 @@ void (kbc_ih)() {
         should_retrieve = true;
     }
 
-    if (kbd_scancode_ready()) {
+    if (should_retrieve) {
         if (kbd_handle_scancode(&kbd_state) != OK) {
             printf("kbd_handle_scancode failed\n");
             return;
@@ -57,9 +57,9 @@ bool kbd_is_make_code(uint8_t scancode) {
     return (scancode & BREAKCODE_BIT) == 0;
 }
 
-bool kbd_scancode_ready() {
-    return should_retrieve;
-}
+//bool kbd_scancode_ready() {
+//    return should_retrieve;
+//}
 
 int kbd_handle_scancode(kbd_event_t *kbd_state) {
     if (!should_retrieve)
