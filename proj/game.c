@@ -22,7 +22,9 @@
 #include "xpm/gameover.xpm"
 
 /* TODO
- *  * Deixar de dar para adivinhar no intervalo entre rondas/fim de jogo. Ao fazer muitas tentativas durante esse tempo, o "round_timer" fica negativo e até acaba por crashar o jogo. (ver linha 290)
+ *  * Score
+ *  * Clues
+ *  * correct/gameover xpms
  */
 
 #define ROUND_SECONDS 60
@@ -72,16 +74,19 @@ static int round;
 static text_box_t text_box_guesser;
 static button_t b_pencil, b_eraser, b_color, b_thickness, b_undo, b_redo;
 
+bool game_is_round_ongoing() {
+    return game_state == ROUND_ONGOING;
+}
 
 int game_correct_guess() {
-    clock_frames.current_frame = 0;
+    clock_frames.current_frame = 1;
     end_screen_timer = END_ROUND_DELAY * 60;
     game_state = ROUND_CORRECT_GUESS;
     return 0;
 }
 
 int game_over() {
-    clock_frames.current_frame = 0;
+    clock_frames.current_frame = 1;
     end_screen_timer = END_ROUND_DELAY * 60;
     game_state = GAME_OVER;
     return 0;
@@ -106,6 +111,7 @@ int game_guess_word(char *guess) {
             return 1;
     } else {
         round_timer -= 60 * WRONG_GUESS_PENALTY;
+        if (round_timer < 0) round_timer = 0;
     }
 
     return 0;
@@ -171,12 +177,6 @@ int game_load_assets(enum xpm_image_type type) {
     xpm_load_animation(&clock_frames, type, 3, 
                        xpm_clock_red_left, xpm_clock_red_center, xpm_clock_red_right);
     frame_buffer_t buf = vg_get_back_buffer();
-
-    selected_color = 0;
-    selected_thickness = 1;
-    is_pencil_primary = true;
-    num_guesses = 0;
-    correct_guess = word_list[rand() % WORD_LIST_SIZE];
     xpm_load(xpm_tick, type, &tick_img);
     xpm_load(xpm_cross, type, &cross_img);
     xpm_load(xpm_correct, type, &correct_message);
@@ -226,12 +226,27 @@ int game_load_assets(enum xpm_image_type type) {
     return 0;
 }
 
+int game_init() {
+    score = 0;
+    round = 0;
+
+    selected_color = 0;
+    selected_thickness = 1;
+    is_pencil_primary = true;
+    
+
+    return game_start_round();
+}
+
 int game_start_round() {
     round++;
     game_state = ROUND_ONGOING;
     current_clock_frame = 1;
     clock_frames_timer = 0;
     round_timer = ROUND_SECONDS * 60;
+    num_guesses = 0;
+    correct_guess = word_list[rand() % WORD_LIST_SIZE];
+    text_box_clear(&text_box_guesser);
     return 0;
 }
 
@@ -241,10 +256,11 @@ void game_round_timer_tick() {
 
     switch (game_state) {
     case ROUND_ONGOING:
-        if (round_timer == 0)
+        if (round_timer == 0) {
             game_over();
-        else
+        } else {
             round_timer--;
+        }
 
         if (clock_frames_timer == 10) {
             clock_frames.current_frame = 0;
@@ -283,12 +299,6 @@ int draw_game_bar() {
 
     char seconds_to_end_round[2];
     sprintf(seconds_to_end_round, "%02d", (round_timer + 59)/60);
-
-    // TODO valor fica negativo se errar depois do final da ronda ((enter) repetidamente)
-    // e o font_draw_char não suporta '-' e dá erro
-    if (round_timer < -59)
-        printf("valor fica negativo ---->    %d\n",(round_timer + 59)/60);
-    // ^^
     
     if (font_draw_string(buf, seconds_to_end_round, buf.h_res - 75, 
                          buf.v_res - (GAME_BAR_INNER_HEIGHT + FONT_CHAR_HEIGHT)/2, 0, 2) != OK)

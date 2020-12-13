@@ -39,6 +39,23 @@ void text_box_clock_tick(text_box_t *text_box) {
     text_box->cursor_clock = (text_box->cursor_clock + 1) % 60; // TODO passar o 60 para #define ?
 }
 
+int text_box_clear(text_box_t *text_box) {
+    char *word = realloc(text_box->word, sizeof('\0'));
+    if (word == NULL)
+        return 1;
+    
+    text_box->word = word;
+
+    text_box->word[0] = '\0';
+    text_box->word_size = 0;
+    text_box->cursor_pos = 0;
+    text_box->select_pos = 0;
+    text_box->start_display = 0;
+    text_box->is_ready = false;
+
+    return 0;
+}
+
 int text_box_draw(frame_buffer_t buf, text_box_t text_box) {
     uint32_t text_box_color = text_box.state == TEXT_BOX_NORMAL ? TEXT_BOX_NORMAL_COLOR : TEXT_BOX_HOVERING_COLOR;
 
@@ -173,7 +190,12 @@ static int text_box_delete_selected(text_box_t *text_box) {
         printf("Error while deleting selected\n");
         return 1;
     }
-    text_box->word = realloc(text_box->word, text_box->word_size + (to-from) + 1);
+
+    char *word = realloc(text_box->word, text_box->word_size + (to-from) + 1);
+    if (word == NULL)
+        return 1;
+    
+    text_box->word = word;
     
     text_box->cursor_pos = text_box->select_pos = from;
     text_box->word_size -= (to-from);
@@ -188,6 +210,7 @@ int text_box_react_kbd(text_box_t *text_box, kbd_event_t kbd_event) {
 
     text_box->cursor_clock = 0;
 
+    char *word; // Used for realloc
     switch (kbd_event.key) {
     case CHAR:
         if (kbd_event.is_ctrl_pressed) {
@@ -198,9 +221,14 @@ int text_box_react_kbd(text_box_t *text_box, kbd_event_t kbd_event) {
                     uint8_t to = text_box->cursor_pos > text_box->select_pos ? text_box->cursor_pos : text_box->select_pos;
 
                     if (clip_board == NULL) {
-                        clip_board = malloc((to-from)*sizeof(char)); // TODO é para verificar return the NULL to malloc/realloc?
+                        clip_board = malloc((to-from)*sizeof(char));
+                        if (clip_board == NULL)
+                            return 1;
                     } else {
-                        clip_board = realloc(clip_board, (to-from)*sizeof(char));
+                        char *clip_board_temp = realloc(clip_board, (to-from)*sizeof(char));
+                        if (clip_board_temp == NULL)
+                            return 1;
+                        clip_board = clip_board_temp;
                     }
                     if (memcpy(clip_board, text_box->word+from, to-from) == NULL) {
                         printf("Error while CTRL+C\n");
@@ -218,7 +246,11 @@ int text_box_react_kbd(text_box_t *text_box, kbd_event_t kbd_event) {
                     }
                 }
 
-                text_box->word = realloc(text_box->word, text_box->word_size + clip_board_size + 1);
+                word = realloc(text_box->word, text_box->word_size + clip_board_size + 1);
+                if (word == NULL)
+                    return 1;
+                
+                text_box->word = word;
                 if (memmove(text_box->word + text_box->cursor_pos+clip_board_size, text_box->word + text_box->cursor_pos, text_box->word_size-text_box->cursor_pos+1) == NULL) {
                     printf("Error while CTRL+V\n");
                     return 1;
@@ -233,6 +265,8 @@ int text_box_react_kbd(text_box_t *text_box, kbd_event_t kbd_event) {
                 break;
 
             case 'X': // TODO isto assim parece muito "aldrabado"?
+                      //      definitivamente sim xD
+                      //      cria uma funcao static auxiliar que faz copy por exemplo, e ambos chamam essa funcao
                 kbd_event.char_key = 'C';
                 if (text_box_react_kbd(text_box, kbd_event) != 0)
                     return 1;
@@ -248,7 +282,11 @@ int text_box_react_kbd(text_box_t *text_box, kbd_event_t kbd_event) {
                 }
             }
 
-            text_box->word = realloc(text_box->word, text_box->word_size + 2); // 2 = 1 + 1 ('\0' + new char)
+            word = realloc(text_box->word, text_box->word_size + 2); // 2 = 1 + 1 ('\0' + new char)
+            if (word == NULL)
+                return 1;
+            
+            text_box->word = word;
             if (memmove(text_box->word + text_box->cursor_pos+1, text_box->word + text_box->cursor_pos, text_box->word_size-text_box->cursor_pos+1) == NULL) {
                 printf("Error while writing\n");
                 return 1;
@@ -273,7 +311,12 @@ int text_box_react_kbd(text_box_t *text_box, kbd_event_t kbd_event) {
                 printf("Error while deleting\n");
                 return 1;
             }
-            text_box->word = realloc(text_box->word, text_box->word_size);
+            
+            word = realloc(text_box->word, text_box->word_size);
+            if (word == NULL)
+                return 1;
+            
+            text_box->word = word;
 
             if (text_box->start_display > 0) {
                 text_box->start_display--;
@@ -299,7 +342,11 @@ int text_box_react_kbd(text_box_t *text_box, kbd_event_t kbd_event) {
                 printf("Error while deleting\n");
                 return 1;
             }
-            text_box->word = realloc(text_box->word, text_box->word_size);
+            word = realloc(text_box->word, text_box->word_size);
+            if (word == NULL)
+                return 1;
+            
+            text_box->word = word;
 
             text_box->word_size--;
         }
@@ -352,8 +399,13 @@ int text_box_retrieve_if_ready(text_box_t *text_box, char **content) {
 
     if (*content == NULL) {
         *content = malloc(text_box->word_size + 1);
+        if (*content == NULL)
+            return 1;
     } else {
-        *content = realloc(content, text_box->word_size + 1);
+        char *content_temp = realloc(content, text_box->word_size + 1);
+        if (content_temp == NULL)
+            return 1;
+        *content = content_temp;
     }
 
     if (memcpy(*content, text_box->word, text_box->word_size + 1) == NULL) {
@@ -361,14 +413,8 @@ int text_box_retrieve_if_ready(text_box_t *text_box, char **content) {
         return 1;
     }
     
-    // text box clean up
-    text_box->word = realloc(text_box->word, sizeof('\0'));
-    text_box->word[0] = '\0';
-    text_box->word_size = 0;
-    text_box->cursor_pos = 0;
-    text_box->select_pos = 0;
-    text_box->start_display = 0;
-    text_box->is_ready = false;
+    if (text_box_clear(text_box) != OK)
+        return 1;
 
     return 0;
 }

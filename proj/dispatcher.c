@@ -41,7 +41,7 @@ int dispatcher_bind_text_box(text_box_t *text_box) {
 
 int event_new_game() {
     canvas_init(vg_get_hres(), vg_get_vres() - GAME_BAR_HEIGHT);
-    game_start_round();
+    game_init();
     return 0;
 }
 
@@ -126,6 +126,11 @@ int dispatch_keyboard_event(kbd_event_t kbd_event) {
         return 1;
     }
     
+    // TODO this is a temporary hack
+    if (!game_is_round_ongoing()) {
+        text_box_guesser->is_ready = false;
+    }
+
     //TODO not sure if the right place and right way
     char *guess = NULL;
     if (text_box_retrieve_if_ready(text_box_guesser, &guess) != OK) {

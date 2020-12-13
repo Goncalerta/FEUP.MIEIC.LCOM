@@ -138,13 +138,16 @@ int canvas_new_stroke_atom(uint16_t x, uint16_t y) {
     if (last->num_atoms == 0) {
         last->num_atoms++;
         last->atoms = malloc(sizeof(stroke_atom));
+        
+        if (last->atoms == NULL)
+            return 1;
     } else {
         last->num_atoms++;
-        last->atoms = realloc(last->atoms, last->num_atoms * sizeof(stroke_atom));
+        stroke_atom *atoms = realloc(last->atoms, last->num_atoms * sizeof(stroke_atom));
+        if (atoms == NULL)
+            return 1;    
+        last->atoms = atoms;
     }
-
-    if (last->atoms == NULL)
-        return 1;
 
     // If the atom is out of the canvas, it doens't need to be too far
     // from the edge, because it is not visible. For efficiency, the
