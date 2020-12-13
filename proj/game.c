@@ -24,7 +24,6 @@
 /* TODO
  *  * Score
  *  * Clues
- *  * correct/gameover xpms
  */
 
 #define ROUND_SECONDS 60
