@@ -35,6 +35,8 @@ typedef struct text_box_t {
 
 void new_text_box(text_box_t *text_box, uint16_t x, uint16_t y, uint8_t display_size, uint8_t max_accepted_size);
 
+int text_box_clear(text_box_t *text_box);
+
 void text_box_clock_tick(text_box_t *text_box);
 
 /* is_cursor_to_draw is used to coordinate with the game ticks

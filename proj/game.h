@@ -24,7 +24,9 @@ int game_set_eraser_primary();
 void game_toggle_pencil_eraser();
 int game_load_assets(enum xpm_image_type type);
 int game_start_round();
+int game_init();
 void game_round_timer_tick();
 int draw_game_bar();
+bool game_is_round_ongoing();
 
 #endif /* __GAME_H */
