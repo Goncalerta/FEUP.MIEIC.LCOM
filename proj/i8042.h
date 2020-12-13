@@ -13,7 +13,7 @@
 #define MOUSE_IRQ 12 /**< @brief Mouse IRQ line */
 
 #define FIRST_BYTE_TWO_BYTE_SCANCODE 0xE0
-#define BREAKCODE_BIT BIT(7)
+#define BREAK_CODE_BIT BIT(7)
 
 #define ESC_BREAK_CODE 0x81
 

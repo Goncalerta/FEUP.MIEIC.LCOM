@@ -4,8 +4,7 @@
 #include <lcom/lcf.h>
 
 
-#define BREAK_CODE(x) ((x) | BIT(7))
-#define IS_BREAK_CODE(x) ((x) & BIT(7))
+#define BREAK_CODE(x) ((x) | BREAK_CODE_BIT)
 
 #define MAKE_A 0x1E
 #define MAKE_B 0x30
