@@ -21,18 +21,14 @@
 #include "xpm/correct.xpm"
 #include "xpm/gameover.xpm"
 
-/* TODO
- *  * Clues
- */
-
 #define ROUND_SECONDS 60
 #define BUTTONS_LEN 75
 #define END_ROUND_DELAY 3
 #define WRONG_GUESS_PENALTY 5
 
-#define WORD_LIST_SIZE 1
+#define WORD_LIST_SIZE 8
 static char *word_list[WORD_LIST_SIZE] = {
-    "HOUSE", //"TORNADO", "SHOELACE", "TRUCK", "FEAR", "CAREER", "LAKE", "CHRISTMAS",
+    "HOUSE", "TORNADO", "SHOELACE", "TRUCK", "FEAR", "CAREER", "LAKE", "CHRISTMAS",
 };
 
 static game_state_t game_state;
@@ -178,6 +174,11 @@ int game_set_eraser_primary() {
 int game_load_assets(enum xpm_image_type type) {
     xpm_load_animation(&clock_frames, type, 3, 
                        xpm_clock_red_left, xpm_clock_red_center, xpm_clock_red_right);
+    
+    selected_color = 0;
+    selected_thickness = 1;
+    is_pencil_primary = true;
+
     frame_buffer_t buf = vg_get_back_buffer();
     xpm_load(xpm_tick, type, &tick_img);
     xpm_load(xpm_cross, type, &cross_img);
@@ -220,7 +221,7 @@ int game_load_assets(enum xpm_image_type type) {
 
     dispatcher_bind_buttons(6, &b_pencil, &b_eraser, &b_color, &b_thickness, &b_undo, &b_redo);
 
-    new_text_box(&text_box_guesser, TEXT_BOX_GUESSER_X, TEXT_BOX_GUESSER_Y, TEXT_BOX_GUESSER_DISPLAY_SIZE, TEXT_BOX_MAX_ACCEPTED_WORD_SIZE);
+    new_text_box(&text_box_guesser, TEXT_BOX_GUESSER_X + 4, TEXT_BOX_GUESSER_Y, TEXT_BOX_GUESSER_DISPLAY_SIZE, TEXT_BOX_MAX_ACCEPTED_WORD_SIZE);
     dispatcher_bind_text_box(&text_box_guesser);
 
     score = 0;
