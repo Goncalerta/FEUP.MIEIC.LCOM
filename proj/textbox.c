@@ -2,7 +2,6 @@
 #include "textbox.h"
 
 /* TODO
- *   * Check if the problem of duplicating characters is a bug in our code
  *   * Quando a textbox esta selected, por causa de nao estar hovering, faz o cursor ficar em modo write, mesmo que ele nao esteva por cima da textbox
  *      Uma solucao seria dividir o estado TEXT_BOX_SELECTED em TEXT_BOX_SELECTED_HOVERING e TEXT_BOX_SELECTED_NOT_HOVERING
  *      Outra solucao seria retirar esse estado e criar um booleano is_selected. Ou seja TEXT_BOX_SELECTED seria na verdade TEXT_BOX_HOVERING com is_selected = true
@@ -174,10 +173,10 @@ int text_box_update_state(text_box_t *text_box, bool hovering, bool lb, bool rb,
             text_box->state = TEXT_BOX_SELECTED;
         }
 
-        if (mouse_pos == text_box->start_display && mouse_pos > 0) {
-            text_box->start_display--;
-        } else if (mouse_pos == text_box->start_display + text_box->display_size) {
-            text_box->start_display++;
+        if (text_box->cursor_pos <= text_box->start_display && text_box->start_display > 0) {
+            text_box->start_display = text_box->cursor_pos == 0 ? 0 : text_box->cursor_pos - 1;
+        } else if (text_box->cursor_pos >= text_box->start_display + text_box->display_size) {
+            text_box->start_display = text_box->cursor_pos - text_box->display_size + 1;
         }
         break;
     }

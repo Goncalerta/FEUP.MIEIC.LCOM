@@ -23,6 +23,10 @@
 #define COLOR_CAP_BYTES_NUM(n) (0xffffffff >> 8*(4-(n))) /* 1 <= n <= 4*/
 #define COLOR_MASK(size, offset) ((0xffffffff >> (32-(size))) << (offset))
 
+#define vb_draw_img_complete(buf, img, x, y) \
+    vb_draw_img(buf, img, 0, 0, img.width, img.height, x, y) //TODO is this worth doing? makes the call simplier when the image is all drawn
+
+
 typedef struct frame_buffer_t {
     void *buf;
     uint16_t h_res;	        /* Horizontal resolution in pixels */

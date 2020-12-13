@@ -10,7 +10,6 @@ static uint8_t scancode_bytes[2];
 static size_t scancode_bytes_counter = 0;
 static bool should_retrieve = false;
 
-static uint16_t last_make_code = 0x0000; //TODO confirmar que este não existe/não da para obter o break code correspondente
 
 int kbd_subscribe_int(uint8_t *bit_no) {
     *bit_no = hook_id_kbd;
@@ -54,7 +53,7 @@ void (kbc_ih)() {
 }
 
 bool kbd_is_make_code(uint8_t scancode) {
-    return (scancode & BREAKCODE_BIT) == 0;
+    return (scancode & BREAK_CODE_BIT) == 0;
 }
 
 //bool kbd_scancode_ready() {
@@ -75,17 +74,11 @@ int kbd_handle_scancode(kbd_event_t *kbd_state) {
         return 1;
     }
     
-    // TODO use kbd_is_make_code(code) instead?
-    if (IS_BREAK_CODE(code)) {
+    if (!kbd_is_make_code(code)) {
+        kbd_state->key = NO_KEY;
         if (code == BREAK_CODE(MAKE_CTRL)) {
             kbd_state->is_ctrl_pressed = false;
-	        kbd_state->key = NO_KEY;
-        } else if (code == BREAK_CODE(last_make_code)) {
-            kbd_state->key = NO_KEY;
-	        last_make_code = 0x0000;
-        } //else {} // other break codes
-    	            // mantain the kbd_state
-            
+        }
     } else { // make code
         switch(code) {
 	    case MAKE_CTRL:
@@ -143,7 +136,6 @@ int kbd_handle_scancode(kbd_event_t *kbd_state) {
 	    case MAKE_9: kbd_state->key = CHAR; kbd_state->char_key = '9'; break;
 		default:     kbd_state->key = NO_KEY; // for keys not mapped
         }
-        last_make_code = code;
     }
 
     scancode_bytes_counter = 0;
