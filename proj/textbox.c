@@ -23,7 +23,7 @@
 static char *clip_board = NULL; // not saving the '\0' char
 static uint8_t clip_board_size = 0;
 
-void new_text_box(text_box_t *text_box, uint16_t x, uint16_t y, uint8_t display_size, uint8_t max_accepted_size) {
+void new_text_box(text_box_t *text_box, uint16_t x, uint16_t y, uint8_t display_size) {
     text_box->word = malloc(sizeof('\0'));
     text_box->word[0] = '\0';
     text_box->word_size = 0;
@@ -37,7 +37,6 @@ void new_text_box(text_box_t *text_box, uint16_t x, uint16_t y, uint8_t display_
     text_box->x = x;
     text_box->y = y;
     text_box->display_size = display_size;
-    text_box->max_accepted_size = max_accepted_size;
 }
 
 void text_box_clock_tick(text_box_t *text_box) {
@@ -376,11 +375,7 @@ int text_box_react_kbd(text_box_t *text_box, kbd_event_t kbd_event) {
         break;
     
     case ENTER:
-        if (text_box->word_size <= text_box->max_accepted_size) {
-            text_box->is_ready = true;
-        } else {
-            // TODO some kind of warning to user? or simply not?
-        }
+        text_box->is_ready = true;
         break;
     
     default:

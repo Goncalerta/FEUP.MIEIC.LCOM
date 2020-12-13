@@ -9,7 +9,6 @@
 #define TEXT_BOX_GUESSER_X 30 //TODO ajustar para o certo
 #define TEXT_BOX_GUESSER_Y 700 //TODO ajustar para o certo
 #define TEXT_BOX_GUESSER_DISPLAY_SIZE 13 //TODO ajustar para o certo
-#define TEXT_BOX_MAX_ACCEPTED_WORD_SIZE 12 //TODO ajustar para o certo
 
 typedef enum text_box_state {
     TEXT_BOX_NORMAL,
@@ -28,12 +27,11 @@ typedef struct text_box_t {
     uint8_t  display_size;  // num of chars displayed at the same time
     text_box_state state;
     bool     is_ready;
-    uint8_t  max_accepted_size;
     uint8_t  cursor_clock;
 } text_box_t;
 
 
-void new_text_box(text_box_t *text_box, uint16_t x, uint16_t y, uint8_t display_size, uint8_t max_accepted_size);
+void new_text_box(text_box_t *text_box, uint16_t x, uint16_t y, uint8_t display_size);
 
 int text_box_clear(text_box_t *text_box);
 

@@ -26,9 +26,14 @@ int font_draw_char(frame_buffer_t buf, char c, uint16_t x, uint16_t y) {
     	char_start_y = FONT_CHAR_SPACE_Y;
     	char_start_x = (c-'A'+1)*FONT_CHAR_SPACE_X + (c-'A')*FONT_CHAR_WIDTH;
     	
+    } else if (c == '.') {
+        // TODO maybe include this in font xpm?
+        vb_draw_rectangle(buf, x + (FONT_CHAR_WIDTH - 5) / 2, y + FONT_CHAR_HEIGHT - 5, 5, 5, 0x000000);
+    	return 0;
+        
     } else if (c == ' ') {
         return 0; // no need to draw space
-    	
+
     } else {
     	printf("Invalid char to draw: %c\n", c);
     	return 1;

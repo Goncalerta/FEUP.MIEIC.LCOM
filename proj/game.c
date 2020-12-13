@@ -26,6 +26,7 @@
 #define BUTTONS_LEN 75
 #define END_ROUND_DELAY 3
 #define WRONG_GUESS_PENALTY 5
+#define GUESS_CHARACTER_LIMIT 14
 
 #define WORD_LIST_SIZE 8
 static char *word_list[WORD_LIST_SIZE] = {
@@ -224,7 +225,7 @@ int game_load_assets(enum xpm_image_type type) {
 
     dispatcher_bind_buttons(6, &b_pencil, &b_eraser, &b_color, &b_thickness, &b_undo, &b_redo);
 
-    new_text_box(&text_box_guesser, TEXT_BOX_GUESSER_X + 4, TEXT_BOX_GUESSER_Y, TEXT_BOX_GUESSER_DISPLAY_SIZE, TEXT_BOX_MAX_ACCEPTED_WORD_SIZE);
+    new_text_box(&text_box_guesser, TEXT_BOX_GUESSER_X + 4, TEXT_BOX_GUESSER_Y, TEXT_BOX_GUESSER_DISPLAY_SIZE);
     dispatcher_bind_text_box(&text_box_guesser);
 
     score = 0;
@@ -361,7 +362,16 @@ int draw_game_bar() {
         }
 
         // TODO get rid of that meaningless 100
-        if (font_draw_string(buf, guesses[i].guess, 371, y, 0, 100) != OK)
+        char guess[GUESS_CHARACTER_LIMIT + 1] = "";
+        if (strlen(guesses[i].guess) <= GUESS_CHARACTER_LIMIT) {
+            strcpy(guess, guesses[i].guess);
+        } else {
+            strncpy(guess, guesses[i].guess, GUESS_CHARACTER_LIMIT - 3);
+            guess[GUESS_CHARACTER_LIMIT - 1] = '.';
+            guess[GUESS_CHARACTER_LIMIT - 2] = '.';
+            guess[GUESS_CHARACTER_LIMIT - 3] = '.';
+        }
+        if (font_draw_string(buf, guess, 371, y, 0, 100) != OK)
             return 1;
 
         y += FONT_CHAR_HEIGHT + 10;
