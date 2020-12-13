@@ -22,7 +22,6 @@
 #include "xpm/gameover.xpm"
 
 /* TODO
- *  * Score
  *  * Clues
  */
 
@@ -31,9 +30,9 @@
 #define END_ROUND_DELAY 3
 #define WRONG_GUESS_PENALTY 5
 
-#define WORD_LIST_SIZE 8
+#define WORD_LIST_SIZE 1
 static char *word_list[WORD_LIST_SIZE] = {
-    "HOUSE", "TORNADO", "SHOELACE", "TRUCK", "FEAR", "CAREER", "LAKE", "CHRISTMAS"
+    "HOUSE", //"TORNADO", "SHOELACE", "TRUCK", "FEAR", "CAREER", "LAKE", "CHRISTMAS",
 };
 
 static game_state_t game_state;
@@ -68,6 +67,7 @@ static int end_screen_timer;
 static int round_timer;
 static size_t current_clock_frame;
 static int score;
+#define MAX_SCORE 99999
 static int round;
 
 static text_box_t text_box_guesser;
@@ -78,6 +78,9 @@ bool game_is_round_ongoing() {
 }
 
 int game_correct_guess() {
+    score += 100 + round_timer * 0.15;
+    if (score > MAX_SCORE)
+        score = MAX_SCORE;
     clock_frames.current_frame = 1;
     end_screen_timer = END_ROUND_DELAY * 60;
     game_state = ROUND_CORRECT_GUESS;
@@ -233,8 +236,10 @@ int game_init() {
     selected_thickness = 1;
     is_pencil_primary = true;
     
-
-    return game_start_round();
+    if (game_start_round() != OK)
+        return 1;
+    
+    return 0;
 }
 
 int game_start_round() {

@@ -1,6 +1,12 @@
 #include <lcom/lcf.h>
 #include "textbox.h"
 
+/* TODO
+ *   * Check if the problem of duplicating characters is a bug in our code
+ *   * Quando a textbox esta selected, por causa de nao estar hovering, faz o cursor ficar em modo write, mesmo que ele nao esteva por cima da textbox
+ *      Uma solucao seria dividir o estado TEXT_BOX_SELECTED em TEXT_BOX_SELECTED_HOVERING e TEXT_BOX_SELECTED_NOT_HOVERING
+ *      Outra solucao seria retirar esse estado e criar um booleano is_selected. Ou seja TEXT_BOX_SELECTED seria na verdade TEXT_BOX_HOVERING com is_selected = true
+ */
 
 #define TEXT_BOX_CURSOR_HEIGHT (FONT_CHAR_HEIGHT + 4)
 #define TEXT_BOX_CURSOR_COLOR 0x000000
@@ -64,7 +70,7 @@ int text_box_draw(frame_buffer_t buf, text_box_t text_box) {
         return 1;
     }
 
-    if (text_box.state == TEXT_BOX_SELECTED || text_box.state == TEXT_BOX_PRESSING) { // draw boarder
+    if (text_box.state == TEXT_BOX_SELECTED || text_box.state == TEXT_BOX_PRESSING) { // draw border
         if (vb_draw_hline(buf, text_box.x, text_box.y, TEXT_BOX_WIDTH(text_box.display_size), TEXT_BOX_BORDER_COLOR) != 0)
             return 1;
         if (vb_draw_hline(buf, text_box.x, text_box.y + TEXT_BOX_HEIGHT - 1, TEXT_BOX_WIDTH(text_box.display_size), TEXT_BOX_BORDER_COLOR) != 0)
