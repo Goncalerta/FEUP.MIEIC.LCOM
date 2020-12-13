@@ -25,6 +25,7 @@
 
 #define vb_draw_img_complete(buf, img, x, y) \
     vb_draw_img(buf, img, 0, 0, img.width, img.height, x, y) //TODO is this worth doing? makes the call simplier when the image is all drawn
+                                                             //  - Yes, it is! I wasnt gonna do it with a define though...
 
 
 typedef struct frame_buffer_t {

@@ -17,7 +17,7 @@ int new_word_clue(word_clue_t *clue, char *word) {
     if (clue->clue == NULL)
         return 1;
 
-    memset(clue->clue, ' ', clue->size);
+    memset(clue->clue, '?', clue->size);
     clue->clue[clue->size] = '\0';
     
     return 0;
@@ -29,11 +29,14 @@ int word_clue_draw(word_clue_t *clue, frame_buffer_t buf, uint16_t x, uint16_t y
         if (vb_draw_rectangle(buf, current_x-2, y-2, FONT_CHAR_WIDTH+4, FONT_CHAR_HEIGHT+ CLUE_BAR_MARGIN+RECTANGLE_HEIGHT +4, 0xffffff) != OK)
             return 1;
 
-        if (vb_draw_rectangle(buf, current_x, y + FONT_CHAR_HEIGHT + CLUE_BAR_MARGIN, FONT_CHAR_WIDTH, RECTANGLE_HEIGHT, 0x000000) != OK)
-            return 1;
-
         char letter = clue->clue[i];
+
         if (letter != ' ') {
+            if (vb_draw_rectangle(buf, current_x, y + FONT_CHAR_HEIGHT + CLUE_BAR_MARGIN, FONT_CHAR_WIDTH, RECTANGLE_HEIGHT, 0x000000) != OK)
+                return 1;
+        }
+        
+        if (letter != '?') {
             if (font_draw_char(buf, letter, current_x, y))
                 return 1;
         }
@@ -48,7 +51,7 @@ int word_clue_hint(word_clue_t *clue) {
     size_t hint_pos = rand() % clue->missing;
     
     for (size_t i = 0; i < clue->size; i++) {
-        if (clue->clue[i] != ' ') 
+        if (clue->clue[i] != '?') 
             continue;
 
         if (hint_pos == 0) {
