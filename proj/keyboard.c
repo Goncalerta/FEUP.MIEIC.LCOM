@@ -83,9 +83,9 @@ int kbd_handle_scancode(kbd_event_t *kbd_state) {
         } else if (code == BREAK_CODE(last_make_code)) {
             kbd_state->key = NO_KEY;
 	        last_make_code = 0x0000;
-        } //else {} // other break codes
-    	            // mantain the kbd_state
-            
+        } else { // other break codes 
+            kbd_state->key = NO_KEY;
+        }   
     } else { // make code
         switch(code) {
 	    case MAKE_CTRL:
