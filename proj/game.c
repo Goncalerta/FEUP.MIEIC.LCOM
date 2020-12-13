@@ -8,6 +8,7 @@
 #include "dispatcher.h"
 #include "textbox.h"
 #include "button.h"
+#include "clue.h"
 
 #include "xpm/clock_left.xpm"
 #include "xpm/clock_center.xpm"
@@ -42,6 +43,7 @@ typedef struct guess_t {
 static size_t num_guesses;
 static guess_t guesses[MAX_GUESSES];
 static char *correct_guess;
+static word_clue_t word_clue;
 
 static xpm_image_t tick_img, cross_img;
 static xpm_image_t correct_message, game_over_message;
@@ -80,6 +82,7 @@ int game_correct_guess() {
     clock_frames.current_frame = 1;
     end_screen_timer = END_ROUND_DELAY * 60;
     game_state = ROUND_CORRECT_GUESS;
+    free_word_clue(&word_clue);
     return 0;
 }
 
@@ -252,12 +255,20 @@ int game_start_round() {
     num_guesses = 0;
     correct_guess = word_list[rand() % WORD_LIST_SIZE];
     text_box_clear(&text_box_guesser);
+    if (new_word_clue(&word_clue, correct_guess) != OK)
+        return 1;
+    
     return 0;
 }
 
 void game_round_timer_tick() {
     clock_frames_timer++;
     text_box_clock_tick(&text_box_guesser);
+
+    // TODO use RTC
+    if (round_timer % (5*60) == 1 && rand() % 5 == 0) {
+        word_clue_hint(&word_clue);
+    }
 
     switch (game_state) {
     case ROUND_ONGOING:
@@ -363,6 +374,9 @@ int draw_game_bar() {
     } else if (game_state == ROUND_CORRECT_GUESS) {
         uint16_t offset = clock_frames_timer % 30 >= 15? -3 : 3;
         vb_draw_img(buf, correct_message, 0, 0, correct_message.width, correct_message.height, (buf.h_res - correct_message.width) / 2 + offset, 20);
+    } else if (game_state == ROUND_ONGOING) {
+        if (word_clue_draw(&word_clue, buf, (buf.h_res - word_clue.width) / 2, 40) != OK)
+            return 1;
     }
 
     // TODO draw buttons doesn't belong here
