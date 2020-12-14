@@ -1,11 +1,6 @@
 #include <lcom/lcf.h>
 #include "textbox.h"
 
-/* TODO
- *   * Quando a textbox esta selected, por causa de nao estar hovering, faz o cursor ficar em modo write, mesmo que ele nao esteva por cima da textbox
- *      Uma solucao seria dividir o estado TEXT_BOX_SELECTED em TEXT_BOX_SELECTED_HOVERING e TEXT_BOX_SELECTED_NOT_HOVERING
- *      Outra solucao seria retirar esse estado e criar um booleano is_selected. Ou seja TEXT_BOX_SELECTED seria na verdade TEXT_BOX_HOVERING com is_selected = true
- */
 
 #define TEXT_BOX_CURSOR_HEIGHT (FONT_CHAR_HEIGHT + 4)
 #define TEXT_BOX_CURSOR_COLOR 0x000000
@@ -62,13 +57,14 @@ int text_box_clear(text_box_t *text_box) {
 
 int text_box_draw(frame_buffer_t buf, text_box_t text_box) {
     uint32_t text_box_color = text_box.state == TEXT_BOX_NORMAL ? TEXT_BOX_NORMAL_COLOR : TEXT_BOX_HOVERING_COLOR;
+    bool text_box_interacting = text_box.state == TEXT_BOX_SELECTED_HOVERING || text_box.state == TEXT_BOX_SELECTED_NOT_HOVERING || text_box.state == TEXT_BOX_PRESSING;
 
     if (vb_draw_rectangle(buf, text_box.x, text_box.y, TEXT_BOX_WIDTH(text_box.display_size), TEXT_BOX_HEIGHT, text_box_color) != 0) {
         printf("Error printing the text_box\n");
         return 1;
     }
 
-    if (text_box.state == TEXT_BOX_SELECTED || text_box.state == TEXT_BOX_PRESSING) { // draw border
+    if (text_box_interacting) { // draw border
         if (vb_draw_hline(buf, text_box.x, text_box.y, TEXT_BOX_WIDTH(text_box.display_size), TEXT_BOX_BORDER_COLOR) != 0)
             return 1;
         if (vb_draw_hline(buf, text_box.x, text_box.y + TEXT_BOX_HEIGHT - 1, TEXT_BOX_WIDTH(text_box.display_size), TEXT_BOX_BORDER_COLOR) != 0)
@@ -79,7 +75,7 @@ int text_box_draw(frame_buffer_t buf, text_box_t text_box) {
             return 1;
     }
     
-    if (text_box.cursor_pos != text_box.select_pos && (text_box.state == TEXT_BOX_SELECTED || text_box.state == TEXT_BOX_PRESSING)) { // highlight
+    if (text_box.cursor_pos != text_box.select_pos && text_box_interacting) { // highlight
         int start = text_box.cursor_pos < text_box.select_pos ? text_box.cursor_pos : text_box.select_pos; // relative to string
         int end = text_box.cursor_pos > text_box.select_pos ? text_box.cursor_pos : text_box.select_pos; // retlative to string
 
@@ -103,7 +99,7 @@ int text_box_draw(frame_buffer_t buf, text_box_t text_box) {
     }
 
     // TODO passar o 30 para #define ?
-    if ((text_box.cursor_clock < 30) && (text_box.state == TEXT_BOX_SELECTED || text_box.state == TEXT_BOX_PRESSING)) { // cursor
+    if ((text_box.cursor_clock < 30) && text_box_interacting) { // cursor
         uint16_t cursor_x = text_box.x + TEXT_BOX_BEG_END_SPACE + (text_box.cursor_pos - text_box.start_display)*CHAR_SPACE;
         uint16_t cursor_y = text_box.y + TEXT_BOX_TOP_BOT_SPACE - (TEXT_BOX_CURSOR_HEIGHT - FONT_CHAR_HEIGHT)/2;
 
@@ -148,7 +144,7 @@ int text_box_update_state(text_box_t *text_box, bool hovering, bool lb, bool rb,
     case TEXT_BOX_HOVERING:
         if (hovering) {
             if (lb && !rb) {
-                text_box->state = TEXT_BOX_SELECTED;
+                text_box->state = TEXT_BOX_SELECTED_HOVERING;
                 text_box->select_pos = text_box->cursor_pos;
             }
         } else {
@@ -156,20 +152,31 @@ int text_box_update_state(text_box_t *text_box, bool hovering, bool lb, bool rb,
         }
         break;
 
-    case TEXT_BOX_SELECTED:
+    case TEXT_BOX_SELECTED_HOVERING:
         if (hovering) {
            if (lb && !rb) {
                 text_box->state = TEXT_BOX_PRESSING;
                 text_box->select_pos = text_box->cursor_pos;
             }
-        } else if (lb || rb) {
-             text_box->state = TEXT_BOX_NORMAL;
+        } else {
+            text_box->state = TEXT_BOX_SELECTED_NOT_HOVERING;
         }
         break;
     
+    case TEXT_BOX_SELECTED_NOT_HOVERING:
+        if (hovering) {
+            text_box->state = TEXT_BOX_SELECTED_HOVERING;
+        } else if (lb || rb) {
+            text_box->state = TEXT_BOX_NORMAL;
+        }
+        break;
+
     case TEXT_BOX_PRESSING:
         if (!(lb || rb)) {
-            text_box->state = TEXT_BOX_SELECTED;
+            if (hovering)
+                text_box->state = TEXT_BOX_SELECTED_HOVERING;
+            else
+                text_box->state = TEXT_BOX_SELECTED_NOT_HOVERING;
         }
 
         if (text_box->cursor_pos <= text_box->start_display && text_box->start_display > 0) {
@@ -207,8 +214,35 @@ static int text_box_delete_selected(text_box_t *text_box) {
     return 0;
 }
 
+static int text_box_copy(text_box_t *text_box) {
+    if (text_box->cursor_pos == text_box->select_pos) {
+        return 0;
+    }
+
+    uint8_t from = text_box->cursor_pos < text_box->select_pos ? text_box->cursor_pos : text_box->select_pos;
+    uint8_t to = text_box->cursor_pos > text_box->select_pos ? text_box->cursor_pos : text_box->select_pos;
+
+    if (clip_board == NULL) {
+        clip_board = malloc((to-from)*sizeof(char));
+        if (clip_board == NULL)
+            return 1;
+    } else {
+        char *clip_board_temp = realloc(clip_board, (to-from)*sizeof(char));
+        if (clip_board_temp == NULL)
+            return 1;
+        clip_board = clip_board_temp;
+    }
+    if (memcpy(clip_board, text_box->word+from, to-from) == NULL) {
+        printf("Error while copying\n");
+        return 1;
+    }
+    clip_board_size = to - from;
+
+    return 0;
+}
+
 int text_box_react_kbd(text_box_t *text_box, kbd_event_t kbd_event) {
-    if (text_box->state != TEXT_BOX_SELECTED) {
+    if (text_box->state != TEXT_BOX_SELECTED_HOVERING && text_box->state != TEXT_BOX_SELECTED_NOT_HOVERING) {
         return 0;
     }
 
@@ -220,26 +254,9 @@ int text_box_react_kbd(text_box_t *text_box, kbd_event_t kbd_event) {
         if (kbd_event.is_ctrl_pressed) {
             switch (kbd_event.char_key) {
             case 'C':
-                if (text_box->cursor_pos != text_box->select_pos) {
-                    uint8_t from = text_box->cursor_pos < text_box->select_pos ? text_box->cursor_pos : text_box->select_pos;
-                    uint8_t to = text_box->cursor_pos > text_box->select_pos ? text_box->cursor_pos : text_box->select_pos;
-
-                    if (clip_board == NULL) {
-                        clip_board = malloc((to-from)*sizeof(char));
-                        if (clip_board == NULL)
-                            return 1;
-                    } else {
-                        char *clip_board_temp = realloc(clip_board, (to-from)*sizeof(char));
-                        if (clip_board_temp == NULL)
-                            return 1;
-                        clip_board = clip_board_temp;
-                    }
-                    if (memcpy(clip_board, text_box->word+from, to-from) == NULL) {
-                        printf("Error while CTRL+C\n");
-                        return 1;
-                    }
-                    clip_board_size = to - from;
-                } 
+                if (text_box_copy(text_box) != 0) {
+                    return 1;
+                }
                 break;
             
             case 'V':
@@ -268,12 +285,10 @@ int text_box_react_kbd(text_box_t *text_box, kbd_event_t kbd_event) {
                 text_box->word_size += clip_board_size;
                 break;
 
-            case 'X': // TODO isto assim parece muito "aldrabado"?
-                      //      definitivamente sim xD
-                      //      cria uma funcao static auxiliar que faz copy por exemplo, e ambos chamam essa funcao
-                kbd_event.char_key = 'C';
-                if (text_box_react_kbd(text_box, kbd_event) != 0)
+            case 'X':
+                if (text_box_copy(text_box) != 0) {
                     return 1;
+                }
                 if (text_box_delete_selected(text_box) != 0) {
                     return 1;
                 }

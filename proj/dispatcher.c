@@ -121,7 +121,7 @@ int dispatch_mouse_packet(struct packet p) {
         if (canvas_get_state() != CANVAS_STATE_NORMAL) {
             cursor_set_state(CURSOR_PAINT);
         } else {
-            if (text_box_guesser->state != TEXT_BOX_NORMAL) {
+            if (text_box_guesser->state != TEXT_BOX_NORMAL && text_box_guesser->state != TEXT_BOX_SELECTED_NOT_HOVERING) {
                 cursor_set_state(CURSOR_WRITE);
             } else {
                 cursor_set_state(CURSOR_ARROW);

@@ -6,14 +6,15 @@
 #include "font.h"
 #include "keyboard.h"
 
-#define TEXT_BOX_GUESSER_X 30 //TODO ajustar para o certo
-#define TEXT_BOX_GUESSER_Y 700 //TODO ajustar para o certo
-#define TEXT_BOX_GUESSER_DISPLAY_SIZE 13 //TODO ajustar para o certo
+#define TEXT_BOX_GUESSER_X 30
+#define TEXT_BOX_GUESSER_Y 700
+#define TEXT_BOX_GUESSER_DISPLAY_SIZE 13
 
 typedef enum text_box_state {
     TEXT_BOX_NORMAL,
     TEXT_BOX_HOVERING,
-    TEXT_BOX_SELECTED,
+    TEXT_BOX_SELECTED_HOVERING,
+    TEXT_BOX_SELECTED_NOT_HOVERING,
     TEXT_BOX_PRESSING
 } text_box_state;
 
