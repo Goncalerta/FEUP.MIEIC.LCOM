@@ -9,6 +9,7 @@
 #include "textbox.h"
 #include "button.h"
 #include "clue.h"
+#include "menu.h"
 
 #include "xpm/clock_left.xpm"
 #include "xpm/clock_center.xpm"
@@ -124,7 +125,6 @@ int game_guess_word(char *guess) {
     return 0;
 }
 
-
 int game_change_selected_color() {
     selected_color++;
     if (selected_color >= NUM_COLORS_AVAILABLE) {
@@ -228,10 +228,7 @@ int game_load_assets(enum xpm_image_type type) {
     new_button(&b_redo, buf.h_res - BUTTONS_LEN - button_margin, button_y, BUTTONS_LEN, BUTTONS_LEN, event_redo);
     button_set_xpm_icon(&b_redo, redo_arrow);
 
-    dispatcher_bind_buttons(6, &b_pencil, &b_eraser, &b_color, &b_thickness, &b_undo, &b_redo);
-
     new_text_box(&text_box_guesser, TEXT_BOX_GUESSER_X + 4, TEXT_BOX_GUESSER_Y, TEXT_BOX_GUESSER_DISPLAY_SIZE);
-    dispatcher_bind_text_box(&text_box_guesser);
 
     score = 0;
     round = 0;
@@ -245,6 +242,11 @@ int game_init() {
     selected_color = 0;
     selected_thickness = 1;
     is_pencil_primary = true;
+
+    if (dispatcher_bind_buttons(6, &b_pencil, &b_eraser, &b_color, &b_thickness, &b_undo, &b_redo) != OK)
+        return 1;
+    if (dispatcher_bind_text_box(&text_box_guesser) != OK)
+        return 1;
     
     if (game_start_round() != OK)
         return 1;
@@ -252,9 +254,20 @@ int game_init() {
     return 0;
 }
 
+int game_resume() {
+    if (dispatcher_bind_buttons(6, &b_pencil, &b_eraser, &b_color, &b_thickness, &b_undo, &b_redo) != OK)
+        return 1;
+    if (dispatcher_bind_text_box(&text_box_guesser) != OK)
+        return 1;
+    
+    menu_set_state(GAME);
+    return 0;
+}
+
 int game_start_round() {
     round++;
     game_state = ROUND_ONGOING;
+    menu_set_state(WORD_SCREEN);
     current_clock_frame = 1;
     clock_frames_timer = 0;
     round_timer = ROUND_SECONDS * 60;
@@ -282,6 +295,8 @@ void game_round_timer_tick() {
             game_over();
         } else {
             round_timer--;
+            if (round_timer == (ROUND_SECONDS - 2) * 60)
+                menu_set_state(GAME);
         }
 
         if (clock_frames_timer == 10) {
@@ -402,5 +417,17 @@ int draw_game_bar() {
     button_draw(buf, b_undo);
     button_draw(buf, b_redo);
 
+    return 0;
+}
+
+int draw_game_correct_guess() {
+    frame_buffer_t buf = vg_get_back_buffer();
+
+    uint16_t x = (buf.h_res - CHAR_SPACE * strlen(correct_guess)) / 2;
+    uint16_t y = buf.v_res - GAME_BAR_INNER_HEIGHT/2;
+
+    if (font_draw_string(buf, correct_guess, x, y, 0, 100) != OK)
+        return 1;
+    
     return 0;
 }

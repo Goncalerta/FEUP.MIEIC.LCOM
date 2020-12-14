@@ -7,7 +7,7 @@
 static xpm_image_t font;
 
 int font_load(enum xpm_image_type type) {
-    if (xpm_load(font_xpm, type, &font) == NULL) {
+    if (xpm_load(xpm_font, type, &font) == NULL) {
         printf("Erro loading font\n");
         return 1;
     }

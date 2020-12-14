@@ -11,6 +11,7 @@
 #include "game.h"
 #include "textbox.h"
 #include "button.h"
+#include "menu.h"
 
 static bool end = false;
 size_t num_listening_buttons = 0;
@@ -40,8 +41,14 @@ int dispatcher_bind_text_box(text_box_t *text_box) {
 }
 
 int event_new_game() {
+    menu_set_state(GAME);
     canvas_init(vg_get_hres(), vg_get_vres() - GAME_BAR_HEIGHT);
     game_init();
+    return 0;
+}
+
+int event_end_program() {
+    end = true;
     return 0;
 }
 
@@ -90,38 +97,55 @@ int dispatch_mouse_packet(struct packet p) {
         }
     }
 
-    if (!hovering && text_box_is_hovering(*text_box_guesser, cursor_get_x(), cursor_get_y())) {
-        hovering = true;
-        if (text_box_update_state(text_box_guesser, true, p.lb, p.rb, cursor_get_x(), cursor_get_y()) != OK)
-            return 1;
-    } else {
-        if (text_box_update_state(text_box_guesser, false, p.lb, p.rb, cursor_get_x(), cursor_get_y()) != OK)
-            return 1;
-    }
-
-    if (!hovering && canvas_is_hovering(cursor_get_x(), cursor_get_y())) {
-        hovering = true;
-        if (canvas_update_state(true, p.lb, p.rb) != OK)
-            return 1;
-    } else {
-        if (canvas_update_state(false, p.lb, p.rb) != OK)
-            return 1;
-    }
-    
-    if (canvas_get_state() != CANVAS_STATE_NORMAL) {
-        cursor_set_state(CURSOR_PAINT);
-    }  else {
-        if (text_box_guesser->state != TEXT_BOX_NORMAL) {
-            cursor_set_state(CURSOR_WRITE);
-        } else {
-            cursor_set_state(CURSOR_ARROW);
+    if (menu_get_state() == GAME) {
+        if (text_box_guesser != NULL) {
+            if (!hovering && text_box_is_hovering(*text_box_guesser, cursor_get_x(), cursor_get_y())) {
+                hovering = true;
+                if (text_box_update_state(text_box_guesser, true, p.lb, p.rb, cursor_get_x(), cursor_get_y()) != OK)
+                    return 1;
+            } else {
+                if (text_box_update_state(text_box_guesser, false, p.lb, p.rb, cursor_get_x(), cursor_get_y()) != OK)
+                    return 1;
+            }
         }
+
+        if (!hovering && canvas_is_hovering(cursor_get_x(), cursor_get_y())) {
+            hovering = true;
+            if (canvas_update_state(true, p.lb, p.rb) != OK)
+                return 1;
+        } else {
+            if (canvas_update_state(false, p.lb, p.rb) != OK)
+                return 1;
+        }
+
+        if (canvas_get_state() != CANVAS_STATE_NORMAL) {
+            cursor_set_state(CURSOR_PAINT);
+        } else {
+            if (text_box_guesser->state != TEXT_BOX_NORMAL) {
+                cursor_set_state(CURSOR_WRITE);
+            } else {
+                cursor_set_state(CURSOR_ARROW);
+            }
+        }
+
+    } else {
+        cursor_set_state(CURSOR_ARROW);
     }
 
     return 0;
 }
 
 int dispatch_keyboard_event(kbd_event_t kbd_event) {
+    if (kbd_event.key == ESC) {
+        if (menu_set_pause_menu() != OK)
+            return 1;
+        cursor_set_state(CURSOR_ARROW);
+    }
+
+    // TODO it can be better organized later on
+    if (menu_get_state() != GAME)
+        return 0;
+    
     if (text_box_react_kbd(text_box_guesser, kbd_event) != OK) {
         return 1;
     }
@@ -153,15 +177,14 @@ int dispatch_keyboard_event(kbd_event_t kbd_event) {
         canvas_redo_stroke(); // no need to crash if empty
     }
 
-    if (kbd_event.key == ESC) {
-        end = true;
-    }
-    
     return 0;
 }
 
 int dispatch_timer_tick() {
-    game_round_timer_tick();
+    menu_state_t state = menu_get_state();
+    if (state == GAME || state == WORD_SCREEN)
+        game_round_timer_tick();
+
     if (draw_frame() != OK) {
         printf("error while drawing frame\n");
         return 1;
@@ -171,14 +194,25 @@ int dispatch_timer_tick() {
 }
 
 int draw_frame() {
-    if (canvas_draw_frame(0) != OK)
-        return 1;
-    if (draw_game_bar() != OK)
-        return 1;
+    menu_state_t state = menu_get_state();
+
+    if(state != MAIN_MENU) {
+        if (canvas_draw_frame(0) != OK)
+            return 1;
+        if (draw_game_bar() != OK)
+            return 1;
+    }
+
+    if (state != GAME) {
+        if (menu_draw() != OK)
+            return 1;
+    }
+
     if (cursor_draw() != OK)
         return 1;
     if (vg_flip_page() != OK)
         return 1;
+
     return 0;
 }
 

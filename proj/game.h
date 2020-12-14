@@ -25,8 +25,10 @@ void game_toggle_pencil_eraser();
 int game_load_assets(enum xpm_image_type type);
 int game_start_round();
 int game_init();
+int game_resume();
 void game_round_timer_tick();
 int draw_game_bar();
+int draw_game_correct_guess();
 bool game_is_round_ongoing();
 
 #endif /* __GAME_H */

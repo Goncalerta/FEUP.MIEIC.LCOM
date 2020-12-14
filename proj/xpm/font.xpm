@@ -4,10 +4,12 @@
 #include <lcom/lcf.h>
 
 /* XPM */
-static const char * const font_xpm[] = {
-"524 48 2 1",
+static const char * const xpm_font[] = {
+/* columns rows colors chars-per-pixel */
+"524 48 2 1 ",
 "  c None",
 ". c #000000",
+/* pixels */
 "                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            ",
 "                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            ",
 "                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            ",

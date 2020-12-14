@@ -17,6 +17,7 @@
 #include "dispatcher.h"
 #include "textbox.h"
 #include "game.h"
+#include "menu.h"
 
 int main(int argc, char *argv[]) {
   // sets the language of LCF messages (can be either EN-US or PT-PT)
@@ -67,7 +68,9 @@ int (proj_main_loop)(int argc, char *argv[]) {
     font_load(image_type); 
     game_load_assets(image_type);
     cursor_init(image_type);
-    event_new_game();
+    menu_init(image_type);
+    if (menu_set_main_menu() != OK)
+        return 1;
     // ^^
 
     int ipc_status, r;
