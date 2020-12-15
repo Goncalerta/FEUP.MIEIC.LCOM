@@ -130,7 +130,7 @@ int game_change_selected_color() {
     if (selected_color >= NUM_COLORS_AVAILABLE) {
         selected_color = 0;
     }
-    button_set_circle_icon(&b_color, 15, canvas_pallete[selected_color]);
+    button_set_circle_icon(&b_color, BUTTON_CIRCLE_RADIUS_DEFAULT, canvas_pallete[selected_color]);
     return 0;
 }
 
@@ -139,7 +139,7 @@ int game_change_selected_thickness() {
     if (selected_thickness >= NUM_THICKNESSES_AVAILABLE) {
         selected_thickness = 0;
     }
-    button_set_circle_icon(&b_thickness, valid_thickness[selected_thickness], 0x000000);
+    button_set_circle_icon(&b_thickness, valid_thickness[selected_thickness], BUTTON_CIRCLE_DEFAULT_COLOR);
     return 0;
 }
 
@@ -210,11 +210,11 @@ int game_load_assets(enum xpm_image_type type) {
 
     button_y += BUTTONS_LEN + button_margin;
     new_button(&b_color, buf.h_res - BUTTONS_LEN - button_margin, button_y, BUTTONS_LEN, BUTTONS_LEN, game_change_selected_color);
-    button_set_circle_icon(&b_color, 15, canvas_pallete[selected_color]);
+    button_set_circle_icon(&b_color, BUTTON_CIRCLE_RADIUS_DEFAULT, canvas_pallete[selected_color]);
 
     button_y += BUTTONS_LEN + button_margin;
     new_button(&b_thickness, buf.h_res - BUTTONS_LEN - button_margin, button_y, BUTTONS_LEN, BUTTONS_LEN, game_change_selected_thickness);
-    button_set_circle_icon(&b_thickness, valid_thickness[selected_thickness], 0x000000);
+    button_set_circle_icon(&b_thickness, valid_thickness[selected_thickness], BUTTON_CIRCLE_DEFAULT_COLOR);
 
     button_y += BUTTONS_LEN + button_margin;
     xpm_image_t undo_arrow;
@@ -247,6 +247,13 @@ int game_init() {
         return 1;
     if (dispatcher_bind_text_box(&text_box_guesser) != OK)
         return 1;
+
+    if (game_set_pencil_primary() != OK)
+        return 1;
+
+    button_set_circle_icon(&b_color, BUTTON_CIRCLE_RADIUS_DEFAULT, canvas_pallete[selected_color]);
+    button_set_circle_icon(&b_thickness, valid_thickness[selected_thickness], BUTTON_CIRCLE_DEFAULT_COLOR);
+    text_box_unselect(&text_box_guesser);
     
     if (game_start_round() != OK)
         return 1;

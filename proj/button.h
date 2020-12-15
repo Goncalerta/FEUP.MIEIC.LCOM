@@ -4,6 +4,9 @@
 #include <lcom/lcf.h>
 #include "graphics.h"
 
+#define BUTTON_CIRCLE_RADIUS_DEFAULT 15
+#define BUTTON_CIRCLE_DEFAULT_COLOR 0x000000
+
 typedef int (*button_action)();
 
 typedef enum button_state {

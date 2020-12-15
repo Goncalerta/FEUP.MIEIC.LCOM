@@ -434,6 +434,11 @@ int text_box_retrieve_if_ready(text_box_t *text_box, char **content) {
     return 0;
 }
 
+void text_box_unselect(text_box_t *text_box) {
+    text_box->select_pos = text_box->cursor_pos;
+    text_box->state = TEXT_BOX_NORMAL;
+}
+
 int text_box_exit(text_box_t *text_box) {
     if (text_box->word == NULL) {
         return 0;

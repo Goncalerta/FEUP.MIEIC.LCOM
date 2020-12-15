@@ -50,6 +50,8 @@ int text_box_react_kbd(text_box_t *text_box, kbd_event_t kbd_event);
 
 int text_box_retrieve_if_ready(text_box_t *text_box, char **text_box_content);
 
+void text_box_unselect(text_box_t *text_box);
+
 int text_box_exit(text_box_t *text_box); // TODO where's the best place to call this?
 
 int text_box_clip_board_exit(); // TODO where's the best place to call this?
