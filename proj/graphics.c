@@ -48,18 +48,63 @@ or both 1) and 2) work with both
 */
 
 int vb_fill_screen(frame_buffer_t buf, uint32_t color) {
-    uint8_t *pixel_mem_pos = (uint8_t*) buf.buf;
 
-    if (color > COLOR_CAP_BYTES_NUM(buf.bytes_per_pixel)) {
-        printf("Invlid color argument. Too large\n");
-        return 1;
+    // if (color > COLOR_CAP_BYTES_NUM(buf.bytes_per_pixel)) {
+    //     printf("Invlid color argument. Too large\n");
+    //     return 1;
+    // }
+
+    // line_mult = buf.h_res * buf.bytes_per_pixel;
+    // for (size_t px = 0; px < line_mul; px += buf.bytes_per_pixel) {
+    //     if (memcpy(pixel_mem_pos + px, &color, buf.bytes_per_pixel) == NULL)
+    //         return 1;
+    // }
+
+    // for (uint8_t *px = begin; px < end; px += buf.bytes_per_pixel) {
+    //     if (memcpy(px, &color, buf.bytes_per_pixel) == NULL)
+    //         return 1;
+    // }
+
+    
+    // uint8_t *begin = buf.buf;
+    // size_t line_mul = buf.h_res * buf.bytes_per_pixel;
+    // uint8_t *first_line = begin + line_mul;
+    // uint8_t *end = begin + buf.v_res * line_mul;
+
+    // for (uint8_t *px = begin; px < first_line; px += buf.bytes_per_pixel) {
+    //     if (memcpy(px, &color, buf.bytes_per_pixel) == NULL)
+    //         return 1;
+    // }
+
+    // for (uint8_t *px = begin; px < end; px += line_mul) {
+    //     if (memcpy(px, begin, line_mul) == NULL)
+    //         return 1;
+    // }
+
+
+    // TODO is this worth it for speed?
+    uint8_t *begin = buf.buf;
+    size_t half_len = buf.v_res * buf.h_res * buf.bytes_per_pixel/2;
+
+    memcpy(begin, &color, buf.bytes_per_pixel);
+
+    for (size_t size = buf.bytes_per_pixel; size < half_len; size *= 2) {
+        if (memcpy(begin + size, begin, size) == NULL)
+            return 1;
     }
 
-    for (size_t px = 0; px < buf.h_res * buf.v_res * buf.bytes_per_pixel; px += buf.bytes_per_pixel) {
-        for (uint8_t i = 0; i < buf.bytes_per_pixel; i++) {
-            pixel_mem_pos[px + i] = (uint8_t) COLOR_BYTE(color, i);
-        }
-    }
+    memcpy(begin + half_len, begin, half_len);
+
+
+    // for (uint8_t *px = begin; px < first_line; px += buf.bytes_per_pixel) {
+    //     if (memcpy(px, &color, buf.bytes_per_pixel) == NULL)
+    //         return 1;
+    // }
+
+    // for (uint8_t *px = begin; px < end; px += line_mul) {
+    //     if (memcpy(px, begin, line_mul) == NULL)
+    //         return 1;
+    // }
     
     return 0;
 }
