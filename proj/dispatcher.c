@@ -14,9 +14,10 @@
 #include "menu.h"
 
 static bool end = false;
-size_t num_listening_buttons = 0;
+static size_t num_listening_buttons = 0;
 static button_t **listening_buttons = NULL;
-static text_box_t * text_box_guesser = NULL;
+static size_t num_listening_text_boxes = 0;
+static text_box_t **listening_text_boxes = NULL;
 
 int dispatcher_bind_buttons(size_t number_of_buttons, ...) {
     if (listening_buttons != NULL)
@@ -35,8 +36,20 @@ int dispatcher_bind_buttons(size_t number_of_buttons, ...) {
     return 0;
 }
 
-int dispatcher_bind_text_box(text_box_t *text_box) {
-    text_box_guesser = text_box;
+int dispatcher_bind_text_boxes(size_t number_of_text_boxes, ...) {
+    if (listening_text_boxes != NULL)
+        free(listening_text_boxes);
+
+    num_listening_text_boxes = number_of_text_boxes;
+    listening_text_boxes = malloc(number_of_text_boxes * sizeof(text_box_t*));
+    
+    va_list ap;
+    va_start(ap, number_of_text_boxes);
+    for (size_t i = 0; i < number_of_text_boxes; i++) {
+        listening_text_boxes[i] = va_arg(ap, text_box_t*);
+    }
+    va_end(ap);
+
     return 0;
 }
 
@@ -96,41 +109,43 @@ int dispatch_mouse_packet(struct packet p) {
                 return 1;
         }
     }
-
-    if (menu_get_state() == GAME) {
-        if (text_box_guesser != NULL) {
-            if (!hovering && text_box_is_hovering(*text_box_guesser, cursor_get_x(), cursor_get_y())) {
-                hovering = true;
-                if (text_box_update_state(text_box_guesser, true, p.lb, p.rb, cursor_get_x(), cursor_get_y()) != OK)
-                    return 1;
-            } else {
-                if (text_box_update_state(text_box_guesser, false, p.lb, p.rb, cursor_get_x(), cursor_get_y()) != OK)
-                    return 1;
-            }
-        }
-
-        if (!hovering && canvas_is_hovering(cursor_get_x(), cursor_get_y())) {
+    
+    for (size_t i = 0; i < num_listening_text_boxes; i++) {
+        text_box_t *text_box = listening_text_boxes[i];
+        if (!hovering && text_box_is_hovering(*text_box, cursor_get_x(), cursor_get_y())) {
             hovering = true;
-            if (canvas_update_state(true, p.lb, p.rb) != OK)
+            if (text_box_update_state(text_box, true, p.lb, p.rb, cursor_get_x(), cursor_get_y()) != OK)
                 return 1;
         } else {
-            if (canvas_update_state(false, p.lb, p.rb) != OK)
+            if (text_box_update_state(text_box, false, p.lb, p.rb, cursor_get_x(), cursor_get_y()) != OK)
                 return 1;
         }
-
-        if (canvas_get_state() != CANVAS_STATE_NORMAL) {
-            cursor_set_state(CURSOR_PAINT);
+        if (text_box->state != TEXT_BOX_NORMAL && text_box->state != TEXT_BOX_SELECTED_NOT_HOVERING) {
+            cursor_set_state(CURSOR_WRITE);
         } else {
-            if (text_box_guesser->state != TEXT_BOX_NORMAL && text_box_guesser->state != TEXT_BOX_SELECTED_NOT_HOVERING) {
-                cursor_set_state(CURSOR_WRITE);
-            } else {
-                cursor_set_state(CURSOR_ARROW);
-            }
+            cursor_set_state(CURSOR_ARROW);
         }
-
-    } else {
-        cursor_set_state(CURSOR_ARROW);
     }
+
+    if (!hovering && canvas_is_hovering(cursor_get_x(), cursor_get_y())) {
+        hovering = true;
+        if (canvas_update_state(true, p.lb, p.rb) != OK)
+            return 1;
+    } else {
+        if (canvas_update_state(false, p.lb, p.rb) != OK)
+            return 1;
+    }
+
+    if (canvas_get_state() != CANVAS_STATE_NORMAL) {
+        cursor_set_state(CURSOR_PAINT);
+    } 
+    // else {
+    //     if (text_box_guesser->state != TEXT_BOX_NORMAL && text_box_guesser->state != TEXT_BOX_SELECTED_NOT_HOVERING) {
+    //         cursor_set_state(CURSOR_WRITE);
+    //     } else {
+    //         cursor_set_state(CURSOR_ARROW);
+    //     }
+    // }
 
     return 0;
 }
@@ -146,29 +161,33 @@ int dispatch_keyboard_event(kbd_event_t kbd_event) {
     if (menu_get_state() != GAME)
         return 0;
     
-    if (text_box_react_kbd(text_box_guesser, kbd_event) != OK) {
-        return 1;
+    for (size_t i = 0; i < num_listening_text_boxes; i++) {
+        text_box_t *text_box = listening_text_boxes[i];
+        if (text_box_react_kbd(text_box, kbd_event) != OK) {
+            return 1;
+        }
+
+        //TODO not the right place nor the right way
+        char *guess = NULL;
+        if (text_box_retrieve_if_ready(text_box, &guess) != OK) {
+            return 1;
+        }
+
+        if (guess != NULL && strncmp(guess, "", 1)) {
+            if (game_guess_word(guess) != OK) {
+                return 1;
+            }
+        }
     }
     
     // TODO this is a temporary hack
     if (!game_is_round_ongoing()) {
-        text_box_guesser->is_ready = false;
+        dispatcher_bind_text_boxes(0);
     }
 
-    //TODO not sure if the right place and right way
-    char *guess = NULL;
-    if (text_box_retrieve_if_ready(text_box_guesser, &guess) != OK) {
-        return 1;
-    }
-
-    if (guess != NULL && strncmp(guess, "", 1)) {
-        if (game_guess_word(guess) != OK) {
-            return 1;
-        }
-    }
+    
 
     // TODO o keyboard só afetar o que está selecionado
-
     if (kbd_event.key == CHAR && kbd_event.char_key == 'Z' && kbd_event.is_ctrl_pressed) {
         canvas_undo_stroke(); // no need to crash if empty
     }

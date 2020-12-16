@@ -245,7 +245,7 @@ int game_init() {
 
     if (dispatcher_bind_buttons(6, &b_pencil, &b_eraser, &b_color, &b_thickness, &b_undo, &b_redo) != OK)
         return 1;
-    if (dispatcher_bind_text_box(&text_box_guesser) != OK)
+    if (dispatcher_bind_text_boxes(1, &text_box_guesser) != OK)
         return 1;
 
     if (game_set_pencil_primary() != OK)
@@ -264,7 +264,7 @@ int game_init() {
 int game_resume() {
     if (dispatcher_bind_buttons(6, &b_pencil, &b_eraser, &b_color, &b_thickness, &b_undo, &b_redo) != OK)
         return 1;
-    if (dispatcher_bind_text_box(&text_box_guesser) != OK)
+    if (dispatcher_bind_text_boxes(1, &text_box_guesser) != OK)
         return 1;
     
     menu_set_state(GAME);
