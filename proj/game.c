@@ -271,6 +271,7 @@ int game_resume() {
         return 1;
     if (dispatcher_bind_text_boxes(1, &text_box_guesser) != OK)
         return 1;
+    dispatcher_bind_canvas(true);
     menu_set_state(GAME);
     
     return 0;
@@ -307,8 +308,6 @@ void game_round_timer_tick() {
             game_over();
         } else {
             round_timer--;
-            if (round_timer == (ROUND_SECONDS - 2) * 60)
-                menu_set_state(GAME);
         }
 
         if (clock_frames_timer == 10) {

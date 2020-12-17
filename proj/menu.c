@@ -103,7 +103,11 @@ void menu_set_state(menu_state_t state) {
 int menu_set_main_menu() {
     if (dispatcher_bind_buttons(2, &b_new_game, &b_end_program) != 0)
         return 1;
+    if (dispatcher_bind_text_boxes(0) != 0)
+        return 1;
+    dispatcher_bind_canvas(false);
 
+    cursor_set_state(CURSOR_ARROW);
     menu_state = MAIN_MENU;
     return 0;
 }
@@ -111,7 +115,11 @@ int menu_set_main_menu() {
 int menu_set_pause_menu() {
     if (dispatcher_bind_buttons(2, &b_resume, &b_back_to_main_menu) != 0)
         return 1;
+    if (dispatcher_bind_text_boxes(0) != 0)
+        return 1;
+    dispatcher_bind_canvas(false);
 
+    cursor_set_state(CURSOR_ARROW);
     menu_state = PAUSE_MENU;
     return 0;
 }

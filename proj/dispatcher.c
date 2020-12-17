@@ -54,6 +54,10 @@ int dispatcher_bind_text_boxes(size_t number_of_text_boxes, ...) {
     return 0;
 }
 
+void dispatcher_bind_canvas(bool is_to_bind) { // TODO is this worth doing like the buttons and textbox?
+    bound_canvas = is_to_bind;
+}
+
 int event_new_game() {
     canvas_init(vg_get_hres(), vg_get_vres() - GAME_BAR_HEIGHT);
     game_init();
@@ -103,7 +107,6 @@ int dispatch_mouse_packet(struct packet p) {
         if (p.lb || p.rb) {
             game_resume();
             game_set_state(ROUND_ONGOING);
-            bound_canvas = true;
         }
         return 0;
     } 
@@ -168,7 +171,6 @@ int dispatch_keyboard_event(kbd_event_t kbd_event) {
         if (kbd_event.key != NO_KEY) {
             game_set_state(ROUND_ONGOING);
             game_resume();
-            bound_canvas = true;
         }
         return 0;
     }
@@ -176,14 +178,10 @@ int dispatch_keyboard_event(kbd_event_t kbd_event) {
     if (kbd_event.key == ESC) {
         if (menu_get_state() == PAUSE_MENU) {
             game_resume();
-            bound_canvas = true;
         } else if (menu_get_state() == GAME) {
             if (menu_set_pause_menu() != OK) 
                 return 1;
-            bound_canvas = false;
-            cursor_set_state(CURSOR_ARROW);
         }
-        
     }
 
     // TODO doesnt sound right
