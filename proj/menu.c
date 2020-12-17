@@ -13,7 +13,6 @@
 #include "xpm/menu_resume.xpm"
 #include "xpm/menu_main_menu.xpm"
 
-
 #define MENU_BUTTON_WIDTH 320
 #define MENU_BUTTON_HEIGHT 100
 #define MENU_BUTTON_DISTANCE 50
@@ -81,6 +80,8 @@ int menu_draw() {
         break;
     
     case WORD_SCREEN:
+        if (vb_fill_screen(buf, MENU_BACKGROUND_COLOR) != 0)
+            return 1;
         if (draw_game_correct_guess() != OK)
             return 1;
         break;

@@ -14,6 +14,7 @@
 #include "menu.h"
 
 static bool end = false;
+static bool bound_canvas = false;
 static size_t num_listening_buttons = 0;
 static button_t **listening_buttons = NULL;
 static size_t num_listening_text_boxes = 0;
@@ -54,7 +55,6 @@ int dispatcher_bind_text_boxes(size_t number_of_text_boxes, ...) {
 }
 
 int event_new_game() {
-    menu_set_state(GAME);
     canvas_init(vg_get_hres(), vg_get_vres() - GAME_BAR_HEIGHT);
     game_init();
     return 0;
@@ -98,6 +98,17 @@ int dispatch_mouse_packet(struct packet p) {
     cursor_move(p.delta_x, p.delta_y);
     bool hovering = false;
 
+    // TODO it can be better organized later on
+    if (menu_get_state() == WORD_SCREEN) {
+        if (p.lb || p.rb) {
+            menu_set_state(GAME);
+            game_resume();
+            game_set_state(ROUND_ONGOING);
+            bound_canvas = true;
+        }
+        return 0;
+    } 
+
     for (size_t i = 0; i < num_listening_buttons; i++) {
         button_t *button = listening_buttons[i];
         if (!hovering && button_is_hovering(*button, cursor_get_x(), cursor_get_y())) {
@@ -127,18 +138,20 @@ int dispatch_mouse_packet(struct packet p) {
         }
     }
 
-    if (!hovering && canvas_is_hovering(cursor_get_x(), cursor_get_y())) {
-        hovering = true;
-        if (canvas_update_state(true, p.lb, p.rb) != OK)
-            return 1;
-    } else {
-        if (canvas_update_state(false, p.lb, p.rb) != OK)
-            return 1;
-    }
+    if (bound_canvas) {
+        if (!hovering && canvas_is_hovering(cursor_get_x(), cursor_get_y())) {
+            hovering = true;
+            if (canvas_update_state(true, p.lb, p.rb) != OK)
+                return 1;
+        } else {
+            if (canvas_update_state(false, p.lb, p.rb) != OK)
+                return 1;
+        }
 
-    if (canvas_get_state() != CANVAS_STATE_NORMAL) {
-        cursor_set_state(CURSOR_PAINT);
-    } 
+        if (canvas_get_state() != CANVAS_STATE_NORMAL) {
+            cursor_set_state(CURSOR_PAINT);
+        } 
+    }
     // else {
     //     if (text_box_guesser->state != TEXT_BOX_NORMAL && text_box_guesser->state != TEXT_BOX_SELECTED_NOT_HOVERING) {
     //         cursor_set_state(CURSOR_WRITE);
@@ -151,15 +164,35 @@ int dispatch_mouse_packet(struct packet p) {
 }
 
 int dispatch_keyboard_event(kbd_event_t kbd_event) {
-    if (kbd_event.key == ESC) {
-        if (menu_set_pause_menu() != OK)
-            return 1;
-        cursor_set_state(CURSOR_ARROW);
+    // TODO it can be better organized later on
+    if (menu_get_state() == WORD_SCREEN) {
+        if (kbd_event.key != NO_KEY) {
+            menu_set_state(GAME);
+            game_set_state(ROUND_ONGOING);
+            game_resume();
+            bound_canvas = true;
+        }
+        return 0;
     }
 
-    // TODO it can be better organized later on
-    if (menu_get_state() != GAME)
+    if (kbd_event.key == ESC) {
+        if (menu_get_state() == PAUSE_MENU) {
+            menu_set_state(GAME);
+            game_resume();
+            bound_canvas = true;
+        } else if (menu_get_state() == GAME) {
+            if (menu_set_pause_menu() != OK) 
+                return 1;
+            bound_canvas = false;
+            cursor_set_state(CURSOR_ARROW);
+        }
+        
+    }
+
+    // TODO doesnt sound right
+    if (menu_get_state() != GAME) {
         return 0;
+    }
     
     for (size_t i = 0; i < num_listening_text_boxes; i++) {
         text_box_t *text_box = listening_text_boxes[i];
@@ -188,12 +221,14 @@ int dispatch_keyboard_event(kbd_event_t kbd_event) {
     
 
     // TODO o keyboard só afetar o que está selecionado
-    if (kbd_event.key == CHAR && kbd_event.char_key == 'Z' && kbd_event.is_ctrl_pressed) {
-        canvas_undo_stroke(); // no need to crash if empty
-    }
+    if (bound_canvas) {
+        if (kbd_event.key == CHAR && kbd_event.char_key == 'Z' && kbd_event.is_ctrl_pressed) {
+            canvas_undo_stroke(); // no need to crash if empty
+        }
 
-    if (kbd_event.key == CHAR && kbd_event.char_key == 'Y' && kbd_event.is_ctrl_pressed) {
-        canvas_redo_stroke(); // no need to crash if empty
+        if (kbd_event.key == CHAR && kbd_event.char_key == 'Y' && kbd_event.is_ctrl_pressed) {
+            canvas_redo_stroke(); // no need to crash if empty
+        }
     }
 
     return 0;
@@ -201,7 +236,7 @@ int dispatch_keyboard_event(kbd_event_t kbd_event) {
 
 int dispatch_timer_tick() {
     menu_state_t state = menu_get_state();
-    if (state == GAME || state == WORD_SCREEN)
+    if (state == GAME || state == PAUSE_MENU)
         game_round_timer_tick();
 
     if (draw_frame() != OK) {
@@ -215,7 +250,7 @@ int dispatch_timer_tick() {
 int draw_frame() {
     menu_state_t state = menu_get_state();
 
-    if(state != MAIN_MENU) {
+    if(state != MAIN_MENU && state != WORD_SCREEN) {
         if (canvas_draw_frame(0) != OK)
             return 1;
         if (draw_game_bar() != OK)

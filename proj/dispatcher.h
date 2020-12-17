@@ -6,7 +6,7 @@
 #include "textbox.h"
 
 int dispatcher_bind_buttons(size_t number_of_buttons, ...);
-int dispatcher_bind_text_boxes(size_t number_of_text_boxes, ...); // TODO se chegarmos a ter mais, fazer semelhante à dos botões
+int dispatcher_bind_text_boxes(size_t number_of_text_boxes, ...);
 int dispatch_mouse_packet(struct packet p);
 int dispatch_keyboard_event(kbd_event_t s);
 int dispatch_timer_tick();

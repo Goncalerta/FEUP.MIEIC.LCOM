@@ -6,6 +6,12 @@
 
 //TODO maybe program_state_t? doesn't seem right to have "WORD_SCREEN" & "GAME" as menu states
 // maybe merge menu_state_t with game_state_t to form a program_state_t ?
+
+    // menu_state_t and game_state_t are two very different (and independent) things, they cannot be merged
+    // menu_state_t says in which part of the menu the player is (this includes the game itself) [this is not synchronized between computers]
+    // game_state_t says what's the state of the round (if it is ongoing, if the guess was correct, etc)  [this is synchronized between computers]
+    // You may be ingame or paused both with round ongoing or gameover, they really are independent
+    // I'm not necessarily againts naming it program_state_t but I personally think menu_state_t makes more sense
 typedef enum menu_state_t {
     MAIN_MENU,
     WORD_SCREEN,

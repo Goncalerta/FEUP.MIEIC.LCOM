@@ -78,6 +78,11 @@ static int round;
 static text_box_t text_box_guesser;
 static button_t b_pencil, b_eraser, b_color, b_thickness, b_undo, b_redo;
 
+int game_set_state(game_state_t state) {
+    game_state = state;
+    return 0;
+}
+
 bool game_is_round_ongoing() {
     return game_state == ROUND_ONGOING;
 }
@@ -267,14 +272,12 @@ int game_resume() {
     if (dispatcher_bind_text_boxes(1, &text_box_guesser) != OK)
         return 1;
     
-    menu_set_state(GAME);
     return 0;
 }
 
 int game_start_round() {
     round++;
-    game_state = ROUND_ONGOING;
-    menu_set_state(WORD_SCREEN);
+    game_state = ROUND_UNSTARTED;
     current_clock_frame = 1;
     clock_frames_timer = 0;
     round_timer = ROUND_SECONDS * 60;
@@ -284,6 +287,7 @@ int game_start_round() {
     if (new_word_clue(&word_clue, correct_guess) != OK)
         return 1;
     
+    menu_set_state(WORD_SCREEN);
     return 0;
 }
 
@@ -319,13 +323,20 @@ void game_round_timer_tick() {
 
         break;
     case GAME_OVER:
+        if (end_screen_timer != 0) end_screen_timer--;
+        if (end_screen_timer == 0) {
+            menu_set_main_menu();
+        }
+        break;
     case ROUND_CORRECT_GUESS:
         if (end_screen_timer != 0) end_screen_timer--;
         if (end_screen_timer == 0) {
             event_end_round();
         }
         break;
-    } 
+    case ROUND_UNSTARTED:
+        break;
+    }
 }
 
 int draw_game_bar() {
