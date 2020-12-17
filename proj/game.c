@@ -23,6 +23,10 @@
 #include "xpm/correct.xpm"
 #include "xpm/gameover.xpm"
 
+/*  * TODO the program crashes if, after a round is won, the player is drawing (during the transition to word screen)
+ *
+*/
+
 #define ROUND_SECONDS 60
 #define BUTTONS_LEN 75
 #define END_ROUND_DELAY 3

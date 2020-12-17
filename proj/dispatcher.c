@@ -72,6 +72,7 @@ int event_end_program() {
 int event_end_round() {
     clear_canvas();
     game_start_round();
+    cursor_set_state(CURSOR_ARROW);
     return 0;
 }
 
