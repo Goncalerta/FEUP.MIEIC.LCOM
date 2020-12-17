@@ -101,7 +101,6 @@ int dispatch_mouse_packet(struct packet p) {
     // TODO it can be better organized later on
     if (menu_get_state() == WORD_SCREEN) {
         if (p.lb || p.rb) {
-            menu_set_state(GAME);
             game_resume();
             game_set_state(ROUND_ONGOING);
             bound_canvas = true;
@@ -167,7 +166,6 @@ int dispatch_keyboard_event(kbd_event_t kbd_event) {
     // TODO it can be better organized later on
     if (menu_get_state() == WORD_SCREEN) {
         if (kbd_event.key != NO_KEY) {
-            menu_set_state(GAME);
             game_set_state(ROUND_ONGOING);
             game_resume();
             bound_canvas = true;
@@ -177,7 +175,6 @@ int dispatch_keyboard_event(kbd_event_t kbd_event) {
 
     if (kbd_event.key == ESC) {
         if (menu_get_state() == PAUSE_MENU) {
-            menu_set_state(GAME);
             game_resume();
             bound_canvas = true;
         } else if (menu_get_state() == GAME) {

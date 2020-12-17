@@ -271,6 +271,7 @@ int game_resume() {
         return 1;
     if (dispatcher_bind_text_boxes(1, &text_box_guesser) != OK)
         return 1;
+    menu_set_state(GAME);
     
     return 0;
 }
