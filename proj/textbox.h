@@ -54,6 +54,6 @@ void text_box_unselect(text_box_t *text_box);
 
 int text_box_exit(text_box_t *text_box); // TODO where's the best place to call this?
 
-int text_box_clip_board_exit(); // TODO where's the best place to call this?
+int text_box_clip_board_exit();
 
 #endif /* __TEXTBOX_H */

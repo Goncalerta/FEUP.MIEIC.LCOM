@@ -10,6 +10,7 @@
 #include "button.h"
 #include "clue.h"
 #include "menu.h"
+#include "rtc.h"
 
 #include "xpm/clock_left.xpm"
 #include "xpm/clock_center.xpm"
@@ -23,11 +24,14 @@
 #include "xpm/correct.xpm"
 #include "xpm/gameover.xpm"
 
-/*  * TODO the program crashes if, after a round is won, the player is drawing (during the transition to word screen)
- *
+/*  * TODO 
+ *  *   the program crashes if, after a round is won, the player is drawing (during the transition to word screen)
+ *  *       in fact, even though the player can draw, if the text box is selected, it's not unselected if he begins to draw after round win
+ *  *   the time interval between clues, seems uncoordinated with the round clock (although it seems pretty accurate when looking to real time)
 */
 
 #define ROUND_SECONDS 60
+#define ROUND_TICKS ((ROUND_SECONDS)*60)
 #define BUTTONS_LEN 75
 #define END_ROUND_DELAY 3
 #define WRONG_GUESS_PENALTY 5
@@ -55,6 +59,7 @@ static size_t num_guesses;
 static guess_t guesses[MAX_GUESSES];
 static char *correct_guess;
 static word_clue_t word_clue;
+static rtc_alarm_time_t clue_time_interval = {.hours = 0, .minutes = 0, .seconds = 12}; // TODO keep this constant? or make it variable?
 
 static xpm_image_t tick_img, cross_img;
 static xpm_image_t correct_message, game_over_message;
@@ -99,6 +104,10 @@ int game_correct_guess() {
     end_screen_timer = END_ROUND_DELAY * 60;
     game_state = ROUND_CORRECT_GUESS;
     free_word_clue(&word_clue);
+
+    if (rtc_disable_int(ALARM_INTERRUPT) != 0)
+        return 1;
+
     return 0;
 }
 
@@ -106,6 +115,10 @@ int game_over() {
     clock_frames.current_frame = 1;
     end_screen_timer = END_ROUND_DELAY * 60;
     game_state = GAME_OVER;
+
+    if (rtc_disable_int(ALARM_INTERRUPT) != 0)
+        return 1;
+
     return 0;
 }
 
@@ -286,7 +299,7 @@ int game_start_round() {
     game_state = ROUND_UNSTARTED;
     current_clock_frame = 1;
     clock_frames_timer = 0;
-    round_timer = ROUND_SECONDS * 60;
+    round_timer = ROUND_TICKS;
     num_guesses = 0;
     correct_guess = word_list[rand() % WORD_LIST_SIZE];
     text_box_clear(&text_box_guesser);
@@ -297,17 +310,27 @@ int game_start_round() {
     return 0;
 }
 
-void game_round_timer_tick() {
+int game_give_clue() {
+    if (word_clue_hint(&word_clue) != 0)
+        return 1;
+    if (rtc_set_alarm_in(clue_time_interval) != 0)
+        return 1;
+    
+    return 0;
+}
+
+int game_round_timer_tick() {
     clock_frames_timer++;
     text_box_clock_tick(&text_box_guesser);
 
-    // TODO use RTC
-    if (round_timer % (5*60) == 1 && rand() % 5 == 0) {
-        word_clue_hint(&word_clue);
-    }
-
     switch (game_state) {
     case ROUND_ONGOING:
+        // if it's the first game tick while ROUND_ONGOING
+        if (round_timer == ROUND_TICKS) { 
+            if (rtc_set_alarm_in(clue_time_interval) != 0)
+                return 1;
+        }
+
         if (round_timer == 0) {
             game_over();
         } else {
@@ -341,6 +364,7 @@ void game_round_timer_tick() {
     case ROUND_UNSTARTED:
         break;
     }
+    return 0;
 }
 
 int draw_game_bar() {

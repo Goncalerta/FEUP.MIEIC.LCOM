@@ -2,10 +2,14 @@
 #define __RTC_H
 
 #include <lcom/lcf.h>
+#include "date.h"
 
 #define RTC_IRQ 8
 #define RTC_ADDR_REG 0x70
 #define RTC_DATA_REG 0x71
+
+#define RTC_UIP BIT(7)
+#define RTC_DELAY_U 244
 
 #define RTC_PF BIT(6)
 #define RTC_AF BIT(5)
@@ -38,24 +42,34 @@ typedef enum rtc_interrupt_t {
     UPDATE_INTERRUPT    
 } rtc_interrupt_t;
 
-typedef struct date_t {
-    uint8_t year;
-    uint8_t month;
-    uint8_t day;
-    uint8_t hour;
-    uint8_t minute;
-    uint8_t second;
-} date_t;
+typedef struct rtc_alarm_time_t {
+    uint8_t hours;
+    uint8_t minutes;
+    uint8_t seconds;
+} rtc_alarm_time_t;
+
+typedef union rtc_interrupt_config_t {
+    rtc_alarm_time_t alarm_time; // in binary format
+    uint8_t periodic_RS3210; // RS3 RS2 RS1 RS0 in 4 LS bits
+} rtc_interrupt_config_t;
+
+// TODO where's the best place to check for VRT? (just in case)
 
 int rtc_read_conf(); // test function 2013/2014
 
-int rtc_read_date(); // test function 2013/2014
+int rtc_read_date();
+
+int rtc_get_current_date(date_t *date);
 
 int rtc_subscribe_int(uint8_t *bit_no);
 
 int rtc_unsubscribe_int();
 
-int rtc_enable_int(rtc_interrupt_t rtc_interrupt);
+int rtc_enable_update_int();
+
+int rtc_set_alarm_in(rtc_alarm_time_t remaining_time_to_alarm);
+
+int rtc_enable_int(rtc_interrupt_t rtc_interrupt, rtc_interrupt_config_t config);
 
 int rtc_disable_int(rtc_interrupt_t rtc_interrupt);
 
@@ -64,5 +78,7 @@ int rtc_read_register(uint8_t adress, uint8_t *value);
 int rtc_write_register(uint8_t address, uint8_t value);
 
 void rtc_ih();
+
+int rtc_flush();
 
 #endif /* __RTC_H */

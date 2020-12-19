@@ -5,6 +5,7 @@
 #include "keyboard.h"
 #include "mouse.h"
 #include "video_gr.h"
+#include "rtc.h"
 #include "canvas.h"
 #include "cursor.h"
 #include "font.h"
@@ -233,7 +234,8 @@ int dispatch_keyboard_event(kbd_event_t kbd_event) {
 int dispatch_timer_tick() {
     menu_state_t state = menu_get_state();
     if (state == GAME || state == PAUSE_MENU)
-        game_round_timer_tick();
+        if (game_round_timer_tick() != OK)
+            return 1;
 
     if (draw_frame() != OK) {
         printf("error while drawing frame\n");
@@ -243,7 +245,14 @@ int dispatch_timer_tick() {
     return 0;
 }
 
+int dispatch_rtc_alarm_int() {
+    if (game_give_clue() != OK)
+        return 1;
+    return 0;
+}
+
 int draw_frame() {
+    // TODO call vg_get_back_buffer() here and pass it as argument to all draw functions called ?
     menu_state_t state = menu_get_state();
 
     if(state != MAIN_MENU && state != WORD_SCREEN) {
@@ -258,6 +267,8 @@ int draw_frame() {
             return 1;
     }
 
+    if (date_draw_current() != OK)
+        return 1;
     if (cursor_draw() != OK)
         return 1;
     if (vg_flip_page() != OK)
