@@ -239,7 +239,8 @@ void rtc_ih() {
             return;
     }
     if (register_c & RTC_PF) {
-        printf("RTC periodic interrupt detected.\n");
+        if (dispatch_rtc_periodic_int() != 0)
+            return;
     }
     if (register_c & RTC_AF) {
         if (dispatch_rtc_alarm_int() != 0)

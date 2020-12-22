@@ -251,6 +251,12 @@ int dispatch_rtc_alarm_int() {
     return 0;
 }
 
+int dispatch_rtc_periodic_int() {
+    if (game_round_RTC_PI_tick() != OK)
+        return 1;
+    return 0;
+}
+
 int draw_frame() {
     // TODO call vg_get_back_buffer() here and pass it as argument to all draw functions called ?
     menu_state_t state = menu_get_state();

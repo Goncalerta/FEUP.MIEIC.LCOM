@@ -29,6 +29,7 @@ int game_start_round();
 int game_init();
 int game_resume();
 int game_give_clue();
+int game_round_RTC_PI_tick();
 int game_round_timer_tick();
 int draw_game_bar();
 int draw_game_correct_guess();

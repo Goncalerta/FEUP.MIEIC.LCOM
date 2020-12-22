@@ -28,7 +28,7 @@ typedef struct text_box_t {
     uint8_t  display_size;  // num of chars displayed at the same time
     text_box_state state;
     bool     is_ready;
-    uint8_t  cursor_clock;
+    bool     visible_cursor;
 } text_box_t;
 
 
@@ -36,7 +36,7 @@ void new_text_box(text_box_t *text_box, uint16_t x, uint16_t y, uint8_t display_
 
 int text_box_clear(text_box_t *text_box);
 
-void text_box_clock_tick(text_box_t *text_box);
+void text_box_cursor_tick(text_box_t *text_box);
 
 /* is_cursor_to_draw is used to coordinate with the game ticks
 if text_box is not selected, the cursor is not drawn*/

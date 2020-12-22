@@ -27,14 +27,15 @@
 /*  * TODO 
  *  *   the program crashes if, after a round is won, the player is drawing (during the transition to word screen)
  *  *       in fact, even though the player can draw, if the text box is selected, it's not unselected if he begins to draw after round win
- *  *   the time interval between clues, seems uncoordinated with the round clock (although it seems pretty accurate when looking to real time)
 */
 
+#define TICKS_PER_SECOND 2
 #define ROUND_SECONDS 60
-#define ROUND_TICKS ((ROUND_SECONDS)*60)
-#define BUTTONS_LEN 75
+#define ROUND_TICKS ((ROUND_SECONDS) * (TICKS_PER_SECOND))
 #define END_ROUND_DELAY 3
+#define END_ROUND_TICKS ((END_ROUND_DELAY) * (TICKS_PER_SECOND))
 #define WRONG_GUESS_PENALTY 5
+#define BUTTONS_LEN 75
 #define GUESS_CHARACTER_LIMIT 14
 
 #define WORD_LIST_SIZE 46
@@ -101,7 +102,7 @@ int game_correct_guess() {
     if (score > MAX_SCORE)
         score = MAX_SCORE;
     clock_frames.current_frame = 1;
-    end_screen_timer = END_ROUND_DELAY * 60;
+    end_screen_timer = END_ROUND_TICKS;
     game_state = ROUND_CORRECT_GUESS;
     free_word_clue(&word_clue);
 
@@ -113,7 +114,7 @@ int game_correct_guess() {
 
 int game_over() {
     clock_frames.current_frame = 1;
-    end_screen_timer = END_ROUND_DELAY * 60;
+    end_screen_timer = END_ROUND_TICKS;
     game_state = GAME_OVER;
 
     if (rtc_disable_int(ALARM_INTERRUPT) != 0)
@@ -140,7 +141,7 @@ int game_guess_word(char *guess) {
         if (game_correct_guess() != 0)
             return 1;
     } else {
-        round_timer -= 60 * WRONG_GUESS_PENALTY;
+        round_timer -= TICKS_PER_SECOND * WRONG_GUESS_PENALTY;
         if (round_timer < 0) round_timer = 0;
     }
 
@@ -319,9 +320,8 @@ int game_give_clue() {
     return 0;
 }
 
-int game_round_timer_tick() {
-    clock_frames_timer++;
-    text_box_clock_tick(&text_box_guesser);
+int game_round_RTC_PI_tick() {
+    text_box_cursor_tick(&text_box_guesser);
 
     switch (game_state) {
     case ROUND_ONGOING:
@@ -332,11 +332,41 @@ int game_round_timer_tick() {
         }
 
         if (round_timer == 0) {
-            game_over();
+            if (game_over() != 0)
+                return 1;
         } else {
             round_timer--;
         }
+        break;
+    
+    case GAME_OVER:
+        if (end_screen_timer != 0) {
+            end_screen_timer--;
+        } else if (end_screen_timer == 0) {
+            if (menu_set_main_menu() != 0)
+                return 1;
+        }
+        break;
+    
+    case ROUND_CORRECT_GUESS:
+        if (end_screen_timer != 0) {
+            end_screen_timer--;
+        } else if (end_screen_timer == 0) {
+            if (event_end_round() != 0)
+                return 1;
+        }
+        break;
+    
+    default:
+        break;
+    }
+    return 0;
+}
 
+int game_round_timer_tick() {
+    clock_frames_timer++;
+
+    if (game_state == ROUND_ONGOING) {
         if (clock_frames_timer == 10) {
             clock_frames.current_frame = 0;
         } else if (clock_frames_timer == 30) {
@@ -347,23 +377,8 @@ int game_round_timer_tick() {
             clock_frames.current_frame = 1;
             clock_frames_timer = 0;
         }
-
-        break;
-    case GAME_OVER:
-        if (end_screen_timer != 0) end_screen_timer--;
-        if (end_screen_timer == 0) {
-            menu_set_main_menu();
-        }
-        break;
-    case ROUND_CORRECT_GUESS:
-        if (end_screen_timer != 0) end_screen_timer--;
-        if (end_screen_timer == 0) {
-            event_end_round();
-        }
-        break;
-    case ROUND_UNSTARTED:
-        break;
     }
+
     return 0;
 }
 
@@ -381,7 +396,7 @@ int draw_game_bar() {
         return 1;
 
     char seconds_to_end_round[2];
-    sprintf(seconds_to_end_round, "%02d", (round_timer + 59)/60);
+    sprintf(seconds_to_end_round, "%02d", (round_timer + TICKS_PER_SECOND- 1)/TICKS_PER_SECOND);
     
     if (font_draw_string(buf, seconds_to_end_round, buf.h_res - 75, 
                          buf.v_res - (GAME_BAR_INNER_HEIGHT + FONT_CHAR_HEIGHT)/2, 0, 2) != OK)
