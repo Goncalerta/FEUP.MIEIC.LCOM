@@ -8,7 +8,7 @@
 #define COM2_BASE_ADDR 0x2F8
 #define COM2_IRQ 3
 
-#define REGISTER_BUFFER_REG 0
+#define RECEIVER_BUFFER_REG 0
 #define TRANSMITTER_HOLDING_REG 0
 #define INTERRUPT_ENABLE_REG 1
 #define INTERRUPT_IDENTIFICATION_REG 2
@@ -79,7 +79,7 @@ typedef enum fifo_int_trigger_level_t {
 typedef enum interrupt_origin_t {
     INT_ORIGIN_MODEM_STATUS = 0,
     INT_ORIGIN_TRANSMITTER_EMPTY = 1,
-    INT_ORIGIN_CHAR_TIMEOUT = 4,
+    INT_ORIGIN_CHAR_TIMEOUT = 6,
     INT_ORIGIN_RECEIVED_DATA = 2,
     INT_ORIGIN_LINE_STATUS = 3,
 } interrupt_origin_t;
@@ -107,6 +107,12 @@ int uart_config_params(word_len_t word_len, parity_t parity,
 int uart_config_int(bool received_data_int, bool transmitter_empty_int, bool receiver_line_status_int);
 int uart_enable_fifo(fifo_int_trigger_level_t trigger_level);
 int uart_set_bit_rate(uint16_t bit_rate);
-
+int uart_init_sw_queues();
+int uart_receive_bytes();
+int uart_send_bytes();
+int uart_send_byte(uint8_t byte);
+int uart_read_byte(uint8_t *byte);
+void uart_flush_RBR();
+int uart_clear_hw_fifos();
 
 #endif /* _UART_H */

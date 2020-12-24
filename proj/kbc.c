@@ -1,5 +1,6 @@
 #include <lcom/lcf.h>
 #include "kbc.h"
+#include "utilities.h"
 
 #define KBC_NUM_TRIES 5
 

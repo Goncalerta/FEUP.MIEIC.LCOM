@@ -1,8 +1,15 @@
 #include <lcom/lcf.h>
 
 #include "uart.h"
+#include "queue.h"
+#include "utilities.h"
+
+#define UART_SW_QUEUES_STARTING_CAPACITY 16
 
 static int hook_id_com1 = 4;
+static queue_t transmitted;
+static queue_t received;
+static fifo_int_trigger_level_t fifo_int_trigger_level;
 
 int com1_subscribe_int(uint8_t *bit_no) {
     *bit_no = hook_id_com1;
@@ -15,34 +22,148 @@ int com1_unsubscribe_int() {
 
 void com1_ih() {
     interrupt_identification_t int_ident;
+    
     if (uart_identify_interrupt(&int_ident) != OK) 
         return;
     
     if (!int_ident.pending)
         return;
-    
-    // TODO check fifo status: where? after configuring fifo or in int handler?
 
     switch (int_ident.origin) {
     case INT_ORIGIN_TRANSMITTER_EMPTY:
+        if (uart_send_bytes() != OK)
+            return;
         break;
     case INT_ORIGIN_CHAR_TIMEOUT:
+        if (uart_receive_bytes() != OK)
+            return;
         break;
     case INT_ORIGIN_RECEIVED_DATA:
+        if (uart_receive_bytes() != OK)
+            return;
         break;
     case INT_ORIGIN_LINE_STATUS:
+        printf("ERROR\n");
+        // TODO handle errors
         break;
     default:
+        printf("DEFAULT\n");
         break;
     }
 }
 
 int uart_send_byte(uint8_t byte) {
-
+    if (queue_push(&transmitted, &byte) != OK)
+        return 1;
+    
+    return uart_send_bytes();
 }
 
-int uart_receive_byte(uint8_t *byte) {
+int uart_read_byte(uint8_t *byte) {
+    if (queue_is_empty(&received) != OK)
+        return 1;
+    if (queue_pop(&received, byte) != OK)
+        return 1;
+    return 0;
+}
 
+int uart_receive_bytes() {
+    uint8_t lsr_byte, rbr_byte;
+    
+    if (util_sys_inb(COM1_BASE_ADDR + LINE_STATUS_REG, &lsr_byte) != OK)
+        return 1;
+    
+    while (lsr_byte & LSR_RECEIVER_READY) {
+        if (util_sys_inb(COM1_BASE_ADDR + RECEIVER_BUFFER_REG, &rbr_byte) != OK)
+            return 1;
+        if (queue_push(&received, &rbr_byte) != OK)
+            return 1;
+        if (util_sys_inb(COM1_BASE_ADDR + LINE_STATUS_REG, &lsr_byte) != OK)
+            return 1;
+    }
+
+    return 0;
+}
+
+int uart_send_bytes() {
+    uint8_t lsr_byte, thr_byte;
+    
+    if (util_sys_inb(COM1_BASE_ADDR + LINE_STATUS_REG, &lsr_byte) != OK)
+        return 1;
+    
+    while (!queue_is_empty(&transmitted) && (lsr_byte & LSR_TRANSMITTER_HOLDING_REGISTER_EMPTY)) {
+        if (queue_pop(&transmitted, &thr_byte) != OK)
+            return 1;
+        if (sys_outb(COM1_BASE_ADDR + TRANSMITTER_HOLDING_REG, thr_byte) != OK)
+            return 1;
+        if (util_sys_inb(COM1_BASE_ADDR + LINE_STATUS_REG, &lsr_byte) != OK)
+            return 1;
+    }
+
+    return 0;
+}
+
+// int uart_send_byte(uint8_t byte) {
+//     uint8_t lsr_byte;
+    
+//     if (util_sys_inb(COM1_BASE_ADDR + LINE_STATUS_REG, &lsr_byte) != OK)
+//         return 1;
+    
+//     while (!(lsr_byte & LSR_TRANSMITTER_HOLDING_REGISTER_EMPTY)) {
+//         tickdelay(micros_to_ticks(DELAY_US));
+//         if (util_sys_inb(COM1_BASE_ADDR + LINE_STATUS_REG, &lsr_byte) != OK)
+//             return 1;
+//     }
+    
+//     if (sys_outb(COM1_BASE_ADDR + TRANSMITTER_HOLDING_REG, byte) != OK)
+//         return 1;
+
+//     return 0;
+// }
+
+// int uart_receive_byte(uint8_t *byte) {
+//     uint8_t lsr_byte;
+    
+//     if (util_sys_inb(COM1_BASE_ADDR + LINE_STATUS_REG, &lsr_byte) != OK)
+//         return 1;
+    
+//     while (!(lsr_byte & LSR_RECEIVER_READY)) {
+//         tickdelay(micros_to_ticks(DELAY_US));
+//         if (util_sys_inb(COM1_BASE_ADDR + LINE_STATUS_REG, &lsr_byte) != OK)
+//             return 1;
+//     }
+    
+//     if (util_sys_inb(COM1_BASE_ADDR + RECEIVER_BUFFER_REG, byte) != OK)
+//         return 1;
+
+//     return 0;
+// }
+
+int uart_check_error(bool *err) {
+    uint8_t lsr_byte;
+    
+    if (util_sys_inb(COM1_BASE_ADDR + LINE_STATUS_REG, &lsr_byte) != OK)
+        return 1;
+        
+    if (lsr_byte & (LSR_OVERRUN_ERROR | LSR_PARITY_ERROR | LSR_FRAMING_ERROR)) {
+        *err = true;
+    } else {
+        *err = false;
+    }
+
+    return 0;
+}
+
+int uart_init_sw_queues() {
+    if (new_queue(&transmitted, sizeof(uint8_t), UART_SW_QUEUES_STARTING_CAPACITY) != OK) {
+        return 1;
+    }
+
+    if (new_queue(&received, sizeof(uint8_t), UART_SW_QUEUES_STARTING_CAPACITY) != OK) {
+        return 1;
+    }
+
+    return 0;
 }
 
 void uart_flush_RBR() {
@@ -52,7 +173,7 @@ void uart_flush_RBR() {
         return;
 
     if (lsr_byte & LSR_RECEIVER_READY) {
-        if (util_sys_inb(COM1_BASE_ADDR + REGISTER_BUFFER_REG, &rbr_byte) != OK)
+        if (util_sys_inb(COM1_BASE_ADDR + RECEIVER_BUFFER_REG, &rbr_byte) != OK)
             return;
     }
 }
@@ -62,10 +183,28 @@ int uart_identify_interrupt(interrupt_identification_t *int_ident) {
     if (util_sys_inb(COM1_BASE_ADDR + INTERRUPT_IDENTIFICATION_REG, &iir_byte) != OK)
         return 1;
     
-    int_ident->pending = iir_byte & IIR_INTERRUPT_STATUS;
+    int_ident->pending = !(iir_byte & IIR_INTERRUPT_STATUS);
     int_ident->origin = (iir_byte & IIR_INTERRUPT_ORIGIN) >> 1;
     int_ident->fifo_64_bytes = (iir_byte & IIR_64_BYTE_FIFO) >> 5;
     int_ident->fifo_status = (iir_byte & IIR_FIFO_STATUS) >> 6;
+
+    return 0;
+}
+
+int uart_clear_hw_fifos() {
+    uint8_t fcr_byte = FCR_ENABLE_FIFO | (fifo_int_trigger_level << 6) 
+                     | FCR_CLEAR_RECEIVE_FIFO | FCR_CLEAR_TRANSMIT_FIFO;
+    uint8_t iir_byte;
+
+    if (sys_outb(COM1_BASE_ADDR + FIFO_CTRL_REG, fcr_byte) != OK)
+        return 1;
+    
+    if (util_sys_inb(COM1_BASE_ADDR + INTERRUPT_IDENTIFICATION_REG, &iir_byte) != OK)
+        return 1;
+    
+    fifo_status_t fifo_status = (iir_byte & IIR_FIFO_STATUS) >> 6;
+    if (fifo_status != FIFO_ENABLED)
+        return 1;
 
     return 0;
 }
@@ -104,9 +243,9 @@ int uart_config_int(bool received_data_int, bool transmitter_empty_int, bool rec
         return 1;
 
     ier_byte &= IER_UNCHANGED_BITS;
-    ier_byte |= (received_data_int << IER_ENABLE_RECEIVED_DATA_INTERRUPT)
-              | (transmitter_empty_int << IER_ENABLE_TRANSMITTER_EMPTY_INTERRUPT)
-              | (receiver_line_status_int << IER_ENABLE_RECEIVER_LINE_STATUS_INTERRUPT);
+    ier_byte |= (received_data_int << 0)
+              | (transmitter_empty_int << 1)
+              | (receiver_line_status_int << 2);
 
     if (sys_outb(COM1_BASE_ADDR + INTERRUPT_ENABLE_REG, ier_byte) != OK)
         return 1;
@@ -115,7 +254,25 @@ int uart_config_int(bool received_data_int, bool transmitter_empty_int, bool rec
 }
 
 int uart_enable_fifo(fifo_int_trigger_level_t trigger_level) {
+    fifo_int_trigger_level = trigger_level;
     uint8_t fcr_byte = FCR_ENABLE_FIFO | (trigger_level << 6);
+    uint8_t iir_byte;
+
+    if (sys_outb(COM1_BASE_ADDR + FIFO_CTRL_REG, fcr_byte) != OK)
+        return 1;
+    
+    if (util_sys_inb(COM1_BASE_ADDR + INTERRUPT_IDENTIFICATION_REG, &iir_byte) != OK)
+        return 1;
+    
+    fifo_status_t fifo_status = (iir_byte & IIR_FIFO_STATUS) >> 6;
+    if (fifo_status != FIFO_ENABLED)
+        return 1;
+
+    return 0;
+}
+
+int uart_disable_fifo() {
+    uint8_t fcr_byte = 0;
     if (sys_outb(COM1_BASE_ADDR + FIFO_CTRL_REG, fcr_byte) != OK)
         return 1;
     return 0;

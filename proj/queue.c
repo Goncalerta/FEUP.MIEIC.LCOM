@@ -26,11 +26,11 @@ int delete_queue(queue_t *queue) {
 }
 
 static void *queue_index(queue_t *queue, size_t i) {
-    return queue->data + i * queue->element_size;
+    return (uint8_t*) queue->data + i * queue->element_size;
 }
 
 static int queue_resize(queue_t *queue) {
-    size_t new_capacity = 2 * capacity;
+    size_t new_capacity = 2 * queue->capacity;
     
     int *data = realloc(queue->data, new_capacity * queue->element_size);
     if (data == NULL)
@@ -66,7 +66,7 @@ int queue_push(queue_t *queue, void *el) {
             return 1;
     }
 
-    memcpy(queue->data + queue->back * queue->element_size, el, queue->element_size);
+    memcpy(queue_index(queue, queue->back), el, queue->element_size);
     queue->back = (queue->back + 1) % queue->capacity;
     queue->size++;
     return 0;
@@ -77,7 +77,7 @@ int queue_pop(queue_t *queue, void *el) {
     if (queue_is_empty(queue))
         return 1;
 
-    memcpy(el, queue->data + queue->front * queue->element_size, queue->element_size);
+    memcpy(el, queue_index(queue, queue->front), queue->element_size);
     queue->front = (queue->front + 1) % queue->capacity;
     queue->size--;
     return 0;

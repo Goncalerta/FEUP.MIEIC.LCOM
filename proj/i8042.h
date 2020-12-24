@@ -67,6 +67,4 @@
 #define NACK 0xFE
 #define ERROR 0xFC
 
-#define DELAY_US 20000
-
 #endif /* _LCOM_I8042_H */

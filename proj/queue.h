@@ -17,7 +17,7 @@ bool queue_is_full(queue_t *queue);
 bool queue_is_empty(queue_t *queue);
 void queue_empty(queue_t *queue);
 
-void queue_push(queue_t *queue, void *el);
-void queue_pop(queue_t *queue, void *el);
+int queue_push(queue_t *queue, void *el);
+int queue_pop(queue_t *queue, void *el);
 
 #endif /* _QUEUE_H */
