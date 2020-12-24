@@ -27,15 +27,15 @@ void new_text_box(text_box_t *text_box, uint16_t x, uint16_t y, uint8_t display_
     text_box->start_display = 0;
     text_box->state = TEXT_BOX_NORMAL;
     text_box->is_ready = false;
-    text_box->cursor_clock = 0;
+    text_box->visible_cursor = true;
 
     text_box->x = x;
     text_box->y = y;
     text_box->display_size = display_size;
 }
 
-void text_box_clock_tick(text_box_t *text_box) {
-    text_box->cursor_clock = (text_box->cursor_clock + 1) % 60; // TODO passar o 60 para #define ?
+void text_box_cursor_tick(text_box_t *text_box) {
+    text_box->visible_cursor = !text_box->visible_cursor;
 }
 
 int text_box_clear(text_box_t *text_box) {
@@ -98,8 +98,7 @@ int text_box_draw(frame_buffer_t buf, text_box_t text_box) {
         return 1;
     }
 
-    // TODO passar o 30 para #define ?
-    if ((text_box.cursor_clock < 30) && text_box_interacting) { // cursor
+    if (text_box.visible_cursor && text_box_interacting) { // cursor
         uint16_t cursor_x = text_box.x + TEXT_BOX_BEG_END_SPACE + (text_box.cursor_pos - text_box.start_display)*CHAR_SPACE;
         uint16_t cursor_y = text_box.y + TEXT_BOX_TOP_BOT_SPACE - (TEXT_BOX_CURSOR_HEIGHT - FONT_CHAR_HEIGHT)/2;
 
@@ -131,7 +130,7 @@ int text_box_update_state(text_box_t *text_box, bool hovering, bool lb, bool rb,
 
     if (lb && !rb) {
         text_box->cursor_pos = mouse_pos;
-        text_box->cursor_clock = 0;
+        text_box->visible_cursor = true;
     }
 
     switch (text_box->state) {
@@ -246,7 +245,7 @@ int text_box_react_kbd(text_box_t *text_box, kbd_event_t kbd_event) {
         return 0;
     }
 
-    text_box->cursor_clock = 0;
+    text_box->visible_cursor = true;
 
     char *word; // Used for realloc
     switch (kbd_event.key) {

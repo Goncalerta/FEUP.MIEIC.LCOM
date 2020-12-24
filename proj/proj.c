@@ -50,6 +50,7 @@ int (proj_main_loop)(int argc, char *argv[]) {
     uint16_t mode = 0x118; // 1024x768
     enum xpm_image_type image_type = XPM_8_8_8;
     uint8_t timer_irq_set, kbd_irq_set, mouse_irq_set, rtc_irq_set, uart_irq_set;
+    rtc_interrupt_config_t rtc_periodic_config = {.periodic_RS3210 = 0x0f}; // period = 0.5 seconds
 
     if (vg_init(mode) == NULL) 
         return 1;
@@ -76,6 +77,9 @@ int (proj_main_loop)(int argc, char *argv[]) {
         return 1;
     
     if (rtc_enable_update_int() != OK)
+        return 1;
+
+    if (rtc_enable_int(PERIODIC_INTERRUPT, rtc_periodic_config) != OK)
         return 1;
 
     if (protocol_config_uart() != OK)
@@ -136,7 +140,11 @@ int (proj_main_loop)(int argc, char *argv[]) {
     if (text_box_clip_board_exit() != OK)
         return 1;
     // ^^
+
     if (com1_unsubscribe_int() != OK)
+        return 1;
+    
+    if (rtc_disable_int(PERIODIC_INTERRUPT) != OK)
         return 1;
 
     if (rtc_disable_int(UPDATE_INTERRUPT) != OK)

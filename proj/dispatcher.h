@@ -12,6 +12,7 @@ int dispatch_mouse_packet(struct packet p);
 int dispatch_keyboard_event(kbd_event_t s);
 int dispatch_timer_tick();
 int dispatch_rtc_alarm_int();
+int dispatch_rtc_periodic_int();
 int draw_frame();
 int event_new_stroke(bool primary_button);
 int event_new_atom(uint16_t x, uint16_t y);

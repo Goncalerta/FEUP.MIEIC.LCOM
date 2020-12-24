@@ -40,3 +40,23 @@ int date_draw_current() {
         return 1;
     return 0;
 }
+
+int date_draw_greeting(uint16_t x, uint16_t y) {
+    date_t date;
+    if (rtc_get_current_date(&date) != 0)
+        return 1;
+
+    char greeting[DATE_GREETING_MAX_SIZE];
+    if (4 < date.hour && date.hour < 12) {
+        strcpy(greeting, "GOOD MORNING");
+    } else if (date.hour < 19) {
+        strcpy(greeting, "GOOD AFTERNOON");
+    } else {
+        strcpy(greeting, "GOOD NIGHT");
+    }
+
+    if (font_draw_string(vg_get_back_buffer(), greeting, x, y, 0, DATE_GREETING_MAX_SIZE) != 0)
+        return 1;
+
+    return 0;
+}

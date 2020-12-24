@@ -7,6 +7,7 @@
 #include "graphics.h"
 #include "game.h"
 #include "cursor.h"
+#include "date.h"
 
 #include "xpm/menu_new_game.xpm"
 #include "xpm/menu_exit_game.xpm"
@@ -17,6 +18,8 @@
 #define MENU_BUTTON_HEIGHT 100
 #define MENU_BUTTON_DISTANCE 50
 #define MENU_BACKGROUND_COLOR 0x8c2d19
+#define MENU_GREETING_X 10
+#define MENU_GREETING_Y 740
 
 static menu_state_t menu_state;
 //static xpm_image_t back_ground; TODO add a background image to main menu?
@@ -69,6 +72,8 @@ int menu_draw() {
         if (button_draw(buf, b_new_game) != 0)
             return 1;
         if (button_draw(buf, b_end_program) != 0)
+            return 1;
+        if (date_draw_greeting(MENU_GREETING_X, MENU_GREETING_Y) != 0)
             return 1;
         break;
 
