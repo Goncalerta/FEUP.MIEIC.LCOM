@@ -19,6 +19,8 @@
 #include "textbox.h"
 #include "game.h"
 #include "menu.h"
+#include "uart.h"
+#include "protocol.h"
 
 int main(int argc, char *argv[]) {
   // sets the language of LCF messages (can be either EN-US or PT-PT)
@@ -47,7 +49,7 @@ int main(int argc, char *argv[]) {
 int (proj_main_loop)(int argc, char *argv[]) {
     uint16_t mode = 0x118; // 1024x768
     enum xpm_image_type image_type = XPM_8_8_8;
-    uint8_t timer_irq_set, kbd_irq_set, mouse_irq_set, rtc_irq_set;
+    uint8_t timer_irq_set, kbd_irq_set, mouse_irq_set, rtc_irq_set, uart_irq_set;
 
     if (vg_init(mode) == NULL) 
         return 1;
@@ -74,6 +76,12 @@ int (proj_main_loop)(int argc, char *argv[]) {
         return 1;
     
     if (rtc_enable_update_int() != OK)
+        return 1;
+
+    if (protocol_config_uart() != OK)
+        return 1;
+
+    if (com1_subscribe_int(&uart_irq_set) != OK)
         return 1;
 
     // INIT game assets
@@ -106,6 +114,9 @@ int (proj_main_loop)(int argc, char *argv[]) {
                 if (msg.m_notify.interrupts & BIT(rtc_irq_set)) {
                     rtc_ih();
                 }
+                if (msg.m_notify.interrupts & BIT(uart_irq_set)) {
+                    uart_ih();
+                }
                 if (msg.m_notify.interrupts & BIT(timer_irq_set)) {
                     timer_int_handler();
                 }
@@ -125,6 +136,9 @@ int (proj_main_loop)(int argc, char *argv[]) {
     if (text_box_clip_board_exit() != OK)
         return 1;
     // ^^
+    if (com1_unsubscribe_int() != OK)
+        return 1;
+
     if (rtc_disable_int(UPDATE_INTERRUPT) != OK)
         return 1;
     

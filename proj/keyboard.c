@@ -5,7 +5,7 @@
 #include "scan_codes.h"
 #include "dispatcher.h"
 
-static int hook_id_kbd = KEYBOARD_IRQ;
+static int hook_id_kbd = 1;
 static uint8_t scancode_bytes[2];
 static size_t scancode_bytes_counter = 0;
 static bool should_retrieve = false;

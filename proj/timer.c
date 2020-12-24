@@ -6,7 +6,7 @@
 #include "i8254.h"
 #include "dispatcher.h"
 
-static int hook_id_timer = TIMER0_IRQ;
+static int hook_id_timer = 0;
 
 int (timer_set_frequency)(uint8_t timer, uint32_t freq) {
     if (timer > 2 || freq < 19 || freq > TIMER_FREQ)
