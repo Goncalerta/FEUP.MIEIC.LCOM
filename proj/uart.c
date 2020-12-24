@@ -31,23 +31,19 @@ void com1_ih() {
 
     switch (int_ident.origin) {
     case INT_ORIGIN_TRANSMITTER_EMPTY:
-        if (uart_send_bytes() != OK)
-            return;
+        uart_send_bytes()
         break;
+
     case INT_ORIGIN_CHAR_TIMEOUT:
-        if (uart_receive_bytes() != OK)
-            return;
-        break;
     case INT_ORIGIN_RECEIVED_DATA:
-        if (uart_receive_bytes() != OK)
-            return;
+        uart_receive_bytes()
         break;
+    
     case INT_ORIGIN_LINE_STATUS:
-        printf("ERROR\n");
-        // TODO handle errors
+        uart_handle_error()
         break;
+    
     default:
-        printf("DEFAULT\n");
         break;
     }
 }
@@ -138,6 +134,13 @@ int uart_send_bytes() {
 
 //     return 0;
 // }
+void uart_handle_error() {
+    bool err;
+    if (!uart_check_error(&err))
+        return;
+    
+    // TODO handle error
+}
 
 int uart_check_error(bool *err) {
     uint8_t lsr_byte;

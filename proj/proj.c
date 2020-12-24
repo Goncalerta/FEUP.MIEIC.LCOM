@@ -115,7 +115,7 @@ int (proj_main_loop)(int argc, char *argv[]) {
             case HARDWARE: /* hardware interrupt notification */				
                 if (msg.m_notify.interrupts & BIT(mouse_irq_set)) {
                     mouse_ih();
-                    for (int i = (int)'a'; i < 'a'+32; i++)
+                    for (int i = (int)'a'; i < 'a'+1; i++)
                         uart_send_byte(i);
                 }
                 if (msg.m_notify.interrupts & BIT(kbd_irq_set)) {
@@ -127,10 +127,13 @@ int (proj_main_loop)(int argc, char *argv[]) {
                 if (msg.m_notify.interrupts & BIT(com1_irq_set)) {
                     com1_ih();
                     uint8_t b;
-                    printf("RECEIVED: ");
-                    while (uart_read_byte(&b) == OK)
-                        printf("%c", b);
-                    printf("\n");
+
+                    if (uart_read_byte(&b) == OK) {
+                        printf("RECEIVED %c", b);
+                        while (uart_read_byte(&b) == OK)
+                            printf("%c", b);
+                        printf("\n");
+                    }
                 }
                 if (msg.m_notify.interrupts & BIT(timer_irq_set)) {
                     timer_int_handler();
