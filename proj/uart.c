@@ -2,18 +2,18 @@
 
 #include "uart.h"
 
-static int hook_id_uart = 4;
+static int hook_id_com1 = 4;
 
 int com1_subscribe_int(uint8_t *bit_no) {
-    *bit_no = hook_id_uart;
-    return sys_irqsetpolicy(COM1_IRQ, IRQ_REENABLE | IRQ_EXCLUSIVE, &hook_id_uart);
+    *bit_no = hook_id_com1;
+    return sys_irqsetpolicy(COM1_IRQ, IRQ_REENABLE | IRQ_EXCLUSIVE, &hook_id_com1);
 }
 
 int com1_unsubscribe_int() {
-    return sys_irqrmpolicy(&hook_id_uart);
+    return sys_irqrmpolicy(&hook_id_com1);
 }
 
-void uart_ih() {
+void com1_ih() {
     interrupt_identification_t int_ident;
     if (uart_identify_interrupt(&int_ident) != OK) 
         return;
@@ -34,6 +34,26 @@ void uart_ih() {
         break;
     default:
         break;
+    }
+}
+
+int uart_send_byte(uint8_t byte) {
+
+}
+
+int uart_receive_byte(uint8_t *byte) {
+
+}
+
+void uart_flush_RBR() {
+    uint8_t lsr_byte, rbr_byte;
+
+    if (util_sys_inb(COM1_BASE_ADDR + LINE_STATUS_REG, &lsr_byte) != OK)
+        return;
+
+    if (lsr_byte & LSR_RECEIVER_READY) {
+        if (util_sys_inb(COM1_BASE_ADDR + REGISTER_BUFFER_REG, &rbr_byte) != OK)
+            return;
     }
 }
 

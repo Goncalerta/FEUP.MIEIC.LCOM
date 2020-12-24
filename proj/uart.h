@@ -100,7 +100,7 @@ typedef struct interrupt_identification_t {
 int com1_subscribe_int(uint8_t *bit_no);
 int com1_unsubscribe_int();
 int uart_set_bit_rate(uint16_t bit_rate);
-void uart_ih();
+void com1_ih();
 int uart_identify_interrupt(interrupt_identification_t *int_ident);
 int uart_config_params(word_len_t word_len, parity_t parity, 
                        no_stop_bits_t no_stop_bits, uint16_t bit_rate);

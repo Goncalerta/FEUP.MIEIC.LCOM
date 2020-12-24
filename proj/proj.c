@@ -49,7 +49,7 @@ int main(int argc, char *argv[]) {
 int (proj_main_loop)(int argc, char *argv[]) {
     uint16_t mode = 0x118; // 1024x768
     enum xpm_image_type image_type = XPM_8_8_8;
-    uint8_t timer_irq_set, kbd_irq_set, mouse_irq_set, rtc_irq_set, uart_irq_set;
+    uint8_t timer_irq_set, kbd_irq_set, mouse_irq_set, rtc_irq_set, com1_irq_set;
     rtc_interrupt_config_t rtc_periodic_config = {.periodic_RS3210 = 0x0f}; // period = 0.5 seconds
 
     if (vg_init(mode) == NULL) 
@@ -85,7 +85,7 @@ int (proj_main_loop)(int argc, char *argv[]) {
     if (protocol_config_uart() != OK)
         return 1;
 
-    if (com1_subscribe_int(&uart_irq_set) != OK)
+    if (com1_subscribe_int(&com1_irq_set) != OK)
         return 1;
 
     // INIT game assets
@@ -119,7 +119,7 @@ int (proj_main_loop)(int argc, char *argv[]) {
                     rtc_ih();
                 }
                 if (msg.m_notify.interrupts & BIT(uart_irq_set)) {
-                    uart_ih();
+                    com1_ih();
                 }
                 if (msg.m_notify.interrupts & BIT(timer_irq_set)) {
                     timer_int_handler();
