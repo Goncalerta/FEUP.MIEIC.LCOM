@@ -24,58 +24,38 @@ int com1_unsubscribe_int() {
 void com1_ih() {
     interrupt_identification_t int_ident;
     
-    if (uart_identify_interrupt(&int_ident) != OK) 
-        return;
-    
-    if (!int_ident.pending)
-        return;
+    while (true) {
+        if (uart_identify_interrupt(&int_ident) != OK) 
+            return;
+        
+        if (!int_ident.pending)
+            return;
 
-    switch (int_ident.origin) {
-    case INT_ORIGIN_TRANSMITTER_EMPTY:
-        uart_send_bytes();
-        break;
+        switch (int_ident.origin) {
+        case INT_ORIGIN_TRANSMITTER_EMPTY:
+            uart_send_bytes();
+            break;
 
-    case INT_ORIGIN_CHAR_TIMEOUT:
-    case INT_ORIGIN_RECEIVED_DATA:
-        uart_receive_bytes();
-        break;
-    
-    case INT_ORIGIN_LINE_STATUS:
-        uart_handle_error();
-        break;
-    
-    default:
-        break;
+        case INT_ORIGIN_CHAR_TIMEOUT:
+        case INT_ORIGIN_RECEIVED_DATA:
+            uart_receive_bytes();
+            break;
+        
+        case INT_ORIGIN_LINE_STATUS:
+            // TODO remove this printf
+            printf("ERROR\n");
+            uart_handle_error();
+            break;
+        
+        default:
+            break;
+        }
     }
 }
 
 bool uart_error_reading_message() {
     return error_reading_message;
 }
-
-// int uart_send_message(uint8_t len, uint8_t *msg) {
-//     if (len == 0)
-//         return 1;
-
-//     if (uart_send_byte(len + 1) != OK)
-//         return 1;
-    
-//     for (uint8_t i = 0; i < len; i++) {
-//         if (uart_send_byte(msg[i]) != OK)
-//             return 1;
-//     }
-
-//     awaiting_ack = true;
-
-//     return 0;
-// }
-
-// int uart_receive_message(uint8_t **msg) {
-//     if (len == 0)
-//         return 1;
-    
-
-// }
 
 int uart_send_byte(uint8_t byte) {
     if (queue_push(&transmitted, &byte) != OK)
@@ -171,15 +151,6 @@ int uart_send_bytes() {
 
 //     return 0;
 // }
-void uart_handle_error() {
-    bool err;
-    if (uart_check_error(&err) != OK)
-        return;
-    
-    if (uart_check_error) {
-        error_reading_message = true;
-    }
-}
 
 int uart_check_error(bool *err) {
     uint8_t lsr_byte;
@@ -194,6 +165,16 @@ int uart_check_error(bool *err) {
     }
 
     return 0;
+}
+
+void uart_handle_error() {
+    bool err;
+    if (uart_check_error(&err) != OK)
+        return;
+    
+    if (err) {
+        error_reading_message = true;
+    }
 }
 
 int uart_init_sw_queues() {
@@ -216,7 +197,7 @@ int uart_flush_received_bytes(uint8_t *no_bytes, uint8_t *first, uint8_t *last) 
         if (no_bytes == 0) {
             *first = *last;
         }
-        *no_bytes++;
+        *no_bytes += 1;
         if (queue_pop(&received) != OK)
             return 1;
     }
@@ -236,7 +217,7 @@ int uart_flush_received_bytes(uint8_t *no_bytes, uint8_t *first, uint8_t *last) 
             if (no_bytes == 0) {
                 *first = *last;
             }
-            *no_bytes++;
+            *no_bytes += 1;
             if (util_sys_inb(COM1_BASE_ADDR + LINE_STATUS_REG, &lsr_byte) != OK)
                 return 1;
         }

@@ -13,6 +13,7 @@
 #include "textbox.h"
 #include "button.h"
 #include "menu.h"
+#include "protocol.h"
 
 static bool end = false;
 static bool bound_canvas = false;
@@ -103,6 +104,14 @@ int event_new_atom(uint16_t x, uint16_t y) {
 int dispatch_mouse_packet(struct packet p) {
     cursor_move(p.delta_x, p.delta_y);
     bool hovering = false;
+
+    // TODO temporary
+    if (p.lb) {
+        protocol_test_msg();
+    }
+    if (p.rb) {
+        protocol_test_msg2();
+    }
 
     // TODO it can be better organized later on
     if (menu_get_state() == WORD_SCREEN) {

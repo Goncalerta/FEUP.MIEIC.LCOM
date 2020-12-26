@@ -7,6 +7,8 @@
 #define PROTOCOL_BIT_RATE 9600
 #define PROTOCOL_ACK 0
 #define PROTOCOL_NACK 1
+#define PROTOCOL_WAIT_TIMEOUT_TICKS 150
+#define PENDING_MESSAGES_CAPACITY 8
 
 typedef enum message_type_t {
     MSG_LEAVE_GAME = 0,
@@ -33,5 +35,10 @@ typedef struct message_t {
 int protocol_config_uart();
 int protocol_handle_received_bytes();
 int protocol_handle_error();
+int protocol_tick();
+
+// TODO delete
+void protocol_test_msg();
+void protocol_test_msg2();
 
 #endif /* _PROTOCOL_H */

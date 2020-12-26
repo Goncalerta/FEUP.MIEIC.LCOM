@@ -100,6 +100,7 @@ typedef struct interrupt_identification_t {
     fifo_status_t fifo_status;
 } interrupt_identification_t;
 
+void uart_handle_error();
 bool uart_error_reading_message();
 int com1_subscribe_int(uint8_t *bit_no);
 int com1_unsubscribe_int();

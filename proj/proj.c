@@ -87,10 +87,11 @@ int (proj_main_loop)(int argc, char *argv[]) {
 
     if (com1_subscribe_int(&com1_irq_set) != OK)
        return 1;
-
     if (uart_clear_hw_fifos() != OK)
         return 1;
     uart_flush_RBR();
+    uint8_t noop;
+    uart_flush_received_bytes(&noop, &noop, &noop);
 
     // INIT game assets
     // TODO probably move those to a more appropriate place later in the project
@@ -102,6 +103,7 @@ int (proj_main_loop)(int argc, char *argv[]) {
         return 1;
     // ^^
 
+    printf("boot\n");
     int ipc_status, r;
     message msg;
     while ( !should_end() ) {
@@ -115,9 +117,6 @@ int (proj_main_loop)(int argc, char *argv[]) {
             case HARDWARE: /* hardware interrupt notification */				
                 if (msg.m_notify.interrupts & BIT(mouse_irq_set)) {
                     mouse_ih();
-                    // TODO application dependent part outside ih
-                    // for (int i = (int)'a'; i < 'a'+1; i++)
-                    //     uart_send_byte(i);
                 }
                 if (msg.m_notify.interrupts & BIT(kbd_irq_set)) {
                     kbc_ih();
@@ -139,17 +138,10 @@ int (proj_main_loop)(int argc, char *argv[]) {
                             printf("Failed to handle uart error.\n");
                         }
                     }
-
-                    // if (uart_read_byte(&b) == OK) {
-                    //     printf("RECEIVED %c", b);
-                    //     while (uart_read_byte(&b) == OK)
-                    //         printf("%c", b);
-                    //     printf("\n");
-                    // }
                 }
                 if (msg.m_notify.interrupts & BIT(timer_irq_set)) {
                     timer_int_handler();
-
+                    protocol_tick();
                 }
                 break;
             default:
