@@ -21,6 +21,7 @@ int delete_queue(queue_t *queue) {
     if (queue->data == NULL)
         return 1;
     free(queue->data);
+    queue->data = NULL;
 
     return 0;
 }
@@ -60,6 +61,14 @@ void queue_empty(queue_t *queue) {
     queue->front = queue->back = queue->size = 0;
 }
 
+int queue_top(queue_t *queue, void *el) {
+    if (queue_is_empty(queue))
+        return 1;
+
+    memcpy(el, queue_index(queue, queue->front), queue->element_size);
+    return 0;
+}
+
 int queue_push(queue_t *queue, void *el) {
     if (queue_is_full(queue)) {
         if (queue_resize(queue) != OK)
@@ -73,11 +82,10 @@ int queue_push(queue_t *queue, void *el) {
 
 }
 
-int queue_pop(queue_t *queue, void *el) {
+int queue_pop(queue_t *queue) {
     if (queue_is_empty(queue))
         return 1;
 
-    memcpy(el, queue_index(queue, queue->front), queue->element_size);
     queue->front = (queue->front + 1) % queue->capacity;
     queue->size--;
     return 0;

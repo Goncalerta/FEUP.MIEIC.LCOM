@@ -115,25 +115,37 @@ int (proj_main_loop)(int argc, char *argv[]) {
             case HARDWARE: /* hardware interrupt notification */				
                 if (msg.m_notify.interrupts & BIT(mouse_irq_set)) {
                     mouse_ih();
-                    for (int i = (int)'a'; i < 'a'+1; i++)
-                        uart_send_byte(i);
+                    // TODO application dependent part outside ih
+                    // for (int i = (int)'a'; i < 'a'+1; i++)
+                    //     uart_send_byte(i);
                 }
                 if (msg.m_notify.interrupts & BIT(kbd_irq_set)) {
                     kbc_ih();
+                    // TODO application dependent part outside ih
                 }
                 if (msg.m_notify.interrupts & BIT(rtc_irq_set)) {
                     rtc_ih();
+                    // TODO application dependent part outside ih
                 }
                 if (msg.m_notify.interrupts & BIT(com1_irq_set)) {
                     com1_ih();
-                    uint8_t b;
-
-                    if (uart_read_byte(&b) == OK) {
-                        printf("RECEIVED %c", b);
-                        while (uart_read_byte(&b) == OK)
-                            printf("%c", b);
-                        printf("\n");
+                    
+                    if (protocol_handle_received_bytes() != OK) {
+                        printf("Error handling received uart bytes.\n");
                     }
+
+                    if (uart_error_reading_message()) {
+                        if (protocol_handle_error() != OK) {
+                            printf("Failed to handle uart error.\n");
+                        }
+                    }
+
+                    // if (uart_read_byte(&b) == OK) {
+                    //     printf("RECEIVED %c", b);
+                    //     while (uart_read_byte(&b) == OK)
+                    //         printf("%c", b);
+                    //     printf("\n");
+                    // }
                 }
                 if (msg.m_notify.interrupts & BIT(timer_irq_set)) {
                     timer_int_handler();

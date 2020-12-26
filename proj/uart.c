@@ -7,9 +7,10 @@
 #define UART_SW_QUEUES_STARTING_CAPACITY 16
 
 static int hook_id_com1 = 4;
-static queue_t transmitted;
-static queue_t received;
+
+static queue_t transmitted, received;
 static fifo_int_trigger_level_t fifo_int_trigger_level;
+static bool error_reading_message = false;
 
 int com1_subscribe_int(uint8_t *bit_no) {
     *bit_no = hook_id_com1;
@@ -31,16 +32,16 @@ void com1_ih() {
 
     switch (int_ident.origin) {
     case INT_ORIGIN_TRANSMITTER_EMPTY:
-        uart_send_bytes()
+        uart_send_bytes();
         break;
 
     case INT_ORIGIN_CHAR_TIMEOUT:
     case INT_ORIGIN_RECEIVED_DATA:
-        uart_receive_bytes()
+        uart_receive_bytes();
         break;
     
     case INT_ORIGIN_LINE_STATUS:
-        uart_handle_error()
+        uart_handle_error();
         break;
     
     default:
@@ -48,19 +49,53 @@ void com1_ih() {
     }
 }
 
+bool uart_error_reading_message() {
+    return error_reading_message;
+}
+
+// int uart_send_message(uint8_t len, uint8_t *msg) {
+//     if (len == 0)
+//         return 1;
+
+//     if (uart_send_byte(len + 1) != OK)
+//         return 1;
+    
+//     for (uint8_t i = 0; i < len; i++) {
+//         if (uart_send_byte(msg[i]) != OK)
+//             return 1;
+//     }
+
+//     awaiting_ack = true;
+
+//     return 0;
+// }
+
+// int uart_receive_message(uint8_t **msg) {
+//     if (len == 0)
+//         return 1;
+    
+
+// }
+
 int uart_send_byte(uint8_t byte) {
     if (queue_push(&transmitted, &byte) != OK)
         return 1;
     
-    return uart_send_bytes();
+    return uart_send_bytes(); // TODO maybe don't flush automatically each byte; instead flush each message
 }
 
 int uart_read_byte(uint8_t *byte) {
     if (queue_is_empty(&received) != OK)
         return 1;
-    if (queue_pop(&received, byte) != OK)
+    if (queue_top(&received, byte) != OK)
+        return 1;
+    if (queue_pop(&received) != OK)
         return 1;
     return 0;
+}
+
+bool uart_received_bytes() {
+    return !queue_is_empty(&received);
 }
 
 int uart_receive_bytes() {
@@ -88,7 +123,9 @@ int uart_send_bytes() {
         return 1;
     
     while (!queue_is_empty(&transmitted) && (lsr_byte & LSR_TRANSMITTER_HOLDING_REGISTER_EMPTY)) {
-        if (queue_pop(&transmitted, &thr_byte) != OK)
+        if (queue_top(&transmitted, &thr_byte) != OK)
+            return 1;
+        if (queue_pop(&transmitted) != OK)
             return 1;
         if (sys_outb(COM1_BASE_ADDR + TRANSMITTER_HOLDING_REG, thr_byte) != OK)
             return 1;
@@ -136,10 +173,12 @@ int uart_send_bytes() {
 // }
 void uart_handle_error() {
     bool err;
-    if (!uart_check_error(&err))
+    if (uart_check_error(&err) != OK)
         return;
     
-    // TODO handle error
+    if (uart_check_error) {
+        error_reading_message = true;
+    }
 }
 
 int uart_check_error(bool *err) {
@@ -165,6 +204,51 @@ int uart_init_sw_queues() {
     if (new_queue(&received, sizeof(uint8_t), UART_SW_QUEUES_STARTING_CAPACITY) != OK) {
         return 1;
     }
+
+    return 0;
+}
+
+int uart_flush_received_bytes(uint8_t *no_bytes, uint8_t *first, uint8_t *last) {
+    *no_bytes = 0;
+    while (!queue_is_empty(&received)) {
+        if (queue_top(&received, last) != OK)
+            return 1;
+        if (no_bytes == 0) {
+            *first = *last;
+        }
+        *no_bytes++;
+        if (queue_pop(&received) != OK)
+            return 1;
+    }
+
+    uint8_t lsr_byte, rbr_byte;
+    
+    if (util_sys_inb(COM1_BASE_ADDR + LINE_STATUS_REG, &lsr_byte) != OK)
+        return 1;
+    
+    uint8_t tries = 0;
+    while (tries < 3) {
+        while (lsr_byte & LSR_RECEIVER_READY) {
+            tries = 0;
+            if (util_sys_inb(COM1_BASE_ADDR + RECEIVER_BUFFER_REG, &rbr_byte) != OK)
+                return 1;
+            *last = rbr_byte;
+            if (no_bytes == 0) {
+                *first = *last;
+            }
+            *no_bytes++;
+            if (util_sys_inb(COM1_BASE_ADDR + LINE_STATUS_REG, &lsr_byte) != OK)
+                return 1;
+        }
+        tries++;
+        if (tries < UART_MAX_TRIES) {
+            // Wait some time to make sure part of the message to be ignored
+            // isn't still being sent
+            tickdelay(micros_to_ticks(UART_DELAY_US));
+        }
+    }
+
+    error_reading_message = false;
 
     return 0;
 }

@@ -49,6 +49,9 @@
 #define FCR_CLEAR_TRANSMIT_FIFO BIT(2)
 #define FCR_FIFO_INTERRUPT_TRIGGER_LEVEL (BIT(6) | BIT(7))
 
+#define UART_DELAY_US 20000
+#define UART_MAX_TRIES 3
+
 typedef enum word_len_t {
     WORD_LEN_5_BYTES = 0,
     WORD_LEN_6_BYTES = 1,
@@ -97,6 +100,7 @@ typedef struct interrupt_identification_t {
     fifo_status_t fifo_status;
 } interrupt_identification_t;
 
+bool uart_error_reading_message();
 int com1_subscribe_int(uint8_t *bit_no);
 int com1_unsubscribe_int();
 int uart_set_bit_rate(uint16_t bit_rate);
@@ -112,7 +116,10 @@ int uart_receive_bytes();
 int uart_send_bytes();
 int uart_send_byte(uint8_t byte);
 int uart_read_byte(uint8_t *byte);
+bool uart_received_bytes();
+int uart_flush_received_bytes(uint8_t *no_bytes, uint8_t *first, uint8_t *last);
 void uart_flush_RBR();
 int uart_clear_hw_fifos();
+// int uart_send_message(uint8_t len, uint8_t *msg);
 
 #endif /* _UART_H */
