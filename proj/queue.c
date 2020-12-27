@@ -2,6 +2,22 @@
 
 #include "queue.h"
 
+// For debug purposes
+// static void print_queue(queue_t *queue) {
+//     printf("QUEUE x%d %d/%d: ", queue->element_size, queue->size, queue->capacity);
+    
+//     for (size_t i = 0; i < queue->size; i++) {
+//         printf("0x");
+//         for (size_t j = 0; j < queue->element_size; j++) {
+//             printf("%02x",((uint8_t *) queue->data)[(queue->front + i)*queue->element_size + j]);
+//         }
+        
+//         printf(" ");
+//     }
+    
+//     printf("\n");
+// }
+
 int new_queue(queue_t *queue, size_t element_size, size_t capacity) {
     if (element_size == 0)
         return 1;
@@ -38,11 +54,11 @@ static int queue_resize(queue_t *queue) {
         return 1;
     queue->data = data;
     
-    if (queue->front > queue->back) {
+    if (queue->front > queue->back || queue_is_full(queue)) {
         memcpy(queue_index(queue, queue->capacity),
                queue_index(queue, 0),
                queue->back * queue->element_size);
-        queue->back += new_capacity;
+        queue->back += queue->size;
     }
     
     queue->capacity = new_capacity;
@@ -79,7 +95,6 @@ int queue_push(queue_t *queue, void *el) {
     queue->back = (queue->back + 1) % queue->capacity;
     queue->size++;
     return 0;
-
 }
 
 int queue_pop(queue_t *queue) {

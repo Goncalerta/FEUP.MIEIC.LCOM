@@ -272,6 +272,7 @@ int protocol_config_uart() {
 int protocol_tick() {
     if (awaiting_ack && awaiting_ack_ticks < PROTOCOL_WAIT_TIMEOUT_TICKS) {
         awaiting_ack_ticks++;
+        // TODO just time out and delete all messages (or at least dont allow the queue size to grow too much if the other computer is off)
     }
 
     if (receiving_msg) {

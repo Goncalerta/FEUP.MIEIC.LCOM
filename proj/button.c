@@ -133,30 +133,3 @@ int button_update_state(button_t *button, bool hovering, bool lb, bool rb) {
 
     return 0;
 }
-
-
-// bool is_hovering_tb(triangle_button sb, uint16_t mouse_x, uint16_t mouse_y) {
-//     return mouse_x >= sb.x && mouse_x <= sb.x + sb.width
-//         && mouse_y >= sb.y + sb.height * (0.5 + (mouse_x - sb.x) / (2 * sb.width))
-//         && mouse_y <= sb.y + (sb.y + sb.height) * (mouse_x - sb.x - sb.width) / (2 * sb.width);
-// }
-
-// int tb_draw(triangle_button tb) {
-//     switch (tb.state) {
-//     case BUTTON_NORMAL:
-//         // TODO
-//         // draw_img(tb_normal, tb.x, tb.y);
-//         break;
-//     case BUTTON_HOVERING:
-//         // TODO
-//         // draw_img(tb_hovering, tb.x, tb.y);
-//         break;
-//     case BUTTON_PRESSING:
-//         // TODO
-//         // draw_img(tb_pressing, tb.x, tb.y);
-//         break;
-//     }
-
-//     // TODO
-//     // draw_img(tb.icon, tb.x, tb.y);
-// }

@@ -42,8 +42,6 @@ void com1_ih() {
             break;
         
         case INT_ORIGIN_LINE_STATUS:
-            // TODO remove this printf
-            printf("ERROR\n");
             uart_handle_error();
             break;
         
