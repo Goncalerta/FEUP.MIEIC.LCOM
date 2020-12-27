@@ -16,13 +16,13 @@ static void rtc_print_byte_binary_format(uint8_t val) {
 
 int rtc_read_conf() {
     uint8_t reg_a, reg_b, reg_c, reg_d;
-    if (rtc_read_register(RTC_REGISTER_A, &reg_a) != 0)
+    if (rtc_read_register(RTC_REGISTER_A, &reg_a) != OK)
         return 1;
-    if (rtc_read_register(RTC_REGISTER_B, &reg_b) != 0)
+    if (rtc_read_register(RTC_REGISTER_B, &reg_b) != OK)
         return 1;
-    if (rtc_read_register(RTC_REGISTER_C, &reg_c) != 0)
+    if (rtc_read_register(RTC_REGISTER_C, &reg_c) != OK)
         return 1;
-    if (rtc_read_register(RTC_REGISTER_D, &reg_d) != 0)
+    if (rtc_read_register(RTC_REGISTER_D, &reg_d) != OK)
         return 1;
 
     printf("REGISTER A: ");
@@ -50,27 +50,27 @@ int rtc_read_date() {
     // é necessário dar disable no início e enable no final?
     // slide 10 e 20
     uint8_t reg_a;
-    if (rtc_read_register(RTC_REGISTER_A, &reg_a) != 0)
+    if (rtc_read_register(RTC_REGISTER_A, &reg_a) != OK)
         return 1;
     
     if (reg_a & RTC_UIP) { // slide 15
         tickdelay(micros_to_ticks(RTC_DELAY_U));
     }
 
-    if (rtc_read_register(RTC_REGISTER_SECONDS, &current_date.second) != 0)
+    if (rtc_read_register(RTC_REGISTER_SECONDS, &current_date.second) != OK)
         return 1;
-    if (rtc_read_register(RTC_REGISTER_MINUTES, &current_date.minute) != 0)
+    if (rtc_read_register(RTC_REGISTER_MINUTES, &current_date.minute) != OK)
         return 1;
-    if (rtc_read_register(RTC_REGISTER_HOURS, &current_date.hour) != 0)
+    if (rtc_read_register(RTC_REGISTER_HOURS, &current_date.hour) != OK)
         return 1;
-    if (rtc_read_register(RTC_REGISTER_DAY_OF_THE_MONTH, &current_date.day) != 0)
+    if (rtc_read_register(RTC_REGISTER_DAY_OF_THE_MONTH, &current_date.day) != OK)
         return 1;
-    if (rtc_read_register(RTC_REGISTER_MONTH, &current_date.month) != 0)
+    if (rtc_read_register(RTC_REGISTER_MONTH, &current_date.month) != OK)
         return 1;
-    if (rtc_read_register(RTC_REGISTER_YEAR, &current_date.year) != 0)
+    if (rtc_read_register(RTC_REGISTER_YEAR, &current_date.year) != OK)
         return 1;
 
-    if (date_bcd_to_binary(&current_date) != 0)
+    if (date_bcd_to_binary(&current_date) != OK)
         return 1;
 
     return 0;
@@ -111,7 +111,7 @@ static int alarm_time_plus_date(rtc_alarm_time_t *alarm, date_t date) { // value
 
 int rtc_enable_update_int() {
     rtc_interrupt_config_t config; // no config is used when enabling update interrupts
-    if (rtc_enable_int(UPDATE_INTERRUPT, config) != 0)
+    if (rtc_enable_int(UPDATE_INTERRUPT, config) != OK)
         return 1;
 
     return 0;
@@ -122,7 +122,7 @@ int rtc_set_alarm_in(rtc_alarm_time_t remaining_time_to_alarm) {
         return 1;
     
     rtc_interrupt_config_t config = {.alarm_time = remaining_time_to_alarm};
-    if (rtc_enable_int(ALARM_INTERRUPT, config) != 0)
+    if (rtc_enable_int(ALARM_INTERRUPT, config) != OK)
         return 1;
     
     return 0;
@@ -138,13 +138,13 @@ int rtc_enable_int(rtc_interrupt_t rtc_interrupt, rtc_interrupt_config_t config)
     case ALARM_INTERRUPT:
         reg_b |= RTC_AIE;
 
-        if (alarm_time_binary_to_bcd(&config.alarm_time) != 0)
+        if (alarm_time_binary_to_bcd(&config.alarm_time) != OK)
             return 1;
-        if (rtc_write_register(RTC_REGISTER_SECONDS_ALARM, config.alarm_time.seconds) != 0)
+        if (rtc_write_register(RTC_REGISTER_SECONDS_ALARM, config.alarm_time.seconds) != OK)
             return 1;
-        if (rtc_write_register(RTC_REGISTER_MINUTES_ALARM, config.alarm_time.minutes) != 0)
+        if (rtc_write_register(RTC_REGISTER_MINUTES_ALARM, config.alarm_time.minutes) != OK)
             return 1;
-        if (rtc_write_register(RTC_REGISTER_HOURS_ALARM, config.alarm_time.hours) != 0)
+        if (rtc_write_register(RTC_REGISTER_HOURS_ALARM, config.alarm_time.hours) != OK)
             return 1;
 
         break;
@@ -157,12 +157,12 @@ int rtc_enable_int(rtc_interrupt_t rtc_interrupt, rtc_interrupt_config_t config)
         reg_b |= RTC_PIE;
         
         uint8_t reg_a;
-        if (rtc_read_register(RTC_REGISTER_A, &reg_a) != 0)
+        if (rtc_read_register(RTC_REGISTER_A, &reg_a) != OK)
             return 1;
         // TODO check if this is correct (can the code be preempted?)
         // if UIP is set, and meanwhile it becomes unset, does it make a problem? // does it become set? or the RTC corrects it to the correct value?
         reg_a = (reg_a & 0xf0) | (config.periodic_RS3210 & 0x0f);
-        if (rtc_write_register(RTC_REGISTER_A, reg_a) != 0)
+        if (rtc_write_register(RTC_REGISTER_A, reg_a) != OK)
             return 1;
 
         break;

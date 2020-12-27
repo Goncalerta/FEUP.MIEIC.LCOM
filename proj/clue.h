@@ -12,12 +12,12 @@ typedef struct word_clue_t {
     uint16_t width, height;
 } word_clue_t;
 
-int new_word_clue(word_clue_t *clue, char *word);
+int new_word_clue(word_clue_t *clue, const char *word);
 
 int word_clue_draw(word_clue_t *clue, frame_buffer_t buf, uint16_t x, uint16_t y);
 
 int word_clue_hint(word_clue_t *clue);
 
-void free_word_clue(word_clue_t *clue);
+void delete_word_clue(word_clue_t *clue);
 
 #endif /* __CLUE_H */

@@ -11,7 +11,7 @@ typedef enum cursor_state {
     CURSOR_WRITE
 } cursor_state;
 
-void cursor_init();
+int cursor_init();
 int16_t cursor_get_x();
 int16_t cursor_get_y();
 void cursor_move(int16_t dx, int16_t dy);

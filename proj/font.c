@@ -41,7 +41,7 @@ int font_draw_char(frame_buffer_t buf, char c, uint16_t x, uint16_t y) {
     return 0;
 }
 
-int font_draw_string(frame_buffer_t buf, char string[], uint16_t x, uint16_t y, uint8_t start, uint8_t size) {
+int font_draw_string(frame_buffer_t buf, const char string[], uint16_t x, uint16_t y, uint8_t start, uint8_t size) {
     for (int i = 0; string[i] != '\0' && i < start + size; i++) {
         if (i < start) {
             continue;
@@ -53,4 +53,10 @@ int font_draw_string(frame_buffer_t buf, char string[], uint16_t x, uint16_t y, 
         }
     }
     return 0;
+}
+
+int font_draw_string_centered(frame_buffer_t buf, const char string[], uint16_t x, uint16_t y, uint8_t start, uint8_t size) {
+    x -= (((FONT_CHAR_HEIGHT + FONT_CHAR_SPACE_X) * size) - FONT_CHAR_SPACE_X) / 2;
+    y -= FONT_CHAR_HEIGHT / 2;
+    return font_draw_string(buf, string, x, y, start, size);
 }

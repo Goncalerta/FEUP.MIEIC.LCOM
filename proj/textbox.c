@@ -18,8 +18,10 @@
 static char *clip_board = NULL; // not saving the '\0' char
 static uint8_t clip_board_size = 0;
 
-void new_text_box(text_box_t *text_box, uint16_t x, uint16_t y, uint8_t display_size) {
+int new_text_box(text_box_t *text_box, uint16_t x, uint16_t y, uint8_t display_size) {
     text_box->word = malloc(sizeof('\0'));
+    if (text_box->word == NULL)
+        return 1;
     text_box->word[0] = '\0';
     text_box->word_size = 0;
     text_box->cursor_pos = 0;
@@ -32,6 +34,8 @@ void new_text_box(text_box_t *text_box, uint16_t x, uint16_t y, uint8_t display_
     text_box->x = x;
     text_box->y = y;
     text_box->display_size = display_size;
+
+    return 0;
 }
 
 void text_box_cursor_tick(text_box_t *text_box) {
@@ -65,13 +69,13 @@ int text_box_draw(frame_buffer_t buf, text_box_t text_box) {
     }
 
     if (text_box_interacting) { // draw border
-        if (vb_draw_hline(buf, text_box.x, text_box.y, TEXT_BOX_WIDTH(text_box.display_size), TEXT_BOX_BORDER_COLOR) != 0)
+        if (vb_draw_hline(buf, text_box.x, text_box.y, TEXT_BOX_WIDTH(text_box.display_size), TEXT_BOX_BORDER_COLOR) != OK)
             return 1;
-        if (vb_draw_hline(buf, text_box.x, text_box.y + TEXT_BOX_HEIGHT - 1, TEXT_BOX_WIDTH(text_box.display_size), TEXT_BOX_BORDER_COLOR) != 0)
+        if (vb_draw_hline(buf, text_box.x, text_box.y + TEXT_BOX_HEIGHT - 1, TEXT_BOX_WIDTH(text_box.display_size), TEXT_BOX_BORDER_COLOR) != OK)
             return 1;
-        if (vb_draw_vline(buf, text_box.x, text_box.y, TEXT_BOX_HEIGHT, TEXT_BOX_BORDER_COLOR) != 0)
+        if (vb_draw_vline(buf, text_box.x, text_box.y, TEXT_BOX_HEIGHT, TEXT_BOX_BORDER_COLOR) != OK)
             return 1;
-        if (vb_draw_vline(buf, text_box.x + TEXT_BOX_WIDTH(text_box.display_size) - 1, text_box.y, TEXT_BOX_HEIGHT, TEXT_BOX_BORDER_COLOR) != 0)
+        if (vb_draw_vline(buf, text_box.x + TEXT_BOX_WIDTH(text_box.display_size) - 1, text_box.y, TEXT_BOX_HEIGHT, TEXT_BOX_BORDER_COLOR) != OK)
             return 1;
     }
     
@@ -438,13 +442,8 @@ void text_box_unselect(text_box_t *text_box) {
     text_box->state = TEXT_BOX_NORMAL;
 }
 
-int text_box_exit(text_box_t *text_box) {
-    if (text_box->word == NULL) {
-        return 0;
-    }
-
+void delete_text_box(text_box_t *text_box) {
     free(text_box->word);
-    return 0;
 }
 
 int text_box_clip_board_exit() {

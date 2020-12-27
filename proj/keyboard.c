@@ -80,7 +80,7 @@ int kbd_handle_scancode(kbd_event_t *kbd_state) {
             kbd_state->is_ctrl_pressed = false;
         }
     } else { // make code
-        switch(code) {
+        switch (code) {
 	    case MAKE_CTRL:
 	        kbd_state->key = CTRL;
             kbd_state->is_ctrl_pressed = true;

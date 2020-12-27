@@ -3,6 +3,7 @@
 #include "uart.h"
 #include "protocol.h"
 #include "queue.h"
+#include "dispatcher.h"
 
 static queue_t pending_messages;
 static bool awaiting_ack;
@@ -24,11 +25,20 @@ static int new_message(message_t *message, message_type_t type, size_t content_l
     return 0;
 }
 
-static int delete_message(message_t *message) {
-    if (message->content == NULL)
-        return 1;
-    free(message->content);
+static int new_message_no_content(message_t *message, message_type_t type) {
+    message->type = type;
+    message->content_len = 0;
     message->content = NULL;
+    return 0;
+}
+
+static int delete_message(message_t *message) {
+    if (message->content_len != 0) {
+        if (message->content == NULL)
+            return 1;
+        free(message->content);
+        message->content = NULL;
+    }
     return 0;
 }
 
@@ -50,13 +60,6 @@ static int protocol_send_next_message() {
         if (uart_send_byte(msg.content[i]) != OK)
             return 1;
     }
-
-    // TODO remove
-    printf("SENDING msg: 0x%x, len: %d\n[", msg.type, msg.content_len);
-    for (size_t i = 0; i < msg.content_len; i++) {
-        printf("0x%x, ", msg.content[i]);
-    }
-    printf("]\n");
 
     awaiting_ack = true;
     awaiting_ack_ticks = 0;
@@ -123,13 +126,18 @@ static int protocol_parse_received_message() {
     if (new_message(&msg, receiving_msg_bits[0], receiving_msg_len - 2, receiving_msg_bits + 1) != OK)
         return 1;
 
-    // TODO dispatch message
-    printf("msg: 0x%x, len: %d\n[", msg.type, msg.content_len);
+    // TODO delete
+    printf("msg: 0x%02x, len: %d [", msg.type, msg.content_len);
     for (size_t i = 0; i < msg.content_len; i++) {
         printf("0x%x, ", msg.content[i]);
     }
     printf("]\n");
+    if (dispatcher_parse_message(&msg) != OK) {
+        delete_message(&msg);
+        return 1;
+    }
 
+    delete_message(&msg);
     return 0;
 }
 
@@ -144,11 +152,9 @@ static int protocol_handle_message_body() {
 
     if (receiving_msg_read_count >= receiving_msg_len) {
         if (protocol_parse_received_message() == OK) {
-            printf("SENDING ACK\n");
             if (uart_send_byte(PROTOCOL_ACK) != OK)
                 return 1;
         } else {
-            printf("SENDING NACK\n");
             if (uart_send_byte(PROTOCOL_NACK) != OK)
                 return 1;
         }
@@ -172,36 +178,29 @@ int protocol_handle_error() {
     if (awaiting_ack && no_bytes > 0) {
         if (no_bytes > 1 && !receiving_msg) {
             if (first == PROTOCOL_ACK) {
-                printf("RECEIVED ACK\n");
                 if (protocol_handle_ack() != OK)
                     return 1;
             } else if (first == PROTOCOL_NACK) {
-                printf("RECEIVED NACK\n");
                 if (protocol_handle_nack() != OK)
                     return 1;
             } else if (last == PROTOCOL_ACK) {
-                printf("RECEIVED ACK\n");
                 if (protocol_handle_ack() != OK)
                     return 1;
             } else if (last == PROTOCOL_NACK) {
-                printf("RECEIVED NACK\n");
                 if (protocol_handle_nack() != OK)
                     return 1;
             }
         } else {
             if (last == PROTOCOL_ACK) {
-                printf("RECEIVED ACK\n");
                 if (protocol_handle_ack() != OK)
                     return 1;
             } else if (last == PROTOCOL_NACK) {
-                printf("RECEIVED NACK\n");
                 if (protocol_handle_nack() != OK)
                     return 1;
             }
         }
     }
 
-    printf("HE SENDING NACK\n");
     if (uart_send_byte(PROTOCOL_NACK) != OK)
         return 1;
     
@@ -220,12 +219,10 @@ int protocol_handle_received_bytes() {
 
             switch (byte) {
             case PROTOCOL_ACK:
-                printf("RECEIVED ACK\n");
                 if (protocol_handle_ack() != OK)
                     return 1;
                 break;
             case PROTOCOL_NACK:
-                printf("RECEIVED NACK\n");
                 if (protocol_handle_nack() != OK)
                     return 1;
                 break;
@@ -287,29 +284,53 @@ int protocol_tick() {
     return 0;
 }
 
-// TODO delete
-void protocol_test_msg() {
-    uint8_t content[3];
-    content[0] = 0xAB;
-    content[1] = 0x32;
-    content[2] = 0xFE;
+int protocol_send_ready_to_play() {
     message_t msg;
-    if (new_message(&msg, 7, 3, content) != OK)
-        return;
-    protocol_add_message(msg);
+    if (new_message_no_content(&msg, MSG_READY_TO_PLAY) != OK)
+        return 1;
+
+    if (protocol_add_message(msg) != OK)
+        return 1;
+
+    return 0;
 }
 
-void protocol_test_msg2() {
-    uint8_t content[7];
-    content[0] = 0x00;
-    content[1] = 0x01;
-    content[2] = 0x00;
-    content[3] = 0x02;
-    content[4] = 0x00;
-    content[5] = 0x03;
-    content[6] = 0x00;
+int protocol_send_leave_game() {
     message_t msg;
-    if (new_message(&msg, 0x77, 7, content) != OK)
-        return;
-    protocol_add_message(msg);
+    if (new_message_no_content(&msg, MSG_LEAVE_GAME) != OK)
+        return 1;
+
+    if (protocol_add_message(msg) != OK)
+        return 1;
+
+    return 0;
+}
+
+int protocol_send_random_number(int random_number) {
+    message_t msg;
+    uint8_t content[4];
+    memcpy(content, &random_number, 4);
+    if (new_message(&msg, MSG_RANDOM_NUMBER, 4, content) != OK)
+        return 1;
+
+    if (protocol_add_message(msg) != OK)
+        return 1;
+
+    return 0;
+}
+
+int protocol_send_new_round(uint32_t round_number, const char *word) {
+    message_t msg;
+    size_t str_len = strlen(word);
+    uint8_t content[str_len + 5];
+    memcpy(content, &round_number, 4);
+    memcpy(content + 4, word, str_len + 1);
+
+    if (new_message(&msg, MSG_NEW_ROUND, str_len + 5, content) != OK)
+        return 1;
+
+    if (protocol_add_message(msg) != OK)
+        return 1;
+
+    return 0;
 }

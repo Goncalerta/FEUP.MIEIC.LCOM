@@ -23,10 +23,10 @@ int date_draw(date_t date, uint16_t x, uint16_t y) {
     //TODO '/' ou '-' ?
     sprintf(date_str, "20%02d/%02d/%02d %02d:%02d:%02d", date.year, date.month, date.day, date.hour, date.minute, date.second);
 
-    if (vb_draw_rectangle(vg_get_back_buffer(), x-DATE_DISPLAY_BORDER, y-DATE_DISPLAY_BORDER, (DATE_STRING_SIZE-1)*CHAR_SPACE + 2*DATE_DISPLAY_BORDER, FONT_CHAR_HEIGHT + 2*DATE_DISPLAY_BORDER, DATE_BACK_COLOR) != 0)
+    if (vb_draw_rectangle(vg_get_back_buffer(), x-DATE_DISPLAY_BORDER, y-DATE_DISPLAY_BORDER, (DATE_STRING_SIZE-1)*CHAR_SPACE + 2*DATE_DISPLAY_BORDER, FONT_CHAR_HEIGHT + 2*DATE_DISPLAY_BORDER, DATE_BACK_COLOR) != OK)
         return 1;
 
-    if (font_draw_string(vg_get_back_buffer(), date_str, x, y, 0, 100) != 0)
+    if (font_draw_string(vg_get_back_buffer(), date_str, x, y, 0, 100) != OK)
         return 1;
 
     return 0;
@@ -34,16 +34,16 @@ int date_draw(date_t date, uint16_t x, uint16_t y) {
 
 int date_draw_current() {
     date_t date;
-    if (rtc_get_current_date(&date) != 0)
+    if (rtc_get_current_date(&date) != OK)
         return 1;
-    if (date_draw(date, DATE_CURRENT_X, DATE_CURRENT_Y) != 0)
+    if (date_draw(date, DATE_CURRENT_X, DATE_CURRENT_Y) != OK)
         return 1;
     return 0;
 }
 
 int date_draw_greeting(uint16_t x, uint16_t y) {
     date_t date;
-    if (rtc_get_current_date(&date) != 0)
+    if (rtc_get_current_date(&date) != OK)
         return 1;
 
     char greeting[DATE_GREETING_MAX_SIZE];
@@ -55,7 +55,7 @@ int date_draw_greeting(uint16_t x, uint16_t y) {
         strcpy(greeting, "GOOD NIGHT");
     }
 
-    if (font_draw_string(vg_get_back_buffer(), greeting, x, y, 0, DATE_GREETING_MAX_SIZE) != 0)
+    if (font_draw_string(vg_get_back_buffer(), greeting, x, y, 0, DATE_GREETING_MAX_SIZE) != OK)
         return 1;
 
     return 0;

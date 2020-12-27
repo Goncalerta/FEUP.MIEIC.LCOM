@@ -29,6 +29,7 @@
  *  *       in fact, even though the player can draw, if the text box is selected, it's not unselected if he begins to draw after round win
 */
 
+#define MAX_SCORE 99999
 #define TICKS_PER_SECOND 2
 #define ROUND_SECONDS 60
 #define ROUND_TICKS ((ROUND_SECONDS) * (TICKS_PER_SECOND))
@@ -38,257 +39,268 @@
 #define BUTTONS_LEN 75
 #define GUESS_CHARACTER_LIMIT 14
 
-#define WORD_LIST_SIZE 46
-static char *word_list[WORD_LIST_SIZE] = {
-    "HOUSE", "TORNADO", "SHOELACE", "TRUCK", "FEAR", "CAREER", "LAKE", "CHRISTMAS",
-    "WALLET", "BALL", "IMAGINATION", "HEAL", "MIND", "ROAR", "WEATHER", "EAT", "CAT",
-    "WORLD", "WHISPER", "MOVIE", "THEATHER", "DOG", "TRIP", "UNIVERSE", "FOOTBALL",
-    "VOLLEYBALL", "PORTUGAL", "CHOCOLATE", "BEAUTIFUL", "DANGER", "ACCIDENT",
-    "DEMOCRACY", "FAMILY", "ALIEN", "MARS", "VENUS", "JUPITER", "SUN", "BOOK",
-    "PEN", "UNIVERSITY", "FISH", "DOCTOR", "SPIDER", "NEWSPAPER", "HALLOWEEN"
+// #define WORD_LIST_SIZE 46
+// static char *word_list[WORD_LIST_SIZE] = {
+//     "HOUSE", "TORNADO", "SHOELACE", "TRUCK", "FEAR", "CAREER", "LAKE", "CHRISTMAS",
+//     "WALLET", "BALL", "IMAGINATION", "HEAL", "MIND", "ROAR", "WEATHER", "EAT", "CAT",
+//     "WORLD", "WHISPER", "MOVIE", "THEATHER", "DOG", "TRIP", "UNIVERSE", "FOOTBALL",
+//     "VOLLEYBALL", "PORTUGAL", "CHOCOLATE", "BEAUTIFUL", "DANGER", "ACCIDENT",
+//     "DEMOCRACY", "FAMILY", "ALIEN", "MARS", "VENUS", "JUPITER", "SUN", "BOOK",
+//     "PEN", "UNIVERSITY", "FISH", "DOCTOR", "SPIDER", "NEWSPAPER", "HALLOWEEN"
+// };
+
+#define NUM_COLORS_AVAILABLE 10
+static const uint32_t canvas_pallete[NUM_COLORS_AVAILABLE] = {
+    // black, blue, red, green, yellow, pink, purple, orange, brown, gray
+    0x000000, 0x1E88E5, 0xD50000, 0x2E7D32, 0xFFEB3B, 0xEC407A, 0x4A148C, 0xFF6D00, 0x5d4037, 0x424242
 };
 
-static game_state_t game_state;
+#define NUM_THICKNESSES_AVAILABLE 3
+static const uint16_t valid_thickness[NUM_THICKNESSES_AVAILABLE] = {
+    1, 10, 20
+};
+
+typedef enum game_state_t {
+    ROUND_UNSTARTED,
+    ROUND_ONGOING,
+    GAME_OVER,
+    ROUND_CORRECT_GUESS
+} game_state_t;
+
+typedef struct drawer_t {
+    bool is_pencil_primary;
+    size_t selected_color;
+    size_t selected_thickness;
+    button_t b_pencil, b_eraser, b_color, b_thickness, b_undo, b_redo;
+} drawer_t;
+
+typedef struct guesser_t {
+    text_box_t text_box;
+} guesser_t;
+
+typedef union role_attr_t {
+    drawer_t *drawer;
+    guesser_t *guesser;
+} role_attr_t;
 
 typedef struct guess_t {
     char *guess;
     bool correct;
 } guess_t;
 
-#define MAX_GUESSES 5
-static size_t num_guesses;
-static guess_t guesses[MAX_GUESSES];
-static char *correct_guess;
-static word_clue_t word_clue;
+typedef struct round_t {
+    // TIMERS AND TICKERS
+    int round_timer;
+    int ticker;
+    int end_screen_timer;
+
+    // GUESSES
+    size_t num_guesses;
+    guess_t guesses[MAX_GUESSES];
+    const char *correct_guess;
+    
+    // CLUES
+    word_clue_t word_clue;
+
+    // ROLE
+    role_t role;
+    role_attr_t attr;
+} round_t;
+
+typedef struct game_t {
+    game_state_t state;
+    round_t *round;
+    int score;
+    uint32_t round_number;
+} game_t;
+
 static rtc_alarm_time_t clue_time_interval = {.hours = 0, .minutes = 0, .seconds = 12}; // TODO keep this constant? or make it variable?
 
 static xpm_image_t tick_img, cross_img;
 static xpm_image_t correct_message, game_over_message;
+static xpm_image_t pencil, eraser, undo_arrow, redo_arrow;
 static xpm_animation_t clock_frames;
-#define NUM_COLORS_AVAILABLE 10
-static const uint32_t canvas_pallete[NUM_COLORS_AVAILABLE] = {
-    // black, blue, red, green, yellow, pink, purple, orange, brown, gray
-    0x000000, 0x1E88E5, 0xD50000, 0x2E7D32, 0xFFEB3B, 0xEC407A, 0x4A148C, 0xFF6D00, 0x5d4037, 0x424242
-};
-#define NUM_THICKNESSES_AVAILABLE 3
-static const uint16_t valid_thickness[NUM_THICKNESSES_AVAILABLE] = {
-    1, 10, 20
-};
-static bool is_pencil_primary;
-static size_t selected_color;
-static size_t selected_thickness;
-static int clock_frames_timer;
-static int end_screen_timer;
-static int round_timer;
-static size_t current_clock_frame;
-static int score;
-#define MAX_SCORE 99999
-static int round;
 
-static text_box_t text_box_guesser;
-static button_t b_pencil, b_eraser, b_color, b_thickness, b_undo, b_redo;
-
-int game_set_state(game_state_t state) {
-    game_state = state;
-    return 0;
-}
-
-bool game_is_round_ongoing() {
-    return game_state == ROUND_ONGOING;
-}
-
-int game_correct_guess() {
-    score += 100 + round_timer * 0.15;
-    if (score > MAX_SCORE)
-        score = MAX_SCORE;
-    clock_frames.current_frame = 1;
-    end_screen_timer = END_ROUND_TICKS;
-    game_state = ROUND_CORRECT_GUESS;
-    free_word_clue(&word_clue);
-
-    if (rtc_disable_int(ALARM_INTERRUPT) != 0)
-        return 1;
-
-    return 0;
-}
-
-int game_over() {
-    clock_frames.current_frame = 1;
-    end_screen_timer = END_ROUND_TICKS;
-    game_state = GAME_OVER;
-
-    if (rtc_disable_int(ALARM_INTERRUPT) != 0)
-        return 1;
-
-    return 0;
-}
-
-int game_guess_word(char *guess) {
-    guess_t g;
-    g.guess = guess;
-    g.correct = strcmp(guess, correct_guess) == 0;
-    if (num_guesses == MAX_GUESSES) {
-        for (int i = 1; i < MAX_GUESSES; i++) {
-            guesses[i-1] = guesses[i];
-        }
-        guesses[MAX_GUESSES - 1] = g;
-    } else {
-        guesses[num_guesses] = g;
-        num_guesses++;
-    }
-
-    if (g.correct) {
-        if (game_correct_guess() != 0)
-            return 1;
-    } else {
-        round_timer -= TICKS_PER_SECOND * WRONG_GUESS_PENALTY;
-        if (round_timer < 0) round_timer = 0;
-    }
-
-    return 0;
-}
-
-int game_change_selected_color() {
-    selected_color++;
-    if (selected_color >= NUM_COLORS_AVAILABLE) {
-        selected_color = 0;
-    }
-    button_set_circle_icon(&b_color, BUTTON_CIRCLE_RADIUS_DEFAULT, canvas_pallete[selected_color]);
-    return 0;
-}
-
-int game_change_selected_thickness() {
-    selected_thickness++;
-    if (selected_thickness >= NUM_THICKNESSES_AVAILABLE) {
-        selected_thickness = 0;
-    }
-    button_set_circle_icon(&b_thickness, valid_thickness[selected_thickness], BUTTON_CIRCLE_DEFAULT_COLOR);
-    return 0;
-}
-
-uint32_t game_get_selected_color() {
-    if (is_pencil_primary)
-        return canvas_pallete[selected_color];
-    else
-        return 0x00FFFFFF;
-}
-
-uint16_t game_get_selected_thickness() {
-    return valid_thickness[selected_thickness];
-}
-
-bool game_is_pencil_primary() {
-    return is_pencil_primary;
-}
-
-void game_toggle_pencil_eraser() {
-    if (is_pencil_primary) {
-        game_set_eraser_primary();
-    } else {
-        game_set_pencil_primary();
-    }
-}
-
-int game_set_pencil_primary() {
-    is_pencil_primary = true;
-    button_set_border_active(&b_pencil);
-    button_unset_border_active(&b_eraser);
-    return 0;
-}
-
-int game_set_eraser_primary() {
-    is_pencil_primary = false;
-    button_set_border_active(&b_eraser);
-    button_unset_border_active(&b_pencil);
-    return 0;
-}
+static game_t *game;
 
 int game_load_assets(enum xpm_image_type type) {
-    xpm_load_animation(&clock_frames, type, 3, 
-                       xpm_clock_red_left, xpm_clock_red_center, xpm_clock_red_right);
+    if (xpm_load_animation(&clock_frames, type, 3, 
+                           xpm_clock_red_left, xpm_clock_red_center, xpm_clock_red_right) != OK)
+        return 1;
+
+    if (xpm_load(xpm_tick, type, &tick_img) == NULL)
+        return 1;
     
-    selected_color = 0;
-    selected_thickness = 1;
-    is_pencil_primary = true;
+    if (xpm_load(xpm_cross, type, &cross_img) == NULL)
+        return 1;
+    
+    if (xpm_load(xpm_correct, type, &correct_message) == NULL)
+        return 1;
 
-    frame_buffer_t buf = vg_get_back_buffer();
-    xpm_load(xpm_tick, type, &tick_img);
-    xpm_load(xpm_cross, type, &cross_img);
-    xpm_load(xpm_correct, type, &correct_message);
-    xpm_load(xpm_gameover, type, &game_over_message);
+    if (xpm_load(xpm_gameover, type, &game_over_message) == NULL)
+        return 1;
+    
+    if (xpm_load(xpm_pencil, type, &pencil) == NULL)
+        return 1;
+    
+    if (xpm_load(xpm_eraser, type, &eraser) == NULL)
+        return 1;
+    
+    if (xpm_load(xpm_undo_arrow, type, &undo_arrow) == NULL)
+        return 1;
+    
+    if (xpm_load(xpm_redo_arrow, type, &redo_arrow) == NULL)
+        return 1;
 
-    uint16_t button_margin = 10;
-    uint16_t button_y = button_margin;
-    xpm_image_t pencil;
-    xpm_load(xpm_pencil, type, &pencil);
-    new_button(&b_pencil, buf.h_res - BUTTONS_LEN - button_margin, button_y, BUTTONS_LEN, BUTTONS_LEN, game_set_pencil_primary);
-    button_set_xpm_icon(&b_pencil, pencil);
-    button_set_border_active(&b_pencil);
-
-    button_y += BUTTONS_LEN + button_margin;
-    xpm_image_t eraser;
-    xpm_load(xpm_eraser, type, &eraser);
-    new_button(&b_eraser, buf.h_res - BUTTONS_LEN - button_margin, button_y, BUTTONS_LEN, BUTTONS_LEN, game_set_eraser_primary);
-    button_set_xpm_icon(&b_eraser, eraser);
-
-    button_y += BUTTONS_LEN + button_margin;
-    new_button(&b_color, buf.h_res - BUTTONS_LEN - button_margin, button_y, BUTTONS_LEN, BUTTONS_LEN, game_change_selected_color);
-    button_set_circle_icon(&b_color, BUTTON_CIRCLE_RADIUS_DEFAULT, canvas_pallete[selected_color]);
-
-    button_y += BUTTONS_LEN + button_margin;
-    new_button(&b_thickness, buf.h_res - BUTTONS_LEN - button_margin, button_y, BUTTONS_LEN, BUTTONS_LEN, game_change_selected_thickness);
-    button_set_circle_icon(&b_thickness, valid_thickness[selected_thickness], BUTTON_CIRCLE_DEFAULT_COLOR);
-
-    button_y += BUTTONS_LEN + button_margin;
-    xpm_image_t undo_arrow;
-    xpm_load(xpm_undo_arrow, type, &undo_arrow);
-    new_button(&b_undo, buf.h_res - BUTTONS_LEN - button_margin, button_y, BUTTONS_LEN, BUTTONS_LEN, event_undo);
-    button_set_xpm_icon(&b_undo, undo_arrow);
-
-    button_y += BUTTONS_LEN + button_margin;
-    xpm_image_t redo_arrow;
-    xpm_load(xpm_redo_arrow, type, &redo_arrow);
-    new_button(&b_redo, buf.h_res - BUTTONS_LEN - button_margin, button_y, BUTTONS_LEN, BUTTONS_LEN, event_redo);
-    button_set_xpm_icon(&b_redo, redo_arrow);
-
-    new_text_box(&text_box_guesser, TEXT_BOX_GUESSER_X + 4, TEXT_BOX_GUESSER_Y, TEXT_BOX_GUESSER_DISPLAY_SIZE);
-
-    score = 0;
-    round = 0;
     return 0;
 }
 
-int game_init() {
-    score = 0;
-    round = 0;
-
-    selected_color = 0;
-    selected_thickness = 1;
-    is_pencil_primary = true;
-
-    if (dispatcher_bind_buttons(6, &b_pencil, &b_eraser, &b_color, &b_thickness, &b_undo, &b_redo) != OK)
+int new_game() {
+    game = malloc(sizeof(game_t));
+    if (game == NULL)
         return 1;
-    if (dispatcher_bind_text_boxes(1, &text_box_guesser) != OK)
-        return 1;
-
-    if (game_set_pencil_primary() != OK)
-        return 1;
-
-    button_set_circle_icon(&b_color, BUTTON_CIRCLE_RADIUS_DEFAULT, canvas_pallete[selected_color]);
-    button_set_circle_icon(&b_thickness, valid_thickness[selected_thickness], BUTTON_CIRCLE_DEFAULT_COLOR);
-    text_box_unselect(&text_box_guesser);
+    game->state = ROUND_UNSTARTED;
+    game->round_number = 0;
+    game->score = 0;
     
-    if (game_start_round() != OK)
+    return 0;
+}
+
+static int init_buttons(drawer_t *drawer) {
+    frame_buffer_t buf = vg_get_back_buffer();
+    uint16_t button_margin = 10;
+
+    uint16_t button_y = button_margin;
+    if (new_button(&drawer->b_pencil, buf.h_res - BUTTONS_LEN - button_margin, button_y, 
+                   BUTTONS_LEN, BUTTONS_LEN, drawer_set_pencil_primary) != OK)
         return 1;
+    button_set_xpm_icon(&drawer->b_pencil, pencil);
+    button_set_border_active(&drawer->b_pencil);
+
+    button_y += BUTTONS_LEN + button_margin;
+    if (new_button(&drawer->b_eraser, buf.h_res - BUTTONS_LEN - button_margin, button_y, 
+                   BUTTONS_LEN, BUTTONS_LEN, drawer_set_eraser_primary) != OK)
+        return 1;
+    button_set_xpm_icon(&drawer->b_eraser, eraser);
+
+    button_y += BUTTONS_LEN + button_margin;
+    if (new_button(&drawer->b_color, buf.h_res - BUTTONS_LEN - button_margin, button_y, 
+                   BUTTONS_LEN, BUTTONS_LEN, drawer_change_selected_color) != OK)
+        return 1;
+    button_set_circle_icon(&drawer->b_color, BUTTON_CIRCLE_RADIUS_DEFAULT, canvas_pallete[drawer->selected_color]);
+
+    button_y += BUTTONS_LEN + button_margin;
+    if (new_button(&drawer->b_thickness, buf.h_res - BUTTONS_LEN - button_margin, button_y, 
+                   BUTTONS_LEN, BUTTONS_LEN, drawer_change_selected_thickness) != OK)
+        return 1;
+    button_set_circle_icon(&drawer->b_thickness, valid_thickness[drawer->selected_thickness], BUTTON_CIRCLE_DEFAULT_COLOR);
+
+    button_y += BUTTONS_LEN + button_margin;
+    if (new_button(&drawer->b_undo, buf.h_res - BUTTONS_LEN - button_margin, 
+                   button_y, BUTTONS_LEN, BUTTONS_LEN, event_undo) != OK)
+        return 1;
+    button_set_xpm_icon(&drawer->b_undo, undo_arrow);
+
+    button_y += BUTTONS_LEN + button_margin;
+    if (new_button(&drawer->b_redo, buf.h_res - BUTTONS_LEN - button_margin, button_y, 
+                   BUTTONS_LEN, BUTTONS_LEN, event_redo) != OK)
+        return 1;
+    button_set_xpm_icon(&drawer->b_redo, redo_arrow);
+
+    return 0;
+}
+
+static int init_text_box(guesser_t *guesser) {
+    if (new_text_box(&game->round->attr.guesser->text_box, TEXT_BOX_GUESSER_X + 4, TEXT_BOX_GUESSER_Y, 
+                     TEXT_BOX_GUESSER_DISPLAY_SIZE) != OK)
+        return 1;
+    return 0;
+}
+
+int game_new_round(role_t starting_role, const char *word) {
+    if (game == NULL)
+        return 1;
+    game->round_number++;
+    game->state = ROUND_UNSTARTED;
+    game->round = malloc(sizeof(round_t));
+    if (game->round == NULL)
+        return 1;
+    game->round->ticker = 0;
+    game->round->round_timer = ROUND_TICKS;
+    game->round->num_guesses = 0;
+    game->round->correct_guess = word; // word_list[rand() % WORD_LIST_SIZE];
+    game->round->role = starting_role;
+    switch (starting_role) {
+    case DRAWER:
+        game->round->attr.drawer->is_pencil_primary = true;
+        game->round->attr.drawer->selected_color = 0;
+        game->round->attr.drawer->selected_thickness = 1;
+        if (init_buttons(game->round->attr.drawer) != OK)
+            return 1;
+
+        break;
+    case GUESSER:
+        if (init_text_box(game->round->attr.guesser) != OK)
+            return 1;
+        
+        break;
+    default:
+        return 1;
+    }
+
+    if (new_word_clue(&game->round->word_clue, word) != OK)
+        return 1;
+    //     menu_set_state(WORD_SCREEN);
+    return 0;
+}
+
+int game_delete_round() {
+    if (game == NULL || game->round == NULL)
+        return 1;
+    for (size_t i = 0; i < game->round->num_guesses; i++) {
+        free(game->round->guesses[i].guess);
+    }
+    delete_word_clue(&game->round->word_clue);
+    
+    switch (game->round->role) {
+    case DRAWER:
+        free(game->round->attr.drawer);
+        break;
+    case GUESSER:
+        delete_text_box(&game->round->attr.guesser->text_box);
+        free(game->round->attr.guesser);
+        break;
+    default:
+        break;
+    }
+    free(game->round);
     
     return 0;
 }
 
 int game_resume() {
-    if (dispatcher_bind_buttons(6, &b_pencil, &b_eraser, &b_color, &b_thickness, &b_undo, &b_redo) != OK)
+    if (game == NULL || game->round == NULL)
         return 1;
-    if (dispatcher_bind_text_boxes(1, &text_box_guesser) != OK)
-        return 1;
+
+    switch (game->round->role) {
+    case DRAWER:
+        if (dispatcher_bind_buttons(6, 
+                                    &game->round->attr.drawer->b_pencil, 
+                                    &game->round->attr.drawer->b_eraser, 
+                                    &game->round->attr.drawer->b_color, 
+                                    &game->round->attr.drawer->b_thickness, 
+                                    &game->round->attr.drawer->b_undo, 
+                                    &game->round->attr.drawer->b_redo) != OK)
+            return 1;
+        break;
+    case GUESSER:
+        if (dispatcher_bind_text_boxes(1, &game->round->attr.guesser->text_box) != OK)
+            return 1;
+        break;
+    default:
+        break;
+    }
+
     dispatcher_bind_canvas(true);
     menu_set_state(GAME);
     
@@ -296,113 +308,43 @@ int game_resume() {
 }
 
 int game_start_round() {
-    round++;
-    game_state = ROUND_UNSTARTED;
-    current_clock_frame = 1;
-    clock_frames_timer = 0;
-    round_timer = ROUND_TICKS;
-    num_guesses = 0;
-    correct_guess = word_list[rand() % WORD_LIST_SIZE];
-    text_box_clear(&text_box_guesser);
-    if (new_word_clue(&word_clue, correct_guess) != OK)
+    if (game == NULL || game->round == NULL)
         return 1;
-    
-    menu_set_state(WORD_SCREEN);
-    return 0;
-}
 
-int game_give_clue() {
-    if (word_clue_hint(&word_clue) != 0)
+    if (game_resume() != OK)
         return 1;
-    if (rtc_set_alarm_in(clue_time_interval) != 0)
+    game->state = ROUND_ONGOING;
+    return 0;
+}
+
+static int game_draw_bar() {
+    if (game == NULL || game->round == NULL)
         return 1;
-    
-    return 0;
-}
 
-int game_round_RTC_PI_tick() {
-    text_box_cursor_tick(&text_box_guesser);
-
-    switch (game_state) {
-    case ROUND_ONGOING:
-        // if it's the first game tick while ROUND_ONGOING
-        if (round_timer == ROUND_TICKS) { 
-            if (rtc_set_alarm_in(clue_time_interval) != 0)
-                return 1;
-        }
-
-        if (round_timer == 0) {
-            if (game_over() != 0)
-                return 1;
-        } else {
-            round_timer--;
-        }
-        break;
-    
-    case GAME_OVER:
-        if (end_screen_timer != 0) {
-            end_screen_timer--;
-        } else if (end_screen_timer == 0) {
-            if (menu_set_main_menu() != 0)
-                return 1;
-        }
-        break;
-    
-    case ROUND_CORRECT_GUESS:
-        if (end_screen_timer != 0) {
-            end_screen_timer--;
-        } else if (end_screen_timer == 0) {
-            if (event_end_round() != 0)
-                return 1;
-        }
-        break;
-    
-    default:
-        break;
-    }
-    return 0;
-}
-
-int game_round_timer_tick() {
-    clock_frames_timer++;
-
-    if (game_state == ROUND_ONGOING) {
-        if (clock_frames_timer == 10) {
-            clock_frames.current_frame = 0;
-        } else if (clock_frames_timer == 30) {
-            clock_frames.current_frame = 1;
-        } else if (clock_frames_timer == 40) {
-            clock_frames.current_frame = 2;
-        } else if (clock_frames_timer >= 60) {
-            clock_frames.current_frame = 1;
-            clock_frames_timer = 0;
-        }
-    }
-
-    return 0;
-}
-
-int draw_game_bar() {
     frame_buffer_t buf = vg_get_back_buffer();
     
+    // Gamebar
     if (vb_draw_rectangle(buf, 0, buf.v_res - GAME_BAR_HEIGHT, buf.h_res, GAME_BAR_PADDING, GAME_BAR_COLOR_DARK) != OK)
         return 1;
 
     if (vb_draw_rectangle(buf, 0, buf.v_res - GAME_BAR_INNER_HEIGHT, buf.h_res, GAME_BAR_INNER_HEIGHT, GAME_BAR_COLOR) != OK)
         return 1;
 
+
+    // Clock
     if (vb_draw_animation_frame(buf, clock_frames, buf.h_res - 200, 
                                 buf.v_res - (GAME_BAR_INNER_HEIGHT + clock_frames.height)/2) != OK)
         return 1;
 
     char seconds_to_end_round[2];
-    sprintf(seconds_to_end_round, "%02d", (round_timer + TICKS_PER_SECOND- 1)/TICKS_PER_SECOND);
+    sprintf(seconds_to_end_round, "%02d", (game->round->round_timer + TICKS_PER_SECOND- 1)/TICKS_PER_SECOND);
     
     if (font_draw_string(buf, seconds_to_end_round, buf.h_res - 75, 
                          buf.v_res - (GAME_BAR_INNER_HEIGHT + FONT_CHAR_HEIGHT)/2, 0, 2) != OK)
         return 1;
 
 
+    // Score and round number
     int score_margin_small = 5;
     int score_margin_big = (GAME_BAR_INNER_HEIGHT - 4*FONT_CHAR_HEIGHT - 2*score_margin_small) / 3;
     int y = buf.v_res - GAME_BAR_INNER_HEIGHT + score_margin_big;
@@ -411,7 +353,7 @@ int draw_game_bar() {
 
     char score_display[5];
     y += FONT_CHAR_HEIGHT + score_margin_small;
-    sprintf(score_display, "%05d", score);
+    sprintf(score_display, "%05d", game->score);
     if (font_draw_string(buf, score_display, buf.h_res - 350, y, 0, 5) != OK)
         return 1;
 
@@ -421,20 +363,39 @@ int draw_game_bar() {
 
     char round_display[5];
     y += FONT_CHAR_HEIGHT + score_margin_small;
-    sprintf(round_display, "%5d", round);
+    sprintf(round_display, "%5d", game->round_number);
     if (font_draw_string(buf, round_display, buf.h_res - 350, y, 0, 5) != OK)
         return 1;
 
-    if (font_draw_string(buf, "GUESS THE WORD", TEXT_BOX_GUESSER_X, 670, 0, 14) != OK)
-        return 1;
 
-    if (text_box_draw(buf, text_box_guesser) != OK)
-        return 1;
+    // Text box
+    switch (game->round->role) {
+    case DRAWER:
+        if (font_draw_string(buf, "DRAW THE WORD", TEXT_BOX_GUESSER_X, 670, 0, 14) != OK)
+            return 1;
+        
+        if (font_draw_string(buf, game->round->correct_guess, TEXT_BOX_GUESSER_X, TEXT_BOX_GUESSER_Y, 0, 14) != OK)
+            return 1;
 
+        break;
+    case GUESSER:
+        if (font_draw_string(buf, "GUESS THE WORD", TEXT_BOX_GUESSER_X, 670, 0, 14) != OK)
+            return 1;
+
+        if (text_box_draw(buf, game->round->attr.guesser->text_box) != OK)
+            return 1;
+
+        break;
+    default:
+        return 1;
+    }
+
+
+    // Guesses
     // TODO dont use magic numbers like 400 without variables
     y = buf.v_res - GAME_BAR_INNER_HEIGHT + 7;
-    for (size_t i = 0; i < num_guesses; i++) {
-        if (guesses[i].correct) {
+    for (size_t i = 0; i < game->round->num_guesses; i++) {
+        if (game->round->guesses[i].correct) {
             if (vb_draw_img(buf, tick_img, 0, 0, tick_img.width, tick_img.height, 350, y) != OK)
                 return 1;
         } else {
@@ -444,10 +405,10 @@ int draw_game_bar() {
 
         // TODO get rid of that meaningless 100
         char guess[GUESS_CHARACTER_LIMIT + 1] = "";
-        if (strlen(guesses[i].guess) <= GUESS_CHARACTER_LIMIT) {
-            strcpy(guess, guesses[i].guess);
+        if (strlen(game->round->guesses[i].guess) <= GUESS_CHARACTER_LIMIT) {
+            strcpy(guess, game->round->guesses[i].guess);
         } else {
-            strncpy(guess, guesses[i].guess, GUESS_CHARACTER_LIMIT - 3);
+            strncpy(guess, game->round->guesses[i].guess, GUESS_CHARACTER_LIMIT - 3);
             guess[GUESS_CHARACTER_LIMIT - 1] = '.';
             guess[GUESS_CHARACTER_LIMIT - 2] = '.';
             guess[GUESS_CHARACTER_LIMIT - 3] = '.';
@@ -458,37 +419,289 @@ int draw_game_bar() {
         y += FONT_CHAR_HEIGHT + 10;
     }
 
-    // TODO 
-    if (game_state == GAME_OVER) {
-        uint16_t offset = clock_frames_timer % 30 >= 15? -3 : 3;
+    return 0;
+}
+
+// TODO get rid of this
+int draw_game_correct_guess() {
+    if (game == NULL || game->round == NULL)
+        return 1;
+
+    frame_buffer_t buf = vg_get_back_buffer();
+
+    uint16_t x = (buf.h_res - CHAR_SPACE * strlen(game->round->correct_guess)) / 2;
+    uint16_t y = buf.v_res - GAME_BAR_INNER_HEIGHT/2;
+
+    if (font_draw_string(buf, game->round->correct_guess, x, y, 0, 100) != OK)
+        return 1;
+    
+    return 0;
+}
+
+
+static int game_draw_clue() {
+    if (game == NULL || game->round == NULL)
+        return 1;
+
+    frame_buffer_t buf = vg_get_back_buffer();
+
+    // TODO game_over and correct guess do not belong here
+    if (game->state == GAME_OVER) {
+        uint16_t offset = game->round->ticker % 30 >= 15? -3 : 3;
         vb_draw_img(buf, game_over_message, 0, 0, game_over_message.width, game_over_message.height, (buf.h_res - game_over_message.width) / 2 + offset, 20);
-    } else if (game_state == ROUND_CORRECT_GUESS) {
-        uint16_t offset = clock_frames_timer % 30 >= 15? -3 : 3;
+    } else if (game->state == ROUND_CORRECT_GUESS) {
+        uint16_t offset = game->round->ticker % 30 >= 15? -3 : 3;
         vb_draw_img(buf, correct_message, 0, 0, correct_message.width, correct_message.height, (buf.h_res - correct_message.width) / 2 + offset, 20);
-    } else if (game_state == ROUND_ONGOING) {
-        if (word_clue_draw(&word_clue, buf, (buf.h_res - word_clue.width) / 2, 40) != OK)
+    } else if (game->state == ROUND_ONGOING) {
+        if (word_clue_draw(&game->round->word_clue, buf, (buf.h_res - game->round->word_clue.width) / 2, 40) != OK)
             return 1;
     }
-
-    // TODO draw buttons doesn't belong here
-    button_draw(buf, b_pencil);
-    button_draw(buf, b_eraser);
-    button_draw(buf, b_color);
-    button_draw(buf, b_thickness);
-    button_draw(buf, b_undo);
-    button_draw(buf, b_redo);
 
     return 0;
 }
 
-int draw_game_correct_guess() {
+static int game_draw_buttons(drawer_t *drawer) {
     frame_buffer_t buf = vg_get_back_buffer();
 
-    uint16_t x = (buf.h_res - CHAR_SPACE * strlen(correct_guess)) / 2;
-    uint16_t y = buf.v_res - GAME_BAR_INNER_HEIGHT/2;
+    if (button_draw(buf, drawer->b_pencil) != OK)
+        return 1;
+    if (button_draw(buf, drawer->b_eraser) != OK)
+        return 1;
+    if (button_draw(buf, drawer->b_color) != OK)
+        return 1;
+    if (button_draw(buf, drawer->b_thickness) != OK)
+        return 1;
+    if (button_draw(buf, drawer->b_undo) != OK)
+        return 1;
+    if (button_draw(buf, drawer->b_redo) != OK)
+        return 1;
 
-    if (font_draw_string(buf, correct_guess, x, y, 0, 100) != OK)
+    return 0;
+}
+
+int game_draw() {
+    if (game == NULL || game->round == NULL)
+        return 1;
+
+    if (game_draw_bar() != OK)
+        return 1;
+    if (game_draw_clue() != OK)
+        return 1;
+    if (game->round->role == DRAWER) {
+        if (game_draw_buttons(game->round->attr.drawer) != OK)
+            return 1;
+    }
+
+    return 0;
+}
+
+int game_give_clue() {
+    if (game == NULL || game->round == NULL)
+        return 1;
+
+    if (word_clue_hint(&game->round->word_clue) != OK)
+        return 1;
+    if (rtc_set_alarm_in(clue_time_interval) != OK)
         return 1;
     
+    return 0;
+}
+
+static int game_correct_guess() {
+    game->score += 100 + game->round->round_timer * 0.15;
+    if (game->score > MAX_SCORE)
+        game->score = MAX_SCORE;
+    clock_frames.current_frame = 1;
+    game->round->end_screen_timer = END_ROUND_TICKS;
+    game->state = ROUND_CORRECT_GUESS;
+    if (rtc_disable_int(ALARM_INTERRUPT) != OK)
+        return 1;
+
+    return 0;
+}
+
+static int game_over() {
+    clock_frames.current_frame = 1;
+    game->round->end_screen_timer = END_ROUND_TICKS;
+    game->state = GAME_OVER;
+
+    if (rtc_disable_int(ALARM_INTERRUPT) != OK)
+        return 1;
+
+    return 0;
+}
+
+int game_guess_word(char *guess) {
+    if (game == NULL || game->round == NULL)
+        return 1;
+
+    guess_t g;
+    g.guess = guess;
+    g.correct = strcmp(guess, game->round->correct_guess) == 0;
+    if (game->round->num_guesses == MAX_GUESSES) {
+        for (int i = 1; i < MAX_GUESSES; i++) {
+            game->round->guesses[i-1] = game->round->guesses[i];
+        }
+        game->round->guesses[MAX_GUESSES - 1] = g;
+    } else {
+        game->round->guesses[game->round->num_guesses] = g;
+        game->round->num_guesses++;
+    }
+
+    if (g.correct) {
+        if (game_correct_guess() != OK)
+            return 1;
+    } else {
+        game->round->round_timer -= TICKS_PER_SECOND * WRONG_GUESS_PENALTY;
+        if (game->round->round_timer < 0) game->round->round_timer = 0;
+    }
+
+    return 0;
+}
+
+int game_rtc_pi_tick() {
+    if (game == NULL || game->round == NULL)
+        return 1;
+
+    if (game->round->role == GUESSER) {
+        text_box_cursor_tick(&game->round->attr.guesser->text_box);
+    }
+    
+    switch (game->state) {
+    case ROUND_ONGOING:
+        // if it's the first game tick while ROUND_ONGOING
+        if (game->round->round_timer == ROUND_TICKS) { 
+            if (rtc_set_alarm_in(clue_time_interval) != OK)
+                return 1;
+        }
+
+        if (game->round->round_timer == 0) {
+            if (game_over() != OK)
+                return 1;
+        } else {
+            game->round->round_timer--;
+        }
+        break;
+    
+    case GAME_OVER:
+        if (game->round->end_screen_timer != 0) {
+            game->round->end_screen_timer--;
+        } else if (game->round->end_screen_timer == 0) {
+            if (menu_set_main_menu() != OK)
+                return 1;
+        }
+        break;
+    
+    case ROUND_CORRECT_GUESS:
+        if (game->round->end_screen_timer != 0) {
+            game->round->end_screen_timer--;
+        } else if (game->round->end_screen_timer == 0) {
+            if (event_end_round() != OK)
+                return 1;
+        }
+        break;
+    
+    default:
+        break;
+    }
+    return 0;
+}
+
+int game_timer_tick() {
+    if (game == NULL || game->round == NULL)
+        return 1;
+
+    game->round->ticker++;
+
+    if (game->state == ROUND_ONGOING) {
+        if (game->round->ticker == 10) {
+            clock_frames.current_frame = 0;
+        } else if (game->round->ticker == 30) {
+            clock_frames.current_frame = 1;
+        } else if (game->round->ticker == 40) {
+            clock_frames.current_frame = 2;
+        } else if (game->round->ticker >= 60) {
+            clock_frames.current_frame = 1;
+            game->round->ticker = 0;
+        }
+    }
+
+    return 0;
+}
+
+int drawer_change_selected_color() {
+    if (game == NULL || game->round == NULL || game->round->role != DRAWER)
+        return 1;
+    drawer_t *drawer = game->round->attr.drawer;
+
+    drawer->selected_color++;
+    if (drawer->selected_color >= NUM_COLORS_AVAILABLE) {
+        drawer->selected_color = 0;
+    }
+    button_set_circle_icon(&drawer->b_color, BUTTON_CIRCLE_RADIUS_DEFAULT, canvas_pallete[drawer->selected_color]);
+    return 0;
+}
+
+int drawer_change_selected_thickness() {
+    if (game == NULL || game->round == NULL || game->round->role != DRAWER)
+        return 1;
+    drawer_t *drawer = game->round->attr.drawer;
+
+    drawer->selected_thickness++;
+    if (drawer->selected_thickness >= NUM_THICKNESSES_AVAILABLE) {
+        drawer->selected_thickness = 0;
+    }
+    button_set_circle_icon(&drawer->b_thickness, valid_thickness[drawer->selected_thickness], BUTTON_CIRCLE_DEFAULT_COLOR);
+    return 0;
+}
+
+uint32_t drawer_get_selected_color() {
+    drawer_t *drawer = game->round->attr.drawer;
+
+    if (drawer->is_pencil_primary)
+        return canvas_pallete[drawer->selected_color];
+    else
+        return 0x00FFFFFF;
+}
+
+uint16_t drawer_get_selected_thickness() {
+    drawer_t *drawer = game->round->attr.drawer;
+    
+    return valid_thickness[drawer->selected_thickness];
+}
+
+int drawer_toggle_pencil_eraser() {
+    if (game == NULL || game->round == NULL || game->round->role != DRAWER)
+        return 1;
+    drawer_t *drawer = game->round->attr.drawer;
+
+    if (drawer->is_pencil_primary) {
+        drawer_set_eraser_primary(drawer);
+    } else {
+        drawer_set_pencil_primary(drawer);
+    }
+
+    return 0;
+}
+
+int drawer_set_pencil_primary() {
+    if (game == NULL || game->round == NULL || game->round->role != DRAWER)
+        return 1;
+    drawer_t *drawer = game->round->attr.drawer;
+
+    drawer->is_pencil_primary = true;
+    button_set_border_active(&drawer->b_pencil);
+    button_unset_border_active(&drawer->b_eraser);
+    return 0;
+}
+
+int drawer_set_eraser_primary() {
+    if (game == NULL || game->round == NULL || game->round->role != DRAWER)
+        return 1;
+    drawer_t *drawer = game->round->attr.drawer;
+
+    drawer->is_pencil_primary = false;
+    button_set_border_active(&drawer->b_eraser);
+    button_unset_border_active(&drawer->b_pencil);
     return 0;
 }

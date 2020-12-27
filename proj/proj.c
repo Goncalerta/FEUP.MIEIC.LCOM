@@ -103,7 +103,6 @@ int (proj_main_loop)(int argc, char *argv[]) {
         return 1;
     // ^^
 
-    printf("boot\n");
     int ipc_status, r;
     message msg;
     while ( !should_end() ) {

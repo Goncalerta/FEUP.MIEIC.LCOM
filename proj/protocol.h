@@ -11,19 +11,22 @@
 #define PENDING_MESSAGES_CAPACITY 8
 
 typedef enum message_type_t {
-    MSG_LEAVE_GAME = 0,
-    MSG_NEW_STROKE = 1,
-    MSG_DRAW_ATOM = 2,
-    MSG_UNDO_CANVAS = 3,
-    MSG_REDO_CANVAS = 4,
-    MSG_SYNC_TIMER = 5,
-    MSG_MAKE_GUESS = 6,
-    MSG_ROUND_WIN = 7,
-    MSG_GAME_OVER = 8,
-    MSG_START_ROUND = 9,
-    MSG_READY_TO_START = 10,
-    MSG_ADD_CLUE = 11,
-    MSG_WRONG_GUESS = 12,
+    MSG_READY_TO_PLAY = 0,
+    MSG_LEAVE_GAME = 1,
+    MSG_RANDOM_NUMBER = 2,
+    MSG_NEW_ROUND = 3,
+
+    // MSG_NEW_STROKE = 1,
+    // MSG_DRAW_ATOM = 2,
+    // MSG_UNDO_CANVAS = 3,
+    // MSG_REDO_CANVAS = 4,
+    // MSG_SYNC_TIMER = 5,
+    // MSG_MAKE_GUESS = 6,
+    // MSG_ROUND_WIN = 7,
+    // MSG_GAME_OVER = 8,
+    // MSG_START_ROUND = 9,
+    // MSG_READY_TO_PLAY = 10,
+    // MSG_ADD_CLUE = 11,
 } message_type_t;
 
 typedef struct message_t {
@@ -37,8 +40,9 @@ int protocol_handle_received_bytes();
 int protocol_handle_error();
 int protocol_tick();
 
-// TODO delete
-void protocol_test_msg();
-void protocol_test_msg2();
+int protocol_send_ready_to_play();
+int protocol_send_leave_game();
+int protocol_send_random_number(int random_number);
+int protocol_send_new_round(uint32_t round_number, const char *word);
 
 #endif /* _PROTOCOL_H */

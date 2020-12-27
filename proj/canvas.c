@@ -255,7 +255,8 @@ int canvas_update_state(bool hovering, bool lb, bool rb) {
                 if (event_new_atom(cursor_get_x(), cursor_get_y()) != OK)
                     return 1;
             } else if (rb && !lb) {
-                game_toggle_pencil_eraser();
+                if (drawer_toggle_pencil_eraser() != OK)
+                    return 1;
                 state = CANVAS_STATE_PRESSING_RB;
                 if (event_new_stroke(false) != OK)
                     return 1;
@@ -274,7 +275,8 @@ int canvas_update_state(bool hovering, bool lb, bool rb) {
             if (event_new_atom(cursor_get_x(), cursor_get_y()) != OK)
                 return 1;
         } else if (!lb && rb) {
-            game_toggle_pencil_eraser();
+            if (drawer_toggle_pencil_eraser() != OK)
+                    return 1;
             state = CANVAS_STATE_PRESSING_RB;
             if (event_new_stroke(false) != OK)
                 return 1;
@@ -286,18 +288,21 @@ int canvas_update_state(bool hovering, bool lb, bool rb) {
 
     case CANVAS_STATE_PRESSING_RB:
         if (lb && rb) {
-            game_toggle_pencil_eraser();
+            if (drawer_toggle_pencil_eraser() != OK)
+                    return 1;
             state = CANVAS_STATE_NORMAL;
         } else if (rb && !lb) {
             if (event_new_atom(cursor_get_x(), cursor_get_y()) != OK)
                 return 1;
         } else if (!rb && lb) {
-            game_toggle_pencil_eraser();
+            if (drawer_toggle_pencil_eraser() != OK)
+                    return 1;
             state = CANVAS_STATE_PRESSING_LB;
             if (event_new_stroke(true) != OK)
                 return 1;
         } else {
-            game_toggle_pencil_eraser();
+            if (drawer_toggle_pencil_eraser() != OK)
+                    return 1;
             state = hovering? CANVAS_STATE_HOVERING : CANVAS_STATE_NORMAL;   
         }
         break;

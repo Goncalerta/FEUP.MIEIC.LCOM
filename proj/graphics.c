@@ -318,7 +318,8 @@ int xpm_load_animation(xpm_animation_t *anim, enum xpm_image_type type, size_t n
     va_start(ap, number_of_frames);
     for (size_t i = 0; i < number_of_frames; i++) {
         xpm_map_t frame = va_arg(ap, xpm_map_t);
-        xpm_load(frame, type, &img);
+        if (xpm_load(frame, type, &img) == NULL)
+            return 1;
         anim->frames[i] = img;
     }
     va_end(ap);

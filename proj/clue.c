@@ -6,8 +6,8 @@
 #define CLUE_BAR_MARGIN 5
 #define RECTANGLE_HEIGHT 5
 
-int new_word_clue(word_clue_t *clue, char *word) {
-    clue->word = word;
+int new_word_clue(word_clue_t *clue, const char *word) {
+    strcpy(clue->word, word);
     clue->size = strlen(word);
     clue->missing = clue->size - 1;
     clue->width = clue->size * (FONT_CHAR_WIDTH + CLUE_CHAR_SPACING) - CLUE_CHAR_SPACING;
@@ -65,6 +65,6 @@ int word_clue_hint(word_clue_t *clue) {
     return 0;
 }
 
-void free_word_clue(word_clue_t *clue) {
+void delete_word_clue(word_clue_t *clue) {
     free(clue->clue);
 }

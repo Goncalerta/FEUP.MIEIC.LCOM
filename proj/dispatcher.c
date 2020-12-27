@@ -22,6 +22,18 @@ static button_t **listening_buttons = NULL;
 static size_t num_listening_text_boxes = 0;
 static text_box_t **listening_text_boxes = NULL;
 
+// TODO not sure where this makes more sense
+typedef enum player_state_t {
+    NOT_READY,
+    READY,
+    RANDOM_NUMBER_SENT
+} player_state_t;
+
+player_state_t this_player_state = NOT_READY;
+int this_player_random_number;
+player_state_t other_player_state = NOT_READY;
+int other_player_random_number;
+
 int dispatcher_bind_buttons(size_t number_of_buttons, ...) {
     if (listening_buttons != NULL)
         free(listening_buttons);
@@ -56,13 +68,52 @@ int dispatcher_bind_text_boxes(size_t number_of_text_boxes, ...) {
     return 0;
 }
 
-void dispatcher_bind_canvas(bool is_to_bind) { // TODO is this worth doing like the buttons and textbox?
+void dispatcher_bind_canvas(bool is_to_bind) {
     bound_canvas = is_to_bind;
 }
 
+int dispatcher_parse_message(const message_t *msg) {
+    switch (msg->type) {
+    case MSG_READY_TO_PLAY:
+        if (msg->content_len != 0)
+            return 1;
+
+        if (event_other_player_ready_to_play())
+            return 1;
+        break;
+    case MSG_LEAVE_GAME:
+        if (msg->content_len != 0)
+            return 1;
+
+        if (event_other_player_leave_game())
+            return 1;
+        break;
+    case MSG_RANDOM_NUMBER:
+        if (msg->content_len != 4)
+            return 1;
+
+        int rn;
+        memcpy(&rn, msg->content, 4);
+
+        if (event_other_player_random_number(rn))
+            return 1;
+        break;
+    case MSG_NEW_ROUND:
+        // TODO
+        break;
+    default:
+        return 1;
+    }
+    
+    return 0;
+}
+
 int event_new_game() {
-    canvas_init(vg_get_hres(), vg_get_vres() - GAME_BAR_HEIGHT);
-    game_init();
+    if (canvas_init(vg_get_hres(), vg_get_vres() - GAME_BAR_HEIGHT) != OK)
+        return 1;
+    if (new_game() != OK)
+        return 1;
+    
     return 0;
 }
 
@@ -79,7 +130,7 @@ int event_end_round() {
 }
 
 int event_new_stroke(bool primary_button) {
-    if (canvas_new_stroke(game_get_selected_color(), game_get_selected_thickness()) != OK)
+    if (canvas_new_stroke(drawer_get_selected_color(), drawer_get_selected_thickness()) != OK)
         return 1;
     
     return 0;
@@ -95,6 +146,80 @@ int event_redo() {
     return 0;
 }
 
+int event_ready_to_play() {
+    if (menu_set_awaiting_player_menu() != OK)
+        return 1;
+    if (protocol_send_ready_to_play() != OK)
+        return 1;
+    this_player_state = READY;
+    if (other_player_state == READY) {
+        if (event_this_player_random_number() != OK)
+            return 1;
+    }
+    
+    return 0;
+}
+
+int event_this_player_random_number() {
+    this_player_state = RANDOM_NUMBER_SENT;
+    this_player_random_number = rand();
+    if (other_player_state == RANDOM_NUMBER_SENT) {
+        if (this_player_random_number > other_player_random_number) {
+            // TODO
+        } else if (this_player_random_number == other_player_random_number) {
+            this_player_state = READY;
+            other_player_state = READY;
+            if (event_this_player_random_number() != OK)
+                return 1;
+        }
+    }
+
+    return 0;
+}
+
+int event_other_player_random_number(int random_number) {
+    other_player_state = RANDOM_NUMBER_SENT;
+    other_player_random_number = random_number;
+    if (this_player_state == RANDOM_NUMBER_SENT) {
+        if (this_player_random_number > other_player_random_number) {
+            // TODO
+        } else if (this_player_random_number == other_player_random_number) {
+            this_player_state = READY;
+            other_player_state = READY;
+            if (event_this_player_random_number() != OK)
+                return 1;
+        }
+    }
+
+    return 0;
+}
+
+int event_other_player_ready_to_play() {
+    other_player_state = READY;
+    if (this_player_state == READY) {
+        if (event_this_player_random_number() != OK)
+            return 1;
+    }
+
+    return 0;
+}
+
+int event_other_player_leave_game() {
+    other_player_state = NOT_READY;
+    // TODO disconnect if needed
+    return 0;
+}
+
+int event_leave_game() {
+    if (protocol_send_leave_game() != OK)
+        return 1;
+    if (menu_set_main_menu() != OK)
+        return 1;
+    this_player_state = NOT_READY;
+    
+    return 0;
+}
+
 int event_new_atom(uint16_t x, uint16_t y) {
     if (canvas_new_stroke_atom(x, y) != OK)
         return 1;
@@ -105,19 +230,11 @@ int dispatch_mouse_packet(struct packet p) {
     cursor_move(p.delta_x, p.delta_y);
     bool hovering = false;
 
-    // TODO temporary
-    if (p.lb) {
-        protocol_test_msg();
-    }
-    if (p.rb) {
-        protocol_test_msg2();
-    }
-
     // TODO it can be better organized later on
     if (menu_get_state() == WORD_SCREEN) {
         if (p.lb || p.rb) {
-            game_resume();
-            game_set_state(ROUND_ONGOING);
+            if (game_start_round() != OK)
+                return 1;
         }
         return 0;
     } 
@@ -180,8 +297,8 @@ int dispatch_keyboard_event(kbd_event_t kbd_event) {
     // TODO it can be better organized later on
     if (menu_get_state() == WORD_SCREEN) {
         if (kbd_event.key != NO_KEY) {
-            game_set_state(ROUND_ONGOING);
-            game_resume();
+            if (game_start_round() != OK)
+                return 1;
         }
         return 0;
     }
@@ -218,13 +335,6 @@ int dispatch_keyboard_event(kbd_event_t kbd_event) {
             }
         }
     }
-    
-    // TODO this is a temporary hack
-    if (!game_is_round_ongoing()) {
-        dispatcher_bind_text_boxes(0);
-    }
-
-    
 
     // TODO o keyboard só afetar o que está selecionado
     if (bound_canvas) {
@@ -243,7 +353,7 @@ int dispatch_keyboard_event(kbd_event_t kbd_event) {
 int dispatch_timer_tick() {
     menu_state_t state = menu_get_state();
     if (state == GAME || state == PAUSE_MENU)
-        if (game_round_timer_tick() != OK)
+        if (game_timer_tick() != OK)
             return 1;
 
     if (draw_frame() != OK) {
@@ -261,7 +371,7 @@ int dispatch_rtc_alarm_int() {
 }
 
 int dispatch_rtc_periodic_int() {
-    if (game_round_RTC_PI_tick() != OK)
+    if (game_rtc_pi_tick() != OK)
         return 1;
     return 0;
 }
@@ -270,10 +380,10 @@ int draw_frame() {
     // TODO call vg_get_back_buffer() here and pass it as argument to all draw functions called ?
     menu_state_t state = menu_get_state();
 
-    if(state != MAIN_MENU && state != WORD_SCREEN) {
+    if(state == GAME || state == PAUSE_MENU) {
         if (canvas_draw_frame(0) != OK)
             return 1;
-        if (draw_game_bar() != OK)
+        if (game_draw() != OK)
             return 1;
     }
 
