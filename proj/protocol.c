@@ -4,6 +4,7 @@
 #include "protocol.h"
 #include "queue.h"
 #include "dispatcher.h"
+#include "canvas.h"
 
 static queue_t pending_messages;
 static bool awaiting_ack;
@@ -14,6 +15,128 @@ static uint8_t receiving_msg_ticks;
 static uint8_t *receiving_msg_bits;
 static size_t receiving_msg_len;
 static size_t receiving_msg_read_count;
+
+static int protocol_receive_ready_to_play(size_t content_len, uint8_t *content) {
+    if (content_len != 0)
+            return 1;
+
+    if (event_other_player_ready_to_play())
+        return 1;
+
+    return 0;
+}
+
+static int protocol_receive_leave_game(size_t content_len, uint8_t *content) {
+    if (content_len != 0)
+            return 1;
+
+    if (event_other_player_leave_game())
+        return 1;
+
+    return 0;
+}
+
+static int protocol_receive_random_number(size_t content_len, uint8_t *content) {
+    if (content_len != 4)
+        return 1;
+
+    int rn;
+    memcpy(&rn, content, 4);
+
+    if (event_other_player_random_number(rn))
+        return 1;
+    
+    return 0;
+}
+
+static int protocol_receive_new_round(size_t content_len, uint8_t *content) {
+    char *word;
+
+    size_t word_len = strlen((char *) content) + 1;
+    if (content_len != word_len)
+        return 1;
+    
+    word = malloc(word_len * sizeof(char));
+    if (word == NULL)
+        return 1;
+
+    strncpy(word, (char *) content, word_len);
+    if (event_new_game_as_guesser(word) != OK)
+        return 1;
+
+    return 0;
+}
+
+static int protocol_receive_start_round(size_t content_len, uint8_t *content) {
+    if (content_len != 0)
+        return 1;
+
+    if (event_start_round() != OK)
+        return 1;
+    
+    return 0;
+}
+
+static int protocol_receive_new_stroke(size_t content_len, uint8_t *content) {
+    if (content_len != 6)
+        return 1;
+
+    uint32_t color;
+    uint16_t thickness;
+    memcpy(&color, content, 4);
+    memcpy(&thickness, content + 4, 2);
+
+    if (canvas_new_stroke(color, thickness) != OK)
+        return 1;
+    
+    return 0;
+}
+
+static int protocol_receive_draw_atom(size_t content_len, uint8_t *content) {
+    if (content_len != 4)
+        return 1;
+
+    uint16_t x, y;
+    memcpy(&x, content, 2);
+    memcpy(&y, content + 2, 2);
+
+    if (canvas_new_stroke_atom(x, y) != OK)
+        return 1;
+    
+    return 0;
+}
+
+static int protocol_receive_undo_canvas(size_t content_len, uint8_t *content) {
+    if (content_len != 0)
+        return 1;
+
+    canvas_undo_stroke();
+    
+    return 0;
+}
+
+static int protocol_receive_redo_canvas(size_t content_len, uint8_t *content) {
+    if (content_len != 0)
+        return 1;
+
+    canvas_redo_stroke();
+    
+    return 0;
+}
+
+typedef int (*message_handle_t)(size_t, uint8_t *);
+#define NUMBER_OF_MESSAGES 9
+static const message_handle_t message_handle[NUMBER_OF_MESSAGES] = {
+    protocol_receive_ready_to_play,
+    protocol_receive_leave_game,
+    protocol_receive_random_number,
+    protocol_receive_new_round,
+    protocol_receive_start_round,
+    protocol_receive_new_stroke,
+    protocol_receive_draw_atom,
+    protocol_receive_undo_canvas,
+    protocol_receive_redo_canvas,
+};
 
 static int new_message(message_t *message, message_type_t type, size_t content_len, uint8_t *content) {
     message->type = type;
@@ -132,7 +255,10 @@ static int protocol_parse_received_message() {
         printf("0x%x, ", msg.content[i]);
     }
     printf("]\n");
-    if (dispatch_message(&msg) != OK) {
+    if (msg.type >= NUMBER_OF_MESSAGES)
+        return 1;
+    
+    if (message_handle[msg.type](msg.content_len, msg.content) != OK) {
         delete_message(&msg);
         return 1;
     }
@@ -310,6 +436,7 @@ int protocol_send_random_number(int random_number) {
     message_t msg;
     uint8_t content[4];
     memcpy(content, &random_number, 4);
+
     if (new_message(&msg, MSG_RANDOM_NUMBER, 4, content) != OK)
         return 1;
 
@@ -337,6 +464,58 @@ int protocol_send_new_round(const char *word) {
 int protocol_send_start_round() {
     message_t msg;
     if (new_message_no_content(&msg, MSG_START_ROUND) != OK)
+        return 1;
+
+    if (protocol_add_message(msg) != OK)
+        return 1;
+
+    return 0;
+}
+
+int protocol_send_new_stroke(uint32_t color, uint16_t thickness) {
+    message_t msg;
+    uint8_t content[6];
+    memcpy(content, &color, 4);
+    memcpy(content + 4, &thickness, 2);
+
+    if (new_message(&msg, MSG_NEW_STROKE, 6, content) != OK)
+        return 1;
+
+    if (protocol_add_message(msg) != OK)
+        return 1;
+
+    return 0;
+}
+
+int protocol_send_new_atom(uint16_t x, uint16_t y) {
+    message_t msg;
+    uint8_t content[4];
+    memcpy(content, &x, 2);
+    memcpy(content + 2, &y, 2);
+
+    if (new_message(&msg, MSG_DRAW_ATOM, 4, content) != OK)
+        return 1;
+
+    if (protocol_add_message(msg) != OK)
+        return 1;
+
+    return 0;
+}
+
+int protocol_send_undo_canvas() {
+    message_t msg;
+    if (new_message_no_content(&msg, MSG_UNDO_CANVAS) != OK)
+        return 1;
+
+    if (protocol_add_message(msg) != OK)
+        return 1;
+
+    return 0;
+}
+
+int protocol_send_redo_canvas() {
+    message_t msg;
+    if (new_message_no_content(&msg, MSG_REDO_CANVAS) != OK)
         return 1;
 
     if (protocol_add_message(msg) != OK)

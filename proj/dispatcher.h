@@ -10,7 +10,6 @@ int dispatcher_bind_buttons(size_t number_of_buttons, ...);
 int dispatcher_bind_text_boxes(size_t number_of_text_boxes, ...);
 void dispatcher_bind_canvas(bool is_to_bind);
 
-int dispatch_message(const message_t *msg);
 int dispatch_mouse_packet(struct packet p);
 int dispatch_keyboard_event(kbd_event_t s);
 int dispatch_timer_tick();

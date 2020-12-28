@@ -72,65 +72,6 @@ void dispatcher_bind_canvas(bool is_to_bind) {
     bound_canvas = is_to_bind;
 }
 
-static int dispatch_msg_new_round(size_t content_len, uint8_t *content) {
-    char *word;
-
-    size_t word_len = strlen((char *) content) + 1;
-    if (content_len != word_len)
-        return 1;
-    
-    word = malloc(word_len * sizeof(char));
-    if (word == NULL)
-        return 1;
-
-    strncpy(word, (char *) content, word_len);
-    if (event_new_game_as_guesser(word) != OK)
-        return 1;
-    return 0;
-}
-
-int dispatch_message(const message_t *msg) {
-    switch (msg->type) {
-    case MSG_READY_TO_PLAY:
-        if (msg->content_len != 0)
-            return 1;
-
-        if (event_other_player_ready_to_play())
-            return 1;
-        break;
-    case MSG_LEAVE_GAME:
-        if (msg->content_len != 0)
-            return 1;
-
-        if (event_other_player_leave_game())
-            return 1;
-        break;
-    case MSG_RANDOM_NUMBER:
-        if (msg->content_len != 4)
-            return 1;
-
-        int rn;
-        memcpy(&rn, msg->content, 4);
-
-        if (event_other_player_random_number(rn))
-            return 1;
-        break;
-    case MSG_NEW_ROUND:
-        if (dispatch_msg_new_round(msg->content_len, msg->content) != OK)
-            return 1;
-        
-        break;
-    case MSG_START_ROUND:
-        if (event_start_round() != OK)
-            return 1;
-        break;
-    default:
-        return 1;
-    }
-    
-    return 0;
-}
-
 int event_start_round() {
     bool canvas_enabled = game_get_role() == DRAWER;
     if (canvas_init(vg_get_hres(), vg_get_vres() - GAME_BAR_HEIGHT, canvas_enabled) != OK)
@@ -191,17 +132,34 @@ int event_end_round() {
 int event_new_stroke(bool primary_button) {
     if (canvas_new_stroke(drawer_get_selected_color(), drawer_get_selected_thickness()) != OK)
         return 1;
+    if (protocol_send_new_stroke(drawer_get_selected_color(), drawer_get_selected_thickness()) != OK)
+        return 1;
     
+    return 0;
+}
+
+int event_new_atom(uint16_t x, uint16_t y) {
+    if (canvas_new_stroke_atom(x, y) != OK)
+        return 1;
+    if (protocol_send_new_atom(x, y) != OK)
+        return 1;
+
     return 0;
 }
 
 int event_undo() {
     canvas_undo_stroke();
+    if (protocol_send_undo_canvas() != OK)
+        return 1;
+
     return 0;
 }
 
 int event_redo() {
     canvas_redo_stroke();
+    if (protocol_send_redo_canvas() != OK)
+        return 1;
+
     return 0;
 }
 
@@ -280,12 +238,6 @@ int event_leave_game() {
         return 1;
     this_player_state = NOT_READY;
     
-    return 0;
-}
-
-int event_new_atom(uint16_t x, uint16_t y) {
-    if (canvas_new_stroke_atom(x, y) != OK)
-        return 1;
     return 0;
 }
 
@@ -386,14 +338,13 @@ int dispatch_keyboard_event(kbd_event_t kbd_event) {
         }
     }
 
-    // TODO o keyboard só afetar o que está selecionado
-    if (bound_canvas) {
+    if (canvas_is_enabled()) {
         if (kbd_event.key == CHAR && kbd_event.char_key == 'Z' && kbd_event.is_ctrl_pressed) {
-            canvas_undo_stroke(); // no need to crash if empty
+            event_undo(); // no need to crash if empty
         }
 
         if (kbd_event.key == CHAR && kbd_event.char_key == 'Y' && kbd_event.is_ctrl_pressed) {
-            canvas_redo_stroke(); // no need to crash if empty
+            event_redo(); // no need to crash if empty
         }
     }
 

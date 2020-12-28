@@ -16,11 +16,11 @@ typedef enum message_type_t {
     MSG_RANDOM_NUMBER = 2,
     MSG_NEW_ROUND = 3,
     MSG_START_ROUND = 4,
+    MSG_NEW_STROKE = 5,
+    MSG_DRAW_ATOM = 6,
+    MSG_UNDO_CANVAS = 7,
+    MSG_REDO_CANVAS = 8,
 
-    // MSG_NEW_STROKE = 1,
-    // MSG_DRAW_ATOM = 2,
-    // MSG_UNDO_CANVAS = 3,
-    // MSG_REDO_CANVAS = 4,
     // MSG_SYNC_TIMER = 5,
     // MSG_MAKE_GUESS = 6,
     // MSG_ROUND_WIN = 7,
@@ -46,5 +46,9 @@ int protocol_send_leave_game();
 int protocol_send_random_number(int random_number);
 int protocol_send_new_round(const char *word);
 int protocol_send_start_round();
+int protocol_send_new_stroke(uint32_t color, uint16_t thickness);
+int protocol_send_new_atom(uint16_t x, uint16_t y);
+int protocol_send_undo_canvas();
+int protocol_send_redo_canvas();
 
 #endif /* _PROTOCOL_H */
