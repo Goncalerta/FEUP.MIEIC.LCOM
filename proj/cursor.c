@@ -6,15 +6,18 @@
 
 #include "xpm/cursor_arrow.xpm"
 #include "xpm/cursor_write.xpm"
+#include "xpm/cursor_disabled.xpm"
 
 static cursor_state state;
 static int16_t cursor_x, cursor_y;
-static xpm_image_t cursor_arrow, cursor_write;
+static xpm_image_t cursor_arrow, cursor_write, cursor_disabled;
 
 int cursor_init(enum xpm_image_type type) {
     if (xpm_load(xpm_cursor_arrow, type, &cursor_arrow) == NULL)
         return 1;
     if (xpm_load(xpm_cursor_write, type, &cursor_write) == NULL)
+        return 1;
+    if (xpm_load(xpm_cursor_disabled, type, &cursor_disabled) == NULL)
         return 1;
     cursor_x = vg_get_hres() / 2;
     cursor_y = vg_get_vres() / 2;
@@ -56,6 +59,8 @@ int cursor_draw() {
         return 0;
     case CURSOR_WRITE:
         return vb_draw_img(vg_get_back_buffer(), cursor_write, 0, 0, 24, 24, cursor_x - 12, cursor_y - 12);
+    case CURSOR_DISABLED:
+        return vb_draw_img(vg_get_back_buffer(), cursor_disabled, 0, 0, 24, 24, cursor_x - 12, cursor_y - 12);
     }
 }
 

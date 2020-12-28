@@ -132,7 +132,8 @@ int dispatch_message(const message_t *msg) {
 }
 
 int event_start_round() {
-    if (canvas_init(vg_get_hres(), vg_get_vres() - GAME_BAR_HEIGHT) != OK)
+    bool canvas_enabled = game_get_role() == DRAWER;
+    if (canvas_init(vg_get_hres(), vg_get_vres() - GAME_BAR_HEIGHT, canvas_enabled) != OK)
         return 1;
 
     if (game_start_round() != OK)
@@ -291,15 +292,7 @@ int event_new_atom(uint16_t x, uint16_t y) {
 int dispatch_mouse_packet(struct packet p) {
     cursor_move(p.delta_x, p.delta_y);
     bool hovering = false;
-
-    // // TODO it can be better organized later on
-    // if (menu_get_state() == WORD_SCREEN) {
-    //     if (p.lb || p.rb) {
-    //         if (game_start_round() != OK)
-    //             return 1;
-    //     }
-    //     return 0;
-    // } 
+    cursor_set_state(CURSOR_ARROW);
 
     for (size_t i = 0; i < num_listening_buttons; i++) {
         button_t *button = listening_buttons[i];
@@ -325,8 +318,6 @@ int dispatch_mouse_packet(struct packet p) {
         }
         if (text_box->state != TEXT_BOX_NORMAL && text_box->state != TEXT_BOX_SELECTED_NOT_HOVERING) {
             cursor_set_state(CURSOR_WRITE);
-        } else {
-            cursor_set_state(CURSOR_ARROW);
         }
     }
 
@@ -339,9 +330,13 @@ int dispatch_mouse_packet(struct packet p) {
             if (canvas_update_state(false, p.lb, p.rb) != OK)
                 return 1;
         }
-
+        
         if (canvas_get_state() != CANVAS_STATE_NORMAL) {
-            cursor_set_state(CURSOR_PAINT);
+            if (canvas_is_enabled()) {
+                cursor_set_state(CURSOR_PAINT);
+            } else {
+                cursor_set_state(CURSOR_DISABLED);
+            }
         } 
     }
 

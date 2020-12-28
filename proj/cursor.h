@@ -8,7 +8,8 @@
 typedef enum cursor_state {
     CURSOR_ARROW,
     CURSOR_PAINT,
-    CURSOR_WRITE
+    CURSOR_WRITE,
+    CURSOR_DISABLED
 } cursor_state;
 
 int cursor_init();

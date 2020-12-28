@@ -116,6 +116,7 @@ int (proj_main_loop)(int argc, char *argv[]) {
             case HARDWARE: /* hardware interrupt notification */				
                 if (msg.m_notify.interrupts & BIT(mouse_irq_set)) {
                     mouse_ih();
+                    // TODO application dependent part outside ih
                 }
                 if (msg.m_notify.interrupts & BIT(kbd_irq_set)) {
                     kbc_ih();

@@ -10,6 +10,7 @@
 static canvas_state_t state;
 static stroke *first, *last, *undone;
 static frame_buffer_t canvas_buf; // current picture drawn in buffer - copied into vcard back buffer
+static bool enabled;
 
 static int canvas_draw_atom_line(stroke_atom atom1, stroke_atom atom2, uint32_t color, uint16_t thickness) {
     uint16_t x1 = atom1.x;
@@ -60,7 +61,8 @@ static int canvas_redraw_strokes() {
     return 0;
 }
 
-int canvas_init(uint16_t width, uint16_t height) {
+int canvas_init(uint16_t width, uint16_t height, bool en) {
+    enabled = en;
     state = CANVAS_STATE_NORMAL;
 
     canvas_buf.h_res = width;
@@ -110,6 +112,10 @@ int canvas_exit() {
         return 1;
     free(canvas_buf.buf);
     return 0;
+}
+
+bool canvas_is_enabled() {
+    return enabled;
 }
 
 int canvas_new_stroke(uint32_t color, uint16_t thickness) {
@@ -250,18 +256,22 @@ int canvas_update_state(bool hovering, bool lb, bool rb) {
                 state = CANVAS_STATE_NORMAL;
             } else if (lb && !rb) {
                 state = CANVAS_STATE_PRESSING_LB;
-                if (event_new_stroke(true) != OK)
-                    return 1;
-                if (event_new_atom(cursor_get_x(), cursor_get_y()) != OK)
-                    return 1;
+                if (enabled) {
+                    if (event_new_stroke(true) != OK)
+                        return 1;
+                    if (event_new_atom(cursor_get_x(), cursor_get_y()) != OK)
+                        return 1;
+                }
             } else if (rb && !lb) {
-                if (drawer_toggle_pencil_eraser() != OK)
-                    return 1;
                 state = CANVAS_STATE_PRESSING_RB;
-                if (event_new_stroke(false) != OK)
-                    return 1;
-                if (event_new_atom(cursor_get_x(), cursor_get_y()) != OK)
-                    return 1;
+                if (enabled) {
+                    if (drawer_toggle_pencil_eraser() != OK)
+                        return 1;
+                    if (event_new_stroke(false) != OK)
+                        return 1;
+                    if (event_new_atom(cursor_get_x(), cursor_get_y()) != OK)
+                        return 1;
+                }
             }
         } else {
             state = CANVAS_STATE_NORMAL;
@@ -272,15 +282,19 @@ int canvas_update_state(bool hovering, bool lb, bool rb) {
         if (lb && rb) {
             state = CANVAS_STATE_NORMAL;
         } else if (lb && !rb) {
-            if (event_new_atom(cursor_get_x(), cursor_get_y()) != OK)
-                return 1;
-        } else if (!lb && rb) {
-            if (drawer_toggle_pencil_eraser() != OK)
+            if (enabled) {
+                if (event_new_atom(cursor_get_x(), cursor_get_y()) != OK)
                     return 1;
+            }
+        } else if (!lb && rb) {
             state = CANVAS_STATE_PRESSING_RB;
-            if (event_new_stroke(false) != OK)
-                return 1;
-            // TODO why didn't I add here "event_new_atom"?
+            if (enabled) {
+                if (drawer_toggle_pencil_eraser() != OK)
+                    return 1;
+                if (event_new_stroke(false) != OK)
+                    return 1;
+                // TODO why didn't I add here "event_new_atom"?
+            }
         } else {
             state = hovering? CANVAS_STATE_HOVERING : CANVAS_STATE_NORMAL;
         }
@@ -288,22 +302,30 @@ int canvas_update_state(bool hovering, bool lb, bool rb) {
 
     case CANVAS_STATE_PRESSING_RB:
         if (lb && rb) {
-            if (drawer_toggle_pencil_eraser() != OK)
-                    return 1;
             state = CANVAS_STATE_NORMAL;
+            if (enabled) {
+                if (drawer_toggle_pencil_eraser() != OK)
+                    return 1;
+            }
         } else if (rb && !lb) {
-            if (event_new_atom(cursor_get_x(), cursor_get_y()) != OK)
-                return 1;
+            if (enabled) {
+                if (event_new_atom(cursor_get_x(), cursor_get_y()) != OK)
+                    return 1;
+            }
         } else if (!rb && lb) {
-            if (drawer_toggle_pencil_eraser() != OK)
-                    return 1;
             state = CANVAS_STATE_PRESSING_LB;
-            if (event_new_stroke(true) != OK)
-                return 1;
-        } else {
-            if (drawer_toggle_pencil_eraser() != OK)
+            if (enabled) {
+                if (drawer_toggle_pencil_eraser() != OK)
                     return 1;
-            state = hovering? CANVAS_STATE_HOVERING : CANVAS_STATE_NORMAL;   
+                if (event_new_stroke(true) != OK)
+                    return 1;
+            }
+        } else {
+            state = hovering? CANVAS_STATE_HOVERING : CANVAS_STATE_NORMAL;
+            if (enabled) {
+                if (drawer_toggle_pencil_eraser() != OK)
+                    return 1;
+            }
         }
         break;
     }

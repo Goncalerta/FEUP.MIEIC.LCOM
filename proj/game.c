@@ -320,8 +320,12 @@ int game_resume() {
                                     &game->round->attr.drawer->b_undo, 
                                     &game->round->attr.drawer->b_redo) != OK)
             return 1;
+        if (dispatcher_bind_text_boxes(0) != OK)
+            return 1;
         break;
     case GUESSER:
+        if (dispatcher_bind_buttons(0) != OK)
+            return 1;
         if (dispatcher_bind_text_boxes(1, &game->round->attr.guesser->text_box) != OK)
             return 1;
         break;
