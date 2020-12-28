@@ -16,7 +16,9 @@ int new_word_clue(word_clue_t *clue, const char *word);
 
 int word_clue_draw(word_clue_t *clue, frame_buffer_t buf, uint16_t x, uint16_t y);
 
-int word_clue_hint(word_clue_t *clue);
+int word_clue_hint(word_clue_t *clue, size_t *pos);
+
+int word_clue_hint_at(word_clue_t *clue, size_t pos);
 
 void delete_word_clue(word_clue_t *clue);
 

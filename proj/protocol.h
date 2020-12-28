@@ -20,14 +20,12 @@ typedef enum message_type_t {
     MSG_DRAW_ATOM = 6,
     MSG_UNDO_CANVAS = 7,
     MSG_REDO_CANVAS = 8,
+    MSG_GUESS = 9,
+    MSG_CLUE = 10,
 
-    // MSG_SYNC_TIMER = 5,
-    // MSG_MAKE_GUESS = 6,
-    // MSG_ROUND_WIN = 7,
-    // MSG_GAME_OVER = 8,
-
-
-    // MSG_ADD_CLUE = 11,
+    // MSG_SYNC_TIMER = 5, (round_timer)
+    // MSG_ROUND_WIN = 7, (score)
+    // MSG_GAME_OVER = 8, 
 } message_type_t;
 
 typedef struct message_t {
@@ -50,5 +48,7 @@ int protocol_send_new_stroke(uint32_t color, uint16_t thickness);
 int protocol_send_new_atom(uint16_t x, uint16_t y);
 int protocol_send_undo_canvas();
 int protocol_send_redo_canvas();
+int protocol_send_guess(const char *guess);
+int protocol_send_clue(size_t pos);
 
 #endif /* _PROTOCOL_H */

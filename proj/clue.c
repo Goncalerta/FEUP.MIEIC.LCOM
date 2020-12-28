@@ -48,7 +48,7 @@ int word_clue_draw(word_clue_t *clue, frame_buffer_t buf, uint16_t x, uint16_t y
     return 0;
 }
 
-int word_clue_hint(word_clue_t *clue) {
+int word_clue_hint(word_clue_t *clue, size_t *pos) {
     if (clue->missing <= 0)
         return 1;
     size_t hint_pos = rand() % clue->missing;
@@ -60,10 +60,23 @@ int word_clue_hint(word_clue_t *clue) {
         if (hint_pos == 0) {
             clue->clue[i] = clue->word[i];
             clue->missing--;
+            *pos = i;
             break;
         }
         hint_pos--;
     }
+
+    return 0;
+}
+
+int word_clue_hint_at(word_clue_t *clue, size_t pos) {
+    if (pos >= clue->size)
+        return 1;
+    
+    if (clue->clue[pos] == '?') {
+        clue->missing--;
+    }
+    clue->clue[pos] = clue->word[pos];
 
     return 0;
 }

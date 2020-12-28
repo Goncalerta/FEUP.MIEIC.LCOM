@@ -5,6 +5,7 @@
 #include "queue.h"
 #include "dispatcher.h"
 #include "canvas.h"
+#include "game.h"
 
 static queue_t pending_messages;
 static bool awaiting_ack;
@@ -20,7 +21,7 @@ static int protocol_receive_ready_to_play(size_t content_len, uint8_t *content) 
     if (content_len != 0)
             return 1;
 
-    if (event_other_player_ready_to_play())
+    if (event_other_player_ready_to_play() != OK)
         return 1;
 
     return 0;
@@ -30,7 +31,7 @@ static int protocol_receive_leave_game(size_t content_len, uint8_t *content) {
     if (content_len != 0)
             return 1;
 
-    if (event_other_player_leave_game())
+    if (event_other_player_leave_game() != OK)
         return 1;
 
     return 0;
@@ -43,7 +44,7 @@ static int protocol_receive_random_number(size_t content_len, uint8_t *content) 
     int rn;
     memcpy(&rn, content, 4);
 
-    if (event_other_player_random_number(rn))
+    if (event_other_player_random_number(rn) != OK)
         return 1;
     
     return 0;
@@ -124,8 +125,40 @@ static int protocol_receive_redo_canvas(size_t content_len, uint8_t *content) {
     return 0;
 }
 
+static int protocol_receive_guess(size_t content_len, uint8_t *content) {
+    char *guess;
+
+    size_t guess_len = strlen((char *) content) + 1;
+    if (content_len != guess_len)
+        return 1;
+    
+    guess = malloc(guess_len * sizeof(char));
+    if (guess == NULL)
+        return 1;
+
+    strncpy(guess, (char *) content, guess_len);
+    if (game_guess_word(guess) != OK) {
+        return 1;
+    }
+
+    return 0;
+}
+
+static int protocol_receive_clue(size_t content_len, uint8_t *content) {
+    if (content_len != 1)
+        return 1;
+
+    uint8_t pos;
+    memcpy(&pos, content, 1);
+
+    if (game_give_clue_at(pos) != OK)
+        return 1;
+    
+    return 0;
+}
+
 typedef int (*message_handle_t)(size_t, uint8_t *);
-#define NUMBER_OF_MESSAGES 9
+#define NUMBER_OF_MESSAGES 11
 static const message_handle_t message_handle[NUMBER_OF_MESSAGES] = {
     protocol_receive_ready_to_play,
     protocol_receive_leave_game,
@@ -136,6 +169,8 @@ static const message_handle_t message_handle[NUMBER_OF_MESSAGES] = {
     protocol_receive_draw_atom,
     protocol_receive_undo_canvas,
     protocol_receive_redo_canvas,
+    protocol_receive_guess,
+    protocol_receive_clue
 };
 
 static int new_message(message_t *message, message_type_t type, size_t content_len, uint8_t *content) {
@@ -250,11 +285,11 @@ static int protocol_parse_received_message() {
         return 1;
 
     // TODO delete
-    printf("msg: 0x%02x, len: %d [", msg.type, msg.content_len);
-    for (size_t i = 0; i < msg.content_len; i++) {
-        printf("0x%x, ", msg.content[i]);
-    }
-    printf("]\n");
+    // printf("msg: 0x%02x, len: %d [", msg.type, msg.content_len);
+    // for (size_t i = 0; i < msg.content_len; i++) {
+    //     printf("0x%x, ", msg.content[i]);
+    // }
+    // printf("]\n");
     if (msg.type >= NUMBER_OF_MESSAGES)
         return 1;
     
@@ -516,6 +551,36 @@ int protocol_send_undo_canvas() {
 int protocol_send_redo_canvas() {
     message_t msg;
     if (new_message_no_content(&msg, MSG_REDO_CANVAS) != OK)
+        return 1;
+
+    if (protocol_add_message(msg) != OK)
+        return 1;
+
+    return 0;
+}
+
+int protocol_send_guess(const char *guess) {
+    message_t msg;
+    size_t str_len = strlen(guess);
+    uint8_t content[str_len + 1];
+    memcpy(content, guess, str_len + 1);
+
+    if (new_message(&msg, MSG_GUESS, str_len + 1, content) != OK)
+        return 1;
+
+    if (protocol_add_message(msg) != OK)
+        return 1;
+
+    return 0;
+}
+
+int protocol_send_clue(size_t pos) {
+    uint8_t pos_8b = pos; // One byte is enough to encode the position
+    message_t msg;
+    uint8_t content[1];
+    memcpy(content, &pos_8b, 1);
+
+    if (new_message(&msg, MSG_CLUE, 1, content) != OK)
         return 1;
 
     if (protocol_add_message(msg) != OK)

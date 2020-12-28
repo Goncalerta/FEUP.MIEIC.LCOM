@@ -35,6 +35,7 @@ int game_timer_tick();
 int draw_game_correct_guess();
 int game_draw();
 int game_give_clue();
+int game_give_clue_at(size_t pos);
 int game_guess_word(char *guess);
 
 int drawer_change_selected_color();

@@ -345,6 +345,12 @@ int game_start_round() {
 
     if (game_resume() != OK)
         return 1;
+
+    if (game->round->role == DRAWER) {
+        if (rtc_set_alarm_in(clue_time_interval) != OK)
+            return 1;
+    }
+    
     game->state = ROUND_ONGOING;
     return 0;
 }
@@ -531,9 +537,23 @@ int game_give_clue() {
     if (game == NULL || game->round == NULL)
         return 1;
 
-    if (word_clue_hint(&game->round->word_clue) != OK)
+    size_t pos;
+    if (word_clue_hint(&game->round->word_clue, &pos) != OK)
         return 1;
+    if (protocol_send_clue(pos) != OK)
+        return 1;
+
     if (rtc_set_alarm_in(clue_time_interval) != OK)
+        return 1;
+    
+    return 0;
+}
+
+int game_give_clue_at(size_t pos) {
+    if (game == NULL || game->round == NULL)
+        return 1;
+
+    if (word_clue_hint_at(&game->round->word_clue, pos) != OK)
         return 1;
     
     return 0;
@@ -601,12 +621,6 @@ int game_rtc_pi_tick() {
     
     switch (game->state) {
     case ROUND_ONGOING:
-        // if it's the first game tick while ROUND_ONGOING
-        if (game->round->round_timer == ROUND_TICKS) { 
-            if (rtc_set_alarm_in(clue_time_interval) != OK)
-                return 1;
-        }
-
         if (game->round->round_timer == 0) {
             if (game_over() != OK)
                 return 1;

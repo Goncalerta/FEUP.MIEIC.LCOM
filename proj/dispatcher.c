@@ -332,9 +332,10 @@ int dispatch_keyboard_event(kbd_event_t kbd_event) {
         }
 
         if (guess != NULL && strncmp(guess, "", 1)) {
-            if (game_guess_word(guess) != OK) {
+            if (game_guess_word(guess) != OK) 
                 return 1;
-            }
+            if (protocol_send_guess(guess) != OK)
+                return 1;
         }
     }
 
@@ -367,8 +368,10 @@ int dispatch_timer_tick() {
 
 int dispatch_rtc_alarm_int() {
     if (menu_get_state() == GAME) {
-        if (game_give_clue() != OK)
-            return 1;
+        if (game_get_role() == DRAWER) {
+            if (game_give_clue() != OK)
+                return 1;
+        }
     } else if (menu_get_state() == WORD_SCREEN) {
         if (protocol_send_start_round() != OK)
             return 1;
