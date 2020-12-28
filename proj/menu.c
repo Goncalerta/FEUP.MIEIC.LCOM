@@ -114,9 +114,12 @@ int menu_draw() {
             str_size = 25;
             awaiting_player_tick = 0;
         }
+
         awaiting_player_tick++;
+        
         if (font_draw_string_centered(buf, "WAITING FOR OTHER PLAYER...", vg_get_hres()/2, vg_get_vres()/2 - 50, 0, str_size) != OK)
             return 1;
+        
         if (button_draw(buf, b_back_to_main_menu) != OK)
             return 1;
         break;

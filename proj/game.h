@@ -19,6 +19,11 @@ typedef enum role_t {
     GUESSER
 } role_t;
 
+void get_random_word(const char **word);
+
+role_t game_get_role();
+uint32_t game_get_round_number();
+
 int game_load_assets(enum xpm_image_type type);
 int new_game();
 int game_new_round(role_t starting_role, const char *word);

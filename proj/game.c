@@ -39,15 +39,15 @@
 #define BUTTONS_LEN 75
 #define GUESS_CHARACTER_LIMIT 14
 
-// #define WORD_LIST_SIZE 46
-// static char *word_list[WORD_LIST_SIZE] = {
-//     "HOUSE", "TORNADO", "SHOELACE", "TRUCK", "FEAR", "CAREER", "LAKE", "CHRISTMAS",
-//     "WALLET", "BALL", "IMAGINATION", "HEAL", "MIND", "ROAR", "WEATHER", "EAT", "CAT",
-//     "WORLD", "WHISPER", "MOVIE", "THEATHER", "DOG", "TRIP", "UNIVERSE", "FOOTBALL",
-//     "VOLLEYBALL", "PORTUGAL", "CHOCOLATE", "BEAUTIFUL", "DANGER", "ACCIDENT",
-//     "DEMOCRACY", "FAMILY", "ALIEN", "MARS", "VENUS", "JUPITER", "SUN", "BOOK",
-//     "PEN", "UNIVERSITY", "FISH", "DOCTOR", "SPIDER", "NEWSPAPER", "HALLOWEEN"
-// };
+#define WORD_LIST_SIZE 46
+static char *word_list[WORD_LIST_SIZE] = {
+    "HOUSE", "TORNADO", "SHOELACE", "TRUCK", "FEAR", "CAREER", "LAKE", "CHRISTMAS",
+    "WALLET", "BALL", "IMAGINATION", "HEAL", "MIND", "ROAR", "WEATHER", "EAT", "CAT",
+    "WORLD", "WHISPER", "MOVIE", "THEATHER", "DOG", "TRIP", "UNIVERSE", "FOOTBALL",
+    "VOLLEYBALL", "PORTUGAL", "CHOCOLATE", "BEAUTIFUL", "DANGER", "ACCIDENT",
+    "DEMOCRACY", "FAMILY", "ALIEN", "MARS", "VENUS", "JUPITER", "SUN", "BOOK",
+    "PEN", "UNIVERSITY", "FISH", "DOCTOR", "SPIDER", "NEWSPAPER", "HALLOWEEN"
+};
 
 #define NUM_COLORS_AVAILABLE 10
 static const uint32_t canvas_pallete[NUM_COLORS_AVAILABLE] = {
@@ -114,7 +114,7 @@ typedef struct game_t {
     uint32_t round_number;
 } game_t;
 
-static rtc_alarm_time_t clue_time_interval = {.hours = 0, .minutes = 0, .seconds = 12}; // TODO keep this constant? or make it variable?
+static const rtc_alarm_time_t clue_time_interval = {.hours = 0, .minutes = 0, .seconds = 12}; 
 
 static xpm_image_t tick_img, cross_img;
 static xpm_image_t correct_message, game_over_message;
@@ -122,6 +122,10 @@ static xpm_image_t pencil, eraser, undo_arrow, redo_arrow;
 static xpm_animation_t clock_frames;
 
 static game_t *game;
+
+void get_random_word(const char **word) {
+    *word = word_list[rand() % WORD_LIST_SIZE];
+}
 
 int game_load_assets(enum xpm_image_type type) {
     if (xpm_load_animation(&clock_frames, type, 3, 
@@ -170,29 +174,37 @@ static int init_buttons(drawer_t *drawer) {
     frame_buffer_t buf = vg_get_back_buffer();
     uint16_t button_margin = 10;
 
+
     uint16_t button_y = button_margin;
     if (new_button(&drawer->b_pencil, buf.h_res - BUTTONS_LEN - button_margin, button_y, 
                    BUTTONS_LEN, BUTTONS_LEN, drawer_set_pencil_primary) != OK)
         return 1;
+    
     button_set_xpm_icon(&drawer->b_pencil, pencil);
     button_set_border_active(&drawer->b_pencil);
 
+    
     button_y += BUTTONS_LEN + button_margin;
     if (new_button(&drawer->b_eraser, buf.h_res - BUTTONS_LEN - button_margin, button_y, 
                    BUTTONS_LEN, BUTTONS_LEN, drawer_set_eraser_primary) != OK)
         return 1;
+    
     button_set_xpm_icon(&drawer->b_eraser, eraser);
 
+    
     button_y += BUTTONS_LEN + button_margin;
     if (new_button(&drawer->b_color, buf.h_res - BUTTONS_LEN - button_margin, button_y, 
                    BUTTONS_LEN, BUTTONS_LEN, drawer_change_selected_color) != OK)
         return 1;
+    
     button_set_circle_icon(&drawer->b_color, BUTTON_CIRCLE_RADIUS_DEFAULT, canvas_pallete[drawer->selected_color]);
 
+    
     button_y += BUTTONS_LEN + button_margin;
     if (new_button(&drawer->b_thickness, buf.h_res - BUTTONS_LEN - button_margin, button_y, 
                    BUTTONS_LEN, BUTTONS_LEN, drawer_change_selected_thickness) != OK)
         return 1;
+    
     button_set_circle_icon(&drawer->b_thickness, valid_thickness[drawer->selected_thickness], BUTTON_CIRCLE_DEFAULT_COLOR);
 
     button_y += BUTTONS_LEN + button_margin;
@@ -210,6 +222,14 @@ static int init_buttons(drawer_t *drawer) {
     return 0;
 }
 
+role_t game_get_role() {
+    return game->round->role;
+}
+
+uint32_t game_get_round_number() {
+    return game->round_number;
+}
+
 static int init_text_box(guesser_t *guesser) {
     if (new_text_box(&game->round->attr.guesser->text_box, TEXT_BOX_GUESSER_X + 4, TEXT_BOX_GUESSER_Y, 
                      TEXT_BOX_GUESSER_DISPLAY_SIZE) != OK)
@@ -220,37 +240,45 @@ static int init_text_box(guesser_t *guesser) {
 int game_new_round(role_t starting_role, const char *word) {
     if (game == NULL)
         return 1;
+
     game->round_number++;
     game->state = ROUND_UNSTARTED;
     game->round = malloc(sizeof(round_t));
     if (game->round == NULL)
         return 1;
+
     game->round->ticker = 0;
     game->round->round_timer = ROUND_TICKS;
     game->round->num_guesses = 0;
-    game->round->correct_guess = word; // word_list[rand() % WORD_LIST_SIZE];
+    game->round->correct_guess = word;
     game->round->role = starting_role;
     switch (starting_role) {
     case DRAWER:
+        game->round->attr.drawer = malloc(sizeof(drawer_t));
+        if (game->round->attr.drawer == NULL)
+            return 1;
         game->round->attr.drawer->is_pencil_primary = true;
         game->round->attr.drawer->selected_color = 0;
         game->round->attr.drawer->selected_thickness = 1;
         if (init_buttons(game->round->attr.drawer) != OK)
             return 1;
-
         break;
+
     case GUESSER:
+        game->round->attr.guesser = malloc(sizeof(guesser_t));
+        if (game->round->attr.guesser == NULL)
+            return 1;
         if (init_text_box(game->round->attr.guesser) != OK)
             return 1;
-        
         break;
+
     default:
         return 1;
     }
 
     if (new_word_clue(&game->round->word_clue, word) != OK)
         return 1;
-    //     menu_set_state(WORD_SCREEN);
+
     return 0;
 }
 

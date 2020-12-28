@@ -72,7 +72,24 @@ void dispatcher_bind_canvas(bool is_to_bind) {
     bound_canvas = is_to_bind;
 }
 
-int dispatcher_parse_message(const message_t *msg) {
+static int dispatch_msg_new_round(size_t content_len, uint8_t *content) {
+    char *word;
+
+    size_t word_len = strlen((char *) content) + 1;
+    if (content_len != word_len)
+        return 1;
+    
+    word = malloc(word_len * sizeof(char));
+    if (word == NULL)
+        return 1;
+
+    strncpy(word, (char *) content, word_len);
+    if (event_new_game_as_guesser(word) != OK)
+        return 1;
+    return 0;
+}
+
+int dispatch_message(const message_t *msg) {
     switch (msg->type) {
     case MSG_READY_TO_PLAY:
         if (msg->content_len != 0)
@@ -99,7 +116,13 @@ int dispatcher_parse_message(const message_t *msg) {
             return 1;
         break;
     case MSG_NEW_ROUND:
-        // TODO
+        if (dispatch_msg_new_round(msg->content_len, msg->content) != OK)
+            return 1;
+        
+        break;
+    case MSG_START_ROUND:
+        if (event_start_round() != OK)
+            return 1;
         break;
     default:
         return 1;
@@ -108,12 +131,47 @@ int dispatcher_parse_message(const message_t *msg) {
     return 0;
 }
 
-int event_new_game() {
+int event_start_round() {
     if (canvas_init(vg_get_hres(), vg_get_vres() - GAME_BAR_HEIGHT) != OK)
         return 1;
-    if (new_game() != OK)
+
+    if (game_start_round() != OK)
         return 1;
     
+    return 0;
+}
+
+int event_new_game_as_guesser(const char *word) {
+    if (new_game() != OK)
+        return 1;
+
+    if (game_new_round(GUESSER, word) != OK)
+        return 1;
+
+    menu_set_state(WORD_SCREEN);
+
+    return 0;
+}
+
+int event_new_game_as_drawer() {
+    if (new_game() != OK)
+        return 1;
+
+    const char *word;
+    get_random_word(&word);
+
+    if (game_new_round(DRAWER, word) != OK)
+        return 1;
+
+    if (protocol_send_new_round(word) != OK)
+        return 1;
+
+    menu_set_state(WORD_SCREEN);
+
+    static const rtc_alarm_time_t time_to_alarm = {.hours = 0, .minutes = 0, .seconds = 3};
+    if (rtc_set_alarm_in(time_to_alarm) != OK)
+        return 1;
+
     return 0;
 }
 
@@ -163,9 +221,12 @@ int event_ready_to_play() {
 int event_this_player_random_number() {
     this_player_state = RANDOM_NUMBER_SENT;
     this_player_random_number = rand();
+    if (protocol_send_random_number(this_player_random_number) != OK)
+        return 1;
     if (other_player_state == RANDOM_NUMBER_SENT) {
         if (this_player_random_number > other_player_random_number) {
-            // TODO
+            if (event_new_game_as_drawer() != OK)
+                return 1;
         } else if (this_player_random_number == other_player_random_number) {
             this_player_state = READY;
             other_player_state = READY;
@@ -182,7 +243,8 @@ int event_other_player_random_number(int random_number) {
     other_player_random_number = random_number;
     if (this_player_state == RANDOM_NUMBER_SENT) {
         if (this_player_random_number > other_player_random_number) {
-            // TODO
+            if (event_new_game_as_drawer() != OK)
+                return 1;
         } else if (this_player_random_number == other_player_random_number) {
             this_player_state = READY;
             other_player_state = READY;
@@ -230,14 +292,14 @@ int dispatch_mouse_packet(struct packet p) {
     cursor_move(p.delta_x, p.delta_y);
     bool hovering = false;
 
-    // TODO it can be better organized later on
-    if (menu_get_state() == WORD_SCREEN) {
-        if (p.lb || p.rb) {
-            if (game_start_round() != OK)
-                return 1;
-        }
-        return 0;
-    } 
+    // // TODO it can be better organized later on
+    // if (menu_get_state() == WORD_SCREEN) {
+    //     if (p.lb || p.rb) {
+    //         if (game_start_round() != OK)
+    //             return 1;
+    //     }
+    //     return 0;
+    // } 
 
     for (size_t i = 0; i < num_listening_buttons; i++) {
         button_t *button = listening_buttons[i];
@@ -282,13 +344,6 @@ int dispatch_mouse_packet(struct packet p) {
             cursor_set_state(CURSOR_PAINT);
         } 
     }
-    // else {
-    //     if (text_box_guesser->state != TEXT_BOX_NORMAL && text_box_guesser->state != TEXT_BOX_SELECTED_NOT_HOVERING) {
-    //         cursor_set_state(CURSOR_WRITE);
-    //     } else {
-    //         cursor_set_state(CURSOR_ARROW);
-    //     }
-    // }
 
     return 0;
 }
@@ -365,8 +420,16 @@ int dispatch_timer_tick() {
 }
 
 int dispatch_rtc_alarm_int() {
-    if (game_give_clue() != OK)
-        return 1;
+    if (menu_get_state() == GAME) {
+        if (game_give_clue() != OK)
+            return 1;
+    } else if (menu_get_state() == WORD_SCREEN) {
+        if (protocol_send_start_round() != OK)
+            return 1;
+        if (event_start_round() != OK)
+            return 1;
+    }
+    
     return 0;
 }
 

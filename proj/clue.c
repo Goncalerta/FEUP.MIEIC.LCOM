@@ -7,6 +7,9 @@
 #define RECTANGLE_HEIGHT 5
 
 int new_word_clue(word_clue_t *clue, const char *word) {
+    clue->word = malloc((strlen(word) + 1) * sizeof(char));
+    if (clue->word == NULL)
+        return 1;
     strcpy(clue->word, word);
     clue->size = strlen(word);
     clue->missing = clue->size - 1;

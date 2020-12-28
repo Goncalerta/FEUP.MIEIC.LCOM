@@ -132,7 +132,7 @@ static int protocol_parse_received_message() {
         printf("0x%x, ", msg.content[i]);
     }
     printf("]\n");
-    if (dispatcher_parse_message(&msg) != OK) {
+    if (dispatch_message(&msg) != OK) {
         delete_message(&msg);
         return 1;
     }
@@ -319,14 +319,24 @@ int protocol_send_random_number(int random_number) {
     return 0;
 }
 
-int protocol_send_new_round(uint32_t round_number, const char *word) {
+int protocol_send_new_round(const char *word) {
     message_t msg;
     size_t str_len = strlen(word);
-    uint8_t content[str_len + 5];
-    memcpy(content, &round_number, 4);
-    memcpy(content + 4, word, str_len + 1);
+    uint8_t content[str_len + 1];
+    memcpy(content, word, str_len + 1);
 
-    if (new_message(&msg, MSG_NEW_ROUND, str_len + 5, content) != OK)
+    if (new_message(&msg, MSG_NEW_ROUND, str_len + 1, content) != OK)
+        return 1;
+
+    if (protocol_add_message(msg) != OK)
+        return 1;
+
+    return 0;
+}
+
+int protocol_send_start_round() {
+    message_t msg;
+    if (new_message_no_content(&msg, MSG_START_ROUND) != OK)
         return 1;
 
     if (protocol_add_message(msg) != OK)

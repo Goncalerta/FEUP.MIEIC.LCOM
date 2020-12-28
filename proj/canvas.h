@@ -4,6 +4,7 @@
 #include <lcom/lcf.h>
 
 typedef enum canvas_state_t {
+    CANVAS_STATE_DISABLED, // TODO continue from here
     CANVAS_STATE_NORMAL,
     CANVAS_STATE_HOVERING,
     CANVAS_STATE_PRESSING_LB,

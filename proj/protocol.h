@@ -15,6 +15,7 @@ typedef enum message_type_t {
     MSG_LEAVE_GAME = 1,
     MSG_RANDOM_NUMBER = 2,
     MSG_NEW_ROUND = 3,
+    MSG_START_ROUND = 4,
 
     // MSG_NEW_STROKE = 1,
     // MSG_DRAW_ATOM = 2,
@@ -24,8 +25,8 @@ typedef enum message_type_t {
     // MSG_MAKE_GUESS = 6,
     // MSG_ROUND_WIN = 7,
     // MSG_GAME_OVER = 8,
-    // MSG_START_ROUND = 9,
-    // MSG_READY_TO_PLAY = 10,
+
+
     // MSG_ADD_CLUE = 11,
 } message_type_t;
 
@@ -43,6 +44,7 @@ int protocol_tick();
 int protocol_send_ready_to_play();
 int protocol_send_leave_game();
 int protocol_send_random_number(int random_number);
-int protocol_send_new_round(uint32_t round_number, const char *word);
+int protocol_send_new_round(const char *word);
+int protocol_send_start_round();
 
 #endif /* _PROTOCOL_H */
