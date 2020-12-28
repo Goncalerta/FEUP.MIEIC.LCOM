@@ -56,7 +56,7 @@ bool kbd_is_make_code(uint8_t scancode) {
     return (scancode & BREAK_CODE_BIT) == 0;
 }
 
-//bool kbd_scancode_ready() {
+//bool kbd_is_scancode_ready() {
 //    return should_retrieve;
 //}
 

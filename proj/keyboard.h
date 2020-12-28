@@ -3,7 +3,7 @@
 
 #include <lcom/lcf.h>
 
-/** @defgroup Keyboard Keyboard
+/** @defgroup keyboard keyboard
  * @{
  *
  *  Module to interact with the PC's Keyboard.
@@ -53,7 +53,7 @@ int kbd_unsubscribe_int();
 /**
  * @brief Checks if a given scancode is a make code.
  * 
- * @param scancode Scancode to check
+ * @param scancode scancode to check
  * @return Return true if the scancode is a make code and false otherwise
  */
 bool kbd_is_make_code(uint8_t scancode);
@@ -61,7 +61,7 @@ bool kbd_is_make_code(uint8_t scancode);
 /**
  * @brief @brief Transforms a scancode into organized information about the keys pressed in the form of kbd_event_t.
  * 
- * @param kbd_state Keyboard state after processing the current scancode
+ * @param kbd_state address of memory to be initialized with the keyboard state after processing the current scancode
  * @return Return 0 upon success and non-zero otherwise
  */
 int kbd_handle_scancode(kbd_event_t *kbd_state);
@@ -77,10 +77,10 @@ int kbd_enable_interrupts(); // TODO this is not used in the project, delete?
 
 // TODO outdated for now, might be used if the IH gets modified
 ///**
-// * @brief Checks if a complete scancode is ready to process.
+// * @brief Checks if a complete scancode is ready to be processed.
 // *
 // * @return Return true if a scancode is ready and false otherwise
 // */
-//bool kbd_scancode_ready(); 
+//bool kbd_is_scancode_ready(); 
 
 #endif /* __KEYBOARD_H */

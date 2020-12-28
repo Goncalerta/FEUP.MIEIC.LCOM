@@ -70,23 +70,33 @@ $(function() {
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;lcom/lcf.h&gt;</span></div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &quot;i8042.h&quot;</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160; </div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="keywordtype">int</span> kbc_write_reg(<span class="keywordtype">int</span> reg, uint8_t write);</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keywordtype">int</span> kbc_issue_command(uint8_t cmd);</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keywordtype">int</span> kbc_issue_argument(uint8_t arg);</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keywordtype">int</span> kbc_read_data(uint8_t *data);</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keywordtype">int</span> kbc_read_command_byte(uint8_t *<span class="keywordtype">byte</span>);</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="keywordtype">int</span> kbc_write_command_byte(uint8_t <span class="keywordtype">byte</span>);</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keywordtype">int</span> kbc_flush();</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* __KBC_H */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160; <span class="comment">/*</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment"> * * TODO é suposto dar mais detalhes na documentação?</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__kbc.html#ga628109931012fdfa144b55cc679a7fe9">kbc_write_reg</a>(<span class="keywordtype">int</span> reg, uint8_t write);</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__kbc.html#ga978c37bd6eca1b2724372aee45770670">kbc_issue_command</a>(uint8_t cmd);</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__kbc.html#gaa0559188b6e62f1b72bd50ba1915d914">kbc_issue_argument</a>(uint8_t arg);</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__kbc.html#ga329ba4421641ca5198df31959322b27e">kbc_read_data</a>(uint8_t *data);</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__kbc.html#ga4996d0950caa2122c3a9aa731a5f52d9">kbc_read_command_byte</a>(uint8_t *<span class="keywordtype">byte</span>);</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__kbc.html#gad22fa061f412af69b9d8f777ca55b04e">kbc_write_command_byte</a>(uint8_t <span class="keywordtype">byte</span>);</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__kbc.html#gadadc3e881c49b666e9b3ef24adcf51a2">kbc_flush</a>();</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; </div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* __KBC_H */</span><span class="preprocessor"></span></div>
 </div><!-- fragment --></div><!-- contents -->
+<div class="ttc" id="agroup__kbc_html_ga978c37bd6eca1b2724372aee45770670"><div class="ttname"><a href="group__kbc.html#ga978c37bd6eca1b2724372aee45770670">kbc_issue_command</a></div><div class="ttdeci">int kbc_issue_command(uint8_t cmd)</div><div class="ttdoc">Issues a command to the kbc.</div><div class="ttdef"><b>Definition:</b> kbc.c:24</div></div>
+<div class="ttc" id="agroup__kbc_html_gad22fa061f412af69b9d8f777ca55b04e"><div class="ttname"><a href="group__kbc.html#gad22fa061f412af69b9d8f777ca55b04e">kbc_write_command_byte</a></div><div class="ttdeci">int kbc_write_command_byte(uint8_t command_byte)</div><div class="ttdoc">Writes the kbc command byte.</div><div class="ttdef"><b>Definition:</b> kbc.c:54</div></div>
+<div class="ttc" id="agroup__kbc_html_ga4996d0950caa2122c3a9aa731a5f52d9"><div class="ttname"><a href="group__kbc.html#ga4996d0950caa2122c3a9aa731a5f52d9">kbc_read_command_byte</a></div><div class="ttdeci">int kbc_read_command_byte(uint8_t *command_byte)</div><div class="ttdoc">Reads the kbc command byte.</div><div class="ttdef"><b>Definition:</b> kbc.c:46</div></div>
+<div class="ttc" id="agroup__kbc_html_ga628109931012fdfa144b55cc679a7fe9"><div class="ttname"><a href="group__kbc.html#ga628109931012fdfa144b55cc679a7fe9">kbc_write_reg</a></div><div class="ttdeci">int kbc_write_reg(int reg, uint8_t write)</div><div class="ttdoc">Writes a byte to a kbc register.</div><div class="ttdef"><b>Definition:</b> kbc.c:7</div></div>
+<div class="ttc" id="agroup__kbc_html_gadadc3e881c49b666e9b3ef24adcf51a2"><div class="ttname"><a href="group__kbc.html#gadadc3e881c49b666e9b3ef24adcf51a2">kbc_flush</a></div><div class="ttdeci">int kbc_flush()</div><div class="ttdoc">Flushes the kbc output buffer.</div><div class="ttdef"><b>Definition:</b> kbc.c:63</div></div>
+<div class="ttc" id="agroup__kbc_html_ga329ba4421641ca5198df31959322b27e"><div class="ttname"><a href="group__kbc.html#ga329ba4421641ca5198df31959322b27e">kbc_read_data</a></div><div class="ttdeci">int kbc_read_data(uint8_t *data)</div><div class="ttdoc">Reads data from the kbc output buffer.</div><div class="ttdef"><b>Definition:</b> kbc.c:32</div></div>
+<div class="ttc" id="agroup__kbc_html_gaa0559188b6e62f1b72bd50ba1915d914"><div class="ttname"><a href="group__kbc.html#gaa0559188b6e62f1b72bd50ba1915d914">kbc_issue_argument</a></div><div class="ttdeci">int kbc_issue_argument(uint8_t arg)</div><div class="ttdoc">Issues an argument to the kbc.</div><div class="ttdef"><b>Definition:</b> kbc.c:28</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.20

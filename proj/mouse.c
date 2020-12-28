@@ -40,7 +40,7 @@ void (mouse_ih)() {
         }
     }
 
-    if (mouse_packet_ready()) {
+    if (mouse_is_packet_ready()) {
         struct packet p;
         if (mouse_retrieve_packet(&p) != OK) {
             printf("mouse_retrieve_packet failed\n");
@@ -54,7 +54,7 @@ void (mouse_ih)() {
     }
 }
 
-bool mouse_packet_ready() {
+bool mouse_is_packet_ready() {
     return packet_byte_counter == 3;
 }
 
