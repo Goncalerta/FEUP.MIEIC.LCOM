@@ -6,7 +6,7 @@
 /** @defgroup i8254 i8254
  * @{
  *
- * Constants for programming the i8254 Timer. Needs to be completed.
+ * Constants for programming the i8254 Timer.
  */
 
 #define TIMER_FREQ 1193182 /**< @brief clock frequency for timer in PC and AT */
@@ -53,10 +53,10 @@
 #define TIMER_RB_STATUS_ BIT(4)
 #define TIMER_RB_SEL(n)  BIT((n) + 1)
 
-/**@}*/
-
 #define MASK_BASE BIT(0)
 #define MASK_MODE (BIT(1) | BIT(2) | BIT(3))
 #define MASK_INITIAL (BIT(4) | BIT(5))
+
+/**@}*/
 
 #endif /* _LCOM_I8254_H */

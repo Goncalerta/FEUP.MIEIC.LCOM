@@ -1,0 +1,17 @@
+digraph "role_attr_t"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="role_attr_t",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node2 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" guesser" ,fontname="Helvetica"];
+  Node2 [label="guesser_t",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structguesser__t.html",tooltip=" "];
+  Node3 -> Node2 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" text_box" ,fontname="Helvetica"];
+  Node3 [label="text_box_t",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structtext__box__t.html",tooltip=" "];
+  Node4 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" drawer" ,fontname="Helvetica"];
+  Node4 [label="drawer_t",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structdrawer__t.html",tooltip=" "];
+  Node5 -> Node4 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" b_color\nb_eraser\nb_pencil\nb_redo\nb_thickness\nb_undo" ,fontname="Helvetica"];
+  Node5 [label="button_t",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structbutton__t.html",tooltip=" "];
+  Node6 -> Node5 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" icon" ,fontname="Helvetica"];
+  Node6 [label="button_icon_t",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structbutton__icon__t.html",tooltip=" "];
+}

@@ -94,8 +94,7 @@ int kbd_handle_scancode(kbd_event_t *kbd_state) {
 	    case MAKE_ARROW_DOWN:  kbd_state->key = ARROW_DOWN;  break;
 	    case MAKE_ARROW_LEFT:  kbd_state->key = ARROW_LEFT;  break;
 	    case MAKE_ARROW_RIGHT: kbd_state->key = ARROW_RIGHT; break;
-	    
-	    //TODO arranjar forma de simplificar o "kbd_state->key = CHAR;"
+
         case MAKE_SPACE: kbd_state->key = CHAR; kbd_state->char_key = ' '; break;
 	    case MAKE_A:     kbd_state->key = CHAR; kbd_state->char_key = 'A'; break;
 	    case MAKE_B:     kbd_state->key = CHAR; kbd_state->char_key = 'B'; break;

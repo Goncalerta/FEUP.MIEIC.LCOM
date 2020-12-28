@@ -53,7 +53,6 @@ typedef union rtc_interrupt_config_t {
     uint8_t periodic_RS3210; // RS3 RS2 RS1 RS0 in 4 LS bits
 } rtc_interrupt_config_t;
 
-// TODO where's the best place to check for VRT? (just in case)
 
 int rtc_read_conf(); // test function 2013/2014
 

@@ -67,4 +67,6 @@
 #define NACK 0xFE
 #define ERROR 0xFC
 
+/**@}*/
+
 #endif /* _LCOM_I8042_H */
