@@ -7,7 +7,7 @@
 #define PROTOCOL_BIT_RATE 9600
 #define PROTOCOL_ACK 0
 #define PROTOCOL_NACK 1
-#define PROTOCOL_WAIT_TIMEOUT_TICKS 150
+#define PROTOCOL_WAIT_TIMEOUT_TICKS 90
 #define PENDING_MESSAGES_CAPACITY 8
 
 typedef enum message_type_t {
@@ -23,9 +23,8 @@ typedef enum message_type_t {
     MSG_GUESS = 9,
     MSG_CLUE = 10,
     MSG_ROUND_WIN = 11,
-
-    // MSG_SYNC_TIMER = 5, (round_timer)
-    // MSG_GAME_OVER = 8, 
+    MSG_GAME_OVER = 12,
+    MSG_PROGRAM_OPENED = 13
 } message_type_t;
 
 typedef struct message_t {
@@ -51,5 +50,7 @@ int protocol_send_redo_canvas();
 int protocol_send_guess(const char *guess);
 int protocol_send_clue(size_t pos);
 int protocol_send_round_win(uint32_t score);
+int protocol_send_game_over();
+int protocol_send_program_opened();
 
 #endif /* _PROTOCOL_H */

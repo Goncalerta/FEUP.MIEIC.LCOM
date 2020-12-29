@@ -17,6 +17,15 @@ static uint8_t *receiving_msg_bits;
 static size_t receiving_msg_len;
 static size_t receiving_msg_read_count;
 
+static int protocol_handle_connection_timeout() {
+    awaiting_ack = false;
+    if (event_other_player_leave_game() != OK)
+        return 1;
+    queue_empty(&pending_messages);
+    
+    return 0;
+}
+
 static int protocol_receive_ready_to_play(size_t content_len, uint8_t *content) {
     if (content_len != 0)
             return 1;
@@ -169,9 +178,32 @@ static int protocol_receive_round_win(size_t content_len, uint8_t *content) {
     return 0;
 }
 
+static int protocol_receive_game_over(size_t content_len, uint8_t *content) {
+    if (content_len != 0)
+        return 1;
+
+    if (game_other_player_game_over() != OK)
+        return 1;
+    
+    return 0;
+}
+
+static int protocol_receive_program_opened(size_t content_len, uint8_t *content) {
+    if (content_len != 0)
+        return 1;
+
+    // In case the this computer thought the other one was already running
+    // so that the connection can be reset.
+    if (protocol_handle_connection_timeout() != OK)
+        return 1;
+    if (event_other_player_opened_program() != OK)
+        return 1;
+
+    return 0;
+}
 
 typedef int (*message_handle_t)(size_t, uint8_t *);
-#define NUMBER_OF_MESSAGES 12
+#define NUMBER_OF_MESSAGES 14
 static const message_handle_t message_handle[NUMBER_OF_MESSAGES] = {
     protocol_receive_ready_to_play,
     protocol_receive_leave_game,
@@ -185,6 +217,8 @@ static const message_handle_t message_handle[NUMBER_OF_MESSAGES] = {
     protocol_receive_guess,
     protocol_receive_clue,
     protocol_receive_round_win,
+    protocol_receive_game_over,
+    protocol_receive_program_opened
 };
 
 static int new_message(message_t *message, message_type_t type, size_t content_len, uint8_t *content) {
@@ -405,6 +439,7 @@ int protocol_handle_received_bytes() {
                 if (protocol_handle_new_msg(byte) != OK)
                     return 1;
                 if (awaiting_ack_ticks >= PROTOCOL_WAIT_TIMEOUT_TICKS) {
+                    // TODO or something else?
                     if (protocol_send_next_message() != OK)
                         return 1;
                 }
@@ -442,9 +477,13 @@ int protocol_config_uart() {
 }
 
 int protocol_tick() {
-    if (awaiting_ack && awaiting_ack_ticks < PROTOCOL_WAIT_TIMEOUT_TICKS) {
+    if (awaiting_ack) {
         awaiting_ack_ticks++;
-        // TODO just time out and delete all messages (or at least dont allow the queue size to grow too much if the other computer is off)
+
+        if (awaiting_ack_ticks > PROTOCOL_WAIT_TIMEOUT_TICKS) {
+            if (protocol_handle_connection_timeout() != OK)
+                return 1;
+        }    
     }
 
     if (receiving_msg) {
@@ -609,6 +648,28 @@ int protocol_send_round_win(uint32_t score) {
     memcpy(content, &score, 4);
 
     if (new_message(&msg, MSG_ROUND_WIN, 4, content) != OK)
+        return 1;
+
+    if (protocol_add_message(msg) != OK)
+        return 1;
+
+    return 0;
+}
+
+int protocol_send_game_over() {
+    message_t msg;
+    if (new_message_no_content(&msg, MSG_GAME_OVER) != OK)
+        return 1;
+
+    if (protocol_add_message(msg) != OK)
+        return 1;
+
+    return 0;
+}
+
+int protocol_send_program_opened() {
+    message_t msg;
+    if (new_message_no_content(&msg, MSG_PROGRAM_OPENED) != OK)
         return 1;
 
     if (protocol_add_message(msg) != OK)

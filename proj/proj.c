@@ -95,6 +95,7 @@ int (proj_main_loop)(int argc, char *argv[]) {
 
     // INIT game assets
     // TODO probably move those to a more appropriate place later in the project
+    protocol_send_program_opened();
     font_load(image_type); 
     game_load_assets(image_type);
     cursor_init(image_type);

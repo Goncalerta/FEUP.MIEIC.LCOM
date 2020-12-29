@@ -22,7 +22,9 @@ typedef enum role_t {
 void get_random_word(const char **word);
 
 role_t game_get_role();
+uint32_t game_get_score();
 uint32_t game_get_round_number();
+bool game_is_round_ongoing();
 
 int game_load_assets(enum xpm_image_type type);
 int new_game();
@@ -40,6 +42,7 @@ int game_give_clue();
 int game_give_clue_at(size_t pos);
 int game_round_over(uint32_t current_score, bool win);
 int game_guess_word(char *guess);
+int game_other_player_game_over();
 
 int drawer_change_selected_color();
 int drawer_change_selected_thickness();

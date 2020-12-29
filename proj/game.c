@@ -62,6 +62,7 @@ typedef enum game_state_t {
     ROUND_UNSTARTED,
     ROUND_ONGOING,
     GAME_OVER,
+    TIMES_UP,
     ROUND_CORRECT_GUESS
 } game_state_t;
 
@@ -87,6 +88,7 @@ typedef struct guess_t {
 } guess_t;
 
 typedef struct round_t {
+    bool other_player_game_over;
     int round_timer;
     int ticker;
 
@@ -234,6 +236,14 @@ uint32_t game_get_round_number() {
     return game->round_number;
 }
 
+uint32_t game_get_score() {
+    return game->score;
+}
+
+bool game_is_round_ongoing() {
+    return game != NULL && game->state == ROUND_ONGOING;
+}
+
 static int init_text_box(guesser_t *guesser) {
     if (new_text_box(&game->round->attr.guesser->text_box, TEXT_BOX_GUESSER_X + 4, TEXT_BOX_GUESSER_Y, 
                      TEXT_BOX_GUESSER_DISPLAY_SIZE) != OK)
@@ -251,6 +261,7 @@ int game_new_round(role_t role, const char *word) {
     if (game->round == NULL)
         return 1;
 
+    game->round->other_player_game_over = false;
     game->round->ticker = 0;
     game->round->round_timer = ROUND_TICKS;
     game->round->num_guesses = 0;
@@ -377,11 +388,11 @@ static int game_draw_bar() {
                                 buf.v_res - (GAME_BAR_INNER_HEIGHT + clock_frames.height)/2) != OK)
         return 1;
 
-    char seconds_to_end_round[2];
+    char seconds_to_end_round[3];
     sprintf(seconds_to_end_round, "%02d", (game->round->round_timer + TICKS_PER_SECOND- 1)/TICKS_PER_SECOND);
     
     if (font_draw_string(buf, seconds_to_end_round, buf.h_res - 75, 
-                         buf.v_res - (GAME_BAR_INNER_HEIGHT + FONT_CHAR_HEIGHT)/2, 0, 2) != OK)
+                         buf.v_res - (GAME_BAR_INNER_HEIGHT + FONT_CHAR_HEIGHT)/2) != OK)
         return 1;
 
 
@@ -389,38 +400,38 @@ static int game_draw_bar() {
     int score_margin_small = 5;
     int score_margin_big = (GAME_BAR_INNER_HEIGHT - 4*FONT_CHAR_HEIGHT - 2*score_margin_small) / 3;
     int y = buf.v_res - GAME_BAR_INNER_HEIGHT + score_margin_big;
-    if (font_draw_string(buf, "SCORE", buf.h_res - 350, y, 0, 5) != OK)
+    if (font_draw_string(buf, "SCORE", buf.h_res - 350, y) != OK)
         return 1;
 
-    char score_display[5];
+    char score_display[6];
     y += FONT_CHAR_HEIGHT + score_margin_small;
     sprintf(score_display, "%05d", game->score);
-    if (font_draw_string(buf, score_display, buf.h_res - 350, y, 0, 5) != OK)
+    if (font_draw_string(buf, score_display, buf.h_res - 350, y) != OK)
         return 1;
 
     y += FONT_CHAR_HEIGHT + score_margin_big;
-    if (font_draw_string(buf, "ROUND", buf.h_res - 350, y, 0, 5) != OK)
+    if (font_draw_string(buf, "ROUND", buf.h_res - 350, y) != OK)
         return 1;
 
-    char round_display[5];
+    char round_display[6];
     y += FONT_CHAR_HEIGHT + score_margin_small;
     sprintf(round_display, "%5d", game->round_number);
-    if (font_draw_string(buf, round_display, buf.h_res - 350, y, 0, 5) != OK)
+    if (font_draw_string(buf, round_display, buf.h_res - 350, y) != OK)
         return 1;
 
 
     // Text box
     switch (game->round->role) {
     case DRAWER:
-        if (font_draw_string(buf, "DRAW THE WORD", TEXT_BOX_GUESSER_X, 670, 0, 14) != OK)
+        if (font_draw_string(buf, "DRAW THE WORD", TEXT_BOX_GUESSER_X, 670) != OK)
             return 1;
         
-        if (font_draw_string(buf, game->round->correct_guess, TEXT_BOX_GUESSER_X, TEXT_BOX_GUESSER_Y, 0, 14) != OK)
+        if (font_draw_string(buf, game->round->correct_guess, TEXT_BOX_GUESSER_X, TEXT_BOX_GUESSER_Y) != OK)
             return 1;
 
         break;
     case GUESSER:
-        if (font_draw_string(buf, "GUESS THE WORD", TEXT_BOX_GUESSER_X, 670, 0, 14) != OK)
+        if (font_draw_string(buf, "GUESS THE WORD", TEXT_BOX_GUESSER_X, 670) != OK)
             return 1;
 
         if (text_box_draw(buf, game->round->attr.guesser->text_box) != OK)
@@ -454,7 +465,7 @@ static int game_draw_bar() {
             guess[GUESS_CHARACTER_LIMIT - 2] = '.';
             guess[GUESS_CHARACTER_LIMIT - 3] = '.';
         }
-        if (font_draw_string(buf, guess, 371, y, 0, 100) != OK)
+        if (font_draw_string(buf, guess, 371, y) != OK)
             return 1;
 
         y += FONT_CHAR_HEIGHT + 10;
@@ -473,7 +484,7 @@ int draw_game_correct_guess() {
     uint16_t x = (buf.h_res - CHAR_SPACE * strlen(game->round->correct_guess)) / 2;
     uint16_t y = buf.v_res - GAME_BAR_INNER_HEIGHT/2;
 
-    if (font_draw_string(buf, game->round->correct_guess, x, y, 0, 100) != OK)
+    if (font_draw_string(buf, game->round->correct_guess, x, y) != OK)
         return 1;
     
     return 0;
@@ -603,6 +614,7 @@ int game_guess_word(char *guess) {
     }
 
     if (g.correct) {
+        game->state = ROUND_CORRECT_GUESS;
         if (game->round->role == DRAWER) {
             uint32_t new_score = game->score + 100 + game->round->round_timer * 0.15;
             if (new_score > MAX_SCORE)
@@ -627,17 +639,37 @@ int game_rtc_alarm() {
             }
             break;
         case GAME_OVER:
-            if (event_leave_game() != OK)
+            if (rtc_disable_int(ALARM_INTERRUPT) != OK)
+                return 1;
+            if (event_end_round() != OK)
+                return 1;
+            if (menu_set_game_over_screen() != OK)
                 return 1;
             break;
         case ROUND_CORRECT_GUESS:
-            if (event_end_round() != OK)
+            if (rtc_disable_int(ALARM_INTERRUPT) != OK)
                 return 1;
-            if (event_new_round_as_drawer() != OK)
-                return 1;
+            if (game->round->role == GUESSER) {
+                if (event_end_round() != OK)
+                    return 1;
+                if (event_new_round_as_drawer() != OK)
+                    return 1;
+            }
+            
             break;
         default:
             break;
+    }
+    return 0;
+}
+
+int game_other_player_game_over() {
+    if (game == NULL || game->round == NULL)
+        return 1;
+    game->round->other_player_game_over = true;
+    if (game->state == TIMES_UP) {
+        if (game_round_over(game->score, false) != OK)
+            return 1;
     }
     return 0;
 }
@@ -652,8 +684,13 @@ int game_rtc_pi_tick() {
 
     if (game->state == ROUND_ONGOING) {
         if (game->round->round_timer == 0) {
-            if (game_round_over(game->score, false) != OK)
+            game->state = TIMES_UP;
+            if (protocol_send_game_over() != OK)
                 return 1;
+            if (game->round->other_player_game_over) {
+                if (game_round_over(game->score, false) != OK)
+                    return 1;
+            }
         } else {
             game->round->round_timer--;
         }

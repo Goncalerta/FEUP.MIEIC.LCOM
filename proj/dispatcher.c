@@ -87,7 +87,8 @@ int event_new_round_as_guesser(const char *word) {
     if (game_new_round(GUESSER, word) != OK)
         return 1;
 
-    menu_set_state(WORD_SCREEN);
+    if (menu_set_word_screen() != OK)
+        return 1;
 
     return 0;
 }
@@ -102,10 +103,11 @@ int event_new_round_as_drawer() {
     if (protocol_send_new_round(word) != OK)
         return 1;
 
-    menu_set_state(WORD_SCREEN);
+    if (menu_set_word_screen() != OK)
+        return 1;
 
-    static const rtc_alarm_time_t time_to_alarm = {.hours = 0, .minutes = 0, .seconds = 3};
-    if (rtc_set_alarm_in(time_to_alarm) != OK)
+    static const rtc_alarm_time_t time_to_start_round = {.hours = 0, .minutes = 0, .seconds = 3};
+    if (rtc_set_alarm_in(time_to_start_round) != OK)
         return 1;
 
     return 0;
@@ -187,11 +189,17 @@ int event_this_player_random_number() {
         return 1;
     if (other_player_state == RANDOM_NUMBER_SENT) {
         if (this_player_random_number > other_player_random_number) {
+            // Player is about to begin game. Should not be ready to start a new one while this one is ongoing
+            this_player_state = NOT_READY;
+            other_player_state = NOT_READY;
             if (new_game() != OK)
                 return 1;
             if (event_new_round_as_drawer() != OK)
                 return 1;
         } else if (this_player_random_number < other_player_random_number) {
+            // Player is about to begin game. Should not be ready to start a new one while this one is ongoing
+            this_player_state = NOT_READY;
+            other_player_state = NOT_READY;
             if (new_game() != OK)
                 return 1;
         } else {
@@ -205,16 +213,31 @@ int event_this_player_random_number() {
     return 0;
 }
 
+int event_other_player_opened_program() {
+    if (this_player_state == READY) {
+        if (protocol_send_ready_to_play() != OK)
+            return 1;
+    }
+
+    return 0;
+}
+
 int event_other_player_random_number(int random_number) {
     other_player_state = RANDOM_NUMBER_SENT;
     other_player_random_number = random_number;
     if (this_player_state == RANDOM_NUMBER_SENT) {
         if (this_player_random_number > other_player_random_number) {
+            // Player is about to begin game. Should not be ready to start a new one while this one is ongoing
+            this_player_state = NOT_READY;
+            other_player_state = NOT_READY;
             if (new_game() != OK)
                 return 1;
             if (event_new_round_as_drawer() != OK)
                 return 1;
         } else if (this_player_random_number < other_player_random_number) {
+            // Player is about to begin game. Should not be ready to start a new one while this one is ongoing
+            this_player_state = NOT_READY;
+            other_player_state = NOT_READY;
             if (new_game() != OK)
                 return 1;
         } else {
@@ -240,11 +263,23 @@ int event_other_player_ready_to_play() {
 
 int event_other_player_leave_game() {
     other_player_state = NOT_READY;
-    // TODO disconnect if needed
+    if (menu_is_game_ongoing()) {
+        if (rtc_disable_int(ALARM_INTERRUPT) != OK)
+            return 1;
+        if (event_end_round() != OK)
+            return 1;
+        if (menu_set_other_player_left_screen() != OK)
+            return 1;
+    }
+    if (this_player_state == RANDOM_NUMBER_SENT) {
+        this_player_state = READY;
+    }
     return 0;
 }
 
 int event_leave_game() {
+    if (rtc_disable_int(ALARM_INTERRUPT) != OK)
+        return 1;
     delete_game();
     if (protocol_send_leave_game() != OK)
         return 1;
@@ -346,10 +381,12 @@ int dispatch_keyboard_event(kbd_event_t kbd_event) {
         }
 
         if (guess != NULL && strncmp(guess, "", 1)) {
-            if (game_guess_word(guess) != OK) 
-                return 1;
-            if (protocol_send_guess(guess) != OK)
-                return 1;
+            if (game_is_round_ongoing()) {
+                if (game_guess_word(guess) != OK) 
+                    return 1;
+                if (protocol_send_guess(guess) != OK)
+                    return 1;
+            }
         }
     }
 
@@ -385,6 +422,8 @@ int dispatch_rtc_alarm_int() {
         if (game_rtc_alarm() != OK)
             return 1;
     } else if (menu_get_state() == WORD_SCREEN) {
+        if (rtc_disable_int(ALARM_INTERRUPT) != OK)
+            return 1;
         if (protocol_send_start_round() != OK)
             return 1;
         if (event_start_round() != OK)

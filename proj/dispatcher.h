@@ -33,6 +33,7 @@ int event_leave_game();
 int event_other_player_leave_game();
 int event_this_player_random_number();
 int event_other_player_random_number();
+int event_other_player_opened_program();
 
 bool should_end();
 

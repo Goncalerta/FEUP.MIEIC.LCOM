@@ -97,7 +97,7 @@ int text_box_draw(frame_buffer_t buf, text_box_t text_box) {
         }
     }
     
-    if (font_draw_string(buf, text_box.word, text_box.x + TEXT_BOX_BEG_END_SPACE, 
+    if (font_draw_string_limited(buf, text_box.word, text_box.x + TEXT_BOX_BEG_END_SPACE, 
         text_box.y + TEXT_BOX_TOP_BOT_SPACE, text_box.start_display, text_box.display_size) != 0) {
         return 1;
     }

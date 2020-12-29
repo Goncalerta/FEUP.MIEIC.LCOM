@@ -35,7 +35,6 @@ static button_t b_back_to_main_menu;
 // AWAITING PLAYER:
 static uint8_t awaiting_player_tick;
 
-
 int menu_init(enum xpm_image_type type) {
     frame_buffer_t buf = vg_get_back_buffer();
     uint16_t x = (buf.h_res - MENU_BUTTON_WIDTH)/2;
@@ -67,6 +66,43 @@ int menu_init(enum xpm_image_type type) {
     button_set_xpm_icon(&b_back_to_main_menu, main_menu);
 
     menu_state = MAIN_MENU;
+    return 0;
+}
+
+bool menu_is_game_ongoing() {
+    return menu_state == WORD_SCREEN || menu_state == GAME || menu_state == PAUSE_MENU;
+}
+
+static int menu_draw_game_over_screen(const char *reason, size_t reason_size) {
+    frame_buffer_t buf = vg_get_back_buffer();
+    
+    if (vb_fill_screen(buf, MENU_BACKGROUND_COLOR) != OK)
+        return 1;
+
+    // TODO avoid magic numbers
+    if (font_draw_string_centered(buf, "GAME OVER", vg_get_hres()/2, 250, 0, 9) != OK)
+        return 1;
+    
+    if (font_draw_string_centered(buf, reason, vg_get_hres()/2, 285, 0, reason_size) != OK)
+        return 1;
+    if (font_draw_string(buf, "ROUND", vg_get_hres()/2 - 140, 330) != OK)
+        return 1;
+    if (font_draw_string(buf, "SCORE", vg_get_hres()/2 - 140, 350) != OK)
+        return 1;
+
+    char round_display[6];
+    sprintf(round_display, "%05d", game_get_round_number());
+    if (font_draw_string(buf, round_display, vg_get_hres()/2 + 40, 330) != OK)
+        return 1;
+
+    char score_display[6];
+    sprintf(score_display, "%05d", game_get_score());
+    if (font_draw_string(buf, score_display, vg_get_hres()/2 + 40, 350) != OK)
+        return 1;
+
+    if (button_draw(buf, b_back_to_main_menu) != OK)
+        return 1;
+    
     return 0;
 }
 
@@ -123,7 +159,14 @@ int menu_draw() {
         if (button_draw(buf, b_back_to_main_menu) != OK)
             return 1;
         break;
-
+    case GAME_OVER_SCREEN:
+        if (menu_draw_game_over_screen("YOU RUN OUT OF TIME", 19) != OK)
+            return 1;
+        break;
+    case OTHER_PLAYER_LEFT_SCREEN:
+        if (menu_draw_game_over_screen("OTHER PLAYER HAS LEFT THE GAME", 30) != OK)
+            return 1;
+        break;
     default:
         break;
     }
@@ -174,5 +217,41 @@ int menu_set_awaiting_player_menu() {
     cursor_set_state(CURSOR_ARROW);
     menu_state = AWAITING_OTHER_PLAYER;
     awaiting_player_tick = 0;
+    return 0;
+}
+
+int menu_set_word_screen() {
+    if (dispatcher_bind_buttons(0) != OK)
+        return 1;
+    if (dispatcher_bind_text_boxes(0) != OK)
+        return 1;
+    dispatcher_bind_canvas(false);
+
+    cursor_set_state(CURSOR_ARROW);
+    menu_state = WORD_SCREEN;
+    return 0;
+}
+
+int menu_set_game_over_screen() {
+    if (dispatcher_bind_buttons(1, &b_back_to_main_menu) != OK)
+        return 1;
+    if (dispatcher_bind_text_boxes(0) != OK)
+        return 1;
+    dispatcher_bind_canvas(false);
+
+    cursor_set_state(CURSOR_ARROW);
+    menu_state = GAME_OVER_SCREEN;
+    return 0;
+}
+
+int menu_set_other_player_left_screen() {
+    if (dispatcher_bind_buttons(1, &b_back_to_main_menu) != OK)
+        return 1;
+    if (dispatcher_bind_text_boxes(0) != OK)
+        return 1;
+    dispatcher_bind_canvas(false);
+
+    cursor_set_state(CURSOR_ARROW);
+    menu_state = OTHER_PLAYER_LEFT_SCREEN;
     return 0;
 }

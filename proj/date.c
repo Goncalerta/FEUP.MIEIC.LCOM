@@ -26,7 +26,7 @@ int date_draw(date_t date, uint16_t x, uint16_t y) {
     if (vb_draw_rectangle(vg_get_back_buffer(), x-DATE_DISPLAY_BORDER, y-DATE_DISPLAY_BORDER, (DATE_STRING_SIZE-1)*CHAR_SPACE + 2*DATE_DISPLAY_BORDER, FONT_CHAR_HEIGHT + 2*DATE_DISPLAY_BORDER, DATE_BACK_COLOR) != OK)
         return 1;
 
-    if (font_draw_string(vg_get_back_buffer(), date_str, x, y, 0, 100) != OK)
+    if (font_draw_string(vg_get_back_buffer(), date_str, x, y) != OK)
         return 1;
 
     return 0;
@@ -55,7 +55,7 @@ int date_draw_greeting(uint16_t x, uint16_t y) {
         strcpy(greeting, "GOOD NIGHT");
     }
 
-    if (font_draw_string(vg_get_back_buffer(), greeting, x, y, 0, DATE_GREETING_MAX_SIZE) != OK)
+    if (font_draw_string(vg_get_back_buffer(), greeting, x, y) != OK)
         return 1;
 
     return 0;
