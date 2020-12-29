@@ -196,6 +196,13 @@ int canvas_undo_stroke() {
 
     if (canvas_redraw_strokes() != OK) 
         return 1;
+    
+    if (state == CANVAS_STATE_PRESSING_LB || state == CANVAS_STATE_PRESSING_RB) {
+        if (event_new_stroke(true) != OK)
+            return 1;
+        if (event_new_atom(cursor_get_x(), cursor_get_y()) != OK)
+            return 1;
+    }
 
     return 0;
 }
@@ -293,7 +300,8 @@ int canvas_update_state(bool hovering, bool lb, bool rb) {
                     return 1;
                 if (event_new_stroke(false) != OK)
                     return 1;
-                // TODO why didn't I add here "event_new_atom"?
+                if (event_new_atom(cursor_get_x(), cursor_get_y()) != OK)
+                    return 1;
             }
         } else {
             state = hovering? CANVAS_STATE_HOVERING : CANVAS_STATE_NORMAL;
@@ -318,6 +326,8 @@ int canvas_update_state(bool hovering, bool lb, bool rb) {
                 if (drawer_toggle_pencil_eraser() != OK)
                     return 1;
                 if (event_new_stroke(true) != OK)
+                    return 1;
+                if (event_new_atom(cursor_get_x(), cursor_get_y()) != OK)
                     return 1;
             }
         } else {

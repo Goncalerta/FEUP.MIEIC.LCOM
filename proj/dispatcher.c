@@ -68,8 +68,14 @@ int dispatcher_bind_text_boxes(size_t number_of_text_boxes, ...) {
     return 0;
 }
 
-void dispatcher_bind_canvas(bool is_to_bind) {
+int dispatcher_bind_canvas(bool is_to_bind) {
     bound_canvas = is_to_bind;
+    if (!is_to_bind) {
+        if (canvas_update_state(false, false, false) != OK)
+            return 1;
+    }
+
+    return 0;
 }
 
 int event_start_round() {
@@ -87,7 +93,7 @@ int event_new_round_as_guesser(const char *word) {
     if (game_new_round(GUESSER, word) != OK)
         return 1;
 
-    if (menu_set_word_screen() != OK)
+    if (menu_set_new_round_screen(GUESSER) != OK)
         return 1;
 
     return 0;
@@ -103,7 +109,7 @@ int event_new_round_as_drawer() {
     if (protocol_send_new_round(word) != OK)
         return 1;
 
-    if (menu_set_word_screen() != OK)
+    if (menu_set_new_round_screen(DRAWER) != OK)
         return 1;
 
     static const rtc_alarm_time_t time_to_start_round = {.hours = 0, .minutes = 0, .seconds = 3};
@@ -153,7 +159,8 @@ int event_new_atom(uint16_t x, uint16_t y) {
 }
 
 int event_undo() {
-    canvas_undo_stroke();
+    if (canvas_undo_stroke() != OK)
+        return 1;
     if (protocol_send_undo_canvas() != OK)
         return 1;
 
@@ -161,7 +168,9 @@ int event_undo() {
 }
 
 int event_redo() {
-    canvas_redo_stroke();
+    if (canvas_redo_stroke() != OK)
+        return 1;
+    
     if (protocol_send_redo_canvas() != OK)
         return 1;
 
@@ -291,30 +300,44 @@ int event_leave_game() {
 }
 
 int dispatch_mouse_packet(struct packet p) {
+    if (p.x_ov || p.y_ov)
+        return 1;
     cursor_move(p.delta_x, p.delta_y);
+    cursor_update_buttons(p.lb, p.rb);
+    if (event_update_cursor_state() != OK)
+        return 1;
+    return 0;
+}
+
+int event_update_cursor_state() {
+    int16_t x = cursor_get_x();
+    int16_t y = cursor_get_y();
+    bool lb = cursor_get_lb();
+    bool rb = cursor_get_rb();
+
     bool hovering = false;
     cursor_set_state(CURSOR_ARROW);
 
     for (size_t i = 0; i < num_listening_buttons; i++) {
         button_t *button = listening_buttons[i];
-        if (!hovering && button_is_hovering(*button, cursor_get_x(), cursor_get_y())) {
+        if (!hovering && button_is_hovering(*button, x, y)) {
             hovering = true;
-            if (button_update_state(button, true, p.lb, p.rb) != OK)
+            if (button_update_state(button, true, lb, rb) != OK)
                 return 1;
         } else {
-            if (button_update_state(button, false, p.lb, p.rb) != OK)
+            if (button_update_state(button, false, lb, rb) != OK)
                 return 1;
         }
     }
     
     for (size_t i = 0; i < num_listening_text_boxes; i++) {
         text_box_t *text_box = listening_text_boxes[i];
-        if (!hovering && text_box_is_hovering(*text_box, cursor_get_x(), cursor_get_y())) {
+        if (!hovering && text_box_is_hovering(*text_box, x, y)) {
             hovering = true;
-            if (text_box_update_state(text_box, true, p.lb, p.rb, cursor_get_x(), cursor_get_y()) != OK)
+            if (text_box_update_state(text_box, true, lb, rb, x, y) != OK)
                 return 1;
         } else {
-            if (text_box_update_state(text_box, false, p.lb, p.rb, cursor_get_x(), cursor_get_y()) != OK)
+            if (text_box_update_state(text_box, false, lb, rb, x, y) != OK)
                 return 1;
         }
         if (text_box->state != TEXT_BOX_NORMAL && text_box->state != TEXT_BOX_SELECTED_NOT_HOVERING) {
@@ -323,12 +346,12 @@ int dispatch_mouse_packet(struct packet p) {
     }
 
     if (bound_canvas) {
-        if (!hovering && canvas_is_hovering(cursor_get_x(), cursor_get_y())) {
+        if (!hovering && canvas_is_hovering(x, y)) {
             hovering = true;
-            if (canvas_update_state(true, p.lb, p.rb) != OK)
+            if (canvas_update_state(true, lb, rb) != OK)
                 return 1;
         } else {
-            if (canvas_update_state(false, p.lb, p.rb) != OK)
+            if (canvas_update_state(false, lb, rb) != OK)
                 return 1;
         }
         
@@ -345,15 +368,6 @@ int dispatch_mouse_packet(struct packet p) {
 }
 
 int dispatch_keyboard_event(kbd_event_t kbd_event) {
-    // TODO it can be better organized later on
-    if (menu_get_state() == WORD_SCREEN) {
-        if (kbd_event.key != NO_KEY) {
-            if (game_start_round() != OK)
-                return 1;
-        }
-        return 0;
-    }
-
     if (kbd_event.key == ESC) {
         if (menu_get_state() == PAUSE_MENU) {
             game_resume();
@@ -361,11 +375,6 @@ int dispatch_keyboard_event(kbd_event_t kbd_event) {
             if (menu_set_pause_menu() != OK) 
                 return 1;
         }
-    }
-
-    // TODO doesnt sound right
-    if (menu_get_state() != GAME) {
-        return 0;
     }
     
     for (size_t i = 0; i < num_listening_text_boxes; i++) {
@@ -421,7 +430,7 @@ int dispatch_rtc_alarm_int() {
     if (menu_get_state() == GAME) {
         if (game_rtc_alarm() != OK)
             return 1;
-    } else if (menu_get_state() == WORD_SCREEN) {
+    } else if (menu_get_state() == DRAWER_NEW_ROUND_SCREEN) {
         if (rtc_disable_int(ALARM_INTERRUPT) != OK)
             return 1;
         if (protocol_send_start_round() != OK)

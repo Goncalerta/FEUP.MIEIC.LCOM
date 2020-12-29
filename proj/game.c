@@ -240,6 +240,10 @@ uint32_t game_get_score() {
     return game->score;
 }
 
+const char *game_get_correct_word() {
+    return game->round->correct_guess;
+}
+
 bool game_is_round_ongoing() {
     return game != NULL && game->state == ROUND_ONGOING;
 }
@@ -347,9 +351,13 @@ int game_resume() {
         break;
     }
 
-    dispatcher_bind_canvas(true);
+    if (dispatcher_bind_canvas(true) != OK)
+        return 1;
+
     menu_set_state(GAME);
-    
+    if (event_update_cursor_state() != OK)
+        return 1;
+
     return 0;
 }
 
@@ -473,23 +481,6 @@ static int game_draw_bar() {
 
     return 0;
 }
-
-// TODO get rid of this
-int draw_game_correct_guess() {
-    if (game == NULL || game->round == NULL)
-        return 1;
-
-    frame_buffer_t buf = vg_get_back_buffer();
-
-    uint16_t x = (buf.h_res - CHAR_SPACE * strlen(game->round->correct_guess)) / 2;
-    uint16_t y = buf.v_res - GAME_BAR_INNER_HEIGHT/2;
-
-    if (font_draw_string(buf, game->round->correct_guess, x, y) != OK)
-        return 1;
-    
-    return 0;
-}
-
 
 static int game_draw_clue() {
     if (game == NULL || game->round == NULL)

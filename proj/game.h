@@ -25,6 +25,7 @@ role_t game_get_role();
 uint32_t game_get_score();
 uint32_t game_get_round_number();
 bool game_is_round_ongoing();
+const char *game_get_correct_word();
 
 int game_load_assets(enum xpm_image_type type);
 int new_game();
@@ -36,7 +37,6 @@ int game_start_round();
 int game_rtc_alarm();
 int game_rtc_pi_tick();
 int game_timer_tick();
-int draw_game_correct_guess();
 int game_draw();
 int game_give_clue();
 int game_give_clue_at(size_t pos);

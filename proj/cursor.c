@@ -10,6 +10,7 @@
 
 static cursor_state state;
 static int16_t cursor_x, cursor_y;
+static bool lb, rb;
 static xpm_image_t cursor_arrow, cursor_write, cursor_disabled;
 
 int cursor_init(enum xpm_image_type type) {
@@ -33,6 +34,14 @@ int16_t cursor_get_y() {
     return cursor_y;
 }
 
+int16_t cursor_get_lb() {
+    return lb;
+}
+
+int16_t cursor_get_rb() {
+    return rb;
+}
+
 void cursor_move(int16_t dx, int16_t dy) {
     cursor_x += dx;
     cursor_y -= dy;
@@ -45,6 +54,11 @@ void cursor_move(int16_t dx, int16_t dy) {
         cursor_x = vg_get_hres();
     if (cursor_y > vg_get_vres())
         cursor_y = vg_get_vres();
+}
+
+void cursor_update_buttons(bool new_lb, bool new_rb) {
+    lb = new_lb;
+    rb = new_rb;
 }
 
 int cursor_draw() {

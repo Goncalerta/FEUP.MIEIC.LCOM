@@ -3,10 +3,12 @@
 
 #include <lcom/lcf.h>
 #include "button.h"
+#include "game.h"
 
 typedef enum menu_state_t {
     MAIN_MENU,
-    WORD_SCREEN,
+    DRAWER_NEW_ROUND_SCREEN,
+    GUESSER_NEW_ROUND_SCREEN,
     GAME_OVER_SCREEN,
     OTHER_PLAYER_LEFT_SCREEN,
     GAME,
@@ -30,7 +32,7 @@ int menu_set_pause_menu();
 
 int menu_set_awaiting_player_menu();
 
-int menu_set_word_screen();
+int menu_set_new_round_screen(role_t role);
 
 int menu_set_game_over_screen();
 
