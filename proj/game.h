@@ -26,16 +26,19 @@ uint32_t game_get_round_number();
 
 int game_load_assets(enum xpm_image_type type);
 int new_game();
-int game_new_round(role_t starting_role, const char *word);
-int game_delete_round();
+void delete_game();
+int game_new_round(role_t role, const char *word);
+void game_delete_round();
 int game_resume();
 int game_start_round();
+int game_rtc_alarm();
 int game_rtc_pi_tick();
 int game_timer_tick();
 int draw_game_correct_guess();
 int game_draw();
 int game_give_clue();
 int game_give_clue_at(size_t pos);
+int game_round_over(uint32_t current_score, bool win);
 int game_guess_word(char *guess);
 
 int drawer_change_selected_color();

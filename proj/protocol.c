@@ -62,7 +62,7 @@ static int protocol_receive_new_round(size_t content_len, uint8_t *content) {
         return 1;
 
     strncpy(word, (char *) content, word_len);
-    if (event_new_game_as_guesser(word) != OK)
+    if (event_new_round_as_guesser(word) != OK)
         return 1;
 
     return 0;
@@ -157,8 +157,21 @@ static int protocol_receive_clue(size_t content_len, uint8_t *content) {
     return 0;
 }
 
+static int protocol_receive_round_win(size_t content_len, uint8_t *content) {
+    if (content_len != 4)
+        return 1;
+
+    uint32_t score;
+    memcpy(&score, content, 4);
+    if (game_round_over(score, true) != OK)
+        return 1;
+    
+    return 0;
+}
+
+
 typedef int (*message_handle_t)(size_t, uint8_t *);
-#define NUMBER_OF_MESSAGES 11
+#define NUMBER_OF_MESSAGES 12
 static const message_handle_t message_handle[NUMBER_OF_MESSAGES] = {
     protocol_receive_ready_to_play,
     protocol_receive_leave_game,
@@ -170,7 +183,8 @@ static const message_handle_t message_handle[NUMBER_OF_MESSAGES] = {
     protocol_receive_undo_canvas,
     protocol_receive_redo_canvas,
     protocol_receive_guess,
-    protocol_receive_clue
+    protocol_receive_clue,
+    protocol_receive_round_win,
 };
 
 static int new_message(message_t *message, message_type_t type, size_t content_len, uint8_t *content) {
@@ -581,6 +595,20 @@ int protocol_send_clue(size_t pos) {
     memcpy(content, &pos_8b, 1);
 
     if (new_message(&msg, MSG_CLUE, 1, content) != OK)
+        return 1;
+
+    if (protocol_add_message(msg) != OK)
+        return 1;
+
+    return 0;
+}
+
+int protocol_send_round_win(uint32_t score) {
+    message_t msg;
+    uint8_t content[4];
+    memcpy(content, &score, 4);
+
+    if (new_message(&msg, MSG_ROUND_WIN, 4, content) != OK)
         return 1;
 
     if (protocol_add_message(msg) != OK)

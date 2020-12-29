@@ -33,8 +33,6 @@
 #define TICKS_PER_SECOND 2
 #define ROUND_SECONDS 60
 #define ROUND_TICKS ((ROUND_SECONDS) * (TICKS_PER_SECOND))
-#define END_ROUND_DELAY 3
-#define END_ROUND_TICKS ((END_ROUND_DELAY) * (TICKS_PER_SECOND))
 #define WRONG_GUESS_PENALTY 5
 #define BUTTONS_LEN 75
 #define GUESS_CHARACTER_LIMIT 14
@@ -89,10 +87,8 @@ typedef struct guess_t {
 } guess_t;
 
 typedef struct round_t {
-    // TIMERS AND TICKERS
     int round_timer;
     int ticker;
-    int end_screen_timer;
 
     // GUESSES
     size_t num_guesses;
@@ -110,11 +106,12 @@ typedef struct round_t {
 typedef struct game_t {
     game_state_t state;
     round_t *round;
-    int score;
+    uint32_t score;
     uint32_t round_number;
 } game_t;
 
-static const rtc_alarm_time_t clue_time_interval = {.hours = 0, .minutes = 0, .seconds = 12}; 
+static const rtc_alarm_time_t clue_time_interval = {.hours = 0, .minutes = 0, .seconds = 12};
+static const rtc_alarm_time_t end_round_delay = {.hours = 0, .minutes = 0, .seconds = 3};
 
 static xpm_image_t tick_img, cross_img;
 static xpm_image_t correct_message, game_over_message;
@@ -168,6 +165,13 @@ int new_game() {
     game->score = 0;
     
     return 0;
+}
+
+void delete_game() {
+    if (game != NULL) {
+        game_delete_round();
+        free(game);
+    }
 }
 
 static int init_buttons(drawer_t *drawer) {
@@ -237,7 +241,7 @@ static int init_text_box(guesser_t *guesser) {
     return 0;
 }
 
-int game_new_round(role_t starting_role, const char *word) {
+int game_new_round(role_t role, const char *word) {
     if (game == NULL)
         return 1;
 
@@ -251,8 +255,8 @@ int game_new_round(role_t starting_role, const char *word) {
     game->round->round_timer = ROUND_TICKS;
     game->round->num_guesses = 0;
     game->round->correct_guess = word;
-    game->round->role = starting_role;
-    switch (starting_role) {
+    game->round->role = role;
+    switch (role) {
     case DRAWER:
         game->round->attr.drawer = malloc(sizeof(drawer_t));
         if (game->round->attr.drawer == NULL)
@@ -282,9 +286,10 @@ int game_new_round(role_t starting_role, const char *word) {
     return 0;
 }
 
-int game_delete_round() {
+void game_delete_round() {
     if (game == NULL || game->round == NULL)
-        return 1;
+        return;
+
     for (size_t i = 0; i < game->round->num_guesses; i++) {
         free(game->round->guesses[i].guess);
     }
@@ -302,8 +307,6 @@ int game_delete_round() {
         break;
     }
     free(game->round);
-    
-    return 0;
 }
 
 int game_resume() {
@@ -559,26 +562,25 @@ int game_give_clue_at(size_t pos) {
     return 0;
 }
 
-static int game_correct_guess() {
-    game->score += 100 + game->round->round_timer * 0.15;
-    if (game->score > MAX_SCORE)
-        game->score = MAX_SCORE;
+int game_round_over(uint32_t current_score, bool win) {
+    game->score = current_score;
     clock_frames.current_frame = 1;
-    game->round->end_screen_timer = END_ROUND_TICKS;
-    game->state = ROUND_CORRECT_GUESS;
-    if (rtc_disable_int(ALARM_INTERRUPT) != OK)
-        return 1;
+    
+    if (win) {
+        game->state = ROUND_CORRECT_GUESS;
+    } else {
+        game->state = GAME_OVER;
+    }
 
-    return 0;
-}
+    if (game->round->role == DRAWER) {
+        if (rtc_disable_int(ALARM_INTERRUPT) != OK)
+            return 1;
+    }
 
-static int game_over() {
-    clock_frames.current_frame = 1;
-    game->round->end_screen_timer = END_ROUND_TICKS;
-    game->state = GAME_OVER;
-
-    if (rtc_disable_int(ALARM_INTERRUPT) != OK)
-        return 1;
+    if (game->round->role == GUESSER || !win) {
+        if (rtc_set_alarm_in(end_round_delay) != OK)
+            return 1;
+    }
 
     return 0;
 }
@@ -601,13 +603,42 @@ int game_guess_word(char *guess) {
     }
 
     if (g.correct) {
-        if (game_correct_guess() != OK)
-            return 1;
+        if (game->round->role == DRAWER) {
+            uint32_t new_score = game->score + 100 + game->round->round_timer * 0.15;
+            if (new_score > MAX_SCORE)
+                new_score = MAX_SCORE;
+            if (event_round_win(new_score) != OK)
+                return 1;
+        }
     } else {
         game->round->round_timer -= TICKS_PER_SECOND * WRONG_GUESS_PENALTY;
         if (game->round->round_timer < 0) game->round->round_timer = 0;
     }
 
+    return 0;
+}
+
+int game_rtc_alarm() {
+    switch (game->state) {
+        case ROUND_ONGOING:
+            if (game->round->role == DRAWER) {
+                if (game_give_clue() != OK)
+                    return 1;
+            }
+            break;
+        case GAME_OVER:
+            if (event_leave_game() != OK)
+                return 1;
+            break;
+        case ROUND_CORRECT_GUESS:
+            if (event_end_round() != OK)
+                return 1;
+            if (event_new_round_as_drawer() != OK)
+                return 1;
+            break;
+        default:
+            break;
+    }
     return 0;
 }
 
@@ -618,38 +649,16 @@ int game_rtc_pi_tick() {
     if (game->round->role == GUESSER) {
         text_box_cursor_tick(&game->round->attr.guesser->text_box);
     }
-    
-    switch (game->state) {
-    case ROUND_ONGOING:
+
+    if (game->state == ROUND_ONGOING) {
         if (game->round->round_timer == 0) {
-            if (game_over() != OK)
+            if (game_round_over(game->score, false) != OK)
                 return 1;
         } else {
             game->round->round_timer--;
         }
-        break;
-    
-    case GAME_OVER:
-        if (game->round->end_screen_timer != 0) {
-            game->round->end_screen_timer--;
-        } else if (game->round->end_screen_timer == 0) {
-            if (menu_set_main_menu() != OK)
-                return 1;
-        }
-        break;
-    
-    case ROUND_CORRECT_GUESS:
-        if (game->round->end_screen_timer != 0) {
-            game->round->end_screen_timer--;
-        } else if (game->round->end_screen_timer == 0) {
-            if (event_end_round() != OK)
-                return 1;
-        }
-        break;
-    
-    default:
-        break;
     }
+    
     return 0;
 }
 

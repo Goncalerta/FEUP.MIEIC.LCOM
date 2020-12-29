@@ -83,10 +83,7 @@ int event_start_round() {
     return 0;
 }
 
-int event_new_game_as_guesser(const char *word) {
-    if (new_game() != OK)
-        return 1;
-
+int event_new_round_as_guesser(const char *word) {
     if (game_new_round(GUESSER, word) != OK)
         return 1;
 
@@ -95,10 +92,7 @@ int event_new_game_as_guesser(const char *word) {
     return 0;
 }
 
-int event_new_game_as_drawer() {
-    if (new_game() != OK)
-        return 1;
-
+int event_new_round_as_drawer() {
     const char *word;
     get_random_word(&word);
 
@@ -122,9 +116,18 @@ int event_end_program() {
     return 0;
 }
 
+int event_round_win(uint32_t score) {
+    if (game_round_over(score, true) != OK)
+        return 1;
+    if (protocol_send_round_win(score) != OK)
+        return 1;
+    return 0;
+}
+
 int event_end_round() {
-    clear_canvas();
-    game_start_round();
+    if (canvas_exit() != OK)
+        return 1;
+    game_delete_round();
     cursor_set_state(CURSOR_ARROW);
     return 0;
 }
@@ -184,9 +187,14 @@ int event_this_player_random_number() {
         return 1;
     if (other_player_state == RANDOM_NUMBER_SENT) {
         if (this_player_random_number > other_player_random_number) {
-            if (event_new_game_as_drawer() != OK)
+            if (new_game() != OK)
                 return 1;
-        } else if (this_player_random_number == other_player_random_number) {
+            if (event_new_round_as_drawer() != OK)
+                return 1;
+        } else if (this_player_random_number < other_player_random_number) {
+            if (new_game() != OK)
+                return 1;
+        } else {
             this_player_state = READY;
             other_player_state = READY;
             if (event_this_player_random_number() != OK)
@@ -202,9 +210,14 @@ int event_other_player_random_number(int random_number) {
     other_player_random_number = random_number;
     if (this_player_state == RANDOM_NUMBER_SENT) {
         if (this_player_random_number > other_player_random_number) {
-            if (event_new_game_as_drawer() != OK)
+            if (new_game() != OK)
                 return 1;
-        } else if (this_player_random_number == other_player_random_number) {
+            if (event_new_round_as_drawer() != OK)
+                return 1;
+        } else if (this_player_random_number < other_player_random_number) {
+            if (new_game() != OK)
+                return 1;
+        } else {
             this_player_state = READY;
             other_player_state = READY;
             if (event_this_player_random_number() != OK)
@@ -232,6 +245,7 @@ int event_other_player_leave_game() {
 }
 
 int event_leave_game() {
+    delete_game();
     if (protocol_send_leave_game() != OK)
         return 1;
     if (menu_set_main_menu() != OK)
@@ -368,10 +382,8 @@ int dispatch_timer_tick() {
 
 int dispatch_rtc_alarm_int() {
     if (menu_get_state() == GAME) {
-        if (game_get_role() == DRAWER) {
-            if (game_give_clue() != OK)
-                return 1;
-        }
+        if (game_rtc_alarm() != OK)
+            return 1;
     } else if (menu_get_state() == WORD_SCREEN) {
         if (protocol_send_start_round() != OK)
             return 1;

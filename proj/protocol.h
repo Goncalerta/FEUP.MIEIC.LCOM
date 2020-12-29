@@ -22,9 +22,9 @@ typedef enum message_type_t {
     MSG_REDO_CANVAS = 8,
     MSG_GUESS = 9,
     MSG_CLUE = 10,
+    MSG_ROUND_WIN = 11,
 
     // MSG_SYNC_TIMER = 5, (round_timer)
-    // MSG_ROUND_WIN = 7, (score)
     // MSG_GAME_OVER = 8, 
 } message_type_t;
 
@@ -50,5 +50,6 @@ int protocol_send_undo_canvas();
 int protocol_send_redo_canvas();
 int protocol_send_guess(const char *guess);
 int protocol_send_clue(size_t pos);
+int protocol_send_round_win(uint32_t score);
 
 #endif /* _PROTOCOL_H */
