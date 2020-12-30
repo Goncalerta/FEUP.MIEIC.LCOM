@@ -24,11 +24,6 @@
 #include "xpm/correct.xpm"
 #include "xpm/gameover.xpm"
 
-/*  * TODO 
- *  *   the program crashes if, after a round is won, the player is drawing (during the transition to word screen)
- *  *       in fact, even though the player can draw, if the text box is selected, it's not unselected if he begins to draw after round win
-*/
-
 #define MAX_SCORE 99999
 #define TICKS_PER_SECOND 2
 #define ROUND_SECONDS 60
@@ -503,27 +498,6 @@ static int game_draw_bar() {
     return 0;
 }
 
-static int game_draw_clue() {
-    if (game == NULL || game->round == NULL)
-        return 1;
-
-    frame_buffer_t buf = vg_get_back_buffer();
-
-    // TODO game_over and correct guess do not belong here
-    if (game->state == GAME_OVER) {
-        uint16_t offset = game->round->ticker % 30 >= 15? -3 : 3;
-        vb_draw_img(buf, game_over_message, 0, 0, game_over_message.width, game_over_message.height, (buf.h_res - game_over_message.width) / 2 + offset, 20);
-    } else if (game->state == ROUND_CORRECT_GUESS) {
-        uint16_t offset = game->round->ticker % 30 >= 15? -3 : 3;
-        vb_draw_img(buf, correct_message, 0, 0, correct_message.width, correct_message.height, (buf.h_res - correct_message.width) / 2 + offset, 20);
-    } else if (game->state == ROUND_ONGOING) {
-        if (word_clue_draw(&game->round->word_clue, buf, (buf.h_res - game->round->word_clue.width) / 2, 40) != OK)
-            return 1;
-    }
-
-    return 0;
-}
-
 static int game_draw_buttons(drawer_t *drawer) {
     frame_buffer_t buf = vg_get_back_buffer();
 
@@ -549,8 +523,25 @@ int game_draw() {
 
     if (game_draw_bar() != OK)
         return 1;
-    if (game_draw_clue() != OK)
-        return 1;
+
+    frame_buffer_t buf = vg_get_back_buffer();
+
+    if (game->state != ROUND_UNSTARTED) {
+        if (word_clue_draw(&game->round->word_clue, buf, (buf.h_res - game->round->word_clue.width) / 2, 40) != OK)
+            return 1;
+    }
+
+    if (game->state == GAME_OVER) {
+        // Offset gives an effect of shaking animation
+        uint16_t offset = game->round->ticker % 30 >= 15? -3 : 3;
+        vb_draw_img(buf, game_over_message, 0, 0, game_over_message.width, game_over_message.height, (buf.h_res - game_over_message.width) / 2 + offset, 80);
+    
+    } else if (game->state == ROUND_CORRECT_GUESS) {
+        // Offset gives an effect of shaking animation
+        uint16_t offset = game->round->ticker % 30 >= 15? -3 : 3;
+        vb_draw_img(buf, correct_message, 0, 0, correct_message.width, correct_message.height, (buf.h_res - correct_message.width) / 2 + offset, 80);
+    }
+
     if (game->round->role == DRAWER) {
         if (game_draw_buttons(game->round->attr.drawer) != OK)
             return 1;
@@ -595,6 +586,8 @@ int game_round_over(uint32_t current_score, bool win) {
         game->state = GAME_OVER;
     }
 
+    clue_reveal(&game->round->word_clue);
+
     if (game->round->role == DRAWER) {
         if (rtc_disable_int(ALARM_INTERRUPT) != OK)
             return 1;
@@ -616,8 +609,8 @@ int game_guess_word(char *guess) {
     g.guess = guess;
     g.correct = strcmp(guess, game->round->correct_guess) == 0;
     if (game->round->num_guesses == MAX_GUESSES) {
+        free(game->round->guesses[0].guess);
         for (int i = 1; i < MAX_GUESSES; i++) {
-            free(game->round->guesses[i-1].guess);
             game->round->guesses[i-1] = game->round->guesses[i];
         }
         game->round->guesses[MAX_GUESSES - 1] = g;

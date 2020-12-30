@@ -92,7 +92,7 @@ static int menu_draw_game_over_screen(const char *reason, size_t reason_size) {
         return 1;
 
     char round_display[6];
-    sprintf(round_display, "%05d", game_get_round_number());
+    sprintf(round_display, "%5d", game_get_round_number());
     if (font_draw_string(buf, round_display, vg_get_hres()/2 + 40, 330) != OK)
         return 1;
 
@@ -120,7 +120,7 @@ static int menu_draw_new_round_screen(role_t role) {
         return 1;
 
     char round_display[6];
-    sprintf(round_display, "%05d", game_get_round_number());
+    sprintf(round_display, "%5d", game_get_round_number());
     if (font_draw_string(buf, round_display, vg_get_hres()/2 + 40, 330) != OK)
         return 1;
 

@@ -20,6 +20,8 @@ int word_clue_hint(word_clue_t *clue, size_t *pos);
 
 int word_clue_hint_at(word_clue_t *clue, size_t pos);
 
+void clue_reveal(word_clue_t *clue);
+
 void delete_word_clue(word_clue_t *clue);
 
 #endif /* __CLUE_H */

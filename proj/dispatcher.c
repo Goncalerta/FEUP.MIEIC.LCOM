@@ -383,13 +383,16 @@ int event_update_cursor_state() {
 }
 
 int event_guess_word(char *guess) {
-    if (guess != NULL && strncmp(guess, "", 1)) {
-        if (game_is_round_ongoing()) {
-            if (game_guess_word(guess) != OK) 
-                return 1;
-            if (protocol_send_guess(guess) != OK)
-                return 1;
+    if (guess != NULL && strncmp(guess, "", 1) && game_is_round_ongoing()) {
+        if (game_guess_word(guess) != OK) {
+            free(guess);
+            return 1;
         }
+            
+        if (protocol_send_guess(guess) != OK) {
+            free(guess);
+            return 1;
+        }       
     } else {
         free(guess);
     }

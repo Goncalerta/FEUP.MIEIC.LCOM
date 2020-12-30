@@ -261,12 +261,15 @@ int rtc_flush() {
 }
 
 unsigned int rtc_get_seed() {
-    unsigned int seed = current_date.second;
-    seed = 37 * seed + current_date.minute;
-    seed = 37 * seed + current_date.hour;
-    seed = 37 * seed + current_date.day;
-    seed = 37 * seed + current_date.month;
-    seed = 37 * seed + current_date.year;
+    // Even though years and months don't always have 366 days and 31 days respectively,
+    // this algorithm ensures that two different dates will very likely return two different
+    // seeds.
+    unsigned int seed = 366 * current_date.year;
+    seed += 31 * current_date.month;
+    seed += 24 * current_date.day;
+    seed += 60 * current_date.hour;
+    seed += 60 * current_date.minute;
+    seed += current_date.second;
 
     return seed;
 }

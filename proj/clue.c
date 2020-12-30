@@ -81,6 +81,10 @@ int word_clue_hint_at(word_clue_t *clue, size_t pos) {
     return 0;
 }
 
+void clue_reveal(word_clue_t *clue) {
+    strcpy(clue->clue, clue->word);
+}
+
 void delete_word_clue(word_clue_t *clue) {
     free(clue->clue);
 }
