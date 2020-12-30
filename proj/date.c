@@ -49,7 +49,7 @@ int date_draw_greeting(uint16_t x, uint16_t y) {
     char greeting[DATE_GREETING_MAX_SIZE];
     if (4 < date.hour && date.hour < 12) {
         strcpy(greeting, "GOOD MORNING");
-    } else if (date.hour < 19) {
+    } else if (12 <= date.hour && date.hour < 19) {
         strcpy(greeting, "GOOD AFTERNOON");
     } else {
         strcpy(greeting, "GOOD NIGHT");
@@ -59,4 +59,18 @@ int date_draw_greeting(uint16_t x, uint16_t y) {
         return 1;
 
     return 0;
+}
+
+bool date_operator_less_than(date_t date1, date_t date2) {
+    if (date1.year != date2.year)
+        return date1.year < date2.year;
+    if (date1.month != date2.month)
+        return date1.month < date2.month;
+    if (date1.day != date2.day)
+        return date1.day < date2.day;
+    if (date1.hour != date2.hour)
+        return date1.hour < date2.hour;
+    if (date1.minute != date2.minute)
+        return date1.minute < date2.minute;
+    return date1.second < date2.second;
 }

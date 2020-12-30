@@ -80,4 +80,6 @@ void rtc_ih();
 
 int rtc_flush();
 
+unsigned int rtc_get_seed();
+
 #endif /* __RTC_H */

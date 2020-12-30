@@ -32,5 +32,6 @@ int date_draw_current();
 
 int date_draw_greeting(uint16_t x, uint16_t y);
 
+bool date_operator_less_than(date_t date1, date_t date2);
 
 #endif /* __DATE_H */
