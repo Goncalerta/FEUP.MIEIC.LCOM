@@ -150,6 +150,8 @@ int xpm_load_animation(xpm_animation_t *anim, enum xpm_image_type type, size_t n
     anim->number_of_frames = number_of_frames;
     anim->current_frame = 0;
     anim->frames = malloc(number_of_frames * sizeof(xpm_image_t));
+    if (anim->frames == NULL)
+        return 1;
 
     xpm_image_t img;
 
@@ -157,8 +159,11 @@ int xpm_load_animation(xpm_animation_t *anim, enum xpm_image_type type, size_t n
     va_start(ap, number_of_frames);
     for (size_t i = 0; i < number_of_frames; i++) {
         xpm_map_t frame = va_arg(ap, xpm_map_t);
-        if (xpm_load(frame, type, &img) == NULL)
+        if (xpm_load(frame, type, &img) == NULL) {
+            va_end(ap);
             return 1;
+        }
+        
         anim->frames[i] = img;
     }
     va_end(ap);
