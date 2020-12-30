@@ -50,11 +50,13 @@ int date_draw_greeting(uint16_t x, uint16_t y) {
         strcpy(greeting, "GOOD MORNING");
     } else if (12 <= date.hour && date.hour < 19) {
         strcpy(greeting, "GOOD AFTERNOON");
+    } else if (19 <= date.hour && date.hour < 22) {
+        strcpy(greeting, "GOOD EVENING");
     } else {
         strcpy(greeting, "GOOD NIGHT");
     }
 
-    if (font_draw_string(vg_get_back_buffer(), greeting, x, y) != OK)
+    if (font_draw_string_centered(vg_get_back_buffer(), greeting, x, y, 0, strlen(greeting)) != OK)
         return 1;
 
     return 0;
