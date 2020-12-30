@@ -100,240 +100,6 @@ int dispatcher_bind_canvas(bool is_to_bind) {
     return 0;
 }
 
-int event_start_round() {
-    bool canvas_enabled = game_get_role() == DRAWER;
-    if (canvas_init(vg_get_hres(), vg_get_vres() - GAME_BAR_HEIGHT, canvas_enabled) != OK)
-        return 1;
-
-    if (game_start_round() != OK)
-        return 1;
-    
-    return 0;
-}
-
-int event_new_round_as_guesser(const char *word) {
-    if (game_new_round(GUESSER, word) != OK)
-        return 1;
-
-    if (menu_set_new_round_screen(GUESSER) != OK)
-        return 1;
-
-    return 0;
-}
-
-int event_new_round_as_drawer() {
-    const char *word;
-    get_random_word(&word);
-
-    if (game_new_round(DRAWER, word) != OK)
-        return 1;
-
-    if (protocol_send_new_round(word) != OK)
-        return 1;
-
-    if (menu_set_new_round_screen(DRAWER) != OK)
-        return 1;
-
-    static const rtc_alarm_time_t time_to_start_round = {.hours = 0, .minutes = 0, .seconds = 3};
-    if (rtc_set_alarm_in(time_to_start_round) != OK)
-        return 1;
-
-    return 0;
-}
-
-int event_end_program() {
-    end = true;
-    return 0;
-}
-
-int event_round_win(uint32_t score) {
-    if (game_round_over(score, true) != OK)
-        return 1;
-    if (protocol_send_round_win(score) != OK)
-        return 1;
-    return 0;
-}
-
-int event_end_round() {
-    canvas_exit();
-    game_delete_round();
-    return 0;
-}
-
-int event_new_stroke(bool primary_button) {
-    if (canvas_new_stroke(drawer_get_selected_color(), drawer_get_selected_thickness()) != OK)
-        return 1;
-    if (protocol_send_new_stroke(drawer_get_selected_color(), drawer_get_selected_thickness()) != OK)
-        return 1;
-    
-    return 0;
-}
-
-int event_new_atom(uint16_t x, uint16_t y) {
-    if (canvas_new_stroke_atom(x, y) != OK)
-        return 1;
-    if (protocol_send_new_atom(x, y) != OK)
-        return 1;
-
-    return 0;
-}
-
-int event_undo() {
-    if (canvas_undo_stroke() != OK)
-        return 1;
-    if (protocol_send_undo_canvas() != OK)
-        return 1;
-
-    return 0;
-}
-
-int event_redo() {
-    if (canvas_redo_stroke() != OK)
-        return 1;
-    if (protocol_send_redo_canvas() != OK)
-        return 1;
-
-    return 0;
-}
-
-int event_ready_to_play() {
-    if (menu_set_awaiting_player_menu() != OK)
-        return 1;
-    if (protocol_send_ready_to_play() != OK)
-        return 1;
-    this_player_state = READY;
-    if (other_player_state == READY) {
-        if (event_this_player_random_number() != OK)
-            return 1;
-    }
-    
-    return 0;
-}
-
-int event_this_player_random_number() {
-    if (other_player_state == NOT_READY) {
-        return 0;
-    }
-
-    this_player_state = RANDOM_NUMBER_SENT;
-    this_player_random_number = rand();
-    if (protocol_send_random_number(this_player_random_number) != OK)
-        return 1;
-
-    if (other_player_state == RANDOM_NUMBER_SENT) {
-        if (this_player_random_number > other_player_random_number) {
-            // Player is about to begin game. Should not be ready to start a new one while this one is ongoing
-            this_player_state = NOT_READY;
-            other_player_state = NOT_READY;
-            if (new_game() != OK)
-                return 1;
-            if (event_new_round_as_drawer() != OK)
-                return 1;
-        } else if (this_player_random_number < other_player_random_number) {
-            // Player is about to begin game. Should not be ready to start a new one while this one is ongoing
-            this_player_state = NOT_READY;
-            other_player_state = NOT_READY;
-            if (new_game() != OK)
-                return 1;
-        } else {
-            this_player_state = READY;
-            other_player_state = READY;
-            if (event_this_player_random_number() != OK)
-                return 1;
-        }
-    }
-
-    return 0;
-}
-
-int event_other_player_opened_program() {
-    if (this_player_state == READY) {
-        if (protocol_send_ready_to_play() != OK)
-            return 1;
-    }
-
-    return 0;
-}
-
-int event_other_player_random_number(int random_number) {
-    if (this_player_state == NOT_READY) {
-        return 0;
-    }
-
-    other_player_state = RANDOM_NUMBER_SENT;
-    other_player_random_number = random_number;
-
-    if (this_player_state == RANDOM_NUMBER_SENT) {
-        if (this_player_random_number > other_player_random_number) {
-            // Player is about to begin game. Should not be ready to start a new one while this one is ongoing
-            this_player_state = NOT_READY;
-            other_player_state = NOT_READY;
-            if (new_game() != OK)
-                return 1;
-            if (event_new_round_as_drawer() != OK)
-                return 1;
-        } else if (this_player_random_number < other_player_random_number) {
-            // Player is about to begin game. Should not be ready to start a new one while this one is ongoing
-            this_player_state = NOT_READY;
-            other_player_state = NOT_READY;
-            if (new_game() != OK)
-                return 1;
-        } else {
-            this_player_state = READY;
-            other_player_state = READY;
-            if (event_this_player_random_number() != OK)
-                return 1;
-        }
-    }
-
-    return 0;
-}
-
-int event_other_player_ready_to_play() {
-    other_player_state = READY;
-    if (this_player_state == READY || this_player_state == RANDOM_NUMBER_SENT) {
-        if (event_this_player_random_number() != OK)
-            return 1;
-    }
-
-    return 0;
-}
-
-int event_other_player_leave_game() {
-    other_player_state = NOT_READY;
-    if (menu_is_game_ongoing()) {
-        if (rtc_disable_int(ALARM_INTERRUPT) != OK)
-            return 1;
-        if (event_end_round() != OK)
-            return 1;
-        if (menu_set_other_player_left_screen() != OK)
-            return 1;
-    }
-
-    if (this_player_state == RANDOM_NUMBER_SENT) {
-        this_player_state = READY;
-    }
-
-    return 0;
-}
-
-int event_leave_game() {
-    if (rtc_disable_int(ALARM_INTERRUPT) != OK)
-        return 1;
-    delete_game();
-    canvas_exit();
-    if (protocol_send_leave_game() != OK)
-        return 1;
-    if (menu_set_main_menu() != OK)
-        return 1;
-    this_player_state = NOT_READY;
-    if (other_player_state == RANDOM_NUMBER_SENT) {
-        other_player_state = READY;
-    }
-    
-    return 0;
-}
-
 int dispatch_mouse_packet(struct packet p) {
     if (p.x_ov || p.y_ov)
         return 1;
@@ -398,24 +164,6 @@ int event_update_cursor_state() {
                 cursor_set_state(CURSOR_DISABLED);
             }
         } 
-    }
-
-    return 0;
-}
-
-int event_guess_word(char *guess) {
-    if (guess != NULL && strncmp(guess, "", 1) && game_is_round_ongoing()) {
-        if (game_guess_word(guess) != OK) {
-            free(guess);
-            return 1;
-        }
-            
-        if (protocol_send_guess(guess) != OK) {
-            free(guess);
-            return 1;
-        }       
-    } else {
-        free(guess);
     }
 
     return 0;
@@ -507,20 +255,263 @@ int draw_frame() {
         return 1;
     if (cursor_draw() != OK)
         return 1;
-
-    // if (num_listening_text_boxes == 1){
-    //     printf("DRAWINGFRAME9\n");
-    //     printf("CURRENT: %d\n", listening_text_boxes[0]);
-    // }
-
     if (vg_flip_page() != OK)
         return 1;
 
-    // if (num_listening_text_boxes == 1){
-    //     printf("DRAWINGFRAME10\n");
-    //     printf("CURRENT: %d\n", listening_text_boxes[0]);
-    // }
+    return 0;
+}
 
+int event_other_player_opened_program() {
+    if (this_player_state == READY) {
+        if (protocol_send_ready_to_play() != OK)
+            return 1;
+    }
+
+    return 0;
+}
+
+int event_leave_game() {
+    if (rtc_disable_int(ALARM_INTERRUPT) != OK)
+        return 1;
+    delete_game();
+    canvas_exit();
+    if (protocol_send_leave_game() != OK)
+        return 1;
+    if (menu_set_main_menu() != OK)
+        return 1;
+    this_player_state = NOT_READY;
+    if (other_player_state == RANDOM_NUMBER_SENT) {
+        other_player_state = READY;
+    }
+    
+    return 0;
+}
+
+int event_other_player_leave_game() {
+    other_player_state = NOT_READY;
+    if (menu_is_game_ongoing()) {
+        if (rtc_disable_int(ALARM_INTERRUPT) != OK)
+            return 1;
+        if (event_end_round() != OK)
+            return 1;
+        if (menu_set_other_player_left_screen() != OK)
+            return 1;
+    }
+
+    if (this_player_state == RANDOM_NUMBER_SENT) {
+        this_player_state = READY;
+    }
+
+    return 0;
+}
+
+int event_ready_to_play() {
+    if (menu_set_awaiting_player_menu() != OK)
+        return 1;
+    if (protocol_send_ready_to_play() != OK)
+        return 1;
+    this_player_state = READY;
+    if (other_player_state == READY) {
+        if (event_this_player_random_number() != OK)
+            return 1;
+    }
+    
+    return 0;
+}
+
+int event_other_player_ready_to_play() {
+    other_player_state = READY;
+    if (this_player_state == READY || this_player_state == RANDOM_NUMBER_SENT) {
+        if (event_this_player_random_number() != OK)
+            return 1;
+    }
+
+    return 0;
+}
+
+int event_this_player_random_number() {
+    if (other_player_state == NOT_READY) {
+        return 0;
+    }
+
+    this_player_state = RANDOM_NUMBER_SENT;
+    this_player_random_number = rand();
+    if (protocol_send_random_number(this_player_random_number) != OK)
+        return 1;
+
+    if (other_player_state == RANDOM_NUMBER_SENT) {
+        if (this_player_random_number > other_player_random_number) {
+            // Player is about to begin game. Should not be ready to start a new one while this one is ongoing
+            this_player_state = NOT_READY;
+            other_player_state = NOT_READY;
+            if (new_game() != OK)
+                return 1;
+            if (event_new_round_as_drawer() != OK)
+                return 1;
+        } else if (this_player_random_number < other_player_random_number) {
+            // Player is about to begin game. Should not be ready to start a new one while this one is ongoing
+            this_player_state = NOT_READY;
+            other_player_state = NOT_READY;
+            if (new_game() != OK)
+                return 1;
+        } else {
+            this_player_state = READY;
+            other_player_state = READY;
+            if (event_this_player_random_number() != OK)
+                return 1;
+        }
+    }
+
+    return 0;
+}
+
+
+
+int event_other_player_random_number(int random_number) {
+    if (this_player_state == NOT_READY) {
+        return 0;
+    }
+
+    other_player_state = RANDOM_NUMBER_SENT;
+    other_player_random_number = random_number;
+
+    if (this_player_state == RANDOM_NUMBER_SENT) {
+        if (this_player_random_number > other_player_random_number) {
+            // Player is about to begin game. Should not be ready to start a new one while this one is ongoing
+            this_player_state = NOT_READY;
+            other_player_state = NOT_READY;
+            if (new_game() != OK)
+                return 1;
+            if (event_new_round_as_drawer() != OK)
+                return 1;
+        } else if (this_player_random_number < other_player_random_number) {
+            // Player is about to begin game. Should not be ready to start a new one while this one is ongoing
+            this_player_state = NOT_READY;
+            other_player_state = NOT_READY;
+            if (new_game() != OK)
+                return 1;
+        } else {
+            this_player_state = READY;
+            other_player_state = READY;
+            if (event_this_player_random_number() != OK)
+                return 1;
+        }
+    }
+
+    return 0;
+}
+
+int event_new_round_as_guesser(const char *word) {
+    if (game_new_round(GUESSER, word) != OK)
+        return 1;
+
+    if (menu_set_new_round_screen(GUESSER) != OK)
+        return 1;
+
+    return 0;
+}
+
+int event_new_round_as_drawer() {
+    const char *word;
+    get_random_word(&word);
+
+    if (game_new_round(DRAWER, word) != OK)
+        return 1;
+
+    if (protocol_send_new_round(word) != OK)
+        return 1;
+
+    if (menu_set_new_round_screen(DRAWER) != OK)
+        return 1;
+
+    static const rtc_alarm_time_t time_to_start_round = {.hours = 0, .minutes = 0, .seconds = 3};
+    if (rtc_set_alarm_in(time_to_start_round) != OK)
+        return 1;
+
+    return 0;
+}
+
+int event_start_round() {
+    bool canvas_enabled = game_get_role() == DRAWER;
+    if (canvas_init(vg_get_hres(), vg_get_vres() - GAME_BAR_HEIGHT, canvas_enabled) != OK)
+        return 1;
+
+    if (game_start_round() != OK)
+        return 1;
+    
+    return 0;
+}
+
+int event_end_round() {
+    canvas_exit();
+    game_delete_round();
+    return 0;
+}
+
+int event_new_stroke(bool primary_button) {
+    if (canvas_new_stroke(drawer_get_selected_color(), drawer_get_selected_thickness()) != OK)
+        return 1;
+    if (protocol_send_new_stroke(drawer_get_selected_color(), drawer_get_selected_thickness()) != OK)
+        return 1;
+    
+    return 0;
+}
+
+int event_new_atom(uint16_t x, uint16_t y) {
+    if (canvas_new_stroke_atom(x, y) != OK)
+        return 1;
+    if (protocol_send_new_atom(x, y) != OK)
+        return 1;
+
+    return 0;
+}
+
+int event_undo() {
+    if (canvas_undo_stroke() != OK)
+        return 1;
+    if (protocol_send_undo_canvas() != OK)
+        return 1;
+
+    return 0;
+}
+
+int event_redo() {
+    if (canvas_redo_stroke() != OK)
+        return 1;
+    if (protocol_send_redo_canvas() != OK)
+        return 1;
+
+    return 0;
+}
+
+int event_guess_word(char *guess) {
+    if (guess != NULL && strncmp(guess, "", 1) && game_is_round_ongoing()) {
+        if (game_guess_word(guess) != OK) {
+            free(guess);
+            return 1;
+        }
+            
+        if (protocol_send_guess(guess) != OK) {
+            free(guess);
+            return 1;
+        }       
+    } else {
+        free(guess);
+    }
+
+    return 0;
+}
+
+int event_round_win(uint32_t score) {
+    if (game_round_over(score, true) != OK)
+        return 1;
+    if (protocol_send_round_win(score) != OK)
+        return 1;
+    return 0;
+}
+
+int event_end_program() {
+    end = true;
     return 0;
 }
 
