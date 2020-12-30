@@ -85,7 +85,7 @@ static int menu_draw_game_over_screen(const char *reason, size_t reason_size) {
     if (vb_fill_screen(buf, MENU_BACKGROUND_COLOR) != OK)
         return 1;
 
-    // TODO avoid magic numbers
+    // TODOPORVER avoid magic numbers
     if (font_draw_string_centered(buf, "GAME OVER", vg_get_hres()/2, 250, 0, 9) != OK)
         return 1;
     
@@ -118,7 +118,7 @@ static int menu_draw_new_round_screen(role_t role) {
     if (vb_fill_screen(buf, MENU_BACKGROUND_COLOR) != OK)
         return 1;
 
-    // TODO avoid magic numbers
+    // TODOPORVER avoid magic numbers
     if (font_draw_string(buf, "ROUND", vg_get_hres()/2 - 140, 330) != OK)
         return 1;
     if (font_draw_string(buf, "SCORE", vg_get_hres()/2 - 140, 350) != OK)
@@ -239,7 +239,7 @@ void menu_set_state(menu_state_t state) {
 }
 
 int menu_set_main_menu() {
-    // TODO a dispatcher function called "reset bindings" that does most of this
+    // TODOPORVER a dispatcher function called "reset bindings" that does most of this
     if (dispatcher_bind_buttons(2, &b_new_game, &b_end_program) != OK)
         return 1;
     if (dispatcher_bind_text_boxes(0) != OK)

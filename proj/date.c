@@ -19,7 +19,7 @@ int date_bcd_to_binary(date_t *date) {
 
 int date_draw(date_t date, uint16_t x, uint16_t y) {
     char date_str[DATE_STRING_SIZE];
-    //TODO '/' ou '-' ?
+
     sprintf(date_str, "20%02d/%02d/%02d %02d:%02d:%02d", date.year, date.month, date.day, date.hour, date.minute, date.second);
 
     if (vb_draw_rectangle(vg_get_back_buffer(), x-DATE_DISPLAY_BORDER, y-DATE_DISPLAY_BORDER, (DATE_STRING_SIZE-1)*CHAR_SPACE + 2*DATE_DISPLAY_BORDER, FONT_CHAR_HEIGHT + 2*DATE_DISPLAY_BORDER, DATE_BACK_COLOR) != OK)

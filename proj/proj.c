@@ -52,20 +52,30 @@ int (proj_main_loop)(int argc, char *argv[]) {
     uint8_t timer_irq_set, kbd_irq_set, mouse_irq_set, rtc_irq_set, com1_irq_set;
     rtc_interrupt_config_t rtc_periodic_config = {.periodic_RS3210 = 0x0f}; // period = 0.5 seconds
 
+    // Video card
+
     if (vg_init(mode) == NULL) 
         return 1;
+
+    // Timer
 
     if (timer_subscribe_int(&timer_irq_set) != OK) 
         return 1;
 
+    // Keyboard
+
     if (kbd_subscribe_int(&kbd_irq_set) != OK) 
         return 1;
+
+    // Mouse
 
     if (mouse_enable_dr() != OK)
         return 1;
 
     if (mouse_subscribe_int(&mouse_irq_set) != OK) 
         return 1;
+    
+    // RTC
     
     if (rtc_flush() != OK) // slide 23
         return 1;
@@ -82,19 +92,20 @@ int (proj_main_loop)(int argc, char *argv[]) {
     if (rtc_enable_int(PERIODIC_INTERRUPT, rtc_periodic_config) != OK)
         return 1;
 
+    // UART and communication protocol
+
     if (protocol_config_uart() != OK)
-       return 1;
+        return 1;
 
     if (com1_subscribe_int(&com1_irq_set) != OK)
-       return 1;
-    if (uart_clear_hw_fifos() != OK)
         return 1;
-    uart_flush_RBR();
+    
     uint8_t noop;
-    uart_flush_received_bytes(&noop, &noop, &noop);
+    if (uart_flush_received_bytes(&noop, &noop, &noop) != OK)
+        return 1;    
 
-    // INIT game assets
-    // TODO probably move those to a more appropriate place later in the project
+    // Program assets and initializations
+    // TODOPORVER probably move those to a more appropriate place later in the project
     srand(rtc_get_seed());
     protocol_send_program_opened();
     font_load(image_type); 
@@ -173,7 +184,7 @@ int (proj_main_loop)(int argc, char *argv[]) {
     }
 
     // EXIT game assets
-    // TODO probably move those to a more appropriate place later in the project
+    // TODOPORVER probably move those to a more appropriate place later in the project
     if (canvas_exit() != OK)
         return 1;
     if (text_box_clip_board_exit() != OK)

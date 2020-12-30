@@ -466,11 +466,6 @@ int protocol_handle_received_bytes() {
             default:
                 if (protocol_handle_new_msg(byte) != OK)
                     return 1;
-                if (awaiting_ack_ticks >= PROTOCOL_WAIT_TIMEOUT_TICKS) {
-                    // TODO or something else?
-                    if (protocol_send_next_message() != OK)
-                        return 1;
-                }
                 break;
             }
         }
@@ -496,10 +491,6 @@ int protocol_config_uart() {
         return 1;
     if (uart_clear_hw_fifos() != OK)
         return 1;
-    uart_flush_RBR();
-    uint8_t noop;
-    uart_flush_received_bytes(&noop, &noop, &noop);
-
     
     return 0;
 }

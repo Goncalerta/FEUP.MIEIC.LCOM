@@ -56,7 +56,7 @@ int vb_fill_screen(frame_buffer_t buf, uint32_t color) {
     // }
 
 
-    // TODO is this worth it for speed?
+    // TODOPORVER is this worth it for speed?
     uint8_t *begin = buf.buf;
     size_t half_len = buf.v_res * buf.h_res * buf.bytes_per_pixel/2;
 
@@ -85,7 +85,7 @@ int vb_fill_screen(frame_buffer_t buf, uint32_t color) {
 
 int vb_draw_hline(frame_buffer_t buf, uint16_t x, uint16_t y, uint16_t len, uint32_t color) {
     for (uint16_t i = 0; i < len; i++) {
-        // TODO for efficiency, maybe copy all bytes at once, checking the color and out of screen only one
+        // TODOPORVER for efficiency, maybe copy all bytes at once, checking the color and out of screen only one
         if (vb_draw_pixel(buf, x + i, y, color)) {
             return 1;
         }
@@ -95,7 +95,7 @@ int vb_draw_hline(frame_buffer_t buf, uint16_t x, uint16_t y, uint16_t len, uint
 
 int vb_draw_vline(frame_buffer_t buf, uint16_t x, uint16_t y, uint16_t len, uint32_t color) {
     for (uint16_t i = 0; i < len; i++) {
-        // TODO for efficiency, maybe copy all bytes at once, checking the color and out of screen only one
+        // TODOPORVER for efficiency, maybe copy all bytes at once, checking the color and out of screen only one
         if (vb_draw_pixel(buf, x, y + i, color)) {
             return 1;
         }
@@ -157,27 +157,11 @@ int vb_draw_line(frame_buffer_t buf, int16_t x1, int16_t y1, int16_t x2, int16_t
     return 0;
 }
 
-// int vb_draw_img(frame_buffer_t buf, xpm_image_t img, uint16_t x, uint16_t y) {
-//     for (uint16_t i = 0; i < img.width; i++) {
-//         for (uint16_t j = 0; j < img.height; j++) {
-//             uint32_t color = 0;
-//             for (uint8_t k = 0; k < buf.bytes_per_pixel; k++) {
-//                 color += img.bytes[(i + j * img.width) * buf.bytes_per_pixel] << (8 * k);
-//             }
+int vb_draw_img(frame_buffer_t buf, xpm_image_t img, uint16_t x, uint16_t y) {
+    return vb_draw_img_cropped(buf, img, 0, 0, img.width, img.height, x, y);
+}
 
-//             if (color == xpm_transparency_color(img.type)) 
-//                 continue;
-
-//             if (vb_draw_pixel(buf, x + i, y + j, color) != OK)
-//                 return 1;
-//         }
-//     }
-    
-//     return 0;
-// }
-
-/* to draw a whole image pass: img_start_x = 0; img_start_y = 0; img_delta_x = img.width; img_delta_y = img.height */
-int vb_draw_img(frame_buffer_t buf, xpm_image_t img, uint16_t img_start_x, uint16_t img_start_y, uint16_t img_delta_x, uint16_t img_delta_y, uint16_t x, uint16_t y) {
+int vb_draw_img_cropped(frame_buffer_t buf, xpm_image_t img, uint16_t img_start_x, uint16_t img_start_y, uint16_t img_delta_x, uint16_t img_delta_y, uint16_t x, uint16_t y) {
     if	((img_start_x + img_delta_x > img.width) || (img_start_y + img_delta_y > img.height)) {
         printf("Invalid region of image to draw (out of bounds).\n");
         printf("%d %d %d        %d %d %d\n", img_start_x, img_delta_x, img.width, img_start_y, img_delta_y, img.height);
@@ -188,7 +172,7 @@ int vb_draw_img(frame_buffer_t buf, xpm_image_t img, uint16_t img_start_x, uint1
         for (uint16_t i = 0; i < img_delta_x; i++) {
             uint32_t color = 0;
             for (uint8_t k = 0; k < buf.bytes_per_pixel; k++) {
-                color += img.bytes[(i + img_start_x + (j+img_start_y) * img.width) * buf.bytes_per_pixel + k] << (8 * k);
+                color += img.bytes[(i + img_start_x + (j + img_start_y) * img.width) * buf.bytes_per_pixel + k] << (8 * k);
             }
 
             if (color == xpm_transparency_color(img.type)) 
@@ -203,7 +187,7 @@ int vb_draw_img(frame_buffer_t buf, xpm_image_t img, uint16_t img_start_x, uint1
 }
 
 int vb_draw_animation_frame(frame_buffer_t buf, xpm_animation_t anim, uint16_t x, uint16_t y) {
-    return vb_draw_img(buf, anim.frames[anim.current_frame], 0, 0, anim.width, anim.height, x, y);
+    return vb_draw_img(buf, anim.frames[anim.current_frame], x, y);
 }
 
 int xpm_load_animation(xpm_animation_t *anim, enum xpm_image_type type, size_t number_of_frames, ...) {

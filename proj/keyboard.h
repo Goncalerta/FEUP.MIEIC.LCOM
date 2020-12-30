@@ -12,18 +12,18 @@
 /**
  * @brief Enumerated type for specifying the type of key that was pressed in the Keyboard.
  */
-typedef enum kbd_key { // TODO é suposto documentar todos os "estados"? para aparecer tudo "bonitinho"...
-    NO_KEY,
-    CHAR, // key of a letter or number is pressed
-    CTRL,
-    ENTER,
-    BACK_SPACE,
-    ESC,
-    DEL,
-    ARROW_UP,
-    ARROW_DOWN,
-    ARROW_LEFT,
-    ARROW_RIGHT
+typedef enum kbd_key {
+    NO_KEY, /*!< No key was pressed. May happen when a key is released. */
+    CHAR, /*!< The key corresponding to a character recognized by the program (letter, number, space) was pressed. */
+    CTRL, /*!< Ctrl key was pressed. */
+    ENTER, /*!< Enter key was pressed. */
+    BACK_SPACE, /*!< Backspace key was pressed. */
+    ESC, /*!< Esc key was pressed. */
+    DEL, /*!< Delete key was pressed. */
+    ARROW_UP, /*!< Up arrow key was pressed. */
+    ARROW_DOWN, /*!< Down arrow key was pressed. */
+    ARROW_LEFT, /*!< Left arrow key was pressed. */
+    ARROW_RIGHT /*!< Right arrow key was pressed. */
 } kbd_key;
 
 /**
@@ -71,7 +71,7 @@ int kbd_handle_scancode(kbd_event_t *kbd_state);
  * 
  * @return Return 0 upon success and non-zero otherwise
  */
-int kbd_enable_interrupts(); // TODO this is not used in the project, delete?
+int kbd_enable_interrupts();
 
 ///**
 // * @brief Checks if a complete scancode is ready to be processed.

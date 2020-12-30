@@ -120,7 +120,6 @@ int uart_send_byte(uint8_t byte);
 int uart_read_byte(uint8_t *byte);
 bool uart_received_bytes();
 int uart_flush_received_bytes(uint8_t *no_bytes, uint8_t *first, uint8_t *last);
-void uart_flush_RBR();
 int uart_clear_hw_fifos();
 // int uart_send_message(uint8_t len, uint8_t *msg);
 

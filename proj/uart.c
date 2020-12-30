@@ -59,7 +59,7 @@ int uart_send_byte(uint8_t byte) {
     if (queue_push(&transmitted, &byte) != OK)
         return 1;
     
-    return uart_send_bytes(); // TODO maybe don't flush automatically each byte; instead flush each message
+    return uart_send_bytes(); // TODOPORVER maybe don't flush automatically each byte; instead flush each message
 }
 
 int uart_read_byte(uint8_t *byte) {
@@ -237,18 +237,6 @@ int uart_flush_received_bytes(uint8_t *no_bytes, uint8_t *first, uint8_t *last) 
     return 0;
 }
 
-void uart_flush_RBR() {
-    uint8_t lsr_byte, rbr_byte;
-
-    if (util_sys_inb(COM1_BASE_ADDR + LINE_STATUS_REG, &lsr_byte) != OK)
-        return;
-
-    if (lsr_byte & LSR_RECEIVER_READY) {
-        if (util_sys_inb(COM1_BASE_ADDR + RECEIVER_BUFFER_REG, &rbr_byte) != OK)
-            return;
-    }
-}
-
 int uart_identify_interrupt(interrupt_identification_t *int_ident) {
     uint8_t iir_byte;
     if (util_sys_inb(COM1_BASE_ADDR + INTERRUPT_IDENTIFICATION_REG, &iir_byte) != OK)
@@ -295,13 +283,13 @@ int uart_clear_hw_fifos() {
 
 int uart_config_params(word_len_t word_len, parity_t parity, 
                        no_stop_bits_t no_stop_bits, uint16_t bit_rate) {
-    // TODO should we care about preserving Set Break Enable
+    // TODOPORVER should we care about preserving Set Break Enable
     uint8_t lcr_byte = word_len | (parity << 3) | (no_stop_bits << 2);
 
     if (sys_outb(COM1_BASE_ADDR + LINE_CTRL_REG, lcr_byte) != OK)
         return 1;
     
-    // TODO maybe try to avoid this because of the unecessary sys_inb? but then it wouldnt be modular
+    // TODOPORVER maybe try to avoid this because of the unecessary sys_inb? but then it wouldnt be modular
     if (uart_set_bit_rate(bit_rate) != OK)
         return 1;
     
@@ -360,7 +348,7 @@ int uart_set_bit_rate(uint16_t bit_rate) {
 
     uint16_t divisor_latch_value = DIVISOR_LATCH_DIVIDEND / bit_rate;
     uint8_t divisor_latch_lsb, divisor_latch_msb;
-    // TODO maybe instead of return 1 first revert change to DLAB
+    // TODOPORVER maybe instead of return 1 first revert change to DLAB
     if (util_get_LSB(divisor_latch_value, &divisor_latch_lsb) != OK)
         return 1;
     if (util_get_MSB(divisor_latch_value, &divisor_latch_msb) != OK)

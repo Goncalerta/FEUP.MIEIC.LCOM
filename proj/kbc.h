@@ -3,9 +3,6 @@
 
 #include <lcom/lcf.h>
 #include "i8042.h"
- /*
- * * TODO é suposto dar mais detalhes na documentação?
- */
 
 /** @defgroup kbc kbc
  * @{

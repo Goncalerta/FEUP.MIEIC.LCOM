@@ -72,7 +72,7 @@ int button_draw(frame_buffer_t buf, button_t button) {
     case BUTTON_ICON_XPM:
         x = button.x + (button.width - button.icon.attributes.img.width) / 2;
         y = button.y + (button.height - button.icon.attributes.img.height) / 2;
-        if (vb_draw_img(buf, button.icon.attributes.img, 0, 0, button.icon.attributes.img.width, button.icon.attributes.img.height, x, y) != OK)
+        if (vb_draw_img(buf, button.icon.attributes.img, x, y) != OK)
             return 1;
         break;
     case BUTTON_ICON_CIRCLE:

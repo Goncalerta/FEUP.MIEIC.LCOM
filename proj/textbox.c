@@ -10,7 +10,7 @@
 #define TEXT_BOX_HEIGHT (FONT_CHAR_HEIGHT + 2*TEXT_BOX_TOP_BOT_SPACE)
 #define TEXT_BOX_WIDTH(display_size) ((display_size) * CHAR_SPACE + 2*TEXT_BOX_BEG_END_SPACE)
 
-#define TEXT_BOX_HIGHLIGHTED_TEXT_COLOR 0xaaffff //TODO adicionar header com #defines de cores (?)
+#define TEXT_BOX_HIGHLIGHTED_TEXT_COLOR 0xaaffff
 #define TEXT_BOX_NORMAL_COLOR 0xf7f7f7
 #define TEXT_BOX_HOVERING_COLOR 0xffffff
 #define TEXT_BOX_BORDER_COLOR 0x0000aa

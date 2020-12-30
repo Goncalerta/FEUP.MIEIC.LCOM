@@ -38,7 +38,7 @@ int font_draw_char(frame_buffer_t buf, char c, uint16_t x, uint16_t y) {
     	return 1;
     }
     
-    if (vb_draw_img(buf, font, char_start_x, char_start_y, FONT_CHAR_WIDTH, FONT_CHAR_HEIGHT, x, y) != 0) {
+    if (vb_draw_img_cropped(buf, font, char_start_x, char_start_y, FONT_CHAR_WIDTH, FONT_CHAR_HEIGHT, x, y) != 0) {
         return 1;
     }
 

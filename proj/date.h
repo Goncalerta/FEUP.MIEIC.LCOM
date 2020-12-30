@@ -3,7 +3,7 @@
 
 #include <lcom/lcf.h>
 
-#define DATE_CURRENT_X 5 // TODO chose the right place to draw
+#define DATE_CURRENT_X 5 
 #define DATE_CURRENT_Y 5
 #define DATE_STRING_SIZE 20
 #define DATE_DISPLAY_BORDER 4

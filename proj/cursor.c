@@ -70,7 +70,7 @@ void cursor_update_buttons(bool new_lb, bool new_rb) {
 int cursor_draw() {
     switch (state) {
     case CURSOR_ARROW:
-        return vb_draw_img(vg_get_back_buffer(), cursor_arrow, 0, 0, 24, 24, cursor_x - 12, cursor_y - 12);
+        return vb_draw_img(vg_get_back_buffer(), cursor_arrow, cursor_x - 12, cursor_y - 12);
     case CURSOR_PAINT:
         if (vb_draw_circle(vg_get_back_buffer(), cursor_x, cursor_y, drawer_get_selected_thickness()+2, 0x00393939) != OK) 
             return 1; 
@@ -78,9 +78,9 @@ int cursor_draw() {
             return 1; 
         return 0;
     case CURSOR_WRITE:
-        return vb_draw_img(vg_get_back_buffer(), cursor_write, 0, 0, 24, 24, cursor_x - 12, cursor_y - 12);
+        return vb_draw_img(vg_get_back_buffer(), cursor_write, cursor_x - 12, cursor_y - 12);
     case CURSOR_DISABLED:
-        return vb_draw_img(vg_get_back_buffer(), cursor_disabled, 0, 0, 24, 24, cursor_x - 12, cursor_y - 12);
+        return vb_draw_img(vg_get_back_buffer(), cursor_disabled, cursor_x - 12, cursor_y - 12);
     }
 }
 

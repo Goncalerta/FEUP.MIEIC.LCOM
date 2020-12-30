@@ -481,18 +481,18 @@ static int game_draw_bar() {
 
 
     // Guesses
-    // TODO dont use magic numbers like 400 without variables
+    // TODOPORVER dont use magic numbers like 400 without variables
     y = buf.v_res - GAME_BAR_INNER_HEIGHT + 7;
     for (size_t i = 0; i < game->round->num_guesses; i++) {
         if (game->round->guesses[i].correct) {
-            if (vb_draw_img(buf, tick_img, 0, 0, tick_img.width, tick_img.height, 350, y) != OK)
+            if (vb_draw_img(buf, tick_img, 350, y) != OK)
                 return 1;
         } else {
-            if (vb_draw_img(buf, cross_img, 0, 0, tick_img.width, tick_img.height, 350, y) != OK)
+            if (vb_draw_img(buf, cross_img, 350, y) != OK)
                 return 1;
         }
 
-        // TODO get rid of that meaningless 100
+        // TODOPORVER get rid of that meaningless 100
         char guess[GUESS_CHARACTER_LIMIT + 1] = "";
         if (strlen(game->round->guesses[i].guess) <= GUESS_CHARACTER_LIMIT) {
             strcpy(guess, game->round->guesses[i].guess);
@@ -547,12 +547,12 @@ int game_draw() {
     if (game->state == GAME_OVER) {
         // Offset gives an effect of shaking animation
         uint16_t offset = game->round->ticker % 30 >= 15? -3 : 3;
-        vb_draw_img(buf, game_over_message, 0, 0, game_over_message.width, game_over_message.height, (buf.h_res - game_over_message.width) / 2 + offset, 80);
+        vb_draw_img(buf, game_over_message, (buf.h_res - game_over_message.width) / 2 + offset, 80);
     
     } else if (game->state == ROUND_CORRECT_GUESS) {
         // Offset gives an effect of shaking animation
         uint16_t offset = game->round->ticker % 30 >= 15? -3 : 3;
-        vb_draw_img(buf, correct_message, 0, 0, correct_message.width, correct_message.height, (buf.h_res - correct_message.width) / 2 + offset, 80);
+        vb_draw_img(buf, correct_message, (buf.h_res - correct_message.width) / 2 + offset, 80);
     }
 
     if (game->round->role == DRAWER) {
