@@ -438,11 +438,10 @@ void delete_text_box(text_box_t *text_box) {
     free(text_box->word);
 }
 
-int text_box_clip_board_exit() {
+void text_box_clip_board_exit() {
     if (clip_board == NULL) {
-        return 0;
+        return;
     }
 
     free(clip_board);
-    return 0;
 }

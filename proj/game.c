@@ -457,7 +457,7 @@ static int game_draw_bar() {
         return 1;
 
 
-    // Text box
+    // Text box and word
     switch (game->round->role) {
     case DRAWER:
         if (font_draw_string(buf, "DRAW THE WORD", TEXT_BOX_GUESSER_X, 670) != OK)

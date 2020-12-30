@@ -59,7 +59,7 @@ int uart_send_byte(uint8_t byte) {
     if (queue_push(&transmitted, &byte) != OK)
         return 1;
     
-    return uart_send_bytes(); // TODOPORVER maybe don't flush automatically each byte; instead flush each message
+    return uart_send_bytes();
 }
 
 int uart_read_byte(uint8_t *byte) {
@@ -113,42 +113,6 @@ int uart_send_bytes() {
 
     return 0;
 }
-
-// int uart_send_byte(uint8_t byte) {
-//     uint8_t lsr_byte;
-    
-//     if (util_sys_inb(COM1_BASE_ADDR + LINE_STATUS_REG, &lsr_byte) != OK)
-//         return 1;
-    
-//     while (!(lsr_byte & LSR_TRANSMITTER_HOLDING_REGISTER_EMPTY)) {
-//         tickdelay(micros_to_ticks(DELAY_US));
-//         if (util_sys_inb(COM1_BASE_ADDR + LINE_STATUS_REG, &lsr_byte) != OK)
-//             return 1;
-//     }
-    
-//     if (sys_outb(COM1_BASE_ADDR + TRANSMITTER_HOLDING_REG, byte) != OK)
-//         return 1;
-
-//     return 0;
-// }
-
-// int uart_receive_byte(uint8_t *byte) {
-//     uint8_t lsr_byte;
-    
-//     if (util_sys_inb(COM1_BASE_ADDR + LINE_STATUS_REG, &lsr_byte) != OK)
-//         return 1;
-    
-//     while (!(lsr_byte & LSR_RECEIVER_READY)) {
-//         tickdelay(micros_to_ticks(DELAY_US));
-//         if (util_sys_inb(COM1_BASE_ADDR + LINE_STATUS_REG, &lsr_byte) != OK)
-//             return 1;
-//     }
-    
-//     if (util_sys_inb(COM1_BASE_ADDR + RECEIVER_BUFFER_REG, byte) != OK)
-//         return 1;
-
-//     return 0;
-// }
 
 int uart_check_error(bool *err) {
     uint8_t lsr_byte;

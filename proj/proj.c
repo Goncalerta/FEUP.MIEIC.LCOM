@@ -104,17 +104,25 @@ int (proj_main_loop)(int argc, char *argv[]) {
     if (uart_flush_received_bytes(&noop, &noop, &noop) != OK)
         return 1;    
 
+    if (protocol_send_program_opened() != OK)
+        return 1;
+    
     // Program assets and initializations
-    // TODOPORVER probably move those to a more appropriate place later in the project
+
     srand(rtc_get_seed());
-    protocol_send_program_opened();
-    font_load(image_type); 
-    game_load_assets(image_type);
-    cursor_init(image_type);
-    menu_init(image_type);
+    
+    if (font_load(image_type) != OK)
+        return 1; 
+    if (game_load_assets(image_type) != OK)
+        return 1;
+    if (cursor_init(image_type) != OK)
+        return 1;
+    if (menu_init(image_type) != OK)
+        return 1;
     if (menu_set_main_menu() != OK)
         return 1;
-    // ^^
+
+    // Driver receive loop
 
     int ipc_status, r;
     message msg;
@@ -183,25 +191,25 @@ int (proj_main_loop)(int argc, char *argv[]) {
         }
     }
 
-    // EXIT game assets
-    // TODOPORVER probably move those to a more appropriate place later in the project
-    if (canvas_exit() != OK)
-        return 1;
-    if (text_box_clip_board_exit() != OK)
-        return 1;
-    cursor_exit();
+    // Exit program and unload assets
+
+    text_box_clip_board_exit();
     font_unload();
     game_unload_assets();
     menu_exit();
+    cursor_exit();
     dispatcher_bind_buttons(0);
     dispatcher_bind_text_boxes(0);
     dispatcher_bind_canvas(false);
-    // ^^
+
+    // Uart and communication protocol
 
     if (com1_unsubscribe_int() != OK)
         return 1;
     
     protocol_exit();
+
+    // RTC
     
     if (rtc_disable_int(PERIODIC_INTERRUPT) != OK)
         return 1;
@@ -212,8 +220,12 @@ int (proj_main_loop)(int argc, char *argv[]) {
     if (rtc_unsubscribe_int() != OK)
         return 1;
     
+    // Keyboard
+
     if (kbd_unsubscribe_int() != OK)
         return 1;
+
+    // Mouse
 
     if (mouse_unsubscribe_int() != OK) 
         return 1;
@@ -224,8 +236,12 @@ int (proj_main_loop)(int argc, char *argv[]) {
     if (kbc_flush() != OK)
         return 1;
 
+    // Timer
+
     if (timer_unsubscribe_int() != OK)
         return 1;
+
+    // Video card
 
     if (vg_exit() != OK)
         return 1;

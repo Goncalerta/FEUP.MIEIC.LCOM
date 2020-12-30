@@ -143,8 +143,7 @@ int event_round_win(uint32_t score) {
 }
 
 int event_end_round() {
-    if (canvas_exit() != OK)
-        return 1;
+    canvas_exit();
     game_delete_round();
     return 0;
 }
@@ -310,8 +309,7 @@ int event_leave_game() {
     if (rtc_disable_int(ALARM_INTERRUPT) != OK)
         return 1;
     delete_game();
-    if (canvas_exit() != OK)
-        return 1;
+    canvas_exit();
     if (protocol_send_leave_game() != OK)
         return 1;
     if (menu_set_main_menu() != OK)
@@ -331,6 +329,7 @@ int dispatch_mouse_packet(struct packet p) {
     cursor_update_buttons(p.lb, p.rb);
     if (event_update_cursor_state() != OK)
         return 1;
+
     return 0;
 }
 
@@ -425,6 +424,7 @@ int dispatch_keyboard_event(kbd_event_t kbd_event) {
     
     for (size_t i = 0; i < num_listening_text_boxes; i++) {
         text_box_t *text_box = listening_text_boxes[i];
+
         if (text_box_react_kbd(text_box, kbd_event) != OK) {
             return 1;
         }
@@ -495,8 +495,19 @@ int draw_frame() {
         return 1;
     if (cursor_draw() != OK)
         return 1;
+
+    if (num_listening_text_boxes == 1){
+        printf("DRAWINGFRAME9\n");
+        printf("CURRENT: %d\n", listening_text_boxes[0]);
+    }
+
     if (vg_flip_page() != OK)
         return 1;
+
+    if (num_listening_text_boxes == 1){
+        printf("DRAWINGFRAME10\n");
+        printf("CURRENT: %d\n", listening_text_boxes[0]);
+    }
 
     return 0;
 }

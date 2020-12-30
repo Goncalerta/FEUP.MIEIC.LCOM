@@ -56,6 +56,6 @@ void text_box_unselect(text_box_t *text_box);
 
 void delete_text_box(text_box_t *text_box);
 
-int text_box_clip_board_exit();
+void text_box_clip_board_exit();
 
 #endif /* __TEXTBOX_H */

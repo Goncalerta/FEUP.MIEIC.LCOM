@@ -81,7 +81,7 @@ int canvas_init(uint16_t width, uint16_t height, bool en) {
     return 0;
 }
 
-static int canvas_clear_undone() {
+static void canvas_clear_undone() {
     stroke *current = undone;
     while (current != NULL) {
         stroke *prev = current->prev;
@@ -90,10 +90,9 @@ static int canvas_clear_undone() {
     }
     
     undone = NULL;
-    return 0;
 }
 
-int clear_canvas() {
+void clear_canvas() {
     stroke *current = last;
     while (current != NULL) {
         stroke *prev = current->prev;
@@ -106,17 +105,14 @@ int clear_canvas() {
 
     canvas_clear_undone();
     vb_fill_screen(canvas_buf, 0x00ffffff);
-    return 0;
 }
 
-int canvas_exit() {
+void canvas_exit() {
     if (!initialized)
-        return 0;
+        return;
     initialized = false;
-    if (clear_canvas() != OK)
-        return 1;
+    clear_canvas();
     free(canvas_buf.buf);
-    return 0;
 }
 
 bool canvas_is_initialized() {

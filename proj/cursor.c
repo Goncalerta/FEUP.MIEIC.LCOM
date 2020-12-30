@@ -22,6 +22,8 @@ int cursor_init(enum xpm_image_type type) {
         return 1;
     cursor_x = vg_get_hres() / 2;
     cursor_y = vg_get_vres() / 2;
+    lb = false;
+    rb = false;
     
     return 0;
 }

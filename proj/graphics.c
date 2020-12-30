@@ -22,41 +22,8 @@ int vb_draw_pixel(frame_buffer_t buf, uint16_t x, uint16_t y, uint32_t color) {
 }
 
 int vb_fill_screen(frame_buffer_t buf, uint32_t color) {
-
-    // if (color > COLOR_CAP_BYTES_NUM(buf.bytes_per_pixel)) {
-    //     printf("Invlid color argument. Too large\n");
-    //     return 1;
-    // }
-
-    // line_mult = buf.h_res * buf.bytes_per_pixel;
-    // for (size_t px = 0; px < line_mul; px += buf.bytes_per_pixel) {
-    //     if (memcpy(pixel_mem_pos + px, &color, buf.bytes_per_pixel) == NULL)
-    //         return 1;
-    // }
-
-    // for (uint8_t *px = begin; px < end; px += buf.bytes_per_pixel) {
-    //     if (memcpy(px, &color, buf.bytes_per_pixel) == NULL)
-    //         return 1;
-    // }
-
-    
-    // uint8_t *begin = buf.buf;
-    // size_t line_mul = buf.h_res * buf.bytes_per_pixel;
-    // uint8_t *first_line = begin + line_mul;
-    // uint8_t *end = begin + buf.v_res * line_mul;
-
-    // for (uint8_t *px = begin; px < first_line; px += buf.bytes_per_pixel) {
-    //     if (memcpy(px, &color, buf.bytes_per_pixel) == NULL)
-    //         return 1;
-    // }
-
-    // for (uint8_t *px = begin; px < end; px += line_mul) {
-    //     if (memcpy(px, begin, line_mul) == NULL)
-    //         return 1;
-    // }
-
-
-    // TODOPORVER is this worth it for speed?
+    // This algorithm fixed the slow mouse problem in our computer
+    // memcpys probably are more optimized than for loops pixel by pixel
     uint8_t *begin = buf.buf;
     size_t half_len = buf.v_res * buf.h_res * buf.bytes_per_pixel/2;
 
@@ -68,24 +35,13 @@ int vb_fill_screen(frame_buffer_t buf, uint32_t color) {
     }
 
     memcpy(begin + half_len, begin, half_len);
-
-
-    // for (uint8_t *px = begin; px < first_line; px += buf.bytes_per_pixel) {
-    //     if (memcpy(px, &color, buf.bytes_per_pixel) == NULL)
-    //         return 1;
-    // }
-
-    // for (uint8_t *px = begin; px < end; px += line_mul) {
-    //     if (memcpy(px, begin, line_mul) == NULL)
-    //         return 1;
-    // }
     
     return 0;
 }
 
 int vb_draw_hline(frame_buffer_t buf, uint16_t x, uint16_t y, uint16_t len, uint32_t color) {
     for (uint16_t i = 0; i < len; i++) {
-        // TODOPORVER for efficiency, maybe copy all bytes at once, checking the color and out of screen only one
+        // TODO for efficiency, maybe copy all bytes at once, checking the color and out of screen only one
         if (vb_draw_pixel(buf, x + i, y, color)) {
             return 1;
         }
@@ -95,7 +51,7 @@ int vb_draw_hline(frame_buffer_t buf, uint16_t x, uint16_t y, uint16_t len, uint
 
 int vb_draw_vline(frame_buffer_t buf, uint16_t x, uint16_t y, uint16_t len, uint32_t color) {
     for (uint16_t i = 0; i < len; i++) {
-        // TODOPORVER for efficiency, maybe copy all bytes at once, checking the color and out of screen only one
+        // TODO for efficiency, maybe copy all bytes at once, checking the color and out of screen only one
         if (vb_draw_pixel(buf, x, y + i, color)) {
             return 1;
         }

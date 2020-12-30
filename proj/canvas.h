@@ -26,9 +26,9 @@ typedef struct stroke {
 
 bool canvas_is_initialized();
 int canvas_init(uint16_t width, uint16_t height, bool enabled);
-int canvas_exit();
+void canvas_exit();
 int canvas_draw_frame(uint16_t y);
-int clear_canvas();
+void clear_canvas();
 bool canvas_is_enabled();
 int canvas_new_stroke(uint32_t color, uint16_t thickness);
 int canvas_new_stroke_atom(uint16_t x, uint16_t y);
