@@ -351,3 +351,39 @@ int canvas_update_state(bool hovering, bool lb, bool rb) {
 
     return 0;
 }
+
+int canvas_react_kbd(kbd_event_t kbd_event) {
+    if (enabled) {
+        if (kbd_event.key == CHAR && kbd_event.char_key == 'Z' && kbd_event.is_ctrl_pressed) {
+            if (event_undo() != OK)
+                return 1;
+        }
+
+        if (kbd_event.key == CHAR && kbd_event.char_key == 'Y' && kbd_event.is_ctrl_pressed) {
+            if (event_redo() != OK)
+                return 1;
+        }
+
+        if (kbd_event.key == CHAR && kbd_event.char_key == 'P' && !kbd_event.is_ctrl_pressed) {
+            if (drawer_set_pencil_primary() != OK)
+                return 1;
+        }
+
+        if (kbd_event.key == CHAR && kbd_event.char_key == 'E' && !kbd_event.is_ctrl_pressed) {
+            if (drawer_set_eraser_primary() != OK)
+                return 1;
+        }
+
+        if (kbd_event.key == CHAR && kbd_event.char_key == 'C' && !kbd_event.is_ctrl_pressed) {
+            if (drawer_change_selected_color() != OK)
+                return 1;
+        }
+
+        if (kbd_event.key == CHAR && kbd_event.char_key == 'T' && !kbd_event.is_ctrl_pressed) {
+            if (drawer_change_selected_thickness() != OK)
+                return 1;
+        }
+    }
+
+    return 0;
+}

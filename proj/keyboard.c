@@ -9,6 +9,7 @@ static int hook_id_kbd = 1;
 static uint8_t scancode_bytes[2];
 static size_t scancode_bytes_counter = 0;
 static bool should_retrieve = false;
+static kbd_event_t kbd_state = { .key = NO_KEY };
 
 
 int kbd_subscribe_int(uint8_t *bit_no) {
@@ -46,7 +47,7 @@ bool kbd_is_scancode_ready() {
    return should_retrieve;
 }
 
-int kbd_handle_scancode(kbd_event_t *kbd_state) {
+int kbd_handle_scancode(kbd_event_t *kbd_event) {
     if (!should_retrieve)
         return 1;
     
@@ -61,70 +62,71 @@ int kbd_handle_scancode(kbd_event_t *kbd_state) {
     }
     
     if (!kbd_is_make_code(code)) {
-        kbd_state->key = NO_KEY;
+        kbd_state.key = NO_KEY;
         if (code == BREAK_CODE(MAKE_CTRL)) {
-            kbd_state->is_ctrl_pressed = false;
+            kbd_state.is_ctrl_pressed = false;
         }
     } else { // make code
         switch (code) {
 	    case MAKE_CTRL:
-	        kbd_state->key = CTRL;
-            kbd_state->is_ctrl_pressed = true;
+	        kbd_state.key = CTRL;
+            kbd_state.is_ctrl_pressed = true;
             break;
 	                                     
-	    case MAKE_ENTER:       kbd_state->key = ENTER;       break;
-	    case MAKE_BACK_SPACE:  kbd_state->key = BACK_SPACE;  break;
-	    case MAKE_ESC:         kbd_state->key = ESC;         break;
-	    case MAKE_DEL:         kbd_state->key = DEL;         break;
-	    case MAKE_ARROW_UP:    kbd_state->key = ARROW_UP;    break;
-	    case MAKE_ARROW_DOWN:  kbd_state->key = ARROW_DOWN;  break;
-	    case MAKE_ARROW_LEFT:  kbd_state->key = ARROW_LEFT;  break;
-	    case MAKE_ARROW_RIGHT: kbd_state->key = ARROW_RIGHT; break;
+	    case MAKE_ENTER:       kbd_state.key = ENTER;       break;
+	    case MAKE_BACK_SPACE:  kbd_state.key = BACK_SPACE;  break;
+	    case MAKE_ESC:         kbd_state.key = ESC;         break;
+	    case MAKE_DEL:         kbd_state.key = DEL;         break;
+	    case MAKE_ARROW_UP:    kbd_state.key = ARROW_UP;    break;
+	    case MAKE_ARROW_DOWN:  kbd_state.key = ARROW_DOWN;  break;
+	    case MAKE_ARROW_LEFT:  kbd_state.key = ARROW_LEFT;  break;
+	    case MAKE_ARROW_RIGHT: kbd_state.key = ARROW_RIGHT; break;
 
-        case MAKE_SPACE: kbd_state->key = CHAR; kbd_state->char_key = ' '; break;
-	    case MAKE_A:     kbd_state->key = CHAR; kbd_state->char_key = 'A'; break;
-	    case MAKE_B:     kbd_state->key = CHAR; kbd_state->char_key = 'B'; break;
-	    case MAKE_C:     kbd_state->key = CHAR; kbd_state->char_key = 'C'; break;
-	    case MAKE_D:     kbd_state->key = CHAR; kbd_state->char_key = 'D'; break;
-	    case MAKE_E:     kbd_state->key = CHAR; kbd_state->char_key = 'E'; break;
-	    case MAKE_F:     kbd_state->key = CHAR; kbd_state->char_key = 'F'; break;
-	    case MAKE_G:     kbd_state->key = CHAR; kbd_state->char_key = 'G'; break;
-	    case MAKE_H:     kbd_state->key = CHAR; kbd_state->char_key = 'H'; break;
-	    case MAKE_I:     kbd_state->key = CHAR; kbd_state->char_key = 'I'; break;
-	    case MAKE_J:     kbd_state->key = CHAR; kbd_state->char_key = 'J'; break;
-	    case MAKE_K:     kbd_state->key = CHAR; kbd_state->char_key = 'K'; break;
-	    case MAKE_L:     kbd_state->key = CHAR; kbd_state->char_key = 'L'; break;
-	    case MAKE_M:     kbd_state->key = CHAR; kbd_state->char_key = 'M'; break;
-	    case MAKE_N:     kbd_state->key = CHAR; kbd_state->char_key = 'N'; break;
-	    case MAKE_O:     kbd_state->key = CHAR; kbd_state->char_key = 'O'; break;
-	    case MAKE_P:     kbd_state->key = CHAR; kbd_state->char_key = 'P'; break;
-	    case MAKE_Q:     kbd_state->key = CHAR; kbd_state->char_key = 'Q'; break;
-	    case MAKE_R:     kbd_state->key = CHAR; kbd_state->char_key = 'R'; break;
-	    case MAKE_S:     kbd_state->key = CHAR; kbd_state->char_key = 'S'; break;
-	    case MAKE_T:     kbd_state->key = CHAR; kbd_state->char_key = 'T'; break;
-	    case MAKE_U:     kbd_state->key = CHAR; kbd_state->char_key = 'U'; break;
-	    case MAKE_V:     kbd_state->key = CHAR; kbd_state->char_key = 'V'; break;
-    	case MAKE_W:     kbd_state->key = CHAR; kbd_state->char_key = 'W'; break;
-	    case MAKE_X:     kbd_state->key = CHAR; kbd_state->char_key = 'X'; break;
-	    case MAKE_Y:     kbd_state->key = CHAR; kbd_state->char_key = 'Y'; break;
-    	case MAKE_Z:     kbd_state->key = CHAR; kbd_state->char_key = 'Z'; break;
+        case MAKE_SPACE: kbd_state.key = CHAR; kbd_state.char_key = ' '; break;
+	    case MAKE_A:     kbd_state.key = CHAR; kbd_state.char_key = 'A'; break;
+	    case MAKE_B:     kbd_state.key = CHAR; kbd_state.char_key = 'B'; break;
+	    case MAKE_C:     kbd_state.key = CHAR; kbd_state.char_key = 'C'; break;
+	    case MAKE_D:     kbd_state.key = CHAR; kbd_state.char_key = 'D'; break;
+	    case MAKE_E:     kbd_state.key = CHAR; kbd_state.char_key = 'E'; break;
+	    case MAKE_F:     kbd_state.key = CHAR; kbd_state.char_key = 'F'; break;
+	    case MAKE_G:     kbd_state.key = CHAR; kbd_state.char_key = 'G'; break;
+	    case MAKE_H:     kbd_state.key = CHAR; kbd_state.char_key = 'H'; break;
+	    case MAKE_I:     kbd_state.key = CHAR; kbd_state.char_key = 'I'; break;
+	    case MAKE_J:     kbd_state.key = CHAR; kbd_state.char_key = 'J'; break;
+	    case MAKE_K:     kbd_state.key = CHAR; kbd_state.char_key = 'K'; break;
+	    case MAKE_L:     kbd_state.key = CHAR; kbd_state.char_key = 'L'; break;
+	    case MAKE_M:     kbd_state.key = CHAR; kbd_state.char_key = 'M'; break;
+	    case MAKE_N:     kbd_state.key = CHAR; kbd_state.char_key = 'N'; break;
+	    case MAKE_O:     kbd_state.key = CHAR; kbd_state.char_key = 'O'; break;
+	    case MAKE_P:     kbd_state.key = CHAR; kbd_state.char_key = 'P'; break;
+	    case MAKE_Q:     kbd_state.key = CHAR; kbd_state.char_key = 'Q'; break;
+	    case MAKE_R:     kbd_state.key = CHAR; kbd_state.char_key = 'R'; break;
+	    case MAKE_S:     kbd_state.key = CHAR; kbd_state.char_key = 'S'; break;
+	    case MAKE_T:     kbd_state.key = CHAR; kbd_state.char_key = 'T'; break;
+	    case MAKE_U:     kbd_state.key = CHAR; kbd_state.char_key = 'U'; break;
+	    case MAKE_V:     kbd_state.key = CHAR; kbd_state.char_key = 'V'; break;
+    	case MAKE_W:     kbd_state.key = CHAR; kbd_state.char_key = 'W'; break;
+	    case MAKE_X:     kbd_state.key = CHAR; kbd_state.char_key = 'X'; break;
+	    case MAKE_Y:     kbd_state.key = CHAR; kbd_state.char_key = 'Y'; break;
+    	case MAKE_Z:     kbd_state.key = CHAR; kbd_state.char_key = 'Z'; break;
 	
-	    case MAKE_0: kbd_state->key = CHAR; kbd_state->char_key = '0'; break;
-	    case MAKE_1: kbd_state->key = CHAR; kbd_state->char_key = '1'; break;
-	    case MAKE_2: kbd_state->key = CHAR; kbd_state->char_key = '2'; break;
-	    case MAKE_3: kbd_state->key = CHAR; kbd_state->char_key = '3'; break;
-	    case MAKE_4: kbd_state->key = CHAR; kbd_state->char_key = '4'; break;
-	    case MAKE_5: kbd_state->key = CHAR; kbd_state->char_key = '5'; break;
-	    case MAKE_6: kbd_state->key = CHAR; kbd_state->char_key = '6'; break;
-	    case MAKE_7: kbd_state->key = CHAR; kbd_state->char_key = '7'; break;
-	    case MAKE_8: kbd_state->key = CHAR; kbd_state->char_key = '8'; break;
-	    case MAKE_9: kbd_state->key = CHAR; kbd_state->char_key = '9'; break;
-		default:     kbd_state->key = NO_KEY; // for keys not mapped
+	    case MAKE_0: kbd_state.key = CHAR; kbd_state.char_key = '0'; break;
+	    case MAKE_1: kbd_state.key = CHAR; kbd_state.char_key = '1'; break;
+	    case MAKE_2: kbd_state.key = CHAR; kbd_state.char_key = '2'; break;
+	    case MAKE_3: kbd_state.key = CHAR; kbd_state.char_key = '3'; break;
+	    case MAKE_4: kbd_state.key = CHAR; kbd_state.char_key = '4'; break;
+	    case MAKE_5: kbd_state.key = CHAR; kbd_state.char_key = '5'; break;
+	    case MAKE_6: kbd_state.key = CHAR; kbd_state.char_key = '6'; break;
+	    case MAKE_7: kbd_state.key = CHAR; kbd_state.char_key = '7'; break;
+	    case MAKE_8: kbd_state.key = CHAR; kbd_state.char_key = '8'; break;
+	    case MAKE_9: kbd_state.key = CHAR; kbd_state.char_key = '9'; break;
+		default:     kbd_state.key = NO_KEY; // for keys not mapped
         }
     }
 
     scancode_bytes_counter = 0;
     should_retrieve = false;
+    *kbd_event = kbd_state;
     return 0;
 }
 

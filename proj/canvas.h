@@ -3,6 +3,8 @@
 
 #include <lcom/lcf.h>
 
+#include "keyboard.h"
+
 typedef enum canvas_state_t {
     CANVAS_STATE_NORMAL,
     CANVAS_STATE_HOVERING,
@@ -34,6 +36,7 @@ int canvas_undo_stroke();
 int canvas_redo_stroke();
 bool canvas_is_hovering(uint16_t x, uint16_t y);
 int canvas_update_state(bool hovering, bool lb, bool rb);
+int canvas_react_kbd(kbd_event_t kbd_event);
 canvas_state_t canvas_get_state();
 
 #endif /* __CANVAS_H */

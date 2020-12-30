@@ -132,11 +132,11 @@ int (proj_main_loop)(int argc, char *argv[]) {
                     kbc_ih();
                     
                     if (kbd_is_scancode_ready()) {
-                        kbd_event_t kbd_state = { .key = NO_KEY };
+                        kbd_event_t kbd_state;
                         
                         if (kbd_handle_scancode(&kbd_state) != OK) {
                             printf("kbd_handle_scancode failed\n");
-                            
+
                         } else if (dispatch_keyboard_event(kbd_state) != OK) {
                             printf("dispatch_keyboard_event failed\n");
                         }
