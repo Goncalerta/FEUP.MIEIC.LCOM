@@ -6,6 +6,7 @@
 
 static int hook_id_rtc = 3;
 static date_t current_date;
+static date_t last_alarm_set_in;
 
 static void rtc_print_byte_binary_format(uint8_t val) {
     for (int i = 7; i >= 0; i--) {
@@ -124,7 +125,8 @@ int rtc_set_alarm_in(rtc_alarm_time_t remaining_time_to_alarm) {
     rtc_interrupt_config_t config = {.alarm_time = remaining_time_to_alarm};
     if (rtc_enable_int(ALARM_INTERRUPT, config) != OK)
         return 1;
-    
+
+    last_alarm_set_in = current_date;
     return 0;
 }
 
@@ -243,8 +245,10 @@ void rtc_ih() {
             return;
     }
     if (register_c & RTC_AF) {
-        if (dispatch_rtc_alarm_int() != 0)
-            return;
+        if (date_operator_less_than(last_alarm_set_in, current_date)) { // TODO maybe this is not enough (the date may change between disable_int() and rtc_ih())
+            if (dispatch_rtc_alarm_int() != 0)
+                return;
+        }
     }
 }
 
@@ -255,4 +259,15 @@ int rtc_flush() {
         return 1;
     }
     return 0;
+}
+
+unsigned int rtc_get_seed() {
+    unsigned int seed = current_date.second;
+    seed = 37 * seed + current_date.minute;
+    seed = 37 * seed + current_date.hour;
+    seed = 37 * seed + current_date.day;
+    seed = 37 * seed + current_date.month;
+    seed = 37 * seed + current_date.year;
+
+    return seed;
 }
