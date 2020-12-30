@@ -112,7 +112,7 @@ typedef struct game_t {
     uint32_t round_number;
 } game_t;
 
-static const rtc_alarm_time_t clue_time_interval = {.hours = 0, .minutes = 0, .seconds = 12};
+static const rtc_alarm_time_t clue_time_interval = {.hours = 0, .minutes = 0, .seconds = 16};
 static const rtc_alarm_time_t end_round_delay = {.hours = 0, .minutes = 0, .seconds = 3};
 
 static xpm_image_t tick_img, cross_img;
@@ -120,7 +120,7 @@ static xpm_image_t correct_message, game_over_message;
 static xpm_image_t pencil, eraser, undo_arrow, redo_arrow;
 static xpm_animation_t clock_frames;
 
-static game_t *game;
+static game_t *game = NULL;
 
 void get_random_word(const char **word) {
     *word = word_list[rand() % WORD_LIST_SIZE];
@@ -173,6 +173,7 @@ void delete_game() {
     if (game != NULL) {
         game_delete_round();
         free(game);
+        game = NULL;
     }
 }
 
@@ -244,8 +245,20 @@ const char *game_get_correct_word() {
     return game->round->correct_guess;
 }
 
+bool game_is_round_unstarted() {
+    return game != NULL && game->round != NULL && game->state == ROUND_UNSTARTED;
+}
+
 bool game_is_round_ongoing() {
     return game != NULL && game->state == ROUND_ONGOING;
+}
+
+bool game_is_round_ongoing_or_tolerance() {
+    return game != NULL && (game->state == ROUND_ONGOING || game->state == TIMES_UP);
+}
+
+bool game_may_create_new_round() {
+    return game != NULL && game->round == NULL;
 }
 
 static int init_text_box(guesser_t *guesser) {
@@ -256,7 +269,7 @@ static int init_text_box(guesser_t *guesser) {
 }
 
 int game_new_round(role_t role, const char *word) {
-    if (game == NULL)
+    if (!game_may_create_new_round())
         return 1;
 
     game->round_number++;
@@ -322,6 +335,7 @@ void game_delete_round() {
         break;
     }
     free(game->round);
+    game->round = NULL;
 }
 
 int game_resume() {
@@ -607,7 +621,7 @@ int game_guess_word(char *guess) {
     if (g.correct) {
         game->state = ROUND_CORRECT_GUESS;
         if (game->round->role == DRAWER) {
-            uint32_t new_score = game->score + 100 + game->round->round_timer * 0.15;
+            uint32_t new_score = game->score + 100 + game->round->round_timer * 4;
             if (new_score > MAX_SCORE)
                 new_score = MAX_SCORE;
             if (event_round_win(new_score) != OK)

@@ -60,6 +60,9 @@ static int protocol_receive_random_number(size_t content_len, uint8_t *content) 
 }
 
 static int protocol_receive_new_round(size_t content_len, uint8_t *content) {
+    if (content[content_len-1] != '\0')
+        return 1;
+
     char *word;
 
     size_t word_len = strlen((char *) content) + 1;
@@ -71,8 +74,10 @@ static int protocol_receive_new_round(size_t content_len, uint8_t *content) {
         return 1;
 
     strncpy(word, (char *) content, word_len);
-    if (event_new_round_as_guesser(word) != OK)
-        return 1;
+    if (game_may_create_new_round()) {
+        if (event_new_round_as_guesser(word) != OK)
+            return 1;
+    }
 
     return 0;
 }
@@ -81,8 +86,10 @@ static int protocol_receive_start_round(size_t content_len, uint8_t *content) {
     if (content_len != 0)
         return 1;
 
-    if (event_start_round() != OK)
-        return 1;
+    if (game_is_round_unstarted() && game_get_role() == GUESSER) {
+        if (event_start_round() != OK)
+            return 1;
+    }
     
     return 0;
 }
@@ -96,8 +103,11 @@ static int protocol_receive_new_stroke(size_t content_len, uint8_t *content) {
     memcpy(&color, content, 4);
     memcpy(&thickness, content + 4, 2);
 
-    if (canvas_new_stroke(color, thickness) != OK)
-        return 1;
+    if (canvas_is_initialized() && game_get_role() == GUESSER) {
+        if (canvas_new_stroke(color, thickness) != OK)
+            return 1;
+    }
+    
     
     return 0;
 }
@@ -110,9 +120,11 @@ static int protocol_receive_draw_atom(size_t content_len, uint8_t *content) {
     memcpy(&x, content, 2);
     memcpy(&y, content + 2, 2);
 
-    if (canvas_new_stroke_atom(x, y) != OK)
-        return 1;
-    
+    if (canvas_is_initialized() && game_get_role() == GUESSER) {
+        if (canvas_new_stroke_atom(x, y) != OK)
+            return 1;
+    }
+
     return 0;
 }
 
@@ -120,8 +132,11 @@ static int protocol_receive_undo_canvas(size_t content_len, uint8_t *content) {
     if (content_len != 0)
         return 1;
 
-    canvas_undo_stroke();
-    
+    if (canvas_is_initialized() && game_get_role() == GUESSER) {
+        if (canvas_undo_stroke() != OK)
+            return 1;
+    }
+
     return 0;
 }
 
@@ -129,12 +144,18 @@ static int protocol_receive_redo_canvas(size_t content_len, uint8_t *content) {
     if (content_len != 0)
         return 1;
 
-    canvas_redo_stroke();
-    
+    if (canvas_is_initialized() && game_get_role() == GUESSER) {
+        if (canvas_redo_stroke() != OK)
+            return 1;
+    }
+
     return 0;
 }
 
 static int protocol_receive_guess(size_t content_len, uint8_t *content) {
+    if (content[content_len-1] != '\0')
+        return 1;
+
     char *guess;
 
     size_t guess_len = strlen((char *) content) + 1;
@@ -146,8 +167,9 @@ static int protocol_receive_guess(size_t content_len, uint8_t *content) {
         return 1;
 
     strncpy(guess, (char *) content, guess_len);
-    if (game_guess_word(guess) != OK) {
-        return 1;
+    if (game_is_round_ongoing_or_tolerance() && game_get_role() == DRAWER) {
+        if (game_guess_word(guess) != OK)
+            return 1;
     }
 
     return 0;
@@ -160,8 +182,10 @@ static int protocol_receive_clue(size_t content_len, uint8_t *content) {
     uint8_t pos;
     memcpy(&pos, content, 1);
 
-    if (game_give_clue_at(pos) != OK)
-        return 1;
+    if (game_is_round_ongoing() && game_get_role() == GUESSER) {
+        if (game_give_clue_at(pos) != OK)
+            return 1;
+    }
     
     return 0;
 }
@@ -172,9 +196,11 @@ static int protocol_receive_round_win(size_t content_len, uint8_t *content) {
 
     uint32_t score;
     memcpy(&score, content, 4);
-    if (game_round_over(score, true) != OK)
-        return 1;
-    
+    if (game_is_round_ongoing_or_tolerance() && game_get_role() == GUESSER) {
+        if (game_round_over(score, true) != OK)
+            return 1;
+    }
+
     return 0;
 }
 
@@ -182,9 +208,11 @@ static int protocol_receive_game_over(size_t content_len, uint8_t *content) {
     if (content_len != 0)
         return 1;
 
-    if (game_other_player_game_over() != OK)
-        return 1;
-    
+    if (game_is_round_ongoing_or_tolerance() && game_get_role() == GUESSER) {
+        if (game_other_player_game_over() != OK)
+            return 1;
+    }
+
     return 0;
 }
 

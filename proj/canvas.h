@@ -22,6 +22,7 @@ typedef struct stroke {
     struct stroke *next, *prev;
 } stroke;
 
+bool canvas_is_initialized();
 int canvas_init(uint16_t width, uint16_t height, bool enabled);
 int canvas_exit();
 int canvas_draw_frame(uint16_t y);

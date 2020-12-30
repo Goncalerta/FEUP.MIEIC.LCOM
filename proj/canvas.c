@@ -11,6 +11,7 @@ static canvas_state_t state;
 static stroke *first, *last, *undone;
 static frame_buffer_t canvas_buf; // current picture drawn in buffer - copied into vcard back buffer
 static bool enabled;
+static bool initialized = false;
 
 static int canvas_draw_atom_line(stroke_atom atom1, stroke_atom atom2, uint32_t color, uint16_t thickness) {
     uint16_t x1 = atom1.x;
@@ -62,6 +63,7 @@ static int canvas_redraw_strokes() {
 }
 
 int canvas_init(uint16_t width, uint16_t height, bool en) {
+    initialized = true;
     enabled = en;
     state = CANVAS_STATE_NORMAL;
 
@@ -108,10 +110,17 @@ int clear_canvas() {
 }
 
 int canvas_exit() {
+    if (!initialized)
+        return 0;
+    initialized = false;
     if (clear_canvas() != OK)
         return 1;
     free(canvas_buf.buf);
     return 0;
+}
+
+bool canvas_is_initialized() {
+    return initialized;
 }
 
 bool canvas_is_enabled() {

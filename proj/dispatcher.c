@@ -136,7 +136,6 @@ int event_end_round() {
     if (canvas_exit() != OK)
         return 1;
     game_delete_round();
-    cursor_set_state(CURSOR_ARROW);
     return 0;
 }
 
@@ -170,7 +169,6 @@ int event_undo() {
 int event_redo() {
     if (canvas_redo_stroke() != OK)
         return 1;
-    
     if (protocol_send_redo_canvas() != OK)
         return 1;
 
@@ -192,10 +190,15 @@ int event_ready_to_play() {
 }
 
 int event_this_player_random_number() {
+    if (other_player_state == NOT_READY) {
+        return 0;
+    }
+
     this_player_state = RANDOM_NUMBER_SENT;
     this_player_random_number = rand();
     if (protocol_send_random_number(this_player_random_number) != OK)
         return 1;
+
     if (other_player_state == RANDOM_NUMBER_SENT) {
         if (this_player_random_number > other_player_random_number) {
             // Player is about to begin game. Should not be ready to start a new one while this one is ongoing
@@ -232,8 +235,13 @@ int event_other_player_opened_program() {
 }
 
 int event_other_player_random_number(int random_number) {
+    if (this_player_state == NOT_READY) {
+        return 0;
+    }
+
     other_player_state = RANDOM_NUMBER_SENT;
     other_player_random_number = random_number;
+
     if (this_player_state == RANDOM_NUMBER_SENT) {
         if (this_player_random_number > other_player_random_number) {
             // Player is about to begin game. Should not be ready to start a new one while this one is ongoing
@@ -262,7 +270,7 @@ int event_other_player_random_number(int random_number) {
 
 int event_other_player_ready_to_play() {
     other_player_state = READY;
-    if (this_player_state == READY) {
+    if (this_player_state == READY || this_player_state == RANDOM_NUMBER_SENT) {
         if (event_this_player_random_number() != OK)
             return 1;
     }
@@ -280,9 +288,11 @@ int event_other_player_leave_game() {
         if (menu_set_other_player_left_screen() != OK)
             return 1;
     }
+
     if (this_player_state == RANDOM_NUMBER_SENT) {
         this_player_state = READY;
     }
+
     return 0;
 }
 
@@ -290,11 +300,16 @@ int event_leave_game() {
     if (rtc_disable_int(ALARM_INTERRUPT) != OK)
         return 1;
     delete_game();
+    if (canvas_exit() != OK)
+        return 1;
     if (protocol_send_leave_game() != OK)
         return 1;
     if (menu_set_main_menu() != OK)
         return 1;
     this_player_state = NOT_READY;
+    if (other_player_state == RANDOM_NUMBER_SENT) {
+        other_player_state = READY;
+    }
     
     return 0;
 }
@@ -399,7 +414,7 @@ int dispatch_keyboard_event(kbd_event_t kbd_event) {
         }
     }
 
-    if (canvas_is_enabled()) {
+    if (bound_canvas && canvas_is_enabled()) {
         if (kbd_event.key == CHAR && kbd_event.char_key == 'Z' && kbd_event.is_ctrl_pressed) {
             event_undo(); // no need to crash if empty
         }
@@ -413,10 +428,10 @@ int dispatch_keyboard_event(kbd_event_t kbd_event) {
 }
 
 int dispatch_timer_tick() {
-    menu_state_t state = menu_get_state();
-    if (state == GAME || state == PAUSE_MENU)
+    if (menu_get_state() == GAME || menu_get_state() == PAUSE_MENU) {
         if (game_timer_tick() != OK)
             return 1;
+    }
 
     if (draw_frame() != OK) {
         printf("error while drawing frame\n");
@@ -427,7 +442,7 @@ int dispatch_timer_tick() {
 }
 
 int dispatch_rtc_alarm_int() {
-    if (menu_get_state() == GAME) {
+    if (menu_get_state() == GAME || menu_get_state() == PAUSE_MENU) {
         if (game_rtc_alarm() != OK)
             return 1;
     } else if (menu_get_state() == DRAWER_NEW_ROUND_SCREEN) {
@@ -443,16 +458,17 @@ int dispatch_rtc_alarm_int() {
 }
 
 int dispatch_rtc_periodic_int() {
-    if (game_rtc_pi_tick() != OK)
-        return 1;
+    if (menu_get_state() == GAME || menu_get_state() == PAUSE_MENU) {
+        if (game_rtc_pi_tick() != OK)
+            return 1;
+    }
     return 0;
 }
 
 int draw_frame() {
-    // TODO call vg_get_back_buffer() here and pass it as argument to all draw functions called ?
     menu_state_t state = menu_get_state();
 
-    if(state == GAME || state == PAUSE_MENU) {
+    if (state == GAME || state == PAUSE_MENU) {
         if (canvas_draw_frame(0) != OK)
             return 1;
         if (game_draw() != OK)
