@@ -60,7 +60,7 @@ int (timer_unsubscribe_int)() {
 
 void (timer_int_handler)() {
     if (dispatch_timer_tick() != OK) {
-        printf("error while handling timer interrupt\n");
+        printf("Error while handling timer interrupt\n");
     }
 }
 

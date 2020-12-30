@@ -62,7 +62,7 @@ int text_box_draw(frame_buffer_t buf, text_box_t text_box) {
     uint32_t text_box_color = text_box.state == TEXT_BOX_NORMAL ? TEXT_BOX_NORMAL_COLOR : TEXT_BOX_HOVERING_COLOR;
     bool text_box_interacting = text_box.state == TEXT_BOX_SELECTED_HOVERING || text_box.state == TEXT_BOX_SELECTED_NOT_HOVERING || text_box.state == TEXT_BOX_PRESSING;
 
-    if (vb_draw_rectangle(buf, text_box.x, text_box.y, TEXT_BOX_WIDTH(text_box.display_size), TEXT_BOX_HEIGHT, text_box_color) != 0) {
+    if (vb_draw_rectangle(buf, text_box.x, text_box.y, TEXT_BOX_WIDTH(text_box.display_size), TEXT_BOX_HEIGHT, text_box_color) != OK) {
         printf("Error printing the text_box\n");
         return 1;
     }
@@ -90,14 +90,14 @@ int text_box_draw(frame_buffer_t buf, text_box_t text_box) {
         
         if (vb_draw_rectangle(buf, text_box.x + TEXT_BOX_BEG_END_SPACE + start*CHAR_SPACE, 
             text_box.y + TEXT_BOX_TOP_BOT_SPACE - (TEXT_BOX_CURSOR_HEIGHT - FONT_CHAR_HEIGHT)/2, 
-            (end - start)*CHAR_SPACE, TEXT_BOX_CURSOR_HEIGHT, TEXT_BOX_HIGHLIGHTED_TEXT_COLOR) != 0) {
+            (end - start)*CHAR_SPACE, TEXT_BOX_CURSOR_HEIGHT, TEXT_BOX_HIGHLIGHTED_TEXT_COLOR) != OK) {
             printf("Error highlighting the text_box\n");
             return 1;
         }
     }
     
     if (font_draw_string_limited(buf, text_box.word, text_box.x + TEXT_BOX_BEG_END_SPACE, 
-        text_box.y + TEXT_BOX_TOP_BOT_SPACE, text_box.start_display, text_box.display_size) != 0) {
+        text_box.y + TEXT_BOX_TOP_BOT_SPACE, text_box.start_display, text_box.display_size) != OK) {
         return 1;
     }
 
@@ -107,7 +107,7 @@ int text_box_draw(frame_buffer_t buf, text_box_t text_box) {
 
         cursor_x = cursor_x > (text_box.x + TEXT_BOX_BEG_END_SPACE + CHAR_SPACE * text_box.display_size) ? text_box.x + TEXT_BOX_BEG_END_SPACE + CHAR_SPACE * text_box.display_size : cursor_x;
 
-        if (vb_draw_vline(buf, cursor_x, cursor_y, TEXT_BOX_CURSOR_HEIGHT, TEXT_BOX_CURSOR_COLOR) != 0) {
+        if (vb_draw_vline(buf, cursor_x, cursor_y, TEXT_BOX_CURSOR_HEIGHT, TEXT_BOX_CURSOR_COLOR) != OK) {
             return 1;
         }
     }
@@ -275,7 +275,7 @@ int text_box_react_kbd(text_box_t *text_box, kbd_event_t kbd_event) {
         if (kbd_event.is_ctrl_pressed) {
             switch (kbd_event.char_key) {
             case 'C':
-                if (text_box_copy(text_box) != 0) {
+                if (text_box_copy(text_box) != OK) {
                     return 1;
                 }
                 break;
@@ -283,7 +283,7 @@ int text_box_react_kbd(text_box_t *text_box, kbd_event_t kbd_event) {
             case 'V':
                 if (text_box->cursor_pos != text_box->select_pos) {
                     // TODO mantain this way or avoid reallocating down and up as is being done now?
-                    if (text_box_delete_selected(text_box) != 0) {
+                    if (text_box_delete_selected(text_box) != OK) {
                         return 1;
                     }
                 }
@@ -307,17 +307,17 @@ int text_box_react_kbd(text_box_t *text_box, kbd_event_t kbd_event) {
                 break;
 
             case 'X':
-                if (text_box_copy(text_box) != 0) {
+                if (text_box_copy(text_box) != OK) {
                     return 1;
                 }
-                if (text_box_delete_selected(text_box) != 0) {
+                if (text_box_delete_selected(text_box) != OK) {
                     return 1;
                 }
                 break;
             }
         } else {
             if (text_box->cursor_pos != text_box->select_pos) {
-                if (text_box_delete_selected(text_box) != 0) {
+                if (text_box_delete_selected(text_box) != OK) {
                     return 1;
                 }
             }
@@ -339,7 +339,7 @@ int text_box_react_kbd(text_box_t *text_box, kbd_event_t kbd_event) {
     
     case BACK_SPACE:
         if (text_box->cursor_pos != text_box->select_pos) {
-            if (text_box_delete_selected(text_box) != 0) {
+            if (text_box_delete_selected(text_box) != OK) {
                 return 1;
             }
         } else {
@@ -374,7 +374,7 @@ int text_box_react_kbd(text_box_t *text_box, kbd_event_t kbd_event) {
         }
 
         if (text_box->cursor_pos != text_box->select_pos) {
-            if (text_box_delete_selected(text_box) != 0) {
+            if (text_box_delete_selected(text_box) != OK) {
                 return 1;
             }
         } else {

@@ -25,20 +25,26 @@ void com1_ih() {
     interrupt_identification_t int_ident;
     
     while (true) {
-        if (uart_identify_interrupt(&int_ident) != OK) 
+        if (uart_identify_interrupt(&int_ident) != OK)  {
+            printf("Error identifying uart interrupt\n");
             return;
+        }
         
         if (!int_ident.pending)
             return;
 
         switch (int_ident.origin) {
         case INT_ORIGIN_TRANSMITTER_EMPTY:
-            uart_send_bytes();
+            if (uart_send_bytes() != OK) {
+                printf("Error sending uart bytes\n");
+            }
             break;
 
         case INT_ORIGIN_CHAR_TIMEOUT:
         case INT_ORIGIN_RECEIVED_DATA:
-            uart_receive_bytes();
+            if (uart_receive_bytes() != OK) {
+                printf("Error receiving uart bytes\n");
+            }
             break;
         
         case INT_ORIGIN_LINE_STATUS:
@@ -131,8 +137,10 @@ int uart_check_error(bool *err) {
 
 void uart_handle_error() {
     bool err;
-    if (uart_check_error(&err) != OK)
+    if (uart_check_error(&err) != OK) {
+        printf("Failed to handle uart error.\n");
         return;
+    }
     
     if (err) {
         error_reading_message = true;

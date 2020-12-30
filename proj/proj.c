@@ -180,7 +180,9 @@ int (proj_main_loop)(int argc, char *argv[]) {
                 }
                 if (msg.m_notify.interrupts & BIT(timer_irq_set)) {
                     timer_int_handler();
-                    protocol_tick();
+                    if (protocol_tick() != OK) {
+                        printf("Failed to handle protocol tick.\n");
+                    }
                 }
                 break;
             default:

@@ -38,7 +38,7 @@ int font_draw_char(frame_buffer_t buf, char c, uint16_t x, uint16_t y) {
     	return 1;
     }
     
-    if (vb_draw_img_cropped(buf, font, char_start_x, char_start_y, FONT_CHAR_WIDTH, FONT_CHAR_HEIGHT, x, y) != 0) {
+    if (vb_draw_img_cropped(buf, font, char_start_x, char_start_y, FONT_CHAR_WIDTH, FONT_CHAR_HEIGHT, x, y) != OK) {
         return 1;
     }
 
@@ -47,7 +47,7 @@ int font_draw_char(frame_buffer_t buf, char c, uint16_t x, uint16_t y) {
 
 int font_draw_string(frame_buffer_t buf, const char string[], uint16_t x, uint16_t y) {
     for (int i = 0; string[i] != '\0'; i++) {
-        if (font_draw_char(buf, string[i], x + i*CHAR_SPACE, y) != 0) {
+        if (font_draw_char(buf, string[i], x + i*CHAR_SPACE, y) != OK) {
             printf("font_draw_char error\n");
             return 1;
         }
@@ -61,7 +61,7 @@ int font_draw_string_limited(frame_buffer_t buf, const char string[], uint16_t x
             continue;
         }
 
-        if (font_draw_char(buf, string[i], x + (i-start)*CHAR_SPACE, y) != 0) {
+        if (font_draw_char(buf, string[i], x + (i-start)*CHAR_SPACE, y) != OK) {
             printf("font_draw_char error\n");
             return 1;
         }
