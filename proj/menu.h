@@ -19,6 +19,7 @@ typedef enum menu_state_t {
 bool menu_is_game_ongoing();
 
 int menu_init(enum xpm_image_type type);
+void menu_exit();
 
 int menu_draw();
 

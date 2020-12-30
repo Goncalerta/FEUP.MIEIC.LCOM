@@ -55,5 +55,6 @@ int vb_draw_img(frame_buffer_t buf, xpm_image_t img, uint16_t img_start_x, uint1
 
 int vb_draw_animation_frame(frame_buffer_t buf, xpm_animation_t anim, uint16_t x, uint16_t y);
 int xpm_load_animation(xpm_animation_t *anim, enum xpm_image_type type, size_t number_of_frames, ...);
+void xpm_unload_animation(xpm_animation_t *anim);
 
 #endif /* _GRAPHICS_H */

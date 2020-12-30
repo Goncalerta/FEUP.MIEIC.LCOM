@@ -32,6 +32,7 @@ bool game_may_create_new_round();
 const char *game_get_correct_word();
 
 int game_load_assets(enum xpm_image_type type);
+void game_unload_assets();
 int new_game();
 void delete_game();
 int game_new_round(role_t role, const char *word);

@@ -153,6 +153,18 @@ int game_load_assets(enum xpm_image_type type) {
     return 0;
 }
 
+void game_unload_assets() {
+    free(tick_img.bytes);
+    free(cross_img.bytes);
+    free(correct_message.bytes);
+    free(game_over_message.bytes);
+    free(pencil.bytes);
+    free(eraser.bytes);
+    free(undo_arrow.bytes);
+    free(redo_arrow.bytes);
+    xpm_unload_animation(&clock_frames);
+}
+
 int new_game() {
     game = malloc(sizeof(game_t));
     if (game == NULL)

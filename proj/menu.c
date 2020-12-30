@@ -22,7 +22,6 @@
 #define MENU_GREETING_Y 740
 
 static menu_state_t menu_state;
-//static xpm_image_t back_ground; TODO add a background image to main menu?
 
 // MAIN MENU:
 static button_t b_new_game;
@@ -35,38 +34,44 @@ static button_t b_back_to_main_menu;
 // AWAITING PLAYER:
 static uint8_t awaiting_player_tick;
 
+static xpm_image_t xpm_new_game, xpm_resume, xpm_exit, xpm_main_menu;
+
 int menu_init(enum xpm_image_type type) {
     frame_buffer_t buf = vg_get_back_buffer();
     uint16_t x = (buf.h_res - MENU_BUTTON_WIDTH)/2;
     uint16_t y = buf.v_res/2 - MENU_BUTTON_DISTANCE/2 - MENU_BUTTON_HEIGHT;
 
-    xpm_image_t new_game;
-    if (xpm_load(xpm_menu_new_game, type, &new_game) == NULL)
+    if (xpm_load(xpm_menu_new_game, type, &xpm_new_game) == NULL)
         return 1;
     new_button(&b_new_game, x, y, MENU_BUTTON_WIDTH, MENU_BUTTON_HEIGHT, event_ready_to_play);
-    button_set_xpm_icon(&b_new_game, new_game);
+    button_set_xpm_icon(&b_new_game, xpm_new_game);
     
-    xpm_image_t resume;
-    if (xpm_load(xpm_menu_resume, type, &resume) == NULL)
+    if (xpm_load(xpm_menu_resume, type, &xpm_resume) == NULL)
         return 1;
     new_button(&b_resume, x, y, MENU_BUTTON_WIDTH, MENU_BUTTON_HEIGHT, game_resume);
-    button_set_xpm_icon(&b_resume, resume);
+    button_set_xpm_icon(&b_resume, xpm_resume);
 
     y += MENU_BUTTON_HEIGHT + MENU_BUTTON_DISTANCE;
-    xpm_image_t exit;
-    if (xpm_load(xpm_menu_exit_game, type, &exit) == NULL)
+
+    if (xpm_load(xpm_menu_exit_game, type, &xpm_exit) == NULL)
         return 1;
     new_button(&b_end_program, x, y, MENU_BUTTON_WIDTH, MENU_BUTTON_HEIGHT, event_end_program);
-    button_set_xpm_icon(&b_end_program, exit);
+    button_set_xpm_icon(&b_end_program, xpm_exit);
 
-    xpm_image_t main_menu;
-    if (xpm_load(xpm_menu_main_menu, type, &main_menu) == NULL)
+    if (xpm_load(xpm_menu_main_menu, type, &xpm_main_menu) == NULL)
         return 1;
     new_button(&b_back_to_main_menu, x, y, MENU_BUTTON_WIDTH, MENU_BUTTON_HEIGHT, event_leave_game);
-    button_set_xpm_icon(&b_back_to_main_menu, main_menu);
+    button_set_xpm_icon(&b_back_to_main_menu, xpm_main_menu);
 
     menu_state = MAIN_MENU;
     return 0;
+}
+
+void menu_exit() {
+    free(xpm_new_game.bytes);
+    free(xpm_resume.bytes);
+    free(xpm_exit.bytes);
+    free(xpm_main_menu.bytes);
 }
 
 bool menu_is_game_ongoing() {

@@ -13,6 +13,7 @@ typedef enum cursor_state {
 } cursor_state;
 
 int cursor_init();
+void cursor_exit();
 int16_t cursor_get_x();
 int16_t cursor_get_y();
 int16_t cursor_get_lb();

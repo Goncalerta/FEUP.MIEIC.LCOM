@@ -45,15 +45,4 @@ bool button_is_hovering(button_t button, uint16_t x, uint16_t y);
 int button_draw(frame_buffer_t buf, button_t button);
 int button_update_state(button_t *button, bool hovering, bool lb, bool rb);
 
-// Triangle buttons will probably not be used
-
-// typedef struct triangle_button {
-//     uint16_t x, y, width, height;
-//     button_state state;
-//     xpm_image_t icon;
-// } triangle_button;
-
-// bool is_hovering_tb(triangle_button tb, uint16_t mouse_x, uint16_t mouse_y);
-// int tb_draw(triangle_button tb);
-
 #endif /* __BUTTON_H */

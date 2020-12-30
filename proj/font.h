@@ -12,6 +12,7 @@
 #define CHAR_SPACE (FONT_CHAR_WIDTH + 2) // talvez precise de ajustes
 
 int font_load(enum xpm_image_type type);
+void font_unload();
 
 int font_draw_char(frame_buffer_t buf, char c, uint16_t x, uint16_t y);
 

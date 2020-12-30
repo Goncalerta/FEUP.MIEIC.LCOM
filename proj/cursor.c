@@ -26,6 +26,12 @@ int cursor_init(enum xpm_image_type type) {
     return 0;
 }
 
+void cursor_exit() {
+    free(cursor_arrow.bytes);
+    free(cursor_write.bytes);
+    free(cursor_disabled.bytes);
+}
+
 int16_t cursor_get_x() {
     return cursor_x;
 }

@@ -14,6 +14,10 @@ int font_load(enum xpm_image_type type) {
     return 0;
 }
 
+void font_unload() {
+    free(font.bytes);
+}
+
 int font_draw_char(frame_buffer_t buf, char c, uint16_t x, uint16_t y) {
     uint16_t char_start_x = 0;
     uint16_t char_start_y = 0;

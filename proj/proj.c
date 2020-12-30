@@ -178,6 +178,10 @@ int (proj_main_loop)(int argc, char *argv[]) {
         return 1;
     if (text_box_clip_board_exit() != OK)
         return 1;
+    cursor_exit();
+    font_unload();
+    game_unload_assets();
+    menu_exit();
     // ^^
 
     if (com1_unsubscribe_int() != OK)

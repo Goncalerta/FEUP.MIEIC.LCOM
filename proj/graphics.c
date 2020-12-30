@@ -332,3 +332,10 @@ int xpm_load_animation(xpm_animation_t *anim, enum xpm_image_type type, size_t n
 
     return 0;
 }
+
+void xpm_unload_animation(xpm_animation_t *anim) {
+    for (size_t i = 0; i < anim->number_of_frames; i++) {
+        free(anim->frames[i].bytes);
+    }
+    free(anim->frames);
+}
