@@ -16,31 +16,36 @@
 #include "protocol.h"
 
 static bool end = false;
+
 static bool bound_canvas = false;
 static size_t num_listening_buttons = 0;
 static button_t **listening_buttons = NULL;
 static size_t num_listening_text_boxes = 0;
 static text_box_t **listening_text_boxes = NULL;
 
-// TODO not sure where this makes more sense
 typedef enum player_state_t {
     NOT_READY,
     READY,
     RANDOM_NUMBER_SENT
 } player_state_t;
 
-player_state_t this_player_state = NOT_READY;
-int this_player_random_number;
-player_state_t other_player_state = NOT_READY;
-int other_player_random_number;
+static player_state_t this_player_state = NOT_READY;
+static int this_player_random_number;
+static player_state_t other_player_state = NOT_READY;
+static int other_player_random_number;
 
 int dispatcher_bind_buttons(size_t number_of_buttons, ...) {
     if (listening_buttons != NULL)
         free(listening_buttons);
 
     num_listening_buttons = number_of_buttons;
-    listening_buttons = malloc(number_of_buttons * sizeof(button_t*));
-    
+
+    if (number_of_buttons != 0) {
+        listening_buttons = malloc(number_of_buttons * sizeof(button_t*));
+        if (listening_buttons == NULL)
+            return 1;
+    }
+
     va_list ap;
     va_start(ap, number_of_buttons);
     for (size_t i = 0; i < number_of_buttons; i++) {
@@ -56,7 +61,12 @@ int dispatcher_bind_text_boxes(size_t number_of_text_boxes, ...) {
         free(listening_text_boxes);
 
     num_listening_text_boxes = number_of_text_boxes;
-    listening_text_boxes = malloc(number_of_text_boxes * sizeof(text_box_t*));
+
+    if (number_of_text_boxes != 0) {
+        listening_text_boxes = malloc(number_of_text_boxes * sizeof(text_box_t*));
+        if (listening_text_boxes == NULL)
+            return 1;
+    }
     
     va_list ap;
     va_start(ap, number_of_text_boxes);

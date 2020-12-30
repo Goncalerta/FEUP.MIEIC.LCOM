@@ -2,22 +2,6 @@
 
 #include "queue.h"
 
-// For debug purposes
-// static void print_queue(queue_t *queue) {
-//     printf("QUEUE x%d %d/%d: ", queue->element_size, queue->size, queue->capacity);
-    
-//     for (size_t i = 0; i < queue->size; i++) {
-//         printf("0x");
-//         for (size_t j = 0; j < queue->element_size; j++) {
-//             printf("%02x",((uint8_t *) queue->data)[(queue->front + i)*queue->element_size + j]);
-//         }
-        
-//         printf(" ");
-//     }
-    
-//     printf("\n");
-// }
-
 int new_queue(queue_t *queue, size_t element_size, size_t capacity) {
     if (element_size == 0)
         return 1;

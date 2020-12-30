@@ -34,6 +34,7 @@ typedef struct message_t {
 } message_t;
 
 int protocol_config_uart();
+void protocol_exit();
 int protocol_handle_received_bytes();
 int protocol_handle_error();
 int protocol_tick();

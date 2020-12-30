@@ -182,10 +182,15 @@ int (proj_main_loop)(int argc, char *argv[]) {
     font_unload();
     game_unload_assets();
     menu_exit();
+    dispatcher_bind_buttons(0);
+    dispatcher_bind_text_boxes(0);
+    dispatcher_bind_canvas(false);
     // ^^
 
     if (com1_unsubscribe_int() != OK)
         return 1;
+    
+    protocol_exit();
     
     if (rtc_disable_int(PERIODIC_INTERRUPT) != OK)
         return 1;

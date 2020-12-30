@@ -3,11 +3,6 @@
 #include <stdarg.h>
 #include "graphics.h"
 
-// static uint8_t red_mask_size;
-// static uint8_t green_mask_size;
-// static uint8_t blue_mask_size;
-// static bool direct_color_mode;
-
 int vb_draw_pixel(frame_buffer_t buf, uint16_t x, uint16_t y, uint32_t color) {
     if ((x >= buf.h_res) || (y >= buf.v_res))
         return 0;
@@ -25,27 +20,6 @@ int vb_draw_pixel(frame_buffer_t buf, uint16_t x, uint16_t y, uint32_t color) {
     }
     return 0;
 }
-
-/*
-From: 1111111100000000 (2Byte)
-(little endian)
- |_0|_0|_0|_0|_0|_0|_0|_0|_1|_1|_1|_1|_1|_1|_1|_1|__| ...
-   0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 ...
-
-(big endian)
- |_1|_1|_1|_1|_1|_1|_1|_1|_0|_0|_0|_0|_0|_0|_0|_0|__| ...
-   0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 ...
-
-
-To: 1Byte
- |0|0|0|0|0|0|0|0|_|_| ... or  |1|1|1|1|1|1|1|1|_|_| ... ?
-  0 1 2 3 4 5 6 7 8 9 ...       0 1 2 3 4 5 6 7 8 9 ...
-
-does the endianness matter? do we need to take that it into account?
-or both 1) and 2) work with both
-
--para ser +seguro, podemos obter uma variavel com a cor útil e usar o memcpy dessa var e não do parâmetro color
-*/
 
 int vb_fill_screen(frame_buffer_t buf, uint32_t color) {
 
@@ -138,16 +112,6 @@ int vb_draw_rectangle(frame_buffer_t buf, uint16_t x, uint16_t y, uint16_t width
     return 0;
 }
 
-// static void vg_parse_color(uint32_t color, uint8_t *red, uint8_t *green, uint8_t *blue) {
-//     *blue = color & COLOR_MASK(blue_mask_size, 0);
-//     *green = color & COLOR_MASK(green_mask_size, blue_mask_size);
-//     *red = color & COLOR_MASK(red_mask_size, blue_mask_size + green_mask_size);
-// }
-
-// static uint32_t vg_create_color(uint8_t red, uint8_t green, uint8_t blue) {
-//     return blue | (green << blue_mask_size) | (red << (blue_mask_size + green_mask_size));
-// }
-
 int vb_draw_circle(frame_buffer_t buf, uint16_t x, uint16_t y, uint16_t radius,  uint32_t color) {
     int32_t top_left_x = x - radius;
     int32_t top_left_y = y - radius;
@@ -168,40 +132,6 @@ int vb_draw_circle(frame_buffer_t buf, uint16_t x, uint16_t y, uint16_t radius, 
 }
 
 int vb_draw_line(frame_buffer_t buf, int16_t x1, int16_t y1, int16_t x2, int16_t y2, uint32_t color, uint16_t width) {
-    // TODO is this optimization worth it?
-    // if (y1 == y2) {
-    //     if (x2 < x1) {
-    //         int16_t temp = x2;
-    //         x2 = x1;
-    //         x1 = temp;
-    //     }
-    //     for (uint16_t x = x1; x <= x2; x++) {
-    //         if (vb_draw_circle(buf, x, y1, width, color) != OK) {
-    //             return 1;
-    //         }
-    //         // if (vb_draw_pixel(buf, x, y1, color) != OK) {
-    //         //     return 1;
-    //         // }
-    //     }
-    //     return 0;
-    // }
-    // if (x1 == x2) {
-    //     if (y2 < y1) {
-    //         int16_t temp = y2;
-    //         y2 = y1;
-    //         y1 = temp;
-    //     }
-    //     for (uint16_t y = y1; y <= y2; y++) {
-    //         if (vb_draw_circle(buf, x1, y, width, color) != OK) {
-    //             return 1;
-    //         }
-    //         // if (vb_draw_pixel(buf, x1, y, color) != OK) {
-    //         //     return 1;
-    //         // }
-    //     }
-    //     return 0;
-    // }
-
     int dx = abs(x2 - x1); 
     int sx = x1 < x2? 1 : -1;
     int dy = abs(y2 - y1); 
@@ -212,9 +142,7 @@ int vb_draw_line(frame_buffer_t buf, int16_t x1, int16_t y1, int16_t x2, int16_t
         if (vb_draw_circle(buf, x1, y1, width, color) != OK) {
             return 1;
         }
-        // if (vb_draw_pixel(buf, x1, y1, color) != OK) {
-        //     return 1;
-        // }
+
         int e2 = 2*err;
         if (e2 >= -dy) {
             err -= dy;
@@ -228,35 +156,6 @@ int vb_draw_line(frame_buffer_t buf, int16_t x1, int16_t y1, int16_t x2, int16_t
 
     return 0;
 }
-
-// int vg_draw_pattern(frame_buffer_t buf, uint8_t no_rectangles, uint32_t first, uint8_t step) {
-//     uint16_t width = h_res/no_rectangles;
-//     uint16_t height = v_res/no_rectangles;
-
-//     uint8_t first_red, first_green, first_blue;
-//     if (direct_color_mode) {
-//         vg_parse_color(first, &first_red, &first_green, &first_blue);
-//     }
-
-//     for (uint16_t row = 0; row < no_rectangles; row++) {
-//         for (uint16_t col = 0; col < no_rectangles; col++) {
-//             uint32_t color;
-//             if (direct_color_mode) {
-//                 uint8_t red = (first_red + col * step) % (1 << red_mask_size);
-//                 uint8_t green = (first_green + row * step) % (1 << green_mask_size);
-//                 uint8_t blue = (first_blue + (col + row) * step) % (1 << blue_mask_size);
-//                 color = vg_create_color(red, green, blue);
-//             } else {
-//                 color = (first + (row * no_rectangles + col) * step) % (1 << bits_per_pixel);
-//             }
-
-//             if (vg_draw_rectangle(buf, col * width, row * height, width, height, color) != OK)
-//                 return 1;
-//         }
-//     }
-
-//     return 0;
-// }
 
 // int vb_draw_img(frame_buffer_t buf, xpm_image_t img, uint16_t x, uint16_t y) {
 //     for (uint16_t i = 0; i < img.width; i++) {

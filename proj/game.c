@@ -154,6 +154,7 @@ int game_load_assets(enum xpm_image_type type) {
 }
 
 void game_unload_assets() {
+    delete_game();
     free(tick_img.bytes);
     free(cross_img.bytes);
     free(correct_message.bytes);

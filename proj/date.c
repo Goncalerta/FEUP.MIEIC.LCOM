@@ -4,7 +4,6 @@
 #include "font.h"
 #include "video_gr.h"
 
-
 int date_bcd_to_binary(date_t *date) {
     if (date == NULL)
         return 1;

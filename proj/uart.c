@@ -187,6 +187,11 @@ int uart_init_sw_queues() {
     return 0;
 }
 
+void uart_delete_sw_queues() {
+    delete_queue(&transmitted);
+    delete_queue(&received);
+}
+
 int uart_flush_received_bytes(uint8_t *no_bytes, uint8_t *first, uint8_t *last) {
     *no_bytes = 0;
     while (!queue_is_empty(&received)) {

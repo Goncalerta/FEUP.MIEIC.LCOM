@@ -113,6 +113,7 @@ int uart_config_int(bool received_data_int, bool transmitter_empty_int, bool rec
 int uart_enable_fifo(fifo_int_trigger_level_t trigger_level);
 int uart_set_bit_rate(uint16_t bit_rate);
 int uart_init_sw_queues();
+void uart_delete_sw_queues();
 int uart_receive_bytes();
 int uart_send_bytes();
 int uart_send_byte(uint8_t byte);

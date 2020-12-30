@@ -504,6 +504,12 @@ int protocol_config_uart() {
     return 0;
 }
 
+void protocol_exit() {
+    delete_queue(&pending_messages);
+    free(receiving_msg_bits);
+    uart_delete_sw_queues();
+}
+
 int protocol_tick() {
     if (awaiting_ack) {
         awaiting_ack_ticks++;
