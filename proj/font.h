@@ -9,7 +9,7 @@
 #define FONT_CHAR_SPACE_X 2
 #define FONT_CHAR_SPACE_Y 4
 
-#define CHAR_SPACE (FONT_CHAR_WIDTH + 2) // talvez precise de ajustes
+#define CHAR_SPACE (FONT_CHAR_WIDTH + 2)
 
 int font_load(enum xpm_image_type type);
 void font_unload();

@@ -11,6 +11,7 @@ digraph "kbc_issue_command"
   Node3 [label="kbd_enable_interrupts",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__keyboard.html#ga0d28d7309ad45de4fe79c9de3fbeb3d8",tooltip="Enables keyboard interrupts."];
   Node1 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node4 [label="kbc_write_command_byte",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__kbc.html#gad22fa061f412af69b9d8f777ca55b04e",tooltip="Writes the kbc command byte."];
+  Node4 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node1 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node5 [label="write_byte_to_mouse",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__mouse.html#gadc968ef8cbf8660fe0bac8237d65183e",tooltip="Issues a command to the mouse using the kbc."];
   Node5 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];

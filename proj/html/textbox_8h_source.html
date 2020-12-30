@@ -77,58 +77,66 @@ $(function() {
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#define TEXT_BOX_GUESSER_Y 700</span></div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#define TEXT_BOX_GUESSER_DISPLAY_SIZE 13</span></div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> text_box_state {</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    TEXT_BOX_NORMAL,</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    TEXT_BOX_HOVERING,</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    TEXT_BOX_SELECTED_HOVERING,</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    TEXT_BOX_SELECTED_NOT_HOVERING,</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    TEXT_BOX_PRESSING</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;} text_box_state;</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
-<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="structtext__box__t.html">   21</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="structtext__box__t.html">text_box_t</a> {</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="keywordtype">char</span> *   word;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    uint8_t  word_size;     <span class="comment">// not counting with the &#39;\0&#39;</span></div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    uint16_t x, y;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    uint8_t  cursor_pos;    <span class="comment">// relative to the string</span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    uint8_t  select_pos;    <span class="comment">// relative to the string // used to select letters with mouse</span></div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    uint8_t  start_display; <span class="comment">// first char pos displayed in the text_box</span></div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    uint8_t  display_size;  <span class="comment">// num of chars displayed at the same time</span></div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    text_box_state state;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keywordtype">bool</span>     is_ready;</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keywordtype">bool</span>     visible_cursor;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;} <a class="code" href="structtext__box__t.html">text_box_t</a>;</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="keywordtype">int</span> new_text_box(<a class="code" href="structtext__box__t.html">text_box_t</a> *text_box, uint16_t x, uint16_t y, uint8_t display_size);</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="keywordtype">void</span> delete_text_box(<a class="code" href="structtext__box__t.html">text_box_t</a> *text_box);</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="keywordtype">int</span> text_box_clear(<a class="code" href="structtext__box__t.html">text_box_t</a> *text_box);</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="keywordtype">void</span> text_box_cursor_tick(<a class="code" href="structtext__box__t.html">text_box_t</a> *text_box);</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="comment">/* is_cursor_to_draw is used to coordinate with the game ticks</span></div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="comment">if text_box is not selected, the cursor is not drawn*/</span></div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="keywordtype">int</span> text_box_draw(<a class="code" href="structframe__buffer__t.html">frame_buffer_t</a> buf, <a class="code" href="structtext__box__t.html">text_box_t</a> text_box);</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="keywordtype">bool</span> text_box_is_hovering(<a class="code" href="structtext__box__t.html">text_box_t</a> text_box, uint16_t x, uint16_t y);</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="keywordtype">int</span> text_box_update_state(<a class="code" href="structtext__box__t.html">text_box_t</a> *text_box, <span class="keywordtype">bool</span> hovering, <span class="keywordtype">bool</span> lb, <span class="keywordtype">bool</span> rb, uint16_t x, uint16_t y);</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="keywordtype">int</span> text_box_react_kbd(<a class="code" href="structtext__box__t.html">text_box_t</a> *text_box, <a class="code" href="structkbd__event__t.html">kbd_event_t</a> kbd_event);</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="keywordtype">int</span> text_box_retrieve_if_ready(<a class="code" href="structtext__box__t.html">text_box_t</a> *text_box, <span class="keywordtype">char</span> **text_box_content);</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="keywordtype">void</span> text_box_unselect(<a class="code" href="structtext__box__t.html">text_box_t</a> *text_box);</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="keywordtype">void</span> delete_text_box(<a class="code" href="structtext__box__t.html">text_box_t</a> *text_box); <span class="comment">// TODO where&#39;s the best place to call this?</span></div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="keywordtype">int</span> text_box_clip_board_exit();</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* __TEXTBOX_H */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keyword">typedef</span> int (*text_box_action)(<span class="keywordtype">char</span> *);</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> text_box_state {</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    TEXT_BOX_NORMAL,</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    TEXT_BOX_HOVERING,</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    TEXT_BOX_SELECTED_HOVERING,</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    TEXT_BOX_SELECTED_NOT_HOVERING,</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    TEXT_BOX_PRESSING</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;} text_box_state;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
+<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="structtext__box__t.html">   23</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="structtext__box__t.html">text_box_t</a> {</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keywordtype">char</span> *   word;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    uint8_t  word_size;     <span class="comment">// not counting with the &#39;\0&#39;</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    uint16_t x, y;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    uint8_t  cursor_pos;    <span class="comment">// relative to the string</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    uint8_t  select_pos;    <span class="comment">// relative to the string // used to select letters with mouse</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    uint8_t  start_display; <span class="comment">// first char pos displayed in the text_box</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    uint8_t  display_size;  <span class="comment">// num of chars displayed at the same time</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    text_box_state state;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keywordtype">bool</span>     visible_cursor;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    text_box_action action;</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;} <a class="code" href="structtext__box__t.html">text_box_t</a>;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="keywordtype">int</span> new_text_box(<a class="code" href="structtext__box__t.html">text_box_t</a> *text_box, uint16_t x, uint16_t y, uint8_t display_size, text_box_action action);</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="keywordtype">void</span> delete_text_box(<a class="code" href="structtext__box__t.html">text_box_t</a> *text_box);</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="keywordtype">int</span> text_box_clear(<a class="code" href="structtext__box__t.html">text_box_t</a> *text_box);</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="keywordtype">void</span> text_box_cursor_tick(<a class="code" href="structtext__box__t.html">text_box_t</a> *text_box);</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="keywordtype">int</span> text_box_draw(<a class="code" href="structframe__buffer__t.html">frame_buffer_t</a> buf, <a class="code" href="structtext__box__t.html">text_box_t</a> text_box);</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="keywordtype">bool</span> text_box_is_hovering(<a class="code" href="structtext__box__t.html">text_box_t</a> text_box, uint16_t x, uint16_t y);</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="keywordtype">int</span> text_box_update_state(<a class="code" href="structtext__box__t.html">text_box_t</a> *text_box, <span class="keywordtype">bool</span> hovering, <span class="keywordtype">bool</span> lb, <span class="keywordtype">bool</span> rb, uint16_t x, uint16_t y);</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="keywordtype">int</span> text_box_react_kbd(<a class="code" href="structtext__box__t.html">text_box_t</a> *text_box, <a class="code" href="structkbd__event__t.html">kbd_event_t</a> kbd_event);</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; </div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="keywordtype">void</span> text_box_unselect(<a class="code" href="structtext__box__t.html">text_box_t</a> *text_box);</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="keywordtype">void</span> delete_text_box(<a class="code" href="structtext__box__t.html">text_box_t</a> *text_box);</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="keywordtype">void</span> text_box_clip_board_exit();</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* __TEXTBOX_H */</span><span class="preprocessor"></span></div>
 </div><!-- fragment --></div><!-- contents -->
-<div class="ttc" id="astructtext__box__t_html"><div class="ttname"><a href="structtext__box__t.html">text_box_t</a></div><div class="ttdef"><b>Definition:</b> textbox.h:21</div></div>
-<div class="ttc" id="astructkbd__event__t_html"><div class="ttname"><a href="structkbd__event__t.html">kbd_event_t</a></div><div class="ttdoc">Keyboard event (type of key + character (if applicable) + CTRL is either pressed or not)</div><div class="ttdef"><b>Definition:</b> keyboard.h:32</div></div>
-<div class="ttc" id="astructframe__buffer__t_html"><div class="ttname"><a href="structframe__buffer__t.html">frame_buffer_t</a></div><div class="ttdef"><b>Definition:</b> graphics.h:31</div></div>
+<div class="ttc" id="agroup__keyboard_html_gga635055f02cc43001acef32526cac2a45a951ab68bb8f7daafb78951107080904e"><div class="ttname"><a href="group__keyboard.html#gga635055f02cc43001acef32526cac2a45a951ab68bb8f7daafb78951107080904e">ENTER</a></div><div class="ttdeci">@ ENTER</div><div class="ttdef"><b>Definition:</b> keyboard.h:19</div></div>
+<div class="ttc" id="astructkbd__event__t_html_a4ae06ea55f6ceaec24b91fdcdee7c966"><div class="ttname"><a href="structkbd__event__t.html#a4ae06ea55f6ceaec24b91fdcdee7c966">kbd_event_t::char_key</a></div><div class="ttdeci">char char_key</div><div class="ttdef"><b>Definition:</b> keyboard.h:34</div></div>
+<div class="ttc" id="astructkbd__event__t_html_a75abd31f4ec707e2c5465a9c4397ac81"><div class="ttname"><a href="structkbd__event__t.html#a75abd31f4ec707e2c5465a9c4397ac81">kbd_event_t::key</a></div><div class="ttdeci">kbd_key key</div><div class="ttdef"><b>Definition:</b> keyboard.h:33</div></div>
+<div class="ttc" id="astructtext__box__t_html"><div class="ttname"><a href="structtext__box__t.html">text_box_t</a></div><div class="ttdef"><b>Definition:</b> textbox.h:23</div></div>
+<div class="ttc" id="astructkbd__event__t_html_a327f1f147008f529a2889fb013f0f63e"><div class="ttname"><a href="structkbd__event__t.html#a327f1f147008f529a2889fb013f0f63e">kbd_event_t::is_ctrl_pressed</a></div><div class="ttdeci">bool is_ctrl_pressed</div><div class="ttdef"><b>Definition:</b> keyboard.h:35</div></div>
+<div class="ttc" id="agroup__keyboard_html_gga635055f02cc43001acef32526cac2a45a4618cf21306b3c647741afa7ebefcab8"><div class="ttname"><a href="group__keyboard.html#gga635055f02cc43001acef32526cac2a45a4618cf21306b3c647741afa7ebefcab8">CHAR</a></div><div class="ttdeci">@ CHAR</div><div class="ttdef"><b>Definition:</b> keyboard.h:17</div></div>
+<div class="ttc" id="astructkbd__event__t_html"><div class="ttname"><a href="structkbd__event__t.html">kbd_event_t</a></div><div class="ttdoc">Keyboard event.</div><div class="ttdef"><b>Definition:</b> keyboard.h:32</div></div>
+<div class="ttc" id="agroup__keyboard_html_gga635055f02cc43001acef32526cac2a45a11563127ec3be864b514a1784c5d37a6"><div class="ttname"><a href="group__keyboard.html#gga635055f02cc43001acef32526cac2a45a11563127ec3be864b514a1784c5d37a6">DEL</a></div><div class="ttdeci">@ DEL</div><div class="ttdef"><b>Definition:</b> keyboard.h:22</div></div>
+<div class="ttc" id="astructframe__buffer__t_html"><div class="ttname"><a href="structframe__buffer__t.html">frame_buffer_t</a></div><div class="ttdef"><b>Definition:</b> graphics.h:7</div></div>
+<div class="ttc" id="agroup__keyboard_html_gga635055f02cc43001acef32526cac2a45ab313b64675c3e4a36ac01132126d3c01"><div class="ttname"><a href="group__keyboard.html#gga635055f02cc43001acef32526cac2a45ab313b64675c3e4a36ac01132126d3c01">ARROW_LEFT</a></div><div class="ttdeci">@ ARROW_LEFT</div><div class="ttdef"><b>Definition:</b> keyboard.h:25</div></div>
+<div class="ttc" id="agroup__keyboard_html_gga635055f02cc43001acef32526cac2a45aada46ee4720a6b776586a4c21877096c"><div class="ttname"><a href="group__keyboard.html#gga635055f02cc43001acef32526cac2a45aada46ee4720a6b776586a4c21877096c">BACK_SPACE</a></div><div class="ttdeci">@ BACK_SPACE</div><div class="ttdef"><b>Definition:</b> keyboard.h:20</div></div>
+<div class="ttc" id="agroup__keyboard_html_gga635055f02cc43001acef32526cac2a45a6a5a02b3e54e60d47280bf250e2186bc"><div class="ttname"><a href="group__keyboard.html#gga635055f02cc43001acef32526cac2a45a6a5a02b3e54e60d47280bf250e2186bc">ARROW_RIGHT</a></div><div class="ttdeci">@ ARROW_RIGHT</div><div class="ttdef"><b>Definition:</b> keyboard.h:26</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.20

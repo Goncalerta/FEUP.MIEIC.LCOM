@@ -49,13 +49,13 @@
 
 /* READ-BACK COMMAND FORMAT */
 
-#define TIMER_RB_COUNT_  BIT(5)
-#define TIMER_RB_STATUS_ BIT(4)
-#define TIMER_RB_SEL(n)  BIT((n) + 1)
+#define TIMER_RB_COUNT_  BIT(5) /**< @brief READ-BACK count */
+#define TIMER_RB_STATUS_ BIT(4) /**< @brief READ-BACK status */
+#define TIMER_RB_SEL(n)  BIT((n) + 1) /**< @brief READ-BACK timer select */
 
-#define MASK_BASE BIT(0)
-#define MASK_MODE (BIT(1) | BIT(2) | BIT(3))
-#define MASK_INITIAL (BIT(4) | BIT(5))
+#define MASK_BASE BIT(0) /**< @brief Counting base mask */
+#define MASK_MODE (BIT(1) | BIT(2) | BIT(3)) /**< @brief Operating mode mask */
+#define MASK_INITIAL (BIT(4) | BIT(5)) /**< @brief Initialization mode mask */
 
 /**@}*/
 

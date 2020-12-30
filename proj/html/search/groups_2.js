@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['mouse_123',['mouse',['../group__mouse.html',1,'']]]
+  ['kbc_325',['kbc',['../group__kbc.html',1,'']]],
+  ['keyboard_326',['keyboard',['../group__keyboard.html',1,'']]]
 ];

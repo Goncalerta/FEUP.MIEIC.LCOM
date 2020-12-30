@@ -27,12 +27,12 @@ typedef enum kbd_key {
 } kbd_key;
 
 /**
- * @brief Keyboard event (type of key + character (if applicable) + CTRL is either pressed or not)
+ * @brief Keyboard event.
  */
 typedef struct kbd_event_t {
-    kbd_key key;
-    char char_key; // to use when (key == CHAR)
-    bool is_ctrl_pressed;
+    kbd_key key; /*!< Key that was pressed. */
+    char char_key; /*!< Char pressed when key == CHAR. */
+    bool is_ctrl_pressed; /*!< Ctrl key is pressed. */
 } kbd_event_t;
 
 /**
@@ -73,11 +73,11 @@ int kbd_handle_scancode(kbd_event_t *kbd_state);
  */
 int kbd_enable_interrupts();
 
-///**
-// * @brief Checks if a complete scancode is ready to be processed.
-// *
-// * @return Return true if a scancode is ready and false otherwise
-// */
+/**
+ * @brief Checks if a complete scancode is ready to be processed.
+ *
+ * @return Return true if a scancode is ready and false otherwise
+*/
 bool kbd_is_scancode_ready(); 
 
 /**@}*/
