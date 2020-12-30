@@ -5,7 +5,7 @@
 #include "dispatcher.h"
 
 static int hook_id_mouse = 2;
-static uint8_t raw_packet[3];
+static uint8_t raw_packet[3] = {0, 0, 0};
 static size_t packet_byte_counter = 0;
 
 static bool mouse_is_valid_first_byte_packet(uint8_t byte) {

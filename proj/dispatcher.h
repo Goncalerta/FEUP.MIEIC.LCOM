@@ -6,6 +6,7 @@
 #include "textbox.h"
 #include "protocol.h"
 
+int dispatcher_reset_bindings();
 int dispatcher_bind_buttons(size_t number_of_buttons, ...);
 int dispatcher_bind_text_boxes(size_t number_of_text_boxes, ...);
 int dispatcher_bind_canvas(bool is_to_bind);

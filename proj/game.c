@@ -357,6 +357,8 @@ int game_resume() {
     if (game == NULL || game->round == NULL)
         return 1;
 
+    if (dispatcher_reset_bindings() != OK)
+        return 1;
     switch (game->round->role) {
     case DRAWER:
         if (dispatcher_bind_buttons(6, 
@@ -367,12 +369,8 @@ int game_resume() {
                                     &game->round->attr.drawer->b_undo, 
                                     &game->round->attr.drawer->b_redo) != OK)
             return 1;
-        if (dispatcher_bind_text_boxes(0) != OK)
-            return 1;
         break;
     case GUESSER:
-        if (dispatcher_bind_buttons(0) != OK)
-            return 1;
         if (dispatcher_bind_text_boxes(1, &game->round->attr.guesser->text_box) != OK)
             return 1;
         break;
@@ -426,34 +424,35 @@ static int game_draw_bar() {
         return 1;
 
     char seconds_to_end_round[3];
-    sprintf(seconds_to_end_round, "%02d", (game->round->round_timer + TICKS_PER_SECOND- 1)/TICKS_PER_SECOND);
+    sprintf(seconds_to_end_round, "%02d", (game->round->round_timer + TICKS_PER_SECOND - 1) / TICKS_PER_SECOND);
     
     if (font_draw_string(buf, seconds_to_end_round, buf.h_res - 75, 
-                         buf.v_res - (GAME_BAR_INNER_HEIGHT + FONT_CHAR_HEIGHT)/2) != OK)
+                         buf.v_res - (GAME_BAR_INNER_HEIGHT + FONT_CHAR_HEIGHT) / 2) != OK)
         return 1;
 
 
     // Score and round number
+    int score_round_column_x_from_right = 350;
     int score_margin_small = 5;
-    int score_margin_big = (GAME_BAR_INNER_HEIGHT - 4*FONT_CHAR_HEIGHT - 2*score_margin_small) / 3;
+    int score_margin_big = (GAME_BAR_INNER_HEIGHT - 4 * FONT_CHAR_HEIGHT - 2 * score_margin_small) / 3;
     int y = buf.v_res - GAME_BAR_INNER_HEIGHT + score_margin_big;
-    if (font_draw_string(buf, "SCORE", buf.h_res - 350, y) != OK)
+    if (font_draw_string(buf, "SCORE", buf.h_res - score_round_column_x_from_right, y) != OK)
         return 1;
 
     char score_display[6];
     y += FONT_CHAR_HEIGHT + score_margin_small;
     sprintf(score_display, "%05d", game->score);
-    if (font_draw_string(buf, score_display, buf.h_res - 350, y) != OK)
+    if (font_draw_string(buf, score_display, buf.h_res - score_round_column_x_from_right, y) != OK)
         return 1;
 
     y += FONT_CHAR_HEIGHT + score_margin_big;
-    if (font_draw_string(buf, "ROUND", buf.h_res - 350, y) != OK)
+    if (font_draw_string(buf, "ROUND", buf.h_res - score_round_column_x_from_right, y) != OK)
         return 1;
 
     char round_display[6];
     y += FONT_CHAR_HEIGHT + score_margin_small;
     sprintf(round_display, "%5d", game->round_number);
-    if (font_draw_string(buf, round_display, buf.h_res - 350, y) != OK)
+    if (font_draw_string(buf, round_display, buf.h_res - score_round_column_x_from_right, y) != OK)
         return 1;
 
 
@@ -481,18 +480,17 @@ static int game_draw_bar() {
 
 
     // Guesses
-    // TODOPORVER dont use magic numbers like 400 without variables
+    int guesses_column_x = 350;
     y = buf.v_res - GAME_BAR_INNER_HEIGHT + 7;
     for (size_t i = 0; i < game->round->num_guesses; i++) {
         if (game->round->guesses[i].correct) {
-            if (vb_draw_img(buf, tick_img, 350, y) != OK)
+            if (vb_draw_img(buf, tick_img, guesses_column_x, y) != OK)
                 return 1;
         } else {
-            if (vb_draw_img(buf, cross_img, 350, y) != OK)
+            if (vb_draw_img(buf, cross_img, guesses_column_x, y) != OK)
                 return 1;
         }
 
-        // TODOPORVER get rid of that meaningless 100
         char guess[GUESS_CHARACTER_LIMIT + 1] = "";
         if (strlen(game->round->guesses[i].guess) <= GUESS_CHARACTER_LIMIT) {
             strcpy(guess, game->round->guesses[i].guess);
@@ -502,7 +500,7 @@ static int game_draw_bar() {
             guess[GUESS_CHARACTER_LIMIT - 2] = '.';
             guess[GUESS_CHARACTER_LIMIT - 3] = '.';
         }
-        if (font_draw_string(buf, guess, 371, y) != OK)
+        if (font_draw_string(buf, guess, guesses_column_x + 21, y) != OK)
             return 1;
 
         y += FONT_CHAR_HEIGHT + 10;

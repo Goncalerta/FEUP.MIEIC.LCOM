@@ -198,9 +198,7 @@ int (proj_main_loop)(int argc, char *argv[]) {
     game_unload_assets();
     menu_exit();
     cursor_exit();
-    dispatcher_bind_buttons(0);
-    dispatcher_bind_text_boxes(0);
-    dispatcher_bind_canvas(false);
+    dispatcher_reset_bindings();
 
     // Uart and communication protocol
 

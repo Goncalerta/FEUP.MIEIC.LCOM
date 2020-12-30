@@ -7,10 +7,10 @@
 #include "cursor.h"
 #include "game.h"
 
-static canvas_state_t state;
-static stroke *first, *last, *undone;
+static canvas_state_t state = CANVAS_STATE_NORMAL;
+static stroke *first = NULL, *last = NULL, *undone = NULL;
 static frame_buffer_t canvas_buf; // current picture drawn in buffer - copied into vcard back buffer
-static bool enabled;
+static bool enabled = false;
 static bool initialized = false;
 
 static int canvas_draw_atom_line(stroke_atom atom1, stroke_atom atom2, uint32_t color, uint16_t thickness) {

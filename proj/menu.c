@@ -21,7 +21,7 @@
 #define MENU_GREETING_X 10
 #define MENU_GREETING_Y 740
 
-static menu_state_t menu_state;
+static menu_state_t menu_state = MAIN_MENU;
 
 // MAIN MENU:
 static button_t b_new_game;
@@ -32,7 +32,7 @@ static button_t b_resume;
 static button_t b_back_to_main_menu;
 
 // AWAITING PLAYER:
-static uint8_t awaiting_player_tick;
+static uint8_t awaiting_player_tick = 0;
 
 static xpm_image_t xpm_new_game, xpm_resume, xpm_exit, xpm_main_menu;
 
@@ -85,7 +85,6 @@ static int menu_draw_game_over_screen(const char *reason, size_t reason_size) {
     if (vb_fill_screen(buf, MENU_BACKGROUND_COLOR) != OK)
         return 1;
 
-    // TODOPORVER avoid magic numbers
     if (font_draw_string_centered(buf, "GAME OVER", vg_get_hres()/2, 250, 0, 9) != OK)
         return 1;
     
@@ -118,7 +117,6 @@ static int menu_draw_new_round_screen(role_t role) {
     if (vb_fill_screen(buf, MENU_BACKGROUND_COLOR) != OK)
         return 1;
 
-    // TODOPORVER avoid magic numbers
     if (font_draw_string(buf, "ROUND", vg_get_hres()/2 - 140, 330) != OK)
         return 1;
     if (font_draw_string(buf, "SCORE", vg_get_hres()/2 - 140, 350) != OK)
@@ -239,12 +237,9 @@ void menu_set_state(menu_state_t state) {
 }
 
 int menu_set_main_menu() {
-    // TODOPORVER a dispatcher function called "reset bindings" that does most of this
+    if (dispatcher_reset_bindings() != OK)
+        return 1;
     if (dispatcher_bind_buttons(2, &b_new_game, &b_end_program) != OK)
-        return 1;
-    if (dispatcher_bind_text_boxes(0) != OK)
-        return 1;
-    if (dispatcher_bind_canvas(false) != OK)
         return 1;
 
     if (event_update_cursor_state() != OK)
@@ -255,11 +250,9 @@ int menu_set_main_menu() {
 }
 
 int menu_set_pause_menu() {
+    if (dispatcher_reset_bindings() != OK)
+        return 1;
     if (dispatcher_bind_buttons(2, &b_resume, &b_back_to_main_menu) != OK)
-        return 1;
-    if (dispatcher_bind_text_boxes(0) != OK)
-        return 1;
-    if (dispatcher_bind_canvas(false) != OK)
         return 1;
 
     if (event_update_cursor_state() != OK)
@@ -270,11 +263,9 @@ int menu_set_pause_menu() {
 }
 
 int menu_set_awaiting_player_menu() {
+    if (dispatcher_reset_bindings() != OK)
+        return 1;
     if (dispatcher_bind_buttons(1, &b_back_to_main_menu) != OK)
-        return 1;
-    if (dispatcher_bind_text_boxes(0) != OK)
-        return 1;
-    if (dispatcher_bind_canvas(false) != OK)
         return 1;
 
     if (event_update_cursor_state() != OK)
@@ -286,11 +277,7 @@ int menu_set_awaiting_player_menu() {
 }
 
 int menu_set_new_round_screen(role_t role) {
-    if (dispatcher_bind_buttons(0) != OK)
-        return 1;
-    if (dispatcher_bind_text_boxes(0) != OK)
-        return 1;
-    if (dispatcher_bind_canvas(false) != OK)
+    if (dispatcher_reset_bindings() != OK)
         return 1;
 
     if (event_update_cursor_state() != OK)
@@ -311,11 +298,9 @@ int menu_set_new_round_screen(role_t role) {
 }
 
 int menu_set_game_over_screen() {
+    if (dispatcher_reset_bindings() != OK)
+        return 1;
     if (dispatcher_bind_buttons(1, &b_back_to_main_menu) != OK)
-        return 1;
-    if (dispatcher_bind_text_boxes(0) != OK)
-        return 1;
-    if (dispatcher_bind_canvas(false) != OK)
         return 1;
 
     if (event_update_cursor_state() != OK)
@@ -326,11 +311,9 @@ int menu_set_game_over_screen() {
 }
 
 int menu_set_other_player_left_screen() {
+    if (dispatcher_reset_bindings() != OK)
+        return 1;
     if (dispatcher_bind_buttons(1, &b_back_to_main_menu) != OK)
-        return 1;
-    if (dispatcher_bind_text_boxes(0) != OK)
-        return 1;
-    if (dispatcher_bind_canvas(false) != OK)
         return 1;
 
     if (event_update_cursor_state() != OK)

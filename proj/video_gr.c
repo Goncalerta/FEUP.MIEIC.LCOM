@@ -19,11 +19,6 @@ static void vg_set_global_var_screen(vbe_mode_info_t *vmi) {
     buf1.h_res = buf2.h_res = vmi->XResolution;
     buf1.v_res = buf2.v_res = vmi->YResolution;
     buf1.bytes_per_pixel = buf2.bytes_per_pixel = ceil(vmi->BitsPerPixel / 8.0);
-
-    // red_mask_size = vmi->RedMaskSize;
-    // green_mask_size = vmi->RedMaskSize;
-    // blue_mask_size = vmi->RedMaskSize;
-    // direct_color_mode = vmi->MemoryModel == MEMORY_MODEL_DIRECT_COLOR;
 }
 
 void *(vg_init)(uint16_t mode) {

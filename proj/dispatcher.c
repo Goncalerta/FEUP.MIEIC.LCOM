@@ -30,9 +30,19 @@ typedef enum player_state_t {
 } player_state_t;
 
 static player_state_t this_player_state = NOT_READY;
-static int this_player_random_number;
+static int this_player_random_number = 0;
 static player_state_t other_player_state = NOT_READY;
-static int other_player_random_number;
+static int other_player_random_number = 0;
+
+int dispatcher_reset_bindings() {
+    if (dispatcher_bind_buttons(0) != OK)
+        return 1;
+    if (dispatcher_bind_text_boxes(0) != OK)
+        return 1;
+    if (dispatcher_bind_canvas(false) != OK)
+        return 1;
+    return 0;
+}
 
 int dispatcher_bind_buttons(size_t number_of_buttons, ...) {
     if (listening_buttons != NULL)
@@ -496,18 +506,18 @@ int draw_frame() {
     if (cursor_draw() != OK)
         return 1;
 
-    if (num_listening_text_boxes == 1){
-        printf("DRAWINGFRAME9\n");
-        printf("CURRENT: %d\n", listening_text_boxes[0]);
-    }
+    // if (num_listening_text_boxes == 1){
+    //     printf("DRAWINGFRAME9\n");
+    //     printf("CURRENT: %d\n", listening_text_boxes[0]);
+    // }
 
     if (vg_flip_page() != OK)
         return 1;
 
-    if (num_listening_text_boxes == 1){
-        printf("DRAWINGFRAME10\n");
-        printf("CURRENT: %d\n", listening_text_boxes[0]);
-    }
+    // if (num_listening_text_boxes == 1){
+    //     printf("DRAWINGFRAME10\n");
+    //     printf("CURRENT: %d\n", listening_text_boxes[0]);
+    // }
 
     return 0;
 }

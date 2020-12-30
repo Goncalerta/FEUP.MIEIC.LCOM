@@ -158,6 +158,8 @@ void uart_delete_sw_queues() {
 
 int uart_flush_received_bytes(uint8_t *no_bytes, uint8_t *first, uint8_t *last) {
     *no_bytes = 0;
+
+    // First empty received bytes in queue
     while (!queue_is_empty(&received)) {
         if (queue_top(&received, last) != OK)
             return 1;
@@ -169,6 +171,8 @@ int uart_flush_received_bytes(uint8_t *no_bytes, uint8_t *first, uint8_t *last) 
             return 1;
     }
 
+    // Now read the receiver buffer to make sure no new bytes were received
+    // Wait and try 3 times to make sure that the message being received was completely received
     uint8_t lsr_byte, rbr_byte;
     
     if (util_sys_inb(COM1_BASE_ADDR + LINE_STATUS_REG, &lsr_byte) != OK)
@@ -232,28 +236,13 @@ int uart_clear_hw_fifos() {
     return 0;
 }
 
-// static int uart_read_reg(uint8_t reg, uint8_t *data) {
-//     if (util_sys_inb(COM1_BASE_ADDR + reg, data) != OK)
-//         return 1;
-    
-//     return 0;
-// }
-
-// static int uart_write_reg(uint8_t reg, uint8_t data) {
-//     if (sys_outb(COM1_BASE_ADDR + reg, data) != OK)
-//         return 1;
-//     return 0;
-// }
-
 int uart_config_params(word_len_t word_len, parity_t parity, 
                        no_stop_bits_t no_stop_bits, uint16_t bit_rate) {
-    // TODOPORVER should we care about preserving Set Break Enable
     uint8_t lcr_byte = word_len | (parity << 3) | (no_stop_bits << 2);
 
     if (sys_outb(COM1_BASE_ADDR + LINE_CTRL_REG, lcr_byte) != OK)
         return 1;
     
-    // TODOPORVER maybe try to avoid this because of the unecessary sys_inb? but then it wouldnt be modular
     if (uart_set_bit_rate(bit_rate) != OK)
         return 1;
     
@@ -301,7 +290,7 @@ int uart_disable_fifo() {
     return 0;
 }
 
-int uart_set_bit_rate(uint16_t bit_rate) {
+static int uart_select_dlab() {
     uint8_t lcr_byte;
     if (util_sys_inb(COM1_BASE_ADDR + LINE_CTRL_REG, &lcr_byte) != OK)
         return 1;
@@ -309,23 +298,51 @@ int uart_set_bit_rate(uint16_t bit_rate) {
     lcr_byte |= LCR_DLAB_SELECT_DL;
     if (sys_outb(COM1_BASE_ADDR + LINE_CTRL_REG, lcr_byte) != OK)
         return 1;
-
-    uint16_t divisor_latch_value = DIVISOR_LATCH_DIVIDEND / bit_rate;
-    uint8_t divisor_latch_lsb, divisor_latch_msb;
-    // TODOPORVER maybe instead of return 1 first revert change to DLAB
-    if (util_get_LSB(divisor_latch_value, &divisor_latch_lsb) != OK)
-        return 1;
-    if (util_get_MSB(divisor_latch_value, &divisor_latch_msb) != OK)
-        return 1;
-
-    if (sys_outb(COM1_BASE_ADDR + DIVISOR_LATCH_LSB, divisor_latch_lsb) != OK)
-        return 1;
     
-    if (sys_outb(COM1_BASE_ADDR + DIVISOR_LATCH_MSB, divisor_latch_msb) != OK)
+    return 0;
+}
+
+static int uart_select_data() {
+    uint8_t lcr_byte;
+    if (util_sys_inb(COM1_BASE_ADDR + LINE_CTRL_REG, &lcr_byte) != OK)
         return 1;
 
     lcr_byte &= ~LCR_DLAB_SELECT_DL;
     if (sys_outb(COM1_BASE_ADDR + LINE_CTRL_REG, lcr_byte) != OK)
         return 1;
+    
+    return 0;
+}
+
+int uart_set_bit_rate(uint16_t bit_rate) {
+    if (uart_select_dlab() != OK)
+        return 1;
+
+    uint16_t divisor_latch_value = DIVISOR_LATCH_DIVIDEND / bit_rate;
+    uint8_t divisor_latch_lsb, divisor_latch_msb;
+    
+    if (util_get_LSB(divisor_latch_value, &divisor_latch_lsb) != OK) {
+        uart_select_data();
+        return 1;
+    }
+        
+    if (util_get_MSB(divisor_latch_value, &divisor_latch_msb) != OK) {
+        uart_select_data();
+        return 1;
+    }
+
+    if (sys_outb(COM1_BASE_ADDR + DIVISOR_LATCH_LSB, divisor_latch_lsb) != OK) {
+        uart_select_data();
+        return 1;
+    }
+    
+    if (sys_outb(COM1_BASE_ADDR + DIVISOR_LATCH_MSB, divisor_latch_msb) != OK) {
+        uart_select_data();
+        return 1;
+    }
+
+    if (uart_select_data() != OK)
+        return 1;
+    
     return 0;
 }

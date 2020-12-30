@@ -8,9 +8,9 @@
 #include "xpm/cursor_write.xpm"
 #include "xpm/cursor_disabled.xpm"
 
-static cursor_state state;
-static int16_t cursor_x, cursor_y;
-static bool lb, rb;
+static cursor_state state = CURSOR_ARROW;
+static int16_t cursor_x = 0, cursor_y = 0;
+static bool lb = false, rb = false;
 static xpm_image_t cursor_arrow, cursor_write, cursor_disabled;
 
 int cursor_init(enum xpm_image_type type) {

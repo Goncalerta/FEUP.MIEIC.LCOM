@@ -8,14 +8,14 @@
 #include "game.h"
 
 static queue_t pending_messages;
-static bool awaiting_ack;
-static uint8_t awaiting_ack_ticks;
+static bool awaiting_ack = false;
+static uint8_t awaiting_ack_ticks = 0;
 
-static bool receiving_msg;
-static uint8_t receiving_msg_ticks;
-static uint8_t *receiving_msg_bits;
-static size_t receiving_msg_len;
-static size_t receiving_msg_read_count;
+static bool receiving_msg = false;
+static uint8_t receiving_msg_ticks = 0;
+static uint8_t *receiving_msg_bits = NULL;
+static size_t receiving_msg_len = 0;
+static size_t receiving_msg_read_count = 0;
 
 static int protocol_handle_connection_timeout() {
     awaiting_ack = false;
