@@ -18,8 +18,7 @@
 #define MENU_BUTTON_HEIGHT 100
 #define MENU_BUTTON_DISTANCE 50
 #define MENU_BACKGROUND_COLOR 0x8c2d19
-#define MENU_GREETING_X 10
-#define MENU_GREETING_Y 740
+#define MENU_GREETING_Y 180
 
 static menu_state_t menu_state = MAIN_MENU;
 
@@ -168,7 +167,7 @@ int menu_draw() {
             return 1;
         if (button_draw(buf, b_end_program) != OK)
             return 1;
-        if (date_draw_greeting(MENU_GREETING_X, MENU_GREETING_Y) != OK)
+        if (date_draw_greeting(vg_get_hres()/2, MENU_GREETING_Y) != OK)
             return 1;
         break;
 
