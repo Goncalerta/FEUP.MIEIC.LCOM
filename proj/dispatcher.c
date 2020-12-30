@@ -49,13 +49,8 @@ int dispatcher_bind_buttons(size_t number_of_buttons, ...) {
         free(listening_buttons);
 
     num_listening_buttons = number_of_buttons;
-
-    if (number_of_buttons != 0) {
-        listening_buttons = malloc(number_of_buttons * sizeof(button_t*));
-        if (listening_buttons == NULL)
-            return 1;
-    }
-
+    listening_buttons = malloc(number_of_buttons * sizeof(button_t*));
+    
     va_list ap;
     va_start(ap, number_of_buttons);
     for (size_t i = 0; i < number_of_buttons; i++) {
@@ -71,12 +66,7 @@ int dispatcher_bind_text_boxes(size_t number_of_text_boxes, ...) {
         free(listening_text_boxes);
 
     num_listening_text_boxes = number_of_text_boxes;
-
-    if (number_of_text_boxes != 0) {
-        listening_text_boxes = malloc(number_of_text_boxes * sizeof(text_box_t*));
-        if (listening_text_boxes == NULL)
-            return 1;
-    }
+    listening_text_boxes = malloc(number_of_text_boxes * sizeof(text_box_t*));
     
     va_list ap;
     va_start(ap, number_of_text_boxes);
