@@ -42,12 +42,6 @@ typedef enum rtc_interrupt_t {
     UPDATE_INTERRUPT    
 } rtc_interrupt_t;
 
-typedef struct rtc_alarm_time_t {
-    uint8_t hours;
-    uint8_t minutes;
-    uint8_t seconds;
-} rtc_alarm_time_t;
-
 typedef union rtc_interrupt_config_t {
     rtc_alarm_time_t alarm_time; // in binary format
     uint8_t periodic_RS3210; // RS3 RS2 RS1 RS0 in 4 LS bits

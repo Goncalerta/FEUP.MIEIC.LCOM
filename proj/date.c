@@ -20,7 +20,7 @@ int date_bcd_to_binary(date_t *date) {
 int date_draw(date_t date, uint16_t x, uint16_t y) {
     char date_str[DATE_STRING_SIZE];
 
-    sprintf(date_str, "20%02d/%02d/%02d %02d:%02d:%02d", date.year, date.month, date.day, date.hour, date.minute, date.second);
+    sprintf(date_str, "%04d/%02d/%02d %02d:%02d:%02d", date.year, date.month, date.day, date.hour, date.minute, date.second);
 
     if (vb_draw_rectangle(vg_get_back_buffer(), x-DATE_DISPLAY_BORDER, y-DATE_DISPLAY_BORDER, (DATE_STRING_SIZE-1)*CHAR_SPACE + 2*DATE_DISPLAY_BORDER, FONT_CHAR_HEIGHT + 2*DATE_DISPLAY_BORDER, DATE_BACK_COLOR) != OK)
         return 1;
@@ -74,4 +74,53 @@ bool date_operator_less_than(date_t date1, date_t date2) {
     if (date1.minute != date2.minute)
         return date1.minute < date2.minute;
     return date1.second < date2.second;
+}
+
+static bool date_year_is_leap(uint16_t year) {
+    if (year <= 1582)
+        return 1; // gregorian calendar (15-10-1582)
+
+    if (year % 400 == 0 || (year % 4 == 0 && year % 100 != 0))
+        return true;
+    
+    return false;
+}
+
+static uint8_t date_get_month_num_days(date_t date) {
+    if (date.month == 2) {
+        if (date_year_is_leap(date.year)) {
+            return 29;
+        } else { 
+            return 28;
+        }
+    } else if (date.month <= 7){
+        return 30 + date.month % 2;
+    } else {
+        return 31 - date.month % 2;
+    }
+}
+
+int date_plus_alarm_time(rtc_alarm_time_t alarm, date_t *date) { // values in binary (not BCD)
+    if (date == NULL)
+        return 1;
+    uint8_t month_num_days = date_get_month_num_days(*date);
+
+    uint8_t m_left = (alarm.seconds + date->second) / 60;
+    date->second = (alarm.seconds + date->second) % 60;
+
+    uint8_t h_left = (m_left + alarm.minutes + date->minute) / 60;
+    date->minute = (m_left + alarm.minutes + date->minute) % 60;
+
+    uint8_t d_left = (h_left + alarm.hours + date->hour) / 24;
+    date->hour = (h_left + alarm.hours + date->hour) % 24;
+
+    uint8_t mth_left = (d_left + date->day - 1) / month_num_days;
+    date->day = (d_left + date->day - 1) % month_num_days + 1;
+
+    uint8_t y_left = (mth_left + date->month - 1) / 12;
+    date->month = (mth_left + date->month - 1) % 12 + 1;
+
+    date->year = y_left + date->year;
+
+    return 0;
 }

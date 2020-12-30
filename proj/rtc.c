@@ -6,16 +6,16 @@
 
 static int hook_id_rtc = 3;
 static date_t current_date;
-static date_t last_alarm_set_in;
+static date_t last_alarm_set_to = {.year = 0, .month = 0, .day = 0, .hour = 0, .minute = 0, .second = 0};
 
-static void rtc_print_byte_binary_format(uint8_t val) {
+static void rtc_print_byte_binary_format(uint8_t val) { // TODO delete? or let it be?
     for (int i = 7; i >= 0; i--) {
         printf("%d", (val>>i) & 0x1);
     }
     printf("\n");
 }
 
-int rtc_read_conf() {
+int rtc_read_conf() { // TODO delete? or let it be?
     uint8_t reg_a, reg_b, reg_c, reg_d;
     if (rtc_read_register(RTC_REGISTER_A, &reg_a) != OK)
         return 1;
@@ -38,6 +38,16 @@ int rtc_read_conf() {
     return 0;
 }
 
+static int alarm_time_binary_to_bcd(rtc_alarm_time_t * time) {
+    if (time == NULL)
+        return 1;
+    
+    time->hours = BINARY_TO_BCD(time->hours);
+    time->minutes = BINARY_TO_BCD(time->minutes);
+    time->seconds = BINARY_TO_BCD(time->seconds);
+    return 0;
+}
+
 int rtc_get_current_date(date_t *date) {
     if (date == NULL)
         return 1;
@@ -57,6 +67,7 @@ int rtc_read_date() {
     if (reg_a & RTC_UIP) { // slide 15
         tickdelay(micros_to_ticks(RTC_DELAY_U));
     }
+    uint8_t year;
 
     if (rtc_read_register(RTC_REGISTER_SECONDS, &current_date.second) != OK)
         return 1;
@@ -68,12 +79,14 @@ int rtc_read_date() {
         return 1;
     if (rtc_read_register(RTC_REGISTER_MONTH, &current_date.month) != OK)
         return 1;
-    if (rtc_read_register(RTC_REGISTER_YEAR, &current_date.year) != OK)
+    if (rtc_read_register(RTC_REGISTER_YEAR, &year) != OK)
         return 1;
 
+    current_date.year = year;
     if (date_bcd_to_binary(&current_date) != OK)
         return 1;
-
+    
+    current_date.year += 2000;
     return 0;
 }
 
@@ -86,30 +99,6 @@ int rtc_unsubscribe_int() {
     return sys_irqrmpolicy(&hook_id_rtc);
 }
 
-static int alarm_time_binary_to_bcd(rtc_alarm_time_t * time) {
-    if (time == NULL)
-        return 1;
-    
-    time->hours = BINARY_TO_BCD(time->hours);
-    time->minutes = BINARY_TO_BCD(time->minutes);
-    time->seconds = BINARY_TO_BCD(time->seconds);
-    return 0;
-}
-
-static int alarm_time_plus_date(rtc_alarm_time_t *alarm, date_t date) { // values in binary (not BCD)
-    if (alarm == NULL)
-        return 1;
-
-    uint8_t m_left = (alarm->seconds + date.second) / 60;
-    alarm->seconds = (alarm->seconds + date.second) % 60;
-
-    uint8_t h_left = (m_left + alarm->minutes + date.minute) / 60;
-    alarm->minutes = (m_left + alarm->minutes + date.minute) % 60;
-
-    alarm->hours = (h_left + alarm->hours + date.hour) % 24;
-    return 0;
-}
-
 int rtc_enable_update_int() {
     rtc_interrupt_config_t config; // no config is used when enabling update interrupts
     if (rtc_enable_int(UPDATE_INTERRUPT, config) != OK)
@@ -119,14 +108,14 @@ int rtc_enable_update_int() {
 }
 
 int rtc_set_alarm_in(rtc_alarm_time_t remaining_time_to_alarm) {
-    if (alarm_time_plus_date(&remaining_time_to_alarm, current_date) != OK) 
+    last_alarm_set_to = current_date;
+    if (date_plus_alarm_time(remaining_time_to_alarm, &last_alarm_set_to) != OK) 
         return 1;
     
-    rtc_interrupt_config_t config = {.alarm_time = remaining_time_to_alarm};
+    rtc_interrupt_config_t config = {.alarm_time = {.hours = last_alarm_set_to.hour, .minutes = last_alarm_set_to.minute, .seconds = last_alarm_set_to.second}};
     if (rtc_enable_int(ALARM_INTERRUPT, config) != OK)
         return 1;
 
-    last_alarm_set_in = current_date;
     return 0;
 }
 
@@ -244,7 +233,7 @@ void rtc_ih() {
             return;
     }
     if (register_c & RTC_AF) {
-        if (date_operator_less_than(last_alarm_set_in, current_date)) { // TODO maybe this is not enough (the date may change between disable_int() and rtc_ih())
+        if (!date_operator_less_than(current_date, last_alarm_set_to)) { // if not an old alarm
             if (dispatch_rtc_alarm_int() != OK)
                 return;
         }
