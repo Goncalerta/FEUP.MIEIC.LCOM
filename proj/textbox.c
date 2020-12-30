@@ -18,7 +18,7 @@
 static char *clip_board = NULL; // not saving the '\0' char
 static uint8_t clip_board_size = 0;
 
-int new_text_box(text_box_t *text_box, uint16_t x, uint16_t y, uint8_t display_size) {
+int new_text_box(text_box_t *text_box, uint16_t x, uint16_t y, uint8_t display_size, text_box_action action) {
     text_box->word = malloc(sizeof('\0'));
     if (text_box->word == NULL)
         return 1;
@@ -28,8 +28,8 @@ int new_text_box(text_box_t *text_box, uint16_t x, uint16_t y, uint8_t display_s
     text_box->select_pos = 0;
     text_box->start_display = 0;
     text_box->state = TEXT_BOX_NORMAL;
-    text_box->is_ready = false;
     text_box->visible_cursor = true;
+    text_box->action = action;
 
     text_box->x = x;
     text_box->y = y;
@@ -54,7 +54,6 @@ int text_box_clear(text_box_t *text_box) {
     text_box->cursor_pos = 0;
     text_box->select_pos = 0;
     text_box->start_display = 0;
-    text_box->is_ready = false;
 
     return 0;
 }
@@ -244,6 +243,25 @@ static int text_box_copy(text_box_t *text_box) {
     return 0;
 }
 
+static int text_box_retrieve(text_box_t *text_box) {
+    char *content = malloc(text_box->word_size + 1);
+    if (content == NULL)
+        return 1;
+
+    if (memcpy(content, text_box->word, text_box->word_size + 1) == NULL) {
+        printf("Error while retrieving word\n");
+        return 1;
+    }
+
+    if (text_box->action(content) != OK)
+        return 1;
+    
+    if (text_box_clear(text_box) != OK)
+        return 1;
+
+    return 0;
+}
+
 int text_box_react_kbd(text_box_t *text_box, kbd_event_t kbd_event) {
     if (text_box->state != TEXT_BOX_SELECTED_HOVERING && text_box->state != TEXT_BOX_SELECTED_NOT_HOVERING) {
         return 0;
@@ -393,7 +411,8 @@ int text_box_react_kbd(text_box_t *text_box, kbd_event_t kbd_event) {
         break;
     
     case ENTER:
-        text_box->is_ready = true;
+        if (text_box_retrieve(text_box) != OK)
+            return 1;
         break;
     
     default:
@@ -407,33 +426,6 @@ int text_box_react_kbd(text_box_t *text_box, kbd_event_t kbd_event) {
         text_box->start_display = text_box->cursor_pos;
     }
     
-    return 0;
-}
-
-int text_box_retrieve_if_ready(text_box_t *text_box, char **content) {
-    if (!text_box->is_ready) {
-        return 0;
-    }
-
-    if (*content == NULL) {
-        *content = malloc(text_box->word_size + 1);
-        if (*content == NULL)
-            return 1;
-    } else {
-        char *content_temp = realloc(content, text_box->word_size + 1);
-        if (content_temp == NULL)
-            return 1;
-        *content = content_temp;
-    }
-
-    if (memcpy(*content, text_box->word, text_box->word_size + 1) == NULL) {
-        printf("Error while retrieving\n");
-        return 1;
-    }
-    
-    if (text_box_clear(text_box) != OK)
-        return 1;
-
     return 0;
 }
 

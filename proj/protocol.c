@@ -196,7 +196,7 @@ static int protocol_receive_round_win(size_t content_len, uint8_t *content) {
 
     uint32_t score;
     memcpy(&score, content, 4);
-    if (game_is_round_ongoing_or_tolerance() && game_get_role() == GUESSER) {
+    if ((game_is_round_ongoing_or_tolerance() || game_is_round_won()) && game_get_role() == GUESSER) {
         if (game_round_over(score, true) != OK)
             return 1;
     }
@@ -208,7 +208,7 @@ static int protocol_receive_game_over(size_t content_len, uint8_t *content) {
     if (content_len != 0)
         return 1;
 
-    if (game_is_round_ongoing_or_tolerance() && game_get_role() == GUESSER) {
+    if (game_is_round_ongoing_or_tolerance()) {
         if (game_other_player_game_over() != OK)
             return 1;
     }
@@ -565,6 +565,8 @@ int protocol_send_random_number(int random_number) {
 int protocol_send_new_round(const char *word) {
     message_t msg;
     size_t str_len = strlen(word);
+    if (str_len > 254) str_len = 254;
+    
     uint8_t content[str_len + 1];
     memcpy(content, word, str_len + 1);
 
@@ -643,6 +645,8 @@ int protocol_send_redo_canvas() {
 int protocol_send_guess(const char *guess) {
     message_t msg;
     size_t str_len = strlen(guess);
+    if (str_len > 254) str_len = 254;
+    
     uint8_t content[str_len + 1];
     memcpy(content, guess, str_len + 1);
 

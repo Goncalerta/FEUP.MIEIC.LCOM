@@ -21,8 +21,6 @@ int kbd_unsubscribe_int() {
 }
 
 void (kbc_ih)() {
-    static kbd_event_t kbd_state = { .key = NO_KEY };
-
     if (should_retrieve) {
         printf("keyboard interrupt handler failed\n");
         return;
@@ -38,27 +36,15 @@ void (kbc_ih)() {
     if (scancode_bytes_counter == 2 || data != FIRST_BYTE_TWO_BYTE_SCANCODE) {
         should_retrieve = true;
     }
-
-    if (should_retrieve) {
-        if (kbd_handle_scancode(&kbd_state) != OK) {
-            printf("kbd_handle_scancode failed\n");
-            return;
-        }
-
-        if (dispatch_keyboard_event(kbd_state) != OK) {
-            printf("dispatch_keyboard_event failed\n");
-            return;
-        }
-    }
 }
 
 bool kbd_is_make_code(uint8_t scancode) {
     return (scancode & BREAK_CODE_BIT) == 0;
 }
 
-//bool kbd_is_scancode_ready() {
-//    return should_retrieve;
-//}
+bool kbd_is_scancode_ready() {
+   return should_retrieve;
+}
 
 int kbd_handle_scancode(kbd_event_t *kbd_state) {
     if (!should_retrieve)

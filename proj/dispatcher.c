@@ -382,13 +382,31 @@ int event_update_cursor_state() {
     return 0;
 }
 
+int event_guess_word(char *guess) {
+    if (guess != NULL && strncmp(guess, "", 1)) {
+        if (game_is_round_ongoing()) {
+            if (game_guess_word(guess) != OK) 
+                return 1;
+            if (protocol_send_guess(guess) != OK)
+                return 1;
+        }
+    } else {
+        free(guess);
+    }
+
+    return 0;
+}
+
 int dispatch_keyboard_event(kbd_event_t kbd_event) {
     if (kbd_event.key == ESC) {
         if (menu_get_state() == PAUSE_MENU) {
-            game_resume();
+            if (game_resume() != OK)
+                return 1;
+            return 0;
         } else if (menu_get_state() == GAME) {
             if (menu_set_pause_menu() != OK) 
                 return 1;
+            return 0;
         }
     }
     
@@ -397,30 +415,17 @@ int dispatch_keyboard_event(kbd_event_t kbd_event) {
         if (text_box_react_kbd(text_box, kbd_event) != OK) {
             return 1;
         }
-
-        //TODO not the right place nor the right way
-        char *guess = NULL;
-        if (text_box_retrieve_if_ready(text_box, &guess) != OK) {
-            return 1;
-        }
-
-        if (guess != NULL && strncmp(guess, "", 1)) {
-            if (game_is_round_ongoing()) {
-                if (game_guess_word(guess) != OK) 
-                    return 1;
-                if (protocol_send_guess(guess) != OK)
-                    return 1;
-            }
-        }
     }
 
     if (bound_canvas && canvas_is_enabled()) {
         if (kbd_event.key == CHAR && kbd_event.char_key == 'Z' && kbd_event.is_ctrl_pressed) {
-            event_undo(); // no need to crash if empty
+            if (event_undo() != OK)
+                return 1;
         }
 
         if (kbd_event.key == CHAR && kbd_event.char_key == 'Y' && kbd_event.is_ctrl_pressed) {
-            event_redo(); // no need to crash if empty
+            if (event_redo() != OK)
+                return 1;
         }
     }
 

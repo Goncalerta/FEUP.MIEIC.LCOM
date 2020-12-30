@@ -257,13 +257,17 @@ bool game_is_round_ongoing_or_tolerance() {
     return game != NULL && (game->state == ROUND_ONGOING || game->state == TIMES_UP);
 }
 
+bool game_is_round_won() {
+    return game != NULL && game->state == ROUND_CORRECT_GUESS;
+}
+
 bool game_may_create_new_round() {
-    return game != NULL && game->round == NULL;
+    return game != NULL && (game->round == NULL || game->state == GAME_OVER || game->state == ROUND_CORRECT_GUESS);
 }
 
 static int init_text_box(guesser_t *guesser) {
     if (new_text_box(&game->round->attr.guesser->text_box, TEXT_BOX_GUESSER_X + 4, TEXT_BOX_GUESSER_Y, 
-                     TEXT_BOX_GUESSER_DISPLAY_SIZE) != OK)
+                     TEXT_BOX_GUESSER_DISPLAY_SIZE, event_guess_word) != OK)
         return 1;
     return 0;
 }
@@ -271,6 +275,9 @@ static int init_text_box(guesser_t *guesser) {
 int game_new_round(role_t role, const char *word) {
     if (!game_may_create_new_round())
         return 1;
+    if (game->round != NULL) {
+        game_delete_round();
+    }
 
     game->round_number++;
     game->state = ROUND_UNSTARTED;
@@ -610,6 +617,7 @@ int game_guess_word(char *guess) {
     g.correct = strcmp(guess, game->round->correct_guess) == 0;
     if (game->round->num_guesses == MAX_GUESSES) {
         for (int i = 1; i < MAX_GUESSES; i++) {
+            free(game->round->guesses[i-1].guess);
             game->round->guesses[i-1] = game->round->guesses[i];
         }
         game->round->guesses[MAX_GUESSES - 1] = g;

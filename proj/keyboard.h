@@ -73,14 +73,13 @@ int kbd_handle_scancode(kbd_event_t *kbd_state);
  */
 int kbd_enable_interrupts(); // TODO this is not used in the project, delete?
 
-/**@}*/
-
-// TODO outdated for now, might be used if the IH gets modified
 ///**
 // * @brief Checks if a complete scancode is ready to be processed.
 // *
 // * @return Return true if a scancode is ready and false otherwise
 // */
-//bool kbd_is_scancode_ready(); 
+bool kbd_is_scancode_ready(); 
+
+/**@}*/
 
 #endif /* __KEYBOARD_H */

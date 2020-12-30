@@ -188,7 +188,7 @@ int canvas_undo_stroke() {
     stroke *u = last;
 
     if (u == NULL)
-        return 1;
+        return 0;
     
     if (u->prev == NULL) {
         first = last = NULL;
@@ -219,7 +219,7 @@ int canvas_undo_stroke() {
 int canvas_redo_stroke() {
     stroke *u = undone;
     if (u == NULL)
-        return 1;
+        return 0;
 
     if (u->prev == NULL) {
         undone = NULL;

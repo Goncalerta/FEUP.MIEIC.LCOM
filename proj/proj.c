@@ -117,15 +117,33 @@ int (proj_main_loop)(int argc, char *argv[]) {
             case HARDWARE: /* hardware interrupt notification */				
                 if (msg.m_notify.interrupts & BIT(mouse_irq_set)) {
                     mouse_ih();
-                    // TODO application dependent part outside ih
+                    
+                    if (mouse_is_packet_ready()) {
+                        struct packet p;
+                        if (mouse_retrieve_packet(&p) != OK) {
+                            printf("mouse_retrieve_packet failed\n");
+
+                        } else if (dispatch_mouse_packet(p) != OK) {
+                            printf("dispatch_mouse_packet failed\n");
+                        }
+                    }
                 }
                 if (msg.m_notify.interrupts & BIT(kbd_irq_set)) {
                     kbc_ih();
-                    // TODO application dependent part outside ih
+                    
+                    if (kbd_is_scancode_ready()) {
+                        kbd_event_t kbd_state = { .key = NO_KEY };
+                        
+                        if (kbd_handle_scancode(&kbd_state) != OK) {
+                            printf("kbd_handle_scancode failed\n");
+                            
+                        } else if (dispatch_keyboard_event(kbd_state) != OK) {
+                            printf("dispatch_keyboard_event failed\n");
+                        }
+                    }
                 }
                 if (msg.m_notify.interrupts & BIT(rtc_irq_set)) {
                     rtc_ih();
-                    // TODO application dependent part outside ih
                 }
                 if (msg.m_notify.interrupts & BIT(com1_irq_set)) {
                     com1_ih();

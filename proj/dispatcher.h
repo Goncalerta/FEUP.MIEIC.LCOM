@@ -25,6 +25,7 @@ int event_round_win(uint32_t score);
 int event_end_round();
 int event_undo();
 int event_redo();
+int event_guess_word(char *guess);
 int event_ready_to_play();
 int event_other_player_ready_to_play();
 int event_new_round_as_guesser(const char *word);

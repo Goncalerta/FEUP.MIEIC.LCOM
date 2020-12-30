@@ -39,19 +39,6 @@ void (mouse_ih)() {
             return;
         }
     }
-
-    if (mouse_is_packet_ready()) {
-        struct packet p;
-        if (mouse_retrieve_packet(&p) != OK) {
-            printf("mouse_retrieve_packet failed\n");
-            return;
-        }
-
-        if (dispatch_mouse_packet(p) != OK) {
-            printf("dispatch_mouse_packet failed\n");
-            return;
-        }
-    }
 }
 
 bool mouse_is_packet_ready() {

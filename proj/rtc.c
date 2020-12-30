@@ -229,7 +229,6 @@ int rtc_write_register(uint8_t address, uint8_t value) {
 }
 
 void rtc_ih() {
-    // TODO have some global var to signal an error in the IH?
     uint8_t register_c = 0;
     if (rtc_read_register(RTC_REGISTER_C, &register_c) != 0) {
         printf("Error while reading register C\n");

@@ -27,6 +27,7 @@ uint32_t game_get_round_number();
 bool game_is_round_unstarted();
 bool game_is_round_ongoing();
 bool game_is_round_ongoing_or_tolerance();
+bool game_is_round_won();
 bool game_may_create_new_round();
 const char *game_get_correct_word();
 
