@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['date_5ft_463',['date_t',['../group__date.html#ga5537aa0e93a18a8e7b668e58c35a329b',1,'date.h']]]
+  ['cursor_5fstate_510',['cursor_state',['../group__cursor.html#gaff2a1d9bd37f5d489383fa3c43ed6503',1,'cursor.h']]]
 ];

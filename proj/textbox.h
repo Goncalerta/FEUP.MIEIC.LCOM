@@ -31,14 +31,14 @@ typedef enum text_box_state {
 } text_box_state;
 
 /**
- * @brief Text box info
+ * @brief Text box info.
  * 
  */
 typedef struct text_box_t {
-    char *   word; /*!< Address of the content of the text box. */
+    char *   word; /*!< Address of memory of the content of the text box. */
     uint8_t  word_size; /*!< Content size (not counting with the '\0'). */
-    uint16_t x; /*!< Text box x coordinate. */
-    uint16_t y; /*!< Text box y coordinate. */
+    uint16_t x; /*!< Left most x coordinate of the text box. */
+    uint16_t y; /*!< Top most y coordinate of the text box. */
     uint8_t  cursor_pos; /*!< Cursor position relative to its content start. */
     uint8_t  select_pos; /*!< Position, relative to content start, from where the content is being selected (== cursor_pos if nothing selected). */
     uint8_t  start_display; /*!< First position dispalyed in the text box. */
@@ -49,9 +49,9 @@ typedef struct text_box_t {
 } text_box_t;
 
 /**
- * @brief Initiates the contents of a new text box.
+ * @brief Initiates the content of a new text box.
  * 
- * @param text_box address of memory of the text box
+ * @param text_box address of memory of the text box to be initialized
  * @param x text box x coordinate
  * @param y text box y coordinate
  * @param display_size text box display size

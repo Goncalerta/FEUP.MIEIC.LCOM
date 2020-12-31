@@ -11,7 +11,7 @@
  */
 
 /**
- * @brief Word clue
+ * @brief Word clue.
  * 
  */
 typedef struct word_clue_t {

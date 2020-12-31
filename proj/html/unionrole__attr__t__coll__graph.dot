@@ -11,7 +11,7 @@ digraph "role_attr_t"
   Node4 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" drawer" ,fontname="Helvetica"];
   Node4 [label="drawer_t",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structdrawer__t.html",tooltip=" "];
   Node5 -> Node4 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" b_color\nb_eraser\nb_pencil\nb_redo\nb_thickness\nb_undo" ,fontname="Helvetica"];
-  Node5 [label="button_t",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structbutton__t.html",tooltip=" "];
+  Node5 [label="button_t",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structbutton__t.html",tooltip="Button info."];
   Node6 -> Node5 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" icon" ,fontname="Helvetica"];
-  Node6 [label="button_icon_t",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structbutton__icon__t.html",tooltip=" "];
+  Node6 [label="button_icon_t",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structbutton__icon__t.html",tooltip="Icon of a button."];
 }
