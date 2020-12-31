@@ -25,7 +25,7 @@ int menu_draw();
 
 menu_state_t menu_get_state();
 
-void menu_set_state(menu_state_t state);
+void menu_set_game_screen();
 
 int menu_set_main_menu();
 

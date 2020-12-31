@@ -1,6 +1,5 @@
 #include <lcom/lcf.h>
 #include "kbc.h"
-#include "utilities.h"
 
 #define KBC_NUM_TRIES 5
 
@@ -16,7 +15,7 @@ int kbc_write_reg(int reg, uint8_t write) {
                 return 1;
             return 0;
         }
-        tickdelay(micros_to_ticks(DELAY_US));
+        tickdelay(micros_to_ticks(KBC_DELAY_US));
     }
     return 1;
 }
@@ -30,6 +29,8 @@ int kbc_issue_argument(uint8_t arg) {
 }
 
 int kbc_read_data(uint8_t *data) {
+    // We use interrupts, so no need to check for OBF nor whether
+    // the input came from the keyboard or mouse.
     uint8_t stat;
     if (util_sys_inb(KBC_ST_REG, &stat) != OK)
         return 1;

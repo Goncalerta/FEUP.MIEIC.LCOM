@@ -2,7 +2,6 @@
 
 #include "uart.h"
 #include "queue.h"
-#include "utilities.h"
 
 #define UART_SW_QUEUES_STARTING_CAPACITY 16
 

@@ -258,19 +258,28 @@ bool game_is_round_unstarted() {
 }
 
 bool game_is_round_ongoing() {
-    return game != NULL && game->state == ROUND_ONGOING;
+    return game != NULL && game->round != NULL && game->state == ROUND_ONGOING;
 }
 
 bool game_is_round_ongoing_or_tolerance() {
-    return game != NULL && (game->state == ROUND_ONGOING || game->state == TIMES_UP);
+    return game != NULL && game->round != NULL && (game->state == ROUND_ONGOING || game->state == TIMES_UP);
 }
 
 bool game_is_round_won() {
-    return game != NULL && game->state == ROUND_CORRECT_GUESS;
+    return game != NULL && game->round != NULL && game->state == ROUND_CORRECT_GUESS;
 }
 
 bool game_may_create_new_round() {
     return game != NULL && (game->round == NULL || game->state == GAME_OVER || game->state == ROUND_CORRECT_GUESS);
+}
+
+bool game_is_over() {
+    return game == NULL || game->state == GAME_OVER;
+}
+
+void game_set_over() {
+    if (game != NULL)
+        game->state = GAME_OVER;
 }
 
 static int init_text_box(guesser_t *guesser) {
@@ -381,7 +390,7 @@ int game_resume() {
     if (dispatcher_bind_canvas(true) != OK)
         return 1;
 
-    menu_set_state(GAME);
+    menu_set_game_screen();
     if (event_update_cursor_state() != OK)
         return 1;
 
@@ -702,6 +711,7 @@ int game_rtc_pi_tick() {
     if (game->state == ROUND_ONGOING) {
         if (game->round->round_timer == 0) {
             game->state = TIMES_UP;
+            clock_frames.current_frame = 1;
             if (protocol_send_game_over() != OK)
                 return 1;
             if (game->round->other_player_game_over) {
