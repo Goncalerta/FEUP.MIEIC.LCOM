@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['year_341',['year',['../structdate__t.html#a57ca98d8f6d4baf0fe41c583c7dcb0d5',1,'date_t']]]
+  ['visible_5fcursor_387',['visible_cursor',['../structtext__box__t.html#adb9178b03d8ee359e4935e5ef9ea7140',1,'text_box_t']]]
 ];

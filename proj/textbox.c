@@ -1,6 +1,6 @@
 #include <lcom/lcf.h>
 #include "textbox.h"
-
+#include "font.h"
 
 #define TEXT_BOX_CURSOR_HEIGHT (FONT_CHAR_HEIGHT + 4)
 #define TEXT_BOX_CURSOR_COLOR 0x000000
@@ -426,11 +426,6 @@ int text_box_react_kbd(text_box_t *text_box, kbd_event_t kbd_event) {
     }
     
     return 0;
-}
-
-void text_box_unselect(text_box_t *text_box) {
-    text_box->select_pos = text_box->cursor_pos;
-    text_box->state = TEXT_BOX_NORMAL;
 }
 
 void delete_text_box(text_box_t *text_box) {

@@ -6,7 +6,7 @@
 /** @defgroup date date
  * @{
  *
- *  Module to deal with dates. // TODO write some better description!!
+ *  Module dedicated to dates.
  */
 
 #define BCD_TO_BINARY(byte) (((byte) & 0x0f) + (((byte) & 0xf0) >> 4)*10) /**< @brief BYTE conversion from BCD to binary format */

@@ -30,7 +30,7 @@ typedef enum cursor_state {
 int cursor_init();
 
 /**
- * @brief Frees the space allocated to store the cursor images.
+ * @brief Frees the space allocated in memory to store the cursor images.
  * 
  */
 void cursor_exit();

@@ -13,7 +13,7 @@ digraph "round_t"
   Node5 -> Node4 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" guesser" ,fontname="Helvetica"];
   Node5 [label="guesser_t",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structguesser__t.html",tooltip=" "];
   Node6 -> Node5 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" text_box" ,fontname="Helvetica"];
-  Node6 [label="text_box_t",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structtext__box__t.html",tooltip=" "];
+  Node6 [label="text_box_t",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structtext__box__t.html",tooltip="Text box info."];
   Node7 -> Node4 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" drawer" ,fontname="Helvetica"];
   Node7 [label="drawer_t",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structdrawer__t.html",tooltip=" "];
   Node8 -> Node7 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" b_color\nb_eraser\nb_pencil\nb_redo\nb_thickness\nb_undo" ,fontname="Helvetica"];

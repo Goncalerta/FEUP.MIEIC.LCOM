@@ -8,6 +8,7 @@
 #include "game.h"
 #include "cursor.h"
 #include "date.h"
+#include "font.h"
 
 #include "xpm/menu_new_game.xpm"
 #include "xpm/menu_exit_game.xpm"

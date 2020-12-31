@@ -24,7 +24,7 @@
 int font_load(enum xpm_image_type type);
 
 /**
- * @brief Frees the space allocated to store the font.
+ * @brief Frees the space allocated in memory to store the font.
  * 
  */
 void font_unload();
