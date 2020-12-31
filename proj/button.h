@@ -19,12 +19,12 @@ typedef int (*button_action)(); /**< @brief Button action when it's pressed. */
  * @brief Enumerated type for specifying the state of a button.
  * 
  */
-typedef enum button_state {
+typedef enum button_state_t {
     BUTTON_NORMAL, /*!< Button is in normal/base state. */
     BUTTON_HOVERING, /*!< Button is not being pressed but the cursor is hovering it. */
     BUTTON_PRESSING, /*!< Button is being pressed and the cursor is hovering it. */
     BUTTON_PRESSING_NOT_HOVERING /*!< Button is being pressed but the cursor is not hovering it. */
-} button_state;
+} button_state_t;
 
 /**
  * @brief Icon of a button.
@@ -54,7 +54,7 @@ typedef struct button_t {
     uint16_t y; /*!< Top most y coordinate of the button. */
     uint16_t width; /*!< Button width. */
     uint16_t height; /*!< Button height. */
-    button_state state; /*!< State of the button. */
+    button_state_t state; /*!< State of the button. */
     button_action action; /*!< Action to perform when button is pressed. */
     button_icon_t icon; /*!< Button icon. */
     bool active_border; /*!< True if the border of the button is active and false otherwise. */

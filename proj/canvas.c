@@ -10,7 +10,9 @@
 static canvas_state_t state = CANVAS_STATE_NORMAL;
 static stroke *first = NULL, *last = NULL, *undone = NULL;
 static frame_buffer_t canvas_buf; // current picture drawn in buffer - copied into vcard back buffer
+// Whether the canvas should allow the user to draw with the cursor.
 static bool enabled = false;
+// Whether canvas_init() has been called since last call to canvas_exit() and canvas functions may be safely used.
 static bool initialized = false;
 
 static int canvas_draw_atom_line(stroke_atom atom1, stroke_atom atom2, uint32_t color, uint16_t thickness) {
@@ -240,6 +242,9 @@ int canvas_redo_stroke() {
 }
 
 int canvas_draw_frame(uint16_t y) {
+    // Canvas width is assumed to occupy the whole screen.
+    // This allows the use of memcpy of the whole buffer into the video buffer
+    // which helps solving the slow mouse issues in some computers.
     uint8_t *buf_pos = (uint8_t*) vg_get_back_buffer().buf + y * vg_get_hres() * vg_get_bytes_per_pixel();
     size_t size = sizeof(uint8_t) * canvas_buf.h_res * canvas_buf.v_res * canvas_buf.bytes_per_pixel;
     memcpy(buf_pos, canvas_buf.buf, size);
