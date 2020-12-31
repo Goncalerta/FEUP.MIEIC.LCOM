@@ -7,7 +7,7 @@ digraph "round_t"
   Node2 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" guesses" ,fontname="Helvetica"];
   Node2 [label="guess_t",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structguess__t.html",tooltip=" "];
   Node3 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" word_clue" ,fontname="Helvetica"];
-  Node3 [label="word_clue_t",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structword__clue__t.html",tooltip="Word clue."];
+  Node3 [label="word_clue_t",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structword__clue__t.html",tooltip="Word clue info."];
   Node4 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" attr" ,fontname="Helvetica"];
   Node4 [label="role_attr_t",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$unionrole__attr__t.html",tooltip=" "];
   Node5 -> Node4 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" guesser" ,fontname="Helvetica"];

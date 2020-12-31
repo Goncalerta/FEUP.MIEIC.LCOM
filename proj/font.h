@@ -7,7 +7,7 @@
 /** @defgroup font font
  * @{
  *
- * Module dedicated to the font used.
+ * @brief Module dedicated to the font used.
  */
 
 #define FONT_CHAR_WIDTH 18 /**< @brief Font char width */

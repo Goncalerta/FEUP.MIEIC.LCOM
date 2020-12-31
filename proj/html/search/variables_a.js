@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['periodic_5frs3210_529',['periodic_RS3210',['../unionrtc__interrupt__config__t.html#a0542c3161fbd4595b99ca6af954e12d2',1,'rtc_interrupt_config_t']]]
+  ['number_5fof_5fframes_555',['number_of_frames',['../structxpm__animation__t.html#a5ee08d5f0f1fcd6d85aba4d2654cffc7',1,'xpm_animation_t']]]
 ];

@@ -69,18 +69,21 @@ $(function() {
 <div class="title">clue</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Module dedicated to word clues.  
+<a href="#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Data Structures</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structword__clue__t.html">word_clue_t</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Word clue.  <a href="structword__clue__t.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Word clue info.  <a href="structword__clue__t.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
 <tr class="memitem:gaf1024e93fdaaaf8803541bf569c84971"><td class="memItemLeft" align="right" valign="top"><a id="gaf1024e93fdaaaf8803541bf569c84971"></a>
 typedef struct <a class="el" href="structword__clue__t.html">word_clue_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__clue.html#gaf1024e93fdaaaf8803541bf569c84971">word_clue_t</a></td></tr>
-<tr class="memdesc:gaf1024e93fdaaaf8803541bf569c84971"><td class="mdescLeft">&#160;</td><td class="mdescRight">Word clue. <br /></td></tr>
+<tr class="memdesc:gaf1024e93fdaaaf8803541bf569c84971"><td class="mdescLeft">&#160;</td><td class="mdescRight">Word clue info. <br /></td></tr>
 <tr class="separator:gaf1024e93fdaaaf8803541bf569c84971"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
@@ -95,10 +98,10 @@ Functions</h2></td></tr>
 <tr class="memdesc:gaa1bfb55e74e59e1c571b12d25a3d60b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Hints a char in the given word clue.  <a href="group__clue.html#gaa1bfb55e74e59e1c571b12d25a3d60b1">More...</a><br /></td></tr>
 <tr class="separator:gaa1bfb55e74e59e1c571b12d25a3d60b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaa2682141b8e69c91872045fd8a6c8eaa"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__clue.html#gaa2682141b8e69c91872045fd8a6c8eaa">word_clue_hint_at</a> (<a class="el" href="structword__clue__t.html">word_clue_t</a> *clue, size_t pos)</td></tr>
-<tr class="memdesc:gaa2682141b8e69c91872045fd8a6c8eaa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Hints a char in the given word clue in the given missing position.  <a href="group__clue.html#gaa2682141b8e69c91872045fd8a6c8eaa">More...</a><br /></td></tr>
+<tr class="memdesc:gaa2682141b8e69c91872045fd8a6c8eaa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Hints a char in the given word clue in the given position.  <a href="group__clue.html#gaa2682141b8e69c91872045fd8a6c8eaa">More...</a><br /></td></tr>
 <tr class="separator:gaa2682141b8e69c91872045fd8a6c8eaa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga4362997e5a7009bc2cd0fe105e2fa9fc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__clue.html#ga4362997e5a7009bc2cd0fe105e2fa9fc">clue_reveal</a> (<a class="el" href="structword__clue__t.html">word_clue_t</a> *clue)</td></tr>
-<tr class="memdesc:ga4362997e5a7009bc2cd0fe105e2fa9fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Makes the whole word clued in the given word clue.  <a href="group__clue.html#ga4362997e5a7009bc2cd0fe105e2fa9fc">More...</a><br /></td></tr>
+<tr class="memdesc:ga4362997e5a7009bc2cd0fe105e2fa9fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Makes the whole word revealed in the given word clue.  <a href="group__clue.html#ga4362997e5a7009bc2cd0fe105e2fa9fc">More...</a><br /></td></tr>
 <tr class="separator:ga4362997e5a7009bc2cd0fe105e2fa9fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga0425307d69028408fcaad6cf23e7a13a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__clue.html#ga0425307d69028408fcaad6cf23e7a13a">delete_word_clue</a> (<a class="el" href="structword__clue__t.html">word_clue_t</a> *clue)</td></tr>
 <tr class="memdesc:ga0425307d69028408fcaad6cf23e7a13a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Frees the space allocated in memory to store the content of a given word clue.  <a href="group__clue.html#ga0425307d69028408fcaad6cf23e7a13a">More...</a><br /></td></tr>
@@ -123,7 +126,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Makes the whole word clued in the given word clue. </p>
+<p>Makes the whole word revealed in the given word clue. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">clue</td><td>address of memory to the word clue </td></tr>
@@ -318,11 +321,11 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Hints a char in the given word clue in the given missing position. </p>
+<p>Hints a char in the given word clue in the given position. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">clue</td><td>address of memory to the word clue </td></tr>
-    <tr><td class="paramname">pos</td><td>missing position to be clued </td></tr>
+    <tr><td class="paramname">pos</td><td>position to be clued </td></tr>
   </table>
   </dd>
 </dl>

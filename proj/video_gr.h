@@ -10,7 +10,7 @@
 /** @defgroup video_gr video_gr
  * @{
  *
- * Module dedicated to the video graphics.
+ * @brief Module dedicated to the video graphics.
  */
 
 /**

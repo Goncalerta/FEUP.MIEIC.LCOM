@@ -6,14 +6,14 @@
 /** @defgroup date date
  * @{
  *
- *  Module dedicated to dates.
+ *  @brief Module dedicated to dates.
  */
 
 #define BCD_TO_BINARY(byte) (((byte) & 0x0f) + (((byte) & 0xf0) >> 4)*10) /**< @brief BYTE conversion from BCD to binary format */
 #define BINARY_TO_BCD(byte) (((byte)/10) << 4 | (byte) % 10) /**< @brief BYTE conversion from binary to BCD format */
 
 /**
- * @brief Date.
+ * @brief Date info.
  * 
  */
 typedef struct date_t {

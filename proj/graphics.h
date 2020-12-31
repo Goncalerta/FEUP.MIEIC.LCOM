@@ -6,7 +6,7 @@
 /** @defgroup graphics graphics
  * @{
  *
- * Module dedicated to the graphics.
+ * @brief Module dedicated to the graphics.
  */
 
 /**

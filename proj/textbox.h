@@ -9,7 +9,7 @@
 /** @defgroup textbox textbox
  * @{
  *
- *  Module dedicated to text boxes.
+ * @brief Module dedicated to text boxes.
  */
 
 #define TEXT_BOX_GUESSER_X 30 /**< @brief Guesser text box x coordinate */

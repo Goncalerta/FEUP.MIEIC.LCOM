@@ -6,7 +6,7 @@
 /** @defgroup mouse mouse
  * @{
  *
- * Module to interact with the PS/2 mouse.
+ * @brief Module to interact with the PS/2 mouse.
  */
 
 /**
