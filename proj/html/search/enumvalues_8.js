@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['update_5finterrupt_429',['UPDATE_INTERRUPT',['../group__rtc.html#gga5415419ccb3977ce322fea96fdc8cd38a744f72a9abb9a8c6c1f4504d4669239b',1,'rtc.h']]]
+  ['other_5fplayer_5fleft_5fscreen_501',['OTHER_PLAYER_LEFT_SCREEN',['../group__menu.html#gga1e5014072075d7928c22d69da04f6b8bacd8c0048e040bb5279cd05a4ec4cf4fe',1,'menu.h']]]
 ];

@@ -50,7 +50,7 @@ int word_clue_draw(word_clue_t *clue, frame_buffer_t buf, uint16_t x, uint16_t y
 
 int word_clue_hint(word_clue_t *clue, size_t *pos) {
     if (clue->missing <= 0)
-        return 1;
+        return 1;  // TODO is this making the program crash if all the chars were given a clue?
     size_t hint_pos = rand() % clue->missing;
     
     for (size_t i = 0; i < clue->size; i++) {

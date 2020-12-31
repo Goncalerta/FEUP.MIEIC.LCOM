@@ -35,7 +35,7 @@ typedef enum text_box_state {
  * 
  */
 typedef struct text_box_t {
-    char *   word; /*!< Content of the text box. */
+    char *   word; /*!< Address of the content of the text box. */
     uint8_t  word_size; /*!< Content size (not counting with the '\0'). */
     uint16_t x; /*!< Text box x coordinate. */
     uint16_t y; /*!< Text box y coordinate. */

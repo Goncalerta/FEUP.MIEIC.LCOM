@@ -1,0 +1,10 @@
+digraph "menu_init"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="menu_init",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Loads the xpm images of the menu."];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="vg_get_back_buffer",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__video__gr.html#gaecb0fe68de84fcbe553f77d62b37c69b",tooltip="Gets the back buffer."];
+}
