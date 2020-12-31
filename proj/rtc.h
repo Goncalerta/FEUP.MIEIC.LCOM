@@ -13,7 +13,7 @@
 #define RTC_IRQ 8 /**< @brief RTC IRQ line */
 
 /**
- * @brief RTC interrupt types.
+ * @brief Enumerated type for specifying a RTC interrupt type.
  * 
  */
 typedef enum rtc_interrupt_t {

@@ -4,6 +4,9 @@
 #include "graphics.h"
 #include "video_gr.h"
 
+#define FONT_CHAR_SPACE_X 2
+#define FONT_CHAR_SPACE_Y 4
+
 static xpm_image_t font;
 
 int font_load(enum xpm_image_type type) {

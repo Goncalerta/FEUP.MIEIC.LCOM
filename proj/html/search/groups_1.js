@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['i8042_323',['i8042',['../group__i8042.html',1,'']]],
-  ['i8254_324',['i8254',['../group__i8254.html',1,'']]]
+  ['date_371',['date',['../group__date.html',1,'']]]
 ];

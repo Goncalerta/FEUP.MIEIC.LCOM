@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['mouse_327',['mouse',['../group__mouse.html',1,'']]]
+  ['i8042_373',['i8042',['../group__i8042.html',1,'']]],
+  ['i8254_374',['i8254',['../group__i8254.html',1,'']]]
 ];

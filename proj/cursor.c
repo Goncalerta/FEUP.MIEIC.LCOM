@@ -42,11 +42,11 @@ int16_t cursor_get_y() {
     return cursor_y;
 }
 
-int16_t cursor_get_lb() {
+bool cursor_get_lb() {
     return lb;
 }
 
-int16_t cursor_get_rb() {
+bool cursor_get_rb() {
     return rb;
 }
 

@@ -7,6 +7,10 @@ digraph "date_draw_current"
   Node1 [label="date_draw_current",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Draws the current date to the top left corner of the screen."];
   Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node2 [label="date_draw",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__date.html#ga4935ca0b464c660a91e7f725da5149ae",tooltip="Draws a date to the given screen coordiantes."];
-  Node1 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node3 [label="rtc_get_current_date",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__rtc.html#gac608d19e8db3bcd96930b3e4441583ec",tooltip="Gets the current date from inside the rtc module."];
+  Node2 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="font_draw_string",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__font.html#ga84590018142e55d772b7ce9733c06ecf",tooltip="Draws a given string to the given coordinates in the given buffer."];
+  Node3 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="font_draw_char",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__font.html#gaa049c74a42572fa8713f9d08ddf42fc1",tooltip="Draws a given char to the given coordinates in the given buffer."];
+  Node1 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="rtc_get_current_date",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__rtc.html#gac608d19e8db3bcd96930b3e4441583ec",tooltip="Gets the current date from inside the rtc module."];
 }

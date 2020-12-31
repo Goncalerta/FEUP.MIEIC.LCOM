@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['rtc_5falarm_5ftime_5ft_303',['rtc_alarm_time_t',['../group__date.html#gaa84a4d5e1d1b7ce5920deec5516bf5c0',1,'date.h']]],
-  ['rtc_5finterrupt_5fconfig_5ft_304',['rtc_interrupt_config_t',['../group__rtc.html#ga6bc83ae30c3e9ef9ceb74e2818d175ca',1,'rtc.h']]],
-  ['rtc_5finterrupt_5ft_305',['rtc_interrupt_t',['../group__rtc.html#gaee7689c579c27881537b996747ec74cb',1,'rtc.h']]]
+  ['kbd_5fevent_5ft_344',['kbd_event_t',['../group__keyboard.html#gadfc23046107a0d8f22908f141125a59c',1,'keyboard.h']]],
+  ['kbd_5fkey_345',['kbd_key',['../group__keyboard.html#gac470f43e2c14bacf7d85830fee2e9637',1,'keyboard.h']]]
 ];

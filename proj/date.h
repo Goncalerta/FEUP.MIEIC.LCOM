@@ -30,7 +30,7 @@ typedef struct date_t {
  * 
  */
 typedef struct rtc_alarm_time_t {
-    uint8_t hours; /*!< Hour. */
+    uint8_t hours; /*!< Hours. */
     uint8_t minutes; /*!< Minutes. */
     uint8_t seconds; /*!< Seconds. */
 } rtc_alarm_time_t;

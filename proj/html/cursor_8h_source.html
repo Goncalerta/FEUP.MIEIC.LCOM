@@ -72,26 +72,50 @@ $(function() {
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160; </div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;mouse.h&quot;</span></div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> cursor_state {</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    CURSOR_ARROW,</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    CURSOR_PAINT,</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    CURSOR_WRITE,</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    CURSOR_DISABLED</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;} cursor_state;</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keywordtype">int</span> cursor_init();</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keywordtype">void</span> cursor_exit();</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;int16_t cursor_get_x();</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;int16_t cursor_get_y();</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;int16_t cursor_get_lb();</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;int16_t cursor_get_rb();</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="keywordtype">void</span> cursor_move(int16_t dx, int16_t dy);</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="keywordtype">void</span> cursor_update_buttons(<span class="keywordtype">bool</span> new_lb, <span class="keywordtype">bool</span> new_rb);</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="keywordtype">int</span> cursor_draw();</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="keywordtype">void</span> cursor_set_state(cursor_state state);</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* _CURSOR_H */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="group__cursor.html#gae816e2010df6ae9e9f853d0f2c623173">   18</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> <a class="code" href="group__cursor.html#gae816e2010df6ae9e9f853d0f2c623173">cursor_state</a> {</div>
+<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="group__cursor.html#ggae816e2010df6ae9e9f853d0f2c623173a8ecb986da99c3c8f74789613a9858492">   19</a></span>&#160;    <a class="code" href="group__cursor.html#ggae816e2010df6ae9e9f853d0f2c623173a8ecb986da99c3c8f74789613a9858492">CURSOR_ARROW</a>, </div>
+<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="group__cursor.html#ggae816e2010df6ae9e9f853d0f2c623173a17b2e5ff08a54694e0f1550221acbf23">   20</a></span>&#160;    <a class="code" href="group__cursor.html#ggae816e2010df6ae9e9f853d0f2c623173a17b2e5ff08a54694e0f1550221acbf23">CURSOR_PAINT</a>, </div>
+<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="group__cursor.html#ggae816e2010df6ae9e9f853d0f2c623173ab8e4d8154f828c5ffab95edf045a3df4">   21</a></span>&#160;    <a class="code" href="group__cursor.html#ggae816e2010df6ae9e9f853d0f2c623173ab8e4d8154f828c5ffab95edf045a3df4">CURSOR_WRITE</a>, </div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <a class="code" href="group__cursor.html#ggae816e2010df6ae9e9f853d0f2c623173a2a628ca43a1b8f6f3a5a098de1ac9ed1">CURSOR_DISABLED</a> </div>
+<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="group__cursor.html#gaff2a1d9bd37f5d489383fa3c43ed6503">   23</a></span>&#160;} <a class="code" href="group__cursor.html#gae816e2010df6ae9e9f853d0f2c623173">cursor_state</a>;</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
+<div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="group__cursor.html#gaf5b033d27a9ea9e64dd8f9098536dd2a">   30</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__cursor.html#gaf5b033d27a9ea9e64dd8f9098536dd2a">cursor_init</a>();</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__cursor.html#ga035fbccaf21451086210ff6b516561f1">cursor_exit</a>();</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;int16_t <a class="code" href="group__cursor.html#ga479cd0880892e002681b109c7a712c04">cursor_get_x</a>();</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;int16_t <a class="code" href="group__cursor.html#ga15c1a0816c95ad240b94dc15480b403a">cursor_get_y</a>();</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="group__cursor.html#gac0fa742a26e68888018245125c26d5d6">cursor_get_lb</a>();</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="group__cursor.html#ga7da23fec369ac0db044e35d1ff1fb95c">cursor_get_rb</a>();</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160; </div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__cursor.html#ga1c0e7c8b76a7688af257b5e6fcfb9160">cursor_move</a>(int16_t dx, int16_t dy);</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__cursor.html#gac3622b14f35a0d4e51312a582d43fd20">cursor_update_buttons</a>(<span class="keywordtype">bool</span> new_lb, <span class="keywordtype">bool</span> new_rb);</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160; </div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="keywordtype">int</span> <a class="code" href="group__cursor.html#ga1f0539239b1f5a7f3de05af786aeaab2">cursor_draw</a>();</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160; </div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__cursor.html#ga76ed8ba253d1ffd6ef14da30591ad15f">cursor_set_state</a>(<a class="code" href="group__cursor.html#gae816e2010df6ae9e9f853d0f2c623173">cursor_state</a> state);</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160; </div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* _CURSOR_H */</span><span class="preprocessor"></span></div>
 </div><!-- fragment --></div><!-- contents -->
+<div class="ttc" id="agroup__cursor_html_ga15c1a0816c95ad240b94dc15480b403a"><div class="ttname"><a href="group__cursor.html#ga15c1a0816c95ad240b94dc15480b403a">cursor_get_y</a></div><div class="ttdeci">int16_t cursor_get_y()</div><div class="ttdoc">Gets cursor y coordinate.</div><div class="ttdef"><b>Definition:</b> cursor.c:41</div></div>
+<div class="ttc" id="agroup__cursor_html_ggae816e2010df6ae9e9f853d0f2c623173ab8e4d8154f828c5ffab95edf045a3df4"><div class="ttname"><a href="group__cursor.html#ggae816e2010df6ae9e9f853d0f2c623173ab8e4d8154f828c5ffab95edf045a3df4">CURSOR_WRITE</a></div><div class="ttdeci">@ CURSOR_WRITE</div><div class="ttdef"><b>Definition:</b> cursor.h:21</div></div>
+<div class="ttc" id="agroup__cursor_html_ggae816e2010df6ae9e9f853d0f2c623173a8ecb986da99c3c8f74789613a9858492"><div class="ttname"><a href="group__cursor.html#ggae816e2010df6ae9e9f853d0f2c623173a8ecb986da99c3c8f74789613a9858492">CURSOR_ARROW</a></div><div class="ttdeci">@ CURSOR_ARROW</div><div class="ttdef"><b>Definition:</b> cursor.h:19</div></div>
+<div class="ttc" id="agroup__cursor_html_ga479cd0880892e002681b109c7a712c04"><div class="ttname"><a href="group__cursor.html#ga479cd0880892e002681b109c7a712c04">cursor_get_x</a></div><div class="ttdeci">int16_t cursor_get_x()</div><div class="ttdoc">Gets cursor x coordinate.</div><div class="ttdef"><b>Definition:</b> cursor.c:37</div></div>
+<div class="ttc" id="agroup__cursor_html_ga7da23fec369ac0db044e35d1ff1fb95c"><div class="ttname"><a href="group__cursor.html#ga7da23fec369ac0db044e35d1ff1fb95c">cursor_get_rb</a></div><div class="ttdeci">bool cursor_get_rb()</div><div class="ttdoc">Gets the right button state. (either pressed or not)</div><div class="ttdef"><b>Definition:</b> cursor.c:49</div></div>
+<div class="ttc" id="agroup__cursor_html_gaf5b033d27a9ea9e64dd8f9098536dd2a"><div class="ttname"><a href="group__cursor.html#gaf5b033d27a9ea9e64dd8f9098536dd2a">cursor_init</a></div><div class="ttdeci">int cursor_init()</div><div class="ttdoc">Loads the cursor .xpm images and sets the initial cursor position.</div></div>
+<div class="ttc" id="agroup__cursor_html_ggae816e2010df6ae9e9f853d0f2c623173a2a628ca43a1b8f6f3a5a098de1ac9ed1"><div class="ttname"><a href="group__cursor.html#ggae816e2010df6ae9e9f853d0f2c623173a2a628ca43a1b8f6f3a5a098de1ac9ed1">CURSOR_DISABLED</a></div><div class="ttdeci">@ CURSOR_DISABLED</div><div class="ttdef"><b>Definition:</b> cursor.h:22</div></div>
+<div class="ttc" id="agroup__cursor_html_gac0fa742a26e68888018245125c26d5d6"><div class="ttname"><a href="group__cursor.html#gac0fa742a26e68888018245125c26d5d6">cursor_get_lb</a></div><div class="ttdeci">bool cursor_get_lb()</div><div class="ttdoc">Gets the left button state. (either pressed or not)</div><div class="ttdef"><b>Definition:</b> cursor.c:45</div></div>
+<div class="ttc" id="agroup__cursor_html_gae816e2010df6ae9e9f853d0f2c623173"><div class="ttname"><a href="group__cursor.html#gae816e2010df6ae9e9f853d0f2c623173">cursor_state</a></div><div class="ttdeci">cursor_state</div><div class="ttdoc">Enumerated type for specifying the state of the cursor.</div><div class="ttdef"><b>Definition:</b> cursor.h:18</div></div>
+<div class="ttc" id="agroup__cursor_html_ga76ed8ba253d1ffd6ef14da30591ad15f"><div class="ttname"><a href="group__cursor.html#ga76ed8ba253d1ffd6ef14da30591ad15f">cursor_set_state</a></div><div class="ttdeci">void cursor_set_state(cursor_state new_state)</div><div class="ttdoc">Sets the cursor state.</div><div class="ttdef"><b>Definition:</b> cursor.c:89</div></div>
+<div class="ttc" id="agroup__cursor_html_gac3622b14f35a0d4e51312a582d43fd20"><div class="ttname"><a href="group__cursor.html#gac3622b14f35a0d4e51312a582d43fd20">cursor_update_buttons</a></div><div class="ttdeci">void cursor_update_buttons(bool new_lb, bool new_rb)</div><div class="ttdoc">Updates the buttons state.</div><div class="ttdef"><b>Definition:</b> cursor.c:67</div></div>
+<div class="ttc" id="agroup__cursor_html_ga035fbccaf21451086210ff6b516561f1"><div class="ttname"><a href="group__cursor.html#ga035fbccaf21451086210ff6b516561f1">cursor_exit</a></div><div class="ttdeci">void cursor_exit()</div><div class="ttdoc">Frees the space allocated to store the cursor images.</div><div class="ttdef"><b>Definition:</b> cursor.c:31</div></div>
+<div class="ttc" id="agroup__cursor_html_ggae816e2010df6ae9e9f853d0f2c623173a17b2e5ff08a54694e0f1550221acbf23"><div class="ttname"><a href="group__cursor.html#ggae816e2010df6ae9e9f853d0f2c623173a17b2e5ff08a54694e0f1550221acbf23">CURSOR_PAINT</a></div><div class="ttdeci">@ CURSOR_PAINT</div><div class="ttdef"><b>Definition:</b> cursor.h:20</div></div>
+<div class="ttc" id="agroup__cursor_html_ga1c0e7c8b76a7688af257b5e6fcfb9160"><div class="ttname"><a href="group__cursor.html#ga1c0e7c8b76a7688af257b5e6fcfb9160">cursor_move</a></div><div class="ttdeci">void cursor_move(int16_t dx, int16_t dy)</div><div class="ttdoc">Moves the cursor by the given displacement.</div><div class="ttdef"><b>Definition:</b> cursor.c:53</div></div>
+<div class="ttc" id="agroup__cursor_html_ga1f0539239b1f5a7f3de05af786aeaab2"><div class="ttname"><a href="group__cursor.html#ga1f0539239b1f5a7f3de05af786aeaab2">cursor_draw</a></div><div class="ttdeci">int cursor_draw()</div><div class="ttdoc">Draws the cursor to the back buffer in its current position according to its current state.</div><div class="ttdef"><b>Definition:</b> cursor.c:72</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.20
