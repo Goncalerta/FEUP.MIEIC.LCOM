@@ -2,7 +2,6 @@
 #define __KBC_H
 
 #include <lcom/lcf.h>
-#include "i8042.h"
 
 /** @defgroup kbc kbc
  * @{

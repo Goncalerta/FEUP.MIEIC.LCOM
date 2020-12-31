@@ -3,8 +3,6 @@
 
 #include <lcom/lcf.h>
 #include "keyboard.h"
-#include "textbox.h"
-#include "protocol.h"
 
 int dispatcher_reset_bindings();
 int dispatcher_bind_buttons(size_t number_of_buttons, ...);

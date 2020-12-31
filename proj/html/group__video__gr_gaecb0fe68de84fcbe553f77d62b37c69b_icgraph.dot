@@ -17,9 +17,11 @@ digraph "vg_get_back_buffer"
   Node6 [label="date_draw_greeting",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__date.html#gaaf00425c1e5044b7a17bb4331de4ceb8",tooltip="Draws a greeting according to the current date to the given screen coordinates."];
   Node6 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node7 [label="menu_draw",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__menu.html#ga35731eaa9442f8db276220d9fc77dcf6",tooltip="Draws the menu according to its state to the back buffer."];
-  Node1 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node1 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node8 [label="menu_init",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__menu.html#gafae9ccfd6e7de562283d6ffc8c3cf066",tooltip="Loads the xpm images of the menu."];
+  Node8 [label="game_draw",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__game.html#ga656ca85eff33877022fd939d29f23822",tooltip="Draws the game to the back buffer. // TODO this is so generic... :/."];
+  Node1 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node1 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node9 [label="vg_clear",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__video__gr.html#gaf58839f5f297f9c16204805e814e2352",tooltip="Paints the back buffer all white."];
+  Node9 [label="menu_init",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__menu.html#gafae9ccfd6e7de562283d6ffc8c3cf066",tooltip="Loads the xpm images of the menu."];
+  Node1 -> Node10 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 [label="vg_clear",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__video__gr.html#gaf58839f5f297f9c16204805e814e2352",tooltip="Paints the back buffer all white."];
 }

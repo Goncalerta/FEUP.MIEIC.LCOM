@@ -3,8 +3,6 @@
 
 #include <lcom/lcf.h>
 
-#include "mouse.h"
-
 /** @defgroup cursor cursor
  * @{
  *

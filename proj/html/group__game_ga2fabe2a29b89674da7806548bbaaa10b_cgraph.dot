@@ -1,0 +1,10 @@
+digraph "game_give_clue_at"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="game_give_clue_at",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Gives a clue to the word to guess in the given position."];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="word_clue_hint_at",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__clue.html#gaa2682141b8e69c91872045fd8a6c8eaa",tooltip="Hints a char in the given word clue in the given position."];
+}

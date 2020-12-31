@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['text_5fbox_5ft_424',['text_box_t',['../structtext__box__t.html',1,'']]]
+  ['word_5fclue_5ft_453',['word_clue_t',['../structword__clue__t.html',1,'']]]
 ];

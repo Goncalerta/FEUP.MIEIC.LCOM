@@ -26,13 +26,16 @@ digraph "vb_draw_img_cropped"
   Node10 [label="text_box_draw",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__textbox.html#ga0d7efee1fe6e5b861c311b6cc4cfd201",tooltip="Draws a given text box to the given buffer."];
   Node2 -> Node11 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node11 [label="word_clue_draw",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__clue.html#gaf2e81417151218db37a0250f64f2f825",tooltip="Draws a given word clue to the given buffer on the given coordinates."];
-  Node1 -> Node12 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node12 [label="vb_draw_img",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__graphics.html#gad48647db82bcc8a80196a817c9959a40",tooltip="Draws a given xpm image in the given buffer in the given coordinates."];
-  Node12 -> Node13 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node13 [label="button_draw",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__button.html#ga5b499ecd345cc4ab20cb3194a01fc937",tooltip="Draws a given button to the given buffer."];
-  Node13 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node12 -> Node14 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node14 [label="cursor_draw",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__cursor.html#ga1f0539239b1f5a7f3de05af786aeaab2",tooltip="Draws the cursor to the back buffer in its current position according to its current state."];
-  Node12 -> Node15 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node15 [label="vb_draw_animation_frame",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__graphics.html#gad3e76e13dbfc25a5f9d0020b3e65ae92",tooltip="Draws a given animation in the given buffer in the given coordinates."];
+  Node11 -> Node12 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node12 [label="game_draw",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__game.html#ga656ca85eff33877022fd939d29f23822",tooltip="Draws the game to the back buffer. // TODO this is so generic... :/."];
+  Node1 -> Node13 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node13 [label="vb_draw_img",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__graphics.html#gad48647db82bcc8a80196a817c9959a40",tooltip="Draws a given xpm image in the given buffer in the given coordinates."];
+  Node13 -> Node14 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node14 [label="button_draw",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__button.html#ga5b499ecd345cc4ab20cb3194a01fc937",tooltip="Draws a given button to the given buffer."];
+  Node14 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node13 -> Node15 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node15 [label="cursor_draw",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__cursor.html#ga1f0539239b1f5a7f3de05af786aeaab2",tooltip="Draws the cursor to the back buffer in its current position according to its current state."];
+  Node13 -> Node12 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node13 -> Node16 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node16 [label="vb_draw_animation_frame",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__graphics.html#gad3e76e13dbfc25a5f9d0020b3e65ae92",tooltip="Draws a given animation in the given buffer in the given coordinates."];
 }

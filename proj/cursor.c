@@ -3,6 +3,7 @@
 #include "video_gr.h"
 #include "canvas.h"
 #include "game.h"
+#include "mouse.h"
 
 #include "xpm/cursor_arrow.xpm"
 #include "xpm/cursor_write.xpm"

@@ -24,4 +24,6 @@ digraph "font_draw_char"
   Node9 [label="text_box_draw",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__textbox.html#ga0d7efee1fe6e5b861c311b6cc4cfd201",tooltip="Draws a given text box to the given buffer."];
   Node1 -> Node10 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node10 [label="word_clue_draw",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__clue.html#gaf2e81417151218db37a0250f64f2f825",tooltip="Draws a given word clue to the given buffer on the given coordinates."];
+  Node10 -> Node11 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node11 [label="game_draw",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__game.html#ga656ca85eff33877022fd939d29f23822",tooltip="Draws the game to the back buffer. // TODO this is so generic... :/."];
 }

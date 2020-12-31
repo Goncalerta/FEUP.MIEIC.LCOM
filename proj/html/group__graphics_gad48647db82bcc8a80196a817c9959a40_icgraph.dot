@@ -12,5 +12,7 @@ digraph "vb_draw_img"
   Node1 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node4 [label="cursor_draw",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__cursor.html#ga1f0539239b1f5a7f3de05af786aeaab2",tooltip="Draws the cursor to the back buffer in its current position according to its current state."];
   Node1 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node5 [label="vb_draw_animation_frame",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__graphics.html#gad3e76e13dbfc25a5f9d0020b3e65ae92",tooltip="Draws a given animation in the given buffer in the given coordinates."];
+  Node5 [label="game_draw",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__game.html#ga656ca85eff33877022fd939d29f23822",tooltip="Draws the game to the back buffer. // TODO this is so generic... :/."];
+  Node1 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="vb_draw_animation_frame",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__graphics.html#gad3e76e13dbfc25a5f9d0020b3e65ae92",tooltip="Draws a given animation in the given buffer in the given coordinates."];
 }

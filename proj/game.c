@@ -11,6 +11,7 @@
 #include "clue.h"
 #include "menu.h"
 #include "rtc.h"
+#include "protocol.h"
 
 #include "xpm/clock_left.xpm"
 #include "xpm/clock_center.xpm"
@@ -23,6 +24,12 @@
 #include "xpm/cross.xpm"
 #include "xpm/correct.xpm"
 #include "xpm/gameover.xpm"
+
+#define GAME_BAR_COLOR 0x00dddddd
+#define GAME_BAR_COLOR_DARK 0x00aaaaaa
+#define GAME_BAR_PADDING 5
+#define GAME_BAR_INNER_HEIGHT ((GAME_BAR_HEIGHT) - (GAME_BAR_PADDING))
+#define MAX_GUESSES 5 // historic being displayed
 
 #define MAX_SCORE 99999
 #define TICKS_PER_SECOND 2
@@ -776,6 +783,10 @@ int drawer_change_selected_thickness() {
 }
 
 uint32_t drawer_get_selected_color() {
+    // TODO isn't this verification necessary?
+    if (game == NULL || game->round == NULL || game->round->role != DRAWER)
+        return 1;
+    // ^^
     drawer_t *drawer = game->round->attr.drawer;
 
     if (drawer->is_pencil_primary)
@@ -785,6 +796,10 @@ uint32_t drawer_get_selected_color() {
 }
 
 uint16_t drawer_get_selected_thickness() {
+    // TODO isn't this verification necessary?
+    if (game == NULL || game->round == NULL || game->round->role != DRAWER)
+        return 1;
+    // ^^
     drawer_t *drawer = game->round->attr.drawer;
     
     return valid_thickness[drawer->selected_thickness];
