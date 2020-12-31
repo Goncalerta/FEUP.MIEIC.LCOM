@@ -12,7 +12,7 @@ int new_word_clue(word_clue_t *clue, const char *word) {
         return 1;
     strcpy(clue->word, word);
     clue->size = strlen(word);
-    clue->missing = clue->size - 1;
+    clue->missing = clue->size;
     clue->width = clue->size * (FONT_CHAR_WIDTH + CLUE_CHAR_SPACING) - CLUE_CHAR_SPACING;
     clue->height = FONT_CHAR_HEIGHT + RECTANGLE_HEIGHT;
 
@@ -49,8 +49,10 @@ int word_clue_draw(word_clue_t *clue, frame_buffer_t buf, uint16_t x, uint16_t y
 }
 
 int word_clue_hint(word_clue_t *clue, size_t *pos) {
-    if (clue->missing <= 0)
-        return 1;  // TODO is this making the program crash if all the chars were given a clue?
+    // Hints should not reveal the whole word. If there is only one
+    // character left, it should not be revealed.
+    if (clue->missing <= 1)
+        return 1;
     size_t hint_pos = rand() % clue->missing;
     
     for (size_t i = 0; i < clue->size; i++) {

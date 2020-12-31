@@ -577,7 +577,7 @@ int game_give_clue() {
 
     size_t pos;
     if (word_clue_hint(&game->round->word_clue, &pos) != OK)
-        return 1;
+        return 0; // Not having more hints to give is not an error, but should return early.
     if (protocol_send_clue(pos) != OK)
         return 1;
 
