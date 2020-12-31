@@ -7,4 +7,8 @@ digraph "font_draw_string_limited"
   Node1 [label="font_draw_string_limited",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Draws a substring of a string to the given coordinates in the given buffer."];
   Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node2 [label="font_draw_char",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__font.html#gaa049c74a42572fa8713f9d08ddf42fc1",tooltip="Draws a given char to the given coordinates in the given buffer."];
+  Node2 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="vb_draw_img_cropped",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__graphics.html#ga31260a04eb12bc7be5012378500b09b0",tooltip="Draws a portion of a given xpm image in the given buffer in the given coordinates."];
+  Node3 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="vb_draw_pixel",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__graphics.html#ga257b5dac975604f70651e8764ad8acd8",tooltip="Draws a pixel in the given buffer in the given coordinates with the given color."];
 }

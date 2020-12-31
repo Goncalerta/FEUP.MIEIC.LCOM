@@ -1,7 +1,6 @@
 var searchData=
 [
-  ['minute_486',['minute',['../structdate__t.html#a8ff981ec55c945940f4a0da7d8709b3c',1,'date_t']]],
-  ['minutes_487',['minutes',['../structrtc__alarm__time__t.html#a7acca8be0094a19be6e308ac05924c4f',1,'rtc_alarm_time_t']]],
-  ['missing_488',['missing',['../structword__clue__t.html#a5e7b423ea7c0401496caac3794c8d207',1,'word_clue_t']]],
-  ['month_489',['month',['../structdate__t.html#a3e00faf7fbf9805e9ec4d2edd6339050',1,'date_t']]]
+  ['icon_520',['icon',['../structbutton__t.html#ad21a46c657f719a4bf34e828a2c86b46',1,'button_t']]],
+  ['img_521',['img',['../structbutton__icon__t.html#ac16ac5b5982366cbba9038d9e97c250d',1,'button_icon_t']]],
+  ['is_5fctrl_5fpressed_522',['is_ctrl_pressed',['../structkbd__event__t.html#a327f1f147008f529a2889fb013f0f63e',1,'kbd_event_t']]]
 ];

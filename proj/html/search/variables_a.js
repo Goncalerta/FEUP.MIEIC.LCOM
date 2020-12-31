@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['type_498',['type',['../structbutton__icon__t.html#a5b3c53867a49c8c2886ba01efb4c1c14',1,'button_icon_t']]]
+  ['periodic_5frs3210_529',['periodic_RS3210',['../unionrtc__interrupt__config__t.html#a0542c3161fbd4595b99ca6af954e12d2',1,'rtc_interrupt_config_t']]]
 ];

@@ -1,8 +1,5 @@
 var searchData=
 [
-  ['char_5fkey_472',['char_key',['../structkbd__event__t.html#a4ae06ea55f6ceaec24b91fdcdee7c966',1,'kbd_event_t']]],
-  ['circle_473',['circle',['../structbutton__icon__t.html#ad54389687aeaecab0c7b1124fb55db8c',1,'button_icon_t']]],
-  ['clue_474',['clue',['../structword__clue__t.html#a753f38ba611b9491d2c3952a06262a08',1,'word_clue_t']]],
-  ['color_475',['color',['../structbutton__icon__t.html#a66b2ef8398a8bbb0f5816f22a7b138da',1,'button_icon_t']]],
-  ['cursor_5fpos_476',['cursor_pos',['../structtext__box__t.html#ad98dd955a542e0b20f9b8f73a6e54c8e',1,'text_box_t']]]
+  ['buf_505',['buf',['../structframe__buffer__t.html#a5bc5fa69bee375df074734a2c4858604',1,'frame_buffer_t']]],
+  ['bytes_5fper_5fpixel_506',['bytes_per_pixel',['../structframe__buffer__t.html#af21e69741161ac4f308c04bd3d471dd2',1,'frame_buffer_t']]]
 ];

@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['y_504',['y',['../structbutton__t.html#ab0580f504a7428539be299fa71565f30',1,'button_t::y()'],['../structtext__box__t.html#ab0580f504a7428539be299fa71565f30',1,'text_box_t::y()']]],
-  ['year_505',['year',['../structdate__t.html#a57ca98d8f6d4baf0fe41c583c7dcb0d5',1,'date_t']]]
+  ['v_5fres_538',['v_res',['../structframe__buffer__t.html#a9c67113f1cd2b08e5069bed5bcb04263',1,'frame_buffer_t']]],
+  ['visible_5fcursor_539',['visible_cursor',['../structtext__box__t.html#adb9178b03d8ee359e4935e5ef9ea7140',1,'text_box_t']]]
 ];

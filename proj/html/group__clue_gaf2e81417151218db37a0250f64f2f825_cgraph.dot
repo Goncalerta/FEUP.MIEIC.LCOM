@@ -7,4 +7,13 @@ digraph "word_clue_draw"
   Node1 [label="word_clue_draw",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Draws a given word clue to the given buffer on the given coordinates."];
   Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node2 [label="font_draw_char",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__font.html#gaa049c74a42572fa8713f9d08ddf42fc1",tooltip="Draws a given char to the given coordinates in the given buffer."];
+  Node2 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="vb_draw_img_cropped",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__graphics.html#ga31260a04eb12bc7be5012378500b09b0",tooltip="Draws a portion of a given xpm image in the given buffer in the given coordinates."];
+  Node3 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="vb_draw_pixel",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__graphics.html#ga257b5dac975604f70651e8764ad8acd8",tooltip="Draws a pixel in the given buffer in the given coordinates with the given color."];
+  Node1 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="vb_draw_rectangle",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__graphics.html#ga16484c11b9019a2395c4964fe7da3ab1",tooltip="Draws a rectangle in the given buffer in the given coordinates with the given height and width with t..."];
+  Node5 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="vb_draw_hline",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__graphics.html#ga58454ceb710c0fca6b21c049f0cac3a6",tooltip="Draws a horizontal line in the given buffer in the given coordinates with the given color."];
+  Node6 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
 }

@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['kbd_5fevent_5ft_512',['kbd_event_t',['../group__keyboard.html#gadfc23046107a0d8f22908f141125a59c',1,'keyboard.h']]],
-  ['kbd_5fkey_513',['kbd_key',['../group__keyboard.html#gac470f43e2c14bacf7d85830fee2e9637',1,'keyboard.h']]]
+  ['frame_5fbuffer_5ft_552',['frame_buffer_t',['../group__graphics.html#ga24e328d5dd460a31496df85dfc100e78',1,'graphics.h']]]
 ];

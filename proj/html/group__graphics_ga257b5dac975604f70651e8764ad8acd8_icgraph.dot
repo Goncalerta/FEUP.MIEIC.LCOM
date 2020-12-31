@@ -1,0 +1,58 @@
+digraph "vb_draw_pixel"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node1 [label="vb_draw_pixel",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Draws a pixel in the given buffer in the given coordinates with the given color."];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="vb_draw_circle",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__graphics.html#ga1b69ad0e07cfd0697a4cb9c18ba48b67",tooltip="Draws a circle in the given buffer in the given coordinates with the given radius with the given colo..."];
+  Node2 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="button_draw",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__button.html#ga5b499ecd345cc4ab20cb3194a01fc937",tooltip="Draws a given button to the given buffer."];
+  Node3 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="menu_draw",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__menu.html#ga35731eaa9442f8db276220d9fc77dcf6",tooltip="Draws the menu according to its state to the back buffer."];
+  Node2 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="cursor_draw",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__cursor.html#ga1f0539239b1f5a7f3de05af786aeaab2",tooltip="Draws the cursor to the back buffer in its current position according to its current state."];
+  Node2 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="vb_draw_line",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__graphics.html#ga656f35ff9a04a0e66245aed5babc1209",tooltip="Draws a line in the given buffer from the given coordinates to other given coordinates with the given..."];
+  Node1 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="vb_draw_hline",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__graphics.html#ga58454ceb710c0fca6b21c049f0cac3a6",tooltip="Draws a horizontal line in the given buffer in the given coordinates with the given color."];
+  Node7 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="text_box_draw",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__textbox.html#ga0d7efee1fe6e5b861c311b6cc4cfd201",tooltip="Draws a given text box to the given buffer."];
+  Node7 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 [label="vb_draw_rectangle",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__graphics.html#ga16484c11b9019a2395c4964fe7da3ab1",tooltip="Draws a rectangle in the given buffer in the given coordinates with the given height and width with t..."];
+  Node9 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 -> Node10 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 [label="date_draw",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__date.html#ga4935ca0b464c660a91e7f725da5149ae",tooltip="Draws a date to the given screen coordiantes."];
+  Node10 -> Node11 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node11 [label="date_draw_current",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__date.html#gac6b60c120a9b43280cf175cc7fb7f047",tooltip="Draws the current date to the top left corner of the screen."];
+  Node9 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 -> Node12 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node12 [label="word_clue_draw",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__clue.html#gaf2e81417151218db37a0250f64f2f825",tooltip="Draws a given word clue to the given buffer on the given coordinates."];
+  Node1 -> Node13 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node13 [label="vb_draw_img_cropped",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__graphics.html#ga31260a04eb12bc7be5012378500b09b0",tooltip="Draws a portion of a given xpm image in the given buffer in the given coordinates."];
+  Node13 -> Node14 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node14 [label="font_draw_char",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__font.html#gaa049c74a42572fa8713f9d08ddf42fc1",tooltip="Draws a given char to the given coordinates in the given buffer."];
+  Node14 -> Node15 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node15 [label="font_draw_string",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__font.html#ga84590018142e55d772b7ce9733c06ecf",tooltip="Draws a given string to the given coordinates in the given buffer."];
+  Node15 -> Node10 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node14 -> Node16 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node16 [label="font_draw_string_limited",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__font.html#ga9b434230690465196da266df4141511d",tooltip="Draws a substring of a string to the given coordinates in the given buffer."];
+  Node16 -> Node17 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node17 [label="font_draw_string_centered",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__font.html#ga76f55190cabfad9be834e7f9b435441d",tooltip="Draws a substring of a string centered in the given coordinates in the given buffer."];
+  Node17 -> Node18 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node18 [label="date_draw_greeting",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__date.html#gaaf00425c1e5044b7a17bb4331de4ceb8",tooltip="Draws a greeting according to the current date to the given screen coordinates."];
+  Node18 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node17 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node16 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node14 -> Node12 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node13 -> Node19 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node19 [label="vb_draw_img",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__graphics.html#gad48647db82bcc8a80196a817c9959a40",tooltip="Draws a given xpm image in the given buffer in the given coordinates."];
+  Node19 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node19 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node19 -> Node20 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node20 [label="vb_draw_animation_frame",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__graphics.html#gad3e76e13dbfc25a5f9d0020b3e65ae92",tooltip="Draws a given animation in the given buffer in the given coordinates."];
+  Node1 -> Node21 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node21 [label="vb_draw_vline",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__graphics.html#gab7723b1dadf5f28b588e6e4efbeef5fe",tooltip="Draws a vertical line in the given buffer in the given coordinates with the given color."];
+  Node21 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+}
