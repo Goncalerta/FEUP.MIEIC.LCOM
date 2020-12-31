@@ -7,11 +7,11 @@
 /** @defgroup clue clue
  * @{
  *
- * Module dedicated to word clues.
+ * @brief Module dedicated to word clues.
  */
 
 /**
- * @brief Word clue.
+ * @brief Word clue info.
  * 
  */
 typedef struct word_clue_t {

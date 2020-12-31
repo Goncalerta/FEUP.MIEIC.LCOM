@@ -6,7 +6,7 @@
 /** @defgroup i8254 i8254
  * @{
  *
- * Constants for programming the i8254 Timer.
+ * @brief Constants for programming the i8254 Timer.
  */
 
 #define TIMER_FREQ 1193182 /**< @brief clock frequency for timer in PC and AT */

@@ -6,7 +6,7 @@
 /** @defgroup keyboard keyboard
  * @{
  *
- *  Module to interact with the PC's Keyboard.
+ * @brief Module to interact with the PC's Keyboard.
  */
 
 /**

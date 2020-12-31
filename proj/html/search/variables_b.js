@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['visible_5fcursor_499',['visible_cursor',['../structtext__box__t.html#adb9178b03d8ee359e4935e5ef9ea7140',1,'text_box_t']]]
+  ['periodic_5frs3210_598',['periodic_RS3210',['../unionrtc__interrupt__config__t.html#a0542c3161fbd4595b99ca6af954e12d2',1,'rtc_interrupt_config_t']]],
+  ['prev_599',['prev',['../structstroke.html#acdb500dc0c637b598c573baa75ff94ac',1,'stroke']]]
 ];

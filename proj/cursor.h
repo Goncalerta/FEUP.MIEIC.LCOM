@@ -8,7 +8,7 @@
 /** @defgroup cursor cursor
  * @{
  *
- * Module dedicated to the mouse cursor.
+ * @brief Module dedicated to the mouse cursor.
  */
 
 /**

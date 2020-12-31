@@ -10,7 +10,7 @@
 /** @defgroup video_gr video_gr
  * @{
  *
- * Module dedicated to the video graphics.
+ * @brief Module dedicated to the video graphics.
  */
 
 /**
@@ -23,14 +23,14 @@ frame_buffer_t vg_get_back_buffer();
 /**
  * @brief Gets the horizontal resolution of the buffer.
  * 
- * @return Return the horizontal resolution
+ * @return Return the horizontal resolution in pixels
  */
 uint16_t vg_get_hres();
 
 /**
  * @brief Gets the vertical resolution of the buffer.
  * 
- * @return Return the vertical resolution
+ * @return Return the vertical resolution in pixels
  */
 uint16_t vg_get_vres();
 

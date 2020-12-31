@@ -6,7 +6,7 @@
 /** @defgroup i8042 i8042
  * @{
  *
- * Constants for programming the i8042 Keyboard controller (KBC).
+ * @brief Constants for programming the i8042 Keyboard controller (KBC).
  */
 
 #define KEYBOARD_IRQ 1 /**< @brief Keyboard IRQ line */
@@ -67,7 +67,7 @@
 #define NACK 0xFE /**< @brief Non-acknowledge (invalid byte) */
 #define ERROR 0xFC /**< @brief Error (second consecutive invalid byte) */
 
-#define KBC_DELAY_US 20000
+#define KBC_DELAY_US 20000 /**< @brief Keyboard response time */
 
 /**@}*/
 

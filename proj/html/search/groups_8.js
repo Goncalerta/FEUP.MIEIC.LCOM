@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['scan_5fcodes_578',['scan_codes',['../group__scan__codes.html',1,'']]]
+  ['queue_701',['queue',['../group__queue.html',1,'']]]
 ];

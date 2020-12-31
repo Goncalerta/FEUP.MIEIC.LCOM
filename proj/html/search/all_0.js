@@ -9,6 +9,7 @@ var searchData=
   ['arrow_5fleft_6',['ARROW_LEFT',['../group__keyboard.html#gga635055f02cc43001acef32526cac2a45ab313b64675c3e4a36ac01132126d3c01',1,'keyboard.h']]],
   ['arrow_5fright_7',['ARROW_RIGHT',['../group__keyboard.html#gga635055f02cc43001acef32526cac2a45a6a5a02b3e54e60d47280bf250e2186bc',1,'keyboard.h']]],
   ['arrow_5fup_8',['ARROW_UP',['../group__keyboard.html#gga635055f02cc43001acef32526cac2a45ab47be4e7317d7a539adaebd5eeeef427',1,'keyboard.h']]],
-  ['attributes_9',['attributes',['../structbutton__icon__t.html#a446e3c89e0aeb446797bfe0a379a0640',1,'button_icon_t']]],
-  ['awaiting_5fother_5fplayer_10',['AWAITING_OTHER_PLAYER',['../group__menu.html#gga1e5014072075d7928c22d69da04f6b8bad3cccd840b81f36c3a93e6e973fe2f77',1,'menu.h']]]
+  ['atoms_9',['atoms',['../structstroke.html#a9e44b5bf3149da216429d3dcf68c7873',1,'stroke']]],
+  ['attributes_10',['attributes',['../structbutton__icon__t.html#a446e3c89e0aeb446797bfe0a379a0640',1,'button_icon_t']]],
+  ['awaiting_5fother_5fplayer_11',['AWAITING_OTHER_PLAYER',['../group__menu.html#gga1e5014072075d7928c22d69da04f6b8bad3cccd840b81f36c3a93e6e973fe2f77',1,'menu.h']]]
 ];

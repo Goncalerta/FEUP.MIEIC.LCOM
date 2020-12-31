@@ -6,7 +6,7 @@
 /** @defgroup scan_codes scan_codes
  * @{
  *
- * PC's keyboard scan codes.
+ * @brief PC's keyboard scan codes.
  */
 
 #define BREAK_CODE(x) ((x) | BREAK_CODE_BIT)  /**< @brief Converts a key MAKE CODE to it's BREAK CODE */

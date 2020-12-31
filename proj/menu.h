@@ -7,7 +7,7 @@
 /** @defgroup menu menu
  * @{
  *
- *  Module to interact with the menu of the game as well as other program screens.
+ * @brief Module to interact with the menu of the game as well as other program screens.
  */
 
 /**

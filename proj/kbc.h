@@ -7,7 +7,7 @@
 /** @defgroup kbc kbc
  * @{
  *
- * Module to interact with the keyboard controller (kbc).
+ * @brief Module to interact with the keyboard controller (KBC).
  */
 
 /**

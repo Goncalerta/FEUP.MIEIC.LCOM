@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['clue_567',['clue',['../group__clue.html',1,'']]],
-  ['cursor_568',['cursor',['../group__cursor.html',1,'']]]
+  ['canvas_689',['canvas',['../group__canvas.html',1,'']]],
+  ['clue_690',['clue',['../group__clue.html',1,'']]],
+  ['cursor_691',['cursor',['../group__cursor.html',1,'']]]
 ];

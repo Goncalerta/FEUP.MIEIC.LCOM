@@ -6,7 +6,7 @@
 /** @defgroup vbe vbe
  * @{
  *
- * Vbe functions.
+ * @brief Vbe functions.
  */
 
 /**

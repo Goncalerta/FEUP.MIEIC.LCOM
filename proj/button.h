@@ -7,7 +7,7 @@
 /** @defgroup button button
  * @{
  *
- * Module dedicated to buttons.
+ * @brief Module dedicated to buttons.
  */
 
 #define BUTTON_CIRCLE_RADIUS_DEFAULT 15 /**< @brief Button circle default radius */

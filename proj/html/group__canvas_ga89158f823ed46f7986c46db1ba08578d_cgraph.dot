@@ -1,0 +1,12 @@
+digraph "canvas_init"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="canvas_init",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Initiates the canvas by setting up its initial content."];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="vb_fill_screen",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__graphics.html#ga1c6f059671dcd7284a5e4edda52ce870",tooltip="Fills the given buffer with the given color."];
+  Node1 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="vg_get_bytes_per_pixel",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__video__gr.html#ga14959b59f7846393c15b57d8d3d6f1d6",tooltip="Gets the number of bytes used to represent a single pixel."];
+}

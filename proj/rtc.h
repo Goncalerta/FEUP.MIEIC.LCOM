@@ -7,7 +7,7 @@
 /** @defgroup rtc rtc
  * @{
  *
- *  Module to interact with the RTC.
+ * @brief Module to interact with the RTC.
  */
 
 #define RTC_IRQ 8 /**< @brief RTC IRQ line */

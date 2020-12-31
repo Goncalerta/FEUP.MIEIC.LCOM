@@ -1,0 +1,12 @@
+digraph "canvas_update_state"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="canvas_update_state",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Updates the state of the canvas according to given mouse info."];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="cursor_get_x",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__cursor.html#ga479cd0880892e002681b109c7a712c04",tooltip="Gets cursor x coordinate."];
+  Node1 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="cursor_get_y",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__cursor.html#ga15c1a0816c95ad240b94dc15480b403a",tooltip="Gets cursor y coordinate."];
+}
