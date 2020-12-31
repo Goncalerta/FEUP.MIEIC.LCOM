@@ -140,7 +140,7 @@ int rtc_enable_update_int() {
 
 int rtc_set_alarm_in(rtc_alarm_time_t remaining_time_to_alarm) {
     last_alarm_set_to = current_date;
-    if (date_plus_alarm_time(remaining_time_to_alarm, &last_alarm_set_to) != 0) 
+    if (date_plus_alarm_time(remaining_time_to_alarm, &last_alarm_set_to) != OK) 
         return 1;
     
     rtc_interrupt_config_t config = {.alarm_time = {.hours = last_alarm_set_to.hour, .minutes = last_alarm_set_to.minute, .seconds = last_alarm_set_to.second}};
@@ -152,7 +152,7 @@ int rtc_set_alarm_in(rtc_alarm_time_t remaining_time_to_alarm) {
 
 int rtc_enable_int(rtc_interrupt_t rtc_interrupt, rtc_interrupt_config_t config) {
     uint8_t reg_b = 0;
-    if (rtc_read_register(RTC_REGISTER_B, &reg_b) != 0) {
+    if (rtc_read_register(RTC_REGISTER_B, &reg_b) != OK) {
         return 1;
     }
 
@@ -190,7 +190,7 @@ int rtc_enable_int(rtc_interrupt_t rtc_interrupt, rtc_interrupt_config_t config)
         break;
     }
 
-    if (rtc_write_register(RTC_REGISTER_B, reg_b) != 0) {
+    if (rtc_write_register(RTC_REGISTER_B, reg_b) != OK) {
         return 1;
     }
 
@@ -199,7 +199,7 @@ int rtc_enable_int(rtc_interrupt_t rtc_interrupt, rtc_interrupt_config_t config)
 
 int rtc_disable_int(rtc_interrupt_t rtc_interrupt) {
     uint8_t reg_b = 0;
-    if (rtc_read_register(RTC_REGISTER_B, &reg_b) != 0) {
+    if (rtc_read_register(RTC_REGISTER_B, &reg_b) != OK) {
         return 1;
     }
     // TODO is it better to reset the config values to "default"?
@@ -217,7 +217,7 @@ int rtc_disable_int(rtc_interrupt_t rtc_interrupt) {
         break;
     }
 
-    if (rtc_write_register(RTC_REGISTER_B, reg_b) != 0) {
+    if (rtc_write_register(RTC_REGISTER_B, reg_b) != OK) {
         return 1;
     }
 
@@ -225,11 +225,11 @@ int rtc_disable_int(rtc_interrupt_t rtc_interrupt) {
 }
 
 int rtc_read_register(uint8_t reg, uint8_t *value) {
-    if (sys_outb(RTC_ADDR_REG, reg) != 0) {
+    if (sys_outb(RTC_ADDR_REG, reg) != OK) {
         return 1;
     }
 
-    if (util_sys_inb(RTC_DATA_REG, value) != 0) {
+    if (util_sys_inb(RTC_DATA_REG, value) != OK) {
         return 1;
     }
     
@@ -237,11 +237,11 @@ int rtc_read_register(uint8_t reg, uint8_t *value) {
 }
 
 int rtc_write_register(uint8_t reg, uint8_t value) {
-    if (sys_outb(RTC_ADDR_REG, reg) != 0) {
+    if (sys_outb(RTC_ADDR_REG, reg) != OK) {
         return 1;
     }
     
-    if (sys_outb(RTC_DATA_REG, value) != 0) {
+    if (sys_outb(RTC_DATA_REG, value) != OK) {
         return 1;
     }
     
@@ -250,22 +250,22 @@ int rtc_write_register(uint8_t reg, uint8_t value) {
 
 void rtc_ih() {
     uint8_t register_c = 0;
-    if (rtc_read_register(RTC_REGISTER_C, &register_c) != 0) {
+    if (rtc_read_register(RTC_REGISTER_C, &register_c) != OK) {
         printf("Error while reading register C\n");
         return; 
     }
 
     if (register_c & RTC_UF) {
-        if (rtc_read_date() != 0)
+        if (rtc_read_date() != OK)
             return;
     }
     if (register_c & RTC_PF) {
-        if (dispatch_rtc_periodic_int() != 0)
+        if (dispatch_rtc_periodic_int() != OK)
             return;
     }
     if (register_c & RTC_AF) {
         if (!date_operator_less_than(current_date, last_alarm_set_to)) { // if not an old alarm
-            if (dispatch_rtc_alarm_int() != 0)
+            if (dispatch_rtc_alarm_int() != OK)
                 return;
         }
     }
@@ -273,7 +273,7 @@ void rtc_ih() {
 
 int rtc_flush() {
     uint8_t register_c = 0;
-    if (rtc_read_register(RTC_REGISTER_C, &register_c) != 0) {
+    if (rtc_read_register(RTC_REGISTER_C, &register_c) != OK) {
         printf("Error while flushing register C\n");
         return 1;
     }

@@ -53,10 +53,10 @@
 #define UART_MAX_TRIES 3
 
 typedef enum word_len_t {
-    WORD_LEN_5_BYTES = 0,
-    WORD_LEN_6_BYTES = 1,
-    WORD_LEN_7_BYTES = 2,
-    WORD_LEN_8_BYTES = 3
+    WORD_LEN_5_BITS = 0,
+    WORD_LEN_6_BITS = 1,
+    WORD_LEN_7_BITS = 2,
+    WORD_LEN_8_BITS = 3
 } word_len_t;
 
 typedef enum parity_t {
