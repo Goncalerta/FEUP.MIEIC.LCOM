@@ -10,7 +10,9 @@ digraph "delete_text_box"
   Node2 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node3 [label="delete_game",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__game.html#ga138474d4cfdc04b079ceba8b584ed4e2",tooltip="Deletes the current game."];
   Node3 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node4 [label="game_unload_assets",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__game.html#ga9f3275416ff1d967fcf634e25c09c719",tooltip="Frees the space allocated in memory to store the game assets."];
-  Node2 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node5 [label="game_new_round",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__game.html#gab01706a4b71bd825fc64ce7032ff115c",tooltip="Creates a new round."];
+  Node4 [label="event_leave_game",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__dispatcher.html#ga0e52394a395110749bc8ce3251ee503c",tooltip="Leaves the game."];
+  Node3 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="game_unload_assets",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__game.html#ga9f3275416ff1d967fcf634e25c09c719",tooltip="Frees the space allocated in memory to store the game assets."];
+  Node2 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="game_new_round",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__game.html#gab01706a4b71bd825fc64ce7032ff115c",tooltip="Creates a new round."];
 }

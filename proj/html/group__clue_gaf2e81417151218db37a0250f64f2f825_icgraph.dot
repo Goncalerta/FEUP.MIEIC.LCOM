@@ -7,4 +7,8 @@ digraph "word_clue_draw"
   Node1 [label="word_clue_draw",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Draws a given word clue to the given buffer on the given coordinates."];
   Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node2 [label="game_draw",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__game.html#ga656ca85eff33877022fd939d29f23822",tooltip="Draws the game to the back buffer. // TODO this is so generic... :/."];
+  Node2 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="draw_frame",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__dispatcher.html#ga1265a5e2843f2b1c45ad05ae61de7000",tooltip="Draws the frame to the back buffer and flips the buffers."];
+  Node3 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="dispatch_timer_tick",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__dispatcher.html#ga0a68e937b31744d0f19e7524b2e9ad59",tooltip="Dispatches a timer interrupt."];
 }

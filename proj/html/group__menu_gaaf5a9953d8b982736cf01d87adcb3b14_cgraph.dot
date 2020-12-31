@@ -1,0 +1,46 @@
+digraph "menu_set_other_player_left_screen"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="menu_set_other_player\l_left_screen",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Sets the menu to the other player left screen."];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="dispatcher_bind_buttons",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__dispatcher.html#ga09a194e07832b8e7984e1b50d9722a80",tooltip="Binds the given buttons to the dispatcher."];
+  Node1 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="dispatcher_reset_bindings",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__dispatcher.html#gab9458678bdcdc4f0ff458f8a9b27c638",tooltip="Resets all dispatcher bindings."];
+  Node3 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="dispatcher_bind_canvas",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__dispatcher.html#gab72c16c8547625b6dde1d4626b3c9c99",tooltip="Binds or unbinds the canvas to the dispatcher."];
+  Node4 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="canvas_update_state",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__canvas.html#ga95661aa91869ceace06141f45c078210",tooltip="Updates the state of the canvas according to given mouse info."];
+  Node3 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="dispatcher_bind_text\l_boxes",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__dispatcher.html#ga4701c82e8ae5bf8fa045347e26aefb74",tooltip="Binds the given text boxes to the dispatcher."];
+  Node1 -> Node7 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="event_update_cursor\l_state",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__dispatcher.html#ga1870958649b46017847735537a5701e1",tooltip="Updates the cursor state and updates the game according to it."];
+  Node7 -> Node8 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="button_is_hovering",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__button.html#ga08826459f45b21d883c8b46751193280",tooltip="Checks if the given coordinates are inside the limits of a given button."];
+  Node7 -> Node9 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 [label="button_update_state",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__button.html#ga9d70332e21de7ab70afff4fa96fb69d4",tooltip="Updates the state of a given button according to given mouse info."];
+  Node7 -> Node10 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 [label="canvas_get_state",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__canvas.html#ga2f87deffc6dca6f0ee25d5cd1c3bdd40",tooltip="Gets the current canvas state."];
+  Node7 -> Node11 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node11 [label="canvas_is_enabled",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__canvas.html#gaff7e5e6e51cce443e068e88722d00bbb",tooltip="Checks if canvas is enabled."];
+  Node7 -> Node12 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node12 [label="canvas_is_hovering",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__canvas.html#ga4b7509d83889d7a4a67e0d72e6f2e096",tooltip="Checks if the given coordinates are inside the limits of the canvas."];
+  Node7 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 -> Node13 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node13 [label="cursor_get_lb",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__cursor.html#gac0fa742a26e68888018245125c26d5d6",tooltip="Gets the left button state. (either pressed or not)"];
+  Node7 -> Node14 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node14 [label="cursor_get_rb",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__cursor.html#ga7da23fec369ac0db044e35d1ff1fb95c",tooltip="Gets the right button state. (either pressed or not)"];
+  Node7 -> Node15 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node15 [label="cursor_get_x",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__cursor.html#ga479cd0880892e002681b109c7a712c04",tooltip="Gets cursor x coordinate."];
+  Node7 -> Node16 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node16 [label="cursor_get_y",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__cursor.html#ga15c1a0816c95ad240b94dc15480b403a",tooltip="Gets cursor y coordinate."];
+  Node7 -> Node17 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node17 [label="cursor_set_state",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__cursor.html#ga76ed8ba253d1ffd6ef14da30591ad15f",tooltip="Sets the cursor state."];
+  Node7 -> Node18 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node18 [label="text_box_is_hovering",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__textbox.html#ga33353114ce71e80ee90b18827c53f717",tooltip="Checks if the given coordinates are inside the limits of a given text box."];
+  Node7 -> Node19 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node19 [label="text_box_update_state",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__textbox.html#gaf810b80df21aa5e7259b8fc8815238f5",tooltip="Updates the state of a given text box according to given mouse info."];
+}

@@ -1,0 +1,22 @@
+digraph "menu_get_state"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node1 [label="menu_get_state",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Gets the current menu state."];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="dispatch_keyboard_event",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__dispatcher.html#gaeefd35acea05833fa9d829f99e2ed6ca",tooltip="Dispatches a keyboard event."];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="dispatch_rtc_alarm_int",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__dispatcher.html#ga2607daafa4b66e729b8aa95ba97f1984",tooltip="Dispatches a rtc alarm interrupt."];
+  Node3 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="rtc_ih",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__rtc.html#ga75dad42881d64cf07cf1bdc2979a7056",tooltip="RTC interrupt handler."];
+  Node1 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="dispatch_rtc_periodic_int",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__dispatcher.html#ga091e29979e7808dc87b71f52d3510553",tooltip="Dispatches a rtc periodic interrupt."];
+  Node5 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="dispatch_timer_tick",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__dispatcher.html#ga0a68e937b31744d0f19e7524b2e9ad59",tooltip="Dispatches a timer interrupt."];
+  Node1 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="draw_frame",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__dispatcher.html#ga1265a5e2843f2b1c45ad05ae61de7000",tooltip="Draws the frame to the back buffer and flips the buffers."];
+  Node7 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+}

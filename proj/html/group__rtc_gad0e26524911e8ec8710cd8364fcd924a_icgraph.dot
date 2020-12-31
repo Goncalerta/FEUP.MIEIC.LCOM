@@ -6,11 +6,23 @@ digraph "rtc_disable_int"
   rankdir="RL";
   Node1 [label="rtc_disable_int",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Disables a type of interrupt."];
   Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node2 [label="game_round_over",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__game.html#ga3e3b7cd44197d8a1bd11f7f82aa3c767",tooltip="Ends the current round."];
+  Node2 [label="dispatch_rtc_alarm_int",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__dispatcher.html#ga2607daafa4b66e729b8aa95ba97f1984",tooltip="Dispatches a rtc alarm interrupt."];
   Node2 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node3 [label="game_other_player_game_over",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__game.html#ga1fde03513252d4441ff2ba62672da7a6",tooltip="Ends the game due to the other player."];
-  Node2 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node4 [label="game_rtc_pi_tick",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__game.html#ga159cd81ebf01a5ccd6a0f96aaffb2530",tooltip="Updates the game due to a rtc periodic interrupt."];
+  Node3 [label="rtc_ih",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__rtc.html#ga75dad42881d64cf07cf1bdc2979a7056",tooltip="RTC interrupt handler."];
+  Node1 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="event_leave_game",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__dispatcher.html#ga0e52394a395110749bc8ce3251ee503c",tooltip="Leaves the game."];
   Node1 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node5 [label="game_rtc_alarm",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__game.html#ga3f61372930dd958f7499a110ce2bd7d6",tooltip="Updates the game due to a rtc alarm interrupt."];
+  Node5 [label="event_other_player\l_leave_game",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__dispatcher.html#ga478271b5d6d73f56b8c7c24d7be10cfd",tooltip="Reacts to the event that the other player left the game."];
+  Node1 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="game_round_over",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__game.html#ga3e3b7cd44197d8a1bd11f7f82aa3c767",tooltip="Ends the current round."];
+  Node6 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="game_other_player_game_over",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__game.html#ga1fde03513252d4441ff2ba62672da7a6",tooltip="Ends the game due to the other player."];
+  Node6 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="game_rtc_pi_tick",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__game.html#ga159cd81ebf01a5ccd6a0f96aaffb2530",tooltip="Updates the game due to a rtc periodic interrupt."];
+  Node8 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 [label="dispatch_rtc_periodic_int",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__dispatcher.html#ga091e29979e7808dc87b71f52d3510553",tooltip="Dispatches a rtc periodic interrupt."];
+  Node9 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 -> Node10 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 [label="game_rtc_alarm",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__game.html#ga3f61372930dd958f7499a110ce2bd7d6",tooltip="Updates the game due to a rtc alarm interrupt."];
+  Node10 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
 }

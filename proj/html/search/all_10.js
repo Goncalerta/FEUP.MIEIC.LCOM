@@ -1,13 +1,14 @@
 var searchData=
 [
-  ['scan_5fcodes_350',['scan_codes',['../group__scan__codes.html',1,'']]],
-  ['second_351',['second',['../structdate__t.html#a8459fc4e94de7eefc74991e41779c8fc',1,'date_t']]],
-  ['seconds_352',['seconds',['../structrtc__alarm__time__t.html#a46729a903be1a03cdb248fb48d84d4f5',1,'rtc_alarm_time_t']]],
-  ['select_5fpos_353',['select_pos',['../structtext__box__t.html#a73f596226cfebbfecf7800420f4b7875',1,'text_box_t']]],
-  ['size_354',['size',['../structword__clue__t.html#a854352f53b148adc24983a58a1866d66',1,'word_clue_t::size()'],['../structqueue__t.html#a854352f53b148adc24983a58a1866d66',1,'queue_t::size()']]],
-  ['speaker_5fctrl_355',['SPEAKER_CTRL',['../group__i8254.html#ga51b3a5e3d4811ca063fe25e35560ab40',1,'i8254.h']]],
-  ['start_5fdisplay_356',['start_display',['../structtext__box__t.html#a43391d6d9c087b9c5084c80a3b882538',1,'text_box_t']]],
-  ['state_357',['state',['../structbutton__t.html#a3bcf222aa943af46be04be6ec0b7f9d1',1,'button_t::state()'],['../structtext__box__t.html#acb612b55d12ee5bacc2f4a2b16587f48',1,'text_box_t::state()']]],
-  ['stroke_358',['stroke',['../structstroke.html',1,'stroke'],['../group__canvas.html#ga23a48e20fd2c667669e3f88040dc497c',1,'stroke():&#160;canvas.h']]],
-  ['stroke_5fatom_359',['stroke_atom',['../structstroke__atom.html',1,'stroke_atom'],['../group__canvas.html#ga79f3abe82b4b5b1269a7ff210d4bb372',1,'stroke_atom():&#160;canvas.h']]]
+  ['scan_5fcodes_367',['scan_codes',['../group__scan__codes.html',1,'']]],
+  ['second_368',['second',['../structdate__t.html#a8459fc4e94de7eefc74991e41779c8fc',1,'date_t']]],
+  ['seconds_369',['seconds',['../structrtc__alarm__time__t.html#a46729a903be1a03cdb248fb48d84d4f5',1,'rtc_alarm_time_t']]],
+  ['select_5fpos_370',['select_pos',['../structtext__box__t.html#a73f596226cfebbfecf7800420f4b7875',1,'text_box_t']]],
+  ['should_5fend_371',['should_end',['../group__dispatcher.html#ga366499df65f6da934dc65bb85be11671',1,'should_end():&#160;dispatcher.c'],['../group__dispatcher.html#ga366499df65f6da934dc65bb85be11671',1,'should_end():&#160;dispatcher.c']]],
+  ['size_372',['size',['../structword__clue__t.html#a854352f53b148adc24983a58a1866d66',1,'word_clue_t::size()'],['../structqueue__t.html#a854352f53b148adc24983a58a1866d66',1,'queue_t::size()']]],
+  ['speaker_5fctrl_373',['SPEAKER_CTRL',['../group__i8254.html#ga51b3a5e3d4811ca063fe25e35560ab40',1,'i8254.h']]],
+  ['start_5fdisplay_374',['start_display',['../structtext__box__t.html#a43391d6d9c087b9c5084c80a3b882538',1,'text_box_t']]],
+  ['state_375',['state',['../structbutton__t.html#a6f71f07fedcc14f72433fea54407ce9c',1,'button_t::state()'],['../structtext__box__t.html#acb612b55d12ee5bacc2f4a2b16587f48',1,'text_box_t::state()']]],
+  ['stroke_376',['stroke',['../structstroke.html',1,'stroke'],['../group__canvas.html#ga23a48e20fd2c667669e3f88040dc497c',1,'stroke():&#160;canvas.h']]],
+  ['stroke_5fatom_377',['stroke_atom',['../structstroke__atom.html',1,'stroke_atom'],['../group__canvas.html#ga79f3abe82b4b5b1269a7ff210d4bb372',1,'stroke_atom():&#160;canvas.h']]]
 ];

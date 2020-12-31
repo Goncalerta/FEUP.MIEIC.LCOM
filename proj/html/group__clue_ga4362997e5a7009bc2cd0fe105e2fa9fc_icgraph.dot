@@ -11,4 +11,8 @@ digraph "clue_reveal"
   Node3 [label="game_other_player_game_over",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__game.html#ga1fde03513252d4441ff2ba62672da7a6",tooltip="Ends the game due to the other player."];
   Node2 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node4 [label="game_rtc_pi_tick",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__game.html#ga159cd81ebf01a5ccd6a0f96aaffb2530",tooltip="Updates the game due to a rtc periodic interrupt."];
+  Node4 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="dispatch_rtc_periodic_int",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__dispatcher.html#ga091e29979e7808dc87b71f52d3510553",tooltip="Dispatches a rtc periodic interrupt."];
+  Node5 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="rtc_ih",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__rtc.html#ga75dad42881d64cf07cf1bdc2979a7056",tooltip="RTC interrupt handler."];
 }

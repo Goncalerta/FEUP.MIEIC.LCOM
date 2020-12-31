@@ -7,6 +7,10 @@ digraph "vg_get_bytes_per_pixel"
   Node1 [label="vg_get_bytes_per_pixel",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Gets the number of bytes used to represent a single pixel."];
   Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node2 [label="canvas_draw_frame",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__canvas.html#ga7212eaf58fd2e7ff08ae401d340d51cd",tooltip="Draws the canvas to the back buffer."];
-  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node3 [label="canvas_init",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__canvas.html#ga89158f823ed46f7986c46db1ba08578d",tooltip="Initiates the canvas by setting up its initial content."];
+  Node2 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="draw_frame",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__dispatcher.html#ga1265a5e2843f2b1c45ad05ae61de7000",tooltip="Draws the frame to the back buffer and flips the buffers."];
+  Node3 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="dispatch_timer_tick",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__dispatcher.html#ga0a68e937b31744d0f19e7524b2e9ad59",tooltip="Dispatches a timer interrupt."];
+  Node1 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="canvas_init",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__canvas.html#ga89158f823ed46f7986c46db1ba08578d",tooltip="Initiates the canvas by setting up its initial content."];
 }

@@ -8,13 +8,8 @@ digraph "button_unset_border_active"
   Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node2 [label="drawer_set_eraser_primary",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__game.html#gad2612affb6e1d0b40f1972a751ad6674",tooltip="Sets the eraser primary if this player is the drawer."];
   Node2 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node3 [label="canvas_react_kbd",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__canvas.html#ga8ad75f7f8cd0333e14d51a533da88883",tooltip="Updates the canvas according to a keyboard event."];
-  Node2 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node4 [label="drawer_toggle_pencil\l_eraser",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__game.html#ga2a86959de5de66b3881ada72cf3a5850",tooltip="Switches the tool used (pencil/eraser) if this player is the drawer."];
-  Node4 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node5 [label="canvas_update_state",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__canvas.html#ga95661aa91869ceace06141f45c078210",tooltip="Updates the state of the canvas according to given mouse info."];
-  Node1 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node6 [label="drawer_set_pencil_primary",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__game.html#gab09c1e5c83d1408799b41ae9863259ef",tooltip="Sets the pencil primary if this player is the drawer."];
-  Node6 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node6 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="drawer_toggle_pencil\l_eraser",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__game.html#ga2a86959de5de66b3881ada72cf3a5850",tooltip="Switches the tool used (pencil/eraser) if this player is the drawer."];
+  Node1 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="drawer_set_pencil_primary",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__game.html#gab09c1e5c83d1408799b41ae9863259ef",tooltip="Sets the pencil primary if this player is the drawer."];
+  Node4 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
 }
