@@ -90,10 +90,3 @@ int vg_flip_page() {
     buf1_is_primary = !buf1_is_primary;
     return 0;
 }
-
-int vg_clear() {
-    for (unsigned int i = 0; i < buf1.bytes_per_pixel * buf1.h_res * buf1.v_res / 8; i++) {
-        ((uint8_t *) vg_get_back_buffer().buf)[i] = 0; // TODO maybe setmem or something like that may be more efficient?
-    }
-    return 0;
-}

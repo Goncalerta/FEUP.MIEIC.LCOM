@@ -48,13 +48,6 @@ uint16_t vg_get_bytes_per_pixel();
  */
 int vg_flip_page();
 
-/**
- * @brief Paints the back buffer all white.
- * 
- * @return Return 0 upon success and non-zero otherwise
- */
-int vg_clear();
-
 /**@}*/
 
 #endif /* __VIDEO_GR_H */
