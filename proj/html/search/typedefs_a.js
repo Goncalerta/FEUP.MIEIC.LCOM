@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['xpm_5fanimation_5ft_591',['xpm_animation_t',['../group__graphics.html#ga03b777698d407ae3fa14a39c6bd824ac',1,'graphics.h']]]
+  ['word_5fclue_5ft_637',['word_clue_t',['../group__clue.html#gaf1024e93fdaaaf8803541bf569c84971',1,'clue.h']]]
 ];
