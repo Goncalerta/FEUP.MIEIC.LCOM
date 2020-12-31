@@ -53,16 +53,16 @@ int word_clue_draw(word_clue_t *clue, frame_buffer_t buf, uint16_t x, uint16_t y
 int word_clue_hint(word_clue_t *clue, size_t *pos);
 
 /**
- * @brief Hints a char in the given word clue in the given missing position.
+ * @brief Hints a char in the given word clue in the given position.
  * 
  * @param clue address of memory to the word clue
- * @param pos missing position to be clued
+ * @param pos position to be clued
  * @return Return 0 upon success and non-zero otherwise
  */
 int word_clue_hint_at(word_clue_t *clue, size_t pos);
 
 /**
- * @brief Makes the whole word clued in the given word clue.
+ * @brief Makes the whole word revealed in the given word clue.
  * 
  * @param clue address of memory to the word clue
  */
