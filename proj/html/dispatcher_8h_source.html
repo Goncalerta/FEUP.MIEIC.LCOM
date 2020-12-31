@@ -88,32 +88,33 @@ $(function() {
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="keywordtype">int</span> event_update_cursor_state();</div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="keywordtype">int</span> event_other_player_opened_program();</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="keywordtype">int</span> event_leave_game();</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="keywordtype">int</span> event_other_player_leave_game();</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="keywordtype">int</span> event_ready_to_play();</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="keywordtype">int</span> event_other_player_ready_to_play();</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="keywordtype">int</span> event_this_player_random_number();</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="keywordtype">int</span> event_other_player_random_number();</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="keywordtype">int</span> event_new_round_as_guesser(<span class="keyword">const</span> <span class="keywordtype">char</span> *word);</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="keywordtype">int</span> event_new_round_as_drawer();</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="keywordtype">int</span> event_start_round();</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="keywordtype">int</span> event_end_round();</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="keywordtype">int</span> event_new_stroke(<span class="keywordtype">bool</span> primary_button);</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="keywordtype">int</span> event_new_atom(uint16_t x, uint16_t y);</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="keywordtype">int</span> event_undo();</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="keywordtype">int</span> event_redo();</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="keywordtype">int</span> event_guess_word(<span class="keywordtype">char</span> *guess);</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="keywordtype">int</span> event_round_win(uint32_t score);</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="keywordtype">int</span> event_end_program();</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="keywordtype">bool</span> should_end();</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* __DISPATCHER_H */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="keywordtype">int</span> event_notify_not_in_game();</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="keywordtype">int</span> event_leave_game();</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="keywordtype">int</span> event_other_player_leave_game();</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="keywordtype">int</span> event_ready_to_play();</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="keywordtype">int</span> event_other_player_ready_to_play();</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="keywordtype">int</span> event_this_player_random_number();</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="keywordtype">int</span> event_other_player_random_number();</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="keywordtype">int</span> event_new_round_as_guesser(<span class="keyword">const</span> <span class="keywordtype">char</span> *word);</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="keywordtype">int</span> event_new_round_as_drawer();</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="keywordtype">int</span> event_start_round();</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="keywordtype">int</span> event_end_round();</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="keywordtype">int</span> event_new_stroke(<span class="keywordtype">bool</span> primary_button);</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="keywordtype">int</span> event_new_atom(uint16_t x, uint16_t y);</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="keywordtype">int</span> event_undo();</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="keywordtype">int</span> event_redo();</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="keywordtype">int</span> event_guess_word(<span class="keywordtype">char</span> *guess);</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="keywordtype">int</span> event_round_win(uint32_t score);</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="keywordtype">int</span> event_end_program();</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="keywordtype">bool</span> should_end();</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* __DISPATCHER_H */</span><span class="preprocessor"></span></div>
 </div><!-- fragment --></div><!-- contents -->
 <div class="ttc" id="agroup__rtc_html_ga49dc9bc6e37a97deaf7ee0dc0f9110e1"><div class="ttname"><a href="group__rtc.html#ga49dc9bc6e37a97deaf7ee0dc0f9110e1">rtc_set_alarm_in</a></div><div class="ttdeci">int rtc_set_alarm_in(rtc_alarm_time_t remaining_time_to_alarm)</div><div class="ttdoc">Sets an alarm with remaining time to alarm from now.</div><div class="ttdef"><b>Definition:</b> rtc.c:141</div></div>
 <div class="ttc" id="agroup__cursor_html_ga15c1a0816c95ad240b94dc15480b403a"><div class="ttname"><a href="group__cursor.html#ga15c1a0816c95ad240b94dc15480b403a">cursor_get_y</a></div><div class="ttdeci">int16_t cursor_get_y()</div><div class="ttdoc">Gets cursor y coordinate.</div><div class="ttdef"><b>Definition:</b> cursor.c:41</div></div>
@@ -123,6 +124,7 @@ $(function() {
 <div class="ttc" id="agroup__cursor_html_ggae816e2010df6ae9e9f853d0f2c623173ab8e4d8154f828c5ffab95edf045a3df4"><div class="ttname"><a href="group__cursor.html#ggae816e2010df6ae9e9f853d0f2c623173ab8e4d8154f828c5ffab95edf045a3df4">CURSOR_WRITE</a></div><div class="ttdeci">@ CURSOR_WRITE</div><div class="ttdef"><b>Definition:</b> cursor.h:21</div></div>
 <div class="ttc" id="agroup__textbox_html_gaf810b80df21aa5e7259b8fc8815238f5"><div class="ttname"><a href="group__textbox.html#gaf810b80df21aa5e7259b8fc8815238f5">text_box_update_state</a></div><div class="ttdeci">int text_box_update_state(text_box_t *text_box, bool hovering, bool lb, bool rb, uint16_t x, uint16_t y)</div><div class="ttdoc">Updates the state of a given text box according to given mouse info.</div><div class="ttdef"><b>Definition:</b> textbox.c:123</div></div>
 <div class="ttc" id="agroup__cursor_html_ggae816e2010df6ae9e9f853d0f2c623173a8ecb986da99c3c8f74789613a9858492"><div class="ttname"><a href="group__cursor.html#ggae816e2010df6ae9e9f853d0f2c623173a8ecb986da99c3c8f74789613a9858492">CURSOR_ARROW</a></div><div class="ttdeci">@ CURSOR_ARROW</div><div class="ttdef"><b>Definition:</b> cursor.h:19</div></div>
+<div class="ttc" id="agroup__video__gr_html_gaf34ffe7f8977e7b63e5ad04007cdd4ab"><div class="ttname"><a href="group__video__gr.html#gaf34ffe7f8977e7b63e5ad04007cdd4ab">vg_flip_page</a></div><div class="ttdeci">int vg_flip_page()</div><div class="ttdoc">Flips the front buffer with the back buffer.</div><div class="ttdef"><b>Definition:</b> video_gr.c:82</div></div>
 <div class="ttc" id="astructrtc__alarm__time__t_html"><div class="ttname"><a href="structrtc__alarm__time__t.html">rtc_alarm_time_t</a></div><div class="ttdoc">Time aggregate type to use to set the RTC alarm.</div><div class="ttdef"><b>Definition:</b> date.h:32</div></div>
 <div class="ttc" id="agroup__cursor_html_ga479cd0880892e002681b109c7a712c04"><div class="ttname"><a href="group__cursor.html#ga479cd0880892e002681b109c7a712c04">cursor_get_x</a></div><div class="ttdeci">int16_t cursor_get_x()</div><div class="ttdoc">Gets cursor x coordinate.</div><div class="ttdef"><b>Definition:</b> cursor.c:37</div></div>
 <div class="ttc" id="agroup__cursor_html_ga7da23fec369ac0db044e35d1ff1fb95c"><div class="ttname"><a href="group__cursor.html#ga7da23fec369ac0db044e35d1ff1fb95c">cursor_get_rb</a></div><div class="ttdeci">bool cursor_get_rb()</div><div class="ttdoc">Gets the right button state. (either pressed or not)</div><div class="ttdef"><b>Definition:</b> cursor.c:49</div></div>
@@ -134,6 +136,7 @@ $(function() {
 <div class="ttc" id="agroup__textbox_html_gga4c6e6a481f55d3cdcf91968e50f378afaf8dd7deda4a49e40b5aee6959a6d4c8e"><div class="ttname"><a href="group__textbox.html#gga4c6e6a481f55d3cdcf91968e50f378afaf8dd7deda4a49e40b5aee6959a6d4c8e">TEXT_BOX_NORMAL</a></div><div class="ttdeci">@ TEXT_BOX_NORMAL</div><div class="ttdef"><b>Definition:</b> textbox.h:26</div></div>
 <div class="ttc" id="astructtext__box__t_html"><div class="ttname"><a href="structtext__box__t.html">text_box_t</a></div><div class="ttdoc">Text box info.</div><div class="ttdef"><b>Definition:</b> textbox.h:37</div></div>
 <div class="ttc" id="astructkbd__event__t_html_a327f1f147008f529a2889fb013f0f63e"><div class="ttname"><a href="structkbd__event__t.html#a327f1f147008f529a2889fb013f0f63e">kbd_event_t::is_ctrl_pressed</a></div><div class="ttdeci">bool is_ctrl_pressed</div><div class="ttdef"><b>Definition:</b> keyboard.h:35</div></div>
+<div class="ttc" id="agroup__video__gr_html_ga03e56e930917ca4f15ea488838d513a8"><div class="ttname"><a href="group__video__gr.html#ga03e56e930917ca4f15ea488838d513a8">vg_get_hres</a></div><div class="ttdeci">uint16_t vg_get_hres()</div><div class="ttdoc">Gets the horizontal resolution of the buffer.</div><div class="ttdef"><b>Definition:</b> video_gr.c:70</div></div>
 <div class="ttc" id="astructkbd__event__t_html"><div class="ttname"><a href="structkbd__event__t.html">kbd_event_t</a></div><div class="ttdoc">Keyboard event.</div><div class="ttdef"><b>Definition:</b> keyboard.h:32</div></div>
 <div class="ttc" id="agroup__textbox_html_ga33353114ce71e80ee90b18827c53f717"><div class="ttname"><a href="group__textbox.html#ga33353114ce71e80ee90b18827c53f717">text_box_is_hovering</a></div><div class="ttdeci">bool text_box_is_hovering(text_box_t text_box, uint16_t x, uint16_t y)</div><div class="ttdoc">Checks if the given coordinates are inside the limits of a given text box.</div><div class="ttdef"><b>Definition:</b> textbox.c:117</div></div>
 <div class="ttc" id="agroup__cursor_html_ga76ed8ba253d1ffd6ef14da30591ad15f"><div class="ttname"><a href="group__cursor.html#ga76ed8ba253d1ffd6ef14da30591ad15f">cursor_set_state</a></div><div class="ttdeci">void cursor_set_state(cursor_state new_state)</div><div class="ttdoc">Sets the cursor state.</div><div class="ttdef"><b>Definition:</b> cursor.c:89</div></div>
@@ -144,6 +147,7 @@ $(function() {
 <div class="ttc" id="agroup__rtc_html_gad0e26524911e8ec8710cd8364fcd924a"><div class="ttname"><a href="group__rtc.html#gad0e26524911e8ec8710cd8364fcd924a">rtc_disable_int</a></div><div class="ttdeci">int rtc_disable_int(rtc_interrupt_t rtc_interrupt)</div><div class="ttdoc">Disables a type of interrupt.</div><div class="ttdef"><b>Definition:</b> rtc.c:200</div></div>
 <div class="ttc" id="agroup__rtc_html_gga5415419ccb3977ce322fea96fdc8cd38a5ad4f38dac2143e3c9c24b219abc8f5d"><div class="ttname"><a href="group__rtc.html#gga5415419ccb3977ce322fea96fdc8cd38a5ad4f38dac2143e3c9c24b219abc8f5d">ALARM_INTERRUPT</a></div><div class="ttdeci">@ ALARM_INTERRUPT</div><div class="ttdef"><b>Definition:</b> rtc.h:21</div></div>
 <div class="ttc" id="agroup__cursor_html_ga1c0e7c8b76a7688af257b5e6fcfb9160"><div class="ttname"><a href="group__cursor.html#ga1c0e7c8b76a7688af257b5e6fcfb9160">cursor_move</a></div><div class="ttdeci">void cursor_move(int16_t dx, int16_t dy)</div><div class="ttdoc">Moves the cursor by the given displacement.</div><div class="ttdef"><b>Definition:</b> cursor.c:53</div></div>
+<div class="ttc" id="agroup__video__gr_html_gafa08dcecf2adbe49d6a9c28b355c68d1"><div class="ttname"><a href="group__video__gr.html#gafa08dcecf2adbe49d6a9c28b355c68d1">vg_get_vres</a></div><div class="ttdeci">uint16_t vg_get_vres()</div><div class="ttdoc">Gets the vertical resolution of the buffer.</div><div class="ttdef"><b>Definition:</b> video_gr.c:74</div></div>
 <div class="ttc" id="agroup__cursor_html_ga1f0539239b1f5a7f3de05af786aeaab2"><div class="ttname"><a href="group__cursor.html#ga1f0539239b1f5a7f3de05af786aeaab2">cursor_draw</a></div><div class="ttdeci">int cursor_draw()</div><div class="ttdoc">Draws the cursor to the back buffer in its current position according to its current state.</div><div class="ttdef"><b>Definition:</b> cursor.c:72</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

@@ -1,0 +1,18 @@
+digraph "vg_get_back_buffer"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node1 [label="vg_get_back_buffer",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Gets the back buffer."];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="cursor_draw",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__cursor.html#ga1f0539239b1f5a7f3de05af786aeaab2",tooltip="Draws the cursor to the back buffer in its current position according to its current state."];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="date_draw",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__date.html#ga4935ca0b464c660a91e7f725da5149ae",tooltip="Draws a date to the given screen coordiantes."];
+  Node3 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="date_draw_current",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__date.html#gac6b60c120a9b43280cf175cc7fb7f047",tooltip="Draws the current date to the top left corner of the screen."];
+  Node1 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="date_draw_greeting",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__date.html#gaaf00425c1e5044b7a17bb4331de4ceb8",tooltip="Draws a greeting according to the current date to the given screen coordinates."];
+  Node1 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="vg_clear",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__video__gr.html#gaf58839f5f297f9c16204805e814e2352",tooltip="Paints the back buffer all white."];
+}

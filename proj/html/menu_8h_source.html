@@ -92,7 +92,7 @@ $(function() {
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;menu_state_t menu_get_state();</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="keywordtype">void</span> menu_set_state(menu_state_t state);</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="keywordtype">void</span> menu_set_game_screen();</div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="keywordtype">int</span> menu_set_main_menu();</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
@@ -111,7 +111,10 @@ $(function() {
 <div class="ttc" id="astructbutton__t_html"><div class="ttname"><a href="structbutton__t.html">button_t</a></div><div class="ttdef"><b>Definition:</b> button.h:31</div></div>
 <div class="ttc" id="agroup__font_html_ga84590018142e55d772b7ce9733c06ecf"><div class="ttname"><a href="group__font.html#ga84590018142e55d772b7ce9733c06ecf">font_draw_string</a></div><div class="ttdeci">int font_draw_string(frame_buffer_t buf, const char string[], uint16_t x, uint16_t y)</div><div class="ttdoc">Draws a given string to the given coordinates in the given buffer.</div><div class="ttdef"><b>Definition:</b> font.c:51</div></div>
 <div class="ttc" id="agroup__date_html_gaaf00425c1e5044b7a17bb4331de4ceb8"><div class="ttname"><a href="group__date.html#gaaf00425c1e5044b7a17bb4331de4ceb8">date_draw_greeting</a></div><div class="ttdeci">int date_draw_greeting(uint16_t x, uint16_t y)</div><div class="ttdoc">Draws a greeting according to the current date to the given screen coordinates.</div><div class="ttdef"><b>Definition:</b> date.c:51</div></div>
+<div class="ttc" id="agroup__video__gr_html_gaecb0fe68de84fcbe553f77d62b37c69b"><div class="ttname"><a href="group__video__gr.html#gaecb0fe68de84fcbe553f77d62b37c69b">vg_get_back_buffer</a></div><div class="ttdeci">frame_buffer_t vg_get_back_buffer()</div><div class="ttdoc">Gets the back buffer.</div><div class="ttdef"><b>Definition:</b> video_gr.c:10</div></div>
+<div class="ttc" id="agroup__video__gr_html_ga03e56e930917ca4f15ea488838d513a8"><div class="ttname"><a href="group__video__gr.html#ga03e56e930917ca4f15ea488838d513a8">vg_get_hres</a></div><div class="ttdeci">uint16_t vg_get_hres()</div><div class="ttdoc">Gets the horizontal resolution of the buffer.</div><div class="ttdef"><b>Definition:</b> video_gr.c:70</div></div>
 <div class="ttc" id="astructframe__buffer__t_html"><div class="ttname"><a href="structframe__buffer__t.html">frame_buffer_t</a></div><div class="ttdef"><b>Definition:</b> graphics.h:7</div></div>
+<div class="ttc" id="agroup__video__gr_html_gafa08dcecf2adbe49d6a9c28b355c68d1"><div class="ttname"><a href="group__video__gr.html#gafa08dcecf2adbe49d6a9c28b355c68d1">vg_get_vres</a></div><div class="ttdeci">uint16_t vg_get_vres()</div><div class="ttdoc">Gets the vertical resolution of the buffer.</div><div class="ttdef"><b>Definition:</b> video_gr.c:74</div></div>
 <div class="ttc" id="agroup__font_html_ga76f55190cabfad9be834e7f9b435441d"><div class="ttname"><a href="group__font.html#ga76f55190cabfad9be834e7f9b435441d">font_draw_string_centered</a></div><div class="ttdeci">int font_draw_string_centered(frame_buffer_t buf, const char string[], uint16_t x, uint16_t y, uint8_t start, uint8_t size)</div><div class="ttdoc">Draws a substring of a string centered in the given coordinates in the given buffer.</div><div class="ttdef"><b>Definition:</b> font.c:75</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
