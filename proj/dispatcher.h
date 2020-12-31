@@ -21,6 +21,7 @@ int draw_frame();
 int event_update_cursor_state();
 
 int event_other_player_opened_program();
+int event_notify_not_in_game();
 int event_leave_game();
 int event_other_player_leave_game();
 int event_ready_to_play();

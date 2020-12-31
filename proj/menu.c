@@ -232,8 +232,8 @@ menu_state_t menu_get_state() {
     return menu_state;
 }
 
-void menu_set_state(menu_state_t state) {
-    menu_state = state;
+void menu_set_game_screen() {
+    menu_state = GAME;
 }
 
 int menu_set_main_menu() {

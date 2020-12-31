@@ -67,6 +67,8 @@
 #define NACK 0xFE /**< @brief Non-acknowledge (invalid byte) */
 #define ERROR 0xFC /**< @brief Error (second consecutive invalid byte) */
 
+#define KBC_DELAY_US 20000
+
 /**@}*/
 
 #endif /* _LCOM_I8042_H */

@@ -270,6 +270,19 @@ int event_other_player_opened_program() {
     return 0;
 }
 
+int event_notify_not_in_game() {
+    if (protocol_send_leave_game() != OK)
+        return 1;
+    if (this_player_state == RANDOM_NUMBER_SENT) {
+        this_player_state = READY;
+    }
+    if (this_player_state == READY) {
+        if (protocol_send_ready_to_play() != OK)
+            return 1;
+    }
+    return 0;
+}
+
 int event_leave_game() {
     if (rtc_disable_int(ALARM_INTERRUPT) != OK)
         return 1;
@@ -289,11 +302,12 @@ int event_leave_game() {
 
 int event_other_player_leave_game() {
     other_player_state = NOT_READY;
-    if (menu_is_game_ongoing()) {
+    if (menu_is_game_ongoing() && !game_is_over()) {
         if (rtc_disable_int(ALARM_INTERRUPT) != OK)
             return 1;
         if (event_end_round() != OK)
             return 1;
+        game_set_over();
         if (menu_set_other_player_left_screen() != OK)
             return 1;
     }
