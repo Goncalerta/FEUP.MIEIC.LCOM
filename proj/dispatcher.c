@@ -296,7 +296,7 @@ int event_leave_game() {
     if (other_player_state == RANDOM_NUMBER_SENT) {
         other_player_state = READY;
     }
-    
+
     return 0;
 }
 
@@ -329,13 +329,40 @@ int event_ready_to_play() {
         if (event_this_player_random_number() != OK)
             return 1;
     }
-    
+
     return 0;
 }
 
 int event_other_player_ready_to_play() {
     other_player_state = READY;
     if (this_player_state == READY || this_player_state == RANDOM_NUMBER_SENT) {
+        if (event_this_player_random_number() != OK)
+            return 1;
+    }
+
+    return 0;
+}
+
+static int compare_random_numbers() {
+    if (this_player_random_number > other_player_random_number) {
+        // Player is about to begin game. Should not be ready to start a new one while this one is ongoing
+        this_player_state = NOT_READY;
+        other_player_state = NOT_READY;
+        if (new_game() != OK)
+            return 1;
+        if (event_new_round_as_drawer() != OK)
+            return 1;
+
+    } else if (this_player_random_number < other_player_random_number) {
+        // Player is about to begin game. Should not be ready to start a new one while this one is ongoing
+        this_player_state = NOT_READY;
+        other_player_state = NOT_READY;
+        if (new_game() != OK)
+            return 1;
+
+    } else {
+        this_player_state = READY;
+        other_player_state = READY;
         if (event_this_player_random_number() != OK)
             return 1;
     }
@@ -354,26 +381,8 @@ int event_this_player_random_number() {
         return 1;
 
     if (other_player_state == RANDOM_NUMBER_SENT) {
-        if (this_player_random_number > other_player_random_number) {
-            // Player is about to begin game. Should not be ready to start a new one while this one is ongoing
-            this_player_state = NOT_READY;
-            other_player_state = NOT_READY;
-            if (new_game() != OK)
-                return 1;
-            if (event_new_round_as_drawer() != OK)
-                return 1;
-        } else if (this_player_random_number < other_player_random_number) {
-            // Player is about to begin game. Should not be ready to start a new one while this one is ongoing
-            this_player_state = NOT_READY;
-            other_player_state = NOT_READY;
-            if (new_game() != OK)
-                return 1;
-        } else {
-            this_player_state = READY;
-            other_player_state = READY;
-            if (event_this_player_random_number() != OK)
-                return 1;
-        }
+        if (compare_random_numbers() != OK)
+            return 1;
     }
 
     return 0;
@@ -390,26 +399,8 @@ int event_other_player_random_number(int random_number) {
     other_player_random_number = random_number;
 
     if (this_player_state == RANDOM_NUMBER_SENT) {
-        if (this_player_random_number > other_player_random_number) {
-            // Player is about to begin game. Should not be ready to start a new one while this one is ongoing
-            this_player_state = NOT_READY;
-            other_player_state = NOT_READY;
-            if (new_game() != OK)
-                return 1;
-            if (event_new_round_as_drawer() != OK)
-                return 1;
-        } else if (this_player_random_number < other_player_random_number) {
-            // Player is about to begin game. Should not be ready to start a new one while this one is ongoing
-            this_player_state = NOT_READY;
-            other_player_state = NOT_READY;
-            if (new_game() != OK)
-                return 1;
-        } else {
-            this_player_state = READY;
-            other_player_state = READY;
-            if (event_this_player_random_number() != OK)
-                return 1;
-        }
+        if (compare_random_numbers() != OK)
+            return 1;
     }
 
     return 0;
