@@ -76,19 +76,20 @@ $(function() {
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#define FONT_CHAR_SPACE_X 2</span></div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#define FONT_CHAR_SPACE_Y 4</span></div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#define CHAR_SPACE (FONT_CHAR_WIDTH + 2) // talvez precise de ajustes</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#define CHAR_SPACE (FONT_CHAR_WIDTH + 2)</span></div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keywordtype">int</span> font_load(<span class="keyword">enum</span> xpm_image_type type);</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keywordtype">int</span> font_draw_char(<a class="code" href="structframe__buffer__t.html">frame_buffer_t</a> buf, <span class="keywordtype">char</span> c, uint16_t x, uint16_t y);</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="comment">// TODO wrapper function to call when we need to draw the whole string</span></div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keywordtype">int</span> font_draw_string(<a class="code" href="structframe__buffer__t.html">frame_buffer_t</a> buf, <span class="keyword">const</span> <span class="keywordtype">char</span> <span class="keywordtype">string</span>[], uint16_t x, uint16_t y, uint8_t start, uint8_t size);</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="keywordtype">int</span> font_draw_string_centered(<a class="code" href="structframe__buffer__t.html">frame_buffer_t</a> buf, <span class="keyword">const</span> <span class="keywordtype">char</span> <span class="keywordtype">string</span>[], uint16_t x, uint16_t y, uint8_t start, uint8_t size);</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* __FONT_H */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keywordtype">void</span> font_unload();</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="keywordtype">int</span> font_draw_char(<a class="code" href="structframe__buffer__t.html">frame_buffer_t</a> buf, <span class="keywordtype">char</span> c, uint16_t x, uint16_t y);</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keywordtype">int</span> font_draw_string(<a class="code" href="structframe__buffer__t.html">frame_buffer_t</a> buf, <span class="keyword">const</span> <span class="keywordtype">char</span> <span class="keywordtype">string</span>[], uint16_t x, uint16_t y);</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="keywordtype">int</span> font_draw_string_limited(<a class="code" href="structframe__buffer__t.html">frame_buffer_t</a> buf, <span class="keyword">const</span> <span class="keywordtype">char</span> <span class="keywordtype">string</span>[], uint16_t x, uint16_t y, uint8_t start, uint8_t size);</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="keywordtype">int</span> font_draw_string_centered(<a class="code" href="structframe__buffer__t.html">frame_buffer_t</a> buf, <span class="keyword">const</span> <span class="keywordtype">char</span> <span class="keywordtype">string</span>[], uint16_t x, uint16_t y, uint8_t start, uint8_t size);</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* __FONT_H */</span><span class="preprocessor"></span></div>
 </div><!-- fragment --></div><!-- contents -->
-<div class="ttc" id="astructframe__buffer__t_html"><div class="ttname"><a href="structframe__buffer__t.html">frame_buffer_t</a></div><div class="ttdef"><b>Definition:</b> graphics.h:31</div></div>
+<div class="ttc" id="astructframe__buffer__t_html"><div class="ttname"><a href="structframe__buffer__t.html">frame_buffer_t</a></div><div class="ttdef"><b>Definition:</b> graphics.h:7</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.20

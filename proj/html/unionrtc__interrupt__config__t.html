@@ -64,9 +64,14 @@ $(function() {
   <div class="summary">
 <a href="#pub-attribs">Data Fields</a>  </div>
   <div class="headertitle">
-<div class="title">rtc_interrupt_config_t Union Reference</div>  </div>
+<div class="title">rtc_interrupt_config_t Union Reference<div class="ingroups"><a class="el" href="group__rtc.html">rtc</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>RTC configuration to enable interrupts.  
+ <a href="unionrtc__interrupt__config__t.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="rtc_8h_source.html">rtc.h</a>&gt;</code></p>
 <div class="dynheader">
 Collaboration diagram for rtc_interrupt_config_t:</div>
 <div class="dyncontent">
@@ -75,13 +80,44 @@ Collaboration diagram for rtc_interrupt_config_t:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Data Fields</h2></td></tr>
-<tr class="memitem:a59ca6a0a5d56edc02c63e1e80d3f405f"><td class="memItemLeft" align="right" valign="top"><a id="a59ca6a0a5d56edc02c63e1e80d3f405f"></a>
-<a class="el" href="structrtc__alarm__time__t.html">rtc_alarm_time_t</a>&#160;</td><td class="memItemRight" valign="bottom"><b>alarm_time</b></td></tr>
+<tr class="memitem:a59ca6a0a5d56edc02c63e1e80d3f405f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structrtc__alarm__time__t.html">rtc_alarm_time_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="unionrtc__interrupt__config__t.html#a59ca6a0a5d56edc02c63e1e80d3f405f">alarm_time</a></td></tr>
 <tr class="separator:a59ca6a0a5d56edc02c63e1e80d3f405f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0542c3161fbd4595b99ca6af954e12d2"><td class="memItemLeft" align="right" valign="top"><a id="a0542c3161fbd4595b99ca6af954e12d2"></a>
-uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>periodic_RS3210</b></td></tr>
+<tr class="memitem:a0542c3161fbd4595b99ca6af954e12d2"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="unionrtc__interrupt__config__t.html#a0542c3161fbd4595b99ca6af954e12d2">periodic_RS3210</a></td></tr>
 <tr class="separator:a0542c3161fbd4595b99ca6af954e12d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>RTC configuration to enable interrupts. </p>
+</div><h2 class="groupheader">Field Documentation</h2>
+<a id="a59ca6a0a5d56edc02c63e1e80d3f405f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a59ca6a0a5d56edc02c63e1e80d3f405f">&#9670;&nbsp;</a></span>alarm_time</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structrtc__alarm__time__t.html">rtc_alarm_time_t</a> alarm_time</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Time to set the alarm to (binary format). </p>
+
+</div>
+</div>
+<a id="a0542c3161fbd4595b99ca6af954e12d2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0542c3161fbd4595b99ca6af954e12d2">&#9670;&nbsp;</a></span>periodic_RS3210</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t periodic_RS3210</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>RS3 RS2 RS1 RS0 in 4 LS bits used to setup periodic interrupts. </p>
+
+</div>
+</div>
 <hr/>The documentation for this union was generated from the following file:<ul>
 <li><a class="el" href="rtc_8h_source.html">rtc.h</a></li>
 </ul>

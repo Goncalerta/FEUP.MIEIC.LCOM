@@ -3,6 +3,11 @@
 #include <stdarg.h>
 #include "graphics.h"
 
+#define COLOR_CAP_BYTES_NUM(n) (0xffffffff >> 8*(4-(n))) /* 1 <= n <= 4*/
+
+#define COLOR_BYTE(val, n) ((val) >> (n*8)) // TODO not being used, delete?
+#define COLOR_MASK(size, offset) ((0xffffffff >> (32-(size))) << (offset)) // TODO not being used, delete?
+
 int vb_draw_pixel(frame_buffer_t buf, uint16_t x, uint16_t y, uint32_t color) {
     if ((x >= buf.h_res) || (y >= buf.v_res))
         return 0;

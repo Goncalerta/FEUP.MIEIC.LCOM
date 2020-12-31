@@ -130,7 +130,7 @@ int kbd_handle_scancode(kbd_event_t *kbd_event) {
     return 0;
 }
 
-int kbd_enable_interrupts() {
+int kbd_enable_interrupts() { // TODO is this function necessary?
     uint8_t cmd;
     if (kbc_read_command_byte(&cmd)) 
         return 1;

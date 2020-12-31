@@ -1,0 +1,25 @@
+digraph "rtc_read_register"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node1 [label="rtc_read_register",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Reads data from a RTC register."];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="rtc_disable_int",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__rtc.html#gad0e26524911e8ec8710cd8364fcd924a",tooltip="Disables a type of interrupt."];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="rtc_enable_int",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__rtc.html#ga2780c6d57b30b6d1804927a1d5c1dd1b",tooltip="Enables a type of interrupt with the given configuration."];
+  Node3 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="rtc_enable_update_int",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__rtc.html#gaeb3c7fbcf89e53d83750885ed7ac59a3",tooltip="Enables RTC update interrupts."];
+  Node3 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="rtc_set_alarm_in",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__rtc.html#ga49dc9bc6e37a97deaf7ee0dc0f9110e1",tooltip="Sets an alarm with remaining time to alarm from now."];
+  Node1 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="rtc_flush",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__rtc.html#gaf8d4c8749623ec7f09620089216ec75e",tooltip="Flushes RTC older interrupt notifications by reading the register C."];
+  Node1 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="rtc_ih",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__rtc.html#ga75dad42881d64cf07cf1bdc2979a7056",tooltip="RTC interrupt handler."];
+  Node1 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="rtc_read_conf",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__rtc.html#ga1b33c2156c2ebefbe73d2ceeb7314fea",tooltip="Prints the content of RTC registers A, B, C and D."];
+  Node1 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 [label="rtc_read_date",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__rtc.html#ga4c1a7a6487a05aec45012e5298134758",tooltip="Reads the current date from the RTC and stores it inside the rtc module."];
+  Node9 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+}

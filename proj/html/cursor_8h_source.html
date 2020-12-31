@@ -80,13 +80,17 @@ $(function() {
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;} cursor_state;</div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keywordtype">int</span> cursor_init();</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;int16_t cursor_get_x();</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;int16_t cursor_get_y();</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="keywordtype">void</span> cursor_move(int16_t dx, int16_t dy);</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keywordtype">int</span> cursor_draw();</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="keywordtype">void</span> cursor_set_state(cursor_state state);</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* _CURSOR_H */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keywordtype">void</span> cursor_exit();</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;int16_t cursor_get_x();</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;int16_t cursor_get_y();</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;int16_t cursor_get_lb();</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;int16_t cursor_get_rb();</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="keywordtype">void</span> cursor_move(int16_t dx, int16_t dy);</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="keywordtype">void</span> cursor_update_buttons(<span class="keywordtype">bool</span> new_lb, <span class="keywordtype">bool</span> new_rb);</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="keywordtype">int</span> cursor_draw();</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="keywordtype">void</span> cursor_set_state(cursor_state state);</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* _CURSOR_H */</span><span class="preprocessor"></span></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

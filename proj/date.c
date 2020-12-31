@@ -4,6 +4,14 @@
 #include "font.h"
 #include "video_gr.h"
 
+#define DATE_CURRENT_X 5 
+#define DATE_CURRENT_Y 5
+#define DATE_STRING_SIZE 20
+#define DATE_DISPLAY_BORDER 4
+#define DATE_BACK_COLOR 0xffffff
+#define DATE_GREETING_MAX_SIZE 15
+
+
 int date_bcd_to_binary(date_t *date) {
     if (date == NULL)
         return 1;

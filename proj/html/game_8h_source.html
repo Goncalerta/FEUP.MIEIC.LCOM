@@ -86,47 +86,62 @@ $(function() {
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    GUESSER</div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;} role_t;</div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="keywordtype">void</span> get_random_word(<span class="keyword">const</span> <span class="keywordtype">char</span> **word);</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;role_t game_get_role();</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;uint32_t game_get_round_number();</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="keywordtype">int</span> game_load_assets(<span class="keyword">enum</span> xpm_image_type type);</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="keywordtype">int</span> new_game();</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="keywordtype">int</span> game_new_round(role_t starting_role, <span class="keyword">const</span> <span class="keywordtype">char</span> *word);</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="keywordtype">int</span> game_delete_round();</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="keywordtype">int</span> game_resume();</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="keywordtype">int</span> game_start_round();</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="keywordtype">int</span> game_rtc_pi_tick();</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="keywordtype">int</span> game_timer_tick();</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="keywordtype">int</span> draw_game_correct_guess();</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="keywordtype">int</span> game_draw();</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="keywordtype">int</span> game_give_clue();</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="keywordtype">int</span> game_give_clue_at(<span class="keywordtype">size_t</span> pos);</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="keywordtype">int</span> game_guess_word(<span class="keywordtype">char</span> *guess);</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="keywordtype">int</span> drawer_change_selected_color();</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="keywordtype">int</span> drawer_change_selected_thickness();</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;uint32_t drawer_get_selected_color();</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;uint16_t drawer_get_selected_thickness();</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="keywordtype">int</span> drawer_toggle_pencil_eraser();</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="keywordtype">int</span> drawer_set_pencil_primary();</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="keywordtype">int</span> drawer_set_eraser_primary();</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* __GAME_H */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="keywordtype">int</span> game_load_assets(<span class="keyword">enum</span> xpm_image_type type);</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="keywordtype">void</span> game_unload_assets();</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="keywordtype">int</span> new_game();</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="keywordtype">void</span> delete_game();</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="keywordtype">int</span> game_new_round(role_t role, <span class="keyword">const</span> <span class="keywordtype">char</span> *word);</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="keywordtype">void</span> game_delete_round();</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="keywordtype">int</span> game_resume();</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="keywordtype">int</span> game_start_round();</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="keywordtype">int</span> game_rtc_alarm();</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="keywordtype">int</span> game_rtc_pi_tick();</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="keywordtype">int</span> game_timer_tick();</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="keywordtype">int</span> game_draw();</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="keywordtype">int</span> game_give_clue();</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="keywordtype">int</span> game_give_clue_at(<span class="keywordtype">size_t</span> pos);</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="keywordtype">int</span> game_round_over(uint32_t current_score, <span class="keywordtype">bool</span> win);</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="keywordtype">int</span> game_guess_word(<span class="keywordtype">char</span> *guess);</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="keywordtype">int</span> game_other_player_game_over();</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="keywordtype">void</span> get_random_word(<span class="keyword">const</span> <span class="keywordtype">char</span> **word);</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;role_t game_get_role();</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;uint32_t game_get_score();</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;uint32_t game_get_round_number();</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="keywordtype">bool</span> game_is_round_unstarted();</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="keywordtype">bool</span> game_is_round_ongoing();</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="keywordtype">bool</span> game_is_round_ongoing_or_tolerance();</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="keywordtype">bool</span> game_is_round_won();</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="keywordtype">bool</span> game_may_create_new_round();</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="keyword">const</span> <span class="keywordtype">char</span> *game_get_correct_word();</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="keywordtype">int</span> drawer_change_selected_color();</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="keywordtype">int</span> drawer_change_selected_thickness();</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;uint32_t drawer_get_selected_color();</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;uint16_t drawer_get_selected_thickness();</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="keywordtype">int</span> drawer_toggle_pencil_eraser();</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="keywordtype">int</span> drawer_set_pencil_primary();</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="keywordtype">int</span> drawer_set_eraser_primary();</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* __GAME_H */</span><span class="preprocessor"></span></div>
 </div><!-- fragment --></div><!-- contents -->
-<div class="ttc" id="astructguess__t_html"><div class="ttname"><a href="structguess__t.html">guess_t</a></div><div class="ttdef"><b>Definition:</b> game.c:86</div></div>
+<div class="ttc" id="agroup__rtc_html_ga49dc9bc6e37a97deaf7ee0dc0f9110e1"><div class="ttname"><a href="group__rtc.html#ga49dc9bc6e37a97deaf7ee0dc0f9110e1">rtc_set_alarm_in</a></div><div class="ttdeci">int rtc_set_alarm_in(rtc_alarm_time_t remaining_time_to_alarm)</div><div class="ttdoc">Sets an alarm with remaining time to alarm from now.</div><div class="ttdef"><b>Definition:</b> rtc.c:141</div></div>
+<div class="ttc" id="astructguess__t_html"><div class="ttname"><a href="structguess__t.html">guess_t</a></div><div class="ttdef"><b>Definition:</b> game.c:80</div></div>
 <div class="ttc" id="astructbutton__t_html"><div class="ttname"><a href="structbutton__t.html">button_t</a></div><div class="ttdef"><b>Definition:</b> button.h:31</div></div>
-<div class="ttc" id="astructrtc__alarm__time__t_html"><div class="ttname"><a href="structrtc__alarm__time__t.html">rtc_alarm_time_t</a></div><div class="ttdef"><b>Definition:</b> rtc.h:45</div></div>
-<div class="ttc" id="astructround__t_html"><div class="ttname"><a href="structround__t.html">round_t</a></div><div class="ttdef"><b>Definition:</b> game.c:91</div></div>
-<div class="ttc" id="astructxpm__animation__t_html"><div class="ttname"><a href="structxpm__animation__t.html">xpm_animation_t</a></div><div class="ttdef"><b>Definition:</b> graphics.h:38</div></div>
-<div class="ttc" id="aunionrole__attr__t_html"><div class="ttname"><a href="unionrole__attr__t.html">role_attr_t</a></div><div class="ttdef"><b>Definition:</b> game.c:81</div></div>
-<div class="ttc" id="astructguesser__t_html"><div class="ttname"><a href="structguesser__t.html">guesser_t</a></div><div class="ttdef"><b>Definition:</b> game.c:77</div></div>
-<div class="ttc" id="astructtext__box__t_html"><div class="ttname"><a href="structtext__box__t.html">text_box_t</a></div><div class="ttdef"><b>Definition:</b> textbox.h:21</div></div>
+<div class="ttc" id="astructrtc__alarm__time__t_html"><div class="ttname"><a href="structrtc__alarm__time__t.html">rtc_alarm_time_t</a></div><div class="ttdoc">Time aggregate type to use to set the RTC alarm.</div><div class="ttdef"><b>Definition:</b> date.h:32</div></div>
+<div class="ttc" id="astructround__t_html"><div class="ttname"><a href="structround__t.html">round_t</a></div><div class="ttdef"><b>Definition:</b> game.c:85</div></div>
+<div class="ttc" id="astructxpm__animation__t_html"><div class="ttname"><a href="structxpm__animation__t.html">xpm_animation_t</a></div><div class="ttdef"><b>Definition:</b> graphics.h:14</div></div>
+<div class="ttc" id="astructrtc__alarm__time__t_html_a00a531a34a1d603329df5778f1203ab6"><div class="ttname"><a href="structrtc__alarm__time__t.html#a00a531a34a1d603329df5778f1203ab6">rtc_alarm_time_t::hours</a></div><div class="ttdeci">uint8_t hours</div><div class="ttdef"><b>Definition:</b> date.h:33</div></div>
+<div class="ttc" id="aunionrole__attr__t_html"><div class="ttname"><a href="unionrole__attr__t.html">role_attr_t</a></div><div class="ttdef"><b>Definition:</b> game.c:75</div></div>
+<div class="ttc" id="astructguesser__t_html"><div class="ttname"><a href="structguesser__t.html">guesser_t</a></div><div class="ttdef"><b>Definition:</b> game.c:71</div></div>
+<div class="ttc" id="astructtext__box__t_html"><div class="ttname"><a href="structtext__box__t.html">text_box_t</a></div><div class="ttdef"><b>Definition:</b> textbox.h:23</div></div>
 <div class="ttc" id="astructword__clue__t_html"><div class="ttname"><a href="structword__clue__t.html">word_clue_t</a></div><div class="ttdef"><b>Definition:</b> clue.h:7</div></div>
-<div class="ttc" id="astructgame__t_html"><div class="ttname"><a href="structgame__t.html">game_t</a></div><div class="ttdef"><b>Definition:</b> game.c:110</div></div>
-<div class="ttc" id="astructframe__buffer__t_html"><div class="ttname"><a href="structframe__buffer__t.html">frame_buffer_t</a></div><div class="ttdef"><b>Definition:</b> graphics.h:31</div></div>
-<div class="ttc" id="astructdrawer__t_html"><div class="ttname"><a href="structdrawer__t.html">drawer_t</a></div><div class="ttdef"><b>Definition:</b> game.c:70</div></div>
+<div class="ttc" id="astructgame__t_html"><div class="ttname"><a href="structgame__t.html">game_t</a></div><div class="ttdef"><b>Definition:</b> game.c:103</div></div>
+<div class="ttc" id="astructframe__buffer__t_html"><div class="ttname"><a href="structframe__buffer__t.html">frame_buffer_t</a></div><div class="ttdef"><b>Definition:</b> graphics.h:7</div></div>
+<div class="ttc" id="agroup__rtc_html_gad0e26524911e8ec8710cd8364fcd924a"><div class="ttname"><a href="group__rtc.html#gad0e26524911e8ec8710cd8364fcd924a">rtc_disable_int</a></div><div class="ttdeci">int rtc_disable_int(rtc_interrupt_t rtc_interrupt)</div><div class="ttdoc">Disables a type of interrupt.</div><div class="ttdef"><b>Definition:</b> rtc.c:200</div></div>
+<div class="ttc" id="agroup__rtc_html_gga5415419ccb3977ce322fea96fdc8cd38a5ad4f38dac2143e3c9c24b219abc8f5d"><div class="ttname"><a href="group__rtc.html#gga5415419ccb3977ce322fea96fdc8cd38a5ad4f38dac2143e3c9c24b219abc8f5d">ALARM_INTERRUPT</a></div><div class="ttdeci">@ ALARM_INTERRUPT</div><div class="ttdef"><b>Definition:</b> rtc.h:21</div></div>
+<div class="ttc" id="astructdrawer__t_html"><div class="ttname"><a href="structdrawer__t.html">drawer_t</a></div><div class="ttdef"><b>Definition:</b> game.c:64</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.20

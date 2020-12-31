@@ -42,8 +42,6 @@ int text_box_clear(text_box_t *text_box);
 
 void text_box_cursor_tick(text_box_t *text_box);
 
-/* is_cursor_to_draw is used to coordinate with the game ticks
-if text_box is not selected, the cursor is not drawn*/
 int text_box_draw(frame_buffer_t buf, text_box_t text_box);
 
 bool text_box_is_hovering(text_box_t text_box, uint16_t x, uint16_t y);

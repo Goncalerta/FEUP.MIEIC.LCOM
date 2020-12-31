@@ -282,7 +282,6 @@ int text_box_react_kbd(text_box_t *text_box, kbd_event_t kbd_event) {
             
             case 'V':
                 if (text_box->cursor_pos != text_box->select_pos) {
-                    // TODO mantain this way or avoid reallocating down and up as is being done now?
                     if (text_box_delete_selected(text_box) != OK) {
                         return 1;
                     }

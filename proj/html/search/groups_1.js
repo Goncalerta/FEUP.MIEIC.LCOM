@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['kbc_121',['kbc',['../group__kbc.html',1,'']]],
-  ['keyboard_122',['keyboard',['../group__keyboard.html',1,'']]]
+  ['i8042_323',['i8042',['../group__i8042.html',1,'']]],
+  ['i8254_324',['i8254',['../group__i8254.html',1,'']]]
 ];
