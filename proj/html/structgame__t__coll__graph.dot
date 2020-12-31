@@ -19,7 +19,7 @@ digraph "game_t"
   Node8 -> Node5 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" drawer" ,fontname="Helvetica"];
   Node8 [label="drawer_t",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structdrawer__t.html",tooltip=" "];
   Node9 -> Node8 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" b_color\nb_eraser\nb_pencil\nb_redo\nb_thickness\nb_undo" ,fontname="Helvetica"];
-  Node9 [label="button_t",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structbutton__t.html",tooltip=" "];
+  Node9 [label="button_t",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structbutton__t.html",tooltip="Button info."];
   Node10 -> Node9 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" icon" ,fontname="Helvetica"];
-  Node10 [label="button_icon_t",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structbutton__icon__t.html",tooltip=" "];
+  Node10 [label="button_icon_t",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structbutton__icon__t.html",tooltip="Icon of a button."];
 }

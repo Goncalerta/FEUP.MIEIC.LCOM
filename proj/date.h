@@ -13,7 +13,7 @@
 #define BINARY_TO_BCD(byte) (((byte)/10) << 4 | (byte) % 10) /**< @brief BYTE conversion from binary to BCD format */
 
 /**
- * @brief Date
+ * @brief Date.
  * 
  */
 typedef struct date_t {

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['x_459',['x',['../structtext__box__t.html#a4dde988b1b2adba65ae3efa69f65d960',1,'text_box_t']]]
+  ['visible_5fcursor_499',['visible_cursor',['../structtext__box__t.html#adb9178b03d8ee359e4935e5ef9ea7140',1,'text_box_t']]]
 ];
