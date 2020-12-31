@@ -7,5 +7,6 @@ var searchData=
   ['arrow_5fdown_4',['ARROW_DOWN',['../group__keyboard.html#gga635055f02cc43001acef32526cac2a45a351bb4dabfe58b550f1a5a1c8bb58e46',1,'keyboard.h']]],
   ['arrow_5fleft_5',['ARROW_LEFT',['../group__keyboard.html#gga635055f02cc43001acef32526cac2a45ab313b64675c3e4a36ac01132126d3c01',1,'keyboard.h']]],
   ['arrow_5fright_6',['ARROW_RIGHT',['../group__keyboard.html#gga635055f02cc43001acef32526cac2a45a6a5a02b3e54e60d47280bf250e2186bc',1,'keyboard.h']]],
-  ['arrow_5fup_7',['ARROW_UP',['../group__keyboard.html#gga635055f02cc43001acef32526cac2a45ab47be4e7317d7a539adaebd5eeeef427',1,'keyboard.h']]]
+  ['arrow_5fup_7',['ARROW_UP',['../group__keyboard.html#gga635055f02cc43001acef32526cac2a45ab47be4e7317d7a539adaebd5eeeef427',1,'keyboard.h']]],
+  ['awaiting_5fother_5fplayer_8',['AWAITING_OTHER_PLAYER',['../group__menu.html#gga1e5014072075d7928c22d69da04f6b8bad3cccd840b81f36c3a93e6e973fe2f77',1,'menu.h']]]
 ];

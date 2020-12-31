@@ -9,6 +9,9 @@ digraph "font_draw_string_limited"
   Node2 [label="font_draw_string_centered",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__font.html#ga76f55190cabfad9be834e7f9b435441d",tooltip="Draws a substring of a string centered in the given coordinates in the given buffer."];
   Node2 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node3 [label="date_draw_greeting",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__date.html#gaaf00425c1e5044b7a17bb4331de4ceb8",tooltip="Draws a greeting according to the current date to the given screen coordinates."];
-  Node1 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node4 [label="text_box_draw",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__textbox.html#ga0d7efee1fe6e5b861c311b6cc4cfd201",tooltip="Draws a given text box to the given buffer."];
+  Node3 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="menu_draw",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__menu.html#ga35731eaa9442f8db276220d9fc77dcf6",tooltip="Draws the menu according to its state to the back buffer."];
+  Node2 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="text_box_draw",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__textbox.html#ga0d7efee1fe6e5b861c311b6cc4cfd201",tooltip="Draws a given text box to the given buffer."];
 }

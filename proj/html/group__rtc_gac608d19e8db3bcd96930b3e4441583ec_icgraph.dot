@@ -9,4 +9,6 @@ digraph "rtc_get_current_date"
   Node2 [label="date_draw_current",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__date.html#gac6b60c120a9b43280cf175cc7fb7f047",tooltip="Draws the current date to the top left corner of the screen."];
   Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node3 [label="date_draw_greeting",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__date.html#gaaf00425c1e5044b7a17bb4331de4ceb8",tooltip="Draws a greeting according to the current date to the given screen coordinates."];
+  Node3 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="menu_draw",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__menu.html#ga35731eaa9442f8db276220d9fc77dcf6",tooltip="Draws the menu according to its state to the back buffer."];
 }
