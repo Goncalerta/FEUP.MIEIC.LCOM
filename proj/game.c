@@ -173,6 +173,7 @@ int new_game() {
     game->state = ROUND_UNSTARTED;
     game->round_number = 0;
     game->score = 0;
+    game->round = NULL;
     
     return 0;
 }

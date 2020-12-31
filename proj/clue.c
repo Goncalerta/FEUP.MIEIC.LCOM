@@ -86,5 +86,16 @@ void clue_reveal(word_clue_t *clue) {
 }
 
 void delete_word_clue(word_clue_t *clue) {
-    free(clue->clue);
+    if (clue == NULL)
+        return;
+
+    if (clue->word != NULL) {
+        free(clue->word);
+        clue->word = NULL;
+    }
+    if (clue->clue != NULL) {
+        free(clue->clue);
+        clue->clue = NULL;
+    }
+
 }

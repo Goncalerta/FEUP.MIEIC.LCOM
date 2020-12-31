@@ -429,7 +429,10 @@ int text_box_react_kbd(text_box_t *text_box, kbd_event_t kbd_event) {
 }
 
 void delete_text_box(text_box_t *text_box) {
-    free(text_box->word);
+    if (text_box->word != NULL) {
+        free(text_box->word);
+        text_box->word = NULL;
+    }
 }
 
 void text_box_clip_board_exit() {
@@ -438,4 +441,5 @@ void text_box_clip_board_exit() {
     }
 
     free(clip_board);
+    clip_board = NULL;
 }

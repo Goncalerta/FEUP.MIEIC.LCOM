@@ -414,7 +414,11 @@ static int protocol_handle_message_body() {
         }
         
         receiving_msg = false;
-        free(receiving_msg_bits);
+        if (receiving_msg_bits != NULL) {
+            free(receiving_msg_bits);
+            receiving_msg_bits = NULL;
+        }
+        
     }
 
     return 0;
@@ -422,7 +426,10 @@ static int protocol_handle_message_body() {
 
 int protocol_handle_error() {
     receiving_msg = false;
-    free(receiving_msg_bits);
+    if (receiving_msg_bits != NULL) {
+        free(receiving_msg_bits);
+        receiving_msg_bits = NULL;
+    }
 
     uint8_t first, last, no_bytes;
     
@@ -514,7 +521,10 @@ int protocol_config_uart() {
 
 void protocol_exit() {
     delete_queue(&pending_messages);
-    free(receiving_msg_bits);
+    if (receiving_msg_bits != NULL) {
+        free(receiving_msg_bits);
+        receiving_msg_bits = NULL;
+    }
     uart_delete_sw_queues();
 }
 
