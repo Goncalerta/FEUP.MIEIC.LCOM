@@ -89,7 +89,7 @@ int rtc_read_date() {
 
 int rtc_subscribe_int(uint8_t *bit_no) {
     *bit_no = hook_id_rtc;
-    return sys_irqsetpolicy(RTC_IRQ, IRQ_REENABLE, &hook_id_rtc);
+    return sys_irqsetpolicy(RTC_IRQ, IRQ_REENABLE | IRQ_EXCLUSIVE, &hook_id_rtc);
 }
 
 int rtc_unsubscribe_int() {
