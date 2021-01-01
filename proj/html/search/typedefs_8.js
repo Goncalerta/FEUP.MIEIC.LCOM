@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['parity_5ft_991',['parity_t',['../group__uart.html#ga6241104e184ed6e469ebf89f5c6292d7',1,'uart.h']]]
+  ['no_5fstop_5fbits_5ft_1059',['no_stop_bits_t',['../group__uart.html#gaf552216e4b86bf9355f7dd5c8bf2f152',1,'uart.h']]]
 ];

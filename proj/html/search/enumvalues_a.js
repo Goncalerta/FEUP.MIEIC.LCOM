@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['other_5fplayer_5fleft_5fscreen_1081',['OTHER_PLAYER_LEFT_SCREEN',['../group__menu.html#gga1e5014072075d7928c22d69da04f6b8bacd8c0048e040bb5279cd05a4ec4cf4fe',1,'menu.h']]]
+  ['no_5ffifo_1151',['NO_FIFO',['../group__uart.html#gga69b57bf7dcabde2686a4fd21fb86d662abe035f29d7f2323f11006b228d714a09',1,'uart.h']]],
+  ['no_5fkey_1152',['NO_KEY',['../group__keyboard.html#gga635055f02cc43001acef32526cac2a45aec8a3617311ffdac328944fe1e482708',1,'keyboard.h']]]
 ];

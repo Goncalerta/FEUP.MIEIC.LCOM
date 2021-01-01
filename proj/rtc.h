@@ -19,32 +19,32 @@
 #define RTC_ADDR_REG 0x70 /**< @brief RTC address register. */
 #define RTC_DATA_REG 0x71  /**< @brief RTC data register. */
 
-#define RTC_UIP BIT(7)
-#define RTC_DELAY_U 244
+#define RTC_UIP BIT(7) /**< @brief Update in progress bit. */
+#define RTC_DELAY_U 244 /**< @brief Time interval (micros) during which UIP is set. */
 
-#define RTC_PF BIT(6)
-#define RTC_AF BIT(5)
-#define RTC_UF BIT(4)
+#define RTC_PF BIT(6) /**< @brief Periodic interrupt pending bit. */
+#define RTC_AF BIT(5) /**< @brief Alarm interrupt pending bit. */
+#define RTC_UF BIT(4) /**< @brief Update interrupt pending bit. */
 
-#define RTC_PIE BIT(6)
-#define RTC_AIE BIT(5)
-#define RTC_UIE BIT(4)
-#define RTC_MASK_DISABLE(bit) (~((uint8_t)(bit)))
+#define RTC_PIE BIT(6) /**< @brief Enable periodic interrupts bit. */
+#define RTC_AIE BIT(5) /**< @brief Enable alarm interrupts bit. */
+#define RTC_UIE BIT(4) /**< @brief Enable update interrupts bit. */
+#define RTC_MASK_DISABLE(byte) (~((uint8_t)(byte))) /**< @brief Mask used to disable the correspondent interrupt to the bit set in byte. */
 
-#define RTC_REGISTER_SECONDS 0x0
-#define RTC_REGISTER_SECONDS_ALARM 0x1
-#define RTC_REGISTER_MINUTES 0x2
-#define RTC_REGISTER_MINUTES_ALARM 0x3
-#define RTC_REGISTER_HOURS 0x4
-#define RTC_REGISTER_HOURS_ALARM 0x5
-#define RTC_REGISTER_DAY_OF_THE_WEAK 0x6
-#define RTC_REGISTER_DAY_OF_THE_MONTH 0x7
-#define RTC_REGISTER_MONTH 0x8
-#define RTC_REGISTER_YEAR 0x9
-#define RTC_REGISTER_A 0xA
-#define RTC_REGISTER_B 0xB
-#define RTC_REGISTER_C 0xC
-#define RTC_REGISTER_D 0xD
+#define RTC_REGISTER_SECONDS 0x0 /**< @brief RTC seconds register. */
+#define RTC_REGISTER_SECONDS_ALARM 0x1 /**< @brief RTC alarm seconds register. */
+#define RTC_REGISTER_MINUTES 0x2 /**< @brief RTC minutes register. */
+#define RTC_REGISTER_MINUTES_ALARM 0x3 /**< @brief RTC alarm minutes register. */
+#define RTC_REGISTER_HOURS 0x4 /**< @brief RTC hours register. */
+#define RTC_REGISTER_HOURS_ALARM 0x5 /**< @brief RTC alarm hours register. */
+#define RTC_REGISTER_DAY_OF_THE_WEAK 0x6 /**< @brief RTC day of the weak register. */
+#define RTC_REGISTER_DAY_OF_THE_MONTH 0x7 /**< @brief RTC day of the month register. */
+#define RTC_REGISTER_MONTH 0x8 /**< @brief RTC month register. */
+#define RTC_REGISTER_YEAR 0x9 /**< @brief RTC year register. */
+#define RTC_REGISTER_A 0xA /**< @brief RTC A register. */
+#define RTC_REGISTER_B 0xB /**< @brief RTC B register. */
+#define RTC_REGISTER_C 0xC /**< @brief RTC C register. */
+#define RTC_REGISTER_D 0xD /**< @brief RTC D register. */
 
 /**
  * @brief Enumerated type for specifying a RTC interrupt type.

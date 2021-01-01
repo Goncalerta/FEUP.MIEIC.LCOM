@@ -5,6 +5,7 @@
 "editor.formatOnSave": false,
   "editor.wordWrapColumn": 100,
   "files.associations": {
-    "*.xpm": "c"
+    "*.xpm": "c",
+    "__locale": "cpp"
   },
 }

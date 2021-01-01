@@ -1,0 +1,36 @@
+digraph "event_guess_word"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="event_guess_word",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Tries to guess the word and notifies the other player."];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="game_guess_word",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__game.html#ga5a725e3c48e6564fd75d04c2e4d163ba",tooltip="Adds a word guess. And reacts according to weather it is correct."];
+  Node2 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="event_round_win",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__dispatcher.html#ga37df00ab49c3c54dcf2fd2cee7a952a5",tooltip="Sets the round as won, updates the score and notifies the other player."];
+  Node3 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="game_round_over",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__game.html#ga3e3b7cd44197d8a1bd11f7f82aa3c767",tooltip="Ends the current round."];
+  Node4 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="clue_reveal",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__clue.html#ga4362997e5a7009bc2cd0fe105e2fa9fc",tooltip="Makes the whole word revealed in the given word clue."];
+  Node4 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="rtc_disable_int",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__rtc.html#gad0e26524911e8ec8710cd8364fcd924a",tooltip="Disables a type of interrupt."];
+  Node6 -> Node7 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="rtc_read_register",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__rtc.html#gaeb22f43773d6e29365a07f7f847dfbb9",tooltip="Reads data from a RTC register."];
+  Node6 -> Node8 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="rtc_write_register",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__rtc.html#ga30aa093c07ae9ee5626c2a50a40641d1",tooltip="Writes data to a RTC register."];
+  Node4 -> Node9 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 [label="rtc_set_alarm_in",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__rtc.html#ga49dc9bc6e37a97deaf7ee0dc0f9110e1",tooltip="Sets an alarm with remaining time to alarm from now."];
+  Node9 -> Node10 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 [label="date_plus_alarm_time",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__date.html#gacf12b565d3e4489dd6026ce1ee6b5ebc",tooltip="Adds a date_t to a rtc_alarm_time_t."];
+  Node9 -> Node11 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node11 [label="rtc_enable_int",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__rtc.html#ga2780c6d57b30b6d1804927a1d5c1dd1b",tooltip="Enables a type of interrupt with the given configuration."];
+  Node11 -> Node7 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node11 -> Node8 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 -> Node12 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node12 [label="protocol_send_round_win",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__protocol.html#gacfefff6d72000e2ec5cf3060d675a64a",tooltip="Sends a message of type MSG_ROUND_WIN."];
+  Node1 -> Node13 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node13 [label="game_is_round_ongoing",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__game.html#gac02470c210dcf7be41d128ba5e9940d8",tooltip="Checks if the round is ongoing."];
+  Node1 -> Node14 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node14 [label="protocol_send_guess",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__protocol.html#ga7ecf39afd738fd733192d8efa3b72543",tooltip="Sends a message of type MSG_GUESS."];
+}

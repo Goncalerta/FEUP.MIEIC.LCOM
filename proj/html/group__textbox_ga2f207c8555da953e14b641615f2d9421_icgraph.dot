@@ -1,0 +1,35 @@
+digraph "delete_text_box"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node1 [label="delete_text_box",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Frees the space allocated in memory to store the content of a given text box."];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="game_delete_round",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__game.html#gadede5f1c2e6f4a506c211cd8045dc449",tooltip="Deletes the current game round."];
+  Node2 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="delete_game",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__game.html#ga138474d4cfdc04b079ceba8b584ed4e2",tooltip="Deletes the current game."];
+  Node3 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="event_leave_game",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__dispatcher.html#ga0e52394a395110749bc8ce3251ee503c",tooltip="Leaves the game back to the main menu and notifies the other player."];
+  Node4 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="menu_init",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__menu.html#gafae9ccfd6e7de562283d6ffc8c3cf066",tooltip="Loads the xpm images of the menu."];
+  Node3 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="game_unload_assets",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__game.html#ga9f3275416ff1d967fcf634e25c09c719",tooltip="Frees the space allocated in memory to store the game assets."];
+  Node2 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="event_end_round",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__dispatcher.html#ga9deb57c84899da9b6fa12f3e5d4feccf",tooltip="Ends the current round."];
+  Node7 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="event_other_player\l_leave_game",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__dispatcher.html#ga478271b5d6d73f56b8c7c24d7be10cfd",tooltip="Reacts to the event that the other player left the game."];
+  Node7 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 [label="game_rtc_alarm",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__game.html#ga3f61372930dd958f7499a110ce2bd7d6",tooltip="Updates the game due to a rtc alarm interrupt."];
+  Node9 -> Node10 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 [label="dispatch_rtc_alarm_int",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__dispatcher.html#ga2607daafa4b66e729b8aa95ba97f1984",tooltip="Dispatches a rtc alarm interrupt."];
+  Node10 -> Node11 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node11 [label="dispatcher_dispatch\l_events",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__dispatcher.html#ga72c911173e2af4fbf960584448f83d8b",tooltip="Dispatches all events currently in the event queue."];
+  Node2 -> Node12 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node12 [label="game_new_round",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__game.html#gab01706a4b71bd825fc64ce7032ff115c",tooltip="Creates a new round."];
+  Node12 -> Node13 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node13 [label="event_new_round_as\l_drawer",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__dispatcher.html#gabf03a39eb157e349de01d6a6cb7fa196",tooltip="Starts a new round as DRAWER (role_t)."];
+  Node13 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node12 -> Node14 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node14 [label="event_new_round_as\l_guesser",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__dispatcher.html#ga0b13ea13708e1b05cd87fecebe747065",tooltip="Starts a new round as GUESSER (role_t)."];
+}
