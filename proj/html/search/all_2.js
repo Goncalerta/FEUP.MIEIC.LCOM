@@ -51,7 +51,7 @@ var searchData=
   ['com1_5funsubscribe_5fint_91',['com1_unsubscribe_int',['../group__uart.html#ga085298fb12885a08ca7ad943fdd5b22d',1,'com1_unsubscribe_int():&#160;uart.c'],['../group__uart.html#ga085298fb12885a08ca7ad943fdd5b22d',1,'com1_unsubscribe_int():&#160;uart.c']]],
   ['com2_5fbase_5faddr_92',['COM2_BASE_ADDR',['../group__uart.html#ga7f5d5e060aebe6d83877539cc6131df7',1,'uart.h']]],
   ['com2_5firq_93',['COM2_IRQ',['../group__uart.html#gab02d84052a299a0c207a8ea4c1a5636d',1,'uart.h']]],
-  ['content_94',['content',['../structmessage__t.html#ad7ec6cac4c57088e87d473f6907edd54',1,'message_t']]],
+  ['content_94',['content',['../structevent__t.html#a69f25bb0643ba5d0712fd4db05ba46af',1,'event_t::content()'],['../structmessage__t.html#ad7ec6cac4c57088e87d473f6907edd54',1,'message_t::content()']]],
   ['content_5flen_95',['content_len',['../structmessage__t.html#a53a9724e885c3ef860d1d41018071c9f',1,'message_t']]],
   ['ctrl_96',['CTRL',['../group__keyboard.html#gga635055f02cc43001acef32526cac2a45a5ea73cf9a3f5928257b1e6bc796d8490',1,'keyboard.h']]],
   ['current_5fframe_97',['current_frame',['../structxpm__animation__t.html#ac841d4fc6acbd0b272b4a24c5d712d47',1,'xpm_animation_t']]],

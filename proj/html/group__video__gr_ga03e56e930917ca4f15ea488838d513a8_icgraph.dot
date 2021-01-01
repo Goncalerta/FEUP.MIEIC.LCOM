@@ -1,0 +1,28 @@
+digraph "vg_get_hres"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node1 [label="vg_get_hres",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Gets the horizontal resolution of the buffer."];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="canvas_draw_frame",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__canvas.html#ga7212eaf58fd2e7ff08ae401d340d51cd",tooltip="Draws the canvas to the back buffer."];
+  Node2 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="game_draw",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__game.html#ga656ca85eff33877022fd939d29f23822",tooltip="Draws the game screen to the back buffer."];
+  Node3 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="draw_frame",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__dispatcher.html#ga1265a5e2843f2b1c45ad05ae61de7000",tooltip="Draws the frame to the back buffer and flips the buffers."];
+  Node1 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="cursor_move",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__cursor.html#ga1c0e7c8b76a7688af257b5e6fcfb9160",tooltip="Moves the cursor by the given displacement."];
+  Node5 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="dispatch_mouse_packet",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__dispatcher.html#ga4256f77332aee43a38ecada70ef1e418",tooltip="Dispatches a mouse packet from a mouse event."];
+  Node6 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="dispatcher_dispatch\l_events",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__dispatcher.html#ga72c911173e2af4fbf960584448f83d8b",tooltip="Dispatches all events currently in the event queue."];
+  Node1 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="event_start_round",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__dispatcher.html#ga00f3579aee6fd77454373ac309f39675",tooltip="Starts the round."];
+  Node8 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 [label="dispatch_rtc_alarm_int",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__dispatcher.html#ga2607daafa4b66e729b8aa95ba97f1984",tooltip="Dispatches a rtc alarm interrupt."];
+  Node9 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 -> Node10 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 [label="menu_draw",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__menu.html#ga35731eaa9442f8db276220d9fc77dcf6",tooltip="Draws the menu according to its state to the back buffer."];
+  Node10 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+}

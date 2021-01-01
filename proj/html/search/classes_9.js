@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['text_5fbox_5ft_647',['text_box_t',['../structtext__box__t.html',1,'']]]
+  ['stroke_695',['stroke',['../structstroke.html',1,'']]],
+  ['stroke_5fatom_696',['stroke_atom',['../structstroke__atom.html',1,'']]]
 ];

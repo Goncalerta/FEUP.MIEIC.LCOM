@@ -1,0 +1,12 @@
+digraph "protocol_send_start_round"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node1 [label="protocol_send_start\l_round",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Sends a message of type MSG_START_ROUND."];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="dispatch_rtc_alarm_int",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__dispatcher.html#ga2607daafa4b66e729b8aa95ba97f1984",tooltip="Dispatches a rtc alarm interrupt."];
+  Node2 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="dispatcher_dispatch\l_events",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__dispatcher.html#ga72c911173e2af4fbf960584448f83d8b",tooltip="Dispatches all events currently in the event queue."];
+}

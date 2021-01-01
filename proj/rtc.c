@@ -57,9 +57,6 @@ int rtc_get_current_date(date_t *date) {
 }
 
 int rtc_read_date() {
-    // TODO isto ainda está incompleto?
-    // é necessário dar disable no início e enable no final?
-    // slide 10 e 20
     uint8_t reg_a;
     if (rtc_read_register(RTC_REGISTER_A, &reg_a) != OK)
         return 1;
@@ -92,7 +89,7 @@ int rtc_read_date() {
 
 int rtc_subscribe_int(uint8_t *bit_no) {
     *bit_no = hook_id_rtc;
-    return sys_irqsetpolicy(RTC_IRQ, IRQ_REENABLE, &hook_id_rtc);
+    return sys_irqsetpolicy(RTC_IRQ, IRQ_REENABLE | IRQ_EXCLUSIVE, &hook_id_rtc);
 }
 
 int rtc_unsubscribe_int() {
@@ -171,7 +168,7 @@ int rtc_disable_int(rtc_interrupt_t rtc_interrupt) {
     if (rtc_read_register(RTC_REGISTER_B, &reg_b) != OK) {
         return 1;
     }
-    // TODO is it better to reset the config values to "default"?
+
     switch (rtc_interrupt) {
     case ALARM_INTERRUPT:
         reg_b &= RTC_MASK_DISABLE(RTC_AIE);

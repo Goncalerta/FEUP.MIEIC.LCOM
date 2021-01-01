@@ -1,0 +1,43 @@
+digraph "rtc_enable_int"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node1 [label="rtc_enable_int",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Enables a type of interrupt with the given configuration."];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="rtc_enable_update_int",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__rtc.html#gaeb3c7fbcf89e53d83750885ed7ac59a3",tooltip="Enables RTC update interrupts."];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="rtc_set_alarm_in",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__rtc.html#ga49dc9bc6e37a97deaf7ee0dc0f9110e1",tooltip="Sets an alarm with remaining time to alarm from now."];
+  Node3 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="event_new_round_as\l_drawer",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__dispatcher.html#gabf03a39eb157e349de01d6a6cb7fa196",tooltip="Starts a new round as DRAWER (role_t)."];
+  Node4 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="game_rtc_alarm",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__game.html#ga3f61372930dd958f7499a110ce2bd7d6",tooltip="Updates the game due to a rtc alarm interrupt."];
+  Node5 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="dispatch_rtc_alarm_int",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__dispatcher.html#ga2607daafa4b66e729b8aa95ba97f1984",tooltip="Dispatches a rtc alarm interrupt."];
+  Node6 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="dispatcher_dispatch\l_events",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__dispatcher.html#ga72c911173e2af4fbf960584448f83d8b",tooltip="Dispatches all events currently in the event queue."];
+  Node3 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="game_give_clue",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__game.html#ga82a8aa816fdf22cb3d705dfa56c594f7",tooltip="Reveals another character in the word clue and notifies the other player."];
+  Node8 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 [label="game_round_over",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__game.html#ga3e3b7cd44197d8a1bd11f7f82aa3c767",tooltip="Ends the current round."];
+  Node9 -> Node10 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 [label="event_round_win",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__dispatcher.html#ga37df00ab49c3c54dcf2fd2cee7a952a5",tooltip="Sets the round as won, updates the score and notifies the other player."];
+  Node10 -> Node11 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node11 [label="game_guess_word",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__game.html#ga5a725e3c48e6564fd75d04c2e4d163ba",tooltip="Adds a word guess. And reacts according to weather it is correct."];
+  Node11 -> Node12 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node12 [label="event_guess_word",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__dispatcher.html#ga3429571bafb33af98f7e8b90e2c4b4b4",tooltip="Tries to guess the word and notifies the other player."];
+  Node9 -> Node13 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node13 [label="game_other_player_game_over",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__game.html#ga1fde03513252d4441ff2ba62672da7a6",tooltip="Reacts to the game over notification of another player."];
+  Node9 -> Node14 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node14 [label="game_rtc_pi_tick",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__game.html#ga159cd81ebf01a5ccd6a0f96aaffb2530",tooltip="Updates the game due to a rtc periodic interrupt."];
+  Node14 -> Node15 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node15 [label="dispatch_rtc_periodic_int",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__dispatcher.html#ga091e29979e7808dc87b71f52d3510553",tooltip="Dispatches a rtc periodic interrupt."];
+  Node15 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 -> Node16 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node16 [label="game_start_round",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__game.html#gad7c180906d7acb4776f4db147f289d7c",tooltip="Starts the already created round."];
+  Node16 -> Node17 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node17 [label="event_start_round",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__dispatcher.html#ga00f3579aee6fd77454373ac309f39675",tooltip="Starts the round."];
+  Node17 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+}

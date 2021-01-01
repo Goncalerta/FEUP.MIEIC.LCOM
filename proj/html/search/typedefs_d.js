@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['word_5fclue_5ft_1002',['word_clue_t',['../group__clue.html#gaf1024e93fdaaaf8803541bf569c84971',1,'clue.h']]],
-  ['word_5flen_5ft_1003',['word_len_t',['../group__uart.html#ga6a0e47dfd92dd143e6bff23e57f23093',1,'uart.h']]]
+  ['text_5fbox_5faction_1068',['text_box_action',['../group__textbox.html#gaefbdb77844709dee098c3e40c079cf19',1,'textbox.h']]],
+  ['text_5fbox_5fstate_1069',['text_box_state',['../group__textbox.html#gaaa924aa8891def6387d91728abcb7f97',1,'textbox.h']]],
+  ['text_5fbox_5ft_1070',['text_box_t',['../group__textbox.html#ga1501388fd96cc15874ce50ce31593de0',1,'textbox.h']]]
 ];

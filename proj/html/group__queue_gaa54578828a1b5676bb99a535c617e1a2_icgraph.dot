@@ -1,0 +1,33 @@
+digraph "queue_push"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node1 [label="queue_push",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Adds an element to the back of the given queue."];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="dispatcher_queue_keyboard\l_event",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__dispatcher.html#gaa106804cec3901891611d04d98f29364",tooltip="Retrieves keyboard state and adds a keyboard event to the event queue."];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="dispatcher_queue_mouse\l_event",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__dispatcher.html#ga4c39e0dc16fa4d90a99a26398d43ac98",tooltip="Retrieves mouse packet and adds a mouse event to the event queue."];
+  Node1 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="dispatcher_queue_rtc\l_alarm_event",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__dispatcher.html#gab3cab02f3479a181fc0d998a0b93a308",tooltip="Adds an rtc alarm interrupt event to the event queue."];
+  Node4 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="rtc_ih",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__rtc.html#ga75dad42881d64cf07cf1bdc2979a7056",tooltip="RTC interrupt handler."];
+  Node1 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="dispatcher_queue_rtc\l_periodic_interrupt_event",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__dispatcher.html#ga5a51a32dd9dd997860ed8806b5c52aba",tooltip="Adds an rtc periodic interrupt event to the event queue."];
+  Node6 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="dispatcher_queue_timer\l_tick_event",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__dispatcher.html#ga9c83cccd77212bc8de6918cdd5a10c06",tooltip="Adds a timer interrupt event to the event queue."];
+  Node1 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="dispatcher_queue_uart\l_message_event",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__dispatcher.html#gad6f2454f26e722b8ca2bd01772d4d287",tooltip="Adds a uart message event to the event queue with the given message as content."];
+  Node1 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 [label="uart_receive_bytes",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__uart.html#ga044300424f25aaf6d622538cafe79d90",tooltip="Receives bytes from the serial port and puts them in a software queue."];
+  Node9 -> Node10 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 [label="com1_ih",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__uart.html#ga2820f530017133c17706dbc238f738d9",tooltip="COM1 interrupt handler."];
+  Node1 -> Node11 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node11 [label="uart_send_byte",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__uart.html#ga00a2984ead2b73e2871dfda7c1ac49e3",tooltip="Adds a byte to the software queue of bytes to be sent and tries to send bytes."];
+  Node11 -> Node12 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node12 [label="protocol_handle_error",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__protocol.html#ga237c5c08ee5d5008a930af465c7bd5d5",tooltip="Reacts to a serial port error."];
+  Node12 -> Node13 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node13 [label="protocol_tick",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__protocol.html#ga0b3e768da60827fe622bd3932efc82ff",tooltip="Reacts to a timer interrupt to detect timeouts."];
+}

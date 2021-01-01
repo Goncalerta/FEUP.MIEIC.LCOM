@@ -1,0 +1,12 @@
+digraph "dispatcher_queue_timer_tick_event"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="dispatcher_queue_timer\l_tick_event",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Adds a timer interrupt event to the event queue."];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="queue_push",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__queue.html#gaa54578828a1b5676bb99a535c617e1a2",tooltip="Adds an element to the back of the given queue."];
+  Node2 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="queue_is_full",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__queue.html#gae1cd6b62453b7f57525be17a53885800",tooltip="Checks if a given queue is full."];
+}

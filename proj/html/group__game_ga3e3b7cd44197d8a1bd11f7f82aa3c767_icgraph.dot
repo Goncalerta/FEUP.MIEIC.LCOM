@@ -1,0 +1,22 @@
+digraph "game_round_over"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node1 [label="game_round_over",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Ends the current round."];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="event_round_win",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__dispatcher.html#ga37df00ab49c3c54dcf2fd2cee7a952a5",tooltip="Sets the round as won, updates the score and notifies the other player."];
+  Node2 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="game_guess_word",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__game.html#ga5a725e3c48e6564fd75d04c2e4d163ba",tooltip="Adds a word guess. And reacts according to weather it is correct."];
+  Node3 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="event_guess_word",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__dispatcher.html#ga3429571bafb33af98f7e8b90e2c4b4b4",tooltip="Tries to guess the word and notifies the other player."];
+  Node1 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="game_other_player_game_over",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__game.html#ga1fde03513252d4441ff2ba62672da7a6",tooltip="Reacts to the game over notification of another player."];
+  Node1 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="game_rtc_pi_tick",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__game.html#ga159cd81ebf01a5ccd6a0f96aaffb2530",tooltip="Updates the game due to a rtc periodic interrupt."];
+  Node6 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="dispatch_rtc_periodic_int",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__dispatcher.html#ga091e29979e7808dc87b71f52d3510553",tooltip="Dispatches a rtc periodic interrupt."];
+  Node7 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="dispatcher_dispatch\l_events",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$group__dispatcher.html#ga72c911173e2af4fbf960584448f83d8b",tooltip="Dispatches all events currently in the event queue."];
+}

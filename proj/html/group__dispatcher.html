@@ -62,6 +62,9 @@ $(function() {
 
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">Data Structures</a> &#124;
+<a href="#typedef-members">Typedefs</a> &#124;
+<a href="#enum-members">Enumerations</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">dispatcher</div>  </div>
@@ -71,6 +74,45 @@ $(function() {
 <p>Module dedicated to handling and dispatching events.  
 <a href="#details">More...</a></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Data Structures</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">union &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="unionevent__content__t.html">event_content_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Content of an event.  <a href="unionevent__content__t.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structevent__t.html">event_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents an event.  <a href="structevent__t.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:ga20b094266ca41ea0d00438b879d5bfd7"><td class="memItemLeft" align="right" valign="top"><a id="ga20b094266ca41ea0d00438b879d5bfd7"></a>
+typedef enum <a class="el" href="group__dispatcher.html#ga3dc8b7ddb0947608b8d860bc469f009f">event_type_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__dispatcher.html#ga20b094266ca41ea0d00438b879d5bfd7">event_type_t</a></td></tr>
+<tr class="memdesc:ga20b094266ca41ea0d00438b879d5bfd7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enumerated type for specifying the type of an event. <br /></td></tr>
+<tr class="separator:ga20b094266ca41ea0d00438b879d5bfd7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa766da11330110b4f5b028386e8fed68"><td class="memItemLeft" align="right" valign="top"><a id="gaa766da11330110b4f5b028386e8fed68"></a>
+typedef union <a class="el" href="unionevent__content__t.html">event_content_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__dispatcher.html#gaa766da11330110b4f5b028386e8fed68">event_content_t</a></td></tr>
+<tr class="memdesc:gaa766da11330110b4f5b028386e8fed68"><td class="mdescLeft">&#160;</td><td class="mdescRight">Content of an event. <br /></td></tr>
+<tr class="separator:gaa766da11330110b4f5b028386e8fed68"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga59f5f6b9c6023baebf9c49c328b639a1"><td class="memItemLeft" align="right" valign="top"><a id="ga59f5f6b9c6023baebf9c49c328b639a1"></a>
+typedef struct <a class="el" href="structevent__t.html">event_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__dispatcher.html#ga59f5f6b9c6023baebf9c49c328b639a1">event_t</a></td></tr>
+<tr class="memdesc:ga59f5f6b9c6023baebf9c49c328b639a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents an event. <br /></td></tr>
+<tr class="separator:ga59f5f6b9c6023baebf9c49c328b639a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:ga3dc8b7ddb0947608b8d860bc469f009f"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__dispatcher.html#ga3dc8b7ddb0947608b8d860bc469f009f">event_type_t</a> { <br />
+&#160;&#160;<a class="el" href="group__dispatcher.html#gga3dc8b7ddb0947608b8d860bc469f009fa3cf923d175a341bbb622032a7c54a3de">MOUSE_EVENT</a>, 
+<a class="el" href="group__dispatcher.html#gga3dc8b7ddb0947608b8d860bc469f009fa1065dd91a6b7875936b6ec92c9dc6073">KEYBOARD_EVENT</a>, 
+<a class="el" href="group__dispatcher.html#gga3dc8b7ddb0947608b8d860bc469f009fa69eb43702d38798925bf206e37e60d4c">RTC_PERIODIC_INTERRUPT_EVENT</a>, 
+<a class="el" href="group__dispatcher.html#gga3dc8b7ddb0947608b8d860bc469f009fafdfb6d618f15630b6b88708daa5aae77">RTC_ALARM_EVENT</a>, 
+<br />
+&#160;&#160;<a class="el" href="group__dispatcher.html#gga3dc8b7ddb0947608b8d860bc469f009fab3e80e5a57887331db78f7bca30ce185">UART_MESSAGE_EVENT</a>, 
+<a class="el" href="group__dispatcher.html#gga3dc8b7ddb0947608b8d860bc469f009fab61df0f3e8dd703f3837f8f4d3e6a387">TIMER_TICK_EVENT</a>
+<br />
+ }</td></tr>
+<tr class="memdesc:ga3dc8b7ddb0947608b8d860bc469f009f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enumerated type for specifying the type of an event.  <a href="group__dispatcher.html#ga3dc8b7ddb0947608b8d860bc469f009f">More...</a><br /></td></tr>
+<tr class="separator:ga3dc8b7ddb0947608b8d860bc469f009f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:gab9458678bdcdc4f0ff458f8a9b27c638"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__dispatcher.html#gab9458678bdcdc4f0ff458f8a9b27c638">dispatcher_reset_bindings</a> ()</td></tr>
@@ -85,21 +127,52 @@ Functions</h2></td></tr>
 <tr class="memitem:gab72c16c8547625b6dde1d4626b3c9c99"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__dispatcher.html#gab72c16c8547625b6dde1d4626b3c9c99">dispatcher_bind_canvas</a> (bool is_to_bind)</td></tr>
 <tr class="memdesc:gab72c16c8547625b6dde1d4626b3c9c99"><td class="mdescLeft">&#160;</td><td class="mdescRight">Binds or unbinds the canvas to the dispatcher.  <a href="group__dispatcher.html#gab72c16c8547625b6dde1d4626b3c9c99">More...</a><br /></td></tr>
 <tr class="separator:gab72c16c8547625b6dde1d4626b3c9c99"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1422eac167c82252d0b953a295f494f5"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__dispatcher.html#ga1422eac167c82252d0b953a295f494f5">dispatcher_init</a> ()</td></tr>
+<tr class="memdesc:ga1422eac167c82252d0b953a295f494f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the dispatcher, creating an event queue.  <a href="group__dispatcher.html#ga1422eac167c82252d0b953a295f494f5">More...</a><br /></td></tr>
+<tr class="separator:ga1422eac167c82252d0b953a295f494f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf862e6e5a2905c716bf2b701d9ecabc6"><td class="memItemLeft" align="right" valign="top"><a id="gaf862e6e5a2905c716bf2b701d9ecabc6"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__dispatcher.html#gaf862e6e5a2905c716bf2b701d9ecabc6">dispatcher_exit</a> ()</td></tr>
+<tr class="memdesc:gaf862e6e5a2905c716bf2b701d9ecabc6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deletes all resources allocated to the dispatcher. <br /></td></tr>
+<tr class="separator:gaf862e6e5a2905c716bf2b701d9ecabc6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4c39e0dc16fa4d90a99a26398d43ac98"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__dispatcher.html#ga4c39e0dc16fa4d90a99a26398d43ac98">dispatcher_queue_mouse_event</a> ()</td></tr>
+<tr class="memdesc:ga4c39e0dc16fa4d90a99a26398d43ac98"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves mouse packet and adds a mouse event to the event queue.  <a href="group__dispatcher.html#ga4c39e0dc16fa4d90a99a26398d43ac98">More...</a><br /></td></tr>
+<tr class="separator:ga4c39e0dc16fa4d90a99a26398d43ac98"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa106804cec3901891611d04d98f29364"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__dispatcher.html#gaa106804cec3901891611d04d98f29364">dispatcher_queue_keyboard_event</a> ()</td></tr>
+<tr class="memdesc:gaa106804cec3901891611d04d98f29364"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves keyboard state and adds a keyboard event to the event queue.  <a href="group__dispatcher.html#gaa106804cec3901891611d04d98f29364">More...</a><br /></td></tr>
+<tr class="separator:gaa106804cec3901891611d04d98f29364"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga5a51a32dd9dd997860ed8806b5c52aba"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__dispatcher.html#ga5a51a32dd9dd997860ed8806b5c52aba">dispatcher_queue_rtc_periodic_interrupt_event</a> ()</td></tr>
+<tr class="memdesc:ga5a51a32dd9dd997860ed8806b5c52aba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds an rtc periodic interrupt event to the event queue.  <a href="group__dispatcher.html#ga5a51a32dd9dd997860ed8806b5c52aba">More...</a><br /></td></tr>
+<tr class="separator:ga5a51a32dd9dd997860ed8806b5c52aba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab3cab02f3479a181fc0d998a0b93a308"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__dispatcher.html#gab3cab02f3479a181fc0d998a0b93a308">dispatcher_queue_rtc_alarm_event</a> ()</td></tr>
+<tr class="memdesc:gab3cab02f3479a181fc0d998a0b93a308"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds an rtc alarm interrupt event to the event queue.  <a href="group__dispatcher.html#gab3cab02f3479a181fc0d998a0b93a308">More...</a><br /></td></tr>
+<tr class="separator:gab3cab02f3479a181fc0d998a0b93a308"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad6f2454f26e722b8ca2bd01772d4d287"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__dispatcher.html#gad6f2454f26e722b8ca2bd01772d4d287">dispatcher_queue_uart_message_event</a> (<a class="el" href="structmessage__t.html">message_t</a> message)</td></tr>
+<tr class="memdesc:gad6f2454f26e722b8ca2bd01772d4d287"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a uart message event to the event queue with the given message as content.  <a href="group__dispatcher.html#gad6f2454f26e722b8ca2bd01772d4d287">More...</a><br /></td></tr>
+<tr class="separator:gad6f2454f26e722b8ca2bd01772d4d287"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga9c83cccd77212bc8de6918cdd5a10c06"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__dispatcher.html#ga9c83cccd77212bc8de6918cdd5a10c06">dispatcher_queue_timer_tick_event</a> ()</td></tr>
+<tr class="memdesc:ga9c83cccd77212bc8de6918cdd5a10c06"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a timer interrupt event to the event queue.  <a href="group__dispatcher.html#ga9c83cccd77212bc8de6918cdd5a10c06">More...</a><br /></td></tr>
+<tr class="separator:ga9c83cccd77212bc8de6918cdd5a10c06"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga72c911173e2af4fbf960584448f83d8b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__dispatcher.html#ga72c911173e2af4fbf960584448f83d8b">dispatcher_dispatch_events</a> ()</td></tr>
+<tr class="memdesc:ga72c911173e2af4fbf960584448f83d8b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dispatches all events currently in the event queue.  <a href="group__dispatcher.html#ga72c911173e2af4fbf960584448f83d8b">More...</a><br /></td></tr>
+<tr class="separator:ga72c911173e2af4fbf960584448f83d8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga4256f77332aee43a38ecada70ef1e418"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__dispatcher.html#ga4256f77332aee43a38ecada70ef1e418">dispatch_mouse_packet</a> (struct packet p)</td></tr>
 <tr class="memdesc:ga4256f77332aee43a38ecada70ef1e418"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dispatches a mouse packet from a mouse event.  <a href="group__dispatcher.html#ga4256f77332aee43a38ecada70ef1e418">More...</a><br /></td></tr>
 <tr class="separator:ga4256f77332aee43a38ecada70ef1e418"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaeefd35acea05833fa9d829f99e2ed6ca"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__dispatcher.html#gaeefd35acea05833fa9d829f99e2ed6ca">dispatch_keyboard_event</a> (<a class="el" href="structkbd__event__t.html">kbd_event_t</a> kbd_event)</td></tr>
 <tr class="memdesc:gaeefd35acea05833fa9d829f99e2ed6ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dispatches a keyboard event.  <a href="group__dispatcher.html#gaeefd35acea05833fa9d829f99e2ed6ca">More...</a><br /></td></tr>
 <tr class="separator:gaeefd35acea05833fa9d829f99e2ed6ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga0a68e937b31744d0f19e7524b2e9ad59"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__dispatcher.html#ga0a68e937b31744d0f19e7524b2e9ad59">dispatch_timer_tick</a> ()</td></tr>
-<tr class="memdesc:ga0a68e937b31744d0f19e7524b2e9ad59"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dispatches a timer interrupt.  <a href="group__dispatcher.html#ga0a68e937b31744d0f19e7524b2e9ad59">More...</a><br /></td></tr>
-<tr class="separator:ga0a68e937b31744d0f19e7524b2e9ad59"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga2607daafa4b66e729b8aa95ba97f1984"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__dispatcher.html#ga2607daafa4b66e729b8aa95ba97f1984">dispatch_rtc_alarm_int</a> ()</td></tr>
-<tr class="memdesc:ga2607daafa4b66e729b8aa95ba97f1984"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dispatches a rtc alarm interrupt.  <a href="group__dispatcher.html#ga2607daafa4b66e729b8aa95ba97f1984">More...</a><br /></td></tr>
-<tr class="separator:ga2607daafa4b66e729b8aa95ba97f1984"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga091e29979e7808dc87b71f52d3510553"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__dispatcher.html#ga091e29979e7808dc87b71f52d3510553">dispatch_rtc_periodic_int</a> ()</td></tr>
 <tr class="memdesc:ga091e29979e7808dc87b71f52d3510553"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dispatches a rtc periodic interrupt.  <a href="group__dispatcher.html#ga091e29979e7808dc87b71f52d3510553">More...</a><br /></td></tr>
 <tr class="separator:ga091e29979e7808dc87b71f52d3510553"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2607daafa4b66e729b8aa95ba97f1984"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__dispatcher.html#ga2607daafa4b66e729b8aa95ba97f1984">dispatch_rtc_alarm_int</a> ()</td></tr>
+<tr class="memdesc:ga2607daafa4b66e729b8aa95ba97f1984"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dispatches a rtc alarm interrupt.  <a href="group__dispatcher.html#ga2607daafa4b66e729b8aa95ba97f1984">More...</a><br /></td></tr>
+<tr class="separator:ga2607daafa4b66e729b8aa95ba97f1984"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga64d6ce67a2a7c87cd0560514c546a89a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__dispatcher.html#ga64d6ce67a2a7c87cd0560514c546a89a">dispatch_uart_message</a> (<a class="el" href="structmessage__t.html">message_t</a> message)</td></tr>
+<tr class="memdesc:ga64d6ce67a2a7c87cd0560514c546a89a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dispatches a uart message.  <a href="group__dispatcher.html#ga64d6ce67a2a7c87cd0560514c546a89a">More...</a><br /></td></tr>
+<tr class="separator:ga64d6ce67a2a7c87cd0560514c546a89a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0a68e937b31744d0f19e7524b2e9ad59"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__dispatcher.html#ga0a68e937b31744d0f19e7524b2e9ad59">dispatch_timer_tick</a> ()</td></tr>
+<tr class="memdesc:ga0a68e937b31744d0f19e7524b2e9ad59"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dispatches a timer interrupt.  <a href="group__dispatcher.html#ga0a68e937b31744d0f19e7524b2e9ad59">More...</a><br /></td></tr>
+<tr class="separator:ga0a68e937b31744d0f19e7524b2e9ad59"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga1265a5e2843f2b1c45ad05ae61de7000"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__dispatcher.html#ga1265a5e2843f2b1c45ad05ae61de7000">draw_frame</a> ()</td></tr>
 <tr class="memdesc:ga1265a5e2843f2b1c45ad05ae61de7000"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draws the frame to the back buffer and flips the buffers.  <a href="group__dispatcher.html#ga1265a5e2843f2b1c45ad05ae61de7000">More...</a><br /></td></tr>
 <tr class="separator:ga1265a5e2843f2b1c45ad05ae61de7000"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -169,6 +242,37 @@ Functions</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p>Module dedicated to handling and dispatching events. </p>
+<h2 class="groupheader">Enumeration Type Documentation</h2>
+<a id="ga3dc8b7ddb0947608b8d860bc469f009f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga3dc8b7ddb0947608b8d860bc469f009f">&#9670;&nbsp;</a></span>event_type_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="group__dispatcher.html#ga3dc8b7ddb0947608b8d860bc469f009f">event_type_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Enumerated type for specifying the type of an event. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="gga3dc8b7ddb0947608b8d860bc469f009fa3cf923d175a341bbb622032a7c54a3de"></a>MOUSE_EVENT&#160;</td><td class="fielddoc"><p>Event from mouse. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga3dc8b7ddb0947608b8d860bc469f009fa1065dd91a6b7875936b6ec92c9dc6073"></a>KEYBOARD_EVENT&#160;</td><td class="fielddoc"><p>Event from keyboard. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga3dc8b7ddb0947608b8d860bc469f009fa69eb43702d38798925bf206e37e60d4c"></a>RTC_PERIODIC_INTERRUPT_EVENT&#160;</td><td class="fielddoc"><p>Event from rtc periodic interrupts. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga3dc8b7ddb0947608b8d860bc469f009fafdfb6d618f15630b6b88708daa5aae77"></a>RTC_ALARM_EVENT&#160;</td><td class="fielddoc"><p>Event from rtc alarm. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga3dc8b7ddb0947608b8d860bc469f009fab3e80e5a57887331db78f7bca30ce185"></a>UART_MESSAGE_EVENT&#160;</td><td class="fielddoc"><p>Event from serial port message. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga3dc8b7ddb0947608b8d860bc469f009fab61df0f3e8dd703f3837f8f4d3e6a387"></a>TIMER_TICK_EVENT&#160;</td><td class="fielddoc"><p>Event from timer interrupt. </p>
+</td></tr>
+</table>
+
+</div>
+</div>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="gaeefd35acea05833fa9d829f99e2ed6ca"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#gaeefd35acea05833fa9d829f99e2ed6ca">&#9670;&nbsp;</a></span>dispatch_keyboard_event()</h2>
@@ -248,6 +352,11 @@ Here is the call graph for this function:</div>
 <area shape="rect" href="group__textbox.html#gaf810b80df21aa5e7259b8fc8815238f5" title="Updates the state of a given text box according to given mouse info." alt="" coords="864,891,1019,917"/>
 </map>
 </div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__dispatcher_gaeefd35acea05833fa9d829f99e2ed6ca_icgraph.png" border="0" usemap="#agroup__dispatcher_gaeefd35acea05833fa9d829f99e2ed6ca_icgraph" alt=""/></div>
+</div>
 
 </div>
 </div>
@@ -313,6 +422,11 @@ Here is the call graph for this function:</div>
 <area shape="rect" href="group__game.html#ga7a01e47255ad988eefbe2e0067a3e26c" title="Gets the drawer selected thickness." alt="" coords="831,493,972,534"/>
 <area shape="rect" href="group__protocol.html#ga48456102bf88a8974c153a8b117f9480" title="Sends a message of type MSG_NEW_STROKE." alt="" coords="813,559,989,585"/>
 </map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__dispatcher_ga4256f77332aee43a38ecada70ef1e418_icgraph.png" border="0" usemap="#agroup__dispatcher_ga4256f77332aee43a38ecada70ef1e418_icgraph" alt=""/></div>
 </div>
 
 </div>
@@ -391,6 +505,15 @@ Here is the call graph for this function:</div>
 <area shape="rect" href="group__clue.html#gaa1bfb55e74e59e1c571b12d25a3d60b1" title="Randomly hints a new char in the given word clue." alt="" coords="613,815,721,841"/>
 </map>
 </div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__dispatcher_ga2607daafa4b66e729b8aa95ba97f1984_icgraph.png" border="0" usemap="#agroup__dispatcher_ga2607daafa4b66e729b8aa95ba97f1984_icgraph" alt=""/></div>
+<map name="group__dispatcher_ga2607daafa4b66e729b8aa95ba97f1984_icgraph" id="agroup__dispatcher_ga2607daafa4b66e729b8aa95ba97f1984_icgraph">
+<area shape="rect" title="Dispatches a rtc alarm interrupt." alt="" coords="108,5,261,32"/>
+<area shape="rect" href="group__rtc.html#ga75dad42881d64cf07cf1bdc2979a7056" title="RTC interrupt handler." alt="" coords="5,5,60,32"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -430,6 +553,15 @@ Here is the call graph for this function:</div>
 <area shape="rect" href="group__rtc.html#ga2780c6d57b30b6d1804927a1d5c1dd1b" title="Enables a type of interrupt with the given configuration." alt="" coords="799,157,902,184"/>
 </map>
 </div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__dispatcher_ga091e29979e7808dc87b71f52d3510553_icgraph.png" border="0" usemap="#agroup__dispatcher_ga091e29979e7808dc87b71f52d3510553_icgraph" alt=""/></div>
+<map name="group__dispatcher_ga091e29979e7808dc87b71f52d3510553_icgraph" id="agroup__dispatcher_ga091e29979e7808dc87b71f52d3510553_icgraph">
+<area shape="rect" title="Dispatches a rtc periodic interrupt." alt="" coords="108,5,275,32"/>
+<area shape="rect" href="group__rtc.html#ga75dad42881d64cf07cf1bdc2979a7056" title="RTC interrupt handler." alt="" coords="5,5,60,32"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -454,7 +586,7 @@ Here is the call graph for this function:</div>
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="group__dispatcher_ga0a68e937b31744d0f19e7524b2e9ad59_cgraph.png" border="0" usemap="#agroup__dispatcher_ga0a68e937b31744d0f19e7524b2e9ad59_cgraph" alt=""/></div>
-<map name="group__dispatcher_ga0a68e937b31744d0f19e7524b2e9ad59_cgraph" id="group__dispatcher_ga0a68e937b31744d0f19e7524b2e9ad59_cgraph">
+<map name="group__dispatcher_ga0a68e937b31744d0f19e7524b2e9ad59_cgraph" id="agroup__dispatcher_ga0a68e937b31744d0f19e7524b2e9ad59_cgraph">
 <area shape="rect" title="Dispatches a timer interrupt." alt="" coords="5,567,140,594"/>
 <area shape="rect" href="group__dispatcher.html#ga1265a5e2843f2b1c45ad05ae61de7000" title="Draws the frame to the back buffer and flips the buffers." alt="" coords="203,491,291,518"/>
 <area shape="rect" href="group__menu.html#gac5400d8b25e29b894ee7a94f3f4a0586" title="Gets the current menu state." alt="" coords="361,593,476,619"/>
@@ -489,6 +621,48 @@ Here is the call graph for this function:</div>
 <area shape="rect" href="group__font.html#ga9b434230690465196da266df4141511d" title="Draws a substring of a string to the given coordinates in the given buffer." alt="" coords="947,569,1108,595"/>
 <area shape="rect" href="group__vbe.html#gab07dd8d841a38ae1e54dcf851928b3b8" title="VBE function 0x07 SET DISPLAY START." alt="" coords="531,61,677,87"/>
 </map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__dispatcher_ga0a68e937b31744d0f19e7524b2e9ad59_icgraph.png" border="0" usemap="#agroup__dispatcher_ga0a68e937b31744d0f19e7524b2e9ad59_icgraph" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="ga64d6ce67a2a7c87cd0560514c546a89a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga64d6ce67a2a7c87cd0560514c546a89a">&#9670;&nbsp;</a></span>dispatch_uart_message()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int dispatch_uart_message </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structmessage__t.html">message_t</a>&#160;</td>
+          <td class="paramname"><em>message</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Dispatches a uart message. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">message</td><td>message to dispatch </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Return 0 upon success and non-zero otherwise </dd></dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__dispatcher_ga64d6ce67a2a7c87cd0560514c546a89a_cgraph.png" border="0" usemap="#agroup__dispatcher_ga64d6ce67a2a7c87cd0560514c546a89a_cgraph" alt=""/></div>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__dispatcher_ga64d6ce67a2a7c87cd0560514c546a89a_icgraph.png" border="0" usemap="#agroup__dispatcher_ga64d6ce67a2a7c87cd0560514c546a89a_icgraph" alt=""/></div>
 </div>
 
 </div>
@@ -701,6 +875,223 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
+<a id="ga72c911173e2af4fbf960584448f83d8b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga72c911173e2af4fbf960584448f83d8b">&#9670;&nbsp;</a></span>dispatcher_dispatch_events()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int dispatcher_dispatch_events </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Dispatches all events currently in the event queue. </p>
+<dl class="section return"><dt>Returns</dt><dd>Return 0 upon success and non-zero otherwise </dd></dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__dispatcher_ga72c911173e2af4fbf960584448f83d8b_cgraph.png" border="0" usemap="#agroup__dispatcher_ga72c911173e2af4fbf960584448f83d8b_cgraph" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="ga1422eac167c82252d0b953a295f494f5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga1422eac167c82252d0b953a295f494f5">&#9670;&nbsp;</a></span>dispatcher_init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int dispatcher_init </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initializes the dispatcher, creating an event queue. </p>
+<dl class="section return"><dt>Returns</dt><dd>Return 0 upon success and non-zero otherwise </dd></dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__dispatcher_ga1422eac167c82252d0b953a295f494f5_cgraph.png" border="0" usemap="#agroup__dispatcher_ga1422eac167c82252d0b953a295f494f5_cgraph" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="gaa106804cec3901891611d04d98f29364"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaa106804cec3901891611d04d98f29364">&#9670;&nbsp;</a></span>dispatcher_queue_keyboard_event()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int dispatcher_queue_keyboard_event </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Retrieves keyboard state and adds a keyboard event to the event queue. </p>
+<dl class="section return"><dt>Returns</dt><dd>Return 0 upon success and non-zero otherwise </dd></dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__dispatcher_gaa106804cec3901891611d04d98f29364_cgraph.png" border="0" usemap="#agroup__dispatcher_gaa106804cec3901891611d04d98f29364_cgraph" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="ga4c39e0dc16fa4d90a99a26398d43ac98"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga4c39e0dc16fa4d90a99a26398d43ac98">&#9670;&nbsp;</a></span>dispatcher_queue_mouse_event()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int dispatcher_queue_mouse_event </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Retrieves mouse packet and adds a mouse event to the event queue. </p>
+<dl class="section return"><dt>Returns</dt><dd>Return 0 upon success and non-zero otherwise </dd></dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__dispatcher_ga4c39e0dc16fa4d90a99a26398d43ac98_cgraph.png" border="0" usemap="#agroup__dispatcher_ga4c39e0dc16fa4d90a99a26398d43ac98_cgraph" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="gab3cab02f3479a181fc0d998a0b93a308"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gab3cab02f3479a181fc0d998a0b93a308">&#9670;&nbsp;</a></span>dispatcher_queue_rtc_alarm_event()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int dispatcher_queue_rtc_alarm_event </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Adds an rtc alarm interrupt event to the event queue. </p>
+<dl class="section return"><dt>Returns</dt><dd>Return 0 upon success and non-zero otherwise </dd></dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__dispatcher_gab3cab02f3479a181fc0d998a0b93a308_cgraph.png" border="0" usemap="#agroup__dispatcher_gab3cab02f3479a181fc0d998a0b93a308_cgraph" alt=""/></div>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__dispatcher_gab3cab02f3479a181fc0d998a0b93a308_icgraph.png" border="0" usemap="#agroup__dispatcher_gab3cab02f3479a181fc0d998a0b93a308_icgraph" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="ga5a51a32dd9dd997860ed8806b5c52aba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga5a51a32dd9dd997860ed8806b5c52aba">&#9670;&nbsp;</a></span>dispatcher_queue_rtc_periodic_interrupt_event()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int dispatcher_queue_rtc_periodic_interrupt_event </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Adds an rtc periodic interrupt event to the event queue. </p>
+<dl class="section return"><dt>Returns</dt><dd>Return 0 upon success and non-zero otherwise </dd></dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__dispatcher_ga5a51a32dd9dd997860ed8806b5c52aba_cgraph.png" border="0" usemap="#agroup__dispatcher_ga5a51a32dd9dd997860ed8806b5c52aba_cgraph" alt=""/></div>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__dispatcher_ga5a51a32dd9dd997860ed8806b5c52aba_icgraph.png" border="0" usemap="#agroup__dispatcher_ga5a51a32dd9dd997860ed8806b5c52aba_icgraph" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="ga9c83cccd77212bc8de6918cdd5a10c06"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga9c83cccd77212bc8de6918cdd5a10c06">&#9670;&nbsp;</a></span>dispatcher_queue_timer_tick_event()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int dispatcher_queue_timer_tick_event </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Adds a timer interrupt event to the event queue. </p>
+<dl class="section return"><dt>Returns</dt><dd>Return 0 upon success and non-zero otherwise </dd></dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__dispatcher_ga9c83cccd77212bc8de6918cdd5a10c06_cgraph.png" border="0" usemap="#agroup__dispatcher_ga9c83cccd77212bc8de6918cdd5a10c06_cgraph" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="gad6f2454f26e722b8ca2bd01772d4d287"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gad6f2454f26e722b8ca2bd01772d4d287">&#9670;&nbsp;</a></span>dispatcher_queue_uart_message_event()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int dispatcher_queue_uart_message_event </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structmessage__t.html">message_t</a>&#160;</td>
+          <td class="paramname"><em>message</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Adds a uart message event to the event queue with the given message as content. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">message</td><td>message that is the content of this event </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Return 0 upon success and non-zero otherwise </dd></dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__dispatcher_gad6f2454f26e722b8ca2bd01772d4d287_cgraph.png" border="0" usemap="#agroup__dispatcher_gad6f2454f26e722b8ca2bd01772d4d287_cgraph" alt=""/></div>
+</div>
+
+</div>
+</div>
 <a id="gab9458678bdcdc4f0ff458f8a9b27c638"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#gab9458678bdcdc4f0ff458f8a9b27c638">&#9670;&nbsp;</a></span>dispatcher_reset_bindings()</h2>
 
@@ -827,15 +1218,6 @@ Here is the call graph for this function:</div>
 <area shape="rect" href="group__video__gr.html#gafa08dcecf2adbe49d6a9c28b355c68d1" title="Gets the vertical resolution of the buffer." alt="" coords="346,542,435,569"/>
 <area shape="rect" href="group__font.html#ga9b434230690465196da266df4141511d" title="Draws a substring of a string to the given coordinates in the given buffer." alt="" coords="733,555,895,582"/>
 <area shape="rect" href="group__vbe.html#gab07dd8d841a38ae1e54dcf851928b3b8" title="VBE function 0x07 SET DISPLAY START." alt="" coords="317,795,464,822"/>
-</map>
-</div>
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="group__dispatcher_ga1265a5e2843f2b1c45ad05ae61de7000_icgraph.png" border="0" usemap="#agroup__dispatcher_ga1265a5e2843f2b1c45ad05ae61de7000_icgraph" alt=""/></div>
-<map name="group__dispatcher_ga1265a5e2843f2b1c45ad05ae61de7000_icgraph" id="group__dispatcher_ga1265a5e2843f2b1c45ad05ae61de7000_icgraph">
-<area shape="rect" title="Draws the frame to the back buffer and flips the buffers." alt="" coords="188,5,276,32"/>
-<area shape="rect" href="group__dispatcher.html#ga0a68e937b31744d0f19e7524b2e9ad59" title="Dispatches a timer interrupt." alt="" coords="5,5,140,32"/>
 </map>
 </div>
 
@@ -1634,7 +2016,7 @@ Here is the call graph for this function:</div>
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="group__dispatcher_gad3e78054cdf4da1c6f961483f635c85d_icgraph.png" border="0" usemap="#agroup__dispatcher_gad3e78054cdf4da1c6f961483f635c85d_icgraph" alt=""/></div>
-<map name="group__dispatcher_gad3e78054cdf4da1c6f961483f635c85d_icgraph" id="group__dispatcher_gad3e78054cdf4da1c6f961483f635c85d_icgraph">
+<map name="group__dispatcher_gad3e78054cdf4da1c6f961483f635c85d_icgraph" id="agroup__dispatcher_gad3e78054cdf4da1c6f961483f635c85d_icgraph">
 <area shape="rect" title="Redoes a canvas stroke and notifies the other player." alt="" coords="396,5,480,32"/>
 <area shape="rect" href="group__canvas.html#ga8ad75f7f8cd0333e14d51a533da88883" title="Updates the canvas according to a keyboard event." alt="" coords="221,5,348,32"/>
 <area shape="rect" href="group__dispatcher.html#gaeefd35acea05833fa9d829f99e2ed6ca" title="Dispatches a keyboard event." alt="" coords="5,5,173,32"/>
@@ -1861,7 +2243,7 @@ Here is the call graph for this function:</div>
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="group__dispatcher_ga51ba304d71f082904a79be3769ec7ee7_icgraph.png" border="0" usemap="#agroup__dispatcher_ga51ba304d71f082904a79be3769ec7ee7_icgraph" alt=""/></div>
-<map name="group__dispatcher_ga51ba304d71f082904a79be3769ec7ee7_icgraph" id="group__dispatcher_ga51ba304d71f082904a79be3769ec7ee7_icgraph">
+<map name="group__dispatcher_ga51ba304d71f082904a79be3769ec7ee7_icgraph" id="agroup__dispatcher_ga51ba304d71f082904a79be3769ec7ee7_icgraph">
 <area shape="rect" title="Undoes a canvas stroke and notifies the other player." alt="" coords="396,5,483,32"/>
 <area shape="rect" href="group__canvas.html#ga8ad75f7f8cd0333e14d51a533da88883" title="Updates the canvas according to a keyboard event." alt="" coords="221,5,348,32"/>
 <area shape="rect" href="group__dispatcher.html#gaeefd35acea05833fa9d829f99e2ed6ca" title="Dispatches a keyboard event." alt="" coords="5,5,173,32"/>
