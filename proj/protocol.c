@@ -49,7 +49,7 @@ static int protocol_new_message_no_content(message_t *message, message_type_t ty
     return 0;
 }
 
-void protocol_delete_message(message_t *message) {
+static void protocol_delete_message(message_t *message) {
     if (message->content_len != 0 && message->content != NULL) {
         free(message->content);
         message->content = NULL;
@@ -296,15 +296,6 @@ static const message_handle_t message_handle[NUMBER_OF_MESSAGES] = {
     protocol_receive_program_opened
 };
 
-int protocol_handle_message_event(message_t *message) {
-    if (message_handle[message->type](message->content_len, message->content) != OK) {
-        protocol_delete_message(message);
-        return 1;
-    }
-    protocol_delete_message(message);
-    return 0;
-}
-
 static int protocol_send_next_message() {
     if (queue_is_empty(&pending_messages))
         return 0;
@@ -391,8 +382,12 @@ static int protocol_parse_received_message() {
     if (msg.type >= NUMBER_OF_MESSAGES)
         return 1;
 
-    if (dispatcher_queue_uart_message_event(msg) != OK)
+    if (message_handle[msg.type](msg.content_len, msg.content) != OK) {
+        protocol_delete_message(&msg);
         return 1;
+    }
+
+    protocol_delete_message(&msg);
     
     return 0;
 }

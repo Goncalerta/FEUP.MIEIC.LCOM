@@ -46,21 +46,6 @@ typedef struct message_t {
 } message_t;
 
 /**
- * @brief Clears the resources allocated for the given message.
- * 
- * @param message message to delete
- */
-void protocol_delete_message(message_t *message);
-
-/**
- * @brief Handles the given message by triggering associated events.
- * 
- * @param message message to handle
- * @return Return 0 upon success and non-zero otherwise
- */
-int protocol_handle_message_event(message_t *message);
-
-/**
  * @brief Configures the serial port and protocol queues to start communication.
  * 
  * @return Return 0 upon success and non-zero otherwise

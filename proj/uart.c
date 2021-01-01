@@ -2,13 +2,13 @@
 
 #include "uart.h"
 #include "queue.h"
+#include "dispatcher.h"
 
 #define UART_SW_QUEUES_STARTING_CAPACITY 16
 
 static int hook_id_com1 = 4;
 static queue_t transmitted, received;
 static fifo_int_trigger_level_t fifo_int_trigger_level;
-static bool error_reading_message = false;
 
 int com1_subscribe_int(uint8_t *bit_no) {
     *bit_no = hook_id_com1;
@@ -43,20 +43,21 @@ void com1_ih() {
             if (uart_receive_bytes() != OK) {
                 printf("Error receiving uart bytes\n");
             }
+            if (dispatcher_queue_event(UART_RECEIVED_DATA_EVENT) != OK) {
+                printf("Failed to queue uart received data event\n");
+            }
+
             break;
         
         case INT_ORIGIN_LINE_STATUS:
             uart_handle_error();
+            
             break;
         
         default:
             break;
         }
     }
-}
-
-bool uart_error_reading_message() {
-    return error_reading_message;
 }
 
 int uart_send_byte(uint8_t byte) {
@@ -136,12 +137,14 @@ int uart_check_error(bool *err) {
 void uart_handle_error() {
     bool err;
     if (uart_check_error(&err) != OK) {
-        printf("Failed to handle uart error.\n");
+        printf("Failed to handle uart error\n");
         return;
     }
     
     if (err) {
-        error_reading_message = true;
+        if (dispatcher_queue_event(UART_ERROR_EVENT) != OK) {
+            printf("Failed to queue uart error event\n");
+        }
     }
 }
 
@@ -205,8 +208,6 @@ int uart_flush_received_bytes(uint8_t *no_bytes, uint8_t *first, uint8_t *last) 
             tickdelay(micros_to_ticks(UART_DELAY_US));
         }
     }
-
-    error_reading_message = false;
 
     return 0;
 }

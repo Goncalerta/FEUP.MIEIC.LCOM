@@ -166,13 +166,6 @@ void com1_ih();
 void uart_handle_error();
 
 /**
- * @brief Returns whether the serial port has an error and should be flushed.
- * 
- * @return Return whether the serial port has an error and should be flushed
- */
-bool uart_error_reading_message();
-
-/**
  * @brief Indentifies the serial port interrupt.
  * 
  * @param int_ident the variable to be filled with the interrupt information

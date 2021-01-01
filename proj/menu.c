@@ -74,6 +74,20 @@ void menu_exit() {
     free(xpm_main_menu.bytes);
 }
 
+int menu_react_kbd(kbd_event_t kbd_event) {
+    if (kbd_event.key == ESC && !kbd_event.is_ctrl_pressed) {
+        if (menu_get_state() == PAUSE_MENU) {
+            if (game_resume() != OK)
+                return 1;
+        } else if (menu_get_state() == GAME) {
+            if (menu_set_pause_menu() != OK)
+                return 1;
+        }
+    }
+    
+    return 0;
+}
+
 bool menu_is_game_ongoing() {
     return menu_state == DRAWER_NEW_ROUND_SCREEN || menu_state == GUESSER_NEW_ROUND_SCREEN 
         || menu_state == GAME || menu_state == PAUSE_MENU;

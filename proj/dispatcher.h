@@ -19,41 +19,28 @@
  * @brief Enumerated type for specifying the type of an event.
  * 
  */
-typedef enum event_type_t {
-    MOUSE_EVENT, /*!< Event from mouse. */
-    KEYBOARD_EVENT, /*!< Event from keyboard. */
-    RTC_PERIODIC_INTERRUPT_EVENT, /*!< Event from rtc periodic interrupts. */
-    RTC_ALARM_EVENT, /*!< Event from rtc alarm. */
-    UART_MESSAGE_EVENT, /*!< Event from serial port message. */
-    TIMER_TICK_EVENT /*!< Event from timer interrupt. */
-} event_type_t;
-
-/**
- * @brief Content of an event.
- * 
- */
-typedef union event_content_t {
-    struct packet mouse_packet; /*!< @brief Mouse packet from a mouse event. */
-    kbd_event_t kbd_state; /*!< @brief Keyboard state from a keyboard event. */
-    message_t uart_message; /*!< @brief Message from a serial port message event. */
-    void *no_content; /*!< @brief Set for events without content. */
-} event_content_t;
-
-/**
- * @brief Represents an event.
- * 
- */
-typedef struct event_t {
-    event_type_t type; /*!< @brief The type of the event. */
-    event_content_t content; /*!< @brief The content of the event. */
+typedef enum event_t {
+    MOUSE_EVENT = 0, /*!< Event from mouse. */
+    KEYBOARD_EVENT = 1, /*!< Event from keyboard. */
+    RTC_PERIODIC_INTERRUPT_EVENT = 2, /*!< Event from rtc periodic interrupts. */
+    RTC_ALARM_EVENT = 3, /*!< Event from rtc alarm. */
+    UART_RECEIVED_DATA_EVENT = 4, /*!< Event from serial port receiving data. */
+    UART_ERROR_EVENT = 5, /*!< Event from serial port error. */
+    TIMER_TICK_EVENT = 6 /*!< Event from timer interrupt. */
 } event_t;
 
 /**
- * @brief Resets all dispatcher bindings.
+ * @brief Initializes the dispatcher, creating an event queue.
  * 
  * @return Return 0 upon success and non-zero otherwise
  */
-int dispatcher_reset_bindings();
+int dispatcher_init();
+
+/**
+ * @brief Deletes all resources allocated to the dispatcher.
+ * 
+ */
+void dispatcher_exit();
 
 /**
  * @brief Binds the given buttons to the dispatcher.
@@ -82,112 +69,24 @@ int dispatcher_bind_text_boxes(size_t number_of_text_boxes, ...);
 int dispatcher_bind_canvas(bool is_to_bind);
 
 /**
- * @brief Initializes the dispatcher, creating an event queue.
+ * @brief Resets all dispatcher bindings.
  * 
  * @return Return 0 upon success and non-zero otherwise
  */
-int dispatcher_init();
+int dispatcher_reset_bindings();
 
 /**
- * @brief Deletes all resources allocated to the dispatcher.
- * 
- */
-void dispatcher_exit();
-
-/**
- * @brief Retrieves mouse packet and adds a mouse event to the event queue.
+ * @brief Adds an event to the event queue.
  * 
  * @return Return 0 upon success and non-zero otherwise
  */
-int dispatcher_queue_mouse_event();
-
-/**
- * @brief Retrieves keyboard state and adds a keyboard event to the event queue.
- * 
- * @return Return 0 upon success and non-zero otherwise
- */
-int dispatcher_queue_keyboard_event();
-
-/**
- * @brief Adds an rtc periodic interrupt event to the event queue.
- * 
- * @return Return 0 upon success and non-zero otherwise
- */
-int dispatcher_queue_rtc_periodic_interrupt_event();
-
-/**
- * @brief Adds an rtc alarm interrupt event to the event queue.
- * 
- * @return Return 0 upon success and non-zero otherwise
- */
-int dispatcher_queue_rtc_alarm_event();
-
-/**
- * @brief Adds a uart message event to the event queue with the given message as content.
- * 
- * @param message message that is the content of this event
- * @return Return 0 upon success and non-zero otherwise
- */
-int dispatcher_queue_uart_message_event(message_t message);
-
-/**
- * @brief Adds a timer interrupt event to the event queue.
- * 
- * @return Return 0 upon success and non-zero otherwise
- */
-int dispatcher_queue_timer_tick_event();
+int dispatcher_queue_event(event_t event);
 
 /**
  * @brief Dispatches all events currently in the event queue.
  * 
- * @return Return 0 upon success and non-zero otherwise
  */
-int dispatcher_dispatch_events();
-
-/**
- * @brief Dispatches a mouse packet from a mouse event.
- * 
- * @param p mouse packet
- * @return Return 0 upon success and non-zero otherwise 
- */
-int dispatch_mouse_packet(struct packet p);
-
-/**
- * @brief Dispatches a keyboard event.
- * 
- * @param kbd_event keyboard event
- * @return Return 0 upon success and non-zero otherwise 
- */
-int dispatch_keyboard_event(kbd_event_t kbd_event);
-
-/**
- * @brief Dispatches a rtc periodic interrupt.
- * 
- * @return Return 0 upon success and non-zero otherwise 
- */
-int dispatch_rtc_periodic_int();
-
-/**
- * @brief Dispatches a rtc alarm interrupt.
- * 
- * @return Return 0 upon success and non-zero otherwise 
- */
-int dispatch_rtc_alarm_int();
-
-/**
- * @brief Dispatches a uart message.
- * 
- * @param message message to dispatch
- * @return Return 0 upon success and non-zero otherwise 
- */
-int dispatch_uart_message(message_t message);
-
-/**
- * @brief Dispatches a timer interrupt.
- * 
- * @return Return 0 upon success and non-zero otherwise 
- */
-int dispatch_timer_tick();
+void dispatcher_dispatch_events();
 
 /**
  * @brief Draws the frame to the back buffer and flips the buffers.

@@ -39,6 +39,12 @@ void (mouse_ih)() {
             return;
         }
     }
+
+    if (mouse_is_packet_ready()) {
+        if (dispatcher_queue_event(MOUSE_EVENT) != OK) {
+            printf("Failed to queue mouse event\n");
+        }
+    }
 }
 
 bool mouse_is_packet_ready() {

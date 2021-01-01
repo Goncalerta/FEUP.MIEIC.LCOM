@@ -46,61 +46,6 @@ int main(int argc, char *argv[]) {
   return 0;
 }
 
-// Application dependent interrupt handlers
-
-static void application_dependent_mouse_ih() {
-    mouse_ih();
-                    
-    if (mouse_is_packet_ready()) {
-        if (dispatcher_queue_mouse_event() != OK) {
-            printf("Failed to queue mouse event\n");
-        }
-    }
-}
-
-static void application_dependent_keyboard_ih() {
-    kbc_ih();
-                    
-    if (kbd_is_scancode_ready()) {
-        if (dispatcher_queue_keyboard_event() != OK) {
-            printf("Failed to queue keyboard event\n");
-        } 
-    }
-}
-
-static void application_dependent_rtc_ih() {
-    rtc_ih();
-}
-
-static void application_dependent_com1_ih() {
-    com1_ih();
-
-    if (protocol_handle_received_bytes() != OK) {
-        printf("Error handling received uart bytes.\n");
-    }
-
-    if (uart_error_reading_message()) {
-        if (protocol_handle_error() != OK) {
-            printf("Failed to handle uart error.\n");
-        }
-    }
-}
-
-static void application_dependent_timer_ih() {
-    timer_int_handler();
-    if (protocol_tick() != OK) {
-        printf("Failed to handle protocol_tick.\n");
-    }
-
-    if (dispatcher_dispatch_events() != OK) {
-        printf("Error while dispatching events\n");
-    }
-
-    if (draw_frame() != OK) {
-        printf("Error while drawing frame\n");
-    }
-}
-
 int (proj_main_loop)(int argc, char *argv[]) {
     uint16_t mode = 0x118; // 1024x768
     enum xpm_image_type image_type = XPM_8_8_8;
@@ -193,19 +138,19 @@ int (proj_main_loop)(int argc, char *argv[]) {
             switch (_ENDPOINT_P(msg.m_source)) {
             case HARDWARE: /* hardware interrupt notification */				
                 if (msg.m_notify.interrupts & BIT(mouse_irq_set)) {
-                    application_dependent_mouse_ih();
+                    mouse_ih();
                 }
                 if (msg.m_notify.interrupts & BIT(kbd_irq_set)) {
-                    application_dependent_keyboard_ih();
+                    kbc_ih();
                 }
                 if (msg.m_notify.interrupts & BIT(rtc_irq_set)) {
-                    application_dependent_rtc_ih();
+                    rtc_ih();
                 }
                 if (msg.m_notify.interrupts & BIT(com1_irq_set)) {
-                    application_dependent_com1_ih();
+                    com1_ih();
                 }
                 if (msg.m_notify.interrupts & BIT(timer_irq_set)) {
-                    application_dependent_timer_ih();
+                    timer_int_handler();
                 }
                 break;
             default:
@@ -214,6 +159,9 @@ int (proj_main_loop)(int argc, char *argv[]) {
         } else { /* received a standard message, not a notification */
             /* no standard messages expected: do nothing */
         }
+
+        /* Now, do application dependent event handling */
+        dispatcher_dispatch_events();
     }
 
     // Exit program and unload assets

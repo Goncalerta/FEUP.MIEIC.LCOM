@@ -38,14 +38,15 @@ static int this_player_random_number = 0;
 static player_state_t other_player_state = NOT_READY;
 static int other_player_random_number = 0;
 
-int dispatcher_reset_bindings() {
-    if (dispatcher_bind_buttons(0) != OK)
-        return 1;
-    if (dispatcher_bind_text_boxes(0) != OK)
-        return 1;
-    if (dispatcher_bind_canvas(false) != OK)
+int dispatcher_init() {
+    if (new_queue(&events_to_handle, sizeof(event_t), EVENTS_TO_HANDLE_CAPACITY) != OK)
         return 1;
     return 0;
+}
+
+void dispatcher_exit() {
+    dispatcher_reset_bindings();
+    delete_queue(&events_to_handle);
 }
 
 int dispatcher_bind_buttons(size_t number_of_buttons, ...) {
@@ -104,164 +105,41 @@ int dispatcher_bind_canvas(bool is_to_bind) {
     return 0;
 }
 
-int dispatcher_init() {
-    if (new_queue(&events_to_handle, sizeof(event_t), EVENTS_TO_HANDLE_CAPACITY) != OK)
+int dispatcher_reset_bindings() {
+    if (dispatcher_bind_buttons(0) != OK)
+        return 1;
+    if (dispatcher_bind_text_boxes(0) != OK)
+        return 1;
+    if (dispatcher_bind_canvas(false) != OK)
         return 1;
     return 0;
 }
 
-void dispatcher_exit() {
-    dispatcher_reset_bindings();
+int dispatcher_queue_event(event_t event) {
+    if (queue_push(&events_to_handle, &event) != OK)
+        return 1;
     
-    // Queue must be manually emptied so that messages can be properly freed
-    while (!queue_is_empty(&events_to_handle)) {
-        event_t event;
-        if (queue_top(&events_to_handle, &event) != OK)
-            return;
-        if (queue_pop(&events_to_handle) != OK)
-            return;
-        if (event.type == UART_MESSAGE_EVENT) {
-            protocol_delete_message(&event.content.uart_message);
-        }
+    return 0;
+}
+
+static void dispatch_mouse_packet() {
+    struct packet p;
+    if (mouse_retrieve_packet(&p) != OK) {
+        printf("Failed to retrieve mouse packet\n");
+        return;
     }
 
-    delete_queue(&events_to_handle);
-}
-
-int dispatcher_queue_mouse_event() {
-    event_content_t content;
-
-    if (mouse_retrieve_packet(&content.mouse_packet) != OK)
-        return 1;
-
-    event_t event;
-    event.type = MOUSE_EVENT;
-    event.content = content;
-
-    if (queue_push(&events_to_handle, &event) != OK)
-        return 1;
-    
-    return 0;
-}
-
-int dispatcher_queue_keyboard_event() {
-    event_content_t content;
-
-    if (kbd_handle_scancode(&content.kbd_state) != OK)
-        return 1;
-
-    event_t event;
-    event.type = KEYBOARD_EVENT;
-    event.content = content;
-
-    if (queue_push(&events_to_handle, &event) != OK)
-        return 1;
-    
-    return 0;
-}
-
-int dispatcher_queue_rtc_periodic_interrupt_event() {
-    event_content_t content;
-    content.no_content = NULL;
-
-    event_t event;
-    event.type = RTC_PERIODIC_INTERRUPT_EVENT;
-    event.content = content;
-
-    if (queue_push(&events_to_handle, &event) != OK)
-        return 1;
-    return 0;
-}
-
-int dispatcher_queue_rtc_alarm_event() {
-    event_content_t content;
-    content.no_content = NULL;
-    
-    event_t event;
-    event.type = RTC_ALARM_EVENT;
-    event.content = content;
-
-    if (queue_push(&events_to_handle, &event) != OK)
-        return 1;
-    return 0;
-}
-
-int dispatcher_queue_uart_message_event(message_t message) {
-    event_content_t content;
-    content.uart_message = message;
-
-    event_t event;
-    event.type = UART_MESSAGE_EVENT;
-    event.content = content;
-
-    if (queue_push(&events_to_handle, &event) != OK)
-        return 1;
-    return 0;
-}
-
-int dispatcher_queue_timer_tick_event() {
-    event_content_t content;
-    content.no_content = NULL;
-    
-    event_t event;
-    event.type = TIMER_TICK_EVENT;
-    event.content = content;
-
-    if (queue_push(&events_to_handle, &event) != OK)
-        return 1;
-    return 0;
-}
-
-int dispatcher_dispatch_events() {
-    while (!queue_is_empty(&events_to_handle)) {
-        event_t event;
-        if (queue_top(&events_to_handle, &event) != OK)
-            return 1;
-        if (queue_pop(&events_to_handle) != OK)
-            return 1;
-        
-        switch (event.type) {
-            case MOUSE_EVENT:
-                if (dispatch_mouse_packet(event.content.mouse_packet) != OK)
-                    return 1;
-                break;
-            case KEYBOARD_EVENT:
-                if (dispatch_keyboard_event(event.content.kbd_state) != OK)
-                    return 1;
-                break;
-            case RTC_PERIODIC_INTERRUPT_EVENT:
-                if (dispatch_rtc_periodic_int() != OK)
-                    return 1;
-                break;
-            case RTC_ALARM_EVENT:
-                if (dispatch_rtc_alarm_int() != OK)
-                    return 1;
-                break;
-            case UART_MESSAGE_EVENT:
-                if (dispatch_uart_message(event.content.uart_message) != OK)
-                    return 1;
-                break;
-            case TIMER_TICK_EVENT:
-                if (dispatch_timer_tick() != OK)
-                    return 1;
-                break;
-            default:
-                return 1;
-        }
+    if (p.x_ov || p.y_ov) {
+        printf("Mouse displacement overflow\n");
+        return;
     }
 
-    return 0;
-}
-
-int dispatch_mouse_packet(struct packet p) {
-    if (p.x_ov || p.y_ov)
-        return 1;
     cursor_move(p.delta_x, p.delta_y);
     cursor_update_buttons(p.lb, p.rb);
-    if (event_update_cursor_state() != OK)
-        return 1;
-
-    return 0;
+    
+    if (event_update_cursor_state() != OK) {
+        printf("Failed to update cursor state\n");
+    }
 }
 
 int event_update_cursor_state() {
@@ -322,74 +200,111 @@ int event_update_cursor_state() {
     return 0;
 }
 
-int dispatch_keyboard_event(kbd_event_t kbd_event) {
-    if (kbd_event.key == ESC && !kbd_event.is_ctrl_pressed) {
-        if (menu_get_state() == PAUSE_MENU) {
-            if (game_resume() != OK)
-                return 1;
-            return 0;
-        } else if (menu_get_state() == GAME) {
-            if (menu_set_pause_menu() != OK) 
-                return 1;
-            return 0;
-        }
+static void dispatch_keyboard_event() {
+    kbd_event_t kbd_event;
+    if (kbd_handle_scancode(&kbd_event) != OK) {
+        printf("Failed to handle keyboard scancode\n");
+        return;
+    }
+
+    if (menu_react_kbd(kbd_event) != OK) {
+        printf("Failed to handle keyboard event in menu\n");
     }
     
     for (size_t i = 0; i < num_listening_text_boxes; i++) {
         text_box_t *text_box = listening_text_boxes[i];
         if (text_box_react_kbd(text_box, kbd_event) != OK) {
-            return 1;
+            printf("Failed to handle keyboard event in text box\n");
         }
     }
 
     if (bound_canvas) {
-        if (canvas_react_kbd(kbd_event) != OK)
-            return 1;
+        if (canvas_react_kbd(kbd_event) != OK) {
+            printf("Failed to handle keyboard event in canvas\n");
+        }
     }
-
-    return 0;
 }
 
-int dispatch_rtc_periodic_int() {
+static void dispatch_rtc_periodic_int() {
     if (menu_get_state() == GAME || menu_get_state() == PAUSE_MENU) {
-        if (game_rtc_pi_tick() != OK)
-            return 1;
+        if (game_rtc_pi_tick() != OK) {
+            printf("Failed to handle rtc periodic interrupt in game\n");
+        }
     }
-    return 0;
 }
 
-int dispatch_rtc_alarm_int() {
+static void dispatch_rtc_alarm_int() {
     if (menu_get_state() == GAME || menu_get_state() == PAUSE_MENU) {
-        if (game_rtc_alarm() != OK)
-            return 1;
+        if (game_rtc_alarm() != OK) {
+            printf("Failed to handle alarm interrupt in game\n");
+        }
     } else if (menu_get_state() == DRAWER_NEW_ROUND_SCREEN) {
-        if (rtc_disable_int(ALARM_INTERRUPT) != OK)
-            return 1;
-        if (protocol_send_start_round() != OK)
-            return 1;
-        if (event_start_round() != OK)
-            return 1;
+        if (rtc_disable_int(ALARM_INTERRUPT) != OK) {
+            printf("Failed to dispatch new round alarm\n");
+        }
+        if (protocol_send_start_round() != OK) {
+            printf("Failed to dispatch new round alarm\n");
+        }
+        if (event_start_round() != OK) {
+            printf("Failed to dispatch new round alarm\n");
+        }
     }
-    
-    return 0;
 }
 
-int dispatch_uart_message(message_t message) {
-    // Protocol handler will take care of deleting the message
-    if (protocol_handle_message_event(&message) != OK)
-        return 1;
-    return 0;
+static void dispatch_uart_received_data() {
+    if (protocol_handle_received_bytes() != OK) {
+        printf("Error handling received uart bytes\n");
+    }
 }
 
-int dispatch_timer_tick() {
+static void dispatch_uart_error() {
+    if (protocol_handle_error() != OK) {
+        printf("Failed to handle uart error\n");
+    }
+}
+
+static void dispatch_timer_tick() {
+    if (protocol_tick() != OK) {
+        printf("Failed to handle protocol tick\n");
+    }
+
     if (menu_get_state() == GAME || menu_get_state() == PAUSE_MENU) {
-        if (game_timer_tick() != OK)
-            return 1;
+        if (game_timer_tick() != OK) {
+            printf("Error while updating game ticks\n");
+        }
     }
 
-    
+    if (draw_frame() != OK) {
+        printf("Error while drawing frame\n");
+    }
+}
 
-    return 0;
+typedef void (*event_dispatcher)();
+#define NUMBER_OF_DISPATCHERS 7
+static const event_dispatcher dispatchers[7] = {
+    dispatch_mouse_packet,
+    dispatch_keyboard_event,
+    dispatch_rtc_periodic_int,
+    dispatch_rtc_alarm_int,
+    dispatch_uart_received_data,
+    dispatch_uart_error,
+    dispatch_timer_tick,
+};
+
+void dispatcher_dispatch_events() {
+    while (!queue_is_empty(&events_to_handle)) {
+        event_t event;
+        if (queue_top(&events_to_handle, &event) != OK) {
+            printf("Failed to retrieve queued event\n");
+            continue;
+        }
+        if (queue_pop(&events_to_handle) != OK) {
+            printf("Failed to retrieve queued event\n");
+            continue;
+        }
+        
+        dispatchers[event]();
+    }
 }
 
 int draw_frame() {

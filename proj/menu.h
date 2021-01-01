@@ -3,6 +3,7 @@
 
 #include <lcom/lcf.h>
 #include "game.h"
+#include "keyboard.h"
 
 /** @file 
  * @brief File dedicated to the interaction with the menu of the game as well as other program screens.
@@ -49,6 +50,14 @@ int menu_init(enum xpm_image_type type);
  * 
  */
 void menu_exit();
+
+/**
+ * @brief Updates the menu according to a keyboard event.
+ * 
+ * @param kbd_event keyboard event
+ * @return Return 0 upon success and non-zero otherwise
+ */
+int menu_react_kbd(kbd_event_t kbd_event);
 
 /**
  * @brief Draws the menu according to its state to the back buffer.
