@@ -1,0 +1,4 @@
+<map id="kbd_is_make_code" name="kbd_is_make_code">
+<area shape="rect" id="node1" title="Checks if a given scancode is a make code." alt="" coords="204,5,339,32"/>
+<area shape="rect" id="node2" href="$group__keyboard.html#ga4d4099244ffb934502e579e9ffb8f316" title="Transforms a scancode into organized information about the keys pressed in the form of kbd_event_t." alt="" coords="5,5,156,32"/>
+</map>

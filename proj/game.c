@@ -124,8 +124,8 @@ static xpm_animation_t clock_frames;
 
 static game_t *game = NULL;
 
-void get_random_word(const char **word) {
-    *word = word_list[rand() % WORD_LIST_SIZE];
+const char *get_random_word() {
+    return word_list[rand() % WORD_LIST_SIZE];
 }
 
 int game_load_assets(enum xpm_image_type type) {
@@ -549,6 +549,9 @@ int game_draw() {
     if (game == NULL || game->round == NULL)
         return 1;
 
+    if (canvas_draw_frame(0) != OK)
+        return 1;
+
     if (game_draw_bar() != OK)
         return 1;
 
@@ -783,10 +786,6 @@ int drawer_change_selected_thickness() {
 }
 
 uint32_t drawer_get_selected_color() {
-    // TODO isn't this verification necessary?
-    if (game == NULL || game->round == NULL || game->round->role != DRAWER)
-        return 1;
-    // ^^
     drawer_t *drawer = game->round->attr.drawer;
 
     if (drawer->is_pencil_primary)
@@ -796,10 +795,6 @@ uint32_t drawer_get_selected_color() {
 }
 
 uint16_t drawer_get_selected_thickness() {
-    // TODO isn't this verification necessary?
-    if (game == NULL || game->round == NULL || game->round->role != DRAWER)
-        return 1;
-    // ^^
     drawer_t *drawer = game->round->attr.drawer;
     
     return valid_thickness[drawer->selected_thickness];

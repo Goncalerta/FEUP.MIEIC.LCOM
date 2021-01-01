@@ -1,0 +1,4 @@
+<map id="game_guess_word" name="game_guess_word">
+<area shape="rect" id="node1" title="Adds a word guess. And reacts according to weather it is correct." alt="" coords="181,5,312,32"/>
+<area shape="rect" id="node2" href="$group__dispatcher.html#ga3429571bafb33af98f7e8b90e2c4b4b4" title="Tries to guess the word and notifies the other player." alt="" coords="5,5,133,32"/>
+</map>

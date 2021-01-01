@@ -1,0 +1,4 @@
+<map id="rtc_flush" name="rtc_flush">
+<area shape="rect" id="node1" title="Flushes RTC older interrupt notifications by reading the register C." alt="" coords="5,5,76,32"/>
+<area shape="rect" id="node2" href="$group__rtc.html#gaeb22f43773d6e29365a07f7f847dfbb9" title="Reads data from a RTC register." alt="" coords="124,5,243,32"/>
+</map>

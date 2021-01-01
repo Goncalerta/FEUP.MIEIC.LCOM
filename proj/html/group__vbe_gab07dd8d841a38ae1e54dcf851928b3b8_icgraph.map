@@ -1,0 +1,6 @@
+<map id="vbe_set_display_start" name="vbe_set_display_start">
+<area shape="rect" id="node1" title="VBE function 0x07 SET DISPLAY START." alt="" coords="464,5,611,32"/>
+<area shape="rect" id="node2" href="$group__video__gr.html#gaf34ffe7f8977e7b63e5ad04007cdd4ab" title="Flips the front buffer with the back buffer." alt="" coords="324,5,416,32"/>
+<area shape="rect" id="node3" href="$group__dispatcher.html#ga1265a5e2843f2b1c45ad05ae61de7000" title="Draws the frame to the back buffer and flips the buffers." alt="" coords="188,5,276,32"/>
+<area shape="rect" id="node4" href="$group__dispatcher.html#ga0a68e937b31744d0f19e7524b2e9ad59" title="Dispatches a timer interrupt." alt="" coords="5,5,140,32"/>
+</map>

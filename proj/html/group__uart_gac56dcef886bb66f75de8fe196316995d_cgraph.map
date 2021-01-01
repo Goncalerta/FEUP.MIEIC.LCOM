@@ -1,0 +1,4 @@
+<map id="uart_config_params" name="uart_config_params">
+<area shape="rect" id="node1" title="Configures the parameters of the serial port." alt="" coords="5,5,140,32"/>
+<area shape="rect" id="node2" href="$group__uart.html#ga1975f8b129ad7fe81b0199dadabc703a" title="Specifies the bit rate for the serial port." alt="" coords="188,5,307,32"/>
+</map>

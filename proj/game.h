@@ -3,10 +3,14 @@
 
 #include <lcom/lcf.h>
 
+/** @file 
+ * @brief File dedicated to the game logic.
+ */
+
 /** @defgroup game game
  * @{
  *
- *  @brief Module dedicated to the game.
+ *  @brief Module dedicated to the game logic.
  */
 
 #define GAME_BAR_HEIGHT 150 /**< @brief Game bar height */
@@ -16,8 +20,8 @@
  * 
  */
 typedef enum role_t {
-    DRAWER, /*!< Player is the drawer. */
-    GUESSER /*!< Player is the guesser. */
+    DRAWER, /*!< Player is the drawer: must draw a word. */
+    GUESSER /*!< Player is the guesser: must guess the word drawn. */
 } role_t;
 
 /**
@@ -98,21 +102,23 @@ int game_rtc_pi_tick();
 int game_timer_tick();
 
 /**
- * @brief Draws the game to the back buffer. // TODO this is so generic... :/
+ * @brief Draws the game screen to the back buffer.
  * 
  * @return Return 0 upon success and non-zero otherwise
  */
 int game_draw();
 
 /**
- * @brief Gives a clue to the word to guess.
+ * @brief Reveals another character in the word clue and notifies the other player.
+ * 
+ * Also sets the time for the next clue to be revealed.
  * 
  * @return Return 0 upon success and non-zero otherwise
  */
-int game_give_clue(); // TODO this function is only called inside game.c
+int game_give_clue();
 
 /**
- * @brief Gives a clue to the word to guess in the given position.
+ * @brief Reveals a character in the word clue at the given position.
  * 
  * @param pos position to give the clue at
  * @return Return 0 upon success and non-zero otherwise
@@ -129,7 +135,10 @@ int game_give_clue_at(size_t pos);
 int game_round_over(uint32_t current_score, bool win);
 
 /**
- * @brief Guesses the word to guess with a given guess.
+ * @brief Adds a word guess. And reacts according to weather it is correct.
+ * 
+ * The correct guess means the round is won. The wrong guess gives a time
+ * penalty of 5 seconds.
  * 
  * @param guess address of memory of the guess
  * @return Return 0 upon success and non-zero otherwise
@@ -137,18 +146,18 @@ int game_round_over(uint32_t current_score, bool win);
 int game_guess_word(char *guess);
 
 /**
- * @brief Ends the game due to the other player.
+ * @brief Reacts to the game over notification of another player.
  * 
  * @return Return 0 upon success and non-zero otherwise
  */
 int game_other_player_game_over();
 
 /**
- * @brief Gets a random word.
+ * @brief Gets a random word from the internal word list.
  * 
- * @param word address of memory to be initialized with the address of memory of the random word
+ * @return Return a random word from the internal word list
  */
-void get_random_word(const char **word);
+const char *get_random_word();
 
 /**
  * @brief Gets this player role.

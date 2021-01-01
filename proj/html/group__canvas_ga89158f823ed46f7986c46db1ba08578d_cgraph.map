@@ -1,0 +1,5 @@
+<map id="canvas_init" name="canvas_init">
+<area shape="rect" id="node1" title="Initiates the canvas." alt="" coords="5,31,92,57"/>
+<area shape="rect" id="node2" href="$group__graphics.html#ga1c6f059671dcd7284a5e4edda52ce870" title="Fills the given buffer with the given color." alt="" coords="169,5,268,32"/>
+<area shape="rect" id="node3" href="$group__video__gr.html#ga14959b59f7846393c15b57d8d3d6f1d6" title="Gets the number of bytes used to represent a single pixel." alt="" coords="140,56,297,83"/>
+</map>

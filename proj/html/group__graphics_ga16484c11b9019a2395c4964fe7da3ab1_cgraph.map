@@ -1,0 +1,5 @@
+<map id="vb_draw_rectangle" name="vb_draw_rectangle">
+<area shape="rect" id="node1" title="Draws a rectangle in the given buffer in the given coordinates with the given height and width with t..." alt="" coords="5,5,133,32"/>
+<area shape="rect" id="node2" href="$group__graphics.html#ga58454ceb710c0fca6b21c049f0cac3a6" title="Draws a horizontal line in the given buffer in the given coordinates with the given color." alt="" coords="181,5,284,32"/>
+<area shape="rect" id="node3" href="$group__graphics.html#ga257b5dac975604f70651e8764ad8acd8" title="Draws a pixel in the given buffer in the given coordinates with the given color." alt="" coords="332,5,435,32"/>
+</map>

@@ -3,6 +3,10 @@
 
 #include <lcom/lcf.h>
 
+/** @file 
+ * @brief File dedicated to the interaction with the PS/2 mouse.
+ */
+
 /** @defgroup mouse mouse
  * @{
  *

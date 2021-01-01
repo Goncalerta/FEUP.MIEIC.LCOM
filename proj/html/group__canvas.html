@@ -89,9 +89,8 @@ Typedefs</h2></td></tr>
 typedef enum <a class="el" href="group__canvas.html#gaeef150bc24dd4e0bc462d2b68ffecefa">canvas_state_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__canvas.html#gaf3672146b6f50c443926f9141015175a">canvas_state_t</a></td></tr>
 <tr class="memdesc:gaf3672146b6f50c443926f9141015175a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enumerated type for specifying the state of the canvas. <br /></td></tr>
 <tr class="separator:gaf3672146b6f50c443926f9141015175a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga79f3abe82b4b5b1269a7ff210d4bb372"><td class="memItemLeft" align="right" valign="top"><a id="ga79f3abe82b4b5b1269a7ff210d4bb372"></a>
-typedef struct <a class="el" href="structstroke__atom.html">stroke_atom</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__canvas.html#ga79f3abe82b4b5b1269a7ff210d4bb372">stroke_atom</a></td></tr>
-<tr class="memdesc:ga79f3abe82b4b5b1269a7ff210d4bb372"><td class="mdescLeft">&#160;</td><td class="mdescRight">Atom of a canvas stroke. <br /></td></tr>
+<tr class="memitem:ga79f3abe82b4b5b1269a7ff210d4bb372"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structstroke__atom.html">stroke_atom</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__canvas.html#ga79f3abe82b4b5b1269a7ff210d4bb372">stroke_atom</a></td></tr>
+<tr class="memdesc:ga79f3abe82b4b5b1269a7ff210d4bb372"><td class="mdescLeft">&#160;</td><td class="mdescRight">Atom of a canvas stroke.  <a href="group__canvas.html#ga79f3abe82b4b5b1269a7ff210d4bb372">More...</a><br /></td></tr>
 <tr class="separator:ga79f3abe82b4b5b1269a7ff210d4bb372"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga23a48e20fd2c667669e3f88040dc497c"><td class="memItemLeft" align="right" valign="top"><a id="ga23a48e20fd2c667669e3f88040dc497c"></a>
 typedef struct <a class="el" href="structstroke.html">stroke</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__canvas.html#ga23a48e20fd2c667669e3f88040dc497c">stroke</a></td></tr>
@@ -114,7 +113,7 @@ Functions</h2></td></tr>
 <tr class="memdesc:ga6d8a297adb6922ba952b632044aee447"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the canvas is initialized.  <a href="group__canvas.html#ga6d8a297adb6922ba952b632044aee447">More...</a><br /></td></tr>
 <tr class="separator:ga6d8a297adb6922ba952b632044aee447"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga89158f823ed46f7986c46db1ba08578d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__canvas.html#ga89158f823ed46f7986c46db1ba08578d">canvas_init</a> (uint16_t width, uint16_t height, bool enabled)</td></tr>
-<tr class="memdesc:ga89158f823ed46f7986c46db1ba08578d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initiates the canvas by setting up its initial content.  <a href="group__canvas.html#ga89158f823ed46f7986c46db1ba08578d">More...</a><br /></td></tr>
+<tr class="memdesc:ga89158f823ed46f7986c46db1ba08578d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initiates the canvas.  <a href="group__canvas.html#ga89158f823ed46f7986c46db1ba08578d">More...</a><br /></td></tr>
 <tr class="separator:ga89158f823ed46f7986c46db1ba08578d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga70d19351c72c49f89e040a1fb90897c3"><td class="memItemLeft" align="right" valign="top"><a id="ga70d19351c72c49f89e040a1fb90897c3"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__canvas.html#ga70d19351c72c49f89e040a1fb90897c3">canvas_exit</a> ()</td></tr>
@@ -128,7 +127,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grou
 <tr class="memdesc:ga5b31467d787bcd9102fc76dff6aaa4ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clears all the canvas strokes. <br /></td></tr>
 <tr class="separator:ga5b31467d787bcd9102fc76dff6aaa4ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaff7e5e6e51cce443e068e88722d00bbb"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__canvas.html#gaff7e5e6e51cce443e068e88722d00bbb">canvas_is_enabled</a> ()</td></tr>
-<tr class="memdesc:gaff7e5e6e51cce443e068e88722d00bbb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if canvas is enabled.  <a href="group__canvas.html#gaff7e5e6e51cce443e068e88722d00bbb">More...</a><br /></td></tr>
+<tr class="memdesc:gaff7e5e6e51cce443e068e88722d00bbb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if canvas is enabled, that is, if it allows the user to draw.  <a href="group__canvas.html#gaff7e5e6e51cce443e068e88722d00bbb">More...</a><br /></td></tr>
 <tr class="separator:gaff7e5e6e51cce443e068e88722d00bbb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga79691af660bfc7d635d4727f2cbfd59a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__canvas.html#ga79691af660bfc7d635d4727f2cbfd59a">canvas_new_stroke</a> (uint32_t color, uint16_t thickness)</td></tr>
 <tr class="memdesc:ga79691af660bfc7d635d4727f2cbfd59a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Starts a new stroke in the canvas.  <a href="group__canvas.html#ga79691af660bfc7d635d4727f2cbfd59a">More...</a><br /></td></tr>
@@ -137,10 +136,10 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grou
 <tr class="memdesc:ga9635fd19e44c814f55f50eb213d6b6b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a new atom to the current stroke.  <a href="group__canvas.html#ga9635fd19e44c814f55f50eb213d6b6b3">More...</a><br /></td></tr>
 <tr class="separator:ga9635fd19e44c814f55f50eb213d6b6b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga0eb66eb3bbeb104a7de7a880c6cd5d48"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__canvas.html#ga0eb66eb3bbeb104a7de7a880c6cd5d48">canvas_undo_stroke</a> ()</td></tr>
-<tr class="memdesc:ga0eb66eb3bbeb104a7de7a880c6cd5d48"><td class="mdescLeft">&#160;</td><td class="mdescRight">Undos a stroke. // TODO better description?  <a href="group__canvas.html#ga0eb66eb3bbeb104a7de7a880c6cd5d48">More...</a><br /></td></tr>
+<tr class="memdesc:ga0eb66eb3bbeb104a7de7a880c6cd5d48"><td class="mdescLeft">&#160;</td><td class="mdescRight">Undoes a stroke.  <a href="group__canvas.html#ga0eb66eb3bbeb104a7de7a880c6cd5d48">More...</a><br /></td></tr>
 <tr class="separator:ga0eb66eb3bbeb104a7de7a880c6cd5d48"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga452896dd62b95f6f577aa40d01771440"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__canvas.html#ga452896dd62b95f6f577aa40d01771440">canvas_redo_stroke</a> ()</td></tr>
-<tr class="memdesc:ga452896dd62b95f6f577aa40d01771440"><td class="mdescLeft">&#160;</td><td class="mdescRight">Redos a stroke.  <a href="group__canvas.html#ga452896dd62b95f6f577aa40d01771440">More...</a><br /></td></tr>
+<tr class="memdesc:ga452896dd62b95f6f577aa40d01771440"><td class="mdescLeft">&#160;</td><td class="mdescRight">Redoes a stroke.  <a href="group__canvas.html#ga452896dd62b95f6f577aa40d01771440">More...</a><br /></td></tr>
 <tr class="separator:ga452896dd62b95f6f577aa40d01771440"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga4b7509d83889d7a4a67e0d72e6f2e096"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__canvas.html#ga4b7509d83889d7a4a67e0d72e6f2e096">canvas_is_hovering</a> (uint16_t x, uint16_t y)</td></tr>
 <tr class="memdesc:ga4b7509d83889d7a4a67e0d72e6f2e096"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the given coordinates are inside the limits of the canvas.  <a href="group__canvas.html#ga4b7509d83889d7a4a67e0d72e6f2e096">More...</a><br /></td></tr>
@@ -157,6 +156,24 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grou
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p>Module dedicated to the canvas used to draw. </p>
+<h2 class="groupheader">Typedef Documentation</h2>
+<a id="ga79f3abe82b4b5b1269a7ff210d4bb372"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga79f3abe82b4b5b1269a7ff210d4bb372">&#9670;&nbsp;</a></span>stroke_atom</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef struct <a class="el" href="structstroke__atom.html">stroke_atom</a> <a class="el" href="structstroke__atom.html">stroke_atom</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Atom of a canvas stroke. </p>
+<p>An array of atoms form the set of positions the mouse went through in a single stroke. Each two positions must be connected by a line. </p>
+
+</div>
+</div>
 <h2 class="groupheader">Enumeration Type Documentation</h2>
 <a id="gaeef150bc24dd4e0bc462d2b68ffecefa"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#gaeef150bc24dd4e0bc462d2b68ffecefa">&#9670;&nbsp;</a></span>canvas_state_t</h2>
@@ -202,6 +219,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grou
 </div><div class="memdoc">
 
 <p>Draws the canvas to the back buffer. </p>
+<p>The canvas is assumed to have the same width as the back buffer for performance reasons. It is a valid assumption for our project and avoids mouse delays in one of our computers.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">y</td><td>y coordinate of the back buffer to start drawing </td></tr>
@@ -213,11 +231,23 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grou
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="group__canvas_ga7212eaf58fd2e7ff08ae401d340d51cd_cgraph.png" border="0" usemap="#agroup__canvas_ga7212eaf58fd2e7ff08ae401d340d51cd_cgraph" alt=""/></div>
+<map name="group__canvas_ga7212eaf58fd2e7ff08ae401d340d51cd_cgraph" id="group__canvas_ga7212eaf58fd2e7ff08ae401d340d51cd_cgraph">
+<area shape="rect" title="Draws the canvas to the back buffer." alt="" coords="5,56,140,83"/>
+<area shape="rect" href="group__video__gr.html#gaecb0fe68de84fcbe553f77d62b37c69b" title="Gets the back buffer." alt="" coords="201,5,333,32"/>
+<area shape="rect" href="group__video__gr.html#ga14959b59f7846393c15b57d8d3d6f1d6" title="Gets the number of bytes used to represent a single pixel." alt="" coords="188,56,345,83"/>
+<area shape="rect" href="group__video__gr.html#ga03e56e930917ca4f15ea488838d513a8" title="Gets the horizontal resolution of the buffer." alt="" coords="221,107,312,133"/>
+</map>
 </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="group__canvas_ga7212eaf58fd2e7ff08ae401d340d51cd_icgraph.png" border="0" usemap="#agroup__canvas_ga7212eaf58fd2e7ff08ae401d340d51cd_icgraph" alt=""/></div>
+<map name="group__canvas_ga7212eaf58fd2e7ff08ae401d340d51cd_icgraph" id="group__canvas_ga7212eaf58fd2e7ff08ae401d340d51cd_icgraph">
+<area shape="rect" title="Draws the canvas to the back buffer." alt="" coords="460,5,595,32"/>
+<area shape="rect" href="group__game.html#ga656ca85eff33877022fd939d29f23822" title="Draws the game screen to the back buffer." alt="" coords="324,5,412,32"/>
+<area shape="rect" href="group__dispatcher.html#ga1265a5e2843f2b1c45ad05ae61de7000" title="Draws the frame to the back buffer and flips the buffers." alt="" coords="188,5,276,32"/>
+<area shape="rect" href="group__dispatcher.html#ga0a68e937b31744d0f19e7524b2e9ad59" title="Dispatches a timer interrupt." alt="" coords="5,5,140,32"/>
+</map>
 </div>
 
 </div>
@@ -243,6 +273,29 @@ Here is the caller graph for this function:</div>
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="group__canvas_ga2f87deffc6dca6f0ee25d5cd1c3bdd40_icgraph.png" border="0" usemap="#agroup__canvas_ga2f87deffc6dca6f0ee25d5cd1c3bdd40_icgraph" alt=""/></div>
+<map name="group__canvas_ga2f87deffc6dca6f0ee25d5cd1c3bdd40_icgraph" id="agroup__canvas_ga2f87deffc6dca6f0ee25d5cd1c3bdd40_icgraph">
+<area shape="rect" title="Gets the current canvas state." alt="" coords="1047,227,1169,254"/>
+<area shape="rect" href="group__dispatcher.html#ga1870958649b46017847735537a5701e1" title="Updates the cursor state and updates the game according to it." alt="" coords="857,220,999,261"/>
+<area shape="rect" href="group__dispatcher.html#ga4256f77332aee43a38ecada70ef1e418" title="Dispatches a mouse packet from a mouse event." alt="" coords="621,34,783,61"/>
+<area shape="rect" href="group__game.html#ga52118602811d7516e865c66a7410fd58" title="Resumes the game." alt="" coords="650,253,754,279"/>
+<area shape="rect" href="group__menu.html#ga5ed66b2ad288641ccbb969f784a64351" title="Sets the menu to awaiting other player menu." alt="" coords="595,393,809,419"/>
+<area shape="rect" href="group__menu.html#ga6331f4f3fee92d6495fd79aa17f59777" title="Sets the menu to the game over screen." alt="" coords="389,5,537,47"/>
+<area shape="rect" href="group__menu.html#ga6c442e5329ddf932b74a253c15665d75" title="Sets the menu to main menu." alt="" coords="625,329,779,355"/>
+<area shape="rect" href="group__menu.html#ga0b4d8c6b87adac99529e3dce59857aaa" title="Sets the menu to new round screen according to the given player role." alt="" coords="628,136,776,177"/>
+<area shape="rect" href="group__menu.html#gaaf5a9953d8b982736cf01d87adcb3b14" title="Sets the menu to the other player left screen." alt="" coords="623,444,781,485"/>
+<area shape="rect" href="group__menu.html#ga2471e39c56761768b9ceabdd4d5e732f" title="Sets the menu to pause menu." alt="" coords="622,202,782,229"/>
+<area shape="rect" href="group__dispatcher.html#gaeefd35acea05833fa9d829f99e2ed6ca" title="Dispatches a keyboard event." alt="" coords="379,202,547,229"/>
+<area shape="rect" href="group__game.html#gad7c180906d7acb4776f4db147f289d7c" title="Starts the already created round." alt="" coords="399,253,526,279"/>
+<area shape="rect" href="group__menu.html#gafae9ccfd6e7de562283d6ffc8c3cf066" title="Loads the xpm images of the menu." alt="" coords="229,354,308,381"/>
+<area shape="rect" href="group__dispatcher.html#ga00f3579aee6fd77454373ac309f39675" title="Starts the round." alt="" coords="207,209,331,235"/>
+<area shape="rect" href="group__dispatcher.html#ga2607daafa4b66e729b8aa95ba97f1984" title="Dispatches a rtc alarm interrupt." alt="" coords="5,122,159,149"/>
+<area shape="rect" href="group__dispatcher.html#gaeaf290f8252a2b923005262498513787" title="Goes into the &quot;Awaiting other player...&quot; screen and notifies the other player." alt="" coords="393,405,533,431"/>
+<area shape="rect" href="group__game.html#ga3f61372930dd958f7499a110ce2bd7d6" title="Updates the game due to a rtc alarm interrupt." alt="" coords="211,78,326,105"/>
+<area shape="rect" href="group__dispatcher.html#ga0e52394a395110749bc8ce3251ee503c" title="Leaves the game back to the main menu and notifies the other player." alt="" coords="399,354,526,381"/>
+<area shape="rect" href="group__dispatcher.html#gabf03a39eb157e349de01d6a6cb7fa196" title="Starts a new round as DRAWER (role_t)." alt="" coords="391,71,534,112"/>
+<area shape="rect" href="group__dispatcher.html#ga0b13ea13708e1b05cd87fecebe747065" title="Starts a new round as GUESSER (role_t)." alt="" coords="391,136,534,177"/>
+<area shape="rect" href="group__dispatcher.html#ga478271b5d6d73f56b8c7c24d7be10cfd" title="Reacts to the event that the other player left the game." alt="" coords="397,456,528,497"/>
+</map>
 </div>
 
 </div>
@@ -279,12 +332,12 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Initiates the canvas by setting up its initial content. </p>
+<p>Initiates the canvas. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">width</td><td>canvas width </td></tr>
     <tr><td class="paramname">height</td><td>canvas height </td></tr>
-    <tr><td class="paramname">enabled</td><td>is the canvas enabled </td></tr>
+    <tr><td class="paramname">enabled</td><td>whether the canvas allows the user to draw </td></tr>
   </table>
   </dd>
 </dl>
@@ -293,6 +346,21 @@ Here is the caller graph for this function:</div>
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="group__canvas_ga89158f823ed46f7986c46db1ba08578d_cgraph.png" border="0" usemap="#agroup__canvas_ga89158f823ed46f7986c46db1ba08578d_cgraph" alt=""/></div>
+<map name="group__canvas_ga89158f823ed46f7986c46db1ba08578d_cgraph" id="group__canvas_ga89158f823ed46f7986c46db1ba08578d_cgraph">
+<area shape="rect" title="Initiates the canvas." alt="" coords="5,31,92,57"/>
+<area shape="rect" href="group__graphics.html#ga1c6f059671dcd7284a5e4edda52ce870" title="Fills the given buffer with the given color." alt="" coords="169,5,268,32"/>
+<area shape="rect" href="group__video__gr.html#ga14959b59f7846393c15b57d8d3d6f1d6" title="Gets the number of bytes used to represent a single pixel." alt="" coords="140,56,297,83"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__canvas_ga89158f823ed46f7986c46db1ba08578d_icgraph.png" border="0" usemap="#agroup__canvas_ga89158f823ed46f7986c46db1ba08578d_icgraph" alt=""/></div>
+<map name="group__canvas_ga89158f823ed46f7986c46db1ba08578d_icgraph" id="agroup__canvas_ga89158f823ed46f7986c46db1ba08578d_icgraph">
+<area shape="rect" title="Initiates the canvas." alt="" coords="379,5,465,32"/>
+<area shape="rect" href="group__dispatcher.html#ga00f3579aee6fd77454373ac309f39675" title="Starts the round." alt="" coords="207,5,331,32"/>
+<area shape="rect" href="group__dispatcher.html#ga2607daafa4b66e729b8aa95ba97f1984" title="Dispatches a rtc alarm interrupt." alt="" coords="5,5,159,32"/>
+</map>
 </div>
 
 </div>
@@ -312,12 +380,35 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Checks if canvas is enabled. </p>
+<p>Checks if canvas is enabled, that is, if it allows the user to draw. </p>
 <dl class="section return"><dt>Returns</dt><dd>Return true if canvas is enabled and false otherwise </dd></dl>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="group__canvas_gaff7e5e6e51cce443e068e88722d00bbb_icgraph.png" border="0" usemap="#agroup__canvas_gaff7e5e6e51cce443e068e88722d00bbb_icgraph" alt=""/></div>
+<map name="group__canvas_gaff7e5e6e51cce443e068e88722d00bbb_icgraph" id="agroup__canvas_gaff7e5e6e51cce443e068e88722d00bbb_icgraph">
+<area shape="rect" title="Checks if canvas is enabled, that is, if it allows the user to draw." alt="" coords="1047,227,1177,254"/>
+<area shape="rect" href="group__dispatcher.html#ga1870958649b46017847735537a5701e1" title="Updates the cursor state and updates the game according to it." alt="" coords="857,220,999,261"/>
+<area shape="rect" href="group__dispatcher.html#ga4256f77332aee43a38ecada70ef1e418" title="Dispatches a mouse packet from a mouse event." alt="" coords="621,34,783,61"/>
+<area shape="rect" href="group__game.html#ga52118602811d7516e865c66a7410fd58" title="Resumes the game." alt="" coords="650,253,754,279"/>
+<area shape="rect" href="group__menu.html#ga5ed66b2ad288641ccbb969f784a64351" title="Sets the menu to awaiting other player menu." alt="" coords="595,393,809,419"/>
+<area shape="rect" href="group__menu.html#ga6331f4f3fee92d6495fd79aa17f59777" title="Sets the menu to the game over screen." alt="" coords="389,5,537,47"/>
+<area shape="rect" href="group__menu.html#ga6c442e5329ddf932b74a253c15665d75" title="Sets the menu to main menu." alt="" coords="625,329,779,355"/>
+<area shape="rect" href="group__menu.html#ga0b4d8c6b87adac99529e3dce59857aaa" title="Sets the menu to new round screen according to the given player role." alt="" coords="628,136,776,177"/>
+<area shape="rect" href="group__menu.html#gaaf5a9953d8b982736cf01d87adcb3b14" title="Sets the menu to the other player left screen." alt="" coords="623,444,781,485"/>
+<area shape="rect" href="group__menu.html#ga2471e39c56761768b9ceabdd4d5e732f" title="Sets the menu to pause menu." alt="" coords="622,202,782,229"/>
+<area shape="rect" href="group__dispatcher.html#gaeefd35acea05833fa9d829f99e2ed6ca" title="Dispatches a keyboard event." alt="" coords="379,202,547,229"/>
+<area shape="rect" href="group__game.html#gad7c180906d7acb4776f4db147f289d7c" title="Starts the already created round." alt="" coords="399,253,526,279"/>
+<area shape="rect" href="group__menu.html#gafae9ccfd6e7de562283d6ffc8c3cf066" title="Loads the xpm images of the menu." alt="" coords="229,354,308,381"/>
+<area shape="rect" href="group__dispatcher.html#ga00f3579aee6fd77454373ac309f39675" title="Starts the round." alt="" coords="207,209,331,235"/>
+<area shape="rect" href="group__dispatcher.html#ga2607daafa4b66e729b8aa95ba97f1984" title="Dispatches a rtc alarm interrupt." alt="" coords="5,122,159,149"/>
+<area shape="rect" href="group__dispatcher.html#gaeaf290f8252a2b923005262498513787" title="Goes into the &quot;Awaiting other player...&quot; screen and notifies the other player." alt="" coords="393,405,533,431"/>
+<area shape="rect" href="group__game.html#ga3f61372930dd958f7499a110ce2bd7d6" title="Updates the game due to a rtc alarm interrupt." alt="" coords="211,78,326,105"/>
+<area shape="rect" href="group__dispatcher.html#ga0e52394a395110749bc8ce3251ee503c" title="Leaves the game back to the main menu and notifies the other player." alt="" coords="399,354,526,381"/>
+<area shape="rect" href="group__dispatcher.html#gabf03a39eb157e349de01d6a6cb7fa196" title="Starts a new round as DRAWER (role_t)." alt="" coords="391,71,534,112"/>
+<area shape="rect" href="group__dispatcher.html#ga0b13ea13708e1b05cd87fecebe747065" title="Starts a new round as GUESSER (role_t)." alt="" coords="391,136,534,177"/>
+<area shape="rect" href="group__dispatcher.html#ga478271b5d6d73f56b8c7c24d7be10cfd" title="Reacts to the event that the other player left the game." alt="" coords="397,456,528,497"/>
+</map>
 </div>
 
 </div>
@@ -361,6 +452,29 @@ Here is the caller graph for this function:</div>
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="group__canvas_ga4b7509d83889d7a4a67e0d72e6f2e096_icgraph.png" border="0" usemap="#agroup__canvas_ga4b7509d83889d7a4a67e0d72e6f2e096_icgraph" alt=""/></div>
+<map name="group__canvas_ga4b7509d83889d7a4a67e0d72e6f2e096_icgraph" id="agroup__canvas_ga4b7509d83889d7a4a67e0d72e6f2e096_icgraph">
+<area shape="rect" title="Checks if the given coordinates are inside the limits of the canvas." alt="" coords="1047,227,1180,254"/>
+<area shape="rect" href="group__dispatcher.html#ga1870958649b46017847735537a5701e1" title="Updates the cursor state and updates the game according to it." alt="" coords="857,220,999,261"/>
+<area shape="rect" href="group__dispatcher.html#ga4256f77332aee43a38ecada70ef1e418" title="Dispatches a mouse packet from a mouse event." alt="" coords="621,34,783,61"/>
+<area shape="rect" href="group__game.html#ga52118602811d7516e865c66a7410fd58" title="Resumes the game." alt="" coords="650,253,754,279"/>
+<area shape="rect" href="group__menu.html#ga5ed66b2ad288641ccbb969f784a64351" title="Sets the menu to awaiting other player menu." alt="" coords="595,393,809,419"/>
+<area shape="rect" href="group__menu.html#ga6331f4f3fee92d6495fd79aa17f59777" title="Sets the menu to the game over screen." alt="" coords="389,5,537,47"/>
+<area shape="rect" href="group__menu.html#ga6c442e5329ddf932b74a253c15665d75" title="Sets the menu to main menu." alt="" coords="625,329,779,355"/>
+<area shape="rect" href="group__menu.html#ga0b4d8c6b87adac99529e3dce59857aaa" title="Sets the menu to new round screen according to the given player role." alt="" coords="628,136,776,177"/>
+<area shape="rect" href="group__menu.html#gaaf5a9953d8b982736cf01d87adcb3b14" title="Sets the menu to the other player left screen." alt="" coords="623,444,781,485"/>
+<area shape="rect" href="group__menu.html#ga2471e39c56761768b9ceabdd4d5e732f" title="Sets the menu to pause menu." alt="" coords="622,202,782,229"/>
+<area shape="rect" href="group__dispatcher.html#gaeefd35acea05833fa9d829f99e2ed6ca" title="Dispatches a keyboard event." alt="" coords="379,202,547,229"/>
+<area shape="rect" href="group__game.html#gad7c180906d7acb4776f4db147f289d7c" title="Starts the already created round." alt="" coords="399,253,526,279"/>
+<area shape="rect" href="group__menu.html#gafae9ccfd6e7de562283d6ffc8c3cf066" title="Loads the xpm images of the menu." alt="" coords="229,354,308,381"/>
+<area shape="rect" href="group__dispatcher.html#ga00f3579aee6fd77454373ac309f39675" title="Starts the round." alt="" coords="207,209,331,235"/>
+<area shape="rect" href="group__dispatcher.html#ga2607daafa4b66e729b8aa95ba97f1984" title="Dispatches a rtc alarm interrupt." alt="" coords="5,122,159,149"/>
+<area shape="rect" href="group__dispatcher.html#gaeaf290f8252a2b923005262498513787" title="Goes into the &quot;Awaiting other player...&quot; screen and notifies the other player." alt="" coords="393,405,533,431"/>
+<area shape="rect" href="group__game.html#ga3f61372930dd958f7499a110ce2bd7d6" title="Updates the game due to a rtc alarm interrupt." alt="" coords="211,78,326,105"/>
+<area shape="rect" href="group__dispatcher.html#ga0e52394a395110749bc8ce3251ee503c" title="Leaves the game back to the main menu and notifies the other player." alt="" coords="399,354,526,381"/>
+<area shape="rect" href="group__dispatcher.html#gabf03a39eb157e349de01d6a6cb7fa196" title="Starts a new round as DRAWER (role_t)." alt="" coords="391,71,534,112"/>
+<area shape="rect" href="group__dispatcher.html#ga0b13ea13708e1b05cd87fecebe747065" title="Starts a new round as GUESSER (role_t)." alt="" coords="391,136,534,177"/>
+<area shape="rect" href="group__dispatcher.html#ga478271b5d6d73f56b8c7c24d7be10cfd" title="Reacts to the event that the other player left the game." alt="" coords="397,456,528,497"/>
+</map>
 </div>
 
 </div>
@@ -420,6 +534,41 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Return 0 upon success and non-zero otherwise </dd></dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__canvas_ga79691af660bfc7d635d4727f2cbfd59a_icgraph.png" border="0" usemap="#agroup__canvas_ga79691af660bfc7d635d4727f2cbfd59a_icgraph" alt=""/></div>
+<map name="group__canvas_ga79691af660bfc7d635d4727f2cbfd59a_icgraph" id="agroup__canvas_ga79691af660bfc7d635d4727f2cbfd59a_icgraph">
+<area shape="rect" title="Starts a new stroke in the canvas." alt="" coords="1652,107,1787,133"/>
+<area shape="rect" href="group__dispatcher.html#ga4aeb5b63078cf7887e70a0696e5427e2" title="Starts drawing new stroke in the canvas and notifies the other player." alt="" coords="1479,107,1604,133"/>
+<area shape="rect" href="group__canvas.html#ga0eb66eb3bbeb104a7de7a880c6cd5d48" title="Undoes a stroke." alt="" coords="1289,69,1429,96"/>
+<area shape="rect" href="group__canvas.html#ga95661aa91869ceace06141f45c078210" title="Updates the state of the canvas according to given mouse info." alt="" coords="1287,132,1431,159"/>
+<area shape="rect" href="group__dispatcher.html#ga51ba304d71f082904a79be3769ec7ee7" title="Undoes a canvas stroke and notifies the other player." alt="" coords="1115,44,1202,71"/>
+<area shape="rect" href="group__canvas.html#ga8ad75f7f8cd0333e14d51a533da88883" title="Updates the canvas according to a keyboard event." alt="" coords="881,19,1007,45"/>
+<area shape="rect" href="group__dispatcher.html#gaeefd35acea05833fa9d829f99e2ed6ca" title="Dispatches a keyboard event." alt="" coords="379,5,547,32"/>
+<area shape="rect" href="group__dispatcher.html#gab72c16c8547625b6dde1d4626b3c9c99" title="Binds or unbinds the canvas to the dispatcher." alt="" coords="1079,132,1239,159"/>
+<area shape="rect" href="group__dispatcher.html#ga1870958649b46017847735537a5701e1" title="Updates the cursor state and updates the game according to it." alt="" coords="873,209,1015,250"/>
+<area shape="rect" href="group__dispatcher.html#gab9458678bdcdc4f0ff458f8a9b27c638" title="Resets all dispatcher bindings." alt="" coords="857,157,1031,184"/>
+<area shape="rect" href="group__game.html#ga52118602811d7516e865c66a7410fd58" title="Resumes the game." alt="" coords="650,56,754,83"/>
+<area shape="rect" href="group__menu.html#ga5ed66b2ad288641ccbb969f784a64351" title="Sets the menu to awaiting other player menu." alt="" coords="595,157,809,184"/>
+<area shape="rect" href="group__menu.html#ga6331f4f3fee92d6495fd79aa17f59777" title="Sets the menu to the game over screen." alt="" coords="628,209,776,250"/>
+<area shape="rect" href="group__menu.html#ga6c442e5329ddf932b74a253c15665d75" title="Sets the menu to main menu." alt="" coords="625,275,779,301"/>
+<area shape="rect" href="group__menu.html#ga0b4d8c6b87adac99529e3dce59857aaa" title="Sets the menu to new round screen according to the given player role." alt="" coords="628,326,776,367"/>
+<area shape="rect" href="group__menu.html#gaaf5a9953d8b982736cf01d87adcb3b14" title="Sets the menu to the other player left screen." alt="" coords="623,391,781,433"/>
+<area shape="rect" href="group__menu.html#ga2471e39c56761768b9ceabdd4d5e732f" title="Sets the menu to pause menu." alt="" coords="622,107,782,133"/>
+<area shape="rect" href="group__game.html#gad7c180906d7acb4776f4db147f289d7c" title="Starts the already created round." alt="" coords="399,56,526,83"/>
+<area shape="rect" href="group__menu.html#gafae9ccfd6e7de562283d6ffc8c3cf066" title="Loads the xpm images of the menu." alt="" coords="229,157,308,184"/>
+<area shape="rect" href="group__dispatcher.html#ga00f3579aee6fd77454373ac309f39675" title="Starts the round." alt="" coords="207,81,331,108"/>
+<area shape="rect" href="group__dispatcher.html#ga2607daafa4b66e729b8aa95ba97f1984" title="Dispatches a rtc alarm interrupt." alt="" coords="5,157,159,184"/>
+<area shape="rect" href="group__dispatcher.html#gaeaf290f8252a2b923005262498513787" title="Goes into the &quot;Awaiting other player...&quot; screen and notifies the other player." alt="" coords="393,157,533,184"/>
+<area shape="rect" href="group__game.html#ga3f61372930dd958f7499a110ce2bd7d6" title="Updates the game due to a rtc alarm interrupt." alt="" coords="211,208,326,235"/>
+<area shape="rect" href="group__dispatcher.html#ga0e52394a395110749bc8ce3251ee503c" title="Leaves the game back to the main menu and notifies the other player." alt="" coords="399,259,526,285"/>
+<area shape="rect" href="group__dispatcher.html#gabf03a39eb157e349de01d6a6cb7fa196" title="Starts a new round as DRAWER (role_t)." alt="" coords="391,310,534,351"/>
+<area shape="rect" href="group__dispatcher.html#ga0b13ea13708e1b05cd87fecebe747065" title="Starts a new round as GUESSER (role_t)." alt="" coords="391,375,534,417"/>
+<area shape="rect" href="group__dispatcher.html#ga478271b5d6d73f56b8c7c24d7be10cfd" title="Reacts to the event that the other player left the game." alt="" coords="397,441,528,482"/>
+<area shape="rect" href="group__dispatcher.html#ga4256f77332aee43a38ecada70ef1e418" title="Dispatches a mouse packet from a mouse event." alt="" coords="621,457,783,484"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -458,6 +607,41 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Return 0 upon success and non-zero otherwise </dd></dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__canvas_ga9635fd19e44c814f55f50eb213d6b6b3_icgraph.png" border="0" usemap="#agroup__canvas_ga9635fd19e44c814f55f50eb213d6b6b3_icgraph" alt=""/></div>
+<map name="group__canvas_ga9635fd19e44c814f55f50eb213d6b6b3_icgraph" id="agroup__canvas_ga9635fd19e44c814f55f50eb213d6b6b3_icgraph">
+<area shape="rect" title="Adds a new atom to the current stroke." alt="" coords="1645,107,1816,133"/>
+<area shape="rect" href="group__dispatcher.html#ga36337f8ccb7dcd6324010125bcf42dc1" title="Adds a new atom to the stroke being drawn in the canvas and notifies the other player." alt="" coords="1479,107,1597,133"/>
+<area shape="rect" href="group__canvas.html#ga0eb66eb3bbeb104a7de7a880c6cd5d48" title="Undoes a stroke." alt="" coords="1289,69,1429,96"/>
+<area shape="rect" href="group__canvas.html#ga95661aa91869ceace06141f45c078210" title="Updates the state of the canvas according to given mouse info." alt="" coords="1287,132,1431,159"/>
+<area shape="rect" href="group__dispatcher.html#ga51ba304d71f082904a79be3769ec7ee7" title="Undoes a canvas stroke and notifies the other player." alt="" coords="1115,44,1202,71"/>
+<area shape="rect" href="group__canvas.html#ga8ad75f7f8cd0333e14d51a533da88883" title="Updates the canvas according to a keyboard event." alt="" coords="881,19,1007,45"/>
+<area shape="rect" href="group__dispatcher.html#gaeefd35acea05833fa9d829f99e2ed6ca" title="Dispatches a keyboard event." alt="" coords="379,5,547,32"/>
+<area shape="rect" href="group__dispatcher.html#gab72c16c8547625b6dde1d4626b3c9c99" title="Binds or unbinds the canvas to the dispatcher." alt="" coords="1079,132,1239,159"/>
+<area shape="rect" href="group__dispatcher.html#ga1870958649b46017847735537a5701e1" title="Updates the cursor state and updates the game according to it." alt="" coords="873,209,1015,250"/>
+<area shape="rect" href="group__dispatcher.html#gab9458678bdcdc4f0ff458f8a9b27c638" title="Resets all dispatcher bindings." alt="" coords="857,157,1031,184"/>
+<area shape="rect" href="group__game.html#ga52118602811d7516e865c66a7410fd58" title="Resumes the game." alt="" coords="650,56,754,83"/>
+<area shape="rect" href="group__menu.html#ga5ed66b2ad288641ccbb969f784a64351" title="Sets the menu to awaiting other player menu." alt="" coords="595,157,809,184"/>
+<area shape="rect" href="group__menu.html#ga6331f4f3fee92d6495fd79aa17f59777" title="Sets the menu to the game over screen." alt="" coords="628,209,776,250"/>
+<area shape="rect" href="group__menu.html#ga6c442e5329ddf932b74a253c15665d75" title="Sets the menu to main menu." alt="" coords="625,275,779,301"/>
+<area shape="rect" href="group__menu.html#ga0b4d8c6b87adac99529e3dce59857aaa" title="Sets the menu to new round screen according to the given player role." alt="" coords="628,326,776,367"/>
+<area shape="rect" href="group__menu.html#gaaf5a9953d8b982736cf01d87adcb3b14" title="Sets the menu to the other player left screen." alt="" coords="623,391,781,433"/>
+<area shape="rect" href="group__menu.html#ga2471e39c56761768b9ceabdd4d5e732f" title="Sets the menu to pause menu." alt="" coords="622,107,782,133"/>
+<area shape="rect" href="group__game.html#gad7c180906d7acb4776f4db147f289d7c" title="Starts the already created round." alt="" coords="399,56,526,83"/>
+<area shape="rect" href="group__menu.html#gafae9ccfd6e7de562283d6ffc8c3cf066" title="Loads the xpm images of the menu." alt="" coords="229,157,308,184"/>
+<area shape="rect" href="group__dispatcher.html#ga00f3579aee6fd77454373ac309f39675" title="Starts the round." alt="" coords="207,81,331,108"/>
+<area shape="rect" href="group__dispatcher.html#ga2607daafa4b66e729b8aa95ba97f1984" title="Dispatches a rtc alarm interrupt." alt="" coords="5,157,159,184"/>
+<area shape="rect" href="group__dispatcher.html#gaeaf290f8252a2b923005262498513787" title="Goes into the &quot;Awaiting other player...&quot; screen and notifies the other player." alt="" coords="393,157,533,184"/>
+<area shape="rect" href="group__game.html#ga3f61372930dd958f7499a110ce2bd7d6" title="Updates the game due to a rtc alarm interrupt." alt="" coords="211,208,326,235"/>
+<area shape="rect" href="group__dispatcher.html#ga0e52394a395110749bc8ce3251ee503c" title="Leaves the game back to the main menu and notifies the other player." alt="" coords="399,259,526,285"/>
+<area shape="rect" href="group__dispatcher.html#gabf03a39eb157e349de01d6a6cb7fa196" title="Starts a new round as DRAWER (role_t)." alt="" coords="391,310,534,351"/>
+<area shape="rect" href="group__dispatcher.html#ga0b13ea13708e1b05cd87fecebe747065" title="Starts a new round as GUESSER (role_t)." alt="" coords="391,375,534,417"/>
+<area shape="rect" href="group__dispatcher.html#ga478271b5d6d73f56b8c7c24d7be10cfd" title="Reacts to the event that the other player left the game." alt="" coords="397,441,528,482"/>
+<area shape="rect" href="group__dispatcher.html#ga4256f77332aee43a38ecada70ef1e418" title="Dispatches a mouse packet from a mouse event." alt="" coords="621,457,783,484"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -486,9 +670,44 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Return 0 upon success and non-zero otherwise </dd></dl>
 <div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__canvas_ga8ad75f7f8cd0333e14d51a533da88883_cgraph.png" border="0" usemap="#agroup__canvas_ga8ad75f7f8cd0333e14d51a533da88883_cgraph" alt=""/></div>
+<map name="group__canvas_ga8ad75f7f8cd0333e14d51a533da88883_cgraph" id="group__canvas_ga8ad75f7f8cd0333e14d51a533da88883_cgraph">
+<area shape="rect" title="Updates the canvas according to a keyboard event." alt="" coords="5,162,132,189"/>
+<area shape="rect" href="group__game.html#gab537b849307e8169410c0a5ee34fbc3c" title="Changes the selected color if this player is the drawer." alt="" coords="187,5,352,47"/>
+<area shape="rect" href="group__game.html#ga799729f35345ff1cb4992ba19aaa28a9" title="Changes the selected thickness if this player is the drawer." alt="" coords="187,71,352,112"/>
+<area shape="rect" href="group__game.html#gad2612affb6e1d0b40f1972a751ad6674" title="Sets the eraser primary if this player is the drawer." alt="" coords="180,137,359,163"/>
+<area shape="rect" href="group__game.html#gab09c1e5c83d1408799b41ae9863259ef" title="Sets the pencil primary if this player is the drawer." alt="" coords="181,187,357,214"/>
+<area shape="rect" href="group__dispatcher.html#gad3e78054cdf4da1c6f961483f635c85d" title="Redoes a canvas stroke and notifies the other player." alt="" coords="227,242,311,269"/>
+<area shape="rect" href="group__dispatcher.html#ga51ba304d71f082904a79be3769ec7ee7" title="Undoes a canvas stroke and notifies the other player." alt="" coords="226,359,313,386"/>
+<area shape="rect" href="group__button.html#ga851787864a8ca2d5085673f4916056ed" title="Sets a circle icon to a given button." alt="" coords="414,39,566,66"/>
+<area shape="rect" href="group__button.html#ga6fdbd6cb9f7febe9bc371326f96f365d" title="Sets the border of a given button active." alt="" coords="407,183,573,210"/>
+<area shape="rect" href="group__button.html#ga0425667543e54af67fe4010a57476d05" title="Sets the border of a given button inactive." alt="" coords="420,117,560,159"/>
+<area shape="rect" href="group__canvas.html#ga452896dd62b95f6f577aa40d01771440" title="Redoes a stroke." alt="" coords="421,301,559,327"/>
+<area shape="rect" href="group__protocol.html#ga37492ace0b61aeb7b426d4ba9fd7e7b9" title="Sends a message of type MSG_REDO_CANVAS." alt="" coords="423,235,557,276"/>
+<area shape="rect" href="group__canvas.html#ga0eb66eb3bbeb104a7de7a880c6cd5d48" title="Undoes a stroke." alt="" coords="420,418,560,445"/>
+<area shape="rect" href="group__protocol.html#ga3388b3fbc456a7f5ce244bf9e8875752" title="Sends a message of type MSG_UNDO_CANVAS." alt="" coords="421,352,559,393"/>
+<area shape="rect" href="group__cursor.html#ga479cd0880892e002681b109c7a712c04" title="Gets cursor x coordinate." alt="" coords="635,342,733,369"/>
+<area shape="rect" href="group__cursor.html#ga15c1a0816c95ad240b94dc15480b403a" title="Gets cursor y coordinate." alt="" coords="635,393,733,419"/>
+<area shape="rect" href="group__dispatcher.html#ga36337f8ccb7dcd6324010125bcf42dc1" title="Adds a new atom to the stroke being drawn in the canvas and notifies the other player." alt="" coords="625,443,743,470"/>
+<area shape="rect" href="group__dispatcher.html#ga4aeb5b63078cf7887e70a0696e5427e2" title="Starts drawing new stroke in the canvas and notifies the other player." alt="" coords="621,561,747,587"/>
+<area shape="rect" href="group__canvas.html#ga9635fd19e44c814f55f50eb213d6b6b3" title="Adds a new atom to the current stroke." alt="" coords="797,393,968,419"/>
+<area shape="rect" href="group__protocol.html#ga0ef9e0d21713f79d9c42f68b435d209a" title="Sends a message of type MSG_DRAW_ATOM." alt="" coords="798,443,967,470"/>
+<area shape="rect" href="group__canvas.html#ga79691af660bfc7d635d4727f2cbfd59a" title="Starts a new stroke in the canvas." alt="" coords="815,611,950,638"/>
+<area shape="rect" href="group__game.html#ga3fd14fd97f9704dccd8f8b0e6e53960f" title="Gets the drawer selected color." alt="" coords="812,663,953,704"/>
+<area shape="rect" href="group__game.html#ga7a01e47255ad988eefbe2e0067a3e26c" title="Gets the drawer selected thickness." alt="" coords="812,495,953,536"/>
+<area shape="rect" href="group__protocol.html#ga48456102bf88a8974c153a8b117f9480" title="Sends a message of type MSG_NEW_STROKE." alt="" coords="795,561,971,587"/>
+</map>
+</div>
+<div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="group__canvas_ga8ad75f7f8cd0333e14d51a533da88883_icgraph.png" border="0" usemap="#agroup__canvas_ga8ad75f7f8cd0333e14d51a533da88883_icgraph" alt=""/></div>
+<map name="group__canvas_ga8ad75f7f8cd0333e14d51a533da88883_icgraph" id="group__canvas_ga8ad75f7f8cd0333e14d51a533da88883_icgraph">
+<area shape="rect" title="Updates the canvas according to a keyboard event." alt="" coords="221,5,348,32"/>
+<area shape="rect" href="group__dispatcher.html#gaeefd35acea05833fa9d829f99e2ed6ca" title="Dispatches a keyboard event." alt="" coords="5,5,173,32"/>
+</map>
 </div>
 
 </div>
@@ -508,8 +727,20 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Redos a stroke. </p>
+<p>Redoes a stroke. </p>
+<p>Redoing a stroke removes it from the list of undone strokes and puts it back in the normal stroke list, drawing it into the buffer.</p>
 <dl class="section return"><dt>Returns</dt><dd>Return 0 upon success and non-zero otherwise </dd></dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__canvas_ga452896dd62b95f6f577aa40d01771440_icgraph.png" border="0" usemap="#agroup__canvas_ga452896dd62b95f6f577aa40d01771440_icgraph" alt=""/></div>
+<map name="group__canvas_ga452896dd62b95f6f577aa40d01771440_icgraph" id="group__canvas_ga452896dd62b95f6f577aa40d01771440_icgraph">
+<area shape="rect" title="Redoes a stroke." alt="" coords="528,5,665,32"/>
+<area shape="rect" href="group__dispatcher.html#gad3e78054cdf4da1c6f961483f635c85d" title="Redoes a canvas stroke and notifies the other player." alt="" coords="396,5,480,32"/>
+<area shape="rect" href="group__canvas.html#ga8ad75f7f8cd0333e14d51a533da88883" title="Updates the canvas according to a keyboard event." alt="" coords="221,5,348,32"/>
+<area shape="rect" href="group__dispatcher.html#gaeefd35acea05833fa9d829f99e2ed6ca" title="Dispatches a keyboard event." alt="" coords="5,5,173,32"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -528,8 +759,38 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Undos a stroke. // TODO better description? </p>
+<p>Undoes a stroke. </p>
+<p>Undoing a stroke removes it from the buffer but keeps it stored in the list of undone strokes in order to allow a redo if no more strokes are started meanwhile.</p>
 <dl class="section return"><dt>Returns</dt><dd>Return 0 upon success and non-zero otherwise </dd></dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__canvas_ga0eb66eb3bbeb104a7de7a880c6cd5d48_cgraph.png" border="0" usemap="#agroup__canvas_ga0eb66eb3bbeb104a7de7a880c6cd5d48_cgraph" alt=""/></div>
+<map name="group__canvas_ga0eb66eb3bbeb104a7de7a880c6cd5d48_cgraph" id="group__canvas_ga0eb66eb3bbeb104a7de7a880c6cd5d48_cgraph">
+<area shape="rect" title="Undoes a stroke." alt="" coords="5,81,145,108"/>
+<area shape="rect" href="group__cursor.html#ga479cd0880892e002681b109c7a712c04" title="Gets cursor x coordinate." alt="" coords="207,5,305,32"/>
+<area shape="rect" href="group__cursor.html#ga15c1a0816c95ad240b94dc15480b403a" title="Gets cursor y coordinate." alt="" coords="207,56,305,83"/>
+<area shape="rect" href="group__dispatcher.html#ga36337f8ccb7dcd6324010125bcf42dc1" title="Adds a new atom to the stroke being drawn in the canvas and notifies the other player." alt="" coords="197,107,315,133"/>
+<area shape="rect" href="group__dispatcher.html#ga4aeb5b63078cf7887e70a0696e5427e2" title="Starts drawing new stroke in the canvas and notifies the other player." alt="" coords="193,216,319,243"/>
+<area shape="rect" href="group__canvas.html#ga9635fd19e44c814f55f50eb213d6b6b3" title="Adds a new atom to the current stroke." alt="" coords="369,56,540,83"/>
+<area shape="rect" href="group__protocol.html#ga0ef9e0d21713f79d9c42f68b435d209a" title="Sends a message of type MSG_DRAW_ATOM." alt="" coords="370,107,539,133"/>
+<area shape="rect" href="group__canvas.html#ga79691af660bfc7d635d4727f2cbfd59a" title="Starts a new stroke in the canvas." alt="" coords="387,157,522,184"/>
+<area shape="rect" href="group__game.html#ga3fd14fd97f9704dccd8f8b0e6e53960f" title="Gets the drawer selected color." alt="" coords="384,209,525,250"/>
+<area shape="rect" href="group__game.html#ga7a01e47255ad988eefbe2e0067a3e26c" title="Gets the drawer selected thickness." alt="" coords="384,274,525,315"/>
+<area shape="rect" href="group__protocol.html#ga48456102bf88a8974c153a8b117f9480" title="Sends a message of type MSG_NEW_STROKE." alt="" coords="367,340,543,367"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__canvas_ga0eb66eb3bbeb104a7de7a880c6cd5d48_icgraph.png" border="0" usemap="#agroup__canvas_ga0eb66eb3bbeb104a7de7a880c6cd5d48_icgraph" alt=""/></div>
+<map name="group__canvas_ga0eb66eb3bbeb104a7de7a880c6cd5d48_icgraph" id="group__canvas_ga0eb66eb3bbeb104a7de7a880c6cd5d48_icgraph">
+<area shape="rect" title="Undoes a stroke." alt="" coords="531,5,671,32"/>
+<area shape="rect" href="group__dispatcher.html#ga51ba304d71f082904a79be3769ec7ee7" title="Undoes a canvas stroke and notifies the other player." alt="" coords="396,5,483,32"/>
+<area shape="rect" href="group__canvas.html#ga8ad75f7f8cd0333e14d51a533da88883" title="Updates the canvas according to a keyboard event." alt="" coords="221,5,348,32"/>
+<area shape="rect" href="group__dispatcher.html#gaeefd35acea05833fa9d829f99e2ed6ca" title="Dispatches a keyboard event." alt="" coords="5,5,173,32"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -576,9 +837,57 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Return 0 upon success and non-zero otherwise </dd></dl>
 <div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__canvas_ga95661aa91869ceace06141f45c078210_cgraph.png" border="0" usemap="#agroup__canvas_ga95661aa91869ceace06141f45c078210_cgraph" alt=""/></div>
+<map name="group__canvas_ga95661aa91869ceace06141f45c078210_cgraph" id="group__canvas_ga95661aa91869ceace06141f45c078210_cgraph">
+<area shape="rect" title="Updates the state of the canvas according to given mouse info." alt="" coords="5,115,149,141"/>
+<area shape="rect" href="group__cursor.html#ga479cd0880892e002681b109c7a712c04" title="Gets cursor x coordinate." alt="" coords="220,5,317,32"/>
+<area shape="rect" href="group__cursor.html#ga15c1a0816c95ad240b94dc15480b403a" title="Gets cursor y coordinate." alt="" coords="220,56,317,83"/>
+<area shape="rect" href="group__game.html#ga2a86959de5de66b3881ada72cf3a5850" title="Switches the tool used (pencil/eraser) if this player is the drawer." alt="" coords="197,107,340,149"/>
+<area shape="rect" href="group__dispatcher.html#ga36337f8ccb7dcd6324010125bcf42dc1" title="Adds a new atom to the stroke being drawn in the canvas and notifies the other player." alt="" coords="209,173,328,200"/>
+<area shape="rect" href="group__dispatcher.html#ga4aeb5b63078cf7887e70a0696e5427e2" title="Starts drawing new stroke in the canvas and notifies the other player." alt="" coords="206,325,331,352"/>
+<area shape="rect" href="group__game.html#gad2612affb6e1d0b40f1972a751ad6674" title="Sets the eraser primary if this player is the drawer." alt="" coords="388,64,567,91"/>
+<area shape="rect" href="group__game.html#gab09c1e5c83d1408799b41ae9863259ef" title="Sets the pencil primary if this player is the drawer." alt="" coords="389,115,565,141"/>
+<area shape="rect" href="group__button.html#ga6fdbd6cb9f7febe9bc371326f96f365d" title="Sets the border of a given button active." alt="" coords="615,60,781,87"/>
+<area shape="rect" href="group__button.html#ga0425667543e54af67fe4010a57476d05" title="Sets the border of a given button inactive." alt="" coords="628,111,768,153"/>
+<area shape="rect" href="group__canvas.html#ga9635fd19e44c814f55f50eb213d6b6b3" title="Adds a new atom to the current stroke." alt="" coords="392,165,563,192"/>
+<area shape="rect" href="group__protocol.html#ga0ef9e0d21713f79d9c42f68b435d209a" title="Sends a message of type MSG_DRAW_ATOM." alt="" coords="393,216,562,243"/>
+<area shape="rect" href="group__canvas.html#ga79691af660bfc7d635d4727f2cbfd59a" title="Starts a new stroke in the canvas." alt="" coords="410,267,545,293"/>
+<area shape="rect" href="group__game.html#ga3fd14fd97f9704dccd8f8b0e6e53960f" title="Gets the drawer selected color." alt="" coords="407,318,548,359"/>
+<area shape="rect" href="group__game.html#ga7a01e47255ad988eefbe2e0067a3e26c" title="Gets the drawer selected thickness." alt="" coords="407,383,548,425"/>
+<area shape="rect" href="group__protocol.html#ga48456102bf88a8974c153a8b117f9480" title="Sends a message of type MSG_NEW_STROKE." alt="" coords="389,449,565,476"/>
+</map>
+</div>
+<div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="group__canvas_ga95661aa91869ceace06141f45c078210_icgraph.png" border="0" usemap="#agroup__canvas_ga95661aa91869ceace06141f45c078210_icgraph" alt=""/></div>
+<map name="group__canvas_ga95661aa91869ceace06141f45c078210_icgraph" id="agroup__canvas_ga95661aa91869ceace06141f45c078210_icgraph">
+<area shape="rect" title="Updates the state of the canvas according to given mouse info." alt="" coords="1287,219,1431,245"/>
+<area shape="rect" href="group__dispatcher.html#gab72c16c8547625b6dde1d4626b3c9c99" title="Binds or unbinds the canvas to the dispatcher." alt="" coords="1079,189,1239,216"/>
+<area shape="rect" href="group__dispatcher.html#ga1870958649b46017847735537a5701e1" title="Updates the cursor state and updates the game according to it." alt="" coords="873,241,1015,282"/>
+<area shape="rect" href="group__dispatcher.html#gab9458678bdcdc4f0ff458f8a9b27c638" title="Resets all dispatcher bindings." alt="" coords="857,189,1031,216"/>
+<area shape="rect" href="group__game.html#ga52118602811d7516e865c66a7410fd58" title="Resumes the game." alt="" coords="650,56,754,83"/>
+<area shape="rect" href="group__menu.html#ga5ed66b2ad288641ccbb969f784a64351" title="Sets the menu to awaiting other player menu." alt="" coords="595,157,809,184"/>
+<area shape="rect" href="group__menu.html#ga6331f4f3fee92d6495fd79aa17f59777" title="Sets the menu to the game over screen." alt="" coords="628,209,776,250"/>
+<area shape="rect" href="group__menu.html#ga6c442e5329ddf932b74a253c15665d75" title="Sets the menu to main menu." alt="" coords="625,275,779,301"/>
+<area shape="rect" href="group__menu.html#ga0b4d8c6b87adac99529e3dce59857aaa" title="Sets the menu to new round screen according to the given player role." alt="" coords="628,326,776,367"/>
+<area shape="rect" href="group__menu.html#gaaf5a9953d8b982736cf01d87adcb3b14" title="Sets the menu to the other player left screen." alt="" coords="623,391,781,433"/>
+<area shape="rect" href="group__menu.html#ga2471e39c56761768b9ceabdd4d5e732f" title="Sets the menu to pause menu." alt="" coords="622,107,782,133"/>
+<area shape="rect" href="group__dispatcher.html#gaeefd35acea05833fa9d829f99e2ed6ca" title="Dispatches a keyboard event." alt="" coords="379,107,547,133"/>
+<area shape="rect" href="group__game.html#gad7c180906d7acb4776f4db147f289d7c" title="Starts the already created round." alt="" coords="399,5,526,32"/>
+<area shape="rect" href="group__menu.html#gafae9ccfd6e7de562283d6ffc8c3cf066" title="Loads the xpm images of the menu." alt="" coords="229,157,308,184"/>
+<area shape="rect" href="group__dispatcher.html#ga00f3579aee6fd77454373ac309f39675" title="Starts the round." alt="" coords="207,56,331,83"/>
+<area shape="rect" href="group__dispatcher.html#ga2607daafa4b66e729b8aa95ba97f1984" title="Dispatches a rtc alarm interrupt." alt="" coords="5,157,159,184"/>
+<area shape="rect" href="group__dispatcher.html#gaeaf290f8252a2b923005262498513787" title="Goes into the &quot;Awaiting other player...&quot; screen and notifies the other player." alt="" coords="393,157,533,184"/>
+<area shape="rect" href="group__game.html#ga3f61372930dd958f7499a110ce2bd7d6" title="Updates the game due to a rtc alarm interrupt." alt="" coords="211,208,326,235"/>
+<area shape="rect" href="group__dispatcher.html#ga0e52394a395110749bc8ce3251ee503c" title="Leaves the game back to the main menu and notifies the other player." alt="" coords="399,259,526,285"/>
+<area shape="rect" href="group__dispatcher.html#gabf03a39eb157e349de01d6a6cb7fa196" title="Starts a new round as DRAWER (role_t)." alt="" coords="391,310,534,351"/>
+<area shape="rect" href="group__dispatcher.html#ga0b13ea13708e1b05cd87fecebe747065" title="Starts a new round as GUESSER (role_t)." alt="" coords="391,375,534,417"/>
+<area shape="rect" href="group__dispatcher.html#ga478271b5d6d73f56b8c7c24d7be10cfd" title="Reacts to the event that the other player left the game." alt="" coords="397,441,528,482"/>
+<area shape="rect" href="group__dispatcher.html#ga4256f77332aee43a38ecada70ef1e418" title="Dispatches a mouse packet from a mouse event." alt="" coords="621,457,783,484"/>
+</map>
 </div>
 
 </div>

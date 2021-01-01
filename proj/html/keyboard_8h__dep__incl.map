@@ -1,0 +1,6 @@
+<map id="keyboard.h" name="keyboard.h">
+<area shape="rect" id="node1" title="File dedicated to interaction with the PC&#39;s Keyboard." alt="" coords="107,5,193,32"/>
+<area shape="rect" id="node2" href="$canvas_8h.html" title="File dedicated to the canvas used to draw." alt="" coords="5,80,79,107"/>
+<area shape="rect" id="node3" href="$dispatcher_8h.html" title="File dedicated to handling and dispatching events." alt="" coords="103,80,197,107"/>
+<area shape="rect" id="node4" href="$textbox_8h.html" title="File dedicated to text boxes." alt="" coords="221,80,297,107"/>
+</map>

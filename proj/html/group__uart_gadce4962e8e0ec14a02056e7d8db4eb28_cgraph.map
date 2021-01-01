@@ -1,0 +1,6 @@
+<map id="uart_flush_received_bytes" name="uart_flush_received_bytes">
+<area shape="rect" id="node1" title="Flushes all bytes being received from the serial port." alt="" coords="5,13,137,55"/>
+<area shape="rect" id="node2" href="$group__queue.html#ga09a3da9bf84f747356ef8050447bf35a" title="Checks if a given queue is empty." alt="" coords="319,21,436,47"/>
+<area shape="rect" id="node3" href="$group__queue.html#ga81880a2f29871356ccddd8f20ec99e9e" title="Removes the element at the front of the given queue." alt="" coords="185,21,271,47"/>
+<area shape="rect" id="node4" href="$group__queue.html#ga24ec1e60eaa37239a1b49c6f7321c9d9" title="Gets the element at the front of the given queue." alt="" coords="187,71,269,98"/>
+</map>

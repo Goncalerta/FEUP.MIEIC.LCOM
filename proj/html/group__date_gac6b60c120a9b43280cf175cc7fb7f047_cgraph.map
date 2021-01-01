@@ -1,0 +1,12 @@
+<map id="date_draw_current" name="date_draw_current">
+<area shape="rect" id="node1" title="Draws the current date to the top left corner of the screen." alt="" coords="5,81,133,108"/>
+<area shape="rect" id="node2" href="$group__date.html#ga4935ca0b464c660a91e7f725da5149ae" title="Draws a date to the given screen coordiantes." alt="" coords="211,56,293,83"/>
+<area shape="rect" id="node10" href="$group__rtc.html#gac608d19e8db3bcd96930b3e4441583ec" title="Gets the current date from inside the rtc module." alt="" coords="181,107,323,133"/>
+<area shape="rect" id="node3" href="$group__font.html#ga84590018142e55d772b7ce9733c06ecf" title="Draws a given string to the given coordinates in the given buffer." alt="" coords="379,5,495,32"/>
+<area shape="rect" id="node7" href="$group__graphics.html#ga16484c11b9019a2395c4964fe7da3ab1" title="Draws a rectangle in the given buffer in the given coordinates with the given height and width with t..." alt="" coords="373,56,501,83"/>
+<area shape="rect" id="node9" href="$group__video__gr.html#gaecb0fe68de84fcbe553f77d62b37c69b" title="Gets the back buffer." alt="" coords="371,107,503,133"/>
+<area shape="rect" id="node4" href="$group__font.html#gaa049c74a42572fa8713f9d08ddf42fc1" title="Draws a given char to the given coordinates in the given buffer." alt="" coords="551,5,660,32"/>
+<area shape="rect" id="node5" href="$group__graphics.html#ga31260a04eb12bc7be5012378500b09b0" title="Draws a portion of a given xpm image in the given buffer in the given coordinates." alt="" coords="708,5,857,32"/>
+<area shape="rect" id="node6" href="$group__graphics.html#ga257b5dac975604f70651e8764ad8acd8" title="Draws a pixel in the given buffer in the given coordinates with the given color." alt="" coords="905,31,1008,57"/>
+<area shape="rect" id="node8" href="$group__graphics.html#ga58454ceb710c0fca6b21c049f0cac3a6" title="Draws a horizontal line in the given buffer in the given coordinates with the given color." alt="" coords="731,56,834,83"/>
+</map>

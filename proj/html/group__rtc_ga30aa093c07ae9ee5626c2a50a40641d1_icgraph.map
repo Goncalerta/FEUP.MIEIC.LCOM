@@ -1,0 +1,24 @@
+<map id="rtc_write_register" name="rtc_write_register">
+<area shape="rect" id="node1" title="Writes data to a RTC register." alt="" coords="1184,217,1305,244"/>
+<area shape="rect" id="node2" href="$group__rtc.html#gad0e26524911e8ec8710cd8364fcd924a" title="Disables a type of interrupt." alt="" coords="857,155,964,181"/>
+<area shape="rect" id="node16" href="$group__rtc.html#ga2780c6d57b30b6d1804927a1d5c1dd1b" title="Enables a type of interrupt with the given configuration." alt="" coords="1033,243,1136,269"/>
+<area shape="rect" id="node3" href="$group__dispatcher.html#ga2607daafa4b66e729b8aa95ba97f1984" title="Dispatches a rtc alarm interrupt." alt="" coords="188,233,341,260"/>
+<area shape="rect" id="node5" href="$group__dispatcher.html#ga0e52394a395110749bc8ce3251ee503c" title="Leaves the game back to the main menu and notifies the other player." alt="" coords="653,13,780,40"/>
+<area shape="rect" id="node7" href="$group__dispatcher.html#ga478271b5d6d73f56b8c7c24d7be10cfd" title="Reacts to the event that the other player left the game." alt="" coords="651,82,782,123"/>
+<area shape="rect" id="node8" href="$group__game.html#ga3e3b7cd44197d8a1bd11f7f82aa3c767" title="Ends the current round." alt="" coords="655,148,778,175"/>
+<area shape="rect" id="node15" href="$group__game.html#ga3f61372930dd958f7499a110ce2bd7d6" title="Updates the game due to a rtc alarm interrupt." alt="" coords="439,267,554,293"/>
+<area shape="rect" id="node4" href="$group__rtc.html#ga75dad42881d64cf07cf1bdc2979a7056" title="RTC interrupt handler." alt="" coords="42,157,97,184"/>
+<area shape="rect" id="node6" href="$group__menu.html#gafae9ccfd6e7de562283d6ffc8c3cf066" title="Loads the xpm images of the menu." alt="" coords="457,5,536,32"/>
+<area shape="rect" id="node9" href="$group__dispatcher.html#ga37df00ab49c3c54dcf2fd2cee7a952a5" title="Sets the round as won, updates the score and notifies the other player." alt="" coords="438,56,555,83"/>
+<area shape="rect" id="node12" href="$group__game.html#ga1fde03513252d4441ff2ba62672da7a6" title="Reacts to the game over notification of another player." alt="" coords="396,157,597,184"/>
+<area shape="rect" id="node13" href="$group__game.html#ga159cd81ebf01a5ccd6a0f96aaffb2530" title="Updates the game due to a rtc periodic interrupt." alt="" coords="436,107,557,133"/>
+<area shape="rect" id="node10" href="$group__game.html#ga5a725e3c48e6564fd75d04c2e4d163ba" title="Adds a word guess. And reacts according to weather it is correct." alt="" coords="199,56,330,83"/>
+<area shape="rect" id="node11" href="$group__dispatcher.html#ga3429571bafb33af98f7e8b90e2c4b4b4" title="Tries to guess the word and notifies the other player." alt="" coords="5,56,133,83"/>
+<area shape="rect" id="node14" href="$group__dispatcher.html#ga091e29979e7808dc87b71f52d3510553" title="Dispatches a rtc periodic interrupt." alt="" coords="181,132,348,159"/>
+<area shape="rect" id="node17" href="$group__rtc.html#gaeb3c7fbcf89e53d83750885ed7ac59a3" title="Enables RTC update interrupts." alt="" coords="836,243,985,269"/>
+<area shape="rect" id="node18" href="$group__rtc.html#ga49dc9bc6e37a97deaf7ee0dc0f9110e1" title="Sets an alarm with remaining time to alarm from now." alt="" coords="851,300,970,327"/>
+<area shape="rect" id="node19" href="$group__dispatcher.html#gabf03a39eb157e349de01d6a6cb7fa196" title="Starts a new round as DRAWER (role_t)." alt="" coords="645,351,788,393"/>
+<area shape="rect" id="node20" href="$group__game.html#ga82a8aa816fdf22cb3d705dfa56c594f7" title="Reveals another character in the word clue and notifies the other player." alt="" coords="659,300,774,327"/>
+<area shape="rect" id="node21" href="$group__game.html#gad7c180906d7acb4776f4db147f289d7c" title="Starts the already created round." alt="" coords="653,417,780,444"/>
+<area shape="rect" id="node22" href="$group__dispatcher.html#ga00f3579aee6fd77454373ac309f39675" title="Starts the round." alt="" coords="435,359,559,385"/>
+</map>

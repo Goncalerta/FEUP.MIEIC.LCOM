@@ -1,0 +1,5 @@
+<map id="vb_draw_line" name="vb_draw_line">
+<area shape="rect" id="node1" title="Draws a line in the given buffer from the given coordinates to other given coordinates with the given..." alt="" coords="5,5,100,32"/>
+<area shape="rect" id="node2" href="$group__graphics.html#ga1b69ad0e07cfd0697a4cb9c18ba48b67" title="Draws a circle in the given buffer in the given coordinates with the given radius with the given colo..." alt="" coords="148,5,255,32"/>
+<area shape="rect" id="node3" href="$group__graphics.html#ga257b5dac975604f70651e8764ad8acd8" title="Draws a pixel in the given buffer in the given coordinates with the given color." alt="" coords="303,5,405,32"/>
+</map>

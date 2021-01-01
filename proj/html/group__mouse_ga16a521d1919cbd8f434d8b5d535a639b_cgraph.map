@@ -1,0 +1,7 @@
+<map id="mouse_set_stream_mode" name="mouse_set_stream_mode">
+<area shape="rect" id="node1" title="Sets the mouse to stream mode." alt="" coords="5,31,177,57"/>
+<area shape="rect" id="node2" href="$group__mouse.html#gadc968ef8cbf8660fe0bac8237d65183e" title="Issues a command to the mouse using the kbc." alt="" coords="225,31,371,57"/>
+<area shape="rect" id="node3" href="$group__kbc.html#gaa0559188b6e62f1b72bd50ba1915d914" title="Issues an argument to the kbc." alt="" coords="420,5,563,32"/>
+<area shape="rect" id="node5" href="$group__kbc.html#ga978c37bd6eca1b2724372aee45770670" title="Issues a command to the kbc." alt="" coords="419,56,564,83"/>
+<area shape="rect" id="node4" href="$group__kbc.html#ga628109931012fdfa144b55cc679a7fe9" title="Writes a byte to a kbc register." alt="" coords="612,31,715,57"/>
+</map>

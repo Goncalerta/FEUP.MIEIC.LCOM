@@ -1,0 +1,4 @@
+<map id="event_this_player_random_number" name="event_this_player_random_number">
+<area shape="rect" id="node1" title="Generates and sends a random number to the other player to decide starting roles." alt="" coords="5,5,177,47"/>
+<area shape="rect" id="node2" href="$group__protocol.html#ga00413c9178c939b16024863a7e953932" title="Sends a message of type MSG_RANDOM_NUMBER." alt="" coords="225,5,379,47"/>
+</map>

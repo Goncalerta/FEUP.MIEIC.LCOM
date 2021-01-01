@@ -1,0 +1,4 @@
+<map id="vb_draw_vline" name="vb_draw_vline">
+<area shape="rect" id="node1" title="Draws a vertical line in the given buffer in the given coordinates with the given color." alt="" coords="5,5,105,32"/>
+<area shape="rect" id="node2" href="$group__graphics.html#ga257b5dac975604f70651e8764ad8acd8" title="Draws a pixel in the given buffer in the given coordinates with the given color." alt="" coords="153,5,256,32"/>
+</map>

@@ -1,0 +1,7 @@
+<map id="protocol_send_ready_to_play" name="protocol_send_ready_to_play">
+<area shape="rect" id="node1" title="Sends a message of type MSG_READY_TO_PLAY." alt="" coords="351,57,493,98"/>
+<area shape="rect" id="node2" href="$group__dispatcher.html#ga6971634a0754cd6cdd7f81c869a4c9d4" title="Notify the other player that this player is not currently in the game." alt="" coords="132,5,303,32"/>
+<area shape="rect" id="node3" href="$group__dispatcher.html#ga35425b225192edd6ce60d7fef853988d" title="Reacts to the event that the other player opened the program." alt="" coords="152,57,283,98"/>
+<area shape="rect" id="node4" href="$group__dispatcher.html#gaeaf290f8252a2b923005262498513787" title="Goes into the &quot;Awaiting other player...&quot; screen and notifies the other player." alt="" coords="147,123,287,149"/>
+<area shape="rect" id="node5" href="$group__menu.html#gafae9ccfd6e7de562283d6ffc8c3cf066" title="Loads the xpm images of the menu." alt="" coords="5,123,84,149"/>
+</map>

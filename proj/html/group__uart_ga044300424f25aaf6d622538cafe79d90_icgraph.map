@@ -1,0 +1,4 @@
+<map id="uart_receive_bytes" name="uart_receive_bytes">
+<area shape="rect" id="node1" title="Receives bytes from the serial port and puts them in a software queue." alt="" coords="124,5,255,32"/>
+<area shape="rect" id="node2" href="$group__uart.html#ga2820f530017133c17706dbc238f738d9" title="COM1 interrupt handler." alt="" coords="5,5,76,32"/>
+</map>

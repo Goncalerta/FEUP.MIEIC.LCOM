@@ -1,0 +1,6 @@
+<map id="write_byte_to_mouse" name="write_byte_to_mouse">
+<area shape="rect" id="node1" title="Issues a command to the mouse using the kbc." alt="" coords="225,56,371,83"/>
+<area shape="rect" id="node2" href="$group__mouse.html#gac285c81dd076eb18e01d7f22d353daaa" title="Disables mouse data reporting." alt="" coords="28,5,155,32"/>
+<area shape="rect" id="node3" href="$group__mouse.html#ga12afbe04f7fbd32a063b13d45ffcd602" title="Enables mouse data reporting." alt="" coords="29,56,153,83"/>
+<area shape="rect" id="node4" href="$group__mouse.html#ga16a521d1919cbd8f434d8b5d535a639b" title="Sets the mouse to stream mode." alt="" coords="5,107,177,133"/>
+</map>

@@ -89,13 +89,13 @@ typedef struct <a class="el" href="structword__clue__t.html">word_clue_t</a>&#16
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:ga3396d068c7b71ed4e7b6d8ddebd76ece"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__clue.html#ga3396d068c7b71ed4e7b6d8ddebd76ece">new_word_clue</a> (<a class="el" href="structword__clue__t.html">word_clue_t</a> *clue, const char *word)</td></tr>
-<tr class="memdesc:ga3396d068c7b71ed4e7b6d8ddebd76ece"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initiates the contents of a new word clue.  <a href="group__clue.html#ga3396d068c7b71ed4e7b6d8ddebd76ece">More...</a><br /></td></tr>
+<tr class="memdesc:ga3396d068c7b71ed4e7b6d8ddebd76ece"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes new word clue.  <a href="group__clue.html#ga3396d068c7b71ed4e7b6d8ddebd76ece">More...</a><br /></td></tr>
 <tr class="separator:ga3396d068c7b71ed4e7b6d8ddebd76ece"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaf2e81417151218db37a0250f64f2f825"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__clue.html#gaf2e81417151218db37a0250f64f2f825">word_clue_draw</a> (<a class="el" href="structword__clue__t.html">word_clue_t</a> *clue, <a class="el" href="structframe__buffer__t.html">frame_buffer_t</a> buf, uint16_t x, uint16_t y)</td></tr>
 <tr class="memdesc:gaf2e81417151218db37a0250f64f2f825"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draws a given word clue to the given buffer on the given coordinates.  <a href="group__clue.html#gaf2e81417151218db37a0250f64f2f825">More...</a><br /></td></tr>
 <tr class="separator:gaf2e81417151218db37a0250f64f2f825"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaa1bfb55e74e59e1c571b12d25a3d60b1"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__clue.html#gaa1bfb55e74e59e1c571b12d25a3d60b1">word_clue_hint</a> (<a class="el" href="structword__clue__t.html">word_clue_t</a> *clue, size_t *pos)</td></tr>
-<tr class="memdesc:gaa1bfb55e74e59e1c571b12d25a3d60b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Hints a char in the given word clue.  <a href="group__clue.html#gaa1bfb55e74e59e1c571b12d25a3d60b1">More...</a><br /></td></tr>
+<tr class="memdesc:gaa1bfb55e74e59e1c571b12d25a3d60b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Randomly hints a new char in the given word clue.  <a href="group__clue.html#gaa1bfb55e74e59e1c571b12d25a3d60b1">More...</a><br /></td></tr>
 <tr class="separator:gaa1bfb55e74e59e1c571b12d25a3d60b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaa2682141b8e69c91872045fd8a6c8eaa"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__clue.html#gaa2682141b8e69c91872045fd8a6c8eaa">word_clue_hint_at</a> (<a class="el" href="structword__clue__t.html">word_clue_t</a> *clue, size_t pos)</td></tr>
 <tr class="memdesc:gaa2682141b8e69c91872045fd8a6c8eaa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Hints a char in the given word clue in the given position.  <a href="group__clue.html#gaa2682141b8e69c91872045fd8a6c8eaa">More...</a><br /></td></tr>
@@ -137,6 +137,16 @@ Functions</h2></td></tr>
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="group__clue_ga4362997e5a7009bc2cd0fe105e2fa9fc_icgraph.png" border="0" usemap="#agroup__clue_ga4362997e5a7009bc2cd0fe105e2fa9fc_icgraph" alt=""/></div>
+<map name="group__clue_ga4362997e5a7009bc2cd0fe105e2fa9fc_icgraph" id="agroup__clue_ga4362997e5a7009bc2cd0fe105e2fa9fc_icgraph">
+<area shape="rect" title="Makes the whole word revealed in the given word clue." alt="" coords="816,56,903,83"/>
+<area shape="rect" href="group__game.html#ga3e3b7cd44197d8a1bd11f7f82aa3c767" title="Ends the current round." alt="" coords="645,56,768,83"/>
+<area shape="rect" href="group__dispatcher.html#ga37df00ab49c3c54dcf2fd2cee7a952a5" title="Sets the round as won, updates the score and notifies the other player." alt="" coords="438,5,555,32"/>
+<area shape="rect" href="group__game.html#ga1fde03513252d4441ff2ba62672da7a6" title="Reacts to the game over notification of another player." alt="" coords="396,56,597,83"/>
+<area shape="rect" href="group__game.html#ga159cd81ebf01a5ccd6a0f96aaffb2530" title="Updates the game due to a rtc periodic interrupt." alt="" coords="436,107,557,133"/>
+<area shape="rect" href="group__game.html#ga5a725e3c48e6564fd75d04c2e4d163ba" title="Adds a word guess. And reacts according to weather it is correct." alt="" coords="199,5,330,32"/>
+<area shape="rect" href="group__dispatcher.html#ga3429571bafb33af98f7e8b90e2c4b4b4" title="Tries to guess the word and notifies the other player." alt="" coords="5,5,133,32"/>
+<area shape="rect" href="group__dispatcher.html#ga091e29979e7808dc87b71f52d3510553" title="Dispatches a rtc periodic interrupt." alt="" coords="181,107,348,133"/>
+</map>
 </div>
 
 </div>
@@ -168,6 +178,21 @@ Here is the caller graph for this function:</div>
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="group__clue_ga0425307d69028408fcaad6cf23e7a13a_icgraph.png" border="0" usemap="#agroup__clue_ga0425307d69028408fcaad6cf23e7a13a_icgraph" alt=""/></div>
+<map name="group__clue_ga0425307d69028408fcaad6cf23e7a13a_icgraph" id="agroup__clue_ga0425307d69028408fcaad6cf23e7a13a_icgraph">
+<area shape="rect" title="Frees the space allocated in memory to store the content of a given word clue." alt="" coords="916,144,1039,171"/>
+<area shape="rect" href="group__game.html#gadede5f1c2e6f4a506c211cd8045dc449" title="Deletes the current game round." alt="" coords="733,144,868,171"/>
+<area shape="rect" href="group__game.html#ga138474d4cfdc04b079ceba8b584ed4e2" title="Deletes the current game." alt="" coords="576,56,672,83"/>
+<area shape="rect" href="group__dispatcher.html#ga9deb57c84899da9b6fa12f3e5d4feccf" title="Ends the current round." alt="" coords="565,144,683,171"/>
+<area shape="rect" href="group__game.html#gab01706a4b71bd825fc64ce7032ff115c" title="Creates a new round." alt="" coords="563,232,685,259"/>
+<area shape="rect" href="group__dispatcher.html#ga0e52394a395110749bc8ce3251ee503c" title="Leaves the game back to the main menu and notifies the other player." alt="" coords="379,5,505,32"/>
+<area shape="rect" href="group__game.html#ga9f3275416ff1d967fcf634e25c09c719" title="Frees the space allocated in memory to store the game assets." alt="" coords="369,56,515,83"/>
+<area shape="rect" href="group__menu.html#gafae9ccfd6e7de562283d6ffc8c3cf066" title="Loads the xpm images of the menu." alt="" coords="225,5,303,32"/>
+<area shape="rect" href="group__dispatcher.html#ga478271b5d6d73f56b8c7c24d7be10cfd" title="Reacts to the event that the other player left the game." alt="" coords="377,107,507,149"/>
+<area shape="rect" href="group__game.html#ga3f61372930dd958f7499a110ce2bd7d6" title="Updates the game due to a rtc alarm interrupt." alt="" coords="207,203,321,229"/>
+<area shape="rect" href="group__dispatcher.html#ga2607daafa4b66e729b8aa95ba97f1984" title="Dispatches a rtc alarm interrupt." alt="" coords="5,203,159,229"/>
+<area shape="rect" href="group__dispatcher.html#gabf03a39eb157e349de01d6a6cb7fa196" title="Starts a new round as DRAWER (role_t)." alt="" coords="371,225,513,266"/>
+<area shape="rect" href="group__dispatcher.html#ga0b13ea13708e1b05cd87fecebe747065" title="Starts a new round as GUESSER (role_t)." alt="" coords="371,290,513,331"/>
+</map>
 </div>
 
 </div>
@@ -198,7 +223,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Initiates the contents of a new word clue. </p>
+<p>Initializes new word clue. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">clue</td><td>address of memory to the word clue </td></tr>
@@ -211,6 +236,14 @@ Here is the caller graph for this function:</div>
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="group__clue_ga3396d068c7b71ed4e7b6d8ddebd76ece_icgraph.png" border="0" usemap="#agroup__clue_ga3396d068c7b71ed4e7b6d8ddebd76ece_icgraph" alt=""/></div>
+<map name="group__clue_ga3396d068c7b71ed4e7b6d8ddebd76ece_icgraph" id="agroup__clue_ga3396d068c7b71ed4e7b6d8ddebd76ece_icgraph">
+<area shape="rect" title="Initializes new word clue." alt="" coords="731,46,841,73"/>
+<area shape="rect" href="group__game.html#gab01706a4b71bd825fc64ce7032ff115c" title="Creates a new round." alt="" coords="560,46,683,73"/>
+<area shape="rect" href="group__dispatcher.html#gabf03a39eb157e349de01d6a6cb7fa196" title="Starts a new round as DRAWER (role_t)." alt="" coords="369,5,512,47"/>
+<area shape="rect" href="group__dispatcher.html#ga0b13ea13708e1b05cd87fecebe747065" title="Starts a new round as GUESSER (role_t)." alt="" coords="369,71,512,112"/>
+<area shape="rect" href="group__game.html#ga3f61372930dd958f7499a110ce2bd7d6" title="Updates the game due to a rtc alarm interrupt." alt="" coords="207,13,321,39"/>
+<area shape="rect" href="group__dispatcher.html#ga2607daafa4b66e729b8aa95ba97f1984" title="Dispatches a rtc alarm interrupt." alt="" coords="5,13,159,39"/>
+</map>
 </div>
 
 </div>
@@ -268,11 +301,25 @@ Here is the caller graph for this function:</div>
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="group__clue_gaf2e81417151218db37a0250f64f2f825_cgraph.png" border="0" usemap="#agroup__clue_gaf2e81417151218db37a0250f64f2f825_cgraph" alt=""/></div>
+<map name="group__clue_gaf2e81417151218db37a0250f64f2f825_cgraph" id="group__clue_gaf2e81417151218db37a0250f64f2f825_cgraph">
+<area shape="rect" title="Draws a given word clue to the given buffer on the given coordinates." alt="" coords="5,31,120,57"/>
+<area shape="rect" href="group__font.html#gaa049c74a42572fa8713f9d08ddf42fc1" title="Draws a given char to the given coordinates in the given buffer." alt="" coords="177,5,287,32"/>
+<area shape="rect" href="group__graphics.html#ga16484c11b9019a2395c4964fe7da3ab1" title="Draws a rectangle in the given buffer in the given coordinates with the given height and width with t..." alt="" coords="168,56,296,83"/>
+<area shape="rect" href="group__graphics.html#ga31260a04eb12bc7be5012378500b09b0" title="Draws a portion of a given xpm image in the given buffer in the given coordinates." alt="" coords="344,5,493,32"/>
+<area shape="rect" href="group__graphics.html#ga257b5dac975604f70651e8764ad8acd8" title="Draws a pixel in the given buffer in the given coordinates with the given color." alt="" coords="541,31,644,57"/>
+<area shape="rect" href="group__graphics.html#ga58454ceb710c0fca6b21c049f0cac3a6" title="Draws a horizontal line in the given buffer in the given coordinates with the given color." alt="" coords="367,56,470,83"/>
+</map>
 </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="group__clue_gaf2e81417151218db37a0250f64f2f825_icgraph.png" border="0" usemap="#agroup__clue_gaf2e81417151218db37a0250f64f2f825_icgraph" alt=""/></div>
+<map name="group__clue_gaf2e81417151218db37a0250f64f2f825_icgraph" id="group__clue_gaf2e81417151218db37a0250f64f2f825_icgraph">
+<area shape="rect" title="Draws a given word clue to the given buffer on the given coordinates." alt="" coords="460,5,575,32"/>
+<area shape="rect" href="group__game.html#ga656ca85eff33877022fd939d29f23822" title="Draws the game screen to the back buffer." alt="" coords="324,5,412,32"/>
+<area shape="rect" href="group__dispatcher.html#ga1265a5e2843f2b1c45ad05ae61de7000" title="Draws the frame to the back buffer and flips the buffers." alt="" coords="188,5,276,32"/>
+<area shape="rect" href="group__dispatcher.html#ga0a68e937b31744d0f19e7524b2e9ad59" title="Dispatches a timer interrupt." alt="" coords="5,5,140,32"/>
+</map>
 </div>
 
 </div>
@@ -303,7 +350,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Hints a char in the given word clue. </p>
+<p>Randomly hints a new char in the given word clue. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">clue</td><td>address of memory to the word clue </td></tr>
@@ -316,6 +363,12 @@ Here is the caller graph for this function:</div>
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="group__clue_gaa1bfb55e74e59e1c571b12d25a3d60b1_icgraph.png" border="0" usemap="#agroup__clue_gaa1bfb55e74e59e1c571b12d25a3d60b1_icgraph" alt=""/></div>
+<map name="group__clue_gaa1bfb55e74e59e1c571b12d25a3d60b1_icgraph" id="agroup__clue_gaa1bfb55e74e59e1c571b12d25a3d60b1_icgraph">
+<area shape="rect" title="Randomly hints a new char in the given word clue." alt="" coords="532,5,640,32"/>
+<area shape="rect" href="group__game.html#ga82a8aa816fdf22cb3d705dfa56c594f7" title="Reveals another character in the word clue and notifies the other player." alt="" coords="369,5,484,32"/>
+<area shape="rect" href="group__game.html#ga3f61372930dd958f7499a110ce2bd7d6" title="Updates the game due to a rtc alarm interrupt." alt="" coords="207,5,321,32"/>
+<area shape="rect" href="group__dispatcher.html#ga2607daafa4b66e729b8aa95ba97f1984" title="Dispatches a rtc alarm interrupt." alt="" coords="5,5,159,32"/>
+</map>
 </div>
 
 </div>
@@ -359,6 +412,10 @@ Here is the caller graph for this function:</div>
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="group__clue_gaa2682141b8e69c91872045fd8a6c8eaa_icgraph.png" border="0" usemap="#agroup__clue_gaa2682141b8e69c91872045fd8a6c8eaa_icgraph" alt=""/></div>
+<map name="group__clue_gaa2682141b8e69c91872045fd8a6c8eaa_icgraph" id="group__clue_gaa2682141b8e69c91872045fd8a6c8eaa_icgraph">
+<area shape="rect" title="Hints a char in the given word clue in the given position." alt="" coords="185,5,312,32"/>
+<area shape="rect" href="group__game.html#ga2fabe2a29b89674da7806548bbaaa10b" title="Reveals a character in the word clue at the given position." alt="" coords="5,5,137,32"/>
+</map>
 </div>
 
 </div>

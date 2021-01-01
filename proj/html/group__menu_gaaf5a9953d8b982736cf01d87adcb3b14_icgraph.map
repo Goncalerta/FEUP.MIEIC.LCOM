@@ -1,0 +1,4 @@
+<map id="menu_set_other_player_left_screen" name="menu_set_other_player_left_screen">
+<area shape="rect" id="node1" title="Sets the menu to the other player left screen." alt="" coords="184,5,341,47"/>
+<area shape="rect" id="node2" href="$group__dispatcher.html#ga478271b5d6d73f56b8c7c24d7be10cfd" title="Reacts to the event that the other player left the game." alt="" coords="5,5,136,47"/>
+</map>

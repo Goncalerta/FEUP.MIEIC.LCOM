@@ -1,0 +1,5 @@
+<map id="game_give_clue" name="game_give_clue">
+<area shape="rect" id="node1" title="Reveals another character in the word clue and notifies the other player." alt="" coords="369,5,484,32"/>
+<area shape="rect" id="node2" href="$group__game.html#ga3f61372930dd958f7499a110ce2bd7d6" title="Updates the game due to a rtc alarm interrupt." alt="" coords="207,5,321,32"/>
+<area shape="rect" id="node3" href="$group__dispatcher.html#ga2607daafa4b66e729b8aa95ba97f1984" title="Dispatches a rtc alarm interrupt." alt="" coords="5,5,159,32"/>
+</map>

@@ -6,7 +6,6 @@
 #define UART_SW_QUEUES_STARTING_CAPACITY 16
 
 static int hook_id_com1 = 4;
-
 static queue_t transmitted, received;
 static fifo_int_trigger_level_t fifo_int_trigger_level;
 static bool error_reading_message = false;

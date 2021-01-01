@@ -1,0 +1,4 @@
+<map id="game_is_round_ongoing" name="game_is_round_ongoing">
+<area shape="rect" id="node1" title="Checks if the round is ongoing." alt="" coords="181,5,344,32"/>
+<area shape="rect" id="node2" href="$group__dispatcher.html#ga3429571bafb33af98f7e8b90e2c4b4b4" title="Tries to guess the word and notifies the other player." alt="" coords="5,5,133,32"/>
+</map>

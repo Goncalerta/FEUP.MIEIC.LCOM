@@ -4,6 +4,10 @@
 #include <lcom/lcf.h>
 #include "game.h"
 
+/** @file 
+ * @brief File dedicated to the interaction with the menu of the game as well as other program screens.
+ */
+
 /** @defgroup menu menu
  * @{
  *
@@ -19,8 +23,8 @@ typedef enum menu_state_t {
     DRAWER_NEW_ROUND_SCREEN, /*!< New round screen of drawer. */
     GUESSER_NEW_ROUND_SCREEN, /*!< New round screen of guesser. */
     GAME_OVER_SCREEN, /*!< Game over screen. */
-    OTHER_PLAYER_LEFT_SCREEN, /*!< The other player left screen. */
-    GAME, /*!< Game is being played. */
+    OTHER_PLAYER_LEFT_SCREEN, /*!< Game over because other player left screen. */
+    GAME, /*!< Game is being played, unpaused. */
     PAUSE_MENU, /*!< Pause menu. */
     AWAITING_OTHER_PLAYER /*!< Awaiting other player menu. */
 } menu_state_t;

@@ -1,0 +1,4 @@
+<map id="button_set_xpm_icon" name="button_set_xpm_icon">
+<area shape="rect" id="node1" title="Sets a xpm image icon to a given button." alt="" coords="132,5,279,32"/>
+<area shape="rect" id="node2" href="$group__menu.html#gafae9ccfd6e7de562283d6ffc8c3cf066" title="Loads the xpm images of the menu." alt="" coords="5,5,84,32"/>
+</map>

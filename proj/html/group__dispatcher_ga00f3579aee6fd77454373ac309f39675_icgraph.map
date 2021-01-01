@@ -1,0 +1,4 @@
+<map id="event_start_round" name="event_start_round">
+<area shape="rect" id="node1" title="Starts the round." alt="" coords="207,5,331,32"/>
+<area shape="rect" id="node2" href="$group__dispatcher.html#ga2607daafa4b66e729b8aa95ba97f1984" title="Dispatches a rtc alarm interrupt." alt="" coords="5,5,159,32"/>
+</map>

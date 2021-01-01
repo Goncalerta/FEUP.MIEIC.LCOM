@@ -1,0 +1,4 @@
+<map id="queue_push" name="queue_push">
+<area shape="rect" id="node1" title="Adds an element to the back of the given queue." alt="" coords="5,5,97,32"/>
+<area shape="rect" id="node2" href="$group__queue.html#gae1cd6b62453b7f57525be17a53885800" title="Checks if a given queue is full." alt="" coords="145,5,243,32"/>
+</map>

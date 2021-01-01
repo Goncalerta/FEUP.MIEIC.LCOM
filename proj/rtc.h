@@ -4,13 +4,47 @@
 #include <lcom/lcf.h>
 #include "date.h"
 
+/** @file 
+ * @brief File dedicated to the interaction with the RTC.
+ */
+
 /** @defgroup rtc rtc
  * @{
  *
  * @brief Module to interact with the RTC.
  */
 
-#define RTC_IRQ 8 /**< @brief RTC IRQ line */
+#define RTC_IRQ 8 /**< @brief RTC IRQ line. */
+
+#define RTC_ADDR_REG 0x70 /**< @brief RTC address register. */
+#define RTC_DATA_REG 0x71  /**< @brief RTC data register. */
+
+#define RTC_UIP BIT(7)
+#define RTC_DELAY_U 244
+
+#define RTC_PF BIT(6)
+#define RTC_AF BIT(5)
+#define RTC_UF BIT(4)
+
+#define RTC_PIE BIT(6)
+#define RTC_AIE BIT(5)
+#define RTC_UIE BIT(4)
+#define RTC_MASK_DISABLE(bit) (~((uint8_t)(bit)))
+
+#define RTC_REGISTER_SECONDS 0x0
+#define RTC_REGISTER_SECONDS_ALARM 0x1
+#define RTC_REGISTER_MINUTES 0x2
+#define RTC_REGISTER_MINUTES_ALARM 0x3
+#define RTC_REGISTER_HOURS 0x4
+#define RTC_REGISTER_HOURS_ALARM 0x5
+#define RTC_REGISTER_DAY_OF_THE_WEAK 0x6
+#define RTC_REGISTER_DAY_OF_THE_MONTH 0x7
+#define RTC_REGISTER_MONTH 0x8
+#define RTC_REGISTER_YEAR 0x9
+#define RTC_REGISTER_A 0xA
+#define RTC_REGISTER_B 0xB
+#define RTC_REGISTER_C 0xC
+#define RTC_REGISTER_D 0xD
 
 /**
  * @brief Enumerated type for specifying a RTC interrupt type.
@@ -27,8 +61,8 @@ typedef enum rtc_interrupt_t {
  * 
  */
 typedef union rtc_interrupt_config_t {
-    rtc_alarm_time_t alarm_time; /*!< Time to set the alarm to (binary format). */
-    uint8_t periodic_RS3210; /*!< RS3 RS2 RS1 RS0 in 4 LS bits used to setup periodic interrupts. */
+    rtc_alarm_time_t alarm_time; /*!< @brief Time to set the alarm to (binary format). */
+    uint8_t periodic_RS3210; /*!< @brief RS3 RS2 RS1 RS0 in 4 LS bits used to setup periodic interrupts. */
 } rtc_interrupt_config_t;
 
 /**
@@ -36,7 +70,7 @@ typedef union rtc_interrupt_config_t {
  * 
  * @return Return 0 upon success and non-zero otherwise
  */
-int rtc_read_conf(); // test function 2013/2014 // TODO delete? or let it be?
+int rtc_read_conf();
 
 /**
  * @brief Subscribes RTC interrupts.
@@ -64,7 +98,7 @@ int rtc_read_date();
  * @brief Gets the current date from inside the rtc module.
  * 
  * @param date address of memory to be initialized with the current date
- * @return 
+ * @return Return 0 upon success and non-zero otherwise
  */
 int rtc_get_current_date(date_t *date);
 
@@ -87,7 +121,7 @@ int rtc_set_alarm_in(rtc_alarm_time_t remaining_time_to_alarm);
  * @brief Enables a type of interrupt with the given configuration.
  * 
  * @param rtc_interrupt interrupt type to enable
- * @param config interrupt configuration (not used if \link rtc_interrupt \endlink == \link UPDATE_INTERRUPT \endlink) // TODO how to make "rtc_interrupt" link to the parameter?
+ * @param config interrupt configuration (not used if rtc_interrupt == UPDATE_INTERRUPT)
  * @return Return 0 upon success and non-zero otherwise
  */
 int rtc_enable_int(rtc_interrupt_t rtc_interrupt, rtc_interrupt_config_t config);
@@ -133,6 +167,8 @@ int rtc_flush();
 
 /**
  * @brief Generates a seed calculated with the current date.
+ * 
+ * This is used to initialize the random number generator.
  * 
  * @return Return the seed 
  */

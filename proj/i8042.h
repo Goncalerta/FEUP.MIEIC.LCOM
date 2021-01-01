@@ -3,6 +3,10 @@
 
 #include <lcom/lcf.h>
 
+/** @file 
+ * @brief Constants for programming the i8042 Keyboard controller (KBC).
+ */
+
 /** @defgroup i8042 i8042
  * @{
  *
@@ -13,7 +17,7 @@
 #define MOUSE_IRQ 12 /**< @brief Mouse IRQ line */
 
 #define FIRST_BYTE_TWO_BYTE_SCANCODE 0xE0 /**< @brief First byte of a two bytes long scan code */
-#define BREAK_CODE_BIT BIT(7) /**< @brief BREAK CODE bit */
+#define BREAK_CODE_BIT BIT(7) /**< @brief Bit that signals that a given scan code is a break code */
 
 #define ESC_BREAK_CODE 0x81 /**< @brief ESC key BREAK CODE */
 

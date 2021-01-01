@@ -1,0 +1,11 @@
+<map id="queue_top" name="queue_top">
+<area shape="rect" id="node1" title="Gets the element at the front of the given queue." alt="" coords="739,71,821,98"/>
+<area shape="rect" id="node2" href="$group__uart.html#gadce4962e8e0ec14a02056e7d8db4eb28" title="Flushes all bytes being received from the serial port." alt="" coords="559,5,691,47"/>
+<area shape="rect" id="node5" href="$group__uart.html#gac447d0f6cdbf08eb8522cebae17e7e77" title="Reads a byte from the software queue of bytes received." alt="" coords="571,71,679,98"/>
+<area shape="rect" id="node7" href="$group__uart.html#ga8219117bdd64ba6474c847fd89efbd41" title="Sends bytes from a software queue into the serial port." alt="" coords="565,130,684,157"/>
+<area shape="rect" id="node3" href="$group__protocol.html#ga237c5c08ee5d5008a930af465c7bd5d5" title="Reacts to a serial port error." alt="" coords="149,97,296,123"/>
+<area shape="rect" id="node4" href="$group__protocol.html#ga0b3e768da60827fe622bd3932efc82ff" title="Reacts to a timer interrupt to detect timeouts." alt="" coords="5,97,101,123"/>
+<area shape="rect" id="node6" href="$group__protocol.html#ga45e3aa191a3cde90081665be034bba0e" title="Processes received bytes from the serial port." alt="" coords="344,64,511,105"/>
+<area shape="rect" id="node8" href="$group__uart.html#ga2820f530017133c17706dbc238f738d9" title="COM1 interrupt handler." alt="" coords="392,130,463,157"/>
+<area shape="rect" id="node9" href="$group__uart.html#ga00a2984ead2b73e2871dfda7c1ac49e3" title="Adds a byte to the software queue of bytes to be sent and tries to send bytes." alt="" coords="372,181,483,207"/>
+</map>

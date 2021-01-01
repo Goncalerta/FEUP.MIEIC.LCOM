@@ -1,0 +1,6 @@
+<map id="protocol_send_leave_game" name="protocol_send_leave_game">
+<area shape="rect" id="node1" title="Sends a message of type MSG_LEAVE_GAME." alt="" coords="351,31,529,57"/>
+<area shape="rect" id="node2" href="$group__dispatcher.html#ga0e52394a395110749bc8ce3251ee503c" title="Leaves the game back to the main menu and notifies the other player." alt="" coords="154,5,281,32"/>
+<area shape="rect" id="node4" href="$group__dispatcher.html#ga6971634a0754cd6cdd7f81c869a4c9d4" title="Notify the other player that this player is not currently in the game." alt="" coords="132,56,303,83"/>
+<area shape="rect" id="node3" href="$group__menu.html#gafae9ccfd6e7de562283d6ffc8c3cf066" title="Loads the xpm images of the menu." alt="" coords="5,5,84,32"/>
+</map>

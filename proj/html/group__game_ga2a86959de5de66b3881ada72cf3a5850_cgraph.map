@@ -1,0 +1,7 @@
+<map id="drawer_toggle_pencil_eraser" name="drawer_toggle_pencil_eraser">
+<area shape="rect" id="node1" title="Switches the tool used (pencil/eraser) if this player is the drawer." alt="" coords="5,27,148,69"/>
+<area shape="rect" id="node2" href="$group__game.html#gad2612affb6e1d0b40f1972a751ad6674" title="Sets the eraser primary if this player is the drawer." alt="" coords="196,9,375,36"/>
+<area shape="rect" id="node5" href="$group__game.html#gab09c1e5c83d1408799b41ae9863259ef" title="Sets the pencil primary if this player is the drawer." alt="" coords="197,60,373,87"/>
+<area shape="rect" id="node3" href="$group__button.html#ga6fdbd6cb9f7febe9bc371326f96f365d" title="Sets the border of a given button active." alt="" coords="423,5,589,32"/>
+<area shape="rect" id="node4" href="$group__button.html#ga0425667543e54af67fe4010a57476d05" title="Sets the border of a given button inactive." alt="" coords="436,57,576,98"/>
+</map>

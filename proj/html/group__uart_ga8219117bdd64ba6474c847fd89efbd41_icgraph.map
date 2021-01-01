@@ -1,0 +1,7 @@
+<map id="uart_send_bytes" name="uart_send_bytes">
+<area shape="rect" id="node1" title="Sends bytes from a software queue into the serial port." alt="" coords="503,31,621,57"/>
+<area shape="rect" id="node2" href="$group__uart.html#ga2820f530017133c17706dbc238f738d9" title="COM1 interrupt handler." alt="" coords="364,5,435,32"/>
+<area shape="rect" id="node3" href="$group__uart.html#ga00a2984ead2b73e2871dfda7c1ac49e3" title="Adds a byte to the software queue of bytes to be sent and tries to send bytes." alt="" coords="344,56,455,83"/>
+<area shape="rect" id="node4" href="$group__protocol.html#ga237c5c08ee5d5008a930af465c7bd5d5" title="Reacts to a serial port error." alt="" coords="149,56,296,83"/>
+<area shape="rect" id="node5" href="$group__protocol.html#ga0b3e768da60827fe622bd3932efc82ff" title="Reacts to a timer interrupt to detect timeouts." alt="" coords="5,56,101,83"/>
+</map>

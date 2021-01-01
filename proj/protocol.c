@@ -7,6 +7,12 @@
 #include "canvas.h"
 #include "game.h"
 
+#define PROTOCOL_BIT_RATE 9600 // communication bitrate
+#define PROTOCOL_ACK 0 // acknowledgment byte (everything OK)
+#define PROTOCOL_NACK 1 // non-acknowledgment byte (invalid message)
+#define PROTOCOL_WAIT_TIMEOUT_TICKS 90 // maximum seconds to timeout (receiving messages or acknowledgments)
+#define PENDING_MESSAGES_CAPACITY 8 // starting capacity of pending messages queue
+
 static queue_t pending_messages;
 static bool awaiting_ack = false;
 static uint8_t awaiting_ack_ticks = 0;
@@ -377,12 +383,6 @@ static int protocol_parse_received_message() {
     if (new_message(&msg, receiving_msg_bits[0], receiving_msg_len - 2, receiving_msg_bits + 1) != OK)
         return 1;
 
-    // TODO delete
-    // printf("msg: 0x%02x, len: %d [", msg.type, msg.content_len);
-    // for (size_t i = 0; i < msg.content_len; i++) {
-    //     printf("0x%x, ", msg.content[i]);
-    // }
-    // printf("]\n");
     if (msg.type >= NUMBER_OF_MESSAGES)
         return 1;
     

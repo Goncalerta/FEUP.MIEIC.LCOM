@@ -1,0 +1,4 @@
+<map id="kbc_issue_command" name="kbc_issue_command">
+<area shape="rect" id="node1" title="Issues a command to the kbc." alt="" coords="5,5,151,32"/>
+<area shape="rect" id="node2" href="$group__kbc.html#ga628109931012fdfa144b55cc679a7fe9" title="Writes a byte to a kbc register." alt="" coords="199,5,301,32"/>
+</map>

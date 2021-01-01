@@ -1,0 +1,7 @@
+<map id="event_new_stroke" name="event_new_stroke">
+<area shape="rect" id="node1" title="Starts drawing new stroke in the canvas and notifies the other player." alt="" coords="5,97,131,124"/>
+<area shape="rect" id="node2" href="$group__canvas.html#ga79691af660bfc7d635d4727f2cbfd59a" title="Starts a new stroke in the canvas." alt="" coords="199,5,334,32"/>
+<area shape="rect" id="node3" href="$group__game.html#ga3fd14fd97f9704dccd8f8b0e6e53960f" title="Gets the drawer selected color." alt="" coords="196,57,337,98"/>
+<area shape="rect" id="node4" href="$group__game.html#ga7a01e47255ad988eefbe2e0067a3e26c" title="Gets the drawer selected thickness." alt="" coords="196,122,337,163"/>
+<area shape="rect" id="node5" href="$group__protocol.html#ga48456102bf88a8974c153a8b117f9480" title="Sends a message of type MSG_NEW_STROKE." alt="" coords="179,188,355,215"/>
+</map>

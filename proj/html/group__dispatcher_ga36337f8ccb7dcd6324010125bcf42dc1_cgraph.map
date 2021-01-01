@@ -1,0 +1,5 @@
+<map id="event_new_atom" name="event_new_atom">
+<area shape="rect" id="node1" title="Adds a new atom to the stroke being drawn in the canvas and notifies the other player." alt="" coords="5,31,124,57"/>
+<area shape="rect" id="node2" href="$group__canvas.html#ga9635fd19e44c814f55f50eb213d6b6b3" title="Adds a new atom to the current stroke." alt="" coords="172,5,343,32"/>
+<area shape="rect" id="node3" href="$group__protocol.html#ga0ef9e0d21713f79d9c42f68b435d209a" title="Sends a message of type MSG_DRAW_ATOM." alt="" coords="173,56,342,83"/>
+</map>

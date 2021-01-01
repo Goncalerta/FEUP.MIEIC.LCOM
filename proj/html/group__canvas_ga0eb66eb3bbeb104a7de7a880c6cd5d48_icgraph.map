@@ -1,0 +1,6 @@
+<map id="canvas_undo_stroke" name="canvas_undo_stroke">
+<area shape="rect" id="node1" title="Undoes a stroke." alt="" coords="531,5,671,32"/>
+<area shape="rect" id="node2" href="$group__dispatcher.html#ga51ba304d71f082904a79be3769ec7ee7" title="Undoes a canvas stroke and notifies the other player." alt="" coords="396,5,483,32"/>
+<area shape="rect" id="node3" href="$group__canvas.html#ga8ad75f7f8cd0333e14d51a533da88883" title="Updates the canvas according to a keyboard event." alt="" coords="221,5,348,32"/>
+<area shape="rect" id="node4" href="$group__dispatcher.html#gaeefd35acea05833fa9d829f99e2ed6ca" title="Dispatches a keyboard event." alt="" coords="5,5,173,32"/>
+</map>

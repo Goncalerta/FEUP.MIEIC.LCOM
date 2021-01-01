@@ -3,6 +3,10 @@
 
 #include <lcom/lcf.h>
 
+/** @file 
+ * @brief File dedicated to dates.
+ */
+
 /** @defgroup date date
  * @{
  *
@@ -17,12 +21,12 @@
  * 
  */
 typedef struct date_t {
-    uint16_t year; /*!< Year. */
-    uint8_t month; /*!< Month. */
-    uint8_t day; /*!< Day. */
-    uint8_t hour; /*!< Hour. */
-    uint8_t minute; /*!< Minute. */
-    uint8_t second; /*!< Second. */
+    uint16_t year; /*!< @brief Year. */
+    uint8_t month; /*!< @brief Month. */
+    uint8_t day; /*!< @brief Day. */
+    uint8_t hour; /*!< @brief Hour. */
+    uint8_t minute; /*!< @brief Minute. */
+    uint8_t second; /*!< @brief Second. */
 } date_t;
 
 /**
@@ -30,9 +34,9 @@ typedef struct date_t {
  * 
  */
 typedef struct rtc_alarm_time_t {
-    uint8_t hours; /*!< Hours. */
-    uint8_t minutes; /*!< Minutes. */
-    uint8_t seconds; /*!< Seconds. */
+    uint8_t hours; /*!< @brief Hours. */
+    uint8_t minutes; /*!< @brief Minutes. */
+    uint8_t seconds; /*!< @brief Seconds. */
 } rtc_alarm_time_t;
 
 

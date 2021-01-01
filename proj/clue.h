@@ -4,6 +4,10 @@
 #include <lcom/lcf.h>
 #include "graphics.h"
 
+/** @file 
+ * @brief File dedicated to word clues.
+ */
+
 /** @defgroup clue clue
  * @{
  *
@@ -15,16 +19,16 @@
  * 
  */
 typedef struct word_clue_t {
-    char *word; /*!< Address of memory of the word to give clues of. */
-    char *clue; /*!< Address of memory of the clues already given. */
-    size_t size; /*!< Size of word. */
-    size_t missing; /*!< Number of chars that were not hinted. */
-    uint16_t width; /*!< Width of the clue on the screen. */
-    uint16_t height; /*!< Height of the clue on the screen. */
+    char *word; /*!< @brief Address of memory of the word to give clues of. */
+    char *clue; /*!< @brief Address of memory of the clues already given. */
+    size_t size; /*!< @brief Size of word. */
+    size_t missing; /*!< @brief Number of chars that were not hinted. */
+    uint16_t width; /*!< @brief Width of the clue on the screen. */
+    uint16_t height; /*!< @brief Height of the clue on the screen. */
 } word_clue_t;
 
 /**
- * @brief Initiates the contents of a new word clue.
+ * @brief Initializes new word clue.
  * 
  * @param clue address of memory to the word clue
  * @param word address of memory of the word to be used
@@ -44,7 +48,7 @@ int new_word_clue(word_clue_t *clue, const char *word);
 int word_clue_draw(word_clue_t *clue, frame_buffer_t buf, uint16_t x, uint16_t y);
 
 /**
- * @brief Hints a char in the given word clue.
+ * @brief Randomly hints a new char in the given word clue.
  * 
  * @param clue address of memory to the word clue
  * @param pos address of memory to be initialized with the word missing position that was clued

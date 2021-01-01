@@ -1,0 +1,13 @@
+<map id="vb_draw_hline" name="vb_draw_hline">
+<area shape="rect" id="node1" title="Draws a horizontal line in the given buffer in the given coordinates with the given color." alt="" coords="839,31,941,57"/>
+<area shape="rect" id="node2" href="$group__textbox.html#ga0d7efee1fe6e5b861c311b6cc4cfd201" title="Draws a given text box to the given buffer." alt="" coords="504,5,611,32"/>
+<area shape="rect" id="node3" href="$group__graphics.html#ga16484c11b9019a2395c4964fe7da3ab1" title="Draws a rectangle in the given buffer in the given coordinates with the given height and width with t..." alt="" coords="663,56,791,83"/>
+<area shape="rect" id="node4" href="$group__button.html#ga5b499ecd345cc4ab20cb3194a01fc937" title="Draws a given button to the given buffer." alt="" coords="511,56,603,83"/>
+<area shape="rect" id="node8" href="$group__date.html#ga4935ca0b464c660a91e7f725da5149ae" title="Draws a date to the given screen coordiantes." alt="" coords="517,107,598,133"/>
+<area shape="rect" id="node10" href="$group__clue.html#gaf2e81417151218db37a0250f64f2f825" title="Draws a given word clue to the given buffer on the given coordinates." alt="" coords="500,157,615,184"/>
+<area shape="rect" id="node5" href="$group__menu.html#ga35731eaa9442f8db276220d9fc77dcf6" title="Draws the menu according to its state to the back buffer." alt="" coords="344,56,432,83"/>
+<area shape="rect" id="node6" href="$group__dispatcher.html#ga1265a5e2843f2b1c45ad05ae61de7000" title="Draws the frame to the back buffer and flips the buffers." alt="" coords="188,107,276,133"/>
+<area shape="rect" id="node7" href="$group__dispatcher.html#ga0a68e937b31744d0f19e7524b2e9ad59" title="Dispatches a timer interrupt." alt="" coords="5,107,140,133"/>
+<area shape="rect" id="node9" href="$group__date.html#gac6b60c120a9b43280cf175cc7fb7f047" title="Draws the current date to the top left corner of the screen." alt="" coords="324,107,452,133"/>
+<area shape="rect" id="node11" href="$group__game.html#ga656ca85eff33877022fd939d29f23822" title="Draws the game screen to the back buffer." alt="" coords="344,157,432,184"/>
+</map>

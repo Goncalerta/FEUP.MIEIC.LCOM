@@ -1,0 +1,4 @@
+<map id="uart_received_bytes" name="uart_received_bytes">
+<area shape="rect" id="node1" title="Checks if there are unread received bytes in the software queue." alt="" coords="5,5,143,32"/>
+<area shape="rect" id="node2" href="$group__queue.html#ga09a3da9bf84f747356ef8050447bf35a" title="Checks if a given queue is empty." alt="" coords="191,5,308,32"/>
+</map>

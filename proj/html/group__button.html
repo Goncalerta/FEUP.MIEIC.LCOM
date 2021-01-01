@@ -88,18 +88,18 @@ Data Structures</h2></td></tr>
 Macros</h2></td></tr>
 <tr class="memitem:ga1c3632da579ab501b308ddbd0b26c534"><td class="memItemLeft" align="right" valign="top"><a id="ga1c3632da579ab501b308ddbd0b26c534"></a>
 #define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__button.html#ga1c3632da579ab501b308ddbd0b26c534">BUTTON_CIRCLE_RADIUS_DEFAULT</a>&#160;&#160;&#160;15</td></tr>
-<tr class="memdesc:ga1c3632da579ab501b308ddbd0b26c534"><td class="mdescLeft">&#160;</td><td class="mdescRight">Button circle default radius. <br /></td></tr>
+<tr class="memdesc:ga1c3632da579ab501b308ddbd0b26c534"><td class="mdescLeft">&#160;</td><td class="mdescRight">Button circle default radius when the icon is a circle. <br /></td></tr>
 <tr class="separator:ga1c3632da579ab501b308ddbd0b26c534"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaad5cab9240f0db50aabbbfca2aade1b1"><td class="memItemLeft" align="right" valign="top"><a id="gaad5cab9240f0db50aabbbfca2aade1b1"></a>
 #define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__button.html#gaad5cab9240f0db50aabbbfca2aade1b1">BUTTON_CIRCLE_DEFAULT_COLOR</a>&#160;&#160;&#160;0x000000</td></tr>
-<tr class="memdesc:gaad5cab9240f0db50aabbbfca2aade1b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Button circle default color. <br /></td></tr>
+<tr class="memdesc:gaad5cab9240f0db50aabbbfca2aade1b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Button circle default color when the icon is a circle. <br /></td></tr>
 <tr class="separator:gaad5cab9240f0db50aabbbfca2aade1b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
 <tr class="memitem:ga0f225e888d093299394b5b1589d41f81"><td class="memItemLeft" align="right" valign="top"><a id="ga0f225e888d093299394b5b1589d41f81"></a>
 typedef int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__button.html#ga0f225e888d093299394b5b1589d41f81">button_action</a>) ()</td></tr>
-<tr class="memdesc:ga0f225e888d093299394b5b1589d41f81"><td class="mdescLeft">&#160;</td><td class="mdescRight">Button action when it's pressed. <br /></td></tr>
+<tr class="memdesc:ga0f225e888d093299394b5b1589d41f81"><td class="mdescLeft">&#160;</td><td class="mdescRight">Button action callback when it's pressed. <br /></td></tr>
 <tr class="separator:ga0f225e888d093299394b5b1589d41f81"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga5fbe696a8a5a3185eaff5cd0692ab5c2"><td class="memItemLeft" align="right" valign="top"><a id="ga5fbe696a8a5a3185eaff5cd0692ab5c2"></a>
 typedef enum <a class="el" href="group__button.html#ga7bb8494816c8065ae6ff0eeb548a5896">button_state_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__button.html#ga5fbe696a8a5a3185eaff5cd0692ab5c2">button_state_t</a></td></tr>
@@ -127,7 +127,7 @@ Enumerations</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:ga5ae9d9845b0c967aac6e228b3f916ea7"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__button.html#ga5ae9d9845b0c967aac6e228b3f916ea7">new_button</a> (<a class="el" href="structbutton__t.html">button_t</a> *button, uint16_t x, uint16_t y, uint16_t width, uint16_t height, <a class="el" href="group__button.html#ga0f225e888d093299394b5b1589d41f81">button_action</a> action)</td></tr>
-<tr class="memdesc:ga5ae9d9845b0c967aac6e228b3f916ea7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initiates the info of a new button.  <a href="group__button.html#ga5ae9d9845b0c967aac6e228b3f916ea7">More...</a><br /></td></tr>
+<tr class="memdesc:ga5ae9d9845b0c967aac6e228b3f916ea7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes a new button.  <a href="group__button.html#ga5ae9d9845b0c967aac6e228b3f916ea7">More...</a><br /></td></tr>
 <tr class="separator:ga5ae9d9845b0c967aac6e228b3f916ea7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga61409efef36d6fc472383d25706e44af"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__button.html#ga61409efef36d6fc472383d25706e44af">button_set_xpm_icon</a> (<a class="el" href="structbutton__t.html">button_t</a> *button, xpm_image_t icon)</td></tr>
 <tr class="memdesc:ga61409efef36d6fc472383d25706e44af"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets a xpm image icon to a given button.  <a href="group__button.html#ga61409efef36d6fc472383d25706e44af">More...</a><br /></td></tr>
@@ -220,11 +220,26 @@ Functions</h2></td></tr>
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="group__button_ga5b499ecd345cc4ab20cb3194a01fc937_cgraph.png" border="0" usemap="#agroup__button_ga5b499ecd345cc4ab20cb3194a01fc937_cgraph" alt=""/></div>
+<map name="group__button_ga5b499ecd345cc4ab20cb3194a01fc937_cgraph" id="group__button_ga5b499ecd345cc4ab20cb3194a01fc937_cgraph">
+<area shape="rect" title="Draws a given button to the given buffer." alt="" coords="5,56,97,83"/>
+<area shape="rect" href="group__graphics.html#ga1b69ad0e07cfd0697a4cb9c18ba48b67" title="Draws a circle in the given buffer in the given coordinates with the given radius with the given colo..." alt="" coords="343,5,449,32"/>
+<area shape="rect" href="group__graphics.html#gad48647db82bcc8a80196a817c9959a40" title="Draws a given xpm image in the given buffer in the given coordinates." alt="" coords="161,56,257,83"/>
+<area shape="rect" href="group__graphics.html#ga16484c11b9019a2395c4964fe7da3ab1" title="Draws a rectangle in the given buffer in the given coordinates with the given height and width with t..." alt="" coords="145,107,273,133"/>
+<area shape="rect" href="group__graphics.html#ga257b5dac975604f70651e8764ad8acd8" title="Draws a pixel in the given buffer in the given coordinates with the given color." alt="" coords="519,56,621,83"/>
+<area shape="rect" href="group__graphics.html#ga31260a04eb12bc7be5012378500b09b0" title="Draws a portion of a given xpm image in the given buffer in the given coordinates." alt="" coords="321,56,471,83"/>
+<area shape="rect" href="group__graphics.html#ga58454ceb710c0fca6b21c049f0cac3a6" title="Draws a horizontal line in the given buffer in the given coordinates with the given color." alt="" coords="345,107,447,133"/>
+</map>
 </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="group__button_ga5b499ecd345cc4ab20cb3194a01fc937_icgraph.png" border="0" usemap="#agroup__button_ga5b499ecd345cc4ab20cb3194a01fc937_icgraph" alt=""/></div>
+<map name="group__button_ga5b499ecd345cc4ab20cb3194a01fc937_icgraph" id="group__button_ga5b499ecd345cc4ab20cb3194a01fc937_icgraph">
+<area shape="rect" title="Draws a given button to the given buffer." alt="" coords="460,5,552,32"/>
+<area shape="rect" href="group__menu.html#ga35731eaa9442f8db276220d9fc77dcf6" title="Draws the menu according to its state to the back buffer." alt="" coords="324,5,412,32"/>
+<area shape="rect" href="group__dispatcher.html#ga1265a5e2843f2b1c45ad05ae61de7000" title="Draws the frame to the back buffer and flips the buffers." alt="" coords="188,5,276,32"/>
+<area shape="rect" href="group__dispatcher.html#ga0a68e937b31744d0f19e7524b2e9ad59" title="Dispatches a timer interrupt." alt="" coords="5,5,140,32"/>
+</map>
 </div>
 
 </div>
@@ -275,6 +290,29 @@ Here is the caller graph for this function:</div>
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="group__button_ga08826459f45b21d883c8b46751193280_icgraph.png" border="0" usemap="#agroup__button_ga08826459f45b21d883c8b46751193280_icgraph" alt=""/></div>
+<map name="group__button_ga08826459f45b21d883c8b46751193280_icgraph" id="agroup__button_ga08826459f45b21d883c8b46751193280_icgraph">
+<area shape="rect" title="Checks if the given coordinates are inside the limits of a given button." alt="" coords="1047,227,1176,254"/>
+<area shape="rect" href="group__dispatcher.html#ga1870958649b46017847735537a5701e1" title="Updates the cursor state and updates the game according to it." alt="" coords="857,220,999,261"/>
+<area shape="rect" href="group__dispatcher.html#ga4256f77332aee43a38ecada70ef1e418" title="Dispatches a mouse packet from a mouse event." alt="" coords="621,34,783,61"/>
+<area shape="rect" href="group__game.html#ga52118602811d7516e865c66a7410fd58" title="Resumes the game." alt="" coords="650,253,754,279"/>
+<area shape="rect" href="group__menu.html#ga5ed66b2ad288641ccbb969f784a64351" title="Sets the menu to awaiting other player menu." alt="" coords="595,393,809,419"/>
+<area shape="rect" href="group__menu.html#ga6331f4f3fee92d6495fd79aa17f59777" title="Sets the menu to the game over screen." alt="" coords="389,5,537,47"/>
+<area shape="rect" href="group__menu.html#ga6c442e5329ddf932b74a253c15665d75" title="Sets the menu to main menu." alt="" coords="625,329,779,355"/>
+<area shape="rect" href="group__menu.html#ga0b4d8c6b87adac99529e3dce59857aaa" title="Sets the menu to new round screen according to the given player role." alt="" coords="628,136,776,177"/>
+<area shape="rect" href="group__menu.html#gaaf5a9953d8b982736cf01d87adcb3b14" title="Sets the menu to the other player left screen." alt="" coords="623,444,781,485"/>
+<area shape="rect" href="group__menu.html#ga2471e39c56761768b9ceabdd4d5e732f" title="Sets the menu to pause menu." alt="" coords="622,202,782,229"/>
+<area shape="rect" href="group__dispatcher.html#gaeefd35acea05833fa9d829f99e2ed6ca" title="Dispatches a keyboard event." alt="" coords="379,202,547,229"/>
+<area shape="rect" href="group__game.html#gad7c180906d7acb4776f4db147f289d7c" title="Starts the already created round." alt="" coords="399,253,526,279"/>
+<area shape="rect" href="group__menu.html#gafae9ccfd6e7de562283d6ffc8c3cf066" title="Loads the xpm images of the menu." alt="" coords="229,354,308,381"/>
+<area shape="rect" href="group__dispatcher.html#ga00f3579aee6fd77454373ac309f39675" title="Starts the round." alt="" coords="207,209,331,235"/>
+<area shape="rect" href="group__dispatcher.html#ga2607daafa4b66e729b8aa95ba97f1984" title="Dispatches a rtc alarm interrupt." alt="" coords="5,122,159,149"/>
+<area shape="rect" href="group__dispatcher.html#gaeaf290f8252a2b923005262498513787" title="Goes into the &quot;Awaiting other player...&quot; screen and notifies the other player." alt="" coords="393,405,533,431"/>
+<area shape="rect" href="group__game.html#ga3f61372930dd958f7499a110ce2bd7d6" title="Updates the game due to a rtc alarm interrupt." alt="" coords="211,78,326,105"/>
+<area shape="rect" href="group__dispatcher.html#ga0e52394a395110749bc8ce3251ee503c" title="Leaves the game back to the main menu and notifies the other player." alt="" coords="399,354,526,381"/>
+<area shape="rect" href="group__dispatcher.html#gabf03a39eb157e349de01d6a6cb7fa196" title="Starts a new round as DRAWER (role_t)." alt="" coords="391,71,534,112"/>
+<area shape="rect" href="group__dispatcher.html#ga0b13ea13708e1b05cd87fecebe747065" title="Starts a new round as GUESSER (role_t)." alt="" coords="391,136,534,177"/>
+<area shape="rect" href="group__dispatcher.html#ga478271b5d6d73f56b8c7c24d7be10cfd" title="Reacts to the event that the other player left the game." alt="" coords="397,456,528,497"/>
+</map>
 </div>
 
 </div>
@@ -306,6 +344,36 @@ Here is the caller graph for this function:</div>
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="group__button_ga6fdbd6cb9f7febe9bc371326f96f365d_icgraph.png" border="0" usemap="#agroup__button_ga6fdbd6cb9f7febe9bc371326f96f365d_icgraph" alt=""/></div>
+<map name="group__button_ga6fdbd6cb9f7febe9bc371326f96f365d_icgraph" id="agroup__button_ga6fdbd6cb9f7febe9bc371326f96f365d_icgraph">
+<area shape="rect" title="Sets the border of a given button active." alt="" coords="1896,81,2063,108"/>
+<area shape="rect" href="group__game.html#gad2612affb6e1d0b40f1972a751ad6674" title="Sets the eraser primary if this player is the drawer." alt="" coords="1669,56,1848,83"/>
+<area shape="rect" href="group__game.html#gab09c1e5c83d1408799b41ae9863259ef" title="Sets the pencil primary if this player is the drawer." alt="" coords="1671,107,1847,133"/>
+<area shape="rect" href="group__canvas.html#ga8ad75f7f8cd0333e14d51a533da88883" title="Updates the canvas according to a keyboard event." alt="" coords="1487,52,1613,79"/>
+<area shape="rect" href="group__game.html#ga2a86959de5de66b3881ada72cf3a5850" title="Switches the tool used (pencil/eraser) if this player is the drawer." alt="" coords="1479,103,1621,145"/>
+<area shape="rect" href="group__dispatcher.html#gaeefd35acea05833fa9d829f99e2ed6ca" title="Dispatches a keyboard event." alt="" coords="379,5,547,32"/>
+<area shape="rect" href="group__canvas.html#ga95661aa91869ceace06141f45c078210" title="Updates the state of the canvas according to given mouse info." alt="" coords="1287,135,1431,161"/>
+<area shape="rect" href="group__dispatcher.html#gab72c16c8547625b6dde1d4626b3c9c99" title="Binds or unbinds the canvas to the dispatcher." alt="" coords="1079,135,1239,161"/>
+<area shape="rect" href="group__dispatcher.html#ga1870958649b46017847735537a5701e1" title="Updates the cursor state and updates the game according to it." alt="" coords="873,209,1015,250"/>
+<area shape="rect" href="group__dispatcher.html#gab9458678bdcdc4f0ff458f8a9b27c638" title="Resets all dispatcher bindings." alt="" coords="857,157,1031,184"/>
+<area shape="rect" href="group__game.html#ga52118602811d7516e865c66a7410fd58" title="Resumes the game." alt="" coords="650,56,754,83"/>
+<area shape="rect" href="group__menu.html#ga5ed66b2ad288641ccbb969f784a64351" title="Sets the menu to awaiting other player menu." alt="" coords="595,157,809,184"/>
+<area shape="rect" href="group__menu.html#ga6331f4f3fee92d6495fd79aa17f59777" title="Sets the menu to the game over screen." alt="" coords="628,209,776,250"/>
+<area shape="rect" href="group__menu.html#ga6c442e5329ddf932b74a253c15665d75" title="Sets the menu to main menu." alt="" coords="625,275,779,301"/>
+<area shape="rect" href="group__menu.html#ga0b4d8c6b87adac99529e3dce59857aaa" title="Sets the menu to new round screen according to the given player role." alt="" coords="628,326,776,367"/>
+<area shape="rect" href="group__menu.html#gaaf5a9953d8b982736cf01d87adcb3b14" title="Sets the menu to the other player left screen." alt="" coords="623,391,781,433"/>
+<area shape="rect" href="group__menu.html#ga2471e39c56761768b9ceabdd4d5e732f" title="Sets the menu to pause menu." alt="" coords="622,107,782,133"/>
+<area shape="rect" href="group__game.html#gad7c180906d7acb4776f4db147f289d7c" title="Starts the already created round." alt="" coords="399,56,526,83"/>
+<area shape="rect" href="group__menu.html#gafae9ccfd6e7de562283d6ffc8c3cf066" title="Loads the xpm images of the menu." alt="" coords="229,157,308,184"/>
+<area shape="rect" href="group__dispatcher.html#ga00f3579aee6fd77454373ac309f39675" title="Starts the round." alt="" coords="207,81,331,108"/>
+<area shape="rect" href="group__dispatcher.html#ga2607daafa4b66e729b8aa95ba97f1984" title="Dispatches a rtc alarm interrupt." alt="" coords="5,157,159,184"/>
+<area shape="rect" href="group__dispatcher.html#gaeaf290f8252a2b923005262498513787" title="Goes into the &quot;Awaiting other player...&quot; screen and notifies the other player." alt="" coords="393,157,533,184"/>
+<area shape="rect" href="group__game.html#ga3f61372930dd958f7499a110ce2bd7d6" title="Updates the game due to a rtc alarm interrupt." alt="" coords="211,208,326,235"/>
+<area shape="rect" href="group__dispatcher.html#ga0e52394a395110749bc8ce3251ee503c" title="Leaves the game back to the main menu and notifies the other player." alt="" coords="399,259,526,285"/>
+<area shape="rect" href="group__dispatcher.html#gabf03a39eb157e349de01d6a6cb7fa196" title="Starts a new round as DRAWER (role_t)." alt="" coords="391,310,534,351"/>
+<area shape="rect" href="group__dispatcher.html#ga0b13ea13708e1b05cd87fecebe747065" title="Starts a new round as GUESSER (role_t)." alt="" coords="391,375,534,417"/>
+<area shape="rect" href="group__dispatcher.html#ga478271b5d6d73f56b8c7c24d7be10cfd" title="Reacts to the event that the other player left the game." alt="" coords="397,441,528,482"/>
+<area shape="rect" href="group__dispatcher.html#ga4256f77332aee43a38ecada70ef1e418" title="Dispatches a mouse packet from a mouse event." alt="" coords="621,457,783,484"/>
+</map>
 </div>
 
 </div>
@@ -355,6 +423,13 @@ Here is the caller graph for this function:</div>
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="group__button_ga851787864a8ca2d5085673f4916056ed_icgraph.png" border="0" usemap="#agroup__button_ga851787864a8ca2d5085673f4916056ed_icgraph" alt=""/></div>
+<map name="group__button_ga851787864a8ca2d5085673f4916056ed_icgraph" id="group__button_ga851787864a8ca2d5085673f4916056ed_icgraph">
+<area shape="rect" title="Sets a circle icon to a given button." alt="" coords="609,46,761,73"/>
+<area shape="rect" href="group__game.html#gab537b849307e8169410c0a5ee34fbc3c" title="Changes the selected color if this player is the drawer." alt="" coords="396,5,561,47"/>
+<area shape="rect" href="group__game.html#ga799729f35345ff1cb4992ba19aaa28a9" title="Changes the selected thickness if this player is the drawer." alt="" coords="396,71,561,112"/>
+<area shape="rect" href="group__canvas.html#ga8ad75f7f8cd0333e14d51a533da88883" title="Updates the canvas according to a keyboard event." alt="" coords="221,46,348,73"/>
+<area shape="rect" href="group__dispatcher.html#gaeefd35acea05833fa9d829f99e2ed6ca" title="Dispatches a keyboard event." alt="" coords="5,46,173,73"/>
+</map>
 </div>
 
 </div>
@@ -393,6 +468,15 @@ Here is the caller graph for this function:</div>
   </table>
   </dd>
 </dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__button_ga61409efef36d6fc472383d25706e44af_icgraph.png" border="0" usemap="#agroup__button_ga61409efef36d6fc472383d25706e44af_icgraph" alt=""/></div>
+<map name="group__button_ga61409efef36d6fc472383d25706e44af_icgraph" id="group__button_ga61409efef36d6fc472383d25706e44af_icgraph">
+<area shape="rect" title="Sets a xpm image icon to a given button." alt="" coords="132,5,279,32"/>
+<area shape="rect" href="group__menu.html#gafae9ccfd6e7de562283d6ffc8c3cf066" title="Loads the xpm images of the menu." alt="" coords="5,5,84,32"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -423,6 +507,36 @@ Here is the caller graph for this function:</div>
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="group__button_ga0425667543e54af67fe4010a57476d05_icgraph.png" border="0" usemap="#agroup__button_ga0425667543e54af67fe4010a57476d05_icgraph" alt=""/></div>
+<map name="group__button_ga0425667543e54af67fe4010a57476d05_icgraph" id="agroup__button_ga0425667543e54af67fe4010a57476d05_icgraph">
+<area shape="rect" title="Sets the border of a given button inactive." alt="" coords="1896,74,2036,115"/>
+<area shape="rect" href="group__game.html#gad2612affb6e1d0b40f1972a751ad6674" title="Sets the eraser primary if this player is the drawer." alt="" coords="1669,56,1848,83"/>
+<area shape="rect" href="group__game.html#gab09c1e5c83d1408799b41ae9863259ef" title="Sets the pencil primary if this player is the drawer." alt="" coords="1671,107,1847,133"/>
+<area shape="rect" href="group__canvas.html#ga8ad75f7f8cd0333e14d51a533da88883" title="Updates the canvas according to a keyboard event." alt="" coords="1487,52,1613,79"/>
+<area shape="rect" href="group__game.html#ga2a86959de5de66b3881ada72cf3a5850" title="Switches the tool used (pencil/eraser) if this player is the drawer." alt="" coords="1479,103,1621,145"/>
+<area shape="rect" href="group__dispatcher.html#gaeefd35acea05833fa9d829f99e2ed6ca" title="Dispatches a keyboard event." alt="" coords="379,5,547,32"/>
+<area shape="rect" href="group__canvas.html#ga95661aa91869ceace06141f45c078210" title="Updates the state of the canvas according to given mouse info." alt="" coords="1287,135,1431,161"/>
+<area shape="rect" href="group__dispatcher.html#gab72c16c8547625b6dde1d4626b3c9c99" title="Binds or unbinds the canvas to the dispatcher." alt="" coords="1079,135,1239,161"/>
+<area shape="rect" href="group__dispatcher.html#ga1870958649b46017847735537a5701e1" title="Updates the cursor state and updates the game according to it." alt="" coords="873,209,1015,250"/>
+<area shape="rect" href="group__dispatcher.html#gab9458678bdcdc4f0ff458f8a9b27c638" title="Resets all dispatcher bindings." alt="" coords="857,157,1031,184"/>
+<area shape="rect" href="group__game.html#ga52118602811d7516e865c66a7410fd58" title="Resumes the game." alt="" coords="650,56,754,83"/>
+<area shape="rect" href="group__menu.html#ga5ed66b2ad288641ccbb969f784a64351" title="Sets the menu to awaiting other player menu." alt="" coords="595,157,809,184"/>
+<area shape="rect" href="group__menu.html#ga6331f4f3fee92d6495fd79aa17f59777" title="Sets the menu to the game over screen." alt="" coords="628,209,776,250"/>
+<area shape="rect" href="group__menu.html#ga6c442e5329ddf932b74a253c15665d75" title="Sets the menu to main menu." alt="" coords="625,275,779,301"/>
+<area shape="rect" href="group__menu.html#ga0b4d8c6b87adac99529e3dce59857aaa" title="Sets the menu to new round screen according to the given player role." alt="" coords="628,326,776,367"/>
+<area shape="rect" href="group__menu.html#gaaf5a9953d8b982736cf01d87adcb3b14" title="Sets the menu to the other player left screen." alt="" coords="623,391,781,433"/>
+<area shape="rect" href="group__menu.html#ga2471e39c56761768b9ceabdd4d5e732f" title="Sets the menu to pause menu." alt="" coords="622,107,782,133"/>
+<area shape="rect" href="group__game.html#gad7c180906d7acb4776f4db147f289d7c" title="Starts the already created round." alt="" coords="399,56,526,83"/>
+<area shape="rect" href="group__menu.html#gafae9ccfd6e7de562283d6ffc8c3cf066" title="Loads the xpm images of the menu." alt="" coords="229,157,308,184"/>
+<area shape="rect" href="group__dispatcher.html#ga00f3579aee6fd77454373ac309f39675" title="Starts the round." alt="" coords="207,81,331,108"/>
+<area shape="rect" href="group__dispatcher.html#ga2607daafa4b66e729b8aa95ba97f1984" title="Dispatches a rtc alarm interrupt." alt="" coords="5,157,159,184"/>
+<area shape="rect" href="group__dispatcher.html#gaeaf290f8252a2b923005262498513787" title="Goes into the &quot;Awaiting other player...&quot; screen and notifies the other player." alt="" coords="393,157,533,184"/>
+<area shape="rect" href="group__game.html#ga3f61372930dd958f7499a110ce2bd7d6" title="Updates the game due to a rtc alarm interrupt." alt="" coords="211,208,326,235"/>
+<area shape="rect" href="group__dispatcher.html#ga0e52394a395110749bc8ce3251ee503c" title="Leaves the game back to the main menu and notifies the other player." alt="" coords="399,259,526,285"/>
+<area shape="rect" href="group__dispatcher.html#gabf03a39eb157e349de01d6a6cb7fa196" title="Starts a new round as DRAWER (role_t)." alt="" coords="391,310,534,351"/>
+<area shape="rect" href="group__dispatcher.html#ga0b13ea13708e1b05cd87fecebe747065" title="Starts a new round as GUESSER (role_t)." alt="" coords="391,375,534,417"/>
+<area shape="rect" href="group__dispatcher.html#ga478271b5d6d73f56b8c7c24d7be10cfd" title="Reacts to the event that the other player left the game." alt="" coords="397,441,528,482"/>
+<area shape="rect" href="group__dispatcher.html#ga4256f77332aee43a38ecada70ef1e418" title="Dispatches a mouse packet from a mouse event." alt="" coords="621,457,783,484"/>
+</map>
 </div>
 
 </div>
@@ -480,6 +594,29 @@ Here is the caller graph for this function:</div>
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="group__button_ga9d70332e21de7ab70afff4fa96fb69d4_icgraph.png" border="0" usemap="#agroup__button_ga9d70332e21de7ab70afff4fa96fb69d4_icgraph" alt=""/></div>
+<map name="group__button_ga9d70332e21de7ab70afff4fa96fb69d4_icgraph" id="agroup__button_ga9d70332e21de7ab70afff4fa96fb69d4_icgraph">
+<area shape="rect" title="Updates the state of a given button according to given mouse info." alt="" coords="1047,227,1187,254"/>
+<area shape="rect" href="group__dispatcher.html#ga1870958649b46017847735537a5701e1" title="Updates the cursor state and updates the game according to it." alt="" coords="857,220,999,261"/>
+<area shape="rect" href="group__dispatcher.html#ga4256f77332aee43a38ecada70ef1e418" title="Dispatches a mouse packet from a mouse event." alt="" coords="621,34,783,61"/>
+<area shape="rect" href="group__game.html#ga52118602811d7516e865c66a7410fd58" title="Resumes the game." alt="" coords="650,253,754,279"/>
+<area shape="rect" href="group__menu.html#ga5ed66b2ad288641ccbb969f784a64351" title="Sets the menu to awaiting other player menu." alt="" coords="595,393,809,419"/>
+<area shape="rect" href="group__menu.html#ga6331f4f3fee92d6495fd79aa17f59777" title="Sets the menu to the game over screen." alt="" coords="389,5,537,47"/>
+<area shape="rect" href="group__menu.html#ga6c442e5329ddf932b74a253c15665d75" title="Sets the menu to main menu." alt="" coords="625,329,779,355"/>
+<area shape="rect" href="group__menu.html#ga0b4d8c6b87adac99529e3dce59857aaa" title="Sets the menu to new round screen according to the given player role." alt="" coords="628,136,776,177"/>
+<area shape="rect" href="group__menu.html#gaaf5a9953d8b982736cf01d87adcb3b14" title="Sets the menu to the other player left screen." alt="" coords="623,444,781,485"/>
+<area shape="rect" href="group__menu.html#ga2471e39c56761768b9ceabdd4d5e732f" title="Sets the menu to pause menu." alt="" coords="622,202,782,229"/>
+<area shape="rect" href="group__dispatcher.html#gaeefd35acea05833fa9d829f99e2ed6ca" title="Dispatches a keyboard event." alt="" coords="379,202,547,229"/>
+<area shape="rect" href="group__game.html#gad7c180906d7acb4776f4db147f289d7c" title="Starts the already created round." alt="" coords="399,253,526,279"/>
+<area shape="rect" href="group__menu.html#gafae9ccfd6e7de562283d6ffc8c3cf066" title="Loads the xpm images of the menu." alt="" coords="229,354,308,381"/>
+<area shape="rect" href="group__dispatcher.html#ga00f3579aee6fd77454373ac309f39675" title="Starts the round." alt="" coords="207,209,331,235"/>
+<area shape="rect" href="group__dispatcher.html#ga2607daafa4b66e729b8aa95ba97f1984" title="Dispatches a rtc alarm interrupt." alt="" coords="5,122,159,149"/>
+<area shape="rect" href="group__dispatcher.html#gaeaf290f8252a2b923005262498513787" title="Goes into the &quot;Awaiting other player...&quot; screen and notifies the other player." alt="" coords="393,405,533,431"/>
+<area shape="rect" href="group__game.html#ga3f61372930dd958f7499a110ce2bd7d6" title="Updates the game due to a rtc alarm interrupt." alt="" coords="211,78,326,105"/>
+<area shape="rect" href="group__dispatcher.html#ga0e52394a395110749bc8ce3251ee503c" title="Leaves the game back to the main menu and notifies the other player." alt="" coords="399,354,526,381"/>
+<area shape="rect" href="group__dispatcher.html#gabf03a39eb157e349de01d6a6cb7fa196" title="Starts a new round as DRAWER (role_t)." alt="" coords="391,71,534,112"/>
+<area shape="rect" href="group__dispatcher.html#ga0b13ea13708e1b05cd87fecebe747065" title="Starts a new round as GUESSER (role_t)." alt="" coords="391,136,534,177"/>
+<area shape="rect" href="group__dispatcher.html#ga478271b5d6d73f56b8c7c24d7be10cfd" title="Reacts to the event that the other player left the game." alt="" coords="397,456,528,497"/>
+</map>
 </div>
 
 </div>
@@ -534,7 +671,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Initiates the info of a new button. </p>
+<p>Initializes a new button. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">button</td><td>address of memory of the button to be initialized </td></tr>
@@ -551,6 +688,10 @@ Here is the caller graph for this function:</div>
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="group__button_ga5ae9d9845b0c967aac6e228b3f916ea7_icgraph.png" border="0" usemap="#agroup__button_ga5ae9d9845b0c967aac6e228b3f916ea7_icgraph" alt=""/></div>
+<map name="group__button_ga5ae9d9845b0c967aac6e228b3f916ea7_icgraph" id="group__button_ga5ae9d9845b0c967aac6e228b3f916ea7_icgraph">
+<area shape="rect" title="Initializes a new button." alt="" coords="132,5,220,32"/>
+<area shape="rect" href="group__menu.html#gafae9ccfd6e7de562283d6ffc8c3cf066" title="Loads the xpm images of the menu." alt="" coords="5,5,84,32"/>
+</map>
 </div>
 
 </div>

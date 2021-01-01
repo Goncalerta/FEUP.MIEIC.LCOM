@@ -1,0 +1,6 @@
+<map id="write_byte_to_mouse" name="write_byte_to_mouse">
+<area shape="rect" id="node1" title="Issues a command to the mouse using the kbc." alt="" coords="5,31,151,57"/>
+<area shape="rect" id="node2" href="$group__kbc.html#gaa0559188b6e62f1b72bd50ba1915d914" title="Issues an argument to the kbc." alt="" coords="200,5,343,32"/>
+<area shape="rect" id="node4" href="$group__kbc.html#ga978c37bd6eca1b2724372aee45770670" title="Issues a command to the kbc." alt="" coords="199,56,344,83"/>
+<area shape="rect" id="node3" href="$group__kbc.html#ga628109931012fdfa144b55cc679a7fe9" title="Writes a byte to a kbc register." alt="" coords="392,31,495,57"/>
+</map>

@@ -1,0 +1,4 @@
+<map id="uart_config_int" name="uart_config_int">
+<area shape="rect" id="node1" title="Configures the interrupts of the serial port." alt="" coords="192,5,299,32"/>
+<area shape="rect" id="node2" href="$group__protocol.html#ga1b4d0d201e93a7bdf1aaeb6766e304ea" title="Configures the serial port and protocol queues to start communication." alt="" coords="5,5,144,32"/>
+</map>

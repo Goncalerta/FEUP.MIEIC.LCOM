@@ -1,0 +1,5 @@
+<map id="rtc_enable_update_int" name="rtc_enable_update_int">
+<area shape="rect" id="node1" title="Enables RTC update interrupts." alt="" coords="5,5,155,32"/>
+<area shape="rect" id="node2" href="$group__rtc.html#ga2780c6d57b30b6d1804927a1d5c1dd1b" title="Enables a type of interrupt with the given configuration." alt="" coords="203,5,305,32"/>
+<area shape="rect" id="node3" href="$group__rtc.html#gaeb22f43773d6e29365a07f7f847dfbb9" title="Reads data from a RTC register." alt="" coords="353,5,472,32"/>
+</map>

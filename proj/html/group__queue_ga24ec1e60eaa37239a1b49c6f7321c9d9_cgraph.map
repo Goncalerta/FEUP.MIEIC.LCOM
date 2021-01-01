@@ -1,0 +1,4 @@
+<map id="queue_top" name="queue_top">
+<area shape="rect" id="node1" title="Gets the element at the front of the given queue." alt="" coords="5,5,88,32"/>
+<area shape="rect" id="node2" href="$group__queue.html#ga09a3da9bf84f747356ef8050447bf35a" title="Checks if a given queue is empty." alt="" coords="136,5,253,32"/>
+</map>

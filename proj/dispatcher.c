@@ -240,8 +240,6 @@ int draw_frame() {
     menu_state_t state = menu_get_state();
 
     if (state == GAME || state == PAUSE_MENU) {
-        if (canvas_draw_frame(0) != OK)
-            return 1;
         if (game_draw() != OK)
             return 1;
     }
@@ -417,8 +415,7 @@ int event_new_round_as_guesser(const char *word) {
 }
 
 int event_new_round_as_drawer() {
-    const char *word;
-    get_random_word(&word);
+    const char *word = get_random_word();
 
     if (game_new_round(DRAWER, word) != OK)
         return 1;
@@ -453,7 +450,7 @@ int event_end_round() {
     return 0;
 }
 
-int event_new_stroke(bool primary_button) {
+int event_new_stroke() {
     if (canvas_new_stroke(drawer_get_selected_color(), drawer_get_selected_thickness()) != OK)
         return 1;
     if (protocol_send_new_stroke(drawer_get_selected_color(), drawer_get_selected_thickness()) != OK)

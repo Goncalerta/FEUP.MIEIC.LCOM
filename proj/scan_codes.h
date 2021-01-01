@@ -3,6 +3,10 @@
 
 #include <lcom/lcf.h>
 
+/** @file 
+ * @brief PC's keyboard scan codes.
+ */
+
 /** @defgroup scan_codes scan_codes
  * @{
  *

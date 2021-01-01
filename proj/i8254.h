@@ -3,6 +3,10 @@
 
 #include <lcom/lcf.h>
 
+/** @file 
+ * @brief Constants for programming the i8254 Timer.
+ */
+
 /** @defgroup i8254 i8254
  * @{
  *

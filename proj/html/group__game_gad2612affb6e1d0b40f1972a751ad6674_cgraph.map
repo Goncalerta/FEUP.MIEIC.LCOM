@@ -1,0 +1,5 @@
+<map id="drawer_set_eraser_primary" name="drawer_set_eraser_primary">
+<area shape="rect" id="node1" title="Sets the eraser primary if this player is the drawer." alt="" coords="5,35,184,61"/>
+<area shape="rect" id="node2" href="$group__button.html#ga6fdbd6cb9f7febe9bc371326f96f365d" title="Sets the border of a given button active." alt="" coords="232,5,399,32"/>
+<area shape="rect" id="node3" href="$group__button.html#ga0425667543e54af67fe4010a57476d05" title="Sets the border of a given button inactive." alt="" coords="245,57,385,98"/>
+</map>

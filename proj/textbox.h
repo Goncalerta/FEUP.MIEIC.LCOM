@@ -3,8 +3,12 @@
 
 #include <lcom/lcf.h>
 #include <stdbool.h>
-#include "graphics.h" // TODO maybe use forward declarations to avoid includes like this?
+#include "graphics.h"
 #include "keyboard.h"
+
+/** @file 
+ * @brief File dedicated to text boxes.
+ */
 
 /** @defgroup textbox textbox
  * @{
@@ -35,17 +39,17 @@ typedef enum text_box_state {
  * 
  */
 typedef struct text_box_t {
-    char *   word; /*!< Address of memory of the content of the text box. */
-    uint8_t  word_size; /*!< Content size (not counting with the '\0'). */
-    uint16_t x; /*!< Left most x coordinate of the text box. */
-    uint16_t y; /*!< Top most y coordinate of the text box. */
-    uint8_t  cursor_pos; /*!< Cursor position relative to its content start. */
-    uint8_t  select_pos; /*!< Position, relative to content start, from where the content is being selected (== cursor_pos if nothing selected). */
-    uint8_t  start_display; /*!< First position dispalyed in the text box. */
-    uint8_t  display_size; /*!< Number of chars displayed at the same time. */
-    text_box_state state; /*!< State of the text box. */
-    bool     visible_cursor; /*!< True if the text cursor is visible and false otherwise. */
-    text_box_action action; /*!< Action to perform when ENTER is pressed. */
+    char *   word; /*!< @brief Address of memory of the content of the text box. */
+    uint8_t  word_size; /*!< @brief Content size (not counting with the '\0'). */
+    uint16_t x; /*!< @brief Left most x coordinate of the text box. */
+    uint16_t y; /*!< @brief Top most y coordinate of the text box. */
+    uint8_t  cursor_pos; /*!< @brief Cursor position relative to its content start. */
+    uint8_t  select_pos; /*!< @brief Position, relative to content start, from where the content is being selected (== cursor_pos if nothing selected). */
+    uint8_t  start_display; /*!< @brief First position dispalyed in the text box. */
+    uint8_t  display_size; /*!< @brief Number of chars displayed at the same time. */
+    text_box_state state; /*!< @brief State of the text box. */
+    bool     visible_cursor; /*!< @brief True if the text cursor is visible and false otherwise. */
+    text_box_action action; /*!< @brief Action to perform when ENTER is pressed. */
 } text_box_t;
 
 /**

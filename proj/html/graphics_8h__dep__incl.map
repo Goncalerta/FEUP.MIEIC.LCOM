@@ -1,0 +1,8 @@
+<map id="graphics.h" name="graphics.h">
+<area shape="rect" id="node1" title="File dedicated to graphics." alt="" coords="167,5,249,32"/>
+<area shape="rect" id="node2" href="$button_8h.html" title="File dedicated to buttons." alt="" coords="5,80,75,107"/>
+<area shape="rect" id="node3" href="$clue_8h.html" title="File dedicated to word clues." alt="" coords="99,80,157,107"/>
+<area shape="rect" id="node4" href="$font_8h.html" title="File dedicated to the font used." alt="" coords="181,80,235,107"/>
+<area shape="rect" id="node5" href="$textbox_8h.html" title="File dedicated to text boxes." alt="" coords="259,80,335,107"/>
+<area shape="rect" id="node6" href="$video__gr_8h.html" title="File dedicated to the interaction with the video card." alt="" coords="360,80,440,107"/>
+</map>

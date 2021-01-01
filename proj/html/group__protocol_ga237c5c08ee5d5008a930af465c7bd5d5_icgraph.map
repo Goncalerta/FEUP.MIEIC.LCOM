@@ -1,0 +1,4 @@
+<map id="protocol_handle_error" name="protocol_handle_error">
+<area shape="rect" id="node1" title="Reacts to a serial port error." alt="" coords="149,5,296,32"/>
+<area shape="rect" id="node2" href="$group__protocol.html#ga0b3e768da60827fe622bd3932efc82ff" title="Reacts to a timer interrupt to detect timeouts." alt="" coords="5,5,101,32"/>
+</map>

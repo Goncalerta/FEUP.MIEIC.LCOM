@@ -4,16 +4,20 @@
 #include <lcom/lcf.h>
 #include "graphics.h"
 
+/** @file 
+ * @brief File dedicated to buttons.
+ */
+
 /** @defgroup button button
  * @{
  *
  * @brief Module dedicated to buttons.
  */
 
-#define BUTTON_CIRCLE_RADIUS_DEFAULT 15 /**< @brief Button circle default radius */
-#define BUTTON_CIRCLE_DEFAULT_COLOR 0x000000 /**< @brief Button circle default color */
+#define BUTTON_CIRCLE_RADIUS_DEFAULT 15 /**< @brief Button circle default radius when the icon is a circle */
+#define BUTTON_CIRCLE_DEFAULT_COLOR 0x000000 /**< @brief Button circle default color when the icon is a circle */
 
-typedef int (*button_action)(); /**< @brief Button action when it's pressed. */
+typedef int (*button_action)(); /**< @brief Button action callback when it's pressed. */
 
 /**
  * @brief Enumerated type for specifying the state of a button.
@@ -31,18 +35,18 @@ typedef enum button_state_t {
  * 
  */
 typedef struct button_icon_t {
-    enum { BUTTON_ICON_NONE, /*!< No icon. */
-           BUTTON_ICON_XPM, /*!< xpm image icon. */
-           BUTTON_ICON_CIRCLE /*!< Circle icon. */
-        } type; /*!< Icon type. */
+    enum { BUTTON_ICON_NONE, /*!< @brief No icon. */
+           BUTTON_ICON_XPM, /*!< @brief xpm image icon. */
+           BUTTON_ICON_CIRCLE /*!< @brief Circle icon. */
+        } type; /*!< @brief Icon type. */
     union {
-        xpm_image_t img; /*!< Button image icon. */
+        xpm_image_t img; /*!< @brief Button image icon. */
         
         struct {
-            uint16_t radius; /*!< Radius of a circle icon. */
-            uint32_t color; /*!< Color of a circle icon. */
-        } circle; /*!< Button circle icon. */
-    } attributes; /*!< Icon attributes. */
+            uint16_t radius; /*!< @brief Radius of a circle icon. */
+            uint32_t color; /*!< @brief Color of a circle icon. */
+        } circle; /*!< @brief Button circle icon. */
+    } attributes; /*!< @brief Icon attributes. */
 } button_icon_t;
 
 /**
@@ -50,18 +54,18 @@ typedef struct button_icon_t {
  * 
  */
 typedef struct button_t {
-    uint16_t x; /*!< Left most x coordinate of the button. */
-    uint16_t y; /*!< Top most y coordinate of the button. */
-    uint16_t width; /*!< Button width. */
-    uint16_t height; /*!< Button height. */
-    button_state_t state; /*!< State of the button. */
-    button_action action; /*!< Action to perform when button is pressed. */
-    button_icon_t icon; /*!< Button icon. */
-    bool active_border; /*!< True if the border of the button is active and false otherwise. */
+    uint16_t x; /*!< @brief Left most x coordinate of the button. */
+    uint16_t y; /*!< @brief Top most y coordinate of the button. */
+    uint16_t width; /*!< @brief Button width. */
+    uint16_t height; /*!< @brief Button height. */
+    button_state_t state; /*!< @brief State of the button. */
+    button_action action; /*!< @brief Action to perform when button is pressed. */
+    button_icon_t icon; /*!< @brief Button icon. */
+    bool active_border; /*!< @brief True if the border of the button is active and false otherwise. */
 } button_t;
 
 /**
- * @brief Initiates the info of a new button.
+ * @brief Initializes a new button.
  * 
  * @param button address of memory of the button to be initialized
  * @param x button x coordinate

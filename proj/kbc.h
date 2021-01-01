@@ -3,6 +3,10 @@
 
 #include <lcom/lcf.h>
 
+/** @file 
+ * @brief File dedicated to interaction with the keyboard controller (KBC).
+ */
+
 /** @defgroup kbc kbc
  * @{
  *

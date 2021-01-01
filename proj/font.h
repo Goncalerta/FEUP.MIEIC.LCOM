@@ -4,6 +4,10 @@
 #include <lcom/lcf.h>
 #include "graphics.h"
 
+/** @file 
+ * @brief File dedicated to the font used.
+ */
+
 /** @defgroup font font
  * @{
  *

@@ -1,0 +1,8 @@
+<map id="queue_push" name="queue_push">
+<area shape="rect" id="node1" title="Adds an element to the back of the given queue." alt="" coords="523,31,615,57"/>
+<area shape="rect" id="node2" href="$group__uart.html#ga044300424f25aaf6d622538cafe79d90" title="Receives bytes from the serial port and puts them in a software queue." alt="" coords="344,5,475,32"/>
+<area shape="rect" id="node4" href="$group__uart.html#ga00a2984ead2b73e2871dfda7c1ac49e3" title="Adds a byte to the software queue of bytes to be sent and tries to send bytes." alt="" coords="354,56,465,83"/>
+<area shape="rect" id="node3" href="$group__uart.html#ga2820f530017133c17706dbc238f738d9" title="COM1 interrupt handler." alt="" coords="187,5,258,32"/>
+<area shape="rect" id="node5" href="$group__protocol.html#ga237c5c08ee5d5008a930af465c7bd5d5" title="Reacts to a serial port error." alt="" coords="149,56,296,83"/>
+<area shape="rect" id="node6" href="$group__protocol.html#ga0b3e768da60827fe622bd3932efc82ff" title="Reacts to a timer interrupt to detect timeouts." alt="" coords="5,56,101,83"/>
+</map>

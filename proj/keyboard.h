@@ -3,6 +3,10 @@
 
 #include <lcom/lcf.h>
 
+/** @file 
+ * @brief File dedicated to interaction with the PC's Keyboard.
+ */
+
 /** @defgroup keyboard keyboard
  * @{
  *
@@ -30,9 +34,9 @@ typedef enum kbd_key {
  * @brief Keyboard event.
  */
 typedef struct kbd_event_t {
-    kbd_key key; /*!< Key that was pressed. */
-    char char_key; /*!< Char pressed when key == CHAR. */
-    bool is_ctrl_pressed; /*!< Ctrl key is pressed. */
+    kbd_key key; /*!< @brief Key that was pressed. */
+    char char_key; /*!< @brief Char pressed when key == CHAR. */
+    bool is_ctrl_pressed; /*!< @brief Ctrl key is pressed. */
 } kbd_event_t;
 
 /**

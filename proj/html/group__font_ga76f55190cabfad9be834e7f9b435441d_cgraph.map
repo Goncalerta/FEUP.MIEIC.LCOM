@@ -1,0 +1,7 @@
+<map id="font_draw_string_centered" name="font_draw_string_centered">
+<area shape="rect" id="node1" title="Draws a substring of a string centered in the given coordinates in the given buffer." alt="" coords="5,5,179,32"/>
+<area shape="rect" id="node2" href="$group__font.html#ga9b434230690465196da266df4141511d" title="Draws a substring of a string to the given coordinates in the given buffer." alt="" coords="227,5,388,32"/>
+<area shape="rect" id="node3" href="$group__font.html#gaa049c74a42572fa8713f9d08ddf42fc1" title="Draws a given char to the given coordinates in the given buffer." alt="" coords="436,5,545,32"/>
+<area shape="rect" id="node4" href="$group__graphics.html#ga31260a04eb12bc7be5012378500b09b0" title="Draws a portion of a given xpm image in the given buffer in the given coordinates." alt="" coords="593,5,743,32"/>
+<area shape="rect" id="node5" href="$group__graphics.html#ga257b5dac975604f70651e8764ad8acd8" title="Draws a pixel in the given buffer in the given coordinates with the given color." alt="" coords="791,5,893,32"/>
+</map>

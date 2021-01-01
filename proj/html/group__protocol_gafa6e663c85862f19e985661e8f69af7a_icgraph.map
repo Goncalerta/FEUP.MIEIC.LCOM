@@ -1,0 +1,4 @@
+<map id="protocol_send_start_round" name="protocol_send_start_round">
+<area shape="rect" id="node1" title="Sends a message of type MSG_START_ROUND." alt="" coords="207,5,343,47"/>
+<area shape="rect" id="node2" href="$group__dispatcher.html#ga2607daafa4b66e729b8aa95ba97f1984" title="Dispatches a rtc alarm interrupt." alt="" coords="5,13,159,39"/>
+</map>

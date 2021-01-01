@@ -1,0 +1,4 @@
+<map id="cursor_update_buttons" name="cursor_update_buttons">
+<area shape="rect" id="node1" title="Updates the buttons state." alt="" coords="216,5,371,32"/>
+<area shape="rect" id="node2" href="$group__dispatcher.html#ga4256f77332aee43a38ecada70ef1e418" title="Dispatches a mouse packet from a mouse event." alt="" coords="5,5,168,32"/>
+</map>

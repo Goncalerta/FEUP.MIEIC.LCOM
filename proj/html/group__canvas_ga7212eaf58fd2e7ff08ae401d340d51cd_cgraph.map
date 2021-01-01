@@ -1,0 +1,6 @@
+<map id="canvas_draw_frame" name="canvas_draw_frame">
+<area shape="rect" id="node1" title="Draws the canvas to the back buffer." alt="" coords="5,56,140,83"/>
+<area shape="rect" id="node2" href="$group__video__gr.html#gaecb0fe68de84fcbe553f77d62b37c69b" title="Gets the back buffer." alt="" coords="201,5,333,32"/>
+<area shape="rect" id="node3" href="$group__video__gr.html#ga14959b59f7846393c15b57d8d3d6f1d6" title="Gets the number of bytes used to represent a single pixel." alt="" coords="188,56,345,83"/>
+<area shape="rect" id="node4" href="$group__video__gr.html#ga03e56e930917ca4f15ea488838d513a8" title="Gets the horizontal resolution of the buffer." alt="" coords="221,107,312,133"/>
+</map>

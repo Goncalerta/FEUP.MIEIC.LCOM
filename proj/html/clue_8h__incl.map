@@ -1,0 +1,5 @@
+<map id="clue.h" name="clue.h">
+<area shape="rect" id="node1" title="File dedicated to word clues." alt="" coords="16,5,73,32"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,155,84,181"/>
+<area shape="rect" id="node3" href="$graphics_8h.html" title="File dedicated to graphics." alt="" coords="43,80,126,107"/>
+</map>

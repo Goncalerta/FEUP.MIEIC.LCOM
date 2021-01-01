@@ -3,6 +3,10 @@
 
 #include <lcom/lcf.h>
 
+/** @file 
+ * @brief File dedicated to the mouse cursor.
+ */
+
 /** @defgroup cursor cursor
  * @{
  *

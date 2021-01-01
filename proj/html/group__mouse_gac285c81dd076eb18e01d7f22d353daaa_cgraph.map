@@ -1,0 +1,7 @@
+<map id="mouse_disable_dr" name="mouse_disable_dr">
+<area shape="rect" id="node1" title="Disables mouse data reporting." alt="" coords="5,31,132,57"/>
+<area shape="rect" id="node2" href="$group__mouse.html#gadc968ef8cbf8660fe0bac8237d65183e" title="Issues a command to the mouse using the kbc." alt="" coords="180,31,325,57"/>
+<area shape="rect" id="node3" href="$group__kbc.html#gaa0559188b6e62f1b72bd50ba1915d914" title="Issues an argument to the kbc." alt="" coords="375,5,517,32"/>
+<area shape="rect" id="node5" href="$group__kbc.html#ga978c37bd6eca1b2724372aee45770670" title="Issues a command to the kbc." alt="" coords="373,56,519,83"/>
+<area shape="rect" id="node4" href="$group__kbc.html#ga628109931012fdfa144b55cc679a7fe9" title="Writes a byte to a kbc register." alt="" coords="567,31,669,57"/>
+</map>

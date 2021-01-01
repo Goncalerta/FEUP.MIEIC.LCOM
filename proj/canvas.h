@@ -2,8 +2,11 @@
 #define __CANVAS_H
 
 #include <lcom/lcf.h>
-
 #include "keyboard.h"
+
+/** @file 
+ * @brief File dedicated to the canvas used to draw.
+ */
 
 /** @defgroup canvas canvas
  * @{
@@ -25,10 +28,13 @@ typedef enum canvas_state_t {
 /**
  * @brief Atom of a canvas stroke.
  * 
+ * An array of atoms form the set of positions the mouse went through in a single stroke.
+ * Each two positions must be connected by a line.
+ * 
  */
 typedef struct stroke_atom {
-    uint16_t x; /*!< x coordinate of the atom. */
-    uint16_t y; /*!< y coordinate of the atom. */
+    uint16_t x; /*!< @brief x coordinate of the atom. */
+    uint16_t y; /*!< @brief y coordinate of the atom. */
 } stroke_atom;
 
 /**
@@ -36,12 +42,12 @@ typedef struct stroke_atom {
  * 
  */
 typedef struct stroke {
-    uint32_t color; /*!< Color of the stroke. */
-    uint16_t thickness; /*!< Thickness of the stroke. */
-    size_t num_atoms; /*!< Number of atoms of the stroke. */
-    stroke_atom *atoms; /*!< Address of memory of the strokes. */
-    struct stroke *next; /*!< Address of memory of the stroke drawn after this. */ // TODO is this comment correct?
-    struct stroke *prev; /*!< Address of memory of the stroke drawn before this. */ // TODO is this comment correct?
+    uint32_t color; /*!< @brief Color of the stroke. */
+    uint16_t thickness; /*!< @brief Thickness of the stroke. */
+    size_t num_atoms; /*!< @brief Number of atoms of the stroke. */
+    stroke_atom *atoms; /*!< @brief Address of memory of the strokes. */
+    struct stroke *next; /*!< @brief Address of memory of the stroke drawn after this one. */
+    struct stroke *prev; /*!< @brief Address of memory of the stroke drawn before this one. */
 } stroke;
 
 
@@ -53,11 +59,11 @@ typedef struct stroke {
 bool canvas_is_initialized();
 
 /**
- * @brief Initiates the canvas by setting up its initial content.
+ * @brief Initiates the canvas.
  * 
  * @param width canvas width
  * @param height canvas height
- * @param enabled is the canvas enabled
+ * @param enabled whether the canvas allows the user to draw
  * @return Return 0 upon success and non-zero otherwise
  */
 int canvas_init(uint16_t width, uint16_t height, bool enabled);
@@ -71,6 +77,9 @@ void canvas_exit();
 /**
  * @brief Draws the canvas to the back buffer.
  * 
+ * The canvas is assumed to have the same width as the back buffer for performance reasons.
+ * It is a valid assumption for our project and avoids mouse delays in one of our computers.
+ * 
  * @param y y coordinate of the back buffer to start drawing
  * @return Return 0 upon success and non-zero otherwise
  */
@@ -83,7 +92,7 @@ int canvas_draw_frame(uint16_t y);
 void clear_canvas();
 
 /**
- * @brief Checks if canvas is enabled.
+ * @brief Checks if canvas is enabled, that is, if it allows the user to draw.
  * 
  * @return Return true if canvas is enabled and false otherwise
  */
@@ -108,14 +117,21 @@ int canvas_new_stroke(uint32_t color, uint16_t thickness);
 int canvas_new_stroke_atom(uint16_t x, uint16_t y);
 
 /**
- * @brief Undos a stroke. // TODO better description?
+ * @brief Undoes a stroke.
+ * 
+ * Undoing a stroke removes it from the buffer but keeps it stored in
+ * the list of undone strokes in order to allow a redo if no more strokes
+ * are started meanwhile.
  * 
  * @return Return 0 upon success and non-zero otherwise
  */
 int canvas_undo_stroke();
 
 /**
- * @brief Redos a stroke.
+ * @brief Redoes a stroke.
+ * 
+ * Redoing a stroke removes it from the list of undone strokes and puts it
+ * back in the normal stroke list, drawing it into the buffer.
  * 
  * @return Return 0 upon success and non-zero otherwise
  */

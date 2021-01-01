@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['stroke_467',['stroke',['../structstroke.html',1,'']]],
-  ['stroke_5fatom_468',['stroke_atom',['../structstroke__atom.html',1,'']]]
+  ['stroke_645',['stroke',['../structstroke.html',1,'']]],
+  ['stroke_5fatom_646',['stroke_atom',['../structstroke__atom.html',1,'']]]
 ];

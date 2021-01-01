@@ -4,13 +4,16 @@
 #include <lcom/lcf.h>
 #include "graphics.h"
 
-// TODO vg_draw_hline and vg_draw_rectangle were renamed to vb_draw_hline and vb_draw_rectangle, let it be that way?
-// vg_init, vg_draw_hline and vg_draw_rectangle are already included by lcf
+// Note: vg_init is already included by lcf.
+
+/** @file 
+ * @brief File dedicated to the interaction with the video card.
+ */
 
 /** @defgroup video_gr video_gr
  * @{
  *
- * @brief Module dedicated to the video graphics.
+ * @brief Module dedicated to the interaction with the video card.
  */
 
 /**

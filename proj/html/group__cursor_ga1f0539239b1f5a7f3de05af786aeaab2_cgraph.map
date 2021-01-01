@@ -1,0 +1,10 @@
+<map id="cursor_draw" name="cursor_draw">
+<area shape="rect" id="node1" title="Draws the cursor to the back buffer in its current position according to its current state." alt="" coords="5,137,97,163"/>
+<area shape="rect" id="node2" href="$group__game.html#ga3fd14fd97f9704dccd8f8b0e6e53960f" title="Gets the drawer selected color." alt="" coords="145,5,287,47"/>
+<area shape="rect" id="node3" href="$group__game.html#ga7a01e47255ad988eefbe2e0067a3e26c" title="Gets the drawer selected thickness." alt="" coords="145,71,287,112"/>
+<area shape="rect" id="node4" href="$group__graphics.html#ga1b69ad0e07cfd0697a4cb9c18ba48b67" title="Draws a circle in the given buffer in the given coordinates with the given radius with the given colo..." alt="" coords="356,137,463,163"/>
+<area shape="rect" id="node6" href="$group__graphics.html#gad48647db82bcc8a80196a817c9959a40" title="Draws a given xpm image in the given buffer in the given coordinates." alt="" coords="168,187,264,214"/>
+<area shape="rect" id="node8" href="$group__video__gr.html#gaecb0fe68de84fcbe553f77d62b37c69b" title="Gets the back buffer." alt="" coords="150,238,282,265"/>
+<area shape="rect" id="node5" href="$group__graphics.html#ga257b5dac975604f70651e8764ad8acd8" title="Draws a pixel in the given buffer in the given coordinates with the given color." alt="" coords="532,162,635,189"/>
+<area shape="rect" id="node7" href="$group__graphics.html#ga31260a04eb12bc7be5012378500b09b0" title="Draws a portion of a given xpm image in the given buffer in the given coordinates." alt="" coords="335,187,484,214"/>
+</map>

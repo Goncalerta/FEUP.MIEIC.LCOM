@@ -1,0 +1,5 @@
+<map id="uart_flush_received_bytes" name="uart_flush_received_bytes">
+<area shape="rect" id="node1" title="Flushes all bytes being received from the serial port." alt="" coords="344,5,476,47"/>
+<area shape="rect" id="node2" href="$group__protocol.html#ga237c5c08ee5d5008a930af465c7bd5d5" title="Reacts to a serial port error." alt="" coords="149,13,296,39"/>
+<area shape="rect" id="node3" href="$group__protocol.html#ga0b3e768da60827fe622bd3932efc82ff" title="Reacts to a timer interrupt to detect timeouts." alt="" coords="5,13,101,39"/>
+</map>

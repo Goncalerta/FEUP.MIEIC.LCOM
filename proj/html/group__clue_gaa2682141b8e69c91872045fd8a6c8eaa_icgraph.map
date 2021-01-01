@@ -1,0 +1,4 @@
+<map id="word_clue_hint_at" name="word_clue_hint_at">
+<area shape="rect" id="node1" title="Hints a char in the given word clue in the given position." alt="" coords="185,5,312,32"/>
+<area shape="rect" id="node2" href="$group__game.html#ga2fabe2a29b89674da7806548bbaaa10b" title="Reveals a character in the word clue at the given position." alt="" coords="5,5,137,32"/>
+</map>

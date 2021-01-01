@@ -4,49 +4,18 @@
 #include "dispatcher.h"
 #include "date.h"
 
-#define RTC_ADDR_REG 0x70
-#define RTC_DATA_REG 0x71
-
-#define RTC_UIP BIT(7)
-#define RTC_DELAY_U 244
-
-#define RTC_PF BIT(6)
-#define RTC_AF BIT(5)
-#define RTC_UF BIT(4)
-
-#define RTC_PIE BIT(6)
-#define RTC_AIE BIT(5)
-#define RTC_UIE BIT(4)
-#define RTC_MASK_DISABLE(bit) (~((uint8_t)(bit)))
-
-#define RTC_REGISTER_SECONDS 0x0
-#define RTC_REGISTER_SECONDS_ALARM 0x1
-#define RTC_REGISTER_MINUTES 0x2
-#define RTC_REGISTER_MINUTES_ALARM 0x3
-#define RTC_REGISTER_HOURS 0x4
-#define RTC_REGISTER_HOURS_ALARM 0x5
-#define RTC_REGISTER_DAY_OF_THE_WEAK 0x6
-#define RTC_REGISTER_DAY_OF_THE_MONTH 0x7
-#define RTC_REGISTER_MONTH 0x8
-#define RTC_REGISTER_YEAR 0x9
-#define RTC_REGISTER_A 0xA
-#define RTC_REGISTER_B 0xB
-#define RTC_REGISTER_C 0xC
-#define RTC_REGISTER_D 0xD
-
-
 static int hook_id_rtc = 3;
 static date_t current_date;
 static date_t last_alarm_set_to = {.year = 0, .month = 0, .day = 0, .hour = 0, .minute = 0, .second = 0};
 
-static void rtc_print_byte_binary_format(uint8_t val) { // TODO delete? or let it be?
+static void rtc_print_byte_binary_format(uint8_t val) {
     for (int i = 7; i >= 0; i--) {
         printf("%d", (val>>i) & 0x1);
     }
     printf("\n");
 }
 
-int rtc_read_conf() { // TODO delete? or let it be?
+int rtc_read_conf() {
     uint8_t reg_a, reg_b, reg_c, reg_d;
     if (rtc_read_register(RTC_REGISTER_A, &reg_a) != OK)
         return 1;
@@ -123,7 +92,7 @@ int rtc_read_date() {
 
 int rtc_subscribe_int(uint8_t *bit_no) {
     *bit_no = hook_id_rtc;
-    return sys_irqsetpolicy(RTC_IRQ, IRQ_REENABLE | IRQ_EXCLUSIVE, &hook_id_rtc); // TODO does it need to be IRQ_EXCLUSIVE?
+    return sys_irqsetpolicy(RTC_IRQ, IRQ_REENABLE, &hook_id_rtc);
 }
 
 int rtc_unsubscribe_int() {

@@ -1,0 +1,4 @@
+<map id="kbc_read_command_byte" name="kbc_read_command_byte">
+<area shape="rect" id="node1" title="Reads the kbc command byte." alt="" coords="203,5,373,32"/>
+<area shape="rect" id="node2" href="$group__keyboard.html#ga0d28d7309ad45de4fe79c9de3fbeb3d8" title="Enables keyboard interrupts." alt="" coords="5,5,155,32"/>
+</map>

@@ -1,0 +1,4 @@
+<map id="game_is_over" name="game_is_over">
+<area shape="rect" id="node1" title="Checks if the game is over." alt="" coords="184,13,285,39"/>
+<area shape="rect" id="node2" href="$group__dispatcher.html#ga478271b5d6d73f56b8c7c24d7be10cfd" title="Reacts to the event that the other player left the game." alt="" coords="5,5,136,47"/>
+</map>

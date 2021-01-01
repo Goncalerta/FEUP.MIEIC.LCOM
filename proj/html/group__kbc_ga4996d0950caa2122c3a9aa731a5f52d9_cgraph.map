@@ -1,0 +1,5 @@
+<map id="kbc_read_command_byte" name="kbc_read_command_byte">
+<area shape="rect" id="node1" title="Reads the kbc command byte." alt="" coords="5,5,176,32"/>
+<area shape="rect" id="node2" href="$group__kbc.html#ga978c37bd6eca1b2724372aee45770670" title="Issues a command to the kbc." alt="" coords="224,5,369,32"/>
+<area shape="rect" id="node3" href="$group__kbc.html#ga628109931012fdfa144b55cc679a7fe9" title="Writes a byte to a kbc register." alt="" coords="417,5,520,32"/>
+</map>

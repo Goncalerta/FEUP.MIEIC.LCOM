@@ -3,6 +3,10 @@
 
 #include <lcom/lcf.h>
 
+/** @file 
+ * @brief File dedicated to queues.
+ */
+
 /** @defgroup queue queue
  * @{
  *
@@ -14,16 +18,16 @@
  * 
  */
 typedef struct queue_t {
-    void *data; /*!< Address of memory of the content of the queue. */
-    size_t element_size; /*!< Size of each queue element. */
-    size_t front; /*!< Index of queue front element. */
-    size_t back; /*!< Index of queue back element. */
-    size_t size; /*!< Queue size. */
-    size_t capacity; /*!< Queue capacity. */
+    void *data; /*!< @brief Address of memory of the content of the queue. */
+    size_t element_size; /*!< @brief Size of each queue element. */
+    size_t front; /*!< @brief Index of queue front element. */
+    size_t back; /*!< @brief Index of queue back element. */
+    size_t size; /*!< @brief Queue size. */
+    size_t capacity; /*!< @brief Queue capacity. */
 } queue_t;
 
 /**
- * @brief Initiates the info of a new queue.
+ * @brief Initializes of a new queue.
  * 
  * @param queue address of memory of the queue to be initialized
  * @param element_size queue element size
@@ -74,6 +78,8 @@ int queue_top(queue_t *queue, void *el);
 
 /**
  * @brief Adds an element to the back of the given queue.
+ * 
+ * If capacity is not enough, the queue is reallocated with double size.
  * 
  * @param queue address of memory of the queue
  * @param el address of memory of the element to be added

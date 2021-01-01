@@ -1,0 +1,5 @@
+<map id="event_round_win" name="event_round_win">
+<area shape="rect" id="node1" title="Sets the round as won, updates the score and notifies the other player." alt="" coords="360,5,477,32"/>
+<area shape="rect" id="node2" href="$group__game.html#ga5a725e3c48e6564fd75d04c2e4d163ba" title="Adds a word guess. And reacts according to weather it is correct." alt="" coords="181,5,312,32"/>
+<area shape="rect" id="node3" href="$group__dispatcher.html#ga3429571bafb33af98f7e8b90e2c4b4b4" title="Tries to guess the word and notifies the other player." alt="" coords="5,5,133,32"/>
+</map>

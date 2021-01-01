@@ -3,10 +3,14 @@
 
 #include <lcom/lcf.h>
 
+/** @file 
+ * @brief File dedicated to graphics.
+ */
+
 /** @defgroup graphics graphics
  * @{
  *
- * @brief Module dedicated to the graphics.
+ * @brief Module dedicated to graphics.
  */
 
 /**
@@ -14,10 +18,10 @@
  * 
  */
 typedef struct frame_buffer_t {
-    void *buf; /*!< Address of memory of the buffer. */
-    uint16_t h_res;	/*!< Horizontal resolution in pixels. */
-    uint16_t v_res;	/*!< Vertical resolution in pixels. */
-    size_t bytes_per_pixel; /*!< Number of VRAM bytes per pixel. */
+    void *buf; /*!< @brief Address of memory of the buffer. */
+    uint16_t h_res;	/*!< @brief Horizontal resolution in pixels. */
+    uint16_t v_res;	/*!< @brief Vertical resolution in pixels. */
+    size_t bytes_per_pixel; /*!< @brief Number of VRAM bytes per pixel. */
 } frame_buffer_t;
 
 /**
@@ -25,11 +29,11 @@ typedef struct frame_buffer_t {
  * 
  */
 typedef struct xpm_animation_t {
-    uint16_t width; /*!< Animation width. */
-    uint16_t height; /*!< Animation height. */
-    size_t number_of_frames; /*!< Animation number of fraames. */
-    size_t current_frame; /*!< Animation current frame. */
-    xpm_image_t *frames; /*!< Address of memory of the animation frames. */
+    uint16_t width; /*!< @brief Animation width. */
+    uint16_t height; /*!< @brief Animation height. */
+    size_t number_of_frames; /*!< @brief Animation number of fraames. */
+    size_t current_frame; /*!< @brief Animation current frame. */
+    xpm_image_t *frames; /*!< @brief Address of memory of the animation frames. */
 } xpm_animation_t;
 
 /**

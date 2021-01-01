@@ -1,0 +1,6 @@
+<map id="rtc_set_alarm_in" name="rtc_set_alarm_in">
+<area shape="rect" id="node1" title="Sets an alarm with remaining time to alarm from now." alt="" coords="5,31,124,57"/>
+<area shape="rect" id="node2" href="$group__date.html#gacf12b565d3e4489dd6026ce1ee6b5ebc" title="Adds a date_t to a rtc_alarm_time_t." alt="" coords="172,5,321,32"/>
+<area shape="rect" id="node3" href="$group__rtc.html#ga2780c6d57b30b6d1804927a1d5c1dd1b" title="Enables a type of interrupt with the given configuration." alt="" coords="195,56,298,83"/>
+<area shape="rect" id="node4" href="$group__rtc.html#gaeb22f43773d6e29365a07f7f847dfbb9" title="Reads data from a RTC register." alt="" coords="369,56,488,83"/>
+</map>

@@ -1,0 +1,4 @@
+<map id="drawer_change_selected_thickness" name="drawer_change_selected_thickness">
+<area shape="rect" id="node1" title="Changes the selected thickness if this player is the drawer." alt="" coords="5,5,171,47"/>
+<area shape="rect" id="node2" href="$group__button.html#ga851787864a8ca2d5085673f4916056ed" title="Sets a circle icon to a given button." alt="" coords="219,13,371,39"/>
+</map>

@@ -1,0 +1,4 @@
+<map id="queue_pop" name="queue_pop">
+<area shape="rect" id="node1" title="Removes the element at the front of the given queue." alt="" coords="5,5,91,32"/>
+<area shape="rect" id="node2" href="$group__queue.html#ga09a3da9bf84f747356ef8050447bf35a" title="Checks if a given queue is empty." alt="" coords="139,5,256,32"/>
+</map>

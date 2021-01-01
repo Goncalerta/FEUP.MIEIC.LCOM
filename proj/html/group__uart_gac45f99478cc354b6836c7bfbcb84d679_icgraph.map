@@ -1,0 +1,4 @@
+<map id="uart_received_bytes" name="uart_received_bytes">
+<area shape="rect" id="node1" title="Checks if there are unread received bytes in the software queue." alt="" coords="220,13,357,39"/>
+<area shape="rect" id="node2" href="$group__protocol.html#ga45e3aa191a3cde90081665be034bba0e" title="Processes received bytes from the serial port." alt="" coords="5,5,172,47"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="event_notify_not_in_game" name="event_notify_not_in_game">
+<area shape="rect" id="node1" title="Notify the other player that this player is not currently in the game." alt="" coords="5,35,176,61"/>
+<area shape="rect" id="node2" href="$group__protocol.html#gafd70b73fc60dd896c0da7fd62d71eff5" title="Sends a message of type MSG_LEAVE_GAME." alt="" coords="224,5,403,32"/>
+<area shape="rect" id="node3" href="$group__protocol.html#gaf65bf51204d728ca74e8d86ae0af4b4b" title="Sends a message of type MSG_READY_TO_PLAY." alt="" coords="242,57,385,98"/>
+</map>

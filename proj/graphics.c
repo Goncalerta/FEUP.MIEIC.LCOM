@@ -5,9 +5,6 @@
 
 #define COLOR_CAP_BYTES_NUM(n) (0xffffffff >> 8*(4-(n))) /* 1 <= n <= 4*/
 
-#define COLOR_BYTE(val, n) ((val) >> (n*8)) // TODO not being used, delete?
-#define COLOR_MASK(size, offset) ((0xffffffff >> (32-(size))) << (offset)) // TODO not being used, delete?
-
 int vb_draw_pixel(frame_buffer_t buf, uint16_t x, uint16_t y, uint32_t color) {
     if ((x >= buf.h_res) || (y >= buf.v_res))
         return 0;
@@ -46,7 +43,6 @@ int vb_fill_screen(frame_buffer_t buf, uint32_t color) {
 
 int vb_draw_hline(frame_buffer_t buf, uint16_t x, uint16_t y, uint16_t len, uint32_t color) {
     for (uint16_t i = 0; i < len; i++) {
-        // TODO for efficiency, maybe copy all bytes at once, checking the color and out of screen only one
         if (vb_draw_pixel(buf, x + i, y, color)) {
             return 1;
         }
@@ -56,7 +52,6 @@ int vb_draw_hline(frame_buffer_t buf, uint16_t x, uint16_t y, uint16_t len, uint
 
 int vb_draw_vline(frame_buffer_t buf, uint16_t x, uint16_t y, uint16_t len, uint32_t color) {
     for (uint16_t i = 0; i < len; i++) {
-        // TODO for efficiency, maybe copy all bytes at once, checking the color and out of screen only one
         if (vb_draw_pixel(buf, x, y + i, color)) {
             return 1;
         }
