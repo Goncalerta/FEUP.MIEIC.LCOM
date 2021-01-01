@@ -225,17 +225,24 @@ void rtc_ih() {
     }
 
     if (register_c & RTC_UF) {
-        if (rtc_read_date() != OK)
-            return;
+        if (rtc_read_date() != OK) {
+            printf("Error while reading date\n");
+        }
     }
     if (register_c & RTC_PF) {
-        if (dispatch_rtc_periodic_int() != OK)
-            return;
+        if (dispatcher_queue_rtc_periodic_interrupt_event() != OK) {
+            printf("Failed to queue rtc periodic interrupt event\n");
+        }
     }
     if (register_c & RTC_AF) {
-        if (!date_operator_less_than(current_date, last_alarm_set_to)) { // if not an old alarm
-            if (dispatch_rtc_alarm_int() != OK)
-                return;
+        // If the alarm interrupt is triggered right when a new alarm date is set,
+        // in order to avoid the old alarm interrupt to be mistaken with the new
+        // alarm interrupt, the old one should not trigger an event.
+        // This check with the current date and the date the alarm is set to ensures that.
+        if (!date_operator_less_than(current_date, last_alarm_set_to)) {
+            if (dispatcher_queue_rtc_alarm_event() != OK) {
+                printf("Failed to queue rtc alarm event\n");
+            }
         }
     }
 }

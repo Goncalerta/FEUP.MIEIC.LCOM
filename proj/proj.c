@@ -46,6 +46,61 @@ int main(int argc, char *argv[]) {
   return 0;
 }
 
+// Application dependent interrupt handlers
+
+static void application_dependent_mouse_ih() {
+    mouse_ih();
+                    
+    if (mouse_is_packet_ready()) {
+        if (dispatcher_queue_mouse_event() != OK) {
+            printf("Failed to queue mouse event\n");
+        }
+    }
+}
+
+static void application_dependent_keyboard_ih() {
+    kbc_ih();
+                    
+    if (kbd_is_scancode_ready()) {
+        if (dispatcher_queue_keyboard_event() != OK) {
+            printf("Failed to queue keyboard event\n");
+        } 
+    }
+}
+
+static void application_dependent_rtc_ih() {
+    rtc_ih();
+}
+
+static void application_dependent_com1_ih() {
+    com1_ih();
+
+    if (protocol_handle_received_bytes() != OK) {
+        printf("Error handling received uart bytes.\n");
+    }
+
+    if (uart_error_reading_message()) {
+        if (protocol_handle_error() != OK) {
+            printf("Failed to handle uart error.\n");
+        }
+    }
+}
+
+static void application_dependent_timer_ih() {
+    timer_int_handler();
+    if (protocol_tick() != OK) {
+        printf("Failed to handle protocol_tick.\n");
+    }
+
+    if (dispatcher_dispatch_events() != OK) {
+        printf("Error while dispatching events\n");
+    }
+
+    if (draw_frame() != OK) {
+        printf("Error while drawing frame\n");
+    }
+}
+
 int (proj_main_loop)(int argc, char *argv[]) {
     uint16_t mode = 0x118; // 1024x768
     enum xpm_image_type image_type = XPM_8_8_8;
@@ -117,6 +172,8 @@ int (proj_main_loop)(int argc, char *argv[]) {
         return 1;
     if (cursor_init(image_type) != OK)
         return 1;
+    if (dispatcher_init() != OK)
+        return 1;
     if (menu_init(image_type) != OK)
         return 1;
     if (menu_set_main_menu() != OK)
@@ -136,53 +193,19 @@ int (proj_main_loop)(int argc, char *argv[]) {
             switch (_ENDPOINT_P(msg.m_source)) {
             case HARDWARE: /* hardware interrupt notification */				
                 if (msg.m_notify.interrupts & BIT(mouse_irq_set)) {
-                    mouse_ih();
-                    
-                    if (mouse_is_packet_ready()) {
-                        struct packet p;
-                        if (mouse_retrieve_packet(&p) != OK) {
-                            printf("mouse_retrieve_packet failed\n");
-
-                        } else if (dispatch_mouse_packet(p) != OK) {
-                            printf("dispatch_mouse_packet failed\n");
-                        }
-                    }
+                    application_dependent_mouse_ih();
                 }
                 if (msg.m_notify.interrupts & BIT(kbd_irq_set)) {
-                    kbc_ih();
-                    
-                    if (kbd_is_scancode_ready()) {
-                        kbd_event_t kbd_state;
-                        
-                        if (kbd_handle_scancode(&kbd_state) != OK) {
-                            printf("kbd_handle_scancode failed\n");
-
-                        } else if (dispatch_keyboard_event(kbd_state) != OK) {
-                            printf("dispatch_keyboard_event failed\n");
-                        }
-                    }
+                    application_dependent_keyboard_ih();
                 }
                 if (msg.m_notify.interrupts & BIT(rtc_irq_set)) {
-                    rtc_ih();
+                    application_dependent_rtc_ih();
                 }
                 if (msg.m_notify.interrupts & BIT(com1_irq_set)) {
-                    com1_ih();
-                    
-                    if (protocol_handle_received_bytes() != OK) {
-                        printf("Error handling received uart bytes.\n");
-                    }
-
-                    if (uart_error_reading_message()) {
-                        if (protocol_handle_error() != OK) {
-                            printf("Failed to handle uart error.\n");
-                        }
-                    }
+                    application_dependent_com1_ih();
                 }
                 if (msg.m_notify.interrupts & BIT(timer_irq_set)) {
-                    timer_int_handler();
-                    if (protocol_tick() != OK) {
-                        printf("Failed to handle protocol tick.\n");
-                    }
+                    application_dependent_timer_ih();
                 }
                 break;
             default:
@@ -200,7 +223,7 @@ int (proj_main_loop)(int argc, char *argv[]) {
     game_unload_assets();
     menu_exit();
     cursor_exit();
-    dispatcher_reset_bindings();
+    dispatcher_exit();
 
     // Uart and communication protocol
 

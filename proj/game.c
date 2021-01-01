@@ -12,6 +12,7 @@
 #include "menu.h"
 #include "rtc.h"
 #include "protocol.h"
+#include "canvas.h"
 
 #include "xpm/clock_left.xpm"
 #include "xpm/clock_center.xpm"

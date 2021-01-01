@@ -17,13 +17,11 @@ int new_queue(queue_t *queue, size_t element_size, size_t capacity) {
     return 0;
 }
 
-int delete_queue(queue_t *queue) {
+void delete_queue(queue_t *queue) {
     if (queue->data == NULL)
-        return 1;
+        return;
     free(queue->data);
     queue->data = NULL;
-
-    return 0;
 }
 
 static void *queue_index(queue_t *queue, size_t i) {

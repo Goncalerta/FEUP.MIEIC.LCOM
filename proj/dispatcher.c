@@ -14,9 +14,13 @@
 #include "button.h"
 #include "menu.h"
 #include "protocol.h"
+#include "queue.h"
+
+#define EVENTS_TO_HANDLE_CAPACITY 16 // starting capacity of events_to_handle queue
 
 static bool end = false;
 
+static queue_t events_to_handle;
 static bool bound_canvas = false;
 static size_t num_listening_buttons = 0;
 static button_t **listening_buttons = NULL;
@@ -95,6 +99,155 @@ int dispatcher_bind_canvas(bool is_to_bind) {
     if (!is_to_bind) {
         if (canvas_update_state(false, false, false) != OK)
             return 1;
+    }
+
+    return 0;
+}
+
+int dispatcher_init() {
+    if (new_queue(&events_to_handle, sizeof(event_t), EVENTS_TO_HANDLE_CAPACITY) != OK)
+        return 1;
+    return 0;
+}
+
+void dispatcher_exit() {
+    dispatcher_reset_bindings();
+    
+    // Queue must be manually emptied so that messages can be properly freed
+    while (!queue_is_empty(&events_to_handle)) {
+        event_t event;
+        if (queue_top(&events_to_handle, &event) != OK)
+            return;
+        if (queue_pop(&events_to_handle) != OK)
+            return;
+        if (event.type == UART_MESSAGE_EVENT) {
+            protocol_delete_message(&event.content.uart_message);
+        }
+    }
+
+    delete_queue(&events_to_handle);
+}
+
+int dispatcher_queue_mouse_event() {
+    event_content_t content;
+
+    if (mouse_retrieve_packet(&content.mouse_packet) != OK)
+        return 1;
+
+    event_t event;
+    event.type = MOUSE_EVENT;
+    event.content = content;
+
+    if (queue_push(&events_to_handle, &event) != OK)
+        return 1;
+    
+    return 0;
+}
+
+int dispatcher_queue_keyboard_event() {
+    event_content_t content;
+
+    if (kbd_handle_scancode(&content.kbd_state) != OK)
+        return 1;
+
+    event_t event;
+    event.type = KEYBOARD_EVENT;
+    event.content = content;
+
+    if (queue_push(&events_to_handle, &event) != OK)
+        return 1;
+    
+    return 0;
+}
+
+int dispatcher_queue_rtc_periodic_interrupt_event() {
+    event_content_t content;
+    content.no_content = NULL;
+
+    event_t event;
+    event.type = RTC_PERIODIC_INTERRUPT_EVENT;
+    event.content = content;
+
+    if (queue_push(&events_to_handle, &event) != OK)
+        return 1;
+    return 0;
+}
+
+int dispatcher_queue_rtc_alarm_event() {
+    event_content_t content;
+    content.no_content = NULL;
+    
+    event_t event;
+    event.type = RTC_ALARM_EVENT;
+    event.content = content;
+
+    if (queue_push(&events_to_handle, &event) != OK)
+        return 1;
+    return 0;
+}
+
+int dispatcher_queue_uart_message_event(message_t message) {
+    event_content_t content;
+    content.uart_message = message;
+
+    event_t event;
+    event.type = UART_MESSAGE_EVENT;
+    event.content = content;
+
+    if (queue_push(&events_to_handle, &event) != OK)
+        return 1;
+    return 0;
+}
+
+int dispatcher_queue_timer_tick_event() {
+    event_content_t content;
+    content.no_content = NULL;
+    
+    event_t event;
+    event.type = TIMER_TICK_EVENT;
+    event.content = content;
+
+    if (queue_push(&events_to_handle, &event) != OK)
+        return 1;
+    return 0;
+}
+
+int dispatcher_dispatch_events() {
+    while (!queue_is_empty(&events_to_handle)) {
+        event_t event;
+        if (queue_top(&events_to_handle, &event) != OK)
+            return 1;
+        if (queue_pop(&events_to_handle) != OK)
+            return 1;
+        
+        switch (event.type) {
+            case MOUSE_EVENT:
+                if (dispatch_mouse_packet(event.content.mouse_packet) != OK)
+                    return 1;
+                break;
+            case KEYBOARD_EVENT:
+                if (dispatch_keyboard_event(event.content.kbd_state) != OK)
+                    return 1;
+                break;
+            case RTC_PERIODIC_INTERRUPT_EVENT:
+                if (dispatch_rtc_periodic_int() != OK)
+                    return 1;
+                break;
+            case RTC_ALARM_EVENT:
+                if (dispatch_rtc_alarm_int() != OK)
+                    return 1;
+                break;
+            case UART_MESSAGE_EVENT:
+                if (dispatch_uart_message(event.content.uart_message) != OK)
+                    return 1;
+                break;
+            case TIMER_TICK_EVENT:
+                if (dispatch_timer_tick() != OK)
+                    return 1;
+                break;
+            default:
+                return 1;
+        }
     }
 
     return 0;
@@ -184,7 +337,6 @@ int dispatch_keyboard_event(kbd_event_t kbd_event) {
     
     for (size_t i = 0; i < num_listening_text_boxes; i++) {
         text_box_t *text_box = listening_text_boxes[i];
-
         if (text_box_react_kbd(text_box, kbd_event) != OK) {
             return 1;
         }
@@ -198,17 +350,11 @@ int dispatch_keyboard_event(kbd_event_t kbd_event) {
     return 0;
 }
 
-int dispatch_timer_tick() {
+int dispatch_rtc_periodic_int() {
     if (menu_get_state() == GAME || menu_get_state() == PAUSE_MENU) {
-        if (game_timer_tick() != OK)
+        if (game_rtc_pi_tick() != OK)
             return 1;
     }
-
-    if (draw_frame() != OK) {
-        printf("error while drawing frame\n");
-        return 1;
-    }
-
     return 0;
 }
 
@@ -228,11 +374,21 @@ int dispatch_rtc_alarm_int() {
     return 0;
 }
 
-int dispatch_rtc_periodic_int() {
+int dispatch_uart_message(message_t message) {
+    // Protocol handler will take care of deleting the message
+    if (protocol_handle_message_event(&message) != OK)
+        return 1;
+    return 0;
+}
+
+int dispatch_timer_tick() {
     if (menu_get_state() == GAME || menu_get_state() == PAUSE_MENU) {
-        if (game_rtc_pi_tick() != OK)
+        if (game_timer_tick() != OK)
             return 1;
     }
+
+    
+
     return 0;
 }
 

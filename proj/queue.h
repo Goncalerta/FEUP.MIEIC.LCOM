@@ -42,7 +42,7 @@ int new_queue(queue_t *queue, size_t element_size, size_t capacity);
  * @param queue address of memory of the queue
  * @return Return 0 upon success and non-zero otherwise
  */
-int delete_queue(queue_t *queue);
+void delete_queue(queue_t *queue);
 
 /**
  * @brief Checks if a given queue is full.

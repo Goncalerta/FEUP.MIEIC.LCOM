@@ -59,8 +59,8 @@ int (timer_unsubscribe_int)() {
 }
 
 void (timer_int_handler)() {
-    if (dispatch_timer_tick() != OK) {
-        printf("Error while handling timer interrupt\n");
+    if (dispatcher_queue_timer_tick_event() != OK) {
+        printf("Failed to queue timer tick event\n");
     }
 }
 
