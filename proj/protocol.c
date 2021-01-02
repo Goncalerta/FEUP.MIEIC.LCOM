@@ -395,8 +395,8 @@ static int protocol_handle_byte_not_receiving_message() {
         receiving_msg = MESSAGE_START_BYTE_DETECTED;
         break;
     default:
-        if (protocol_handle_error() != OK)
-            return 1;
+        // Unexpected byte. Might be from a process different from this program
+        // That uses a different protocol. Safer to ignore.
         break;
     }
 
