@@ -91,6 +91,13 @@ int text_box_draw(frame_buffer_t buf, text_box_t *text_box);
 bool text_box_is_hovering(text_box_t *text_box, uint16_t x, uint16_t y);
 
 /**
+ * @brief Returns text box to normal state.
+ * 
+ * @param text_box address of memory of the text box
+ */
+void text_box_unselect(text_box_t *text_box);
+
+/**
  * @brief Updates the state of a given text box according to given mouse info.
  * 
  * @param text_box address of memory of the text box

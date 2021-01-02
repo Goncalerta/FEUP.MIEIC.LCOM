@@ -733,10 +733,6 @@ int game_rtc_pi_tick() {
     if (game == NULL || game->round == NULL)
         return 1;
 
-    if (game->round->role == GUESSER) {
-        text_box_cursor_tick(game->round->attr.guesser->text_box);
-    }
-
     if (game->state == ROUND_ONGOING) {
         if (game->round->round_timer == 0) {
             game->state = TIMES_UP;

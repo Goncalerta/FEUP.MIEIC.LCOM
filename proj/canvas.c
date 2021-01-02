@@ -264,6 +264,10 @@ canvas_state_t canvas_get_state() {
     return state;
 }
 
+void canvas_unselect() {
+    state = CANVAS_STATE_NORMAL;
+}
+
 int canvas_update_state(bool hovering, bool lb, bool rb) {
     switch (state) {
     case CANVAS_STATE_NORMAL:

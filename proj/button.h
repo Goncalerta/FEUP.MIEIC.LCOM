@@ -97,6 +97,13 @@ bool button_is_hovering(button_t *button, uint16_t x, uint16_t y);
 int button_draw(frame_buffer_t buf, button_t *button);
 
 /**
+ * @brief Returns button to normal state.
+ * 
+ * @param button address of memory of the button
+ */
+void button_unselect(button_t *button);
+
+/**
  * @brief Updates the state of a given button according to given mouse info.
  * 
  * @param button address of memory of the button

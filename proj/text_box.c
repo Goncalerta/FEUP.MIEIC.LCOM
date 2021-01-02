@@ -152,6 +152,10 @@ bool text_box_is_hovering(text_box_t *text_box, uint16_t x, uint16_t y) {
         && y < text_box->y + TEXT_BOX_HEIGHT;
 }
 
+void text_box_unselect(text_box_t *text_box) {
+    text_box->state = TEXT_BOX_NORMAL;
+}
+
 int text_box_update_state(text_box_t *text_box, bool hovering, bool lb, bool rb, uint16_t x, uint16_t y) {
     int8_t mouse_pos = (x - text_box->x)/CHAR_SPACE;
     mouse_pos += text_box->start_display;

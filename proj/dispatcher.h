@@ -43,6 +43,15 @@ int dispatcher_init();
 void dispatcher_exit();
 
 /**
+ * @brief Returns all bound buttons, textboxes and canvas to normal state.
+ * 
+ * Useful for pause menu.
+ * 
+ * @return Return 0 upon success and non-zero otherwise
+ */
+void dispatcher_unselect_buttons_textboxes_canvas();
+
+/**
  * @brief Binds the given buttons to the dispatcher.
  * 
  * @param number_of_buttons number of buttons to bind

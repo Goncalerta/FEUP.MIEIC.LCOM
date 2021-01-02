@@ -51,6 +51,22 @@ void dispatcher_exit() {
     delete_queue(events_to_handle);
 }
 
+void dispatcher_unselect_buttons_textboxes_canvas() {
+    for (size_t i = 0; i < num_listening_buttons; i++) {
+        button_t *button = listening_buttons[i];
+        button_unselect(button);
+    }
+
+    for (size_t i = 0; i < num_listening_text_boxes; i++) {
+        text_box_t *text_box = listening_text_boxes[i];
+        text_box_unselect(text_box);
+    }
+
+    if (bound_canvas) {
+        canvas_unselect();
+    }
+}
+
 int dispatcher_bind_buttons(size_t number_of_buttons, ...) {
     if (listening_buttons != NULL)
         free(listening_buttons);
@@ -232,6 +248,11 @@ static void dispatch_rtc_periodic_int() {
         if (game_rtc_pi_tick() != OK) {
             printf("Failed to handle rtc periodic interrupt in game\n");
         }
+    }
+
+    for (size_t i = 0; i < num_listening_text_boxes; i++) {
+        text_box_t *text_box = listening_text_boxes[i];
+        text_box_cursor_tick(text_box);
     }
 }
 

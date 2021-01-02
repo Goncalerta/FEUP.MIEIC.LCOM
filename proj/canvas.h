@@ -147,6 +147,12 @@ int canvas_redo_stroke();
 bool canvas_is_hovering(uint16_t x, uint16_t y);
 
 /**
+ * @brief Returns canvas to normal state.
+ * 
+ */
+void canvas_unselect();
+
+/**
  * @brief Updates the state of the canvas according to given mouse info.
  * 
  * @param hovering canvas is being hovered

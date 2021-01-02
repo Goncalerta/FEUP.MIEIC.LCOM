@@ -153,6 +153,10 @@ int button_draw(frame_buffer_t buf, button_t *button) {
     return 0;
 }
 
+void button_unselect(button_t *button) {
+    button->state = BUTTON_NORMAL;
+}
+
 int button_update_state(button_t *button, bool hovering, bool lb, bool rb) {
     switch (button->state) {
     case BUTTON_NORMAL:

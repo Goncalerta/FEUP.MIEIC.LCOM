@@ -278,6 +278,8 @@ int menu_set_main_menu() {
 }
 
 int menu_set_pause_menu() {
+    // So that selected objects become unselected
+    dispatcher_unselect_buttons_textboxes_canvas();
     if (dispatcher_reset_bindings() != OK)
         return 1;
     if (dispatcher_bind_buttons(2, b_resume, b_back_to_main_menu) != OK)
