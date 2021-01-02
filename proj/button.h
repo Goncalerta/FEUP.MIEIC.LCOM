@@ -17,7 +17,7 @@
 #define BUTTON_CIRCLE_RADIUS_DEFAULT 15 /**< @brief Button circle default radius when the icon is a circle */
 #define BUTTON_CIRCLE_DEFAULT_COLOR 0x000000 /**< @brief Button circle default color when the icon is a circle */
 
-typedef int (*button_action)(); /**< @brief Button action callback when it's pressed. */
+typedef int (*button_action_t)(); /**< @brief Button action callback when it's pressed. */
 
 struct button_t;
 
@@ -25,7 +25,7 @@ struct button_t;
  * @brief Button class.
  * 
  */
-typedef struct button_t button_t;
+typedef struct button button_t;
 
 /**
  * @brief Initializes a new button.
@@ -37,7 +37,7 @@ typedef struct button_t button_t;
  * @param action button action
  * @return Address of memory of the button initialized, or NULL if an error occurred.
  */
-button_t *new_button(uint16_t x, uint16_t y, uint16_t width, uint16_t height, button_action action);
+button_t *new_button(uint16_t x, uint16_t y, uint16_t width, uint16_t height, button_action_t action);
 
 /**
  * @brief Initializes a button.

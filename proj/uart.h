@@ -66,7 +66,7 @@
  * @brief Enumerated type for specifying the word lenght parameter of the communication protocol.
  * 
  */
-typedef enum word_len_t {
+typedef enum word_len {
     WORD_LEN_5_BITS = 0, /*!< Word lenght is 5 bits. */
     WORD_LEN_6_BITS = 1, /*!< Word lenght is 6 bits. */
     WORD_LEN_7_BITS = 2, /*!< Word lenght is 7 bits. */
@@ -77,7 +77,7 @@ typedef enum word_len_t {
  * @brief Enumerated type for specifying the parity parameter of the communication protocol.
  * 
  */
-typedef enum parity_t {
+typedef enum parity {
     PARITY_NONE = 0, /*!< No parity. */
     PARITY_ODD = 1, /*!< Odd parity. */
     PARITY_EVEN = 3, /*!< Even parity. */
@@ -89,7 +89,7 @@ typedef enum parity_t {
  * @brief Enumerated type for specifying the number of stop bits parameter of the communication protocol.
  * 
  */
-typedef enum no_stop_bits_t {
+typedef enum no_stop_bits {
     STOP_BITS_1 = 0, /*!< One stop bit. */
     STOP_BITS_2 = 1, /*!< Two stop bits. */
 } no_stop_bits_t;
@@ -98,7 +98,7 @@ typedef enum no_stop_bits_t {
  * @brief Enumerated type for specifying the FIFO interrupt trigger level.
  * 
  */
-typedef enum fifo_int_trigger_level_t {
+typedef enum fifo_int_trigger_level {
     FIFO_1_BYTE = 0, /*!< Interrupt when FIFO has 1 byte. */
     FIFO_4_BYTES = 1, /*!< Interrupt when FIFO has 4 bytes. */
     FIFO_8_BYTES = 2, /*!< Interrupt when FIFO has 8 bytes. */
@@ -109,7 +109,7 @@ typedef enum fifo_int_trigger_level_t {
  * @brief Enumerated type for representing the origin of the interrupt.
  * 
  */
-typedef enum interrupt_origin_t {
+typedef enum interrupt_origin {
     INT_ORIGIN_MODEM_STATUS = 0, /*!< Interrupt from modem status. */
     INT_ORIGIN_TRANSMITTER_EMPTY = 1, /*!< Interrupt from transmitter empty. */
     INT_ORIGIN_CHAR_TIMEOUT = 6, /*!< Interrupt from character timeout indication. */
@@ -121,7 +121,7 @@ typedef enum interrupt_origin_t {
  * @brief Enumerated type for representing the FIFO status.
  * 
  */
-typedef enum fifo_status_t {
+typedef enum fifo_status {
     NO_FIFO = 0, /*!< No FIFO enabled. */
     FIFO_UNUSABLE = 2, /*!< FIFO is unusable. */
     FIFO_ENABLED = 3, /*!< FIFO enabled. */
@@ -131,7 +131,7 @@ typedef enum fifo_status_t {
  * @brief Interrupt identification info.
  * 
  */
-typedef struct interrupt_identification_t {
+typedef struct interrupt_identification {
     bool pending; /*!< @brief Whether an interruption is pending. */
     interrupt_origin_t origin; /*!< @brief The origin of the interrupt. */
     bool fifo_64_bytes; /*!< @brief True if 64-byte FIFO, false otherwise. */

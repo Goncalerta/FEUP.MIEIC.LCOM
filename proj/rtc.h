@@ -50,7 +50,7 @@
  * @brief Enumerated type for specifying a RTC interrupt type.
  * 
  */
-typedef enum rtc_interrupt_t {
+typedef enum rtc_interrupt {
     PERIODIC_INTERRUPT, /*!< Periodic interrupt. */
     ALARM_INTERRUPT, /*!< Alarm interrupt. */
     UPDATE_INTERRUPT /*!< Update interrupt. */
@@ -60,7 +60,7 @@ typedef enum rtc_interrupt_t {
  * @brief RTC configuration to enable interrupts.
  * 
  */
-typedef union rtc_interrupt_config_t {
+typedef union rtc_interrupt_config {
     rtc_alarm_time_t alarm_time; /*!< @brief Time to set the alarm to (binary format). */
     uint8_t periodic_RS3210; /*!< @brief RS3 RS2 RS1 RS0 in 4 LS bits used to setup periodic interrupts. */
 } rtc_interrupt_config_t;

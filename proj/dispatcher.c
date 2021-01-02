@@ -27,7 +27,7 @@ static button_t **listening_buttons = NULL;
 static size_t num_listening_text_boxes = 0;
 static text_box_t **listening_text_boxes = NULL;
 
-typedef enum player_state_t {
+typedef enum player_state {
     NOT_READY,
     READY,
     RANDOM_NUMBER_SENT
@@ -281,9 +281,9 @@ static void dispatch_timer_tick() {
     }
 }
 
-typedef void (*event_dispatcher)();
+typedef void (*event_dispatcher_t)();
 #define NUMBER_OF_DISPATCHERS 7
-static const event_dispatcher dispatchers[7] = {
+static const event_dispatcher_t dispatchers[7] = {
     dispatch_mouse_packet,
     dispatch_keyboard_event,
     dispatch_rtc_periodic_int,

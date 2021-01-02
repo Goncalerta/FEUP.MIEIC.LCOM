@@ -19,7 +19,7 @@
  * @brief Enumerated type for specifying the role of a player.
  * 
  */
-typedef enum role_t {
+typedef enum role {
     DRAWER, /*!< Player is the drawer: must draw a word. */
     GUESSER /*!< Player is the guesser: must guess the word drawn. */
 } role_t;

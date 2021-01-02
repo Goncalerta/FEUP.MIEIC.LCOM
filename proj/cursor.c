@@ -9,7 +9,7 @@
 #include "xpm/cursor_write.xpm"
 #include "xpm/cursor_disabled.xpm"
 
-static cursor_state state = CURSOR_ARROW;
+static cursor_state_t state = CURSOR_ARROW;
 static int16_t cursor_x = 0, cursor_y = 0;
 static bool lb = false, rb = false;
 static xpm_image_t cursor_arrow, cursor_write, cursor_disabled;
@@ -87,6 +87,6 @@ int cursor_draw() {
     }
 }
 
-void cursor_set_state(cursor_state new_state) {
+void cursor_set_state(cursor_state_t new_state) {
     state = new_state;
 }

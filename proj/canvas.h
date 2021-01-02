@@ -18,7 +18,7 @@
  * @brief Enumerated type for specifying the state of the canvas.
  * 
  */
-typedef enum canvas_state_t {
+typedef enum canvas_state {
     CANVAS_STATE_NORMAL, /*!< Canvas is in normal/base state. */
     CANVAS_STATE_HOVERING, /*!< Canvas is not being pressed but the cursor is hovering it. */
     CANVAS_STATE_PRESSING_LB, /*!< Canvas is being pressed by the left button of the mouse. */
@@ -35,7 +35,7 @@ typedef enum canvas_state_t {
 typedef struct stroke_atom {
     uint16_t x; /*!< @brief x coordinate of the atom. */
     uint16_t y; /*!< @brief y coordinate of the atom. */
-} stroke_atom;
+} stroke_atom_t;
 
 /**
  * @brief Canvas stroke.
@@ -45,10 +45,10 @@ typedef struct stroke {
     uint32_t color; /*!< @brief Color of the stroke. */
     uint16_t thickness; /*!< @brief Thickness of the stroke. */
     size_t num_atoms; /*!< @brief Number of atoms of the stroke. */
-    stroke_atom *atoms; /*!< @brief Address of memory of the strokes. */
+    stroke_atom_t *atoms; /*!< @brief Address of memory of the strokes. */
     struct stroke *next; /*!< @brief Address of memory of the stroke drawn after this one. */
     struct stroke *prev; /*!< @brief Address of memory of the stroke drawn before this one. */
-} stroke;
+} stroke_t;
 
 
 /**

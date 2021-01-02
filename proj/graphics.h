@@ -17,7 +17,7 @@
  * @brief Frame buffer info.
  * 
  */
-typedef struct frame_buffer_t {
+typedef struct frame_buffer {
     void *buf; /*!< @brief Address of memory of the buffer. */
     uint16_t h_res;	/*!< @brief Horizontal resolution in pixels. */
     uint16_t v_res;	/*!< @brief Vertical resolution in pixels. */
@@ -28,7 +28,7 @@ typedef struct frame_buffer_t {
  * @brief xpm animation info.
  * 
  */
-typedef struct xpm_animation_t {
+typedef struct xpm_animation {
     uint16_t width; /*!< @brief Animation width. */
     uint16_t height; /*!< @brief Animation height. */
     size_t number_of_frames; /*!< @brief Animation number of fraames. */

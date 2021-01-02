@@ -28,13 +28,13 @@ typedef enum kbd_key {
     ARROW_DOWN, /*!< Down arrow key was pressed. */
     ARROW_LEFT, /*!< Left arrow key was pressed. */
     ARROW_RIGHT /*!< Right arrow key was pressed. */
-} kbd_key;
+} kbd_key_t;
 
 /**
  * @brief Keyboard event.
  */
-typedef struct kbd_event_t {
-    kbd_key key; /*!< @brief Key that was pressed. */
+typedef struct kbd_event {
+    kbd_key_t key; /*!< @brief Key that was pressed. */
     char char_key; /*!< @brief Char pressed when key == CHAR. */
     bool is_ctrl_pressed; /*!< @brief Ctrl key is pressed. */
 } kbd_event_t;

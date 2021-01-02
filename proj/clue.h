@@ -14,13 +14,13 @@
  * @brief Module dedicated to word clues.
  */
 
-struct word_clue_t;
+struct word_clue;
 
 /**
  * @brief Word clue class.
  * 
  */
-typedef struct word_clue_t word_clue_t;
+typedef struct word_clue word_clue_t;
 
 /**
  * @brief Initializes new word clue.

@@ -61,7 +61,7 @@ static const uint16_t valid_thickness[NUM_THICKNESSES_AVAILABLE] = {
     1, 10, 20
 };
 
-typedef enum game_state_t {
+typedef enum game_state {
     ROUND_UNSTARTED,
     ROUND_ONGOING,
     GAME_OVER,
@@ -69,28 +69,28 @@ typedef enum game_state_t {
     ROUND_CORRECT_GUESS
 } game_state_t;
 
-typedef struct drawer_t {
+typedef struct drawer {
     bool is_pencil_primary;
     size_t selected_color;
     size_t selected_thickness;
     button_t *b_pencil, *b_eraser, *b_color, *b_thickness, *b_undo, *b_redo;
 } drawer_t;
 
-typedef struct guesser_t {
+typedef struct guesser {
     text_box_t *text_box;
 } guesser_t;
 
-typedef union role_attr_t {
+typedef union role_attr {
     drawer_t *drawer;
     guesser_t *guesser;
 } role_attr_t;
 
-typedef struct guess_t {
+typedef struct guess {
     char *guess;
     bool correct;
 } guess_t;
 
-typedef struct round_t {
+typedef struct round {
     bool other_player_game_over;
     int round_timer;
     int ticker;
@@ -108,7 +108,7 @@ typedef struct round_t {
     role_attr_t attr;
 } round_t;
 
-typedef struct game_t {
+typedef struct game {
     game_state_t state;
     round_t *round;
     uint32_t score;

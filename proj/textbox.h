@@ -20,15 +20,15 @@
 #define TEXT_BOX_GUESSER_Y 700 /**< @brief Guesser text box y coordinate */
 #define TEXT_BOX_GUESSER_DISPLAY_SIZE 13 /**< @brief Guesser text box display size (in chars). */
 
-typedef int (*text_box_action)(char *); /**< @brief Text box action when ENTER is pressed. */
+typedef int (*text_box_action_t)(char *); /**< @brief Text box action when ENTER is pressed. */
 
-struct text_box_t;
+struct text_box;
 
 /**
  * @brief Text box class.
  * 
  */
-typedef struct text_box_t text_box_t;
+typedef struct text_box text_box_t;
 
 /**
  * @brief Initiates the content of a new text box.
@@ -39,7 +39,7 @@ typedef struct text_box_t text_box_t;
  * @param action text box action
  * @return Address of memory of the text box initialized, or NULL if an error occurred.
  */
-text_box_t *new_text_box(uint16_t x, uint16_t y, uint8_t display_size, text_box_action action);
+text_box_t *new_text_box(uint16_t x, uint16_t y, uint8_t display_size, text_box_action_t action);
 
 /**
  * @brief Frees the space allocated in memory to store the content of a given text box

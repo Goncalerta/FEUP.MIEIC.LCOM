@@ -22,7 +22,7 @@ typedef enum cursor_state {
     CURSOR_PAINT, /*!< Cursor is in paint state. */
     CURSOR_WRITE, /*!< Cursor is in write state. */
     CURSOR_DISABLED /*!< Cursor is in disabled state. */
-} cursor_state;
+} cursor_state_t;
 
 /**
  * @brief Loads the cursor .xpm images and sets the initial cursor position.
@@ -93,7 +93,7 @@ int cursor_draw();
  * 
  * @param state cursor new state
  */
-void cursor_set_state(cursor_state state);
+void cursor_set_state(cursor_state_t state);
 
 /**@}*/
 

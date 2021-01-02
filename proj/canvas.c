@@ -8,14 +8,14 @@
 #include "game.h"
 
 static canvas_state_t state = CANVAS_STATE_NORMAL;
-static stroke *first = NULL, *last = NULL, *undone = NULL;
+static stroke_t *first = NULL, *last = NULL, *undone = NULL;
 static frame_buffer_t canvas_buf; // current picture drawn in buffer - copied into vcard back buffer
 // Whether the canvas should allow the user to draw with the cursor.
 static bool enabled = false;
 // Whether canvas_init() has been called since last call to canvas_exit() and canvas functions may be safely used.
 static bool initialized = false;
 
-static int canvas_draw_atom_line(stroke_atom atom1, stroke_atom atom2, uint32_t color, uint16_t thickness) {
+static int canvas_draw_atom_line(stroke_atom_t atom1, stroke_atom_t atom2, uint32_t color, uint16_t thickness) {
     uint16_t x1 = atom1.x;
     uint16_t y1 = atom1.y;
     uint16_t x2 = atom2.x;
@@ -29,17 +29,17 @@ static int canvas_draw_atom_line(stroke_atom atom1, stroke_atom atom2, uint32_t 
 
 static int canvas_draw_last_atom() {
     if (last->num_atoms == 1) {
-        stroke_atom atom = last->atoms[0];
+        stroke_atom_t atom = last->atoms[0];
         return vb_draw_circle(canvas_buf, atom.x, atom.y, last->thickness, last->color);
     } else {
-        stroke_atom atom1 = last->atoms[last->num_atoms-2];
-        stroke_atom atom2 = last->atoms[last->num_atoms-1];
+        stroke_atom_t atom1 = last->atoms[last->num_atoms-2];
+        stroke_atom_t atom2 = last->atoms[last->num_atoms-1];
         return canvas_draw_atom_line(atom1, atom2, last->color, last->thickness);
     }
 }
 
-static int canvas_draw_stroke(stroke *stroke) {
-    stroke_atom first_atom = stroke->atoms[0];
+static int canvas_draw_stroke(stroke_t *stroke) {
+    stroke_atom_t first_atom = stroke->atoms[0];
     if (vb_draw_circle(canvas_buf, first_atom.x, first_atom.y, stroke->thickness, stroke->color))
         return 1;
 
@@ -54,7 +54,7 @@ static int canvas_draw_stroke(stroke *stroke) {
 static int canvas_redraw_strokes() {
     vb_fill_screen(canvas_buf, 0x00ffffff);
 
-    stroke *current = first;
+    stroke_t *current = first;
     while (current != NULL) {
         canvas_draw_stroke(current);
 
@@ -84,9 +84,9 @@ int canvas_init(uint16_t width, uint16_t height, bool en) {
 }
 
 static void canvas_clear_undone() {
-    stroke *current = undone;
+    stroke_t *current = undone;
     while (current != NULL) {
-        stroke *prev = current->prev;
+        stroke_t *prev = current->prev;
         free(current);
         current = prev;
     }
@@ -95,9 +95,9 @@ static void canvas_clear_undone() {
 }
 
 void clear_canvas() {
-    stroke *current = last;
+    stroke_t *current = last;
     while (current != NULL) {
-        stroke *prev = current->prev;
+        stroke_t *prev = current->prev;
         free(current);
         current = prev;
     }
@@ -126,7 +126,7 @@ bool canvas_is_enabled() {
 }
 
 int canvas_new_stroke(uint32_t color, uint16_t thickness) {
-    stroke *s = malloc(sizeof(stroke));
+    stroke_t *s = malloc(sizeof(stroke_t));
     s->atoms = NULL;
     s->color = color;
     s->thickness = thickness;
@@ -150,13 +150,13 @@ int canvas_new_stroke(uint32_t color, uint16_t thickness) {
 int canvas_new_stroke_atom(uint16_t x, uint16_t y) {
     if (last->num_atoms == 0) {
         last->num_atoms++;
-        last->atoms = malloc(sizeof(stroke_atom));
+        last->atoms = malloc(sizeof(stroke_atom_t));
         
         if (last->atoms == NULL)
             return 1;
     } else {
         last->num_atoms++;
-        stroke_atom *atoms = realloc(last->atoms, last->num_atoms * sizeof(stroke_atom));
+        stroke_atom_t *atoms = realloc(last->atoms, last->num_atoms * sizeof(stroke_atom_t));
         if (atoms == NULL)
             return 1;    
         last->atoms = atoms;
@@ -183,7 +183,7 @@ int canvas_new_stroke_atom(uint16_t x, uint16_t y) {
 }
 
 int canvas_undo_stroke() {
-    stroke *u = last;
+    stroke_t *u = last;
 
     if (u == NULL)
         return 0;
@@ -215,7 +215,7 @@ int canvas_undo_stroke() {
 }
 
 int canvas_redo_stroke() {
-    stroke *u = undone;
+    stroke_t *u = undone;
     if (u == NULL)
         return 0;
 

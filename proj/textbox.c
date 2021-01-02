@@ -22,10 +22,10 @@ typedef enum text_box_state {
     TEXT_BOX_SELECTED_HOVERING, // Text box is selected and the cursor is hovering it.
     TEXT_BOX_SELECTED_NOT_HOVERING, // Text box is selected but the cursor is not hovering it.
     TEXT_BOX_PRESSING // Text box is being pressed.
-} text_box_state;
+} text_box_state_t;
 
 // Text box class implementation.
-struct text_box_t {
+struct text_box {
     char *word; // Address of memory of the content of the text box.
     uint8_t word_size; // Content size (not counting with the '\0').
     uint16_t x; // Left most x coordinate of the text box.
@@ -34,15 +34,15 @@ struct text_box_t {
     uint8_t select_pos; // Position, relative to content start, from where the content is being selected (== cursor_pos if nothing selected).
     uint8_t start_display; // First position dispalyed in the text box.
     uint8_t display_size; // Number of chars displayed at the same time.
-    text_box_state state; // State of the text box.
+    text_box_state_t state; // State of the text box.
     bool visible_cursor; // True if the text cursor is visible and false otherwise.
-    text_box_action action; // Action to perform when ENTER is pressed.
+    text_box_action_t action; // Action to perform when ENTER is pressed.
 };
 
 static char *clip_board = NULL; // not saving the '\0' char
 static uint8_t clip_board_size = 0;
 
-text_box_t *new_text_box(uint16_t x, uint16_t y, uint8_t display_size, text_box_action action) {
+text_box_t *new_text_box(uint16_t x, uint16_t y, uint8_t display_size, text_box_action_t action) {
     text_box_t *text_box = malloc(sizeof(text_box_t));
     if (text_box == NULL)
         return NULL;

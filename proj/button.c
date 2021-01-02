@@ -9,7 +9,7 @@
 #define BUTTON_MARGIN 3
 
 // Enumerated type for specifying the state of a button.
-typedef enum button_state_t {
+typedef enum button_state {
     BUTTON_NORMAL, // Button is in normal/base state.
     BUTTON_HOVERING, // Button is not being pressed but the cursor is hovering it.
     BUTTON_PRESSING, // Button is being pressed and the cursor is hovering it.
@@ -17,7 +17,7 @@ typedef enum button_state_t {
 } button_state_t;
 
 // Icon of a button.
-typedef struct button_icon_t {
+typedef struct button_icon {
     enum { BUTTON_ICON_NONE, // No icon.
            BUTTON_ICON_XPM, // xpm image icon.
            BUTTON_ICON_CIRCLE // Circle icon.
@@ -33,18 +33,18 @@ typedef struct button_icon_t {
 } button_icon_t;
 
 // Button class implementation.
-struct button_t {
+struct button {
     uint16_t x; // Left most x coordinate of the button.
     uint16_t y; // Top most y coordinate of the button.
     uint16_t width; // Button width.
     uint16_t height; // Button height.
     button_state_t state; // State of the button.
-    button_action action; // Action to perform when button is pressed.
+    button_action_t action; // Action to perform when button is pressed.
     button_icon_t icon; // Button icon.
     bool active_border; // True if the border of the button is active and false otherwise.
 };
 
-button_t *new_button(uint16_t x, uint16_t y, uint16_t width, uint16_t height, button_action action) {
+button_t *new_button(uint16_t x, uint16_t y, uint16_t width, uint16_t height, button_action_t action) {
     button_t *button = malloc(sizeof(button_t));
     if (button == NULL)
         return NULL;

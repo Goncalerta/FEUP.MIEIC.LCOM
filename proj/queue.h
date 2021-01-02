@@ -13,13 +13,13 @@
  * @brief Module dedicated to queues.
  */
 
-struct queue_t;
+struct queue;
 
 /**
  * @brief Queue class.
  * 
  */
-typedef struct queue_t queue_t;
+typedef struct queue queue_t;
 
 /**
  * @brief Initializes of a new queue.

@@ -20,7 +20,7 @@
  * @brief Date info.
  * 
  */
-typedef struct date_t {
+typedef struct date {
     uint16_t year; /*!< @brief Year. */
     uint8_t month; /*!< @brief Month. */
     uint8_t day; /*!< @brief Day. */
@@ -33,7 +33,7 @@ typedef struct date_t {
  * @brief Time aggregate type to use to set the RTC alarm.
  * 
  */
-typedef struct rtc_alarm_time_t {
+typedef struct rtc_alarm_time {
     uint8_t hours; /*!< @brief Hours. */
     uint8_t minutes; /*!< @brief Minutes. */
     uint8_t seconds; /*!< @brief Seconds. */

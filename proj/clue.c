@@ -7,7 +7,7 @@
 #define RECTANGLE_HEIGHT 5
 
 // Word clue class implementation.
-struct word_clue_t {
+struct word_clue {
     char *word; // Address of memory of the word to give clues of.
     char *clue; // Address of memory of the clues already given.
     size_t size; // Size of word.

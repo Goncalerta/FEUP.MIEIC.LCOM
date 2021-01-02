@@ -3,7 +3,7 @@
 #include "queue.h"
 
 // Queue class implementation
-struct queue_t {
+struct queue {
     void *data; // Address of memory of the content of the queue.
     size_t element_size; // Size of each queue element.
     size_t front; // Index of queue front element.
@@ -43,10 +43,12 @@ void delete_queue(queue_t *queue) {
     free(queue);
 }
 
+// Returns a pointer to the element of the given queue at the given index.
 static void *queue_index(queue_t *queue, size_t i) {
     return (uint8_t*) queue->data + i * queue->element_size;
 }
 
+// Doubles the capacity of the queue without losing its current data.
 static int queue_resize(queue_t *queue) {
     size_t new_capacity = 2 * queue->capacity;
     

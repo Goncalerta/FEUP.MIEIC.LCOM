@@ -18,7 +18,7 @@
  * @brief Enumerated type for specifying the type of a message.
  * 
  */
-typedef enum message_type_t {
+typedef enum message_type {
     MSG_READY_TO_PLAY = 0, /*!< Notify player ready to play a new game. */
     MSG_LEAVE_GAME = 1, /*!< Notify player left the game. */
     MSG_RANDOM_NUMBER = 2, /*!< Send a random number. */
@@ -39,7 +39,7 @@ typedef enum message_type_t {
  * @brief Represents a message sent to or received from the serial port.
  * 
  */
-typedef struct message_t {
+typedef struct message {
     message_type_t type; /*!< @brief Type of the message. */
     size_t content_len; /*!< @brief Number of bytes in the content of the message. */
     uint8_t *content; /*!< @brief Memory address to the content of the message. */

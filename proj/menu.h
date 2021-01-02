@@ -19,7 +19,7 @@
  * @brief Enumerated type for specifying the state of the menu/screens being displayed.
  * 
  */
-typedef enum menu_state_t {
+typedef enum menu_state {
     MAIN_MENU, /*!< Main menu. */
     DRAWER_NEW_ROUND_SCREEN, /*!< New round screen of drawer. */
     GUESSER_NEW_ROUND_SCREEN, /*!< New round screen of guesser. */

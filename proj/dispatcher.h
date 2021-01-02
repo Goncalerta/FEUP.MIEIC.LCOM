@@ -19,7 +19,7 @@
  * @brief Enumerated type for specifying the type of an event.
  * 
  */
-typedef enum event_t {
+typedef enum event {
     MOUSE_EVENT = 0, /*!< Event from mouse. */
     KEYBOARD_EVENT = 1, /*!< Event from keyboard. */
     RTC_PERIODIC_INTERRUPT_EVENT = 2, /*!< Event from rtc periodic interrupts. */
