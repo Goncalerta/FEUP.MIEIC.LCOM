@@ -10,7 +10,7 @@
 #include "cursor.h"
 #include "font.h"
 #include "game.h"
-#include "textbox.h"
+#include "text_box.h"
 #include "button.h"
 #include "menu.h"
 #include "protocol.h"

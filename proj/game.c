@@ -6,7 +6,7 @@
 #include "video_gr.h"
 #include "font.h"
 #include "dispatcher.h"
-#include "textbox.h"
+#include "text_box.h"
 #include "button.h"
 #include "clue.h"
 #include "menu.h"

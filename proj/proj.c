@@ -16,7 +16,7 @@
 #include "cursor.h"
 #include "font.h"
 #include "dispatcher.h"
-#include "textbox.h"
+#include "text_box.h"
 #include "game.h"
 #include "menu.h"
 #include "uart.h"
