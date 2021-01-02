@@ -1,4 +1,4 @@
-<map id="event_undo" name="event_undo">
+<map id="handle_undo" name="handle_undo">
 <area shape="rect" id="node1" title="Undoes a canvas stroke and notifies the other player." alt="" coords="5,111,92,137"/>
 <area shape="rect" id="node2" href="$group__canvas.html#ga0eb66eb3bbeb104a7de7a880c6cd5d48" title="Undoes a stroke." alt="" coords="140,81,280,108"/>
 <area shape="rect" id="node13" href="$group__protocol.html#ga3388b3fbc456a7f5ce244bf9e8875752" title="Sends a message of type MSG_UNDO_CANVAS." alt="" coords="141,133,279,174"/>

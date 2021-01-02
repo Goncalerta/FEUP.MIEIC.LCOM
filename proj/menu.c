@@ -43,7 +43,7 @@ int menu_init(enum xpm_image_type type) {
 
     if (xpm_load(xpm_menu_new_game, type, &xpm_new_game) == NULL)
         return 1;
-    b_new_game = new_button(x, y, MENU_BUTTON_WIDTH, MENU_BUTTON_HEIGHT, event_ready_to_play);
+    b_new_game = new_button(x, y, MENU_BUTTON_WIDTH, MENU_BUTTON_HEIGHT, handle_ready_to_play);
     if (b_new_game == NULL)
         return 1;
     button_set_xpm_icon(b_new_game, xpm_new_game);
@@ -59,14 +59,14 @@ int menu_init(enum xpm_image_type type) {
 
     if (xpm_load(xpm_menu_exit_game, type, &xpm_exit) == NULL)
         return 1;
-    b_end_program = new_button(x, y, MENU_BUTTON_WIDTH, MENU_BUTTON_HEIGHT, event_end_program);
+    b_end_program = new_button(x, y, MENU_BUTTON_WIDTH, MENU_BUTTON_HEIGHT, trigger_end_program);
     if (b_end_program == NULL)
         return 1;
     button_set_xpm_icon(b_end_program, xpm_exit);
 
     if (xpm_load(xpm_menu_main_menu, type, &xpm_main_menu) == NULL)
         return 1;
-    b_back_to_main_menu = new_button(x, y, MENU_BUTTON_WIDTH, MENU_BUTTON_HEIGHT, event_leave_game);
+    b_back_to_main_menu = new_button(x, y, MENU_BUTTON_WIDTH, MENU_BUTTON_HEIGHT, handle_leave_game);
     if (b_back_to_main_menu == NULL)
         return 1;
     button_set_xpm_icon(b_back_to_main_menu, xpm_main_menu);
@@ -270,7 +270,7 @@ int menu_set_main_menu() {
     if (dispatcher_bind_buttons(2, b_new_game, b_end_program) != OK)
         return 1;
 
-    if (event_update_cursor_state() != OK)
+    if (handle_update_cursor_state() != OK)
         return 1;
 
     menu_state = MAIN_MENU;
@@ -283,7 +283,7 @@ int menu_set_pause_menu() {
     if (dispatcher_bind_buttons(2, b_resume, b_back_to_main_menu) != OK)
         return 1;
 
-    if (event_update_cursor_state() != OK)
+    if (handle_update_cursor_state() != OK)
         return 1;
     
     menu_state = PAUSE_MENU;
@@ -296,7 +296,7 @@ int menu_set_awaiting_player_menu() {
     if (dispatcher_bind_buttons(1, b_back_to_main_menu) != OK)
         return 1;
 
-    if (event_update_cursor_state() != OK)
+    if (handle_update_cursor_state() != OK)
         return 1;
     
     menu_state = AWAITING_OTHER_PLAYER;
@@ -308,7 +308,7 @@ int menu_set_new_round_screen(role_t role) {
     if (dispatcher_reset_bindings() != OK)
         return 1;
 
-    if (event_update_cursor_state() != OK)
+    if (handle_update_cursor_state() != OK)
         return 1;
     
     switch (role) {
@@ -331,7 +331,7 @@ int menu_set_game_over_screen() {
     if (dispatcher_bind_buttons(1, b_back_to_main_menu) != OK)
         return 1;
 
-    if (event_update_cursor_state() != OK)
+    if (handle_update_cursor_state() != OK)
         return 1;
     
     menu_state = GAME_OVER_SCREEN;
@@ -344,7 +344,7 @@ int menu_set_other_player_left_screen() {
     if (dispatcher_bind_buttons(1, b_back_to_main_menu) != OK)
         return 1;
 
-    if (event_update_cursor_state() != OK)
+    if (handle_update_cursor_state() != OK)
         return 1;
 
     menu_state = OTHER_PLAYER_LEFT_SCREEN;

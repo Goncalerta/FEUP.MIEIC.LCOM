@@ -1,4 +1,4 @@
-<map id="event_other_player_opened_program" name="event_other_player_opened_program">
+<map id="handle_other_player_opened_program" name="handle_other_player_opened_program">
 <area shape="rect" id="node1" title="Reacts to the event that the other player opened the program." alt="" coords="5,5,136,47"/>
 <area shape="rect" id="node2" href="$group__protocol.html#gaf65bf51204d728ca74e8d86ae0af4b4b" title="Sends a message of type MSG_READY_TO_PLAY." alt="" coords="184,5,327,47"/>
 </map>

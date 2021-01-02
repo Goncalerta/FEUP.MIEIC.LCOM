@@ -139,12 +139,12 @@ static void dispatch_mouse_packet() {
     cursor_move(p.delta_x, p.delta_y);
     cursor_update_buttons(p.lb, p.rb);
     
-    if (event_update_cursor_state() != OK) {
+    if (handle_update_cursor_state() != OK) {
         printf("Failed to update cursor state\n");
     }
 }
 
-int event_update_cursor_state() {
+int handle_update_cursor_state() {
     int16_t x = cursor_get_x();
     int16_t y = cursor_get_y();
     bool lb = cursor_get_lb();
@@ -247,7 +247,7 @@ static void dispatch_rtc_alarm_int() {
         if (protocol_send_start_round() != OK) {
             printf("Failed to dispatch new round alarm\n");
         }
-        if (event_start_round() != OK) {
+        if (handle_start_round() != OK) {
             printf("Failed to dispatch new round alarm\n");
         }
     }
@@ -332,7 +332,7 @@ int draw_frame() {
     return 0;
 }
 
-int event_other_player_opened_program() {
+int handle_other_player_opened_program() {
     if (this_player_state == READY) {
         if (protocol_send_ready_to_play() != OK)
             return 1;
@@ -341,7 +341,7 @@ int event_other_player_opened_program() {
     return 0;
 }
 
-int event_notify_not_in_game() {
+int handle_notify_not_in_game() {
     if (protocol_send_leave_game() != OK)
         return 1;
     if (this_player_state == RANDOM_NUMBER_SENT) {
@@ -354,7 +354,7 @@ int event_notify_not_in_game() {
     return 0;
 }
 
-int event_leave_game() {
+int handle_leave_game() {
     if (rtc_disable_int(ALARM_INTERRUPT) != OK)
         return 1;
     delete_game();
@@ -371,12 +371,12 @@ int event_leave_game() {
     return 0;
 }
 
-int event_other_player_leave_game() {
+int handle_other_player_leave_game() {
     other_player_state = NOT_READY;
     if (menu_is_game_ongoing() && !game_is_over()) {
         if (rtc_disable_int(ALARM_INTERRUPT) != OK)
             return 1;
-        if (event_end_round() != OK)
+        if (handle_end_round() != OK)
             return 1;
         game_set_over();
         if (menu_set_other_player_left_screen() != OK)
@@ -390,24 +390,24 @@ int event_other_player_leave_game() {
     return 0;
 }
 
-int event_ready_to_play() {
+int handle_ready_to_play() {
     if (menu_set_awaiting_player_menu() != OK)
         return 1;
     if (protocol_send_ready_to_play() != OK)
         return 1;
     this_player_state = READY;
     if (other_player_state == READY) {
-        if (event_this_player_random_number() != OK)
+        if (handle_this_player_random_number() != OK)
             return 1;
     }
 
     return 0;
 }
 
-int event_other_player_ready_to_play() {
+int handle_other_player_ready_to_play() {
     other_player_state = READY;
     if (this_player_state == READY || this_player_state == RANDOM_NUMBER_SENT) {
-        if (event_this_player_random_number() != OK)
+        if (handle_this_player_random_number() != OK)
             return 1;
     }
 
@@ -421,7 +421,7 @@ static int compare_random_numbers() {
         other_player_state = NOT_READY;
         if (new_game() != OK)
             return 1;
-        if (event_new_round_as_drawer() != OK)
+        if (handle_new_round_as_drawer() != OK)
             return 1;
 
     } else if (this_player_random_number < other_player_random_number) {
@@ -434,14 +434,14 @@ static int compare_random_numbers() {
     } else {
         this_player_state = READY;
         other_player_state = READY;
-        if (event_this_player_random_number() != OK)
+        if (handle_this_player_random_number() != OK)
             return 1;
     }
 
     return 0;
 }
 
-int event_this_player_random_number() {
+int handle_this_player_random_number() {
     if (other_player_state == NOT_READY) {
         return 0;
     }
@@ -461,7 +461,7 @@ int event_this_player_random_number() {
 
 
 
-int event_other_player_random_number(int random_number) {
+int handle_other_player_random_number(int random_number) {
     if (this_player_state == NOT_READY) {
         return 0;
     }
@@ -477,7 +477,7 @@ int event_other_player_random_number(int random_number) {
     return 0;
 }
 
-int event_new_round_as_guesser(const char *word) {
+int handle_new_round_as_guesser(const char *word) {
     if (game_new_round(GUESSER, word) != OK)
         return 1;
 
@@ -487,7 +487,7 @@ int event_new_round_as_guesser(const char *word) {
     return 0;
 }
 
-int event_new_round_as_drawer() {
+int handle_new_round_as_drawer() {
     const char *word = get_random_word();
 
     if (game_new_round(DRAWER, word) != OK)
@@ -506,7 +506,7 @@ int event_new_round_as_drawer() {
     return 0;
 }
 
-int event_start_round() {
+int handle_start_round() {
     bool canvas_enabled = game_get_role() == DRAWER;
     if (canvas_init(vg_get_hres(), vg_get_vres() - GAME_BAR_HEIGHT, canvas_enabled) != OK)
         return 1;
@@ -517,13 +517,13 @@ int event_start_round() {
     return 0;
 }
 
-int event_end_round() {
+int handle_end_round() {
     canvas_exit();
     game_delete_round();
     return 0;
 }
 
-int event_new_stroke() {
+int handle_new_stroke() {
     if (canvas_new_stroke(drawer_get_selected_color(), drawer_get_selected_thickness()) != OK)
         return 1;
     if (protocol_send_new_stroke(drawer_get_selected_color(), drawer_get_selected_thickness()) != OK)
@@ -532,7 +532,7 @@ int event_new_stroke() {
     return 0;
 }
 
-int event_new_atom(uint16_t x, uint16_t y) {
+int handle_new_atom(uint16_t x, uint16_t y) {
     if (canvas_new_stroke_atom(x, y) != OK)
         return 1;
     if (protocol_send_new_atom(x, y) != OK)
@@ -541,7 +541,7 @@ int event_new_atom(uint16_t x, uint16_t y) {
     return 0;
 }
 
-int event_undo() {
+int handle_undo() {
     if (canvas_undo_stroke() != OK)
         return 1;
     if (protocol_send_undo_canvas() != OK)
@@ -550,7 +550,7 @@ int event_undo() {
     return 0;
 }
 
-int event_redo() {
+int handle_redo() {
     if (canvas_redo_stroke() != OK)
         return 1;
     if (protocol_send_redo_canvas() != OK)
@@ -559,7 +559,7 @@ int event_redo() {
     return 0;
 }
 
-int event_guess_word(char *guess) {
+int handle_guess_word(char *guess) {
     if (guess != NULL && strncmp(guess, "", 1) && game_is_round_ongoing()) {
         if (game_guess_word(guess) != OK) {
             free(guess);
@@ -577,7 +577,7 @@ int event_guess_word(char *guess) {
     return 0;
 }
 
-int event_round_win(uint32_t score) {
+int handle_round_win(uint32_t score) {
     if (game_round_over(score, true) != OK)
         return 1;
     if (protocol_send_round_win(score) != OK)
@@ -585,7 +585,7 @@ int event_round_win(uint32_t score) {
     return 0;
 }
 
-int event_end_program() {
+int trigger_end_program() {
     end = true;
     return 0;
 }

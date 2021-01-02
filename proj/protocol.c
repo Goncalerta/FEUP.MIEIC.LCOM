@@ -25,7 +25,7 @@ static size_t receiving_msg_read_count = 0;
 
 static int protocol_handle_connection_timeout() {
     awaiting_ack = false;
-    if (event_other_player_leave_game() != OK)
+    if (handle_other_player_leave_game() != OK)
         return 1;
     queue_empty(pending_messages);
     
@@ -60,7 +60,7 @@ static int protocol_receive_ready_to_play(size_t content_len, uint8_t *content) 
     if (content_len != 0)
             return 1;
 
-    if (event_other_player_ready_to_play() != OK)
+    if (handle_other_player_ready_to_play() != OK)
         return 1;
 
     return 0;
@@ -70,7 +70,7 @@ static int protocol_receive_leave_game(size_t content_len, uint8_t *content) {
     if (content_len != 0)
             return 1;
 
-    if (event_other_player_leave_game() != OK)
+    if (handle_other_player_leave_game() != OK)
         return 1;
 
     return 0;
@@ -83,7 +83,7 @@ static int protocol_receive_random_number(size_t content_len, uint8_t *content) 
     int rn;
     memcpy(&rn, content, 4);
 
-    if (event_other_player_random_number(rn) != OK)
+    if (handle_other_player_random_number(rn) != OK)
         return 1;
     
     return 0;
@@ -105,10 +105,10 @@ static int protocol_receive_new_round(size_t content_len, uint8_t *content) {
 
     strncpy(word, (char *) content, word_len);
     if (game_may_create_new_round()) {
-        if (event_new_round_as_guesser(word) != OK)
+        if (handle_new_round_as_guesser(word) != OK)
             return 1;
     } else if (game_is_over()) {
-        if (event_notify_not_in_game() != OK)
+        if (handle_notify_not_in_game() != OK)
             return 1;
     }
 
@@ -123,7 +123,7 @@ static int protocol_receive_start_round(size_t content_len, uint8_t *content) {
         if (event_start_round() != OK)
             return 1;
     } else if (game_is_over()) {
-        if (event_notify_not_in_game() != OK)
+        if (handle_notify_not_in_game() != OK)
             return 1;
     }
     
@@ -206,7 +206,7 @@ static int protocol_receive_guess(size_t content_len, uint8_t *content) {
         if (game_guess_word(guess) != OK)
             return 1;
     } else if (game_is_over()) {
-        if (event_notify_not_in_game() != OK)
+        if (handle_notify_not_in_game() != OK)
             return 1;
     }
 
@@ -224,7 +224,7 @@ static int protocol_receive_clue(size_t content_len, uint8_t *content) {
         if (game_give_clue_at(pos) != OK)
             return 1;
     } else if (game_is_over()) {
-        if (event_notify_not_in_game() != OK)
+        if (handle_notify_not_in_game() != OK)
             return 1;
     }
     
@@ -241,7 +241,7 @@ static int protocol_receive_round_win(size_t content_len, uint8_t *content) {
         if (game_round_over(score, true) != OK)
             return 1;
     } else if (game_is_over()) {
-        if (event_notify_not_in_game() != OK)
+        if (handle_notify_not_in_game() != OK)
             return 1;
     }
 
@@ -256,7 +256,7 @@ static int protocol_receive_game_over(size_t content_len, uint8_t *content) {
         if (game_other_player_game_over() != OK)
             return 1;
     } else if (game_is_over()) {
-        if (event_notify_not_in_game() != OK)
+        if (handle_notify_not_in_game() != OK)
             return 1;
     }
 
@@ -271,7 +271,7 @@ static int protocol_receive_program_opened(size_t content_len, uint8_t *content)
     // so that the connection can be reset.
     if (protocol_handle_connection_timeout() != OK)
         return 1;
-    if (event_other_player_opened_program() != OK)
+    if (handle_other_player_opened_program() != OK)
         return 1;
 
     return 0;

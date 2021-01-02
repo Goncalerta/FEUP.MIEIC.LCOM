@@ -1,4 +1,4 @@
-<map id="event_other_player_ready_to_play" name="event_other_player_ready_to_play">
+<map id="handle_other_player_ready_to_play" name="handle_other_player_ready_to_play">
 <area shape="rect" id="node1" title="Reacts to the event that the other player is ready to play." alt="" coords="5,5,136,47"/>
 <area shape="rect" id="node2" href="$group__dispatcher.html#gad4381a145b8cab0457822fce02afabf5" title="Generates and sends a random number to the other player to decide starting roles." alt="" coords="184,5,356,47"/>
 <area shape="rect" id="node3" href="$group__protocol.html#ga00413c9178c939b16024863a7e953932" title="Sends a message of type MSG_RANDOM_NUMBER." alt="" coords="404,5,557,47"/>

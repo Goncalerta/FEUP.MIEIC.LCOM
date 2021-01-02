@@ -1,4 +1,4 @@
-<map id="event_ready_to_play" name="event_ready_to_play">
+<map id="handle_ready_to_play" name="handle_ready_to_play">
 <area shape="rect" id="node1" title="Goes into the &quot;Awaiting other player...&quot; screen and notifies the other player." alt="" coords="5,110,145,137"/>
 <area shape="rect" id="node2" href="$group__dispatcher.html#gad4381a145b8cab0457822fce02afabf5" title="Generates and sends a random number to the other player to decide starting roles." alt="" coords="215,19,387,60"/>
 <area shape="rect" id="node4" href="$group__menu.html#ga5ed66b2ad288641ccbb969f784a64351" title="Sets the menu to awaiting other player menu." alt="" coords="193,110,408,137"/>

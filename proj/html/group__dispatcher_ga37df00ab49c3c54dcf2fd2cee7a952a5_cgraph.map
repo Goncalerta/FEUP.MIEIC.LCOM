@@ -1,4 +1,4 @@
-<map id="event_round_win" name="event_round_win">
+<map id="handle_round_win" name="handle_round_win">
 <area shape="rect" id="node1" title="Sets the round as won, updates the score and notifies the other player." alt="" coords="5,81,123,108"/>
 <area shape="rect" id="node2" href="$group__game.html#ga3e3b7cd44197d8a1bd11f7f82aa3c767" title="Ends the current round." alt="" coords="193,56,316,83"/>
 <area shape="rect" id="node10" href="$group__protocol.html#gacfefff6d72000e2ec5cf3060d675a64a" title="Sends a message of type MSG_ROUND_WIN." alt="" coords="171,107,339,133"/>

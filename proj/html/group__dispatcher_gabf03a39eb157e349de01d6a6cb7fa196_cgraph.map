@@ -1,4 +1,4 @@
-<map id="event_new_round_as_drawer" name="event_new_round_as_drawer">
+<map id="handle_new_round_as_drawer" name="handle_new_round_as_drawer">
 <area shape="rect" id="node1" title="Starts a new round as DRAWER (role_t)." alt="" coords="5,533,148,574"/>
 <area shape="rect" id="node2" href="$group__game.html#gab01706a4b71bd825fc64ce7032ff115c" title="Creates a new round." alt="" coords="221,160,343,187"/>
 <area shape="rect" id="node9" href="$group__game.html#ga0b1a4ee04ae4ee617b88138303516690" title="Gets a random word from the internal word list." alt="" coords="220,481,344,508"/>

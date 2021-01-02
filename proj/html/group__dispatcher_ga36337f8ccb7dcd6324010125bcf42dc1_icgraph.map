@@ -1,4 +1,4 @@
-<map id="event_new_atom" name="event_new_atom">
+<map id="handle_new_atom" name="handle_new_atom">
 <area shape="rect" id="node1" title="Adds a new atom to the stroke being drawn in the canvas and notifies the other player." alt="" coords="1252,237,1371,263"/>
 <area shape="rect" id="node2" href="$group__canvas.html#ga0eb66eb3bbeb104a7de7a880c6cd5d48" title="Undoes a stroke." alt="" coords="1062,210,1202,237"/>
 <area shape="rect" id="node5" href="$group__canvas.html#ga95661aa91869ceace06141f45c078210" title="Updates the state of the canvas according to given mouse info." alt="" coords="1060,262,1204,289"/>

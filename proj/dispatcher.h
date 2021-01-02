@@ -102,35 +102,35 @@ int draw_frame();
  * 
  * @return Return 0 upon success and non-zero otherwise
  */
-int event_update_cursor_state();
+int handle_update_cursor_state();
 
 /**
  * @brief Reacts to the event that the other player opened the program.
  * 
  * @return Return 0 upon success and non-zero otherwise
  */
-int event_other_player_opened_program();
+int handle_other_player_opened_program();
 
 /**
  * @brief Notify the other player that this player is not currently in the game.
  * 
  * @return Return 0 upon success and non-zero otherwise
  */
-int event_notify_not_in_game();
+int handle_notify_not_in_game();
 
 /**
  * @brief Leaves the game back to the main menu and notifies the other player.
  * 
  * @return Return 0 upon success and non-zero otherwise
  */
-int event_leave_game();
+int handle_leave_game();
 
 /**
  * @brief Reacts to the event that the other player left the game.
  * 
  * @return Return 0 upon success and non-zero otherwise
  */
-int event_other_player_leave_game();
+int handle_other_player_leave_game();
 
 /**
  * @brief Goes into the "Awaiting other player..." screen and notifies the other player.
@@ -139,7 +139,7 @@ int event_other_player_leave_game();
  * 
  * @return Return 0 upon success and non-zero otherwise
  */
-int event_ready_to_play();
+int handle_ready_to_play();
 
 /**
  * @brief Reacts to the event that the other player is ready to play.
@@ -148,7 +148,7 @@ int event_ready_to_play();
  * 
  * @return Return 0 upon success and non-zero otherwise
  */
-int event_other_player_ready_to_play();
+int handle_other_player_ready_to_play();
 
 /**
  * @brief Generates and sends a random number to the other player to decide starting roles.
@@ -160,7 +160,7 @@ int event_other_player_ready_to_play();
  * 
  * @return Return 0 upon success and non-zero otherwise
  */
-int event_this_player_random_number();
+int handle_this_player_random_number();
 
 /**
  * @brief Reacts to the event that the other player sent the random number to decide starting roles.
@@ -172,7 +172,7 @@ int event_this_player_random_number();
  * 
  * @return Return 0 upon success and non-zero otherwise
  */
-int event_other_player_random_number();
+int handle_other_player_random_number();
 
 /**
  * @brief Starts a new round as GUESSER (role_t).
@@ -180,7 +180,7 @@ int event_other_player_random_number();
  * @param word the correct guess for this round.
  * @return Return 0 upon success and non-zero otherwise
  */
-int event_new_round_as_guesser(const char *word);
+int handle_new_round_as_guesser(const char *word);
 
 /**
  * @brief Starts a new round as DRAWER (role_t).
@@ -190,23 +190,23 @@ int event_new_round_as_guesser(const char *word);
  * 
  * @return Return 0 upon success and non-zero otherwise
  */
-int event_new_round_as_drawer();
+int handle_new_round_as_drawer();
 
 /**
  * @brief Starts the round.
  * 
- * The round should have already been created (event_new_round_as_guesser() or event_new_round_as_drawer()) before starting.
+ * The round should have already been created (handle_new_round_as_guesser() or handle_new_round_as_drawer()) before starting.
  * 
  * @return Return 0 upon success and non-zero otherwise
  */
-int event_start_round();
+int handle_start_round();
 
 /**
  * @brief Ends the current round.
  * 
  * @return Return 0 upon success and non-zero otherwise
  */
-int event_end_round();
+int handle_end_round();
 
 /**
  * @brief Starts drawing new stroke in the canvas and notifies the other player.
@@ -216,7 +216,7 @@ int event_end_round();
  * 
  * @return Return 0 upon success and non-zero otherwise
  */
-int event_new_stroke();
+int handle_new_stroke();
 
 /**
  * @brief Adds a new atom to the stroke being drawn in the canvas and notifies the other player.
@@ -225,21 +225,21 @@ int event_new_stroke();
  * @param y The y coordinate of the atom.
  * @return Return 0 upon success and non-zero otherwise
  */
-int event_new_atom(uint16_t x, uint16_t y);
+int handle_new_atom(uint16_t x, uint16_t y);
 
 /**
  * @brief Undoes a canvas stroke and notifies the other player.
  *
  * @return Return 0 upon success and non-zero otherwise
  */
-int event_undo();
+int handle_undo();
 
 /**
  * @brief Redoes a canvas stroke and notifies the other player.
  *
  * @return Return 0 upon success and non-zero otherwise
  */
-int event_redo();
+int handle_redo();
 
 /**
  * @brief Tries to guess the word and notifies the other player.
@@ -250,7 +250,7 @@ int event_redo();
  * @param guess the word guessed.
  * @return Return 0 upon success and non-zero otherwise
  */
-int event_guess_word(char *guess);
+int handle_guess_word(char *guess);
 
 /**
  * @brief Sets the round as won, updates the score and notifies the other player.
@@ -261,14 +261,14 @@ int event_guess_word(char *guess);
  * @param score the new score after winning the round.
  * @return Return 0 upon success and non-zero otherwise
  */
-int event_round_win(uint32_t score);
+int handle_round_win(uint32_t score);
 
 /**
  * @brief Ends the program.
  * 
  * @return Return 0 upon success and non-zero otherwise
  */
-int event_end_program();
+int trigger_end_program();
 
 /**
  * @brief Checks if the program should end.

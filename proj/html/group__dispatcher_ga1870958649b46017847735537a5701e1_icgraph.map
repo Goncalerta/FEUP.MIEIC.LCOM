@@ -1,4 +1,4 @@
-<map id="event_update_cursor_state" name="event_update_cursor_state">
+<map id="handle_update_cursor_state" name="handle_update_cursor_state">
 <area shape="rect" id="node1" title="Updates the cursor state and updates the game according to it." alt="" coords="631,220,772,262"/>
 <area shape="rect" id="node2" href="$group__game.html#ga52118602811d7516e865c66a7410fd58" title="Resumes the game." alt="" coords="423,177,527,204"/>
 <area shape="rect" id="node7" href="$group__menu.html#ga5ed66b2ad288641ccbb969f784a64351" title="Sets the menu to awaiting other player menu." alt="" coords="368,102,583,129"/>

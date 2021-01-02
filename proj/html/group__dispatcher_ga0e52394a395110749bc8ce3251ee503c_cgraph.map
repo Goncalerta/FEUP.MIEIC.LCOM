@@ -1,4 +1,4 @@
-<map id="event_leave_game" name="event_leave_game">
+<map id="handle_leave_game" name="handle_leave_game">
 <area shape="rect" id="node1" title="Leaves the game back to the main menu and notifies the other player." alt="" coords="5,208,132,235"/>
 <area shape="rect" id="node2" href="$group__canvas.html#ga70d19351c72c49f89e040a1fb90897c3" title="Exits the canvas and frees the space allocated in memory to store its buffer." alt="" coords="224,107,315,133"/>
 <area shape="rect" id="node3" href="$group__game.html#ga138474d4cfdc04b079ceba8b584ed4e2" title="Deletes the current game." alt="" coords="221,157,317,184"/>

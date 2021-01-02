@@ -237,7 +237,7 @@ static int init_buttons(drawer_t *drawer) {
 
     button_y += BUTTONS_LEN + button_margin;
     drawer->b_undo = new_button(buf.h_res - BUTTONS_LEN - button_margin, 
-                                button_y, BUTTONS_LEN, BUTTONS_LEN, event_undo);
+                                button_y, BUTTONS_LEN, BUTTONS_LEN, handle_undo);
     if (drawer->b_undo == NULL)
         return 1;
 
@@ -245,7 +245,7 @@ static int init_buttons(drawer_t *drawer) {
 
     button_y += BUTTONS_LEN + button_margin;
     drawer->b_redo = new_button(buf.h_res - BUTTONS_LEN - button_margin, button_y, 
-                                BUTTONS_LEN, BUTTONS_LEN, event_redo);
+                                BUTTONS_LEN, BUTTONS_LEN, handle_redo);
     if (drawer->b_redo == NULL)
         return 1;
 
@@ -301,7 +301,7 @@ void game_set_over() {
 
 static int init_text_box(guesser_t *guesser) {
     guesser->text_box = new_text_box(TEXT_BOX_GUESSER_X + 4, TEXT_BOX_GUESSER_Y, 
-                                     TEXT_BOX_GUESSER_DISPLAY_SIZE, event_guess_word);
+                                     TEXT_BOX_GUESSER_DISPLAY_SIZE, handle_guess_word);
     if (guesser->text_box == NULL)
         return 1;
 
@@ -417,7 +417,7 @@ int game_resume() {
         return 1;
 
     menu_set_game_screen();
-    if (event_update_cursor_state() != OK)
+    if (handle_update_cursor_state() != OK)
         return 1;
 
     return 0;
@@ -674,7 +674,7 @@ int game_guess_word(char *guess) {
             uint32_t new_score = game->score + 100 + game->round->round_timer * 4;
             if (new_score > MAX_SCORE)
                 new_score = MAX_SCORE;
-            if (event_round_win(new_score) != OK)
+            if (handle_round_win(new_score) != OK)
                 return 1;
         }
     } else {
@@ -707,7 +707,7 @@ int game_rtc_alarm() {
             if (game->round->role == GUESSER) {
                 if (event_end_round() != OK)
                     return 1;
-                if (event_new_round_as_drawer() != OK)
+                if (handle_new_round_as_drawer() != OK)
                     return 1;
             }
             

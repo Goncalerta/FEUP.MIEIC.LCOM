@@ -1,4 +1,4 @@
-<map id="event_update_cursor_state" name="event_update_cursor_state">
+<map id="handle_update_cursor_state" name="handle_update_cursor_state">
 <area shape="rect" id="node1" title="Updates the cursor state and updates the game according to it." alt="" coords="5,327,147,369"/>
 <area shape="rect" id="node2" href="$group__button.html#gacfab11fbd0b4e1ff3848728f2b3ad7d5" title="Checks if the given coordinates are inside the limits of a given button." alt="" coords="207,5,337,32"/>
 <area shape="rect" id="node3" href="$group__button.html#ga9d70332e21de7ab70afff4fa96fb69d4" title="Updates the state of a given button according to given mouse info." alt="" coords="202,56,342,83"/>

@@ -1,4 +1,4 @@
-<map id="event_ready_to_play" name="event_ready_to_play">
+<map id="handle_ready_to_play" name="handle_ready_to_play">
 <area shape="rect" id="node1" title="Goes into the &quot;Awaiting other player...&quot; screen and notifies the other player." alt="" coords="132,5,272,32"/>
 <area shape="rect" id="node2" href="$group__menu.html#gafae9ccfd6e7de562283d6ffc8c3cf066" title="Loads the xpm images of the menu." alt="" coords="5,5,84,32"/>
 </map>

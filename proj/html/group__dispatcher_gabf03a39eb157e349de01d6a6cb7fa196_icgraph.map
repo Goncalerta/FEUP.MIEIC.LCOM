@@ -1,4 +1,4 @@
-<map id="event_new_round_as_drawer" name="event_new_round_as_drawer">
+<map id="handle_new_round_as_drawer" name="handle_new_round_as_drawer">
 <area shape="rect" id="node1" title="Starts a new round as DRAWER (role_t)." alt="" coords="168,5,311,47"/>
 <area shape="rect" id="node2" href="$group__game.html#ga3f61372930dd958f7499a110ce2bd7d6" title="Updates the game due to a rtc alarm interrupt." alt="" coords="5,13,120,39"/>
 </map>

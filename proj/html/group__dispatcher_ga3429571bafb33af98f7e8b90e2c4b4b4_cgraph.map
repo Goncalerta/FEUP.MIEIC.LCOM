@@ -1,4 +1,4 @@
-<map id="event_guess_word" name="event_guess_word">
+<map id="handle_guess_word" name="handle_guess_word">
 <area shape="rect" id="node1" title="Tries to guess the word and notifies the other player." alt="" coords="5,132,133,159"/>
 <area shape="rect" id="node2" href="$group__game.html#ga5a725e3c48e6564fd75d04c2e4d163ba" title="Adds a word guess. And reacts according to weather it is correct." alt="" coords="197,81,328,108"/>
 <area shape="rect" id="node13" href="$group__game.html#gac02470c210dcf7be41d128ba5e9940d8" title="Checks if the round is ongoing." alt="" coords="181,132,344,159"/>
