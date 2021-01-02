@@ -1,4 +1,0 @@
-<map id="dispatch_rtc_alarm_int" name="dispatch_rtc_alarm_int">
-<area shape="rect" id="node1" title="Dispatches a rtc alarm interrupt." alt="" coords="108,5,261,32"/>
-<area shape="rect" id="node2" href="$group__rtc.html#ga75dad42881d64cf07cf1bdc2979a7056" title="RTC interrupt handler." alt="" coords="5,5,60,32"/>
-</map>

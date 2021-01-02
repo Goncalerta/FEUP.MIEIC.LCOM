@@ -1,0 +1,7 @@
+<map id="text_box.h" name="text_box.h">
+<area shape="rect" id="node1" title="File dedicated to text boxes." alt="" coords="70,5,152,32"/>
+<area shape="rect" id="node2" title=" " alt="" coords="124,155,202,181"/>
+<area shape="rect" id="node3" title=" " alt="" coords="23,80,98,107"/>
+<area shape="rect" id="node4" href="$graphics_8h.html" title="File dedicated to graphics." alt="" coords="122,80,204,107"/>
+<area shape="rect" id="node5" href="$keyboard_8h.html" title="File dedicated to interaction with the PC&#39;s Keyboard." alt="" coords="229,80,316,107"/>
+</map>

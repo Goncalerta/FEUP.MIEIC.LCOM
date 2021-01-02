@@ -1,4 +1,0 @@
-<map id="draw_frame" name="draw_frame">
-<area shape="rect" id="node1" title="Draws the frame to the back buffer and flips the buffers." alt="" coords="188,5,276,32"/>
-<area shape="rect" id="node2" href="$group__dispatcher.html#ga0a68e937b31744d0f19e7524b2e9ad59" title="Dispatches a timer interrupt." alt="" coords="5,5,140,32"/>
-</map>

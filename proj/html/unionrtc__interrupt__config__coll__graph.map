@@ -1,0 +1,4 @@
+<map id="rtc_interrupt_config" name="rtc_interrupt_config">
+<area shape="rect" id="node1" title="RTC configuration to enable interrupts." alt="" coords="5,95,137,121"/>
+<area shape="rect" id="node2" href="$structrtc__alarm__time.html" title="Time aggregate type to use to set the RTC alarm." alt="" coords="17,5,125,32"/>
+</map>

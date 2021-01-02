@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['no_5fstop_5fbits_5ft_1019',['no_stop_bits_t',['../group__uart.html#ga2c722fbc77468076e88a3c6e674e8f49',1,'uart.h']]]
+  ['menu_5fstate_1053',['menu_state',['../group__menu.html#ga76fd640b09a9567f83c22a69d34ea222',1,'menu.h']]],
+  ['message_5ftype_1054',['message_type',['../group__protocol.html#ga4e0a9e26bf11796d8ca091cb6b3ce470',1,'protocol.h']]]
 ];

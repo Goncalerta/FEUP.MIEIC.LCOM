@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['kbd_5fevent_5ft_653',['kbd_event_t',['../structkbd__event__t.html',1,'']]]
+  ['game_687',['game',['../structgame.html',1,'']]],
+  ['guess_688',['guess',['../structguess.html',1,'']]],
+  ['guesser_689',['guesser',['../structguesser.html',1,'']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['xpm_5fanimation_5ft_699',['xpm_animation_t',['../structxpm__animation__t.html',1,'']]]
+  ['xpm_5fanimation_702',['xpm_animation',['../structxpm__animation.html',1,'']]]
 ];

@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['word_5fclue_5ft_661',['word_clue_t',['../structword__clue__t.html',1,'']]]
+  ['stroke_698',['stroke',['../structstroke.html',1,'']]],
+  ['stroke_5fatom_699',['stroke_atom',['../structstroke__atom.html',1,'']]]
 ];

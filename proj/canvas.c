@@ -7,6 +7,11 @@
 #include "cursor.h"
 #include "game.h"
 
+/** @defgroup canvas canvas
+ * @{
+ *
+ */
+
 static canvas_state_t state = CANVAS_STATE_NORMAL;
 static stroke_t *first = NULL, *last = NULL, *undone = NULL;
 static frame_buffer_t canvas_buf; // current picture drawn in buffer - copied into vcard back buffer
@@ -388,3 +393,5 @@ int canvas_react_kbd(kbd_event_t kbd_event) {
 
     return 0;
 }
+
+/**@}*/

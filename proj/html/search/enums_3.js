@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['interrupt_5forigin_5ft_1015',['interrupt_origin_t',['../group__uart.html#gaf24e4c8c2b547a6dcebfdf1ade96a1c0',1,'uart.h']]]
+  ['fifo_5fint_5ftrigger_5flevel_1049',['fifo_int_trigger_level',['../group__uart.html#ga598aa077992ce6f68c609808961b16a0',1,'uart.h']]],
+  ['fifo_5fstatus_1050',['fifo_status',['../group__uart.html#gad69d56e458c2228695b44e7a9b2446dd',1,'uart.h']]]
 ];

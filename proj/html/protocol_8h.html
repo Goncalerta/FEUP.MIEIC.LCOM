@@ -87,7 +87,7 @@ Include dependency graph for protocol.h:</div>
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="protocol_8h__dep__incl.png" border="0" usemap="#aprotocol_8hdep" alt=""/></div>
-<map name="protocol_8hdep" id="aprotocol_8hdep">
+<map name="protocol_8hdep" id="protocol_8hdep">
 <area shape="rect" title="File dedicated to the application dependent communication protocol between two computers." alt="" coords="13,5,91,32"/>
 <area shape="rect" href="dispatcher_8h.html" title="File dedicated to handling and dispatching events." alt="" coords="5,80,99,107"/>
 </map>
@@ -97,45 +97,45 @@ This graph shows which files directly or indirectly include this file:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Data Structures</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structmessage__t.html">message_t</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents a message sent to or received from the serial port.  <a href="structmessage__t.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structmessage.html">message</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents a message sent to or received from the serial port.  <a href="structmessage.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr class="memitem:ga5236fca3b9a2d03ea0dc6784d4635667"><td class="memItemLeft" align="right" valign="top">
-typedef enum <a class="el" href="group__protocol.html#ga78b97fef55da786a15a849fd9d7e557c">message_type_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__protocol.html#ga5236fca3b9a2d03ea0dc6784d4635667">message_type_t</a></td></tr>
-<tr class="memdesc:ga5236fca3b9a2d03ea0dc6784d4635667"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enumerated type for specifying the type of a message. <br /></td></tr>
-<tr class="separator:ga5236fca3b9a2d03ea0dc6784d4635667"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gadba1cc438bbfd876f22e899ef7f497f1"><td class="memItemLeft" align="right" valign="top">
-typedef struct <a class="el" href="structmessage__t.html">message_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__protocol.html#gadba1cc438bbfd876f22e899ef7f497f1">message_t</a></td></tr>
-<tr class="memdesc:gadba1cc438bbfd876f22e899ef7f497f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents a message sent to or received from the serial port. <br /></td></tr>
-<tr class="separator:gadba1cc438bbfd876f22e899ef7f497f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gabb2d40ce974b9cd03342eaf4d8bd0f8b"><td class="memItemLeft" align="right" valign="top">
+typedef enum <a class="el" href="group__protocol.html#ga4e0a9e26bf11796d8ca091cb6b3ce470">message_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__protocol.html#gabb2d40ce974b9cd03342eaf4d8bd0f8b">message_type_t</a></td></tr>
+<tr class="memdesc:gabb2d40ce974b9cd03342eaf4d8bd0f8b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enumerated type for specifying the type of a message. <br /></td></tr>
+<tr class="separator:gabb2d40ce974b9cd03342eaf4d8bd0f8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga086dbd3c18fcd9457a9d49fdb9a2906a"><td class="memItemLeft" align="right" valign="top">
+typedef struct <a class="el" href="structmessage.html">message</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__protocol.html#ga086dbd3c18fcd9457a9d49fdb9a2906a">message_t</a></td></tr>
+<tr class="memdesc:ga086dbd3c18fcd9457a9d49fdb9a2906a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents a message sent to or received from the serial port. <br /></td></tr>
+<tr class="separator:ga086dbd3c18fcd9457a9d49fdb9a2906a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
 Enumerations</h2></td></tr>
-<tr class="memitem:ga78b97fef55da786a15a849fd9d7e557c"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__protocol.html#ga78b97fef55da786a15a849fd9d7e557c">message_type_t</a> { <br />
-&#160;&#160;<a class="el" href="group__protocol.html#gga78b97fef55da786a15a849fd9d7e557ca7586556a151c154204fc0b005df1ec9f">MSG_READY_TO_PLAY</a> = 0, 
-<a class="el" href="group__protocol.html#gga78b97fef55da786a15a849fd9d7e557cae88ecf7c5492ae63430ea2ae022f3515">MSG_LEAVE_GAME</a> = 1, 
-<a class="el" href="group__protocol.html#gga78b97fef55da786a15a849fd9d7e557ca5f52586682daf8be985c834f3660dc51">MSG_RANDOM_NUMBER</a> = 2, 
-<a class="el" href="group__protocol.html#gga78b97fef55da786a15a849fd9d7e557ca30a8a935035aa9f5a2ba3eb8bfa947d5">MSG_NEW_ROUND</a> = 3, 
+<tr class="memitem:ga4e0a9e26bf11796d8ca091cb6b3ce470"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__protocol.html#ga4e0a9e26bf11796d8ca091cb6b3ce470">message_type</a> { <br />
+&#160;&#160;<a class="el" href="group__protocol.html#gga4e0a9e26bf11796d8ca091cb6b3ce470a7586556a151c154204fc0b005df1ec9f">MSG_READY_TO_PLAY</a> = 0, 
+<a class="el" href="group__protocol.html#gga4e0a9e26bf11796d8ca091cb6b3ce470ae88ecf7c5492ae63430ea2ae022f3515">MSG_LEAVE_GAME</a> = 1, 
+<a class="el" href="group__protocol.html#gga4e0a9e26bf11796d8ca091cb6b3ce470a5f52586682daf8be985c834f3660dc51">MSG_RANDOM_NUMBER</a> = 2, 
+<a class="el" href="group__protocol.html#gga4e0a9e26bf11796d8ca091cb6b3ce470a30a8a935035aa9f5a2ba3eb8bfa947d5">MSG_NEW_ROUND</a> = 3, 
 <br />
-&#160;&#160;<a class="el" href="group__protocol.html#gga78b97fef55da786a15a849fd9d7e557cac31c76d6c8860e060aec7c2c1533a239">MSG_START_ROUND</a> = 4, 
-<a class="el" href="group__protocol.html#gga78b97fef55da786a15a849fd9d7e557ca2d4f7b185fa2c3f21dc9a6286fc389a6">MSG_NEW_STROKE</a> = 5, 
-<a class="el" href="group__protocol.html#gga78b97fef55da786a15a849fd9d7e557ca3b57041070e7108e51e012172ab933d2">MSG_DRAW_ATOM</a> = 6, 
-<a class="el" href="group__protocol.html#gga78b97fef55da786a15a849fd9d7e557ca18bd4710d8e4404a1cfec368c5af5324">MSG_UNDO_CANVAS</a> = 7, 
+&#160;&#160;<a class="el" href="group__protocol.html#gga4e0a9e26bf11796d8ca091cb6b3ce470ac31c76d6c8860e060aec7c2c1533a239">MSG_START_ROUND</a> = 4, 
+<a class="el" href="group__protocol.html#gga4e0a9e26bf11796d8ca091cb6b3ce470a2d4f7b185fa2c3f21dc9a6286fc389a6">MSG_NEW_STROKE</a> = 5, 
+<a class="el" href="group__protocol.html#gga4e0a9e26bf11796d8ca091cb6b3ce470a3b57041070e7108e51e012172ab933d2">MSG_DRAW_ATOM</a> = 6, 
+<a class="el" href="group__protocol.html#gga4e0a9e26bf11796d8ca091cb6b3ce470a18bd4710d8e4404a1cfec368c5af5324">MSG_UNDO_CANVAS</a> = 7, 
 <br />
-&#160;&#160;<a class="el" href="group__protocol.html#gga78b97fef55da786a15a849fd9d7e557ca5a453303bbb732280e1db8dca78ad158">MSG_REDO_CANVAS</a> = 8, 
-<a class="el" href="group__protocol.html#gga78b97fef55da786a15a849fd9d7e557cab8310912e4745e3d0d6ea4671dde2945">MSG_GUESS</a> = 9, 
-<a class="el" href="group__protocol.html#gga78b97fef55da786a15a849fd9d7e557cae0fbab6e7c5f173cf46149a89895dfeb">MSG_CLUE</a> = 10, 
-<a class="el" href="group__protocol.html#gga78b97fef55da786a15a849fd9d7e557caf0f3b64d0e28ea6a91ae42a73c38743c">MSG_ROUND_WIN</a> = 11, 
+&#160;&#160;<a class="el" href="group__protocol.html#gga4e0a9e26bf11796d8ca091cb6b3ce470a5a453303bbb732280e1db8dca78ad158">MSG_REDO_CANVAS</a> = 8, 
+<a class="el" href="group__protocol.html#gga4e0a9e26bf11796d8ca091cb6b3ce470ab8310912e4745e3d0d6ea4671dde2945">MSG_GUESS</a> = 9, 
+<a class="el" href="group__protocol.html#gga4e0a9e26bf11796d8ca091cb6b3ce470ae0fbab6e7c5f173cf46149a89895dfeb">MSG_CLUE</a> = 10, 
+<a class="el" href="group__protocol.html#gga4e0a9e26bf11796d8ca091cb6b3ce470af0f3b64d0e28ea6a91ae42a73c38743c">MSG_ROUND_WIN</a> = 11, 
 <br />
-&#160;&#160;<a class="el" href="group__protocol.html#gga78b97fef55da786a15a849fd9d7e557ca5409200c15d107f9a48f402fc9a7a93c">MSG_GAME_OVER</a> = 12, 
-<a class="el" href="group__protocol.html#gga78b97fef55da786a15a849fd9d7e557caf2b3b0fbb5279106de60c307ec2163b7">MSG_PROGRAM_OPENED</a> = 13
+&#160;&#160;<a class="el" href="group__protocol.html#gga4e0a9e26bf11796d8ca091cb6b3ce470a5409200c15d107f9a48f402fc9a7a93c">MSG_GAME_OVER</a> = 12, 
+<a class="el" href="group__protocol.html#gga4e0a9e26bf11796d8ca091cb6b3ce470af2b3b0fbb5279106de60c307ec2163b7">MSG_PROGRAM_OPENED</a> = 13
 <br />
  }</td></tr>
-<tr class="memdesc:ga78b97fef55da786a15a849fd9d7e557c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enumerated type for specifying the type of a message.  <a href="group__protocol.html#ga78b97fef55da786a15a849fd9d7e557c">More...</a><br /></td></tr>
-<tr class="separator:ga78b97fef55da786a15a849fd9d7e557c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memdesc:ga4e0a9e26bf11796d8ca091cb6b3ce470"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enumerated type for specifying the type of a message.  <a href="group__protocol.html#ga4e0a9e26bf11796d8ca091cb6b3ce470">More...</a><br /></td></tr>
+<tr class="separator:ga4e0a9e26bf11796d8ca091cb6b3ce470"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
@@ -182,7 +182,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grou
 <tr class="memitem:ga37492ace0b61aeb7b426d4ba9fd7e7b9"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__protocol.html#ga37492ace0b61aeb7b426d4ba9fd7e7b9">protocol_send_redo_canvas</a> ()</td></tr>
 <tr class="memdesc:ga37492ace0b61aeb7b426d4ba9fd7e7b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends a message of type MSG_REDO_CANVAS.  <a href="group__protocol.html#ga37492ace0b61aeb7b426d4ba9fd7e7b9">More...</a><br /></td></tr>
 <tr class="separator:ga37492ace0b61aeb7b426d4ba9fd7e7b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga7ecf39afd738fd733192d8efa3b72543"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__protocol.html#ga7ecf39afd738fd733192d8efa3b72543">protocol_send_guess</a> (const char *guess)</td></tr>
+<tr class="memitem:ga7ecf39afd738fd733192d8efa3b72543"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__protocol.html#ga7ecf39afd738fd733192d8efa3b72543">protocol_send_guess</a> (const char *<a class="el" href="structguess.html">guess</a>)</td></tr>
 <tr class="memdesc:ga7ecf39afd738fd733192d8efa3b72543"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends a message of type MSG_GUESS.  <a href="group__protocol.html#ga7ecf39afd738fd733192d8efa3b72543">More...</a><br /></td></tr>
 <tr class="separator:ga7ecf39afd738fd733192d8efa3b72543"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gafadb8c0242e740b68757640ed9d026fd"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__protocol.html#gafadb8c0242e740b68757640ed9d026fd">protocol_send_clue</a> (size_t pos)</td></tr>

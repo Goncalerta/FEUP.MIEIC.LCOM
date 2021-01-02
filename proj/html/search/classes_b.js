@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['word_5fclue_5ft_698',['word_clue_t',['../structword__clue__t.html',1,'']]]
+  ['word_5fclue_701',['word_clue',['../structword__clue.html',1,'']]]
 ];

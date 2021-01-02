@@ -1,5 +1,0 @@
-<map id="delete_queue" name="delete_queue">
-<area shape="rect" id="node1" title="Frees the space allocated in memory to store the content of a given queue." alt="" coords="356,5,455,32"/>
-<area shape="rect" id="node2" href="$group__protocol.html#gad92f8f0203e9bf95564f51e3ab965221" title="Frees the memory allocated for the protocol and serial port software queues." alt="" coords="5,5,101,32"/>
-<area shape="rect" id="node3" href="$group__uart.html#gaffd1e39d413095e8cb2d5026e6232e65" title="Frees the memory allocated for serial port software queues." alt="" coords="149,31,308,57"/>
-</map>

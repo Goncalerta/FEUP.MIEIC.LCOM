@@ -87,12 +87,12 @@ Include dependency graph for keyboard.h:</div>
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="keyboard_8h__dep__incl.png" border="0" usemap="#akeyboard_8hdep" alt=""/></div>
-<map name="keyboard_8hdep" id="akeyboard_8hdep">
+<map name="keyboard_8hdep" id="keyboard_8hdep">
 <area shape="rect" title="File dedicated to interaction with the PC&#39;s Keyboard." alt="" coords="159,5,245,32"/>
 <area shape="rect" href="canvas_8h.html" title="File dedicated to the canvas used to draw." alt="" coords="5,80,79,107"/>
 <area shape="rect" href="dispatcher_8h.html" title="File dedicated to handling and dispatching events." alt="" coords="103,80,197,107"/>
 <area shape="rect" href="menu_8h.html" title="File dedicated to the interaction with the menu of the game as well as other program screens." alt="" coords="221,80,287,107"/>
-<area shape="rect" href="textbox_8h.html" title="File dedicated to text boxes." alt="" coords="311,80,387,107"/>
+<area shape="rect" href="text__box_8h.html" title="File dedicated to text boxes." alt="" coords="311,80,394,107"/>
 </map>
 </div>
 </div>
@@ -100,20 +100,20 @@ This graph shows which files directly or indirectly include this file:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Data Structures</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkbd__event__t.html">kbd_event_t</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Keyboard event.  <a href="structkbd__event__t.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkbd__event.html">kbd_event</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Keyboard event.  <a href="structkbd__event.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr class="memitem:gac470f43e2c14bacf7d85830fee2e9637"><td class="memItemLeft" align="right" valign="top">
-typedef enum <a class="el" href="group__keyboard.html#ga635055f02cc43001acef32526cac2a45">kbd_key</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__keyboard.html#gac470f43e2c14bacf7d85830fee2e9637">kbd_key</a></td></tr>
-<tr class="memdesc:gac470f43e2c14bacf7d85830fee2e9637"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enumerated type for specifying the type of key that was pressed in the Keyboard. <br /></td></tr>
-<tr class="separator:gac470f43e2c14bacf7d85830fee2e9637"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gadfc23046107a0d8f22908f141125a59c"><td class="memItemLeft" align="right" valign="top">
-typedef struct <a class="el" href="structkbd__event__t.html">kbd_event_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__keyboard.html#gadfc23046107a0d8f22908f141125a59c">kbd_event_t</a></td></tr>
-<tr class="memdesc:gadfc23046107a0d8f22908f141125a59c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Keyboard event. <br /></td></tr>
-<tr class="separator:gadfc23046107a0d8f22908f141125a59c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga30eda7cfcd9b1249706fe74f7b572a10"><td class="memItemLeft" align="right" valign="top">
+typedef enum <a class="el" href="group__keyboard.html#ga635055f02cc43001acef32526cac2a45">kbd_key</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__keyboard.html#ga30eda7cfcd9b1249706fe74f7b572a10">kbd_key_t</a></td></tr>
+<tr class="memdesc:ga30eda7cfcd9b1249706fe74f7b572a10"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enumerated type for specifying the type of key that was pressed in the Keyboard. <br /></td></tr>
+<tr class="separator:ga30eda7cfcd9b1249706fe74f7b572a10"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf885a18f75458e73bb7dccc1db276bef"><td class="memItemLeft" align="right" valign="top">
+typedef struct <a class="el" href="structkbd__event.html">kbd_event</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__keyboard.html#gaf885a18f75458e73bb7dccc1db276bef">kbd_event_t</a></td></tr>
+<tr class="memdesc:gaf885a18f75458e73bb7dccc1db276bef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Keyboard event. <br /></td></tr>
+<tr class="separator:gaf885a18f75458e73bb7dccc1db276bef"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
 Enumerations</h2></td></tr>
@@ -147,8 +147,8 @@ Functions</h2></td></tr>
 <tr class="memitem:gad4630c76a71623b08383f3a37fa64e22"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__keyboard.html#gad4630c76a71623b08383f3a37fa64e22">kbd_is_make_code</a> (uint8_t scancode)</td></tr>
 <tr class="memdesc:gad4630c76a71623b08383f3a37fa64e22"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if a given scancode is a make code.  <a href="group__keyboard.html#gad4630c76a71623b08383f3a37fa64e22">More...</a><br /></td></tr>
 <tr class="separator:gad4630c76a71623b08383f3a37fa64e22"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga4d4099244ffb934502e579e9ffb8f316"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__keyboard.html#ga4d4099244ffb934502e579e9ffb8f316">kbd_handle_scancode</a> (<a class="el" href="structkbd__event__t.html">kbd_event_t</a> *kbd_state)</td></tr>
-<tr class="memdesc:ga4d4099244ffb934502e579e9ffb8f316"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transforms a scancode into organized information about the keys pressed in the form of <a class="el" href="structkbd__event__t.html" title="Keyboard event.">kbd_event_t</a>.  <a href="group__keyboard.html#ga4d4099244ffb934502e579e9ffb8f316">More...</a><br /></td></tr>
+<tr class="memitem:ga4d4099244ffb934502e579e9ffb8f316"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__keyboard.html#ga4d4099244ffb934502e579e9ffb8f316">kbd_handle_scancode</a> (<a class="el" href="group__keyboard.html#gaf885a18f75458e73bb7dccc1db276bef">kbd_event_t</a> *kbd_state)</td></tr>
+<tr class="memdesc:ga4d4099244ffb934502e579e9ffb8f316"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transforms a scancode into organized information about the keys pressed in the form of kbd_event_t.  <a href="group__keyboard.html#ga4d4099244ffb934502e579e9ffb8f316">More...</a><br /></td></tr>
 <tr class="separator:ga4d4099244ffb934502e579e9ffb8f316"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga0d28d7309ad45de4fe79c9de3fbeb3d8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__keyboard.html#ga0d28d7309ad45de4fe79c9de3fbeb3d8">kbd_enable_interrupts</a> ()</td></tr>
 <tr class="memdesc:ga0d28d7309ad45de4fe79c9de3fbeb3d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables keyboard interrupts.  <a href="group__keyboard.html#ga0d28d7309ad45de4fe79c9de3fbeb3d8">More...</a><br /></td></tr>

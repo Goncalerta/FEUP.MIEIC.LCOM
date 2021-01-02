@@ -62,7 +62,6 @@ $(function() {
 
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">Data Structures</a> &#124;
 <a href="#typedef-members">Typedefs</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
@@ -73,37 +72,34 @@ $(function() {
 <p>Module dedicated to word clues.  
 <a href="#details">More...</a></p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
-Data Structures</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structword__clue__t.html">word_clue_t</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Word clue info.  <a href="structword__clue__t.html#details">More...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr class="memitem:gaf1024e93fdaaaf8803541bf569c84971"><td class="memItemLeft" align="right" valign="top"><a id="gaf1024e93fdaaaf8803541bf569c84971"></a>
-typedef struct <a class="el" href="structword__clue__t.html">word_clue_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__clue.html#gaf1024e93fdaaaf8803541bf569c84971">word_clue_t</a></td></tr>
-<tr class="memdesc:gaf1024e93fdaaaf8803541bf569c84971"><td class="mdescLeft">&#160;</td><td class="mdescRight">Word clue info. <br /></td></tr>
-<tr class="separator:gaf1024e93fdaaaf8803541bf569c84971"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gafee1d6049152c45f323a4310e65b7143"><td class="memItemLeft" align="right" valign="top"><a id="gafee1d6049152c45f323a4310e65b7143"></a>
+typedef struct <a class="el" href="structword__clue.html">word_clue</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__clue.html#gafee1d6049152c45f323a4310e65b7143">word_clue_t</a></td></tr>
+<tr class="memdesc:gafee1d6049152c45f323a4310e65b7143"><td class="mdescLeft">&#160;</td><td class="mdescRight">Word clue class. <br /></td></tr>
+<tr class="separator:gafee1d6049152c45f323a4310e65b7143"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ga3396d068c7b71ed4e7b6d8ddebd76ece"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__clue.html#ga3396d068c7b71ed4e7b6d8ddebd76ece">new_word_clue</a> (<a class="el" href="structword__clue__t.html">word_clue_t</a> *clue, const char *word)</td></tr>
-<tr class="memdesc:ga3396d068c7b71ed4e7b6d8ddebd76ece"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes new word clue.  <a href="group__clue.html#ga3396d068c7b71ed4e7b6d8ddebd76ece">More...</a><br /></td></tr>
-<tr class="separator:ga3396d068c7b71ed4e7b6d8ddebd76ece"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaf2e81417151218db37a0250f64f2f825"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__clue.html#gaf2e81417151218db37a0250f64f2f825">word_clue_draw</a> (<a class="el" href="structword__clue__t.html">word_clue_t</a> *clue, <a class="el" href="structframe__buffer__t.html">frame_buffer_t</a> buf, uint16_t x, uint16_t y)</td></tr>
+<tr class="memitem:gaf0cd9064ea524a4ee9c2123f443c1297"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__clue.html#gafee1d6049152c45f323a4310e65b7143">word_clue_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__clue.html#gaf0cd9064ea524a4ee9c2123f443c1297">new_word_clue</a> (const char *word)</td></tr>
+<tr class="memdesc:gaf0cd9064ea524a4ee9c2123f443c1297"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes new word clue.  <a href="group__clue.html#gaf0cd9064ea524a4ee9c2123f443c1297">More...</a><br /></td></tr>
+<tr class="separator:gaf0cd9064ea524a4ee9c2123f443c1297"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga7a786b7154af63b5ece6c3559c934a64"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__clue.html#ga7a786b7154af63b5ece6c3559c934a64">word_clue_get_width</a> (<a class="el" href="group__clue.html#gafee1d6049152c45f323a4310e65b7143">word_clue_t</a> *clue)</td></tr>
+<tr class="memdesc:ga7a786b7154af63b5ece6c3559c934a64"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the width in pixels of a word clue.  <a href="group__clue.html#ga7a786b7154af63b5ece6c3559c934a64">More...</a><br /></td></tr>
+<tr class="separator:ga7a786b7154af63b5ece6c3559c934a64"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf2e81417151218db37a0250f64f2f825"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__clue.html#gaf2e81417151218db37a0250f64f2f825">word_clue_draw</a> (<a class="el" href="group__clue.html#gafee1d6049152c45f323a4310e65b7143">word_clue_t</a> *clue, <a class="el" href="group__graphics.html#gaff8a3cc6e89a00767e506102003663dc">frame_buffer_t</a> buf, uint16_t x, uint16_t y)</td></tr>
 <tr class="memdesc:gaf2e81417151218db37a0250f64f2f825"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draws a given word clue to the given buffer on the given coordinates.  <a href="group__clue.html#gaf2e81417151218db37a0250f64f2f825">More...</a><br /></td></tr>
 <tr class="separator:gaf2e81417151218db37a0250f64f2f825"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaa1bfb55e74e59e1c571b12d25a3d60b1"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__clue.html#gaa1bfb55e74e59e1c571b12d25a3d60b1">word_clue_hint</a> (<a class="el" href="structword__clue__t.html">word_clue_t</a> *clue, size_t *pos)</td></tr>
+<tr class="memitem:gaa1bfb55e74e59e1c571b12d25a3d60b1"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__clue.html#gaa1bfb55e74e59e1c571b12d25a3d60b1">word_clue_hint</a> (<a class="el" href="group__clue.html#gafee1d6049152c45f323a4310e65b7143">word_clue_t</a> *clue, size_t *pos)</td></tr>
 <tr class="memdesc:gaa1bfb55e74e59e1c571b12d25a3d60b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Randomly hints a new char in the given word clue.  <a href="group__clue.html#gaa1bfb55e74e59e1c571b12d25a3d60b1">More...</a><br /></td></tr>
 <tr class="separator:gaa1bfb55e74e59e1c571b12d25a3d60b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaa2682141b8e69c91872045fd8a6c8eaa"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__clue.html#gaa2682141b8e69c91872045fd8a6c8eaa">word_clue_hint_at</a> (<a class="el" href="structword__clue__t.html">word_clue_t</a> *clue, size_t pos)</td></tr>
+<tr class="memitem:gaa2682141b8e69c91872045fd8a6c8eaa"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__clue.html#gaa2682141b8e69c91872045fd8a6c8eaa">word_clue_hint_at</a> (<a class="el" href="group__clue.html#gafee1d6049152c45f323a4310e65b7143">word_clue_t</a> *clue, size_t pos)</td></tr>
 <tr class="memdesc:gaa2682141b8e69c91872045fd8a6c8eaa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Hints a char in the given word clue in the given position.  <a href="group__clue.html#gaa2682141b8e69c91872045fd8a6c8eaa">More...</a><br /></td></tr>
 <tr class="separator:gaa2682141b8e69c91872045fd8a6c8eaa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga4362997e5a7009bc2cd0fe105e2fa9fc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__clue.html#ga4362997e5a7009bc2cd0fe105e2fa9fc">clue_reveal</a> (<a class="el" href="structword__clue__t.html">word_clue_t</a> *clue)</td></tr>
+<tr class="memitem:ga4362997e5a7009bc2cd0fe105e2fa9fc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__clue.html#ga4362997e5a7009bc2cd0fe105e2fa9fc">clue_reveal</a> (<a class="el" href="group__clue.html#gafee1d6049152c45f323a4310e65b7143">word_clue_t</a> *clue)</td></tr>
 <tr class="memdesc:ga4362997e5a7009bc2cd0fe105e2fa9fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Makes the whole word revealed in the given word clue.  <a href="group__clue.html#ga4362997e5a7009bc2cd0fe105e2fa9fc">More...</a><br /></td></tr>
 <tr class="separator:ga4362997e5a7009bc2cd0fe105e2fa9fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga0425307d69028408fcaad6cf23e7a13a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__clue.html#ga0425307d69028408fcaad6cf23e7a13a">delete_word_clue</a> (<a class="el" href="structword__clue__t.html">word_clue_t</a> *clue)</td></tr>
+<tr class="memitem:ga0425307d69028408fcaad6cf23e7a13a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__clue.html#ga0425307d69028408fcaad6cf23e7a13a">delete_word_clue</a> (<a class="el" href="group__clue.html#gafee1d6049152c45f323a4310e65b7143">word_clue_t</a> *clue)</td></tr>
 <tr class="memdesc:ga0425307d69028408fcaad6cf23e7a13a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Frees the space allocated in memory to store the content of a given word clue.  <a href="group__clue.html#ga0425307d69028408fcaad6cf23e7a13a">More...</a><br /></td></tr>
 <tr class="separator:ga0425307d69028408fcaad6cf23e7a13a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -119,7 +115,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">void clue_reveal </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structword__clue__t.html">word_clue_t</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="group__clue.html#gafee1d6049152c45f323a4310e65b7143">word_clue_t</a> *&#160;</td>
           <td class="paramname"><em>clue</em></td><td>)</td>
           <td></td>
         </tr>
@@ -137,7 +133,7 @@ Functions</h2></td></tr>
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="group__clue_ga4362997e5a7009bc2cd0fe105e2fa9fc_icgraph.png" border="0" usemap="#agroup__clue_ga4362997e5a7009bc2cd0fe105e2fa9fc_icgraph" alt=""/></div>
-<map name="group__clue_ga4362997e5a7009bc2cd0fe105e2fa9fc_icgraph" id="agroup__clue_ga4362997e5a7009bc2cd0fe105e2fa9fc_icgraph">
+<map name="group__clue_ga4362997e5a7009bc2cd0fe105e2fa9fc_icgraph" id="group__clue_ga4362997e5a7009bc2cd0fe105e2fa9fc_icgraph">
 <area shape="rect" title="Makes the whole word revealed in the given word clue." alt="" coords="780,56,867,83"/>
 <area shape="rect" href="group__game.html#ga3e3b7cd44197d8a1bd11f7f82aa3c767" title="Ends the current round." alt="" coords="609,56,732,83"/>
 <area shape="rect" href="group__dispatcher.html#ga37df00ab49c3c54dcf2fd2cee7a952a5" title="Sets the round as won, updates the score and notifies the other player." alt="" coords="402,5,519,32"/>
@@ -159,7 +155,7 @@ Here is the caller graph for this function:</div>
         <tr>
           <td class="memname">void delete_word_clue </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structword__clue__t.html">word_clue_t</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="group__clue.html#gafee1d6049152c45f323a4310e65b7143">word_clue_t</a> *&#160;</td>
           <td class="paramname"><em>clue</em></td><td>)</td>
           <td></td>
         </tr>
@@ -177,7 +173,7 @@ Here is the caller graph for this function:</div>
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="group__clue_ga0425307d69028408fcaad6cf23e7a13a_icgraph.png" border="0" usemap="#agroup__clue_ga0425307d69028408fcaad6cf23e7a13a_icgraph" alt=""/></div>
-<map name="group__clue_ga0425307d69028408fcaad6cf23e7a13a_icgraph" id="agroup__clue_ga0425307d69028408fcaad6cf23e7a13a_icgraph">
+<map name="group__clue_ga0425307d69028408fcaad6cf23e7a13a_icgraph" id="group__clue_ga0425307d69028408fcaad6cf23e7a13a_icgraph">
 <area shape="rect" title="Frees the space allocated in memory to store the content of a given word clue." alt="" coords="715,144,837,171"/>
 <area shape="rect" href="group__game.html#gadede5f1c2e6f4a506c211cd8045dc449" title="Deletes the current game round." alt="" coords="532,144,667,171"/>
 <area shape="rect" href="group__game.html#ga138474d4cfdc04b079ceba8b584ed4e2" title="Deletes the current game." alt="" coords="375,56,471,83"/>
@@ -195,28 +191,18 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
-<a id="ga3396d068c7b71ed4e7b6d8ddebd76ece"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga3396d068c7b71ed4e7b6d8ddebd76ece">&#9670;&nbsp;</a></span>new_word_clue()</h2>
+<a id="gaf0cd9064ea524a4ee9c2123f443c1297"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaf0cd9064ea524a4ee9c2123f443c1297">&#9670;&nbsp;</a></span>new_word_clue()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int new_word_clue </td>
+          <td class="memname"><a class="el" href="group__clue.html#gafee1d6049152c45f323a4310e65b7143">word_clue_t</a>* new_word_clue </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structword__clue__t.html">word_clue_t</a> *&#160;</td>
-          <td class="paramname"><em>clue</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
           <td class="paramtype">const char *&#160;</td>
-          <td class="paramname"><em>word</em>&#160;</td>
-        </tr>
-        <tr>
+          <td class="paramname"><em>word</em></td><td>)</td>
           <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -224,17 +210,16 @@ Here is the caller graph for this function:</div>
 <p>Initializes new word clue. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">clue</td><td>address of memory to the word clue </td></tr>
     <tr><td class="paramname">word</td><td>address of memory of the word to be used </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Return 0 upon success and non-zero otherwise </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Address of memory of the word clue initialized, or NULL if an error occurred. </dd></dl>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="group__clue_ga3396d068c7b71ed4e7b6d8ddebd76ece_icgraph.png" border="0" usemap="#agroup__clue_ga3396d068c7b71ed4e7b6d8ddebd76ece_icgraph" alt=""/></div>
-<map name="group__clue_ga3396d068c7b71ed4e7b6d8ddebd76ece_icgraph" id="agroup__clue_ga3396d068c7b71ed4e7b6d8ddebd76ece_icgraph">
+<div class="center"><img src="group__clue_gaf0cd9064ea524a4ee9c2123f443c1297_icgraph.png" border="0" usemap="#agroup__clue_gaf0cd9064ea524a4ee9c2123f443c1297_icgraph" alt=""/></div>
+<map name="group__clue_gaf0cd9064ea524a4ee9c2123f443c1297_icgraph" id="group__clue_gaf0cd9064ea524a4ee9c2123f443c1297_icgraph">
 <area shape="rect" title="Initializes new word clue." alt="" coords="529,46,640,73"/>
 <area shape="rect" href="group__game.html#gab01706a4b71bd825fc64ce7032ff115c" title="Creates a new round." alt="" coords="359,46,481,73"/>
 <area shape="rect" href="group__dispatcher.html#gabf03a39eb157e349de01d6a6cb7fa196" title="Starts a new round as DRAWER (role_t)." alt="" coords="168,5,311,47"/>
@@ -254,13 +239,13 @@ Here is the caller graph for this function:</div>
         <tr>
           <td class="memname">int word_clue_draw </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structword__clue__t.html">word_clue_t</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="group__clue.html#gafee1d6049152c45f323a4310e65b7143">word_clue_t</a> *&#160;</td>
           <td class="paramname"><em>clue</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structframe__buffer__t.html">frame_buffer_t</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="group__graphics.html#gaff8a3cc6e89a00767e506102003663dc">frame_buffer_t</a>&#160;</td>
           <td class="paramname"><em>buf</em>, </td>
         </tr>
         <tr>
@@ -312,9 +297,44 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="group__clue_gaf2e81417151218db37a0250f64f2f825_icgraph.png" border="0" usemap="#agroup__clue_gaf2e81417151218db37a0250f64f2f825_icgraph" alt=""/></div>
 <map name="group__clue_gaf2e81417151218db37a0250f64f2f825_icgraph" id="agroup__clue_gaf2e81417151218db37a0250f64f2f825_icgraph">
-<area shape="rect" title="Draws a given word clue to the given buffer on the given coordinates." alt="" coords="277,5,392,32"/>
-<area shape="rect" href="group__game.html#ga656ca85eff33877022fd939d29f23822" title="Draws the game screen to the back buffer." alt="" coords="141,5,229,32"/>
-<area shape="rect" href="group__dispatcher.html#ga1265a5e2843f2b1c45ad05ae61de7000" title="Draws the frame to the back buffer and flips the buffers." alt="" coords="5,5,93,32"/>
+<area shape="rect" title="Draws a given word clue to the given buffer on the given coordinates." alt="" coords="141,5,256,32"/>
+<area shape="rect" href="group__game.html#ga656ca85eff33877022fd939d29f23822" title="Draws the game screen to the back buffer." alt="" coords="5,5,93,32"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ga7a786b7154af63b5ece6c3559c934a64"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga7a786b7154af63b5ece6c3559c934a64">&#9670;&nbsp;</a></span>word_clue_get_width()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t word_clue_get_width </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__clue.html#gafee1d6049152c45f323a4310e65b7143">word_clue_t</a> *&#160;</td>
+          <td class="paramname"><em>clue</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the width in pixels of a word clue. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">clue</td><td>address of memory to the word clue </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Return the width of the word clue </dd></dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__clue_ga7a786b7154af63b5ece6c3559c934a64_icgraph.png" border="0" usemap="#agroup__clue_ga7a786b7154af63b5ece6c3559c934a64_icgraph" alt=""/></div>
+<map name="group__clue_ga7a786b7154af63b5ece6c3559c934a64_icgraph" id="agroup__clue_ga7a786b7154af63b5ece6c3559c934a64_icgraph">
+<area shape="rect" title="Gets the width in pixels of a word clue." alt="" coords="141,5,284,32"/>
+<area shape="rect" href="group__game.html#ga656ca85eff33877022fd939d29f23822" title="Draws the game screen to the back buffer." alt="" coords="5,5,93,32"/>
 </map>
 </div>
 
@@ -329,7 +349,7 @@ Here is the caller graph for this function:</div>
         <tr>
           <td class="memname">int word_clue_hint </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structword__clue__t.html">word_clue_t</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="group__clue.html#gafee1d6049152c45f323a4310e65b7143">word_clue_t</a> *&#160;</td>
           <td class="paramname"><em>clue</em>, </td>
         </tr>
         <tr>
@@ -359,7 +379,7 @@ Here is the caller graph for this function:</div>
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="group__clue_gaa1bfb55e74e59e1c571b12d25a3d60b1_icgraph.png" border="0" usemap="#agroup__clue_gaa1bfb55e74e59e1c571b12d25a3d60b1_icgraph" alt=""/></div>
-<map name="group__clue_gaa1bfb55e74e59e1c571b12d25a3d60b1_icgraph" id="agroup__clue_gaa1bfb55e74e59e1c571b12d25a3d60b1_icgraph">
+<map name="group__clue_gaa1bfb55e74e59e1c571b12d25a3d60b1_icgraph" id="group__clue_gaa1bfb55e74e59e1c571b12d25a3d60b1_icgraph">
 <area shape="rect" title="Randomly hints a new char in the given word clue." alt="" coords="331,5,439,32"/>
 <area shape="rect" href="group__game.html#ga82a8aa816fdf22cb3d705dfa56c594f7" title="Reveals another character in the word clue and notifies the other player." alt="" coords="168,5,283,32"/>
 <area shape="rect" href="group__game.html#ga3f61372930dd958f7499a110ce2bd7d6" title="Updates the game due to a rtc alarm interrupt." alt="" coords="5,5,120,32"/>
@@ -377,7 +397,7 @@ Here is the caller graph for this function:</div>
         <tr>
           <td class="memname">int word_clue_hint_at </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structword__clue__t.html">word_clue_t</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="group__clue.html#gafee1d6049152c45f323a4310e65b7143">word_clue_t</a> *&#160;</td>
           <td class="paramname"><em>clue</em>, </td>
         </tr>
         <tr>

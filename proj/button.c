@@ -1,47 +1,63 @@
 #include <lcom/lcf.h>
 #include "button.h"
 
-#define BUTTON_BORDER_COLOR 0x00aaaaaa
-#define BUTTON_BORDER_ACTIVE_COLOR 0x0043A047
-#define BUTTON_FILL_NORMAL_COLOR 0x00dddddd
-#define BUTTON_FILL_HOVERING_COLOR 0x00eeeeee
-#define BUTTON_FILL_PRESSING_COLOR 0x00999999
-#define BUTTON_MARGIN 3
+/** @defgroup button button
+ * @{
+ *
+ */
 
-// Enumerated type for specifying the state of a button.
+#define BUTTON_BORDER_COLOR 0x00aaaaaa /**< @brief Normal color of the border of the button */
+#define BUTTON_BORDER_ACTIVE_COLOR 0x0043A047 /**< @brief Color of the border of the button when it is active */
+#define BUTTON_FILL_NORMAL_COLOR 0x00dddddd /**< @brief Normal color of the button */
+#define BUTTON_FILL_HOVERING_COLOR 0x00eeeeee /**< @brief Color of the button when hovering */
+#define BUTTON_FILL_PRESSING_COLOR 0x00999999 /**< @brief Color of the button when pressing */
+#define BUTTON_MARGIN 3 /**< @brief Margin for the button border */
+
+/**
+ * @brief Enumerated type for specifying the state of a button.
+ * 
+ */
 typedef enum button_state {
-    BUTTON_NORMAL, // Button is in normal/base state.
-    BUTTON_HOVERING, // Button is not being pressed but the cursor is hovering it.
-    BUTTON_PRESSING, // Button is being pressed and the cursor is hovering it.
-    BUTTON_PRESSING_NOT_HOVERING // Button is being pressed but the cursor is not hovering it.
+    BUTTON_NORMAL, /*!< Button is in normal/base state. */
+    BUTTON_HOVERING, /*!< Button is not being pressed but the cursor is hovering it. */
+    BUTTON_PRESSING, /*!< Button is being pressed and the cursor is hovering it. */
+    BUTTON_PRESSING_NOT_HOVERING /*!< Button is being pressed but the cursor is not hovering it. */
 } button_state_t;
 
-// Icon of a button.
+/**
+ * @brief Icon of a button.
+ * 
+ */
 typedef struct button_icon {
-    enum { BUTTON_ICON_NONE, // No icon.
-           BUTTON_ICON_XPM, // xpm image icon.
-           BUTTON_ICON_CIRCLE // Circle icon.
-        } type; // Icon type.
+    enum { 
+        BUTTON_ICON_NONE, /*!< @brief No icon. */
+        BUTTON_ICON_XPM, /*!< @brief xpm image icon. */
+        BUTTON_ICON_CIRCLE /*!< @brief Circle icon. */
+    } type; /*!< @brief Icon type. */
+
     union {
-        xpm_image_t img; // Button image icon.
+        xpm_image_t img; /*!< @brief Button image icon. */
         
         struct {
-            uint16_t radius; // Radius of a circle icon.
-            uint32_t color; // Color of a circle icon.
-        } circle; // Button circle icon.
-    } attributes; // Icon attributes.
+            uint16_t radius; /*!< @brief Radius of a circle icon. */
+            uint32_t color; /*!< @brief Color of a circle icon. */
+        } circle; /*!< @brief Button circle icon. */
+    } attributes; /*!< @brief Icon attributes. */
 } button_icon_t;
 
-// Button class implementation.
+/**
+ * @brief // Button class implementation.
+ * 
+ */
 struct button {
-    uint16_t x; // Left most x coordinate of the button.
-    uint16_t y; // Top most y coordinate of the button.
-    uint16_t width; // Button width.
-    uint16_t height; // Button height.
-    button_state_t state; // State of the button.
-    button_action_t action; // Action to perform when button is pressed.
-    button_icon_t icon; // Button icon.
-    bool active_border; // True if the border of the button is active and false otherwise.
+    uint16_t x; /*!< @brief Left most x coordinate of the button. */
+    uint16_t y; /*!< @brief Top most y coordinate of the button. */
+    uint16_t width; /*!< @brief Button width. */
+    uint16_t height; /*!< @brief Button height. */
+    button_state_t state; /*!< @brief State of the button. */
+    button_action_t action; /*!< @brief Action to perform when button is pressed. */
+    button_icon_t icon; /*!< @brief Button icon. */
+    bool active_border; /*!< @brief True if the border of the button is active and false otherwise. */
 };
 
 button_t *new_button(uint16_t x, uint16_t y, uint16_t width, uint16_t height, button_action_t action) {
@@ -92,6 +108,7 @@ bool button_is_hovering(button_t *button, uint16_t x, uint16_t y) {
 }
 
 int button_draw(frame_buffer_t buf, button_t *button) {
+    // Get border and fill color
     uint32_t border_color = button->active_border? BUTTON_BORDER_ACTIVE_COLOR : BUTTON_BORDER_COLOR;
     uint32_t fill_color;
     switch (button->state) {
@@ -107,12 +124,14 @@ int button_draw(frame_buffer_t buf, button_t *button) {
         break;
     }
 
+    // Draw button and border
     if (vb_draw_rectangle(buf, button->x, button->y, button->width, button->height, border_color))
         return 1;
     if (vb_draw_rectangle(buf, button->x + BUTTON_MARGIN, button->y + BUTTON_MARGIN, 
                           button->width - 2*BUTTON_MARGIN, button->height - 2*BUTTON_MARGIN, fill_color))
         return 1;
 
+    // Draw icon
     uint16_t x, y;
     switch (button->icon.type) {
     case BUTTON_ICON_XPM:
@@ -179,3 +198,5 @@ int button_update_state(button_t *button, bool hovering, bool lb, bool rb) {
 
     return 0;
 }
+
+/**@}*/

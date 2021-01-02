@@ -1,4 +1,4 @@
 <map id="vb_draw_vline" name="vb_draw_vline">
 <area shape="rect" id="node1" title="Draws a vertical line in the given buffer in the given coordinates with the given color." alt="" coords="160,5,260,32"/>
-<area shape="rect" id="node2" href="$group__textbox.html#ga0d7efee1fe6e5b861c311b6cc4cfd201" title="Draws a given text box to the given buffer." alt="" coords="5,5,112,32"/>
+<area shape="rect" id="node2" href="$group__text__box.html#ga5cc4f6bd58a30c404c41c54eed705ae3" title="Draws a given text box to the given buffer." alt="" coords="5,5,112,32"/>
 </map>

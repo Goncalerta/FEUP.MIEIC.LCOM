@@ -1,4 +1,4 @@
 <map id="dispatcher_init" name="dispatcher_init">
 <area shape="rect" id="node1" title="Initializes the dispatcher, creating an event queue." alt="" coords="5,5,112,32"/>
-<area shape="rect" id="node2" href="$group__queue.html#ga9978f7940279e5e54b85d26f120400db" title="Initializes of a new queue." alt="" coords="160,5,247,32"/>
+<area shape="rect" id="node2" href="$group__queue.html#gac48edd86870cd2e9c26035f22fdf31d4" title="Initializes of a new queue." alt="" coords="160,5,247,32"/>
 </map>

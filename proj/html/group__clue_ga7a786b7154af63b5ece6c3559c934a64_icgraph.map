@@ -1,0 +1,4 @@
+<map id="word_clue_get_width" name="word_clue_get_width">
+<area shape="rect" id="node1" title="Gets the width in pixels of a word clue." alt="" coords="141,5,284,32"/>
+<area shape="rect" id="node2" href="$group__game.html#ga656ca85eff33877022fd939d29f23822" title="Draws the game screen to the back buffer." alt="" coords="5,5,93,32"/>
+</map>

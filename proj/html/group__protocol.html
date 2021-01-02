@@ -76,45 +76,45 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Data Structures</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structmessage__t.html">message_t</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents a message sent to or received from the serial port.  <a href="structmessage__t.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structmessage.html">message</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents a message sent to or received from the serial port.  <a href="structmessage.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr class="memitem:ga5236fca3b9a2d03ea0dc6784d4635667"><td class="memItemLeft" align="right" valign="top"><a id="ga5236fca3b9a2d03ea0dc6784d4635667"></a>
-typedef enum <a class="el" href="group__protocol.html#ga78b97fef55da786a15a849fd9d7e557c">message_type_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__protocol.html#ga5236fca3b9a2d03ea0dc6784d4635667">message_type_t</a></td></tr>
-<tr class="memdesc:ga5236fca3b9a2d03ea0dc6784d4635667"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enumerated type for specifying the type of a message. <br /></td></tr>
-<tr class="separator:ga5236fca3b9a2d03ea0dc6784d4635667"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gadba1cc438bbfd876f22e899ef7f497f1"><td class="memItemLeft" align="right" valign="top"><a id="gadba1cc438bbfd876f22e899ef7f497f1"></a>
-typedef struct <a class="el" href="structmessage__t.html">message_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__protocol.html#gadba1cc438bbfd876f22e899ef7f497f1">message_t</a></td></tr>
-<tr class="memdesc:gadba1cc438bbfd876f22e899ef7f497f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents a message sent to or received from the serial port. <br /></td></tr>
-<tr class="separator:gadba1cc438bbfd876f22e899ef7f497f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gabb2d40ce974b9cd03342eaf4d8bd0f8b"><td class="memItemLeft" align="right" valign="top"><a id="gabb2d40ce974b9cd03342eaf4d8bd0f8b"></a>
+typedef enum <a class="el" href="group__protocol.html#ga4e0a9e26bf11796d8ca091cb6b3ce470">message_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__protocol.html#gabb2d40ce974b9cd03342eaf4d8bd0f8b">message_type_t</a></td></tr>
+<tr class="memdesc:gabb2d40ce974b9cd03342eaf4d8bd0f8b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enumerated type for specifying the type of a message. <br /></td></tr>
+<tr class="separator:gabb2d40ce974b9cd03342eaf4d8bd0f8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga086dbd3c18fcd9457a9d49fdb9a2906a"><td class="memItemLeft" align="right" valign="top"><a id="ga086dbd3c18fcd9457a9d49fdb9a2906a"></a>
+typedef struct <a class="el" href="structmessage.html">message</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__protocol.html#ga086dbd3c18fcd9457a9d49fdb9a2906a">message_t</a></td></tr>
+<tr class="memdesc:ga086dbd3c18fcd9457a9d49fdb9a2906a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents a message sent to or received from the serial port. <br /></td></tr>
+<tr class="separator:ga086dbd3c18fcd9457a9d49fdb9a2906a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
 Enumerations</h2></td></tr>
-<tr class="memitem:ga78b97fef55da786a15a849fd9d7e557c"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__protocol.html#ga78b97fef55da786a15a849fd9d7e557c">message_type_t</a> { <br />
-&#160;&#160;<a class="el" href="group__protocol.html#gga78b97fef55da786a15a849fd9d7e557ca7586556a151c154204fc0b005df1ec9f">MSG_READY_TO_PLAY</a> = 0, 
-<a class="el" href="group__protocol.html#gga78b97fef55da786a15a849fd9d7e557cae88ecf7c5492ae63430ea2ae022f3515">MSG_LEAVE_GAME</a> = 1, 
-<a class="el" href="group__protocol.html#gga78b97fef55da786a15a849fd9d7e557ca5f52586682daf8be985c834f3660dc51">MSG_RANDOM_NUMBER</a> = 2, 
-<a class="el" href="group__protocol.html#gga78b97fef55da786a15a849fd9d7e557ca30a8a935035aa9f5a2ba3eb8bfa947d5">MSG_NEW_ROUND</a> = 3, 
+<tr class="memitem:ga4e0a9e26bf11796d8ca091cb6b3ce470"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__protocol.html#ga4e0a9e26bf11796d8ca091cb6b3ce470">message_type</a> { <br />
+&#160;&#160;<a class="el" href="group__protocol.html#gga4e0a9e26bf11796d8ca091cb6b3ce470a7586556a151c154204fc0b005df1ec9f">MSG_READY_TO_PLAY</a> = 0, 
+<a class="el" href="group__protocol.html#gga4e0a9e26bf11796d8ca091cb6b3ce470ae88ecf7c5492ae63430ea2ae022f3515">MSG_LEAVE_GAME</a> = 1, 
+<a class="el" href="group__protocol.html#gga4e0a9e26bf11796d8ca091cb6b3ce470a5f52586682daf8be985c834f3660dc51">MSG_RANDOM_NUMBER</a> = 2, 
+<a class="el" href="group__protocol.html#gga4e0a9e26bf11796d8ca091cb6b3ce470a30a8a935035aa9f5a2ba3eb8bfa947d5">MSG_NEW_ROUND</a> = 3, 
 <br />
-&#160;&#160;<a class="el" href="group__protocol.html#gga78b97fef55da786a15a849fd9d7e557cac31c76d6c8860e060aec7c2c1533a239">MSG_START_ROUND</a> = 4, 
-<a class="el" href="group__protocol.html#gga78b97fef55da786a15a849fd9d7e557ca2d4f7b185fa2c3f21dc9a6286fc389a6">MSG_NEW_STROKE</a> = 5, 
-<a class="el" href="group__protocol.html#gga78b97fef55da786a15a849fd9d7e557ca3b57041070e7108e51e012172ab933d2">MSG_DRAW_ATOM</a> = 6, 
-<a class="el" href="group__protocol.html#gga78b97fef55da786a15a849fd9d7e557ca18bd4710d8e4404a1cfec368c5af5324">MSG_UNDO_CANVAS</a> = 7, 
+&#160;&#160;<a class="el" href="group__protocol.html#gga4e0a9e26bf11796d8ca091cb6b3ce470ac31c76d6c8860e060aec7c2c1533a239">MSG_START_ROUND</a> = 4, 
+<a class="el" href="group__protocol.html#gga4e0a9e26bf11796d8ca091cb6b3ce470a2d4f7b185fa2c3f21dc9a6286fc389a6">MSG_NEW_STROKE</a> = 5, 
+<a class="el" href="group__protocol.html#gga4e0a9e26bf11796d8ca091cb6b3ce470a3b57041070e7108e51e012172ab933d2">MSG_DRAW_ATOM</a> = 6, 
+<a class="el" href="group__protocol.html#gga4e0a9e26bf11796d8ca091cb6b3ce470a18bd4710d8e4404a1cfec368c5af5324">MSG_UNDO_CANVAS</a> = 7, 
 <br />
-&#160;&#160;<a class="el" href="group__protocol.html#gga78b97fef55da786a15a849fd9d7e557ca5a453303bbb732280e1db8dca78ad158">MSG_REDO_CANVAS</a> = 8, 
-<a class="el" href="group__protocol.html#gga78b97fef55da786a15a849fd9d7e557cab8310912e4745e3d0d6ea4671dde2945">MSG_GUESS</a> = 9, 
-<a class="el" href="group__protocol.html#gga78b97fef55da786a15a849fd9d7e557cae0fbab6e7c5f173cf46149a89895dfeb">MSG_CLUE</a> = 10, 
-<a class="el" href="group__protocol.html#gga78b97fef55da786a15a849fd9d7e557caf0f3b64d0e28ea6a91ae42a73c38743c">MSG_ROUND_WIN</a> = 11, 
+&#160;&#160;<a class="el" href="group__protocol.html#gga4e0a9e26bf11796d8ca091cb6b3ce470a5a453303bbb732280e1db8dca78ad158">MSG_REDO_CANVAS</a> = 8, 
+<a class="el" href="group__protocol.html#gga4e0a9e26bf11796d8ca091cb6b3ce470ab8310912e4745e3d0d6ea4671dde2945">MSG_GUESS</a> = 9, 
+<a class="el" href="group__protocol.html#gga4e0a9e26bf11796d8ca091cb6b3ce470ae0fbab6e7c5f173cf46149a89895dfeb">MSG_CLUE</a> = 10, 
+<a class="el" href="group__protocol.html#gga4e0a9e26bf11796d8ca091cb6b3ce470af0f3b64d0e28ea6a91ae42a73c38743c">MSG_ROUND_WIN</a> = 11, 
 <br />
-&#160;&#160;<a class="el" href="group__protocol.html#gga78b97fef55da786a15a849fd9d7e557ca5409200c15d107f9a48f402fc9a7a93c">MSG_GAME_OVER</a> = 12, 
-<a class="el" href="group__protocol.html#gga78b97fef55da786a15a849fd9d7e557caf2b3b0fbb5279106de60c307ec2163b7">MSG_PROGRAM_OPENED</a> = 13
+&#160;&#160;<a class="el" href="group__protocol.html#gga4e0a9e26bf11796d8ca091cb6b3ce470a5409200c15d107f9a48f402fc9a7a93c">MSG_GAME_OVER</a> = 12, 
+<a class="el" href="group__protocol.html#gga4e0a9e26bf11796d8ca091cb6b3ce470af2b3b0fbb5279106de60c307ec2163b7">MSG_PROGRAM_OPENED</a> = 13
 <br />
  }</td></tr>
-<tr class="memdesc:ga78b97fef55da786a15a849fd9d7e557c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enumerated type for specifying the type of a message.  <a href="group__protocol.html#ga78b97fef55da786a15a849fd9d7e557c">More...</a><br /></td></tr>
-<tr class="separator:ga78b97fef55da786a15a849fd9d7e557c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memdesc:ga4e0a9e26bf11796d8ca091cb6b3ce470"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enumerated type for specifying the type of a message.  <a href="group__protocol.html#ga4e0a9e26bf11796d8ca091cb6b3ce470">More...</a><br /></td></tr>
+<tr class="separator:ga4e0a9e26bf11796d8ca091cb6b3ce470"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
@@ -161,7 +161,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grou
 <tr class="memitem:ga37492ace0b61aeb7b426d4ba9fd7e7b9"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__protocol.html#ga37492ace0b61aeb7b426d4ba9fd7e7b9">protocol_send_redo_canvas</a> ()</td></tr>
 <tr class="memdesc:ga37492ace0b61aeb7b426d4ba9fd7e7b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends a message of type MSG_REDO_CANVAS.  <a href="group__protocol.html#ga37492ace0b61aeb7b426d4ba9fd7e7b9">More...</a><br /></td></tr>
 <tr class="separator:ga37492ace0b61aeb7b426d4ba9fd7e7b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga7ecf39afd738fd733192d8efa3b72543"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__protocol.html#ga7ecf39afd738fd733192d8efa3b72543">protocol_send_guess</a> (const char *guess)</td></tr>
+<tr class="memitem:ga7ecf39afd738fd733192d8efa3b72543"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__protocol.html#ga7ecf39afd738fd733192d8efa3b72543">protocol_send_guess</a> (const char *<a class="el" href="structguess.html">guess</a>)</td></tr>
 <tr class="memdesc:ga7ecf39afd738fd733192d8efa3b72543"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends a message of type MSG_GUESS.  <a href="group__protocol.html#ga7ecf39afd738fd733192d8efa3b72543">More...</a><br /></td></tr>
 <tr class="separator:ga7ecf39afd738fd733192d8efa3b72543"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gafadb8c0242e740b68757640ed9d026fd"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__protocol.html#gafadb8c0242e740b68757640ed9d026fd">protocol_send_clue</a> (size_t pos)</td></tr>
@@ -180,47 +180,47 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grou
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p>Module dedicated to the application dependent communication protocol between two computers. </p>
 <h2 class="groupheader">Enumeration Type Documentation</h2>
-<a id="ga78b97fef55da786a15a849fd9d7e557c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga78b97fef55da786a15a849fd9d7e557c">&#9670;&nbsp;</a></span>message_type_t</h2>
+<a id="ga4e0a9e26bf11796d8ca091cb6b3ce470"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga4e0a9e26bf11796d8ca091cb6b3ce470">&#9670;&nbsp;</a></span>message_type</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">enum <a class="el" href="group__protocol.html#ga78b97fef55da786a15a849fd9d7e557c">message_type_t</a></td>
+          <td class="memname">enum <a class="el" href="group__protocol.html#ga4e0a9e26bf11796d8ca091cb6b3ce470">message_type</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Enumerated type for specifying the type of a message. </p>
 <table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="gga78b97fef55da786a15a849fd9d7e557ca7586556a151c154204fc0b005df1ec9f"></a>MSG_READY_TO_PLAY&#160;</td><td class="fielddoc"><p>Notify player ready to play a new game. </p>
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="gga4e0a9e26bf11796d8ca091cb6b3ce470a7586556a151c154204fc0b005df1ec9f"></a>MSG_READY_TO_PLAY&#160;</td><td class="fielddoc"><p>Notify player ready to play a new game. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="gga78b97fef55da786a15a849fd9d7e557cae88ecf7c5492ae63430ea2ae022f3515"></a>MSG_LEAVE_GAME&#160;</td><td class="fielddoc"><p>Notify player left the game. </p>
+<tr><td class="fieldname"><a id="gga4e0a9e26bf11796d8ca091cb6b3ce470ae88ecf7c5492ae63430ea2ae022f3515"></a>MSG_LEAVE_GAME&#160;</td><td class="fielddoc"><p>Notify player left the game. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="gga78b97fef55da786a15a849fd9d7e557ca5f52586682daf8be985c834f3660dc51"></a>MSG_RANDOM_NUMBER&#160;</td><td class="fielddoc"><p>Send a random number. </p>
+<tr><td class="fieldname"><a id="gga4e0a9e26bf11796d8ca091cb6b3ce470a5f52586682daf8be985c834f3660dc51"></a>MSG_RANDOM_NUMBER&#160;</td><td class="fielddoc"><p>Send a random number. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="gga78b97fef55da786a15a849fd9d7e557ca30a8a935035aa9f5a2ba3eb8bfa947d5"></a>MSG_NEW_ROUND&#160;</td><td class="fielddoc"><p>Create a new round with a given correct guess. </p>
+<tr><td class="fieldname"><a id="gga4e0a9e26bf11796d8ca091cb6b3ce470a30a8a935035aa9f5a2ba3eb8bfa947d5"></a>MSG_NEW_ROUND&#160;</td><td class="fielddoc"><p>Create a new round with a given correct guess. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="gga78b97fef55da786a15a849fd9d7e557cac31c76d6c8860e060aec7c2c1533a239"></a>MSG_START_ROUND&#160;</td><td class="fielddoc"><p>Notify round start. </p>
+<tr><td class="fieldname"><a id="gga4e0a9e26bf11796d8ca091cb6b3ce470ac31c76d6c8860e060aec7c2c1533a239"></a>MSG_START_ROUND&#160;</td><td class="fielddoc"><p>Notify round start. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="gga78b97fef55da786a15a849fd9d7e557ca2d4f7b185fa2c3f21dc9a6286fc389a6"></a>MSG_NEW_STROKE&#160;</td><td class="fielddoc"><p>Notify new stroke being drawn. </p>
+<tr><td class="fieldname"><a id="gga4e0a9e26bf11796d8ca091cb6b3ce470a2d4f7b185fa2c3f21dc9a6286fc389a6"></a>MSG_NEW_STROKE&#160;</td><td class="fielddoc"><p>Notify new stroke being drawn. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="gga78b97fef55da786a15a849fd9d7e557ca3b57041070e7108e51e012172ab933d2"></a>MSG_DRAW_ATOM&#160;</td><td class="fielddoc"><p>Notify new stroke atom drawn. </p>
+<tr><td class="fieldname"><a id="gga4e0a9e26bf11796d8ca091cb6b3ce470a3b57041070e7108e51e012172ab933d2"></a>MSG_DRAW_ATOM&#160;</td><td class="fielddoc"><p>Notify new stroke atom drawn. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="gga78b97fef55da786a15a849fd9d7e557ca18bd4710d8e4404a1cfec368c5af5324"></a>MSG_UNDO_CANVAS&#160;</td><td class="fielddoc"><p>Notify canvas undo last stroke. </p>
+<tr><td class="fieldname"><a id="gga4e0a9e26bf11796d8ca091cb6b3ce470a18bd4710d8e4404a1cfec368c5af5324"></a>MSG_UNDO_CANVAS&#160;</td><td class="fielddoc"><p>Notify canvas undo last stroke. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="gga78b97fef55da786a15a849fd9d7e557ca5a453303bbb732280e1db8dca78ad158"></a>MSG_REDO_CANVAS&#160;</td><td class="fielddoc"><p>Notify canvas redo stroke. </p>
+<tr><td class="fieldname"><a id="gga4e0a9e26bf11796d8ca091cb6b3ce470a5a453303bbb732280e1db8dca78ad158"></a>MSG_REDO_CANVAS&#160;</td><td class="fielddoc"><p>Notify canvas redo stroke. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="gga78b97fef55da786a15a849fd9d7e557cab8310912e4745e3d0d6ea4671dde2945"></a>MSG_GUESS&#160;</td><td class="fielddoc"><p>Make a guess for the correct word. </p>
+<tr><td class="fieldname"><a id="gga4e0a9e26bf11796d8ca091cb6b3ce470ab8310912e4745e3d0d6ea4671dde2945"></a>MSG_GUESS&#160;</td><td class="fielddoc"><p>Make a guess for the correct word. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="gga78b97fef55da786a15a849fd9d7e557cae0fbab6e7c5f173cf46149a89895dfeb"></a>MSG_CLUE&#160;</td><td class="fielddoc"><p>Show a hint to the word clue at a given position. </p>
+<tr><td class="fieldname"><a id="gga4e0a9e26bf11796d8ca091cb6b3ce470ae0fbab6e7c5f173cf46149a89895dfeb"></a>MSG_CLUE&#160;</td><td class="fielddoc"><p>Show a hint to the word clue at a given position. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="gga78b97fef55da786a15a849fd9d7e557caf0f3b64d0e28ea6a91ae42a73c38743c"></a>MSG_ROUND_WIN&#160;</td><td class="fielddoc"><p>Notify round won, updating the score. </p>
+<tr><td class="fieldname"><a id="gga4e0a9e26bf11796d8ca091cb6b3ce470af0f3b64d0e28ea6a91ae42a73c38743c"></a>MSG_ROUND_WIN&#160;</td><td class="fielddoc"><p>Notify round won, updating the score. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="gga78b97fef55da786a15a849fd9d7e557ca5409200c15d107f9a48f402fc9a7a93c"></a>MSG_GAME_OVER&#160;</td><td class="fielddoc"><p>Notify round is lost. </p>
+<tr><td class="fieldname"><a id="gga4e0a9e26bf11796d8ca091cb6b3ce470a5409200c15d107f9a48f402fc9a7a93c"></a>MSG_GAME_OVER&#160;</td><td class="fielddoc"><p>Notify round is lost. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="gga78b97fef55da786a15a849fd9d7e557caf2b3b0fbb5279106de60c307ec2163b7"></a>MSG_PROGRAM_OPENED&#160;</td><td class="fielddoc"><p>Notify player opened the program. </p>
+<tr><td class="fieldname"><a id="gga4e0a9e26bf11796d8ca091cb6b3ce470af2b3b0fbb5279106de60c307ec2163b7"></a>MSG_PROGRAM_OPENED&#160;</td><td class="fielddoc"><p>Notify player opened the program. </p>
 </td></tr>
 </table>
 
@@ -250,7 +250,7 @@ Here is the call graph for this function:</div>
 <div class="center"><img src="group__protocol_ga1b4d0d201e93a7bdf1aaeb6766e304ea_cgraph.png" border="0" usemap="#agroup__protocol_ga1b4d0d201e93a7bdf1aaeb6766e304ea_cgraph" alt=""/></div>
 <map name="group__protocol_ga1b4d0d201e93a7bdf1aaeb6766e304ea_cgraph" id="group__protocol_ga1b4d0d201e93a7bdf1aaeb6766e304ea_cgraph">
 <area shape="rect" title="Configures the serial port and protocol queues to start communication." alt="" coords="5,107,144,134"/>
-<area shape="rect" href="group__queue.html#ga9978f7940279e5e54b85d26f120400db" title="Initializes of a new queue." alt="" coords="396,57,483,83"/>
+<area shape="rect" href="group__queue.html#gac48edd86870cd2e9c26035f22fdf31d4" title="Initializes of a new queue." alt="" coords="396,57,483,83"/>
 <area shape="rect" href="group__uart.html#gac96631fa37beaf3259b9237b806c1f98" title="Clears both serial port hardware FIFOs." alt="" coords="196,31,328,58"/>
 <area shape="rect" href="group__uart.html#gab5a56e4469594d67651f2b6d9d380f56" title="Configures the interrupts of the serial port." alt="" coords="209,82,315,109"/>
 <area shape="rect" href="group__uart.html#gac56dcef886bb66f75de8fe196316995d" title="Configures the parameters of the serial port." alt="" coords="195,234,329,261"/>
@@ -280,22 +280,6 @@ Here is the call graph for this function:</div>
 <p>Reacts to a serial port error. </p>
 <p>Stops processing the current message and sends a non-acknowledgment to the other computer.</p>
 <dl class="section return"><dt>Returns</dt><dd>Return 0 upon success and non-zero otherwise </dd></dl>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="group__protocol_ga237c5c08ee5d5008a930af465c7bd5d5_cgraph.png" border="0" usemap="#agroup__protocol_ga237c5c08ee5d5008a930af465c7bd5d5_cgraph" alt=""/></div>
-<map name="group__protocol_ga237c5c08ee5d5008a930af465c7bd5d5_cgraph" id="group__protocol_ga237c5c08ee5d5008a930af465c7bd5d5_cgraph">
-<area shape="rect" title="Reacts to a serial port error." alt="" coords="5,56,152,83"/>
-<area shape="rect" href="group__uart.html#gadce4962e8e0ec14a02056e7d8db4eb28" title="Flushes all bytes being received from the serial port." alt="" coords="359,16,491,57"/>
-<area shape="rect" href="group__uart.html#ga00a2984ead2b73e2871dfda7c1ac49e3" title="Adds a byte to the software queue of bytes to be sent and tries to send bytes." alt="" coords="200,82,311,108"/>
-<area shape="rect" href="group__queue.html#ga09a3da9bf84f747356ef8050447bf35a" title="Checks if a given queue is empty." alt="" coords="684,48,801,75"/>
-<area shape="rect" href="group__queue.html#ga81880a2f29871356ccddd8f20ec99e9e" title="Removes the element at the front of the given queue." alt="" coords="545,23,630,50"/>
-<area shape="rect" href="group__queue.html#ga24ec1e60eaa37239a1b49c6f7321c9d9" title="Gets the element at the front of the given queue." alt="" coords="546,74,629,100"/>
-<area shape="rect" href="group__queue.html#gaa54578828a1b5676bb99a535c617e1a2" title="Adds an element to the back of the given queue." alt="" coords="379,154,471,180"/>
-<area shape="rect" href="group__uart.html#ga8219117bdd64ba6474c847fd89efbd41" title="Sends bytes from a software queue into the serial port." alt="" coords="365,82,484,108"/>
-<area shape="rect" href="group__queue.html#gae1cd6b62453b7f57525be17a53885800" title="Checks if a given queue is full." alt="" coords="539,175,636,202"/>
-</map>
-</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -370,7 +354,7 @@ Here is the call graph for this function:</div>
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="group__protocol_gafadb8c0242e740b68757640ed9d026fd_icgraph.png" border="0" usemap="#agroup__protocol_gafadb8c0242e740b68757640ed9d026fd_icgraph" alt=""/></div>
-<map name="group__protocol_gafadb8c0242e740b68757640ed9d026fd_icgraph" id="agroup__protocol_gafadb8c0242e740b68757640ed9d026fd_icgraph">
+<map name="group__protocol_gafadb8c0242e740b68757640ed9d026fd_icgraph" id="group__protocol_gafadb8c0242e740b68757640ed9d026fd_icgraph">
 <area shape="rect" title="Sends a message of type MSG_CLUE." alt="" coords="331,5,465,32"/>
 <area shape="rect" href="group__game.html#ga82a8aa816fdf22cb3d705dfa56c594f7" title="Reveals another character in the word clue and notifies the other player." alt="" coords="168,5,283,32"/>
 <area shape="rect" href="group__game.html#ga3f61372930dd958f7499a110ce2bd7d6" title="Updates the game due to a rtc alarm interrupt." alt="" coords="5,5,120,32"/>
@@ -400,7 +384,7 @@ Here is the caller graph for this function:</div>
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="group__protocol_ga22df7885a195f3daaf976fb322a6273a_icgraph.png" border="0" usemap="#agroup__protocol_ga22df7885a195f3daaf976fb322a6273a_icgraph" alt=""/></div>
-<map name="group__protocol_ga22df7885a195f3daaf976fb322a6273a_icgraph" id="agroup__protocol_ga22df7885a195f3daaf976fb322a6273a_icgraph">
+<map name="group__protocol_ga22df7885a195f3daaf976fb322a6273a_icgraph" id="group__protocol_ga22df7885a195f3daaf976fb322a6273a_icgraph">
 <area shape="rect" title="Sends a message of type MSG_GAME_OVER." alt="" coords="175,5,347,32"/>
 <area shape="rect" href="group__game.html#ga159cd81ebf01a5ccd6a0f96aaffb2530" title="Updates the game due to a rtc periodic interrupt." alt="" coords="5,5,127,32"/>
 </map>
@@ -515,32 +499,8 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="group__protocol_ga0ef9e0d21713f79d9c42f68b435d209a_icgraph.png" border="0" usemap="#agroup__protocol_ga0ef9e0d21713f79d9c42f68b435d209a_icgraph" alt=""/></div>
 <map name="group__protocol_ga0ef9e0d21713f79d9c42f68b435d209a_icgraph" id="agroup__protocol_ga0ef9e0d21713f79d9c42f68b435d209a_icgraph">
-<area shape="rect" title="Sends a message of type MSG_DRAW_ATOM." alt="" coords="1424,242,1593,269"/>
-<area shape="rect" href="group__dispatcher.html#ga36337f8ccb7dcd6324010125bcf42dc1" title="Adds a new atom to the stroke being drawn in the canvas and notifies the other player." alt="" coords="1257,242,1376,269"/>
-<area shape="rect" href="group__canvas.html#ga0eb66eb3bbeb104a7de7a880c6cd5d48" title="Undoes a stroke." alt="" coords="1067,217,1207,243"/>
-<area shape="rect" href="group__canvas.html#ga95661aa91869ceace06141f45c078210" title="Updates the state of the canvas according to given mouse info." alt="" coords="1065,267,1209,294"/>
-<area shape="rect" href="group__dispatcher.html#ga51ba304d71f082904a79be3769ec7ee7" title="Undoes a canvas stroke and notifies the other player." alt="" coords="894,217,981,243"/>
-<area shape="rect" href="group__canvas.html#ga8ad75f7f8cd0333e14d51a533da88883" title="Updates the canvas according to a keyboard event." alt="" coords="659,217,786,243"/>
-<area shape="rect" href="group__dispatcher.html#gab72c16c8547625b6dde1d4626b3c9c99" title="Binds or unbinds the canvas to the dispatcher." alt="" coords="857,267,1017,294"/>
-<area shape="rect" href="group__dispatcher.html#gab9458678bdcdc4f0ff458f8a9b27c638" title="Resets all dispatcher bindings." alt="" coords="636,267,809,294"/>
-<area shape="rect" href="group__game.html#ga52118602811d7516e865c66a7410fd58" title="Resumes the game." alt="" coords="429,419,533,446"/>
-<area shape="rect" href="group__dispatcher.html#gaf862e6e5a2905c716bf2b701d9ecabc6" title="Deletes all resources allocated to the dispatcher." alt="" coords="425,150,536,177"/>
-<area shape="rect" href="group__menu.html#ga5ed66b2ad288641ccbb969f784a64351" title="Sets the menu to awaiting other player menu." alt="" coords="373,318,588,345"/>
-<area shape="rect" href="group__menu.html#ga6331f4f3fee92d6495fd79aa17f59777" title="Sets the menu to the game over screen." alt="" coords="177,5,325,47"/>
-<area shape="rect" href="group__menu.html#ga6c442e5329ddf932b74a253c15665d75" title="Sets the menu to main menu." alt="" coords="404,267,557,294"/>
-<area shape="rect" href="group__menu.html#ga0b4d8c6b87adac99529e3dce59857aaa" title="Sets the menu to new round screen according to the given player role." alt="" coords="407,201,555,243"/>
-<area shape="rect" href="group__menu.html#gaaf5a9953d8b982736cf01d87adcb3b14" title="Sets the menu to the other player left screen." alt="" coords="402,77,559,119"/>
-<area shape="rect" href="group__menu.html#ga2471e39c56761768b9ceabdd4d5e732f" title="Sets the menu to pause menu." alt="" coords="401,369,561,395"/>
-<area shape="rect" href="group__game.html#gad7c180906d7acb4776f4db147f289d7c" title="Starts the already created round." alt="" coords="188,521,315,547"/>
-<area shape="rect" href="group__menu.html#gafae9ccfd6e7de562283d6ffc8c3cf066" title="Loads the xpm images of the menu." alt="" coords="28,343,107,370"/>
-<area shape="rect" href="group__menu.html#ga9f128e941aaff63bfe944f44504d21cb" title="Updates the menu according to a keyboard event." alt="" coords="192,419,311,446"/>
-<area shape="rect" href="group__dispatcher.html#ga00f3579aee6fd77454373ac309f39675" title="Starts the round." alt="" coords="5,521,129,547"/>
-<area shape="rect" href="group__dispatcher.html#gaeaf290f8252a2b923005262498513787" title="Goes into the &quot;Awaiting other player...&quot; screen and notifies the other player." alt="" coords="181,369,321,395"/>
-<area shape="rect" href="group__game.html#ga3f61372930dd958f7499a110ce2bd7d6" title="Updates the game due to a rtc alarm interrupt." alt="" coords="10,78,125,105"/>
-<area shape="rect" href="group__dispatcher.html#ga0e52394a395110749bc8ce3251ee503c" title="Leaves the game back to the main menu and notifies the other player." alt="" coords="188,267,315,294"/>
-<area shape="rect" href="group__dispatcher.html#gabf03a39eb157e349de01d6a6cb7fa196" title="Starts a new round as DRAWER (role_t)." alt="" coords="180,136,323,177"/>
-<area shape="rect" href="group__dispatcher.html#ga0b13ea13708e1b05cd87fecebe747065" title="Starts a new round as GUESSER (role_t)." alt="" coords="180,201,323,243"/>
-<area shape="rect" href="group__dispatcher.html#ga478271b5d6d73f56b8c7c24d7be10cfd" title="Reacts to the event that the other player left the game." alt="" coords="186,71,317,112"/>
+<area shape="rect" title="Sends a message of type MSG_DRAW_ATOM." alt="" coords="172,5,341,32"/>
+<area shape="rect" href="group__dispatcher.html#ga36337f8ccb7dcd6324010125bcf42dc1" title="Adds a new atom to the stroke being drawn in the canvas and notifies the other player." alt="" coords="5,5,124,32"/>
 </map>
 </div>
 
@@ -574,7 +534,7 @@ Here is the caller graph for this function:</div>
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="group__protocol_ga01435947f6aba6894dd82d6ec005f9fe_icgraph.png" border="0" usemap="#agroup__protocol_ga01435947f6aba6894dd82d6ec005f9fe_icgraph" alt=""/></div>
-<map name="group__protocol_ga01435947f6aba6894dd82d6ec005f9fe_icgraph" id="agroup__protocol_ga01435947f6aba6894dd82d6ec005f9fe_icgraph">
+<map name="group__protocol_ga01435947f6aba6894dd82d6ec005f9fe_icgraph" id="group__protocol_ga01435947f6aba6894dd82d6ec005f9fe_icgraph">
 <area shape="rect" title="Sends a message of type MSG_NEW_ROUND." alt="" coords="359,13,531,39"/>
 <area shape="rect" href="group__dispatcher.html#gabf03a39eb157e349de01d6a6cb7fa196" title="Starts a new round as DRAWER (role_t)." alt="" coords="168,5,311,47"/>
 <area shape="rect" href="group__game.html#ga3f61372930dd958f7499a110ce2bd7d6" title="Updates the game due to a rtc alarm interrupt." alt="" coords="5,13,120,39"/>
@@ -623,32 +583,8 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="group__protocol_ga48456102bf88a8974c153a8b117f9480_icgraph.png" border="0" usemap="#agroup__protocol_ga48456102bf88a8974c153a8b117f9480_icgraph" alt=""/></div>
 <map name="group__protocol_ga48456102bf88a8974c153a8b117f9480_icgraph" id="agroup__protocol_ga48456102bf88a8974c153a8b117f9480_icgraph">
-<area shape="rect" title="Sends a message of type MSG_NEW_STROKE." alt="" coords="1431,242,1607,269"/>
-<area shape="rect" href="group__dispatcher.html#ga4aeb5b63078cf7887e70a0696e5427e2" title="Starts drawing new stroke in the canvas and notifies the other player." alt="" coords="1257,242,1383,269"/>
-<area shape="rect" href="group__canvas.html#ga0eb66eb3bbeb104a7de7a880c6cd5d48" title="Undoes a stroke." alt="" coords="1067,217,1207,243"/>
-<area shape="rect" href="group__canvas.html#ga95661aa91869ceace06141f45c078210" title="Updates the state of the canvas according to given mouse info." alt="" coords="1065,267,1209,294"/>
-<area shape="rect" href="group__dispatcher.html#ga51ba304d71f082904a79be3769ec7ee7" title="Undoes a canvas stroke and notifies the other player." alt="" coords="894,217,981,243"/>
-<area shape="rect" href="group__canvas.html#ga8ad75f7f8cd0333e14d51a533da88883" title="Updates the canvas according to a keyboard event." alt="" coords="659,217,786,243"/>
-<area shape="rect" href="group__dispatcher.html#gab72c16c8547625b6dde1d4626b3c9c99" title="Binds or unbinds the canvas to the dispatcher." alt="" coords="857,267,1017,294"/>
-<area shape="rect" href="group__dispatcher.html#gab9458678bdcdc4f0ff458f8a9b27c638" title="Resets all dispatcher bindings." alt="" coords="636,267,809,294"/>
-<area shape="rect" href="group__game.html#ga52118602811d7516e865c66a7410fd58" title="Resumes the game." alt="" coords="429,419,533,446"/>
-<area shape="rect" href="group__dispatcher.html#gaf862e6e5a2905c716bf2b701d9ecabc6" title="Deletes all resources allocated to the dispatcher." alt="" coords="425,150,536,177"/>
-<area shape="rect" href="group__menu.html#ga5ed66b2ad288641ccbb969f784a64351" title="Sets the menu to awaiting other player menu." alt="" coords="373,318,588,345"/>
-<area shape="rect" href="group__menu.html#ga6331f4f3fee92d6495fd79aa17f59777" title="Sets the menu to the game over screen." alt="" coords="177,5,325,47"/>
-<area shape="rect" href="group__menu.html#ga6c442e5329ddf932b74a253c15665d75" title="Sets the menu to main menu." alt="" coords="404,267,557,294"/>
-<area shape="rect" href="group__menu.html#ga0b4d8c6b87adac99529e3dce59857aaa" title="Sets the menu to new round screen according to the given player role." alt="" coords="407,201,555,243"/>
-<area shape="rect" href="group__menu.html#gaaf5a9953d8b982736cf01d87adcb3b14" title="Sets the menu to the other player left screen." alt="" coords="402,77,559,119"/>
-<area shape="rect" href="group__menu.html#ga2471e39c56761768b9ceabdd4d5e732f" title="Sets the menu to pause menu." alt="" coords="401,369,561,395"/>
-<area shape="rect" href="group__game.html#gad7c180906d7acb4776f4db147f289d7c" title="Starts the already created round." alt="" coords="188,521,315,547"/>
-<area shape="rect" href="group__menu.html#gafae9ccfd6e7de562283d6ffc8c3cf066" title="Loads the xpm images of the menu." alt="" coords="28,343,107,370"/>
-<area shape="rect" href="group__menu.html#ga9f128e941aaff63bfe944f44504d21cb" title="Updates the menu according to a keyboard event." alt="" coords="192,419,311,446"/>
-<area shape="rect" href="group__dispatcher.html#ga00f3579aee6fd77454373ac309f39675" title="Starts the round." alt="" coords="5,521,129,547"/>
-<area shape="rect" href="group__dispatcher.html#gaeaf290f8252a2b923005262498513787" title="Goes into the &quot;Awaiting other player...&quot; screen and notifies the other player." alt="" coords="181,369,321,395"/>
-<area shape="rect" href="group__game.html#ga3f61372930dd958f7499a110ce2bd7d6" title="Updates the game due to a rtc alarm interrupt." alt="" coords="10,78,125,105"/>
-<area shape="rect" href="group__dispatcher.html#ga0e52394a395110749bc8ce3251ee503c" title="Leaves the game back to the main menu and notifies the other player." alt="" coords="188,267,315,294"/>
-<area shape="rect" href="group__dispatcher.html#gabf03a39eb157e349de01d6a6cb7fa196" title="Starts a new round as DRAWER (role_t)." alt="" coords="180,136,323,177"/>
-<area shape="rect" href="group__dispatcher.html#ga0b13ea13708e1b05cd87fecebe747065" title="Starts a new round as GUESSER (role_t)." alt="" coords="180,201,323,243"/>
-<area shape="rect" href="group__dispatcher.html#ga478271b5d6d73f56b8c7c24d7be10cfd" title="Reacts to the event that the other player left the game." alt="" coords="186,71,317,112"/>
+<area shape="rect" title="Sends a message of type MSG_NEW_STROKE." alt="" coords="179,5,355,32"/>
+<area shape="rect" href="group__dispatcher.html#ga4aeb5b63078cf7887e70a0696e5427e2" title="Starts drawing new stroke in the canvas and notifies the other player." alt="" coords="5,5,131,32"/>
 </map>
 </div>
 
@@ -767,9 +703,8 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="group__protocol_ga37492ace0b61aeb7b426d4ba9fd7e7b9_icgraph.png" border="0" usemap="#agroup__protocol_ga37492ace0b61aeb7b426d4ba9fd7e7b9_icgraph" alt=""/></div>
 <map name="group__protocol_ga37492ace0b61aeb7b426d4ba9fd7e7b9_icgraph" id="agroup__protocol_ga37492ace0b61aeb7b426d4ba9fd7e7b9_icgraph">
-<area shape="rect" title="Sends a message of type MSG_REDO_CANVAS." alt="" coords="312,5,447,47"/>
-<area shape="rect" href="group__dispatcher.html#gad3e78054cdf4da1c6f961483f635c85d" title="Redoes a canvas stroke and notifies the other player." alt="" coords="180,13,264,39"/>
-<area shape="rect" href="group__canvas.html#ga8ad75f7f8cd0333e14d51a533da88883" title="Updates the canvas according to a keyboard event." alt="" coords="5,13,132,39"/>
+<area shape="rect" title="Sends a message of type MSG_REDO_CANVAS." alt="" coords="137,5,272,47"/>
+<area shape="rect" href="group__dispatcher.html#gad3e78054cdf4da1c6f961483f635c85d" title="Redoes a canvas stroke and notifies the other player." alt="" coords="5,13,89,39"/>
 </map>
 </div>
 
@@ -855,9 +790,8 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="group__protocol_ga3388b3fbc456a7f5ce244bf9e8875752_icgraph.png" border="0" usemap="#agroup__protocol_ga3388b3fbc456a7f5ce244bf9e8875752_icgraph" alt=""/></div>
 <map name="group__protocol_ga3388b3fbc456a7f5ce244bf9e8875752_icgraph" id="agroup__protocol_ga3388b3fbc456a7f5ce244bf9e8875752_icgraph">
-<area shape="rect" title="Sends a message of type MSG_UNDO_CANVAS." alt="" coords="315,5,453,47"/>
-<area shape="rect" href="group__dispatcher.html#ga51ba304d71f082904a79be3769ec7ee7" title="Undoes a canvas stroke and notifies the other player." alt="" coords="180,13,267,39"/>
-<area shape="rect" href="group__canvas.html#ga8ad75f7f8cd0333e14d51a533da88883" title="Updates the canvas according to a keyboard event." alt="" coords="5,13,132,39"/>
+<area shape="rect" title="Sends a message of type MSG_UNDO_CANVAS." alt="" coords="140,5,279,47"/>
+<area shape="rect" href="group__dispatcher.html#ga51ba304d71f082904a79be3769ec7ee7" title="Undoes a canvas stroke and notifies the other player." alt="" coords="5,13,92,39"/>
 </map>
 </div>
 
@@ -885,17 +819,9 @@ Here is the caller graph for this function:</div>
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="group__protocol_ga0b3e768da60827fe622bd3932efc82ff_cgraph.png" border="0" usemap="#agroup__protocol_ga0b3e768da60827fe622bd3932efc82ff_cgraph" alt=""/></div>
-<map name="group__protocol_ga0b3e768da60827fe622bd3932efc82ff_cgraph" id="group__protocol_ga0b3e768da60827fe622bd3932efc82ff_cgraph">
-<area shape="rect" title="Reacts to a timer interrupt to detect timeouts." alt="" coords="5,56,101,83"/>
-<area shape="rect" href="group__protocol.html#ga237c5c08ee5d5008a930af465c7bd5d5" title="Reacts to a serial port error." alt="" coords="149,56,296,83"/>
-<area shape="rect" href="group__uart.html#gadce4962e8e0ec14a02056e7d8db4eb28" title="Flushes all bytes being received from the serial port." alt="" coords="503,16,635,57"/>
-<area shape="rect" href="group__uart.html#ga00a2984ead2b73e2871dfda7c1ac49e3" title="Adds a byte to the software queue of bytes to be sent and tries to send bytes." alt="" coords="344,82,455,108"/>
-<area shape="rect" href="group__queue.html#ga09a3da9bf84f747356ef8050447bf35a" title="Checks if a given queue is empty." alt="" coords="828,48,945,75"/>
-<area shape="rect" href="group__queue.html#ga81880a2f29871356ccddd8f20ec99e9e" title="Removes the element at the front of the given queue." alt="" coords="689,23,774,50"/>
-<area shape="rect" href="group__queue.html#ga24ec1e60eaa37239a1b49c6f7321c9d9" title="Gets the element at the front of the given queue." alt="" coords="690,74,773,100"/>
-<area shape="rect" href="group__queue.html#gaa54578828a1b5676bb99a535c617e1a2" title="Adds an element to the back of the given queue." alt="" coords="523,154,615,180"/>
-<area shape="rect" href="group__uart.html#ga8219117bdd64ba6474c847fd89efbd41" title="Sends bytes from a software queue into the serial port." alt="" coords="509,82,628,108"/>
-<area shape="rect" href="group__queue.html#gae1cd6b62453b7f57525be17a53885800" title="Checks if a given queue is full." alt="" coords="683,175,780,202"/>
+<map name="group__protocol_ga0b3e768da60827fe622bd3932efc82ff_cgraph" id="agroup__protocol_ga0b3e768da60827fe622bd3932efc82ff_cgraph">
+<area shape="rect" title="Reacts to a timer interrupt to detect timeouts." alt="" coords="5,5,101,32"/>
+<area shape="rect" href="group__protocol.html#ga237c5c08ee5d5008a930af465c7bd5d5" title="Reacts to a serial port error." alt="" coords="149,5,296,32"/>
 </map>
 </div>
 

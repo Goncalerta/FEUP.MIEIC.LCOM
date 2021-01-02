@@ -1,6 +1,6 @@
 <map id="protocol_config_uart" name="protocol_config_uart">
 <area shape="rect" id="node1" title="Configures the serial port and protocol queues to start communication." alt="" coords="5,107,144,134"/>
-<area shape="rect" id="node2" href="$group__queue.html#ga9978f7940279e5e54b85d26f120400db" title="Initializes of a new queue." alt="" coords="396,57,483,83"/>
+<area shape="rect" id="node2" href="$group__queue.html#gac48edd86870cd2e9c26035f22fdf31d4" title="Initializes of a new queue." alt="" coords="396,57,483,83"/>
 <area shape="rect" id="node3" href="$group__uart.html#gac96631fa37beaf3259b9237b806c1f98" title="Clears both serial port hardware FIFOs." alt="" coords="196,31,328,58"/>
 <area shape="rect" id="node4" href="$group__uart.html#gab5a56e4469594d67651f2b6d9d380f56" title="Configures the interrupts of the serial port." alt="" coords="209,82,315,109"/>
 <area shape="rect" id="node5" href="$group__uart.html#gac56dcef886bb66f75de8fe196316995d" title="Configures the parameters of the serial port." alt="" coords="195,234,329,261"/>

@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['frame_5fbuffer_5ft_651',['frame_buffer_t',['../structframe__buffer__t.html',1,'']]]
+  ['date_684',['date',['../structdate.html',1,'']]],
+  ['drawer_685',['drawer',['../structdrawer.html',1,'']]]
 ];

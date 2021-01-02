@@ -1,28 +1,4 @@
 <map id="canvas_new_stroke_atom" name="canvas_new_stroke_atom">
-<area shape="rect" id="node1" title="Adds a new atom to the current stroke." alt="" coords="1424,242,1595,269"/>
-<area shape="rect" id="node2" href="$group__dispatcher.html#ga36337f8ccb7dcd6324010125bcf42dc1" title="Adds a new atom to the stroke being drawn in the canvas and notifies the other player." alt="" coords="1257,242,1376,269"/>
-<area shape="rect" id="node3" href="$group__canvas.html#ga0eb66eb3bbeb104a7de7a880c6cd5d48" title="Undoes a stroke." alt="" coords="1067,217,1207,243"/>
-<area shape="rect" id="node6" href="$group__canvas.html#ga95661aa91869ceace06141f45c078210" title="Updates the state of the canvas according to given mouse info." alt="" coords="1065,267,1209,294"/>
-<area shape="rect" id="node4" href="$group__dispatcher.html#ga51ba304d71f082904a79be3769ec7ee7" title="Undoes a canvas stroke and notifies the other player." alt="" coords="894,217,981,243"/>
-<area shape="rect" id="node5" href="$group__canvas.html#ga8ad75f7f8cd0333e14d51a533da88883" title="Updates the canvas according to a keyboard event." alt="" coords="659,217,786,243"/>
-<area shape="rect" id="node7" href="$group__dispatcher.html#gab72c16c8547625b6dde1d4626b3c9c99" title="Binds or unbinds the canvas to the dispatcher." alt="" coords="857,267,1017,294"/>
-<area shape="rect" id="node8" href="$group__dispatcher.html#gab9458678bdcdc4f0ff458f8a9b27c638" title="Resets all dispatcher bindings." alt="" coords="636,267,809,294"/>
-<area shape="rect" id="node10" href="$group__game.html#ga52118602811d7516e865c66a7410fd58" title="Resumes the game." alt="" coords="429,419,533,446"/>
-<area shape="rect" id="node9" href="$group__dispatcher.html#gaf862e6e5a2905c716bf2b701d9ecabc6" title="Deletes all resources allocated to the dispatcher." alt="" coords="425,150,536,177"/>
-<area shape="rect" id="node15" href="$group__menu.html#ga5ed66b2ad288641ccbb969f784a64351" title="Sets the menu to awaiting other player menu." alt="" coords="373,318,588,345"/>
-<area shape="rect" id="node17" href="$group__menu.html#ga6331f4f3fee92d6495fd79aa17f59777" title="Sets the menu to the game over screen." alt="" coords="177,5,325,47"/>
-<area shape="rect" id="node19" href="$group__menu.html#ga6c442e5329ddf932b74a253c15665d75" title="Sets the menu to main menu." alt="" coords="404,267,557,294"/>
-<area shape="rect" id="node21" href="$group__menu.html#ga0b4d8c6b87adac99529e3dce59857aaa" title="Sets the menu to new round screen according to the given player role." alt="" coords="407,201,555,243"/>
-<area shape="rect" id="node24" href="$group__menu.html#gaaf5a9953d8b982736cf01d87adcb3b14" title="Sets the menu to the other player left screen." alt="" coords="402,77,559,119"/>
-<area shape="rect" id="node26" href="$group__menu.html#ga2471e39c56761768b9ceabdd4d5e732f" title="Sets the menu to pause menu." alt="" coords="401,369,561,395"/>
-<area shape="rect" id="node11" href="$group__game.html#gad7c180906d7acb4776f4db147f289d7c" title="Starts the already created round." alt="" coords="188,521,315,547"/>
-<area shape="rect" id="node13" href="$group__menu.html#gafae9ccfd6e7de562283d6ffc8c3cf066" title="Loads the xpm images of the menu." alt="" coords="28,343,107,370"/>
-<area shape="rect" id="node14" href="$group__menu.html#ga9f128e941aaff63bfe944f44504d21cb" title="Updates the menu according to a keyboard event." alt="" coords="192,419,311,446"/>
-<area shape="rect" id="node12" href="$group__dispatcher.html#ga00f3579aee6fd77454373ac309f39675" title="Starts the round." alt="" coords="5,521,129,547"/>
-<area shape="rect" id="node16" href="$group__dispatcher.html#gaeaf290f8252a2b923005262498513787" title="Goes into the &quot;Awaiting other player...&quot; screen and notifies the other player." alt="" coords="181,369,321,395"/>
-<area shape="rect" id="node18" href="$group__game.html#ga3f61372930dd958f7499a110ce2bd7d6" title="Updates the game due to a rtc alarm interrupt." alt="" coords="10,78,125,105"/>
-<area shape="rect" id="node20" href="$group__dispatcher.html#ga0e52394a395110749bc8ce3251ee503c" title="Leaves the game back to the main menu and notifies the other player." alt="" coords="188,267,315,294"/>
-<area shape="rect" id="node22" href="$group__dispatcher.html#gabf03a39eb157e349de01d6a6cb7fa196" title="Starts a new round as DRAWER (role_t)." alt="" coords="180,136,323,177"/>
-<area shape="rect" id="node23" href="$group__dispatcher.html#ga0b13ea13708e1b05cd87fecebe747065" title="Starts a new round as GUESSER (role_t)." alt="" coords="180,201,323,243"/>
-<area shape="rect" id="node25" href="$group__dispatcher.html#ga478271b5d6d73f56b8c7c24d7be10cfd" title="Reacts to the event that the other player left the game." alt="" coords="186,71,317,112"/>
+<area shape="rect" id="node1" title="Adds a new atom to the current stroke." alt="" coords="172,5,343,32"/>
+<area shape="rect" id="node2" href="$group__dispatcher.html#ga36337f8ccb7dcd6324010125bcf42dc1" title="Adds a new atom to the stroke being drawn in the canvas and notifies the other player." alt="" coords="5,5,124,32"/>
 </map>

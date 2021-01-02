@@ -89,8 +89,8 @@ Include dependency graph for uart.h:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Data Structures</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structinterrupt__identification__t.html">interrupt_identification_t</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interrupt identification info.  <a href="structinterrupt__identification__t.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structinterrupt__identification.html">interrupt_identification</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interrupt identification info.  <a href="structinterrupt__identification.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
@@ -258,84 +258,84 @@ Macros</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr class="memitem:ga6a0e47dfd92dd143e6bff23e57f23093"><td class="memItemLeft" align="right" valign="top">
-typedef enum <a class="el" href="group__uart.html#ga4416850dcd2b23d97c7c9e1763cf5154">word_len_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart.html#ga6a0e47dfd92dd143e6bff23e57f23093">word_len_t</a></td></tr>
-<tr class="memdesc:ga6a0e47dfd92dd143e6bff23e57f23093"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enumerated type for specifying the word lenght parameter of the communication protocol. <br /></td></tr>
-<tr class="separator:ga6a0e47dfd92dd143e6bff23e57f23093"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga6241104e184ed6e469ebf89f5c6292d7"><td class="memItemLeft" align="right" valign="top">
-typedef enum <a class="el" href="group__uart.html#ga8c9f47bdc80c9f4db63b7bf8b1ad5290">parity_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart.html#ga6241104e184ed6e469ebf89f5c6292d7">parity_t</a></td></tr>
-<tr class="memdesc:ga6241104e184ed6e469ebf89f5c6292d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enumerated type for specifying the parity parameter of the communication protocol. <br /></td></tr>
-<tr class="separator:ga6241104e184ed6e469ebf89f5c6292d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaf552216e4b86bf9355f7dd5c8bf2f152"><td class="memItemLeft" align="right" valign="top">
-typedef enum <a class="el" href="group__uart.html#ga2c722fbc77468076e88a3c6e674e8f49">no_stop_bits_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart.html#gaf552216e4b86bf9355f7dd5c8bf2f152">no_stop_bits_t</a></td></tr>
-<tr class="memdesc:gaf552216e4b86bf9355f7dd5c8bf2f152"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enumerated type for specifying the number of stop bits parameter of the communication protocol. <br /></td></tr>
-<tr class="separator:gaf552216e4b86bf9355f7dd5c8bf2f152"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaa93d13ded972fa8f106f70fb09e4e541"><td class="memItemLeft" align="right" valign="top">
-typedef enum <a class="el" href="group__uart.html#ga09274b121b0dd70a70f66d464da580ee">fifo_int_trigger_level_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart.html#gaa93d13ded972fa8f106f70fb09e4e541">fifo_int_trigger_level_t</a></td></tr>
-<tr class="memdesc:gaa93d13ded972fa8f106f70fb09e4e541"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enumerated type for specifying the FIFO interrupt trigger level. <br /></td></tr>
-<tr class="separator:gaa93d13ded972fa8f106f70fb09e4e541"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gab3db2a3eee29553e57cdf675b6efd281"><td class="memItemLeft" align="right" valign="top">
-typedef enum <a class="el" href="group__uart.html#gaf24e4c8c2b547a6dcebfdf1ade96a1c0">interrupt_origin_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart.html#gab3db2a3eee29553e57cdf675b6efd281">interrupt_origin_t</a></td></tr>
-<tr class="memdesc:gab3db2a3eee29553e57cdf675b6efd281"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enumerated type for representing the origin of the interrupt. <br /></td></tr>
-<tr class="separator:gab3db2a3eee29553e57cdf675b6efd281"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gad578130aba89c76de489efc47bfea5f9"><td class="memItemLeft" align="right" valign="top">
-typedef enum <a class="el" href="group__uart.html#ga69b57bf7dcabde2686a4fd21fb86d662">fifo_status_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart.html#gad578130aba89c76de489efc47bfea5f9">fifo_status_t</a></td></tr>
-<tr class="memdesc:gad578130aba89c76de489efc47bfea5f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enumerated type for representing the FIFO status. <br /></td></tr>
-<tr class="separator:gad578130aba89c76de489efc47bfea5f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga6c1c817400f72faab813d9162a3d8672"><td class="memItemLeft" align="right" valign="top">
-typedef struct <a class="el" href="structinterrupt__identification__t.html">interrupt_identification_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart.html#ga6c1c817400f72faab813d9162a3d8672">interrupt_identification_t</a></td></tr>
-<tr class="memdesc:ga6c1c817400f72faab813d9162a3d8672"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interrupt identification info. <br /></td></tr>
-<tr class="separator:ga6c1c817400f72faab813d9162a3d8672"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gabe2e24e3b68fa430a865b2b98afa79a4"><td class="memItemLeft" align="right" valign="top">
+typedef enum <a class="el" href="group__uart.html#ga54dcfc42834e0f55df8676c5381f64d3">word_len</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart.html#gabe2e24e3b68fa430a865b2b98afa79a4">word_len_t</a></td></tr>
+<tr class="memdesc:gabe2e24e3b68fa430a865b2b98afa79a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enumerated type for specifying the word lenght parameter of the communication protocol. <br /></td></tr>
+<tr class="separator:gabe2e24e3b68fa430a865b2b98afa79a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gabb076254374c4a07f6cbc7385a56f423"><td class="memItemLeft" align="right" valign="top">
+typedef enum <a class="el" href="group__uart.html#ga62d49d97117baa12d4ccc139f067ffdb">parity</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart.html#gabb076254374c4a07f6cbc7385a56f423">parity_t</a></td></tr>
+<tr class="memdesc:gabb076254374c4a07f6cbc7385a56f423"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enumerated type for specifying the parity parameter of the communication protocol. <br /></td></tr>
+<tr class="separator:gabb076254374c4a07f6cbc7385a56f423"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4be85794f87bb907dc13afd7cf517f87"><td class="memItemLeft" align="right" valign="top">
+typedef enum <a class="el" href="group__uart.html#ga6aa174597b135a579c4669238f471105">no_stop_bits</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart.html#ga4be85794f87bb907dc13afd7cf517f87">no_stop_bits_t</a></td></tr>
+<tr class="memdesc:ga4be85794f87bb907dc13afd7cf517f87"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enumerated type for specifying the number of stop bits parameter of the communication protocol. <br /></td></tr>
+<tr class="separator:ga4be85794f87bb907dc13afd7cf517f87"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1a278341de54ab62d2b4f9dbab137e07"><td class="memItemLeft" align="right" valign="top">
+typedef enum <a class="el" href="group__uart.html#ga598aa077992ce6f68c609808961b16a0">fifo_int_trigger_level</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart.html#ga1a278341de54ab62d2b4f9dbab137e07">fifo_int_trigger_level_t</a></td></tr>
+<tr class="memdesc:ga1a278341de54ab62d2b4f9dbab137e07"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enumerated type for specifying the FIFO interrupt trigger level. <br /></td></tr>
+<tr class="separator:ga1a278341de54ab62d2b4f9dbab137e07"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaeeaa41e9dfd6859dfd91af954e2df00f"><td class="memItemLeft" align="right" valign="top">
+typedef enum <a class="el" href="group__uart.html#ga307372288602ea8501c646dd2070ab20">interrupt_origin</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart.html#gaeeaa41e9dfd6859dfd91af954e2df00f">interrupt_origin_t</a></td></tr>
+<tr class="memdesc:gaeeaa41e9dfd6859dfd91af954e2df00f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enumerated type for representing the origin of the interrupt. <br /></td></tr>
+<tr class="separator:gaeeaa41e9dfd6859dfd91af954e2df00f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga9c25ca1c0f55a1f933d7dc07cc90e3b9"><td class="memItemLeft" align="right" valign="top">
+typedef enum <a class="el" href="group__uart.html#gad69d56e458c2228695b44e7a9b2446dd">fifo_status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart.html#ga9c25ca1c0f55a1f933d7dc07cc90e3b9">fifo_status_t</a></td></tr>
+<tr class="memdesc:ga9c25ca1c0f55a1f933d7dc07cc90e3b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enumerated type for representing the FIFO status. <br /></td></tr>
+<tr class="separator:ga9c25ca1c0f55a1f933d7dc07cc90e3b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga166712c10fd306ea6bffdc1926573627"><td class="memItemLeft" align="right" valign="top">
+typedef struct <a class="el" href="structinterrupt__identification.html">interrupt_identification</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart.html#ga166712c10fd306ea6bffdc1926573627">interrupt_identification_t</a></td></tr>
+<tr class="memdesc:ga166712c10fd306ea6bffdc1926573627"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interrupt identification info. <br /></td></tr>
+<tr class="separator:ga166712c10fd306ea6bffdc1926573627"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
 Enumerations</h2></td></tr>
-<tr class="memitem:ga4416850dcd2b23d97c7c9e1763cf5154"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart.html#ga4416850dcd2b23d97c7c9e1763cf5154">word_len_t</a> { <a class="el" href="group__uart.html#gga4416850dcd2b23d97c7c9e1763cf5154abaf2f1716107773d12e26dc368aba9e5">WORD_LEN_5_BITS</a> = 0, 
-<a class="el" href="group__uart.html#gga4416850dcd2b23d97c7c9e1763cf5154a097069665ba0bd123b06a8fd7c0acbf7">WORD_LEN_6_BITS</a> = 1, 
-<a class="el" href="group__uart.html#gga4416850dcd2b23d97c7c9e1763cf5154a785f16c9bb70a94bb5fa923a9b2073af">WORD_LEN_7_BITS</a> = 2, 
-<a class="el" href="group__uart.html#gga4416850dcd2b23d97c7c9e1763cf5154a9467ab32491c7209065f0d0e683cf005">WORD_LEN_8_BITS</a> = 3
+<tr class="memitem:ga54dcfc42834e0f55df8676c5381f64d3"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart.html#ga54dcfc42834e0f55df8676c5381f64d3">word_len</a> { <a class="el" href="group__uart.html#gga54dcfc42834e0f55df8676c5381f64d3abaf2f1716107773d12e26dc368aba9e5">WORD_LEN_5_BITS</a> = 0, 
+<a class="el" href="group__uart.html#gga54dcfc42834e0f55df8676c5381f64d3a097069665ba0bd123b06a8fd7c0acbf7">WORD_LEN_6_BITS</a> = 1, 
+<a class="el" href="group__uart.html#gga54dcfc42834e0f55df8676c5381f64d3a785f16c9bb70a94bb5fa923a9b2073af">WORD_LEN_7_BITS</a> = 2, 
+<a class="el" href="group__uart.html#gga54dcfc42834e0f55df8676c5381f64d3a9467ab32491c7209065f0d0e683cf005">WORD_LEN_8_BITS</a> = 3
  }</td></tr>
-<tr class="memdesc:ga4416850dcd2b23d97c7c9e1763cf5154"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enumerated type for specifying the word lenght parameter of the communication protocol.  <a href="group__uart.html#ga4416850dcd2b23d97c7c9e1763cf5154">More...</a><br /></td></tr>
-<tr class="separator:ga4416850dcd2b23d97c7c9e1763cf5154"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga8c9f47bdc80c9f4db63b7bf8b1ad5290"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart.html#ga8c9f47bdc80c9f4db63b7bf8b1ad5290">parity_t</a> { <br />
-&#160;&#160;<a class="el" href="group__uart.html#gga8c9f47bdc80c9f4db63b7bf8b1ad5290a90674e2854f8cd4ce76ea0b4cd4546cc">PARITY_NONE</a> = 0, 
-<a class="el" href="group__uart.html#gga8c9f47bdc80c9f4db63b7bf8b1ad5290a41443d13b163ffeaf59c4667472bc49c">PARITY_ODD</a> = 1, 
-<a class="el" href="group__uart.html#gga8c9f47bdc80c9f4db63b7bf8b1ad5290ae6172576b70fc73aefabd529c103c9b8">PARITY_EVEN</a> = 3, 
-<a class="el" href="group__uart.html#gga8c9f47bdc80c9f4db63b7bf8b1ad5290a8eeff3cfe6d6c5485fe51e6bbaf63ab3">PARITY_ONE</a> = 5, 
+<tr class="memdesc:ga54dcfc42834e0f55df8676c5381f64d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enumerated type for specifying the word lenght parameter of the communication protocol.  <a href="group__uart.html#ga54dcfc42834e0f55df8676c5381f64d3">More...</a><br /></td></tr>
+<tr class="separator:ga54dcfc42834e0f55df8676c5381f64d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga62d49d97117baa12d4ccc139f067ffdb"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart.html#ga62d49d97117baa12d4ccc139f067ffdb">parity</a> { <br />
+&#160;&#160;<a class="el" href="group__uart.html#gga62d49d97117baa12d4ccc139f067ffdba90674e2854f8cd4ce76ea0b4cd4546cc">PARITY_NONE</a> = 0, 
+<a class="el" href="group__uart.html#gga62d49d97117baa12d4ccc139f067ffdba41443d13b163ffeaf59c4667472bc49c">PARITY_ODD</a> = 1, 
+<a class="el" href="group__uart.html#gga62d49d97117baa12d4ccc139f067ffdbae6172576b70fc73aefabd529c103c9b8">PARITY_EVEN</a> = 3, 
+<a class="el" href="group__uart.html#gga62d49d97117baa12d4ccc139f067ffdba8eeff3cfe6d6c5485fe51e6bbaf63ab3">PARITY_ONE</a> = 5, 
 <br />
-&#160;&#160;<a class="el" href="group__uart.html#gga8c9f47bdc80c9f4db63b7bf8b1ad5290ab64bf159007d02ae19b88748bc20dd81">PARITY_ZERO</a> = 7
-<br />
- }</td></tr>
-<tr class="memdesc:ga8c9f47bdc80c9f4db63b7bf8b1ad5290"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enumerated type for specifying the parity parameter of the communication protocol.  <a href="group__uart.html#ga8c9f47bdc80c9f4db63b7bf8b1ad5290">More...</a><br /></td></tr>
-<tr class="separator:ga8c9f47bdc80c9f4db63b7bf8b1ad5290"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga2c722fbc77468076e88a3c6e674e8f49"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart.html#ga2c722fbc77468076e88a3c6e674e8f49">no_stop_bits_t</a> { <a class="el" href="group__uart.html#gga2c722fbc77468076e88a3c6e674e8f49ad5532387a525860bca665f556b235a61">STOP_BITS_1</a> = 0, 
-<a class="el" href="group__uart.html#gga2c722fbc77468076e88a3c6e674e8f49a47dc89ff50980f11f25190d3a05ed055">STOP_BITS_2</a> = 1
- }</td></tr>
-<tr class="memdesc:ga2c722fbc77468076e88a3c6e674e8f49"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enumerated type for specifying the number of stop bits parameter of the communication protocol.  <a href="group__uart.html#ga2c722fbc77468076e88a3c6e674e8f49">More...</a><br /></td></tr>
-<tr class="separator:ga2c722fbc77468076e88a3c6e674e8f49"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga09274b121b0dd70a70f66d464da580ee"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart.html#ga09274b121b0dd70a70f66d464da580ee">fifo_int_trigger_level_t</a> { <a class="el" href="group__uart.html#gga09274b121b0dd70a70f66d464da580eea324a56513ad1e6068ecc295965093321">FIFO_1_BYTE</a> = 0, 
-<a class="el" href="group__uart.html#gga09274b121b0dd70a70f66d464da580eeac907b3f68f94fc48cfa3aebd15245fd8">FIFO_4_BYTES</a> = 1, 
-<a class="el" href="group__uart.html#gga09274b121b0dd70a70f66d464da580eeab9e1e48875547dc551b7c8c5454a4727">FIFO_8_BYTES</a> = 2, 
-<a class="el" href="group__uart.html#gga09274b121b0dd70a70f66d464da580eead2f5a2a092234eb04ea981eb340c9412">FIFO_14_BYTES</a> = 3
- }</td></tr>
-<tr class="memdesc:ga09274b121b0dd70a70f66d464da580ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enumerated type for specifying the FIFO interrupt trigger level.  <a href="group__uart.html#ga09274b121b0dd70a70f66d464da580ee">More...</a><br /></td></tr>
-<tr class="separator:ga09274b121b0dd70a70f66d464da580ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaf24e4c8c2b547a6dcebfdf1ade96a1c0"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart.html#gaf24e4c8c2b547a6dcebfdf1ade96a1c0">interrupt_origin_t</a> { <br />
-&#160;&#160;<a class="el" href="group__uart.html#ggaf24e4c8c2b547a6dcebfdf1ade96a1c0a02b6c676ce9b93ea9670e5ee280985f6">INT_ORIGIN_MODEM_STATUS</a> = 0, 
-<a class="el" href="group__uart.html#ggaf24e4c8c2b547a6dcebfdf1ade96a1c0a92dbe8a49329211ecaabb3cdc677f9f4">INT_ORIGIN_TRANSMITTER_EMPTY</a> = 1, 
-<a class="el" href="group__uart.html#ggaf24e4c8c2b547a6dcebfdf1ade96a1c0afed6c50aef4cf567c3af39407070eaca">INT_ORIGIN_CHAR_TIMEOUT</a> = 6, 
-<a class="el" href="group__uart.html#ggaf24e4c8c2b547a6dcebfdf1ade96a1c0aca7b9bbf00dbcf600aabe18f189c3859">INT_ORIGIN_RECEIVED_DATA</a> = 2, 
-<br />
-&#160;&#160;<a class="el" href="group__uart.html#ggaf24e4c8c2b547a6dcebfdf1ade96a1c0a645a7449bbdfc48aeb346cbb3b5c97de">INT_ORIGIN_LINE_STATUS</a> = 3
+&#160;&#160;<a class="el" href="group__uart.html#gga62d49d97117baa12d4ccc139f067ffdbab64bf159007d02ae19b88748bc20dd81">PARITY_ZERO</a> = 7
 <br />
  }</td></tr>
-<tr class="memdesc:gaf24e4c8c2b547a6dcebfdf1ade96a1c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enumerated type for representing the origin of the interrupt.  <a href="group__uart.html#gaf24e4c8c2b547a6dcebfdf1ade96a1c0">More...</a><br /></td></tr>
-<tr class="separator:gaf24e4c8c2b547a6dcebfdf1ade96a1c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga69b57bf7dcabde2686a4fd21fb86d662"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart.html#ga69b57bf7dcabde2686a4fd21fb86d662">fifo_status_t</a> { <a class="el" href="group__uart.html#gga69b57bf7dcabde2686a4fd21fb86d662abe035f29d7f2323f11006b228d714a09">NO_FIFO</a> = 0, 
-<a class="el" href="group__uart.html#gga69b57bf7dcabde2686a4fd21fb86d662a0e6d88bc473b9720343d4fa4bade1752">FIFO_UNUSABLE</a> = 2, 
-<a class="el" href="group__uart.html#gga69b57bf7dcabde2686a4fd21fb86d662a24e8a278e1b012c2087925cd26bbdd9c">FIFO_ENABLED</a> = 3
+<tr class="memdesc:ga62d49d97117baa12d4ccc139f067ffdb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enumerated type for specifying the parity parameter of the communication protocol.  <a href="group__uart.html#ga62d49d97117baa12d4ccc139f067ffdb">More...</a><br /></td></tr>
+<tr class="separator:ga62d49d97117baa12d4ccc139f067ffdb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6aa174597b135a579c4669238f471105"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart.html#ga6aa174597b135a579c4669238f471105">no_stop_bits</a> { <a class="el" href="group__uart.html#gga6aa174597b135a579c4669238f471105ad5532387a525860bca665f556b235a61">STOP_BITS_1</a> = 0, 
+<a class="el" href="group__uart.html#gga6aa174597b135a579c4669238f471105a47dc89ff50980f11f25190d3a05ed055">STOP_BITS_2</a> = 1
  }</td></tr>
-<tr class="memdesc:ga69b57bf7dcabde2686a4fd21fb86d662"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enumerated type for representing the FIFO status.  <a href="group__uart.html#ga69b57bf7dcabde2686a4fd21fb86d662">More...</a><br /></td></tr>
-<tr class="separator:ga69b57bf7dcabde2686a4fd21fb86d662"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memdesc:ga6aa174597b135a579c4669238f471105"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enumerated type for specifying the number of stop bits parameter of the communication protocol.  <a href="group__uart.html#ga6aa174597b135a579c4669238f471105">More...</a><br /></td></tr>
+<tr class="separator:ga6aa174597b135a579c4669238f471105"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga598aa077992ce6f68c609808961b16a0"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart.html#ga598aa077992ce6f68c609808961b16a0">fifo_int_trigger_level</a> { <a class="el" href="group__uart.html#gga598aa077992ce6f68c609808961b16a0a324a56513ad1e6068ecc295965093321">FIFO_1_BYTE</a> = 0, 
+<a class="el" href="group__uart.html#gga598aa077992ce6f68c609808961b16a0ac907b3f68f94fc48cfa3aebd15245fd8">FIFO_4_BYTES</a> = 1, 
+<a class="el" href="group__uart.html#gga598aa077992ce6f68c609808961b16a0ab9e1e48875547dc551b7c8c5454a4727">FIFO_8_BYTES</a> = 2, 
+<a class="el" href="group__uart.html#gga598aa077992ce6f68c609808961b16a0ad2f5a2a092234eb04ea981eb340c9412">FIFO_14_BYTES</a> = 3
+ }</td></tr>
+<tr class="memdesc:ga598aa077992ce6f68c609808961b16a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enumerated type for specifying the FIFO interrupt trigger level.  <a href="group__uart.html#ga598aa077992ce6f68c609808961b16a0">More...</a><br /></td></tr>
+<tr class="separator:ga598aa077992ce6f68c609808961b16a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga307372288602ea8501c646dd2070ab20"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart.html#ga307372288602ea8501c646dd2070ab20">interrupt_origin</a> { <br />
+&#160;&#160;<a class="el" href="group__uart.html#gga307372288602ea8501c646dd2070ab20a02b6c676ce9b93ea9670e5ee280985f6">INT_ORIGIN_MODEM_STATUS</a> = 0, 
+<a class="el" href="group__uart.html#gga307372288602ea8501c646dd2070ab20a92dbe8a49329211ecaabb3cdc677f9f4">INT_ORIGIN_TRANSMITTER_EMPTY</a> = 1, 
+<a class="el" href="group__uart.html#gga307372288602ea8501c646dd2070ab20afed6c50aef4cf567c3af39407070eaca">INT_ORIGIN_CHAR_TIMEOUT</a> = 6, 
+<a class="el" href="group__uart.html#gga307372288602ea8501c646dd2070ab20aca7b9bbf00dbcf600aabe18f189c3859">INT_ORIGIN_RECEIVED_DATA</a> = 2, 
+<br />
+&#160;&#160;<a class="el" href="group__uart.html#gga307372288602ea8501c646dd2070ab20a645a7449bbdfc48aeb346cbb3b5c97de">INT_ORIGIN_LINE_STATUS</a> = 3
+<br />
+ }</td></tr>
+<tr class="memdesc:ga307372288602ea8501c646dd2070ab20"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enumerated type for representing the origin of the interrupt.  <a href="group__uart.html#ga307372288602ea8501c646dd2070ab20">More...</a><br /></td></tr>
+<tr class="separator:ga307372288602ea8501c646dd2070ab20"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad69d56e458c2228695b44e7a9b2446dd"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart.html#gad69d56e458c2228695b44e7a9b2446dd">fifo_status</a> { <a class="el" href="group__uart.html#ggad69d56e458c2228695b44e7a9b2446ddabe035f29d7f2323f11006b228d714a09">NO_FIFO</a> = 0, 
+<a class="el" href="group__uart.html#ggad69d56e458c2228695b44e7a9b2446dda0e6d88bc473b9720343d4fa4bade1752">FIFO_UNUSABLE</a> = 2, 
+<a class="el" href="group__uart.html#ggad69d56e458c2228695b44e7a9b2446dda24e8a278e1b012c2087925cd26bbdd9c">FIFO_ENABLED</a> = 3
+ }</td></tr>
+<tr class="memdesc:gad69d56e458c2228695b44e7a9b2446dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enumerated type for representing the FIFO status.  <a href="group__uart.html#gad69d56e458c2228695b44e7a9b2446dd">More...</a><br /></td></tr>
+<tr class="separator:gad69d56e458c2228695b44e7a9b2446dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
@@ -353,16 +353,16 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grou
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart.html#gac9e27c3effc4daed84fb28ade5e853cb">uart_handle_error</a> ()</td></tr>
 <tr class="memdesc:gac9e27c3effc4daed84fb28ade5e853cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handles a serial port error interrupt. <br /></td></tr>
 <tr class="separator:gac9e27c3effc4daed84fb28ade5e853cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gad4aa4e56e05d1a1907de15efa9f098dd"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart.html#gad4aa4e56e05d1a1907de15efa9f098dd">uart_identify_interrupt</a> (<a class="el" href="structinterrupt__identification__t.html">interrupt_identification_t</a> *int_ident)</td></tr>
+<tr class="memitem:gad4aa4e56e05d1a1907de15efa9f098dd"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart.html#gad4aa4e56e05d1a1907de15efa9f098dd">uart_identify_interrupt</a> (<a class="el" href="group__uart.html#ga166712c10fd306ea6bffdc1926573627">interrupt_identification_t</a> *int_ident)</td></tr>
 <tr class="memdesc:gad4aa4e56e05d1a1907de15efa9f098dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indentifies the serial port interrupt.  <a href="group__uart.html#gad4aa4e56e05d1a1907de15efa9f098dd">More...</a><br /></td></tr>
 <tr class="separator:gad4aa4e56e05d1a1907de15efa9f098dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gac56dcef886bb66f75de8fe196316995d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart.html#gac56dcef886bb66f75de8fe196316995d">uart_config_params</a> (<a class="el" href="group__uart.html#ga4416850dcd2b23d97c7c9e1763cf5154">word_len_t</a> word_len, <a class="el" href="group__uart.html#ga8c9f47bdc80c9f4db63b7bf8b1ad5290">parity_t</a> parity, <a class="el" href="group__uart.html#ga2c722fbc77468076e88a3c6e674e8f49">no_stop_bits_t</a> no_stop_bits, uint16_t bit_rate)</td></tr>
+<tr class="memitem:gac56dcef886bb66f75de8fe196316995d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart.html#gac56dcef886bb66f75de8fe196316995d">uart_config_params</a> (<a class="el" href="group__uart.html#gabe2e24e3b68fa430a865b2b98afa79a4">word_len_t</a> <a class="el" href="group__uart.html#ga54dcfc42834e0f55df8676c5381f64d3">word_len</a>, <a class="el" href="group__uart.html#gabb076254374c4a07f6cbc7385a56f423">parity_t</a> <a class="el" href="group__uart.html#ga62d49d97117baa12d4ccc139f067ffdb">parity</a>, <a class="el" href="group__uart.html#ga4be85794f87bb907dc13afd7cf517f87">no_stop_bits_t</a> <a class="el" href="group__uart.html#ga6aa174597b135a579c4669238f471105">no_stop_bits</a>, uint16_t bit_rate)</td></tr>
 <tr class="memdesc:gac56dcef886bb66f75de8fe196316995d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configures the parameters of the serial port.  <a href="group__uart.html#gac56dcef886bb66f75de8fe196316995d">More...</a><br /></td></tr>
 <tr class="separator:gac56dcef886bb66f75de8fe196316995d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gab5a56e4469594d67651f2b6d9d380f56"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart.html#gab5a56e4469594d67651f2b6d9d380f56">uart_config_int</a> (bool received_data_int, bool transmitter_empty_int, bool receiver_line_status_int)</td></tr>
 <tr class="memdesc:gab5a56e4469594d67651f2b6d9d380f56"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configures the interrupts of the serial port.  <a href="group__uart.html#gab5a56e4469594d67651f2b6d9d380f56">More...</a><br /></td></tr>
 <tr class="separator:gab5a56e4469594d67651f2b6d9d380f56"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaf159013e818705c412e6585603c55da2"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart.html#gaf159013e818705c412e6585603c55da2">uart_enable_fifo</a> (<a class="el" href="group__uart.html#ga09274b121b0dd70a70f66d464da580ee">fifo_int_trigger_level_t</a> trigger_level)</td></tr>
+<tr class="memitem:gaf159013e818705c412e6585603c55da2"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart.html#gaf159013e818705c412e6585603c55da2">uart_enable_fifo</a> (<a class="el" href="group__uart.html#ga1a278341de54ab62d2b4f9dbab137e07">fifo_int_trigger_level_t</a> trigger_level)</td></tr>
 <tr class="memdesc:gaf159013e818705c412e6585603c55da2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables serial port hardware FIFOs.  <a href="group__uart.html#gaf159013e818705c412e6585603c55da2">More...</a><br /></td></tr>
 <tr class="separator:gaf159013e818705c412e6585603c55da2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga1975f8b129ad7fe81b0199dadabc703a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart.html#ga1975f8b129ad7fe81b0199dadabc703a">uart_set_bit_rate</a> (uint16_t bit_rate)</td></tr>

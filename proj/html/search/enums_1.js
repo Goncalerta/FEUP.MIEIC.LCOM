@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['event_5ft_1012',['event_t',['../group__dispatcher.html#ga2fb9b58e4e5f14f40af8b4a1425841f8',1,'dispatcher.h']]]
+  ['canvas_5fstate_1046',['canvas_state',['../group__canvas.html#gaa289f90bac2f5923454bf4629396ceac',1,'canvas.h']]],
+  ['cursor_5fstate_1047',['cursor_state',['../group__cursor.html#gae816e2010df6ae9e9f853d0f2c623173',1,'cursor.h']]]
 ];

@@ -1,0 +1,11 @@
+<map id="round" name="round">
+<area shape="rect" id="node1" title=" " alt="" coords="95,436,149,463"/>
+<area shape="rect" id="node2" href="$structguess.html" title=" " alt="" coords="5,347,63,373"/>
+<area shape="rect" id="node3" href="$unionrole__attr.html" title=" " alt="" coords="87,347,157,373"/>
+<area shape="rect" id="node4" href="$structguesser.html" title=" " alt="" coords="44,257,112,284"/>
+<area shape="rect" id="node5" href="$structtext__box.html" title=" " alt="" coords="42,95,114,121"/>
+<area shape="rect" id="node6" href="$structdrawer.html" title=" " alt="" coords="136,257,196,284"/>
+<area shape="rect" id="node7" href="$structbutton.html" title="// Button class implementation." alt="" coords="138,95,197,121"/>
+<area shape="rect" id="node8" href="$structbutton__icon.html" title="Icon of a button." alt="" coords="123,5,212,32"/>
+<area shape="rect" id="node9" href="$structword__clue.html" title=" " alt="" coords="181,347,261,373"/>
+</map>

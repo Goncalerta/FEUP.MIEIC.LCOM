@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['text_5fbox_5fstate_1023',['text_box_state',['../group__textbox.html#ga4c6e6a481f55d3cdcf91968e50f378af',1,'textbox.h']]]
+  ['role_1057',['role',['../group__game.html#ga4e0cdb878325d53ad79a74504bf97a96',1,'game.h']]],
+  ['rtc_5finterrupt_1058',['rtc_interrupt',['../group__rtc.html#ga5da53acff0f9cf2c56c39488da2a21cf',1,'rtc.h']]]
 ];
