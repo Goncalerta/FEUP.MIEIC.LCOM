@@ -1,10 +1,9 @@
 <map id="clue_reveal" name="clue_reveal">
-<area shape="rect" id="node1" title="Makes the whole word revealed in the given word clue." alt="" coords="816,56,903,83"/>
-<area shape="rect" id="node2" href="$group__game.html#ga3e3b7cd44197d8a1bd11f7f82aa3c767" title="Ends the current round." alt="" coords="645,56,768,83"/>
-<area shape="rect" id="node3" href="$group__dispatcher.html#ga37df00ab49c3c54dcf2fd2cee7a952a5" title="Sets the round as won, updates the score and notifies the other player." alt="" coords="438,5,555,32"/>
-<area shape="rect" id="node6" href="$group__game.html#ga1fde03513252d4441ff2ba62672da7a6" title="Reacts to the game over notification of another player." alt="" coords="396,56,597,83"/>
-<area shape="rect" id="node7" href="$group__game.html#ga159cd81ebf01a5ccd6a0f96aaffb2530" title="Updates the game due to a rtc periodic interrupt." alt="" coords="436,107,557,133"/>
-<area shape="rect" id="node4" href="$group__game.html#ga5a725e3c48e6564fd75d04c2e4d163ba" title="Adds a word guess. And reacts according to weather it is correct." alt="" coords="199,5,330,32"/>
+<area shape="rect" id="node1" title="Makes the whole word revealed in the given word clue." alt="" coords="780,56,867,83"/>
+<area shape="rect" id="node2" href="$group__game.html#ga3e3b7cd44197d8a1bd11f7f82aa3c767" title="Ends the current round." alt="" coords="609,56,732,83"/>
+<area shape="rect" id="node3" href="$group__dispatcher.html#ga37df00ab49c3c54dcf2fd2cee7a952a5" title="Sets the round as won, updates the score and notifies the other player." alt="" coords="402,5,519,32"/>
+<area shape="rect" id="node6" href="$group__game.html#ga1fde03513252d4441ff2ba62672da7a6" title="Reacts to the game over notification of another player." alt="" coords="360,56,561,83"/>
+<area shape="rect" id="node7" href="$group__game.html#ga159cd81ebf01a5ccd6a0f96aaffb2530" title="Updates the game due to a rtc periodic interrupt." alt="" coords="400,107,521,133"/>
+<area shape="rect" id="node4" href="$group__game.html#ga5a725e3c48e6564fd75d04c2e4d163ba" title="Adds a word guess. And reacts according to weather it is correct." alt="" coords="181,5,312,32"/>
 <area shape="rect" id="node5" href="$group__dispatcher.html#ga3429571bafb33af98f7e8b90e2c4b4b4" title="Tries to guess the word and notifies the other player." alt="" coords="5,5,133,32"/>
-<area shape="rect" id="node8" href="$group__dispatcher.html#ga091e29979e7808dc87b71f52d3510553" title="Dispatches a rtc periodic interrupt." alt="" coords="181,107,348,133"/>
 </map>

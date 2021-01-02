@@ -19,63 +19,32 @@
 
 typedef int (*button_action)(); /**< @brief Button action callback when it's pressed. */
 
-/**
- * @brief Enumerated type for specifying the state of a button.
- * 
- */
-typedef enum button_state_t {
-    BUTTON_NORMAL, /*!< Button is in normal/base state. */
-    BUTTON_HOVERING, /*!< Button is not being pressed but the cursor is hovering it. */
-    BUTTON_PRESSING, /*!< Button is being pressed and the cursor is hovering it. */
-    BUTTON_PRESSING_NOT_HOVERING /*!< Button is being pressed but the cursor is not hovering it. */
-} button_state_t;
+struct button_t;
 
 /**
- * @brief Icon of a button.
+ * @brief Button class.
  * 
  */
-typedef struct button_icon_t {
-    enum { BUTTON_ICON_NONE, /*!< @brief No icon. */
-           BUTTON_ICON_XPM, /*!< @brief xpm image icon. */
-           BUTTON_ICON_CIRCLE /*!< @brief Circle icon. */
-        } type; /*!< @brief Icon type. */
-    union {
-        xpm_image_t img; /*!< @brief Button image icon. */
-        
-        struct {
-            uint16_t radius; /*!< @brief Radius of a circle icon. */
-            uint32_t color; /*!< @brief Color of a circle icon. */
-        } circle; /*!< @brief Button circle icon. */
-    } attributes; /*!< @brief Icon attributes. */
-} button_icon_t;
-
-/**
- * @brief Button info.
- * 
- */
-typedef struct button_t {
-    uint16_t x; /*!< @brief Left most x coordinate of the button. */
-    uint16_t y; /*!< @brief Top most y coordinate of the button. */
-    uint16_t width; /*!< @brief Button width. */
-    uint16_t height; /*!< @brief Button height. */
-    button_state_t state; /*!< @brief State of the button. */
-    button_action action; /*!< @brief Action to perform when button is pressed. */
-    button_icon_t icon; /*!< @brief Button icon. */
-    bool active_border; /*!< @brief True if the border of the button is active and false otherwise. */
-} button_t;
+typedef struct button_t button_t;
 
 /**
  * @brief Initializes a new button.
  * 
- * @param button address of memory of the button to be initialized
  * @param x button x coordinate
  * @param y button y coordinate
  * @param width button width
  * @param height button height
  * @param action button action
- * @return Return 0 upon success and non-zero otherwise
+ * @return Address of memory of the button initialized, or NULL if an error occurred.
  */
-int new_button(button_t *button, uint16_t x, uint16_t y, uint16_t width, uint16_t height, button_action action);
+button_t *new_button(uint16_t x, uint16_t y, uint16_t width, uint16_t height, button_action action);
+
+/**
+ * @brief Initializes a button.
+ * 
+ * @param button address of memory of the button to be deleted
+ */
+void delete_button(button_t *button);
 
 /**
  * @brief Sets a xpm image icon to a given button.
@@ -116,7 +85,7 @@ void button_unset_border_active(button_t *button);
  * @param y y coordinate
  * @return Return true if the coordinates are inside the button and false otherwise
  */
-bool button_is_hovering(button_t button, uint16_t x, uint16_t y);
+bool button_is_hovering(button_t *button, uint16_t x, uint16_t y);
 
 /**
  * @brief Draws a given button to the given buffer.
@@ -125,7 +94,7 @@ bool button_is_hovering(button_t button, uint16_t x, uint16_t y);
  * @param button button
  * @return Return 0 upon success and non-zero otherwise
  */
-int button_draw(frame_buffer_t buf, button_t button);
+int button_draw(frame_buffer_t buf, button_t *button);
 
 /**
  * @brief Updates the state of a given button according to given mouse info.

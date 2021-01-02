@@ -1,5 +1,4 @@
 <map id="canvas_init" name="canvas_init">
-<area shape="rect" id="node1" title="Initiates the canvas." alt="" coords="379,5,465,32"/>
-<area shape="rect" id="node2" href="$group__dispatcher.html#ga00f3579aee6fd77454373ac309f39675" title="Starts the round." alt="" coords="207,5,331,32"/>
-<area shape="rect" id="node3" href="$group__dispatcher.html#ga2607daafa4b66e729b8aa95ba97f1984" title="Dispatches a rtc alarm interrupt." alt="" coords="5,5,159,32"/>
+<area shape="rect" id="node1" title="Initiates the canvas." alt="" coords="177,5,264,32"/>
+<area shape="rect" id="node2" href="$group__dispatcher.html#ga00f3579aee6fd77454373ac309f39675" title="Starts the round." alt="" coords="5,5,129,32"/>
 </map>

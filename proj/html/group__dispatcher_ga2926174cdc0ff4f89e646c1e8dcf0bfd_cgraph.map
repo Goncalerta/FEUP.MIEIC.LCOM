@@ -1,0 +1,5 @@
+<map id="dispatcher_queue_event" name="dispatcher_queue_event">
+<area shape="rect" id="node1" title="Adds an event to the event queue." alt="" coords="5,5,167,32"/>
+<area shape="rect" id="node2" href="$group__queue.html#gaa54578828a1b5676bb99a535c617e1a2" title="Adds an element to the back of the given queue." alt="" coords="215,5,307,32"/>
+<area shape="rect" id="node3" href="$group__queue.html#gae1cd6b62453b7f57525be17a53885800" title="Checks if a given queue is full." alt="" coords="355,5,452,32"/>
+</map>

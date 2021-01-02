@@ -1,5 +1,6 @@
 <map id="dispatcher.h" name="dispatcher.h">
-<area shape="rect" id="node1" title="File dedicated to handling and dispatching events." alt="" coords="5,5,99,32"/>
-<area shape="rect" id="node2" title=" " alt="" coords="13,155,91,181"/>
-<area shape="rect" id="node3" href="$keyboard_8h.html" title="File dedicated to interaction with the PC&#39;s Keyboard." alt="" coords="50,80,137,107"/>
+<area shape="rect" id="node1" title="File dedicated to handling and dispatching events." alt="" coords="18,5,111,32"/>
+<area shape="rect" id="node2" title=" " alt="" coords="25,155,104,181"/>
+<area shape="rect" id="node3" href="$keyboard_8h.html" title="File dedicated to interaction with the PC&#39;s Keyboard." alt="" coords="21,80,108,107"/>
+<area shape="rect" id="node4" href="$protocol_8h.html" title="File dedicated to the application dependent communication protocol between two computers." alt="" coords="132,80,210,107"/>
 </map>

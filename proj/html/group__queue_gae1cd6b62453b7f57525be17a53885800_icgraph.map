@@ -1,9 +1,12 @@
 <map id="queue_is_full" name="queue_is_full">
-<area shape="rect" id="node1" title="Checks if a given queue is full." alt="" coords="663,31,760,57"/>
-<area shape="rect" id="node2" href="$group__queue.html#gaa54578828a1b5676bb99a535c617e1a2" title="Adds an element to the back of the given queue." alt="" coords="523,31,615,57"/>
-<area shape="rect" id="node3" href="$group__uart.html#ga044300424f25aaf6d622538cafe79d90" title="Receives bytes from the serial port and puts them in a software queue." alt="" coords="344,5,475,32"/>
-<area shape="rect" id="node5" href="$group__uart.html#ga00a2984ead2b73e2871dfda7c1ac49e3" title="Adds a byte to the software queue of bytes to be sent and tries to send bytes." alt="" coords="354,56,465,83"/>
-<area shape="rect" id="node4" href="$group__uart.html#ga2820f530017133c17706dbc238f738d9" title="COM1 interrupt handler." alt="" coords="187,5,258,32"/>
-<area shape="rect" id="node6" href="$group__protocol.html#ga237c5c08ee5d5008a930af465c7bd5d5" title="Reacts to a serial port error." alt="" coords="149,56,296,83"/>
-<area shape="rect" id="node7" href="$group__protocol.html#ga0b3e768da60827fe622bd3932efc82ff" title="Reacts to a timer interrupt to detect timeouts." alt="" coords="5,56,101,83"/>
+<area shape="rect" id="node1" title="Checks if a given queue is full." alt="" coords="693,132,791,159"/>
+<area shape="rect" id="node2" href="$group__queue.html#gaa54578828a1b5676bb99a535c617e1a2" title="Adds an element to the back of the given queue." alt="" coords="553,132,645,159"/>
+<area shape="rect" id="node3" href="$group__dispatcher.html#ga2926174cdc0ff4f89e646c1e8dcf0bfd" title="Adds an event to the event queue." alt="" coords="344,56,505,83"/>
+<area shape="rect" id="node7" href="$group__uart.html#ga044300424f25aaf6d622538cafe79d90" title="Receives bytes from the serial port and puts them in a software queue." alt="" coords="359,132,490,159"/>
+<area shape="rect" id="node8" href="$group__uart.html#ga00a2984ead2b73e2871dfda7c1ac49e3" title="Adds a byte to the software queue of bytes to be sent and tries to send bytes." alt="" coords="369,183,480,209"/>
+<area shape="rect" id="node4" href="$group__uart.html#ga2820f530017133c17706dbc238f738d9" title="COM1 interrupt handler." alt="" coords="18,81,89,108"/>
+<area shape="rect" id="node5" href="$group__rtc.html#ga75dad42881d64cf07cf1bdc2979a7056" title="RTC interrupt handler." alt="" coords="195,31,250,57"/>
+<area shape="rect" id="node6" href="$group__uart.html#gac9e27c3effc4daed84fb28ade5e853cb" title="Handles a serial port error interrupt." alt="" coords="161,81,284,108"/>
+<area shape="rect" id="node9" href="$group__protocol.html#ga237c5c08ee5d5008a930af465c7bd5d5" title="Reacts to a serial port error." alt="" coords="149,183,296,209"/>
+<area shape="rect" id="node10" href="$group__protocol.html#ga0b3e768da60827fe622bd3932efc82ff" title="Reacts to a timer interrupt to detect timeouts." alt="" coords="5,183,101,209"/>
 </map>

@@ -6,24 +6,37 @@
 #define CLUE_BAR_MARGIN 5
 #define RECTANGLE_HEIGHT 5
 
-int new_word_clue(word_clue_t *clue, const char *word) {
+// Word clue class implementation.
+struct word_clue_t {
+    char *word; // Address of memory of the word to give clues of.
+    char *clue; // Address of memory of the clues already given.
+    size_t size; // Size of word.
+    size_t missing; // Number of chars that were not hinted.
+};
+
+word_clue_t *new_word_clue(const char *word) {
+    word_clue_t *clue = malloc(sizeof(word_clue_t));
+    if (clue == NULL)
+        return NULL;
     clue->word = malloc((strlen(word) + 1) * sizeof(char));
     if (clue->word == NULL)
-        return 1;
+        return NULL;
     strcpy(clue->word, word);
     clue->size = strlen(word);
     clue->missing = clue->size;
-    clue->width = clue->size * (FONT_CHAR_WIDTH + CLUE_CHAR_SPACING) - CLUE_CHAR_SPACING;
-    clue->height = FONT_CHAR_HEIGHT + RECTANGLE_HEIGHT;
 
     clue->clue = malloc(sizeof(char) * clue->size + 1);
     if (clue->clue == NULL)
-        return 1;
+        return NULL;
 
     memset(clue->clue, '?', clue->size);
     clue->clue[clue->size] = '\0';
     
-    return 0;
+    return clue;
+}
+
+uint16_t word_clue_get_width(word_clue_t *clue) {
+    return clue->size * (FONT_CHAR_WIDTH + CLUE_CHAR_SPACING) - CLUE_CHAR_SPACING;
 }
 
 int word_clue_draw(word_clue_t *clue, frame_buffer_t buf, uint16_t x, uint16_t y) {
@@ -92,13 +105,11 @@ void delete_word_clue(word_clue_t *clue) {
     if (clue == NULL)
         return;
 
-    if (clue->word != NULL) {
+    if (clue->word != NULL)
         free(clue->word);
-        clue->word = NULL;
-    }
-    if (clue->clue != NULL) {
+        
+    if (clue->clue != NULL) 
         free(clue->clue);
-        clue->clue = NULL;
-    }
 
+    free(clue);
 }

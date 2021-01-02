@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['parity_5ft_1085',['parity_t',['../group__uart.html#ga8c9f47bdc80c9f4db63b7bf8b1ad5290',1,'uart.h']]]
+  ['role_5ft_1021',['role_t',['../group__game.html#ga147824aa4797bb7a9bcf276b5de0cb7c',1,'game.h']]],
+  ['rtc_5finterrupt_5ft_1022',['rtc_interrupt_t',['../group__rtc.html#ga5415419ccb3977ce322fea96fdc8cd38',1,'rtc.h']]]
 ];

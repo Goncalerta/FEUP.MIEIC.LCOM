@@ -1,8 +1,7 @@
 <map id="game_resume" name="game_resume">
-<area shape="rect" id="node1" title="Resumes the game." alt="" coords="595,56,699,83"/>
-<area shape="rect" id="node2" href="$group__dispatcher.html#gaeefd35acea05833fa9d829f99e2ed6ca" title="Dispatches a keyboard event." alt="" coords="379,5,547,32"/>
-<area shape="rect" id="node3" href="$group__game.html#gad7c180906d7acb4776f4db147f289d7c" title="Starts the already created round." alt="" coords="399,56,526,83"/>
-<area shape="rect" id="node6" href="$group__menu.html#gafae9ccfd6e7de562283d6ffc8c3cf066" title="Loads the xpm images of the menu." alt="" coords="423,107,502,133"/>
-<area shape="rect" id="node4" href="$group__dispatcher.html#ga00f3579aee6fd77454373ac309f39675" title="Starts the round." alt="" coords="207,56,331,83"/>
-<area shape="rect" id="node5" href="$group__dispatcher.html#ga2607daafa4b66e729b8aa95ba97f1984" title="Dispatches a rtc alarm interrupt." alt="" coords="5,56,159,83"/>
+<area shape="rect" id="node1" title="Resumes the game." alt="" coords="352,56,456,83"/>
+<area shape="rect" id="node2" href="$group__game.html#gad7c180906d7acb4776f4db147f289d7c" title="Starts the already created round." alt="" coords="177,5,304,32"/>
+<area shape="rect" id="node4" href="$group__menu.html#gafae9ccfd6e7de562283d6ffc8c3cf066" title="Loads the xpm images of the menu." alt="" coords="201,56,280,83"/>
+<area shape="rect" id="node5" href="$group__menu.html#ga9f128e941aaff63bfe944f44504d21cb" title="Updates the menu according to a keyboard event." alt="" coords="181,107,300,133"/>
+<area shape="rect" id="node3" href="$group__dispatcher.html#ga00f3579aee6fd77454373ac309f39675" title="Starts the round." alt="" coords="5,5,129,32"/>
 </map>

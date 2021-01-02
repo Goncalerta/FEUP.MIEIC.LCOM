@@ -1,5 +1,6 @@
 <map id="menu.h" name="menu.h">
-<area shape="rect" id="node1" title="File dedicated to the interaction with the menu of the game as well as other program screens." alt="" coords="12,5,77,32"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,155,84,181"/>
-<area shape="rect" id="node3" href="$game_8h.html" title="File dedicated to the game logic." alt="" coords="48,80,113,107"/>
+<area shape="rect" id="node1" title="File dedicated to the interaction with the menu of the game as well as other program screens." alt="" coords="20,5,86,32"/>
+<area shape="rect" id="node2" title=" " alt="" coords="14,155,92,181"/>
+<area shape="rect" id="node3" href="$game_8h.html" title="File dedicated to the game logic." alt="" coords="20,80,86,107"/>
+<area shape="rect" id="node4" href="$keyboard_8h.html" title="File dedicated to interaction with the PC&#39;s Keyboard." alt="" coords="110,80,196,107"/>
 </map>

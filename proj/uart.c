@@ -7,7 +7,7 @@
 #define UART_SW_QUEUES_STARTING_CAPACITY 16
 
 static int hook_id_com1 = 4;
-static queue_t transmitted, received;
+static queue_t *transmitted, *received;
 static fifo_int_trigger_level_t fifo_int_trigger_level;
 
 int com1_subscribe_int(uint8_t *bit_no) {
@@ -61,24 +61,24 @@ void com1_ih() {
 }
 
 int uart_send_byte(uint8_t byte) {
-    if (queue_push(&transmitted, &byte) != OK)
+    if (queue_push(transmitted, &byte) != OK)
         return 1;
     
     return uart_send_bytes();
 }
 
 int uart_read_byte(uint8_t *byte) {
-    if (queue_is_empty(&received) != OK)
+    if (queue_is_empty(received) != OK)
         return 1;
-    if (queue_top(&received, byte) != OK)
+    if (queue_top(received, byte) != OK)
         return 1;
-    if (queue_pop(&received) != OK)
+    if (queue_pop(received) != OK)
         return 1;
     return 0;
 }
 
 bool uart_received_bytes() {
-    return !queue_is_empty(&received);
+    return !queue_is_empty(received);
 }
 
 int uart_receive_bytes() {
@@ -90,7 +90,7 @@ int uart_receive_bytes() {
     while (lsr_byte & LSR_RECEIVER_READY) {
         if (util_sys_inb(COM1_BASE_ADDR + RECEIVER_BUFFER_REG, &rbr_byte) != OK)
             return 1;
-        if (queue_push(&received, &rbr_byte) != OK)
+        if (queue_push(received, &rbr_byte) != OK)
             return 1;
         if (util_sys_inb(COM1_BASE_ADDR + LINE_STATUS_REG, &lsr_byte) != OK)
             return 1;
@@ -105,10 +105,10 @@ int uart_send_bytes() {
     if (util_sys_inb(COM1_BASE_ADDR + LINE_STATUS_REG, &lsr_byte) != OK)
         return 1;
     
-    while (!queue_is_empty(&transmitted) && (lsr_byte & LSR_TRANSMITTER_HOLDING_REGISTER_EMPTY)) {
-        if (queue_top(&transmitted, &thr_byte) != OK)
+    while (!queue_is_empty(transmitted) && (lsr_byte & LSR_TRANSMITTER_HOLDING_REGISTER_EMPTY)) {
+        if (queue_top(transmitted, &thr_byte) != OK)
             return 1;
-        if (queue_pop(&transmitted) != OK)
+        if (queue_pop(transmitted) != OK)
             return 1;
         if (sys_outb(COM1_BASE_ADDR + TRANSMITTER_HOLDING_REG, thr_byte) != OK)
             return 1;
@@ -149,34 +149,34 @@ void uart_handle_error() {
 }
 
 int uart_init_sw_queues() {
-    if (new_queue(&transmitted, sizeof(uint8_t), UART_SW_QUEUES_STARTING_CAPACITY) != OK) {
+    transmitted = new_queue(sizeof(uint8_t), UART_SW_QUEUES_STARTING_CAPACITY);
+    if (transmitted == NULL)
         return 1;
-    }
 
-    if (new_queue(&received, sizeof(uint8_t), UART_SW_QUEUES_STARTING_CAPACITY) != OK) {
+    received = new_queue(sizeof(uint8_t), UART_SW_QUEUES_STARTING_CAPACITY);
+    if (received == NULL)
         return 1;
-    }
 
     return 0;
 }
 
 void uart_delete_sw_queues() {
-    delete_queue(&transmitted);
-    delete_queue(&received);
+    delete_queue(transmitted);
+    delete_queue(received);
 }
 
 int uart_flush_received_bytes(uint8_t *no_bytes, uint8_t *first, uint8_t *last) {
     *no_bytes = 0;
 
     // First empty received bytes in queue
-    while (!queue_is_empty(&received)) {
-        if (queue_top(&received, last) != OK)
+    while (!queue_is_empty(received)) {
+        if (queue_top(received, last) != OK)
             return 1;
         if (no_bytes == 0) {
             *first = *last;
         }
         *no_bytes += 1;
-        if (queue_pop(&received) != OK)
+        if (queue_pop(received) != OK)
             return 1;
     }
 

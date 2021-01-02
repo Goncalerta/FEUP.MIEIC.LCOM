@@ -1,8 +1,9 @@
 <map id="game_new_round" name="game_new_round">
-<area shape="rect" id="node1" title="Creates a new round." alt="" coords="5,89,128,116"/>
-<area shape="rect" id="node2" href="$group__game.html#gadede5f1c2e6f4a506c211cd8045dc449" title="Deletes the current game round." alt="" coords="188,31,323,57"/>
-<area shape="rect" id="node5" href="$group__game.html#gaaf13ffc234d82a3a9acf2206c7e09e48" title="Checks if a new round may be created." alt="" coords="176,82,335,123"/>
-<area shape="rect" id="node6" href="$group__clue.html#ga3396d068c7b71ed4e7b6d8ddebd76ece" title="Initializes new word clue." alt="" coords="200,148,311,175"/>
-<area shape="rect" id="node3" href="$group__textbox.html#ga2f207c8555da953e14b641615f2d9421" title="Frees the space allocated in memory to store the content of a given text box." alt="" coords="387,5,501,32"/>
-<area shape="rect" id="node4" href="$group__clue.html#ga0425307d69028408fcaad6cf23e7a13a" title="Frees the space allocated in memory to store the content of a given word clue." alt="" coords="383,56,505,83"/>
+<area shape="rect" id="node1" title="Creates a new round." alt="" coords="5,115,128,141"/>
+<area shape="rect" id="node2" href="$group__game.html#gadede5f1c2e6f4a506c211cd8045dc449" title="Deletes the current game round." alt="" coords="188,56,323,83"/>
+<area shape="rect" id="node6" href="$group__game.html#gaaf13ffc234d82a3a9acf2206c7e09e48" title="Checks if a new round may be created." alt="" coords="176,107,335,149"/>
+<area shape="rect" id="node7" href="$group__clue.html#ga3396d068c7b71ed4e7b6d8ddebd76ece" title="Initializes new word clue." alt="" coords="200,173,311,200"/>
+<area shape="rect" id="node3" href="$group__button.html#ga48a96f09e1170ecdb6340f1b125daef9" title="Initializes a button." alt="" coords="394,5,494,32"/>
+<area shape="rect" id="node4" href="$group__textbox.html#ga2f207c8555da953e14b641615f2d9421" title="Frees the space allocated in memory to store the content of a given text box." alt="" coords="387,56,501,83"/>
+<area shape="rect" id="node5" href="$group__clue.html#ga0425307d69028408fcaad6cf23e7a13a" title="Frees the space allocated in memory to store the content of a given word clue." alt="" coords="383,107,505,133"/>
 </map>

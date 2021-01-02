@@ -1,7 +1,6 @@
 <map id="button_set_circle_icon" name="button_set_circle_icon">
-<area shape="rect" id="node1" title="Sets a circle icon to a given button." alt="" coords="609,46,761,73"/>
-<area shape="rect" id="node2" href="$group__game.html#gab537b849307e8169410c0a5ee34fbc3c" title="Changes the selected color if this player is the drawer." alt="" coords="396,5,561,47"/>
-<area shape="rect" id="node5" href="$group__game.html#ga799729f35345ff1cb4992ba19aaa28a9" title="Changes the selected thickness if this player is the drawer." alt="" coords="396,71,561,112"/>
-<area shape="rect" id="node3" href="$group__canvas.html#ga8ad75f7f8cd0333e14d51a533da88883" title="Updates the canvas according to a keyboard event." alt="" coords="221,46,348,73"/>
-<area shape="rect" id="node4" href="$group__dispatcher.html#gaeefd35acea05833fa9d829f99e2ed6ca" title="Dispatches a keyboard event." alt="" coords="5,46,173,73"/>
+<area shape="rect" id="node1" title="Sets a circle icon to a given button." alt="" coords="393,46,545,73"/>
+<area shape="rect" id="node2" href="$group__game.html#gab537b849307e8169410c0a5ee34fbc3c" title="Changes the selected color if this player is the drawer." alt="" coords="180,5,345,47"/>
+<area shape="rect" id="node4" href="$group__game.html#ga799729f35345ff1cb4992ba19aaa28a9" title="Changes the selected thickness if this player is the drawer." alt="" coords="180,71,345,112"/>
+<area shape="rect" id="node3" href="$group__canvas.html#ga8ad75f7f8cd0333e14d51a533da88883" title="Updates the canvas according to a keyboard event." alt="" coords="5,46,132,73"/>
 </map>

@@ -2,8 +2,9 @@
 <area shape="rect" id="node1" title="Reveals another character in the word clue and notifies the other player." alt="" coords="5,56,120,83"/>
 <area shape="rect" id="node2" href="$group__protocol.html#gafadb8c0242e740b68757640ed9d026fd" title="Sends a message of type MSG_CLUE." alt="" coords="168,5,303,32"/>
 <area shape="rect" id="node3" href="$group__rtc.html#ga49dc9bc6e37a97deaf7ee0dc0f9110e1" title="Sets an alarm with remaining time to alarm from now." alt="" coords="176,56,295,83"/>
-<area shape="rect" id="node7" href="$group__clue.html#gaa1bfb55e74e59e1c571b12d25a3d60b1" title="Randomly hints a new char in the given word clue." alt="" coords="181,107,289,133"/>
+<area shape="rect" id="node8" href="$group__clue.html#gaa1bfb55e74e59e1c571b12d25a3d60b1" title="Randomly hints a new char in the given word clue." alt="" coords="181,107,289,133"/>
 <area shape="rect" id="node4" href="$group__date.html#gacf12b565d3e4489dd6026ce1ee6b5ebc" title="Adds a date_t to a rtc_alarm_time_t." alt="" coords="351,31,500,57"/>
 <area shape="rect" id="node5" href="$group__rtc.html#ga2780c6d57b30b6d1804927a1d5c1dd1b" title="Enables a type of interrupt with the given configuration." alt="" coords="374,81,477,108"/>
-<area shape="rect" id="node6" href="$group__rtc.html#gaeb22f43773d6e29365a07f7f847dfbb9" title="Reads data from a RTC register." alt="" coords="548,81,667,108"/>
+<area shape="rect" id="node6" href="$group__rtc.html#gaeb22f43773d6e29365a07f7f847dfbb9" title="Reads data from a RTC register." alt="" coords="549,56,668,83"/>
+<area shape="rect" id="node7" href="$group__rtc.html#ga30aa093c07ae9ee5626c2a50a40641d1" title="Writes data to a RTC register." alt="" coords="548,107,669,133"/>
 </map>

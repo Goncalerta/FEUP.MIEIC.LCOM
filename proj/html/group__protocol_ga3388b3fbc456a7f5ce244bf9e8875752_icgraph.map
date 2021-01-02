@@ -1,6 +1,5 @@
 <map id="protocol_send_undo_canvas" name="protocol_send_undo_canvas">
-<area shape="rect" id="node1" title="Sends a message of type MSG_UNDO_CANVAS." alt="" coords="531,5,669,47"/>
-<area shape="rect" id="node2" href="$group__dispatcher.html#ga51ba304d71f082904a79be3769ec7ee7" title="Undoes a canvas stroke and notifies the other player." alt="" coords="396,13,483,39"/>
-<area shape="rect" id="node3" href="$group__canvas.html#ga8ad75f7f8cd0333e14d51a533da88883" title="Updates the canvas according to a keyboard event." alt="" coords="221,13,348,39"/>
-<area shape="rect" id="node4" href="$group__dispatcher.html#gaeefd35acea05833fa9d829f99e2ed6ca" title="Dispatches a keyboard event." alt="" coords="5,13,173,39"/>
+<area shape="rect" id="node1" title="Sends a message of type MSG_UNDO_CANVAS." alt="" coords="315,5,453,47"/>
+<area shape="rect" id="node2" href="$group__dispatcher.html#ga51ba304d71f082904a79be3769ec7ee7" title="Undoes a canvas stroke and notifies the other player." alt="" coords="180,13,267,39"/>
+<area shape="rect" id="node3" href="$group__canvas.html#ga8ad75f7f8cd0333e14d51a533da88883" title="Updates the canvas according to a keyboard event." alt="" coords="5,13,132,39"/>
 </map>

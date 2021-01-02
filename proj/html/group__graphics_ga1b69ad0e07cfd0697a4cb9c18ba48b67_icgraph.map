@@ -1,9 +1,6 @@
 <map id="vb_draw_circle" name="vb_draw_circle">
-<area shape="rect" id="node1" title="Draws a circle in the given buffer in the given coordinates with the given radius with the given colo..." alt="" coords="607,56,713,83"/>
-<area shape="rect" id="node2" href="$group__button.html#ga5b499ecd345cc4ab20cb3194a01fc937" title="Draws a given button to the given buffer." alt="" coords="465,5,557,32"/>
-<area shape="rect" id="node6" href="$group__cursor.html#ga1f0539239b1f5a7f3de05af786aeaab2" title="Draws the cursor to the back buffer in its current position according to its current state." alt="" coords="324,56,416,83"/>
-<area shape="rect" id="node7" href="$group__graphics.html#ga656f35ff9a04a0e66245aed5babc1209" title="Draws a line in the given buffer from the given coordinates to other given coordinates with the given..." alt="" coords="464,107,559,133"/>
-<area shape="rect" id="node3" href="$group__menu.html#ga35731eaa9442f8db276220d9fc77dcf6" title="Draws the menu according to its state to the back buffer." alt="" coords="326,5,414,32"/>
-<area shape="rect" id="node4" href="$group__dispatcher.html#ga1265a5e2843f2b1c45ad05ae61de7000" title="Draws the frame to the back buffer and flips the buffers." alt="" coords="188,31,276,57"/>
-<area shape="rect" id="node5" href="$group__dispatcher.html#ga0a68e937b31744d0f19e7524b2e9ad59" title="Dispatches a timer interrupt." alt="" coords="5,31,140,57"/>
+<area shape="rect" id="node1" title="Draws a circle in the given buffer in the given coordinates with the given radius with the given colo..." alt="" coords="284,31,391,57"/>
+<area shape="rect" id="node2" href="$group__cursor.html#ga1f0539239b1f5a7f3de05af786aeaab2" title="Draws the cursor to the back buffer in its current position according to its current state." alt="" coords="143,5,235,32"/>
+<area shape="rect" id="node4" href="$group__graphics.html#ga656f35ff9a04a0e66245aed5babc1209" title="Draws a line in the given buffer from the given coordinates to other given coordinates with the given..." alt="" coords="141,56,236,83"/>
+<area shape="rect" id="node3" href="$group__dispatcher.html#ga1265a5e2843f2b1c45ad05ae61de7000" title="Draws the frame to the back buffer and flips the buffers." alt="" coords="5,5,93,32"/>
 </map>

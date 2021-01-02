@@ -13,7 +13,7 @@
 #define PROTOCOL_WAIT_TIMEOUT_TICKS 90 // maximum seconds to timeout (receiving messages or acknowledgments)
 #define PENDING_MESSAGES_CAPACITY 8 // starting capacity of pending_messages queue
 
-static queue_t pending_messages;
+static queue_t *pending_messages;
 static bool awaiting_ack = false;
 static uint8_t awaiting_ack_ticks = 0;
 
@@ -27,7 +27,7 @@ static int protocol_handle_connection_timeout() {
     awaiting_ack = false;
     if (event_other_player_leave_game() != OK)
         return 1;
-    queue_empty(&pending_messages);
+    queue_empty(pending_messages);
     
     return 0;
 }
@@ -297,11 +297,11 @@ static const message_handle_t message_handle[NUMBER_OF_MESSAGES] = {
 };
 
 static int protocol_send_next_message() {
-    if (queue_is_empty(&pending_messages))
+    if (queue_is_empty(pending_messages))
         return 0;
     
     message_t msg;
-    if (queue_top(&pending_messages, &msg) != OK)
+    if (queue_top(pending_messages, &msg) != OK)
         return 1;
     
     if (uart_send_byte(msg.content_len + 2) != OK)
@@ -322,7 +322,7 @@ static int protocol_send_next_message() {
 }
 
 static int protocol_add_message(message_t message) {
-    if (queue_push(&pending_messages, &message) != OK)
+    if (queue_push(pending_messages, &message) != OK)
         return 1;
 
     if (!awaiting_ack) {
@@ -336,12 +336,12 @@ static int protocol_handle_ack() {
     message_t msg;
     
     if (awaiting_ack) {
-        if (queue_top(&pending_messages, &msg) != OK)
+        if (queue_top(pending_messages, &msg) != OK)
             return 1;
         
         protocol_delete_message(&msg);
 
-        if (queue_pop(&pending_messages) != OK)
+        if (queue_pop(pending_messages) != OK)
             return 1;
     
         awaiting_ack = false;
@@ -496,7 +496,8 @@ int protocol_handle_received_bytes() {
 }
 
 int protocol_config_uart() {
-    if (new_queue(&pending_messages, sizeof(message_t), PENDING_MESSAGES_CAPACITY) != OK)
+    pending_messages = new_queue(sizeof(message_t), PENDING_MESSAGES_CAPACITY);
+    if (pending_messages == NULL)
         return 1;
     
     awaiting_ack = false;
@@ -517,7 +518,7 @@ int protocol_config_uart() {
 }
 
 void protocol_exit() {
-    delete_queue(&pending_messages);
+    delete_queue(pending_messages);
     if (receiving_msg_bits != NULL) {
         free(receiving_msg_bits);
         receiving_msg_bits = NULL;

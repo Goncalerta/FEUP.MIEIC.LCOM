@@ -20,7 +20,7 @@
 
 static bool end = false;
 
-static queue_t events_to_handle;
+static queue_t *events_to_handle;
 static bool bound_canvas = false;
 static size_t num_listening_buttons = 0;
 static button_t **listening_buttons = NULL;
@@ -39,14 +39,16 @@ static player_state_t other_player_state = NOT_READY;
 static int other_player_random_number = 0;
 
 int dispatcher_init() {
-    if (new_queue(&events_to_handle, sizeof(event_t), EVENTS_TO_HANDLE_CAPACITY) != OK)
+    events_to_handle = new_queue(sizeof(event_t), EVENTS_TO_HANDLE_CAPACITY);
+    if (events_to_handle == NULL)
         return 1;
+    
     return 0;
 }
 
 void dispatcher_exit() {
     dispatcher_reset_bindings();
-    delete_queue(&events_to_handle);
+    delete_queue(events_to_handle);
 }
 
 int dispatcher_bind_buttons(size_t number_of_buttons, ...) {
@@ -116,7 +118,7 @@ int dispatcher_reset_bindings() {
 }
 
 int dispatcher_queue_event(event_t event) {
-    if (queue_push(&events_to_handle, &event) != OK)
+    if (queue_push(events_to_handle, &event) != OK)
         return 1;
     
     return 0;
@@ -153,7 +155,7 @@ int event_update_cursor_state() {
 
     for (size_t i = 0; i < num_listening_buttons; i++) {
         button_t *button = listening_buttons[i];
-        if (!hovering && button_is_hovering(*button, x, y)) {
+        if (!hovering && button_is_hovering(button, x, y)) {
             hovering = true;
             if (button_update_state(button, true, lb, rb) != OK)
                 return 1;
@@ -165,7 +167,7 @@ int event_update_cursor_state() {
     
     for (size_t i = 0; i < num_listening_text_boxes; i++) {
         text_box_t *text_box = listening_text_boxes[i];
-        if (!hovering && text_box_is_hovering(*text_box, x, y)) {
+        if (!hovering && text_box_is_hovering(text_box, x, y)) {
             hovering = true;
             if (text_box_update_state(text_box, true, lb, rb, x, y) != OK)
                 return 1;
@@ -173,7 +175,7 @@ int event_update_cursor_state() {
             if (text_box_update_state(text_box, false, lb, rb, x, y) != OK)
                 return 1;
         }
-        if (text_box->state != TEXT_BOX_NORMAL && text_box->state != TEXT_BOX_SELECTED_NOT_HOVERING) {
+        if (text_box_is_reacting_to_cursor_hovering(text_box)) {
             cursor_set_state(CURSOR_WRITE);
         }
     }
@@ -292,13 +294,13 @@ static const event_dispatcher dispatchers[7] = {
 };
 
 void dispatcher_dispatch_events() {
-    while (!queue_is_empty(&events_to_handle)) {
+    while (!queue_is_empty(events_to_handle)) {
         event_t event;
-        if (queue_top(&events_to_handle, &event) != OK) {
+        if (queue_top(events_to_handle, &event) != OK) {
             printf("Failed to retrieve queued event\n");
             continue;
         }
-        if (queue_pop(&events_to_handle) != OK) {
+        if (queue_pop(events_to_handle) != OK) {
             printf("Failed to retrieve queued event\n");
             continue;
         }

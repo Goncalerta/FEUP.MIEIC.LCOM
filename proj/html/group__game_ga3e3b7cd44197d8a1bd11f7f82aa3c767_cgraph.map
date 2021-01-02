@@ -1,9 +1,10 @@
 <map id="game_round_over" name="game_round_over">
 <area shape="rect" id="node1" title="Ends the current round." alt="" coords="5,56,128,83"/>
 <area shape="rect" id="node2" href="$group__clue.html#ga4362997e5a7009bc2cd0fe105e2fa9fc" title="Makes the whole word revealed in the given word clue." alt="" coords="192,5,279,32"/>
-<area shape="rect" id="node3" href="$group__rtc.html#gad0e26524911e8ec8710cd8364fcd924a" title="Disables a type of interrupt." alt="" coords="364,56,471,83"/>
-<area shape="rect" id="node5" href="$group__rtc.html#ga49dc9bc6e37a97deaf7ee0dc0f9110e1" title="Sets an alarm with remaining time to alarm from now." alt="" coords="176,107,295,133"/>
-<area shape="rect" id="node4" href="$group__rtc.html#gaeb22f43773d6e29365a07f7f847dfbb9" title="Reads data from a RTC register." alt="" coords="540,107,659,133"/>
-<area shape="rect" id="node6" href="$group__date.html#gacf12b565d3e4489dd6026ce1ee6b5ebc" title="Adds a date_t to a rtc_alarm_time_t." alt="" coords="343,107,492,133"/>
-<area shape="rect" id="node7" href="$group__rtc.html#ga2780c6d57b30b6d1804927a1d5c1dd1b" title="Enables a type of interrupt with the given configuration." alt="" coords="366,157,469,184"/>
+<area shape="rect" id="node3" href="$group__rtc.html#gad0e26524911e8ec8710cd8364fcd924a" title="Disables a type of interrupt." alt="" coords="364,107,471,133"/>
+<area shape="rect" id="node6" href="$group__rtc.html#ga49dc9bc6e37a97deaf7ee0dc0f9110e1" title="Sets an alarm with remaining time to alarm from now." alt="" coords="176,56,295,83"/>
+<area shape="rect" id="node4" href="$group__rtc.html#gaeb22f43773d6e29365a07f7f847dfbb9" title="Reads data from a RTC register." alt="" coords="541,19,660,45"/>
+<area shape="rect" id="node5" href="$group__rtc.html#ga30aa093c07ae9ee5626c2a50a40641d1" title="Writes data to a RTC register." alt="" coords="540,81,661,108"/>
+<area shape="rect" id="node7" href="$group__date.html#gacf12b565d3e4489dd6026ce1ee6b5ebc" title="Adds a date_t to a rtc_alarm_time_t." alt="" coords="343,56,492,83"/>
+<area shape="rect" id="node8" href="$group__rtc.html#ga2780c6d57b30b6d1804927a1d5c1dd1b" title="Enables a type of interrupt with the given configuration." alt="" coords="366,5,469,32"/>
 </map>

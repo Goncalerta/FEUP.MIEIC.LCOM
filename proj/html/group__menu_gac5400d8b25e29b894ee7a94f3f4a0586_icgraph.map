@@ -1,8 +1,5 @@
 <map id="menu_get_state" name="menu_get_state">
-<area shape="rect" id="node1" title="Gets the current menu state." alt="" coords="404,107,519,133"/>
-<area shape="rect" id="node2" href="$group__dispatcher.html#gaeefd35acea05833fa9d829f99e2ed6ca" title="Dispatches a keyboard event." alt="" coords="188,5,356,32"/>
-<area shape="rect" id="node3" href="$group__dispatcher.html#ga2607daafa4b66e729b8aa95ba97f1984" title="Dispatches a rtc alarm interrupt." alt="" coords="195,56,349,83"/>
-<area shape="rect" id="node4" href="$group__dispatcher.html#ga091e29979e7808dc87b71f52d3510553" title="Dispatches a rtc periodic interrupt." alt="" coords="189,107,355,133"/>
-<area shape="rect" id="node5" href="$group__dispatcher.html#ga0a68e937b31744d0f19e7524b2e9ad59" title="Dispatches a timer interrupt." alt="" coords="5,183,140,209"/>
-<area shape="rect" id="node6" href="$group__dispatcher.html#ga1265a5e2843f2b1c45ad05ae61de7000" title="Draws the frame to the back buffer and flips the buffers." alt="" coords="228,208,316,235"/>
+<area shape="rect" id="node1" title="Gets the current menu state." alt="" coords="172,31,287,57"/>
+<area shape="rect" id="node2" href="$group__dispatcher.html#ga1265a5e2843f2b1c45ad05ae61de7000" title="Draws the frame to the back buffer and flips the buffers." alt="" coords="21,5,109,32"/>
+<area shape="rect" id="node3" href="$group__menu.html#ga9f128e941aaff63bfe944f44504d21cb" title="Updates the menu according to a keyboard event." alt="" coords="5,56,124,83"/>
 </map>

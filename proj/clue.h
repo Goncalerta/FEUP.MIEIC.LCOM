@@ -14,27 +14,29 @@
  * @brief Module dedicated to word clues.
  */
 
+struct word_clue_t;
+
 /**
- * @brief Word clue info.
+ * @brief Word clue class.
  * 
  */
-typedef struct word_clue_t {
-    char *word; /*!< @brief Address of memory of the word to give clues of. */
-    char *clue; /*!< @brief Address of memory of the clues already given. */
-    size_t size; /*!< @brief Size of word. */
-    size_t missing; /*!< @brief Number of chars that were not hinted. */
-    uint16_t width; /*!< @brief Width of the clue on the screen. */
-    uint16_t height; /*!< @brief Height of the clue on the screen. */
-} word_clue_t;
+typedef struct word_clue_t word_clue_t;
 
 /**
  * @brief Initializes new word clue.
  * 
- * @param clue address of memory to the word clue
  * @param word address of memory of the word to be used
- * @return Return 0 upon success and non-zero otherwise
+ * @return Address of memory of the word clue initialized, or NULL if an error occurred.
  */
-int new_word_clue(word_clue_t *clue, const char *word);
+word_clue_t *new_word_clue(const char *word);
+
+/**
+ * @brief Gets the width in pixels of a word clue.
+ * 
+ * @param clue address of memory to the word clue
+ * @return Return the width of the word clue
+ */
+uint16_t word_clue_get_width(word_clue_t *clue);
 
 /**
  * @brief Draws a given word clue to the given buffer on the given coordinates.

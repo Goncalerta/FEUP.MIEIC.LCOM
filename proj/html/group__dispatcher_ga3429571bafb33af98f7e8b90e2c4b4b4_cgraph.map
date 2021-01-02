@@ -1,15 +1,16 @@
 <map id="event_guess_word" name="event_guess_word">
 <area shape="rect" id="node1" title="Tries to guess the word and notifies the other player." alt="" coords="5,132,133,159"/>
 <area shape="rect" id="node2" href="$group__game.html#ga5a725e3c48e6564fd75d04c2e4d163ba" title="Adds a word guess. And reacts according to weather it is correct." alt="" coords="197,81,328,108"/>
-<area shape="rect" id="node12" href="$group__game.html#gac02470c210dcf7be41d128ba5e9940d8" title="Checks if the round is ongoing." alt="" coords="181,132,344,159"/>
-<area shape="rect" id="node13" href="$group__protocol.html#ga7ecf39afd738fd733192d8efa3b72543" title="Sends a message of type MSG_GUESS." alt="" coords="190,183,335,209"/>
+<area shape="rect" id="node13" href="$group__game.html#gac02470c210dcf7be41d128ba5e9940d8" title="Checks if the round is ongoing." alt="" coords="181,132,344,159"/>
+<area shape="rect" id="node14" href="$group__protocol.html#ga7ecf39afd738fd733192d8efa3b72543" title="Sends a message of type MSG_GUESS." alt="" coords="190,183,335,209"/>
 <area shape="rect" id="node3" href="$group__dispatcher.html#ga37df00ab49c3c54dcf2fd2cee7a952a5" title="Sets the round as won, updates the score and notifies the other player." alt="" coords="392,81,509,108"/>
 <area shape="rect" id="node4" href="$group__game.html#ga3e3b7cd44197d8a1bd11f7f82aa3c767" title="Ends the current round." alt="" coords="580,56,703,83"/>
-<area shape="rect" id="node11" href="$group__protocol.html#gacfefff6d72000e2ec5cf3060d675a64a" title="Sends a message of type MSG_ROUND_WIN." alt="" coords="557,107,725,133"/>
+<area shape="rect" id="node12" href="$group__protocol.html#gacfefff6d72000e2ec5cf3060d675a64a" title="Sends a message of type MSG_ROUND_WIN." alt="" coords="557,107,725,133"/>
 <area shape="rect" id="node5" href="$group__clue.html#ga4362997e5a7009bc2cd0fe105e2fa9fc" title="Makes the whole word revealed in the given word clue." alt="" coords="789,5,876,32"/>
-<area shape="rect" id="node6" href="$group__rtc.html#gad0e26524911e8ec8710cd8364fcd924a" title="Disables a type of interrupt." alt="" coords="961,56,1068,83"/>
-<area shape="rect" id="node8" href="$group__rtc.html#ga49dc9bc6e37a97deaf7ee0dc0f9110e1" title="Sets an alarm with remaining time to alarm from now." alt="" coords="773,107,892,133"/>
-<area shape="rect" id="node7" href="$group__rtc.html#gaeb22f43773d6e29365a07f7f847dfbb9" title="Reads data from a RTC register." alt="" coords="1137,107,1256,133"/>
-<area shape="rect" id="node9" href="$group__date.html#gacf12b565d3e4489dd6026ce1ee6b5ebc" title="Adds a date_t to a rtc_alarm_time_t." alt="" coords="940,107,1089,133"/>
-<area shape="rect" id="node10" href="$group__rtc.html#ga2780c6d57b30b6d1804927a1d5c1dd1b" title="Enables a type of interrupt with the given configuration." alt="" coords="963,157,1066,184"/>
+<area shape="rect" id="node6" href="$group__rtc.html#gad0e26524911e8ec8710cd8364fcd924a" title="Disables a type of interrupt." alt="" coords="961,107,1068,133"/>
+<area shape="rect" id="node9" href="$group__rtc.html#ga49dc9bc6e37a97deaf7ee0dc0f9110e1" title="Sets an alarm with remaining time to alarm from now." alt="" coords="773,56,892,83"/>
+<area shape="rect" id="node7" href="$group__rtc.html#gaeb22f43773d6e29365a07f7f847dfbb9" title="Reads data from a RTC register." alt="" coords="1139,19,1257,45"/>
+<area shape="rect" id="node8" href="$group__rtc.html#ga30aa093c07ae9ee5626c2a50a40641d1" title="Writes data to a RTC register." alt="" coords="1137,81,1259,108"/>
+<area shape="rect" id="node10" href="$group__date.html#gacf12b565d3e4489dd6026ce1ee6b5ebc" title="Adds a date_t to a rtc_alarm_time_t." alt="" coords="940,56,1089,83"/>
+<area shape="rect" id="node11" href="$group__rtc.html#ga2780c6d57b30b6d1804927a1d5c1dd1b" title="Enables a type of interrupt with the given configuration." alt="" coords="963,5,1066,32"/>
 </map>

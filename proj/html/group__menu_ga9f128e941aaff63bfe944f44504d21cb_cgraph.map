@@ -1,0 +1,31 @@
+<map id="menu_react_kbd" name="menu_react_kbd">
+<area shape="rect" id="node1" title="Updates the menu according to a keyboard event." alt="" coords="5,270,124,296"/>
+<area shape="rect" id="node2" href="$group__game.html#ga52118602811d7516e865c66a7410fd58" title="Resumes the game." alt="" coords="200,270,304,296"/>
+<area shape="rect" id="node28" href="$group__menu.html#gac5400d8b25e29b894ee7a94f3f4a0586" title="Gets the current menu state." alt="" coords="195,320,309,347"/>
+<area shape="rect" id="node29" href="$group__menu.html#ga2471e39c56761768b9ceabdd4d5e732f" title="Sets the menu to pause menu." alt="" coords="172,194,332,220"/>
+<area shape="rect" id="node3" href="$group__dispatcher.html#ga09a194e07832b8e7984e1b50d9722a80" title="Binds the given buttons to the dispatcher." alt="" coords="601,240,764,267"/>
+<area shape="rect" id="node4" href="$group__dispatcher.html#gab72c16c8547625b6dde1d4626b3c9c99" title="Binds or unbinds the canvas to the dispatcher." alt="" coords="603,358,763,384"/>
+<area shape="rect" id="node21" href="$group__dispatcher.html#ga4701c82e8ae5bf8fa045347e26aefb74" title="Binds the given text boxes to the dispatcher." alt="" coords="611,292,754,333"/>
+<area shape="rect" id="node22" href="$group__dispatcher.html#gab9458678bdcdc4f0ff458f8a9b27c638" title="Resets all dispatcher bindings." alt="" coords="380,270,553,296"/>
+<area shape="rect" id="node23" href="$group__dispatcher.html#ga1870958649b46017847735537a5701e1" title="Updates the cursor state and updates the game according to it." alt="" coords="396,102,537,144"/>
+<area shape="rect" id="node27" href="$group__menu.html#gaa2f9ad11fdc632d1a6cb3d2ab271f776" title="Sets the menu to the game screen." alt="" coords="385,320,549,347"/>
+<area shape="rect" id="node5" href="$group__canvas.html#ga95661aa91869ceace06141f45c078210" title="Updates the state of the canvas according to given mouse info." alt="" coords="812,280,956,307"/>
+<area shape="rect" id="node6" href="$group__cursor.html#ga479cd0880892e002681b109c7a712c04" title="Gets cursor x coordinate." alt="" coords="1027,190,1124,216"/>
+<area shape="rect" id="node7" href="$group__cursor.html#ga15c1a0816c95ad240b94dc15480b403a" title="Gets cursor y coordinate." alt="" coords="1027,63,1124,90"/>
+<area shape="rect" id="node8" href="$group__game.html#ga2a86959de5de66b3881ada72cf3a5850" title="Switches the tool used (pencil/eraser) if this player is the drawer." alt="" coords="1004,488,1147,529"/>
+<area shape="rect" id="node13" href="$group__dispatcher.html#ga36337f8ccb7dcd6324010125bcf42dc1" title="Adds a new atom to the stroke being drawn in the canvas and notifies the other player." alt="" coords="1016,240,1135,267"/>
+<area shape="rect" id="node16" href="$group__dispatcher.html#ga4aeb5b63078cf7887e70a0696e5427e2" title="Starts drawing new stroke in the canvas and notifies the other player." alt="" coords="1013,320,1138,347"/>
+<area shape="rect" id="node9" href="$group__game.html#gad2612affb6e1d0b40f1972a751ad6674" title="Sets the eraser primary if this player is the drawer." alt="" coords="1195,546,1373,572"/>
+<area shape="rect" id="node12" href="$group__game.html#gab09c1e5c83d1408799b41ae9863259ef" title="Sets the pencil primary if this player is the drawer." alt="" coords="1196,495,1372,522"/>
+<area shape="rect" id="node10" href="$group__button.html#ga6fdbd6cb9f7febe9bc371326f96f365d" title="Sets the border of a given button active." alt="" coords="1421,550,1588,576"/>
+<area shape="rect" id="node11" href="$group__button.html#ga0425667543e54af67fe4010a57476d05" title="Sets the border of a given button inactive." alt="" coords="1435,484,1575,525"/>
+<area shape="rect" id="node14" href="$group__canvas.html#ga9635fd19e44c814f55f50eb213d6b6b3" title="Adds a new atom to the current stroke." alt="" coords="1199,160,1369,187"/>
+<area shape="rect" id="node15" href="$group__protocol.html#ga0ef9e0d21713f79d9c42f68b435d209a" title="Sends a message of type MSG_DRAW_ATOM." alt="" coords="1199,211,1369,238"/>
+<area shape="rect" id="node17" href="$group__canvas.html#ga79691af660bfc7d635d4727f2cbfd59a" title="Starts a new stroke in the canvas." alt="" coords="1217,262,1351,288"/>
+<area shape="rect" id="node18" href="$group__game.html#ga3fd14fd97f9704dccd8f8b0e6e53960f" title="Gets the drawer selected color." alt="" coords="1213,313,1355,354"/>
+<area shape="rect" id="node19" href="$group__game.html#ga7a01e47255ad988eefbe2e0067a3e26c" title="Gets the drawer selected thickness." alt="" coords="1213,378,1355,420"/>
+<area shape="rect" id="node20" href="$group__protocol.html#ga48456102bf88a8974c153a8b117f9480" title="Sends a message of type MSG_NEW_STROKE." alt="" coords="1196,444,1372,471"/>
+<area shape="rect" id="node24" href="$group__cursor.html#gac0fa742a26e68888018245125c26d5d6" title="Gets the left button state. (either pressed or not)" alt="" coords="633,38,733,64"/>
+<area shape="rect" id="node25" href="$group__cursor.html#ga7da23fec369ac0db044e35d1ff1fb95c" title="Gets the right button state. (either pressed or not)" alt="" coords="632,88,733,115"/>
+<area shape="rect" id="node26" href="$group__cursor.html#ga76ed8ba253d1ffd6ef14da30591ad15f" title="Sets the cursor state." alt="" coords="623,139,742,166"/>
+</map>

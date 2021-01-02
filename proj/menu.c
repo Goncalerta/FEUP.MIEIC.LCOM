@@ -24,12 +24,12 @@
 static menu_state_t menu_state = MAIN_MENU;
 
 // MAIN MENU:
-static button_t b_new_game;
-static button_t b_end_program;
+static button_t *b_new_game;
+static button_t *b_end_program;
 
 // PAUSE_MENU:
-static button_t b_resume;
-static button_t b_back_to_main_menu;
+static button_t *b_resume;
+static button_t *b_back_to_main_menu;
 
 // AWAITING PLAYER:
 static uint8_t awaiting_player_tick = 0;
@@ -43,31 +43,45 @@ int menu_init(enum xpm_image_type type) {
 
     if (xpm_load(xpm_menu_new_game, type, &xpm_new_game) == NULL)
         return 1;
-    new_button(&b_new_game, x, y, MENU_BUTTON_WIDTH, MENU_BUTTON_HEIGHT, event_ready_to_play);
-    button_set_xpm_icon(&b_new_game, xpm_new_game);
+    b_new_game = new_button(x, y, MENU_BUTTON_WIDTH, MENU_BUTTON_HEIGHT, event_ready_to_play);
+    if (b_new_game == NULL)
+        return 1;
+    button_set_xpm_icon(b_new_game, xpm_new_game);
     
     if (xpm_load(xpm_menu_resume, type, &xpm_resume) == NULL)
         return 1;
-    new_button(&b_resume, x, y, MENU_BUTTON_WIDTH, MENU_BUTTON_HEIGHT, game_resume);
-    button_set_xpm_icon(&b_resume, xpm_resume);
+    b_resume = new_button(x, y, MENU_BUTTON_WIDTH, MENU_BUTTON_HEIGHT, game_resume);
+    if (b_resume == NULL)
+        return 1;
+    button_set_xpm_icon(b_resume, xpm_resume);
 
     y += MENU_BUTTON_HEIGHT + MENU_BUTTON_DISTANCE;
 
     if (xpm_load(xpm_menu_exit_game, type, &xpm_exit) == NULL)
         return 1;
-    new_button(&b_end_program, x, y, MENU_BUTTON_WIDTH, MENU_BUTTON_HEIGHT, event_end_program);
-    button_set_xpm_icon(&b_end_program, xpm_exit);
+    b_end_program = new_button(x, y, MENU_BUTTON_WIDTH, MENU_BUTTON_HEIGHT, event_end_program);
+    if (b_end_program == NULL)
+        return 1;
+    button_set_xpm_icon(b_end_program, xpm_exit);
 
     if (xpm_load(xpm_menu_main_menu, type, &xpm_main_menu) == NULL)
         return 1;
-    new_button(&b_back_to_main_menu, x, y, MENU_BUTTON_WIDTH, MENU_BUTTON_HEIGHT, event_leave_game);
-    button_set_xpm_icon(&b_back_to_main_menu, xpm_main_menu);
+    b_back_to_main_menu = new_button(x, y, MENU_BUTTON_WIDTH, MENU_BUTTON_HEIGHT, event_leave_game);
+    if (b_back_to_main_menu == NULL)
+        return 1;
+    button_set_xpm_icon(b_back_to_main_menu, xpm_main_menu);
 
-    menu_state = MAIN_MENU;
+    if (menu_set_main_menu() != OK)
+        return 1;
+    
     return 0;
 }
 
 void menu_exit() {
+    delete_button(b_new_game);
+    delete_button(b_end_program);
+    delete_button(b_resume);
+    delete_button(b_back_to_main_menu);
     free(xpm_new_game.bytes);
     free(xpm_resume.bytes);
     free(xpm_exit.bytes);
@@ -253,7 +267,7 @@ void menu_set_game_screen() {
 int menu_set_main_menu() {
     if (dispatcher_reset_bindings() != OK)
         return 1;
-    if (dispatcher_bind_buttons(2, &b_new_game, &b_end_program) != OK)
+    if (dispatcher_bind_buttons(2, b_new_game, b_end_program) != OK)
         return 1;
 
     if (event_update_cursor_state() != OK)
@@ -266,7 +280,7 @@ int menu_set_main_menu() {
 int menu_set_pause_menu() {
     if (dispatcher_reset_bindings() != OK)
         return 1;
-    if (dispatcher_bind_buttons(2, &b_resume, &b_back_to_main_menu) != OK)
+    if (dispatcher_bind_buttons(2, b_resume, b_back_to_main_menu) != OK)
         return 1;
 
     if (event_update_cursor_state() != OK)
@@ -279,7 +293,7 @@ int menu_set_pause_menu() {
 int menu_set_awaiting_player_menu() {
     if (dispatcher_reset_bindings() != OK)
         return 1;
-    if (dispatcher_bind_buttons(1, &b_back_to_main_menu) != OK)
+    if (dispatcher_bind_buttons(1, b_back_to_main_menu) != OK)
         return 1;
 
     if (event_update_cursor_state() != OK)
@@ -314,7 +328,7 @@ int menu_set_new_round_screen(role_t role) {
 int menu_set_game_over_screen() {
     if (dispatcher_reset_bindings() != OK)
         return 1;
-    if (dispatcher_bind_buttons(1, &b_back_to_main_menu) != OK)
+    if (dispatcher_bind_buttons(1, b_back_to_main_menu) != OK)
         return 1;
 
     if (event_update_cursor_state() != OK)
@@ -327,7 +341,7 @@ int menu_set_game_over_screen() {
 int menu_set_other_player_left_screen() {
     if (dispatcher_reset_bindings() != OK)
         return 1;
-    if (dispatcher_bind_buttons(1, &b_back_to_main_menu) != OK)
+    if (dispatcher_bind_buttons(1, b_back_to_main_menu) != OK)
         return 1;
 
     if (event_update_cursor_state() != OK)

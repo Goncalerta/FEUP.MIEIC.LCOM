@@ -74,14 +74,16 @@ $(function() {
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;lcom/lcf.h&gt;</code><br />
 <code>#include &quot;<a class="el" href="game_8h_source.html">game.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="keyboard_8h_source.html">keyboard.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for menu.h:</div>
 <div class="dyncontent">
 <div class="center"><img src="menu_8h__incl.png" border="0" usemap="#amenu_8h" alt=""/></div>
-<map name="menu_8h" id="menu_8h">
-<area shape="rect" title="File dedicated to the interaction with the menu of the game as well as other program screens." alt="" coords="12,5,77,32"/>
-<area shape="rect" title=" " alt="" coords="5,155,84,181"/>
-<area shape="rect" href="game_8h.html" title="File dedicated to the game logic." alt="" coords="48,80,113,107"/>
+<map name="menu_8h" id="amenu_8h">
+<area shape="rect" title="File dedicated to the interaction with the menu of the game as well as other program screens." alt="" coords="20,5,86,32"/>
+<area shape="rect" title=" " alt="" coords="14,155,92,181"/>
+<area shape="rect" href="game_8h.html" title="File dedicated to the game logic." alt="" coords="20,80,86,107"/>
+<area shape="rect" href="keyboard_8h.html" title="File dedicated to interaction with the PC&#39;s Keyboard." alt="" coords="110,80,196,107"/>
 </map>
 </div>
 </div>
@@ -123,6 +125,9 @@ Functions</h2></td></tr>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__menu.html#ga6eaf522c383f2431f36e4c47f8e0a559">menu_exit</a> ()</td></tr>
 <tr class="memdesc:ga6eaf522c383f2431f36e4c47f8e0a559"><td class="mdescLeft">&#160;</td><td class="mdescRight">Frees the space allocated in memory to store the menu xpm images. <br /></td></tr>
 <tr class="separator:ga6eaf522c383f2431f36e4c47f8e0a559"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga9f128e941aaff63bfe944f44504d21cb"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__menu.html#ga9f128e941aaff63bfe944f44504d21cb">menu_react_kbd</a> (<a class="el" href="structkbd__event__t.html">kbd_event_t</a> kbd_event)</td></tr>
+<tr class="memdesc:ga9f128e941aaff63bfe944f44504d21cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the menu according to a keyboard event.  <a href="group__menu.html#ga9f128e941aaff63bfe944f44504d21cb">More...</a><br /></td></tr>
+<tr class="separator:ga9f128e941aaff63bfe944f44504d21cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga35731eaa9442f8db276220d9fc77dcf6"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__menu.html#ga35731eaa9442f8db276220d9fc77dcf6">menu_draw</a> ()</td></tr>
 <tr class="memdesc:ga35731eaa9442f8db276220d9fc77dcf6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draws the menu according to its state to the back buffer.  <a href="group__menu.html#ga35731eaa9442f8db276220d9fc77dcf6">More...</a><br /></td></tr>
 <tr class="separator:ga35731eaa9442f8db276220d9fc77dcf6"><td class="memSeparator" colspan="2">&#160;</td></tr>

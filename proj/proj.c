@@ -121,8 +121,6 @@ int (proj_main_loop)(int argc, char *argv[]) {
         return 1;
     if (menu_init(image_type) != OK)
         return 1;
-    if (menu_set_main_menu() != OK)
-        return 1;
 
     // Driver receive loop
 

@@ -2,26 +2,45 @@
 
 #include "queue.h"
 
-int new_queue(queue_t *queue, size_t element_size, size_t capacity) {
+// Queue class implementation
+struct queue_t {
+    void *data; // Address of memory of the content of the queue.
+    size_t element_size; // Size of each queue element.
+    size_t front; // Index of queue front element.
+    size_t back; // Index of queue back element.
+    size_t size; // Queue size.
+    size_t capacity; // Queue capacity.
+};
+
+queue_t *new_queue(size_t element_size, size_t capacity) {
     if (element_size == 0)
-        return 1;
+        return NULL;
+
+    queue_t *queue = malloc(sizeof(queue_t));
+    if (queue == NULL)
+        return NULL;
+    
 
     queue->element_size = element_size;
     queue->capacity = capacity;
     queue->data = malloc(element_size * capacity);
     if (queue->data == NULL) {
-        return 1;
+        return NULL;
     }
     queue->front = queue->back = queue->size = 0;
 
-    return 0;
+    return queue;
 }
 
 void delete_queue(queue_t *queue) {
+    if (queue == NULL)
+        return;
+
     if (queue->data == NULL)
         return;
+        
     free(queue->data);
-    queue->data = NULL;
+    free(queue);
 }
 
 static void *queue_index(queue_t *queue, size_t i) {

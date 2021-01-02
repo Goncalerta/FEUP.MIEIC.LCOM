@@ -46,7 +46,7 @@ void dispatcher_exit();
  * @brief Binds the given buttons to the dispatcher.
  * 
  * @param number_of_buttons number of buttons to bind
- * @param ... buttons to bind (button_t)
+ * @param ... buttons to bind (button_t*)
  * @return Return 0 upon success and non-zero otherwise
  */
 int dispatcher_bind_buttons(size_t number_of_buttons, ...);
@@ -55,7 +55,7 @@ int dispatcher_bind_buttons(size_t number_of_buttons, ...);
  * @brief Binds the given text boxes to the dispatcher.
  * 
  * @param number_of_text_boxes number of text boxes to bind
- * @param ... text boxes to bind (text_box_t)
+ * @param ... text boxes to bind (text_box_t*)
  * @return Return 0 upon success and non-zero otherwise 
  */
 int dispatcher_bind_text_boxes(size_t number_of_text_boxes, ...);

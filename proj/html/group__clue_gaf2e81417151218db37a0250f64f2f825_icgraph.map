@@ -1,6 +1,5 @@
 <map id="word_clue_draw" name="word_clue_draw">
-<area shape="rect" id="node1" title="Draws a given word clue to the given buffer on the given coordinates." alt="" coords="460,5,575,32"/>
-<area shape="rect" id="node2" href="$group__game.html#ga656ca85eff33877022fd939d29f23822" title="Draws the game screen to the back buffer." alt="" coords="324,5,412,32"/>
-<area shape="rect" id="node3" href="$group__dispatcher.html#ga1265a5e2843f2b1c45ad05ae61de7000" title="Draws the frame to the back buffer and flips the buffers." alt="" coords="188,5,276,32"/>
-<area shape="rect" id="node4" href="$group__dispatcher.html#ga0a68e937b31744d0f19e7524b2e9ad59" title="Dispatches a timer interrupt." alt="" coords="5,5,140,32"/>
+<area shape="rect" id="node1" title="Draws a given word clue to the given buffer on the given coordinates." alt="" coords="277,5,392,32"/>
+<area shape="rect" id="node2" href="$group__game.html#ga656ca85eff33877022fd939d29f23822" title="Draws the game screen to the back buffer." alt="" coords="141,5,229,32"/>
+<area shape="rect" id="node3" href="$group__dispatcher.html#ga1265a5e2843f2b1c45ad05ae61de7000" title="Draws the frame to the back buffer and flips the buffers." alt="" coords="5,5,93,32"/>
 </map>

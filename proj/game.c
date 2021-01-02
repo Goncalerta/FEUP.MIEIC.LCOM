@@ -73,11 +73,11 @@ typedef struct drawer_t {
     bool is_pencil_primary;
     size_t selected_color;
     size_t selected_thickness;
-    button_t b_pencil, b_eraser, b_color, b_thickness, b_undo, b_redo;
+    button_t *b_pencil, *b_eraser, *b_color, *b_thickness, *b_undo, *b_redo;
 } drawer_t;
 
 typedef struct guesser_t {
-    text_box_t text_box;
+    text_box_t *text_box;
 } guesser_t;
 
 typedef union role_attr_t {
@@ -101,7 +101,7 @@ typedef struct round_t {
     const char *correct_guess;
     
     // CLUES
-    word_clue_t word_clue;
+    word_clue_t *word_clue;
 
     // ROLE
     role_t role;
@@ -200,48 +200,56 @@ static int init_buttons(drawer_t *drawer) {
 
 
     uint16_t button_y = button_margin;
-    if (new_button(&drawer->b_pencil, buf.h_res - BUTTONS_LEN - button_margin, button_y, 
-                   BUTTONS_LEN, BUTTONS_LEN, drawer_set_pencil_primary) != OK)
+    drawer->b_pencil = new_button(buf.h_res - BUTTONS_LEN - button_margin, button_y, 
+                                  BUTTONS_LEN, BUTTONS_LEN, drawer_set_pencil_primary);
+    if (drawer->b_pencil == NULL)
         return 1;
     
-    button_set_xpm_icon(&drawer->b_pencil, pencil);
-    button_set_border_active(&drawer->b_pencil);
+    button_set_xpm_icon(drawer->b_pencil, pencil);
+    button_set_border_active(drawer->b_pencil);
 
     
     button_y += BUTTONS_LEN + button_margin;
-    if (new_button(&drawer->b_eraser, buf.h_res - BUTTONS_LEN - button_margin, button_y, 
-                   BUTTONS_LEN, BUTTONS_LEN, drawer_set_eraser_primary) != OK)
+    drawer->b_eraser = new_button(buf.h_res - BUTTONS_LEN - button_margin, button_y, 
+                                  BUTTONS_LEN, BUTTONS_LEN, drawer_set_eraser_primary);
+    if (drawer->b_eraser == NULL)
         return 1;
     
-    button_set_xpm_icon(&drawer->b_eraser, eraser);
+    button_set_xpm_icon(drawer->b_eraser, eraser);
 
     
     button_y += BUTTONS_LEN + button_margin;
-    if (new_button(&drawer->b_color, buf.h_res - BUTTONS_LEN - button_margin, button_y, 
-                   BUTTONS_LEN, BUTTONS_LEN, drawer_change_selected_color) != OK)
+    drawer->b_color = new_button(buf.h_res - BUTTONS_LEN - button_margin, button_y, 
+                                 BUTTONS_LEN, BUTTONS_LEN, drawer_change_selected_color);
+    if (drawer->b_color == NULL)
         return 1;
     
-    button_set_circle_icon(&drawer->b_color, BUTTON_CIRCLE_RADIUS_DEFAULT, canvas_pallete[drawer->selected_color]);
+    button_set_circle_icon(drawer->b_color, BUTTON_CIRCLE_RADIUS_DEFAULT, canvas_pallete[drawer->selected_color]);
 
     
     button_y += BUTTONS_LEN + button_margin;
-    if (new_button(&drawer->b_thickness, buf.h_res - BUTTONS_LEN - button_margin, button_y, 
-                   BUTTONS_LEN, BUTTONS_LEN, drawer_change_selected_thickness) != OK)
+    drawer->b_thickness = new_button(buf.h_res - BUTTONS_LEN - button_margin, button_y, 
+                                     BUTTONS_LEN, BUTTONS_LEN, drawer_change_selected_thickness);
+    if (drawer->b_thickness == NULL)
         return 1;
     
-    button_set_circle_icon(&drawer->b_thickness, valid_thickness[drawer->selected_thickness], BUTTON_CIRCLE_DEFAULT_COLOR);
+    button_set_circle_icon(drawer->b_thickness, valid_thickness[drawer->selected_thickness], BUTTON_CIRCLE_DEFAULT_COLOR);
 
     button_y += BUTTONS_LEN + button_margin;
-    if (new_button(&drawer->b_undo, buf.h_res - BUTTONS_LEN - button_margin, 
-                   button_y, BUTTONS_LEN, BUTTONS_LEN, event_undo) != OK)
+    drawer->b_undo = new_button(buf.h_res - BUTTONS_LEN - button_margin, 
+                                button_y, BUTTONS_LEN, BUTTONS_LEN, event_undo);
+    if (drawer->b_undo == NULL)
         return 1;
-    button_set_xpm_icon(&drawer->b_undo, undo_arrow);
+
+    button_set_xpm_icon(drawer->b_undo, undo_arrow);
 
     button_y += BUTTONS_LEN + button_margin;
-    if (new_button(&drawer->b_redo, buf.h_res - BUTTONS_LEN - button_margin, button_y, 
-                   BUTTONS_LEN, BUTTONS_LEN, event_redo) != OK)
+    drawer->b_redo = new_button(buf.h_res - BUTTONS_LEN - button_margin, button_y, 
+                                BUTTONS_LEN, BUTTONS_LEN, event_redo);
+    if (drawer->b_redo == NULL)
         return 1;
-    button_set_xpm_icon(&drawer->b_redo, redo_arrow);
+
+    button_set_xpm_icon(drawer->b_redo, redo_arrow);
 
     return 0;
 }
@@ -292,9 +300,11 @@ void game_set_over() {
 }
 
 static int init_text_box(guesser_t *guesser) {
-    if (new_text_box(&game->round->attr.guesser->text_box, TEXT_BOX_GUESSER_X + 4, TEXT_BOX_GUESSER_Y, 
-                     TEXT_BOX_GUESSER_DISPLAY_SIZE, event_guess_word) != OK)
+    guesser->text_box = new_text_box(TEXT_BOX_GUESSER_X + 4, TEXT_BOX_GUESSER_Y, 
+                                     TEXT_BOX_GUESSER_DISPLAY_SIZE, event_guess_word);
+    if (guesser->text_box == NULL)
         return 1;
+
     return 0;
 }
 
@@ -341,7 +351,8 @@ int game_new_round(role_t role, const char *word) {
         return 1;
     }
 
-    if (new_word_clue(&game->round->word_clue, word) != OK)
+    game->round->word_clue = new_word_clue(word);
+    if (game->round->word_clue == NULL)
         return 1;
 
     return 0;
@@ -354,14 +365,20 @@ void game_delete_round() {
     for (size_t i = 0; i < game->round->num_guesses; i++) {
         free(game->round->guesses[i].guess);
     }
-    delete_word_clue(&game->round->word_clue);
+    delete_word_clue(game->round->word_clue);
     
     switch (game->round->role) {
     case DRAWER:
+        delete_button(game->round->attr.drawer->b_pencil);
+        delete_button(game->round->attr.drawer->b_eraser);
+        delete_button(game->round->attr.drawer->b_color);
+        delete_button(game->round->attr.drawer->b_thickness);
+        delete_button(game->round->attr.drawer->b_undo);
+        delete_button(game->round->attr.drawer->b_redo);
         free(game->round->attr.drawer);
         break;
     case GUESSER:
-        delete_text_box(&game->round->attr.guesser->text_box);
+        delete_text_box(game->round->attr.guesser->text_box);
         free(game->round->attr.guesser);
         break;
     default:
@@ -380,16 +397,16 @@ int game_resume() {
     switch (game->round->role) {
     case DRAWER:
         if (dispatcher_bind_buttons(6, 
-                                    &game->round->attr.drawer->b_pencil, 
-                                    &game->round->attr.drawer->b_eraser, 
-                                    &game->round->attr.drawer->b_color, 
-                                    &game->round->attr.drawer->b_thickness, 
-                                    &game->round->attr.drawer->b_undo, 
-                                    &game->round->attr.drawer->b_redo) != OK)
+                                    game->round->attr.drawer->b_pencil, 
+                                    game->round->attr.drawer->b_eraser, 
+                                    game->round->attr.drawer->b_color, 
+                                    game->round->attr.drawer->b_thickness, 
+                                    game->round->attr.drawer->b_undo, 
+                                    game->round->attr.drawer->b_redo) != OK)
             return 1;
         break;
     case GUESSER:
-        if (dispatcher_bind_text_boxes(1, &game->round->attr.guesser->text_box) != OK)
+        if (dispatcher_bind_text_boxes(1, game->round->attr.guesser->text_box) != OK)
             return 1;
         break;
     default:
@@ -559,7 +576,7 @@ int game_draw() {
     frame_buffer_t buf = vg_get_back_buffer();
 
     if (game->state != ROUND_UNSTARTED) {
-        if (word_clue_draw(&game->round->word_clue, buf, (buf.h_res - game->round->word_clue.width) / 2, 40) != OK)
+        if (word_clue_draw(game->round->word_clue, buf, (buf.h_res - word_clue_get_width(game->round->word_clue)) / 2, 40) != OK)
             return 1;
     }
 
@@ -587,7 +604,7 @@ int game_give_clue() {
         return 1;
 
     size_t pos;
-    if (word_clue_hint(&game->round->word_clue, &pos) != OK)
+    if (word_clue_hint(game->round->word_clue, &pos) != OK)
         return 0; // Not having more hints to give is not an error, but should return early.
     if (protocol_send_clue(pos) != OK)
         return 1;
@@ -602,7 +619,7 @@ int game_give_clue_at(size_t pos) {
     if (game == NULL || game->round == NULL)
         return 1;
 
-    if (word_clue_hint_at(&game->round->word_clue, pos) != OK)
+    if (word_clue_hint_at(game->round->word_clue, pos) != OK)
         return 1;
     
     return 0;
@@ -618,7 +635,7 @@ int game_round_over(uint32_t current_score, bool win) {
         game->state = GAME_OVER;
     }
 
-    clue_reveal(&game->round->word_clue);
+    clue_reveal(game->round->word_clue);
 
     if (game->round->role == DRAWER) {
         if (rtc_disable_int(ALARM_INTERRUPT) != OK)
@@ -717,7 +734,7 @@ int game_rtc_pi_tick() {
         return 1;
 
     if (game->round->role == GUESSER) {
-        text_box_cursor_tick(&game->round->attr.guesser->text_box);
+        text_box_cursor_tick(game->round->attr.guesser->text_box);
     }
 
     if (game->state == ROUND_ONGOING) {
@@ -769,7 +786,7 @@ int drawer_change_selected_color() {
     if (drawer->selected_color >= NUM_COLORS_AVAILABLE) {
         drawer->selected_color = 0;
     }
-    button_set_circle_icon(&drawer->b_color, BUTTON_CIRCLE_RADIUS_DEFAULT, canvas_pallete[drawer->selected_color]);
+    button_set_circle_icon(drawer->b_color, BUTTON_CIRCLE_RADIUS_DEFAULT, canvas_pallete[drawer->selected_color]);
     return 0;
 }
 
@@ -782,7 +799,7 @@ int drawer_change_selected_thickness() {
     if (drawer->selected_thickness >= NUM_THICKNESSES_AVAILABLE) {
         drawer->selected_thickness = 0;
     }
-    button_set_circle_icon(&drawer->b_thickness, valid_thickness[drawer->selected_thickness], BUTTON_CIRCLE_DEFAULT_COLOR);
+    button_set_circle_icon(drawer->b_thickness, valid_thickness[drawer->selected_thickness], BUTTON_CIRCLE_DEFAULT_COLOR);
     return 0;
 }
 
@@ -821,8 +838,8 @@ int drawer_set_pencil_primary() {
     drawer_t *drawer = game->round->attr.drawer;
 
     drawer->is_pencil_primary = true;
-    button_set_border_active(&drawer->b_pencil);
-    button_unset_border_active(&drawer->b_eraser);
+    button_set_border_active(drawer->b_pencil);
+    button_unset_border_active(drawer->b_eraser);
     return 0;
 }
 
@@ -832,7 +849,7 @@ int drawer_set_eraser_primary() {
     drawer_t *drawer = game->round->attr.drawer;
 
     drawer->is_pencil_primary = false;
-    button_set_border_active(&drawer->b_eraser);
-    button_unset_border_active(&drawer->b_pencil);
+    button_set_border_active(drawer->b_eraser);
+    button_unset_border_active(drawer->b_pencil);
     return 0;
 }

@@ -1,6 +1,5 @@
 <map id="canvas_redo_stroke" name="canvas_redo_stroke">
-<area shape="rect" id="node1" title="Redoes a stroke." alt="" coords="528,5,665,32"/>
-<area shape="rect" id="node2" href="$group__dispatcher.html#gad3e78054cdf4da1c6f961483f635c85d" title="Redoes a canvas stroke and notifies the other player." alt="" coords="396,5,480,32"/>
-<area shape="rect" id="node3" href="$group__canvas.html#ga8ad75f7f8cd0333e14d51a533da88883" title="Updates the canvas according to a keyboard event." alt="" coords="221,5,348,32"/>
-<area shape="rect" id="node4" href="$group__dispatcher.html#gaeefd35acea05833fa9d829f99e2ed6ca" title="Dispatches a keyboard event." alt="" coords="5,5,173,32"/>
+<area shape="rect" id="node1" title="Redoes a stroke." alt="" coords="312,5,449,32"/>
+<area shape="rect" id="node2" href="$group__dispatcher.html#gad3e78054cdf4da1c6f961483f635c85d" title="Redoes a canvas stroke and notifies the other player." alt="" coords="180,5,264,32"/>
+<area shape="rect" id="node3" href="$group__canvas.html#ga8ad75f7f8cd0333e14d51a533da88883" title="Updates the canvas according to a keyboard event." alt="" coords="5,5,132,32"/>
 </map>

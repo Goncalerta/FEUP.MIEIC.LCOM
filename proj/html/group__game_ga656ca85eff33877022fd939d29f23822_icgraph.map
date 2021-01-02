@@ -1,5 +1,4 @@
 <map id="game_draw" name="game_draw">
-<area shape="rect" id="node1" title="Draws the game screen to the back buffer." alt="" coords="324,5,412,32"/>
-<area shape="rect" id="node2" href="$group__dispatcher.html#ga1265a5e2843f2b1c45ad05ae61de7000" title="Draws the frame to the back buffer and flips the buffers." alt="" coords="188,5,276,32"/>
-<area shape="rect" id="node3" href="$group__dispatcher.html#ga0a68e937b31744d0f19e7524b2e9ad59" title="Dispatches a timer interrupt." alt="" coords="5,5,140,32"/>
+<area shape="rect" id="node1" title="Draws the game screen to the back buffer." alt="" coords="141,5,229,32"/>
+<area shape="rect" id="node2" href="$group__dispatcher.html#ga1265a5e2843f2b1c45ad05ae61de7000" title="Draws the frame to the back buffer and flips the buffers." alt="" coords="5,5,93,32"/>
 </map>

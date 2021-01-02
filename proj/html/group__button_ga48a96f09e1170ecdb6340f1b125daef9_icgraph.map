@@ -1,0 +1,15 @@
+<map id="delete_button" name="delete_button">
+<area shape="rect" id="node1" title="Initializes a button." alt="" coords="715,169,815,196"/>
+<area shape="rect" id="node2" href="$group__game.html#gadede5f1c2e6f4a506c211cd8045dc449" title="Deletes the current game round." alt="" coords="532,144,667,171"/>
+<area shape="rect" id="node13" href="$group__menu.html#ga6eaf522c383f2431f36e4c47f8e0a559" title="Frees the space allocated in memory to store the menu xpm images." alt="" coords="558,195,641,221"/>
+<area shape="rect" id="node3" href="$group__game.html#ga138474d4cfdc04b079ceba8b584ed4e2" title="Deletes the current game." alt="" coords="375,56,471,83"/>
+<area shape="rect" id="node7" href="$group__dispatcher.html#ga9deb57c84899da9b6fa12f3e5d4feccf" title="Ends the current round." alt="" coords="363,144,482,171"/>
+<area shape="rect" id="node10" href="$group__game.html#gab01706a4b71bd825fc64ce7032ff115c" title="Creates a new round." alt="" coords="361,232,484,259"/>
+<area shape="rect" id="node4" href="$group__dispatcher.html#ga0e52394a395110749bc8ce3251ee503c" title="Leaves the game back to the main menu and notifies the other player." alt="" coords="177,5,304,32"/>
+<area shape="rect" id="node6" href="$group__game.html#ga9f3275416ff1d967fcf634e25c09c719" title="Frees the space allocated in memory to store the game assets." alt="" coords="168,56,313,83"/>
+<area shape="rect" id="node5" href="$group__menu.html#gafae9ccfd6e7de562283d6ffc8c3cf066" title="Loads the xpm images of the menu." alt="" coords="23,5,102,32"/>
+<area shape="rect" id="node8" href="$group__dispatcher.html#ga478271b5d6d73f56b8c7c24d7be10cfd" title="Reacts to the event that the other player left the game." alt="" coords="175,107,306,149"/>
+<area shape="rect" id="node9" href="$group__game.html#ga3f61372930dd958f7499a110ce2bd7d6" title="Updates the game due to a rtc alarm interrupt." alt="" coords="5,203,120,229"/>
+<area shape="rect" id="node11" href="$group__dispatcher.html#gabf03a39eb157e349de01d6a6cb7fa196" title="Starts a new round as DRAWER (role_t)." alt="" coords="169,225,312,266"/>
+<area shape="rect" id="node12" href="$group__dispatcher.html#ga0b13ea13708e1b05cd87fecebe747065" title="Starts a new round as GUESSER (role_t)." alt="" coords="169,290,312,331"/>
+</map>

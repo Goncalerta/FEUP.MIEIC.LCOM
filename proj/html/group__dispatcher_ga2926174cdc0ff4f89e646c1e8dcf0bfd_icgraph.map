@@ -1,0 +1,6 @@
+<map id="dispatcher_queue_event" name="dispatcher_queue_event">
+<area shape="rect" id="node1" title="Adds an event to the event queue." alt="" coords="295,23,456,49"/>
+<area shape="rect" id="node2" href="$group__uart.html#ga2820f530017133c17706dbc238f738d9" title="COM1 interrupt handler." alt="" coords="5,23,76,49"/>
+<area shape="rect" id="node3" href="$group__rtc.html#ga75dad42881d64cf07cf1bdc2979a7056" title="RTC interrupt handler." alt="" coords="158,23,213,49"/>
+<area shape="rect" id="node4" href="$group__uart.html#gac9e27c3effc4daed84fb28ade5e853cb" title="Handles a serial port error interrupt." alt="" coords="124,73,247,100"/>
+</map>

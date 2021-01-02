@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['fifo_5fint_5ftrigger_5flevel_5ft_1078',['fifo_int_trigger_level_t',['../group__uart.html#ga09274b121b0dd70a70f66d464da580ee',1,'uart.h']]],
-  ['fifo_5fstatus_5ft_1079',['fifo_status_t',['../group__uart.html#ga69b57bf7dcabde2686a4fd21fb86d662',1,'uart.h']]]
+  ['interrupt_5forigin_5ft_1015',['interrupt_origin_t',['../group__uart.html#gaf24e4c8c2b547a6dcebfdf1ade96a1c0',1,'uart.h']]]
 ];

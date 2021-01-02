@@ -13,28 +13,22 @@
  * @brief Module dedicated to queues.
  */
 
+struct queue_t;
+
 /**
- * @brief Queue info.
+ * @brief Queue class.
  * 
  */
-typedef struct queue_t {
-    void *data; /*!< @brief Address of memory of the content of the queue. */
-    size_t element_size; /*!< @brief Size of each queue element. */
-    size_t front; /*!< @brief Index of queue front element. */
-    size_t back; /*!< @brief Index of queue back element. */
-    size_t size; /*!< @brief Queue size. */
-    size_t capacity; /*!< @brief Queue capacity. */
-} queue_t;
+typedef struct queue_t queue_t;
 
 /**
  * @brief Initializes of a new queue.
  * 
- * @param queue address of memory of the queue to be initialized
  * @param element_size queue element size
  * @param capacity queue capacity
- * @return Return 0 upon success and non-zero otherwise
+ * @return Address of memory of the queue initialized, or NULL if an error occurred.
  */
-int new_queue(queue_t *queue, size_t element_size, size_t capacity);
+queue_t *new_queue(size_t element_size, size_t capacity);
 
 /**
  * @brief Frees the space allocated in memory to store the content of a given queue.

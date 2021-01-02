@@ -1,5 +1,4 @@
 <map id="drawer_change_selected_thickness" name="drawer_change_selected_thickness">
-<area shape="rect" id="node1" title="Changes the selected thickness if this player is the drawer." alt="" coords="396,5,561,47"/>
-<area shape="rect" id="node2" href="$group__canvas.html#ga8ad75f7f8cd0333e14d51a533da88883" title="Updates the canvas according to a keyboard event." alt="" coords="221,13,348,39"/>
-<area shape="rect" id="node3" href="$group__dispatcher.html#gaeefd35acea05833fa9d829f99e2ed6ca" title="Dispatches a keyboard event." alt="" coords="5,13,173,39"/>
+<area shape="rect" id="node1" title="Changes the selected thickness if this player is the drawer." alt="" coords="180,5,345,47"/>
+<area shape="rect" id="node2" href="$group__canvas.html#ga8ad75f7f8cd0333e14d51a533da88883" title="Updates the canvas according to a keyboard event." alt="" coords="5,13,132,39"/>
 </map>

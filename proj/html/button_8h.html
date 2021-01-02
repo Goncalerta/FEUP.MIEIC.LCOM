@@ -62,10 +62,8 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">Data Structures</a> &#124;
 <a href="#define-members">Macros</a> &#124;
 <a href="#typedef-members">Typedefs</a> &#124;
-<a href="#enum-members">Enumerations</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">button.h File Reference</div>  </div>
@@ -89,15 +87,6 @@ Include dependency graph for button.h:</div>
 </div>
 <p><a href="button_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
-Data Structures</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbutton__icon__t.html">button_icon_t</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Icon of a button.  <a href="structbutton__icon__t.html#details">More...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbutton__t.html">button_t</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Button info.  <a href="structbutton__t.html#details">More...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
 <tr class="memitem:ga1c3632da579ab501b308ddbd0b26c534"><td class="memItemLeft" align="right" valign="top">
@@ -115,53 +104,37 @@ Typedefs</h2></td></tr>
 typedef int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__button.html#ga0f225e888d093299394b5b1589d41f81">button_action</a>) ()</td></tr>
 <tr class="memdesc:ga0f225e888d093299394b5b1589d41f81"><td class="mdescLeft">&#160;</td><td class="mdescRight">Button action callback when it's pressed. <br /></td></tr>
 <tr class="separator:ga0f225e888d093299394b5b1589d41f81"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga5fbe696a8a5a3185eaff5cd0692ab5c2"><td class="memItemLeft" align="right" valign="top">
-typedef enum <a class="el" href="group__button.html#ga7bb8494816c8065ae6ff0eeb548a5896">button_state_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__button.html#ga5fbe696a8a5a3185eaff5cd0692ab5c2">button_state_t</a></td></tr>
-<tr class="memdesc:ga5fbe696a8a5a3185eaff5cd0692ab5c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enumerated type for specifying the state of a button. <br /></td></tr>
-<tr class="separator:ga5fbe696a8a5a3185eaff5cd0692ab5c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gadd2c0c0aa35bc852cd1fbd02c55f0039"><td class="memItemLeft" align="right" valign="top">
-typedef struct <a class="el" href="structbutton__icon__t.html">button_icon_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__button.html#gadd2c0c0aa35bc852cd1fbd02c55f0039">button_icon_t</a></td></tr>
-<tr class="memdesc:gadd2c0c0aa35bc852cd1fbd02c55f0039"><td class="mdescLeft">&#160;</td><td class="mdescRight">Icon of a button. <br /></td></tr>
-<tr class="separator:gadd2c0c0aa35bc852cd1fbd02c55f0039"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga5c68b217813cacbac30478fc391a4922"><td class="memItemLeft" align="right" valign="top">
-typedef struct <a class="el" href="structbutton__t.html">button_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__button.html#ga5c68b217813cacbac30478fc391a4922">button_t</a></td></tr>
-<tr class="memdesc:ga5c68b217813cacbac30478fc391a4922"><td class="mdescLeft">&#160;</td><td class="mdescRight">Button info. <br /></td></tr>
+typedef struct button_t&#160;</td><td class="memItemRight" valign="bottom"><b>button_t</b></td></tr>
 <tr class="separator:ga5c68b217813cacbac30478fc391a4922"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
-Enumerations</h2></td></tr>
-<tr class="memitem:ga7bb8494816c8065ae6ff0eeb548a5896"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__button.html#ga7bb8494816c8065ae6ff0eeb548a5896">button_state_t</a> { <a class="el" href="group__button.html#gga7bb8494816c8065ae6ff0eeb548a5896a06ffeb2163a93c4005a9391ec4dc1c0f">BUTTON_NORMAL</a>, 
-<a class="el" href="group__button.html#gga7bb8494816c8065ae6ff0eeb548a5896a3ddb8bb2bfe94f9a667f5ceb3dbf29e5">BUTTON_HOVERING</a>, 
-<a class="el" href="group__button.html#gga7bb8494816c8065ae6ff0eeb548a5896a1137d4d2cbcd47f9a14f2555e3cd5569">BUTTON_PRESSING</a>, 
-<a class="el" href="group__button.html#gga7bb8494816c8065ae6ff0eeb548a5896a3202a2598675f7c875ecabd65c2ec846">BUTTON_PRESSING_NOT_HOVERING</a>
- }</td></tr>
-<tr class="memdesc:ga7bb8494816c8065ae6ff0eeb548a5896"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enumerated type for specifying the state of a button.  <a href="group__button.html#ga7bb8494816c8065ae6ff0eeb548a5896">More...</a><br /></td></tr>
-<tr class="separator:ga7bb8494816c8065ae6ff0eeb548a5896"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ga5ae9d9845b0c967aac6e228b3f916ea7"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__button.html#ga5ae9d9845b0c967aac6e228b3f916ea7">new_button</a> (<a class="el" href="structbutton__t.html">button_t</a> *button, uint16_t x, uint16_t y, uint16_t width, uint16_t height, <a class="el" href="group__button.html#ga0f225e888d093299394b5b1589d41f81">button_action</a> action)</td></tr>
+<tr class="memitem:ga5ae9d9845b0c967aac6e228b3f916ea7"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__button.html#ga5ae9d9845b0c967aac6e228b3f916ea7">new_button</a> (button_t *button, uint16_t x, uint16_t y, uint16_t width, uint16_t height, <a class="el" href="group__button.html#ga0f225e888d093299394b5b1589d41f81">button_action</a> action)</td></tr>
 <tr class="memdesc:ga5ae9d9845b0c967aac6e228b3f916ea7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes a new button.  <a href="group__button.html#ga5ae9d9845b0c967aac6e228b3f916ea7">More...</a><br /></td></tr>
 <tr class="separator:ga5ae9d9845b0c967aac6e228b3f916ea7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga61409efef36d6fc472383d25706e44af"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__button.html#ga61409efef36d6fc472383d25706e44af">button_set_xpm_icon</a> (<a class="el" href="structbutton__t.html">button_t</a> *button, xpm_image_t icon)</td></tr>
+<tr class="memitem:ga48a96f09e1170ecdb6340f1b125daef9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__button.html#ga48a96f09e1170ecdb6340f1b125daef9">delete_button</a> (button_t *button)</td></tr>
+<tr class="memdesc:ga48a96f09e1170ecdb6340f1b125daef9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes a button.  <a href="group__button.html#ga48a96f09e1170ecdb6340f1b125daef9">More...</a><br /></td></tr>
+<tr class="separator:ga48a96f09e1170ecdb6340f1b125daef9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga61409efef36d6fc472383d25706e44af"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__button.html#ga61409efef36d6fc472383d25706e44af">button_set_xpm_icon</a> (button_t *button, xpm_image_t icon)</td></tr>
 <tr class="memdesc:ga61409efef36d6fc472383d25706e44af"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets a xpm image icon to a given button.  <a href="group__button.html#ga61409efef36d6fc472383d25706e44af">More...</a><br /></td></tr>
 <tr class="separator:ga61409efef36d6fc472383d25706e44af"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga851787864a8ca2d5085673f4916056ed"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__button.html#ga851787864a8ca2d5085673f4916056ed">button_set_circle_icon</a> (<a class="el" href="structbutton__t.html">button_t</a> *button, uint16_t radius, uint32_t color)</td></tr>
+<tr class="memitem:ga851787864a8ca2d5085673f4916056ed"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__button.html#ga851787864a8ca2d5085673f4916056ed">button_set_circle_icon</a> (button_t *button, uint16_t radius, uint32_t color)</td></tr>
 <tr class="memdesc:ga851787864a8ca2d5085673f4916056ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets a circle icon to a given button.  <a href="group__button.html#ga851787864a8ca2d5085673f4916056ed">More...</a><br /></td></tr>
 <tr class="separator:ga851787864a8ca2d5085673f4916056ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga6fdbd6cb9f7febe9bc371326f96f365d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__button.html#ga6fdbd6cb9f7febe9bc371326f96f365d">button_set_border_active</a> (<a class="el" href="structbutton__t.html">button_t</a> *button)</td></tr>
+<tr class="memitem:ga6fdbd6cb9f7febe9bc371326f96f365d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__button.html#ga6fdbd6cb9f7febe9bc371326f96f365d">button_set_border_active</a> (button_t *button)</td></tr>
 <tr class="memdesc:ga6fdbd6cb9f7febe9bc371326f96f365d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the border of a given button active.  <a href="group__button.html#ga6fdbd6cb9f7febe9bc371326f96f365d">More...</a><br /></td></tr>
 <tr class="separator:ga6fdbd6cb9f7febe9bc371326f96f365d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga0425667543e54af67fe4010a57476d05"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__button.html#ga0425667543e54af67fe4010a57476d05">button_unset_border_active</a> (<a class="el" href="structbutton__t.html">button_t</a> *button)</td></tr>
+<tr class="memitem:ga0425667543e54af67fe4010a57476d05"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__button.html#ga0425667543e54af67fe4010a57476d05">button_unset_border_active</a> (button_t *button)</td></tr>
 <tr class="memdesc:ga0425667543e54af67fe4010a57476d05"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the border of a given button inactive.  <a href="group__button.html#ga0425667543e54af67fe4010a57476d05">More...</a><br /></td></tr>
 <tr class="separator:ga0425667543e54af67fe4010a57476d05"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga08826459f45b21d883c8b46751193280"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__button.html#ga08826459f45b21d883c8b46751193280">button_is_hovering</a> (<a class="el" href="structbutton__t.html">button_t</a> button, uint16_t x, uint16_t y)</td></tr>
-<tr class="memdesc:ga08826459f45b21d883c8b46751193280"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the given coordinates are inside the limits of a given button.  <a href="group__button.html#ga08826459f45b21d883c8b46751193280">More...</a><br /></td></tr>
-<tr class="separator:ga08826459f45b21d883c8b46751193280"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga5b499ecd345cc4ab20cb3194a01fc937"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__button.html#ga5b499ecd345cc4ab20cb3194a01fc937">button_draw</a> (<a class="el" href="structframe__buffer__t.html">frame_buffer_t</a> buf, <a class="el" href="structbutton__t.html">button_t</a> button)</td></tr>
-<tr class="memdesc:ga5b499ecd345cc4ab20cb3194a01fc937"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draws a given button to the given buffer.  <a href="group__button.html#ga5b499ecd345cc4ab20cb3194a01fc937">More...</a><br /></td></tr>
-<tr class="separator:ga5b499ecd345cc4ab20cb3194a01fc937"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga9d70332e21de7ab70afff4fa96fb69d4"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__button.html#ga9d70332e21de7ab70afff4fa96fb69d4">button_update_state</a> (<a class="el" href="structbutton__t.html">button_t</a> *button, bool hovering, bool lb, bool rb)</td></tr>
+<tr class="memitem:gacfab11fbd0b4e1ff3848728f2b3ad7d5"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__button.html#gacfab11fbd0b4e1ff3848728f2b3ad7d5">button_is_hovering</a> (button_t *button, uint16_t x, uint16_t y)</td></tr>
+<tr class="memdesc:gacfab11fbd0b4e1ff3848728f2b3ad7d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the given coordinates are inside the limits of a given button.  <a href="group__button.html#gacfab11fbd0b4e1ff3848728f2b3ad7d5">More...</a><br /></td></tr>
+<tr class="separator:gacfab11fbd0b4e1ff3848728f2b3ad7d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaeebfb159f1fede957040739c91bd1b20"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__button.html#gaeebfb159f1fede957040739c91bd1b20">button_draw</a> (<a class="el" href="structframe__buffer__t.html">frame_buffer_t</a> buf, button_t *button)</td></tr>
+<tr class="memdesc:gaeebfb159f1fede957040739c91bd1b20"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draws a given button to the given buffer.  <a href="group__button.html#gaeebfb159f1fede957040739c91bd1b20">More...</a><br /></td></tr>
+<tr class="separator:gaeebfb159f1fede957040739c91bd1b20"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga9d70332e21de7ab70afff4fa96fb69d4"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__button.html#ga9d70332e21de7ab70afff4fa96fb69d4">button_update_state</a> (button_t *button, bool hovering, bool lb, bool rb)</td></tr>
 <tr class="memdesc:ga9d70332e21de7ab70afff4fa96fb69d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the state of a given button according to given mouse info.  <a href="group__button.html#ga9d70332e21de7ab70afff4fa96fb69d4">More...</a><br /></td></tr>
 <tr class="separator:ga9d70332e21de7ab70afff4fa96fb69d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
