@@ -88,6 +88,7 @@ int uart_receive_bytes() {
         return 1;
     
     while (lsr_byte & LSR_RECEIVER_READY) {
+        printf("byte: %d\n", rbr_byte);
         if (util_sys_inb(COM1_BASE_ADDR + RECEIVER_BUFFER_REG, &rbr_byte) != OK)
             return 1;
         if (queue_push(received, &rbr_byte) != OK)

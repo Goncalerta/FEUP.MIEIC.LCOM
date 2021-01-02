@@ -8,8 +8,10 @@
 #include "game.h"
 
 #define PROTOCOL_BIT_RATE 9600 // communication bitrate
-#define PROTOCOL_ACK 0 // acknowledgment byte (everything OK)
-#define PROTOCOL_NACK 1 // non-acknowledgment byte (invalid message)
+#define PROTOCOL_ACK 0xAA // acknowledgment byte (everything OK)
+#define PROTOCOL_NACK 0x55 // non-acknowledgment byte (invalid message)
+#define PROTOCOL_MESSAGE_START_BYTE 0x0F
+#define PROTOCOL_MESSAGE_TRAILING_BYTE 0xF0
 #define PROTOCOL_WAIT_TIMEOUT_TICKS 90 // maximum seconds to timeout (receiving messages or acknowledgments)
 #define PENDING_MESSAGES_CAPACITY 8 // starting capacity of pending_messages queue
 
@@ -17,7 +19,14 @@ static queue_t *pending_messages;
 static bool awaiting_ack = false;
 static uint8_t awaiting_ack_ticks = 0;
 
-static bool receiving_msg = false;
+typedef enum receiving_msg_state {
+    NOT_RECEIVING_MESSAGE,
+    MESSAGE_START_BYTE_DETECTED,
+    RECEIVING_MESSAGE_BODY,
+    EXPECTING_TRAILING_BYTE
+} receiving_msg_state_t;
+
+static receiving_msg_state_t receiving_msg = NOT_RECEIVING_MESSAGE;
 static uint8_t receiving_msg_ticks = 0;
 static uint8_t *receiving_msg_bits = NULL;
 static size_t receiving_msg_len = 0;
@@ -120,7 +129,7 @@ static int protocol_receive_start_round(size_t content_len, uint8_t *content) {
         return 1;
 
     if (game_is_round_unstarted() && game_get_role() == GUESSER) {
-        if (event_start_round() != OK)
+        if (handle_start_round() != OK)
             return 1;
     } else if (game_is_over()) {
         if (handle_notify_not_in_game() != OK)
@@ -304,7 +313,10 @@ static int protocol_send_next_message() {
     if (queue_top(pending_messages, &msg) != OK)
         return 1;
     
-    if (uart_send_byte(msg.content_len + 2) != OK)
+    if (uart_send_byte(PROTOCOL_MESSAGE_START_BYTE) != OK)
+        return 1;
+
+    if (uart_send_byte(msg.content_len + 1) != OK) // size = type byte + content_len
         return 1;
 
     if (uart_send_byte(msg.type) != OK)
@@ -314,6 +326,9 @@ static int protocol_send_next_message() {
         if (uart_send_byte(msg.content[i]) != OK)
             return 1;
     }
+
+    if (uart_send_byte(PROTOCOL_MESSAGE_TRAILING_BYTE) != OK)
+        return 1;
 
     awaiting_ack = true;
     awaiting_ack_ticks = 0;
@@ -362,11 +377,48 @@ static int protocol_handle_nack() {
     return 0;
 }
 
-static int protocol_handle_new_msg(uint8_t byte) {
-    receiving_msg = true;
+static int protocol_handle_byte_not_receiving_message() {
+    uint8_t byte;
+    if (uart_read_byte(&byte) != OK)
+        return 1;
+
+    switch (byte) {
+    case PROTOCOL_ACK:
+        if (protocol_handle_ack() != OK)
+            return 1;
+        break;
+    case PROTOCOL_NACK:
+        if (protocol_handle_nack() != OK)
+            return 1;
+        break;
+    case PROTOCOL_MESSAGE_START_BYTE:
+        receiving_msg = MESSAGE_START_BYTE_DETECTED;
+        break;
+    default:
+        if (protocol_handle_error() != OK)
+            return 1;
+        break;
+    }
+
+    return 0;
+}
+
+static int protocol_handle_new_msg() {
+    uint8_t byte;
+    if (uart_read_byte(&byte) != OK)
+        return 1;
+    
+    if (byte == 0) {
+        // Message should have at least one byte
+        if (protocol_handle_error() != OK)
+            return 1;
+        return 0;
+    }
+
+    receiving_msg = RECEIVING_MESSAGE_BODY;
     receiving_msg_ticks = 0;
     receiving_msg_len = byte;
-    receiving_msg_read_count = 1;
+    receiving_msg_read_count = 0;
     receiving_msg_bits = malloc(receiving_msg_len * sizeof(uint8_t));
     if (receiving_msg_bits == NULL)
         return 1;
@@ -374,9 +426,25 @@ static int protocol_handle_new_msg(uint8_t byte) {
     return 0;
 }
 
+static int protocol_handle_message_body() {
+    while (uart_received_bytes() && receiving_msg_read_count < receiving_msg_len) {
+        uint8_t byte;
+        if (uart_read_byte(&byte) != OK)
+            return 1;
+        receiving_msg_bits[receiving_msg_read_count] = byte;
+        receiving_msg_read_count++;
+    }
+
+    if (receiving_msg_read_count >= receiving_msg_len) {
+        receiving_msg = EXPECTING_TRAILING_BYTE;
+    }
+
+    return 0;
+}
+
 static int protocol_parse_received_message() {
     message_t msg;
-    if (protocol_new_message(&msg, receiving_msg_bits[0], receiving_msg_len - 2, receiving_msg_bits + 1) != OK)
+    if (protocol_new_message(&msg, receiving_msg_bits[0], receiving_msg_len - 1, receiving_msg_bits + 1) != OK)
         return 1;
 
     if (msg.type >= NUMBER_OF_MESSAGES)
@@ -392,37 +460,34 @@ static int protocol_parse_received_message() {
     return 0;
 }
 
-static int protocol_handle_message_body() {
-    while (uart_received_bytes() && receiving_msg_read_count < receiving_msg_len) {
-        uint8_t byte;
-        if (uart_read_byte(&byte) != OK)
+static int protocol_handle_message_trailing_byte() {
+    uint8_t byte;
+    if (uart_read_byte(&byte) != OK)
+        return 1;
+
+    if (byte != PROTOCOL_MESSAGE_TRAILING_BYTE) {
+        if (protocol_handle_error() != OK)
             return 1;
-        receiving_msg_bits[receiving_msg_read_count-1] = byte;
-        receiving_msg_read_count++;
     }
 
-    if (receiving_msg_read_count >= receiving_msg_len) {
-        if (protocol_parse_received_message() == OK) {
-            if (uart_send_byte(PROTOCOL_ACK) != OK)
-                return 1;
-        } else {
-            if (uart_send_byte(PROTOCOL_NACK) != OK)
-                return 1;
-        }
-        
-        receiving_msg = false;
-        if (receiving_msg_bits != NULL) {
-            free(receiving_msg_bits);
-            receiving_msg_bits = NULL;
-        }
-        
+    if (protocol_parse_received_message() == OK) {
+        if (uart_send_byte(PROTOCOL_ACK) != OK)
+            return 1;
+    } else {
+        if (uart_send_byte(PROTOCOL_NACK) != OK)
+            return 1;
+    }
+    
+    receiving_msg = NOT_RECEIVING_MESSAGE;
+    if (receiving_msg_bits != NULL) {
+        free(receiving_msg_bits);
+        receiving_msg_bits = NULL;
     }
 
     return 0;
 }
 
 int protocol_handle_error() {
-    receiving_msg = false;
     if (receiving_msg_bits != NULL) {
         free(receiving_msg_bits);
         receiving_msg_bits = NULL;
@@ -433,8 +498,9 @@ int protocol_handle_error() {
     if (uart_flush_received_bytes(&no_bytes, &first, &last) != OK)
         return 1;
     
+    // Try to detect acknowledgements that may have been sent before or after the message
     if (awaiting_ack && no_bytes > 0) {
-        if (no_bytes > 1 && !receiving_msg) {
+        if (no_bytes > 1 && receiving_msg == NOT_RECEIVING_MESSAGE) {
             if (first == PROTOCOL_ACK) {
                 if (protocol_handle_ack() != OK)
                     return 1;
@@ -461,34 +527,33 @@ int protocol_handle_error() {
 
     if (uart_send_byte(PROTOCOL_NACK) != OK)
         return 1;
+
+    receiving_msg = NOT_RECEIVING_MESSAGE;
     
     return 0;
 }
 
 int protocol_handle_received_bytes() {
     while (uart_received_bytes()) {
-        if (receiving_msg) {
+        switch (receiving_msg) {
+        case NOT_RECEIVING_MESSAGE:
+            if (protocol_handle_byte_not_receiving_message() != OK)
+                return 1;
+            break;
+        case MESSAGE_START_BYTE_DETECTED:
+            if (protocol_handle_new_msg() != OK)
+                return 1;
+            break;
+        case RECEIVING_MESSAGE_BODY:
             if (protocol_handle_message_body() != OK)
                 return 1;
-        } else {
-            uint8_t byte;
-            if (uart_read_byte(&byte) != OK)
+            break;
+        case EXPECTING_TRAILING_BYTE:
+            if (protocol_handle_message_trailing_byte() != OK)
                 return 1;
-
-            switch (byte) {
-            case PROTOCOL_ACK:
-                if (protocol_handle_ack() != OK)
-                    return 1;
-                break;
-            case PROTOCOL_NACK:
-                if (protocol_handle_nack() != OK)
-                    return 1;
-                break;
-            default:
-                if (protocol_handle_new_msg(byte) != OK)
-                    return 1;
-                break;
-            }
+            break;
+        default:
+            return 1;
         }
     }
 
@@ -501,7 +566,7 @@ int protocol_config_uart() {
         return 1;
     
     awaiting_ack = false;
-    receiving_msg = false;
+    receiving_msg = NOT_RECEIVING_MESSAGE;
 
     if (uart_init_sw_queues() != OK)
         return 1;
@@ -536,7 +601,7 @@ int protocol_tick() {
         }    
     }
 
-    if (receiving_msg) {
+    if (receiving_msg != NOT_RECEIVING_MESSAGE) {
         receiving_msg_ticks++;
 
         if (receiving_msg_ticks > PROTOCOL_WAIT_TIMEOUT_TICKS) {

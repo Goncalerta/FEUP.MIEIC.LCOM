@@ -696,7 +696,7 @@ int game_rtc_alarm() {
         case GAME_OVER:
             if (rtc_disable_int(ALARM_INTERRUPT) != OK)
                 return 1;
-            if (event_end_round() != OK)
+            if (handle_end_round() != OK)
                 return 1;
             if (menu_set_game_over_screen() != OK)
                 return 1;
@@ -705,7 +705,7 @@ int game_rtc_alarm() {
             if (rtc_disable_int(ALARM_INTERRUPT) != OK)
                 return 1;
             if (game->round->role == GUESSER) {
-                if (event_end_round() != OK)
+                if (handle_end_round() != OK)
                     return 1;
                 if (handle_new_round_as_drawer() != OK)
                     return 1;
