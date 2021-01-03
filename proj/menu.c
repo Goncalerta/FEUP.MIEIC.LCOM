@@ -128,6 +128,8 @@ static int menu_draw_main_menu() {
         return 1;
     if (date_draw_greeting(vg_get_hres()/2, MENU_GREETING_Y) != OK)
         return 1;
+    
+    return 0;
 }
 
 /**
@@ -142,6 +144,7 @@ static int menu_draw_pause_menu() {
         return 1;
     if (button_draw(buf, b_back_to_main_menu) != OK)
         return 1;
+    return 0;
 }
 
 /**
@@ -265,6 +268,8 @@ static int menu_draw_awaiting_other_player_menu() {
     
     if (button_draw(buf, b_back_to_main_menu) != OK)
         return 1;
+    
+    return 0;
 }
 
 int menu_draw() {

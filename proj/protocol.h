@@ -32,7 +32,8 @@ typedef enum message_type {
     MSG_CLUE = 10, /*!< Show a hint to the word clue at a given position. */
     MSG_ROUND_WIN = 11, /*!< Notify round won, updating the score. */
     MSG_GAME_OVER = 12, /*!< Notify round is lost. */
-    MSG_PROGRAM_OPENED = 13 /*!< Notify player opened the program. */
+    MSG_PROGRAM_OPENED = 13, /*!< Notify player opened the program. */
+    MSG_PING = 14 /*!< Periodic ping to check if the other computer is running. */
 } message_type_t;
 
 /**
@@ -196,6 +197,13 @@ int protocol_send_game_over();
  * @return Return 0 upon success and non-zero otherwise
  */
 int protocol_send_program_opened();
+
+/**
+ * @brief Sends a message of type MSG_PING.
+ * 
+ * @return Return 0 upon success and non-zero otherwise
+ */
+int protocol_send_ping();
 
 /**@}*/
 

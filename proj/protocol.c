@@ -18,11 +18,13 @@
 #define PROTOCOL_MESSAGE_START_BYTE 0x0F /**< @brief Starting byte of a message */
 #define PROTOCOL_MESSAGE_TRAILING_BYTE 0xF0 /**< @brief Trailing byte of a message */
 #define PROTOCOL_WAIT_TIMEOUT_TICKS 90 /**< @brief Maximum seconds to timeout (receiving messages or acknowledgments) */
+#define PROTOCOL_PING_FREQUENCY 300 /**< @brief Number of ticks between each ping to check if the other computer is running */
 #define PENDING_MESSAGES_CAPACITY 8 /**< @brief Starting capacity of pending_messages queue */
 
 static queue_t *pending_messages; /**< @brief Queue with pending messages to transmit */
 static bool awaiting_ack = false; /**< @brief Whether this computer is awaiting and acknowledgment byte */
 static uint8_t awaiting_ack_ticks = 0; /**< @brief Acknowlegment ticks to control timeout */
+static uint16_t protocol_ping_ticks = 0; /**< @brief Ticks to control when the next ping should be sent */
 
 /**
  * @brief Enumerated type for specifying the state of the message being received.
@@ -419,8 +421,24 @@ static int protocol_receive_program_opened(size_t content_len, uint8_t *content)
     return 0;
 }
 
+/**
+ * @brief Handles a received message of type MSG_PING.
+ * 
+ * @param content_len number of bytes in the content of the message
+ * @param content memory address to the content of the message
+ * @return Return 0 upon success and non-zero otherwise
+ */
+static int protocol_receive_ping(size_t content_len, uint8_t *content) {
+    if (content_len != 0)
+        return 1;
+
+    // Pings don't have to be handled. Do nothing.
+
+    return 0;
+}
+
 typedef int (*message_handle_t)(size_t, uint8_t *); /**< @brief Message handler for a given type function pointer */
-#define NUMBER_OF_MESSAGES 14 /**< @brief Number of possible messages (and thus message handlers) */
+#define NUMBER_OF_MESSAGES 15 /**< @brief Number of possible messages (and thus message handlers) */
 /**
  * @brief Array of message handlers, indexed by message type
  * 
@@ -439,7 +457,8 @@ static const message_handle_t message_handle[NUMBER_OF_MESSAGES] = {
     protocol_receive_clue,
     protocol_receive_round_win,
     protocol_receive_game_over,
-    protocol_receive_program_opened
+    protocol_receive_program_opened,
+    protocol_receive_ping
 };
 
 /**
@@ -776,6 +795,12 @@ void protocol_exit() {
 }
 
 int protocol_tick() {
+    protocol_ping_ticks++;
+    if (protocol_ping_ticks >= PROTOCOL_PING_FREQUENCY) {
+        protocol_send_ping();
+        protocol_ping_ticks = 0;
+    }
+
     if (awaiting_ack) {
         awaiting_ack_ticks++;
 
@@ -973,6 +998,17 @@ int protocol_send_game_over() {
 int protocol_send_program_opened() {
     message_t msg;
     if (protocol_new_message_no_content(&msg, MSG_PROGRAM_OPENED) != OK)
+        return 1;
+
+    if (protocol_add_message(msg) != OK)
+        return 1;
+
+    return 0;
+}
+
+int protocol_send_ping() {
+    message_t msg;
+    if (protocol_new_message_no_content(&msg, MSG_PING) != OK)
         return 1;
 
     if (protocol_add_message(msg) != OK)
