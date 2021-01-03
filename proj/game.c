@@ -132,7 +132,7 @@ typedef struct round {
     // GUESSES
     size_t num_guesses; /**< @brief Number of previous guesses being displayed. */
     guess_t guesses[MAX_GUESSES]; /**< @brief Previous guesses being displayed. */
-    const char *correct_guess; /**< @brief String with the correct guess. */
+    char *correct_guess; /**< @brief String with the correct guess. */
     
     // CLUES
     word_clue_t *word_clue; /**< @brief Word clue. */
@@ -419,11 +419,17 @@ int game_new_round(role_t role, const char *word) {
     game->round->ticker = 0;
     game->round->round_timer = ROUND_TICKS;
     game->round->num_guesses = 0;
-    game->round->correct_guess = word;
+    game->round->correct_guess = malloc(strlen(word) + 1);
+    if (game->round->correct_guess == NULL) {
+        free(game->round);
+        return 1;
+    }
+    strcpy(game->round->correct_guess, word);
     game->round->role = role;
 
     game->round->word_clue = new_word_clue(word);
     if (game->round->word_clue == NULL) {
+        free(game->round->correct_guess);
         free(game->round);
         return 1;
     }
@@ -432,6 +438,7 @@ int game_new_round(role_t role, const char *word) {
     case DRAWER:
         game->round->attr.drawer = malloc(sizeof(drawer_t));
         if (game->round->attr.drawer == NULL) {
+            free(game->round->correct_guess);
             delete_word_clue(game->round->word_clue);
             free(game->round);
             return 1;
@@ -440,6 +447,7 @@ int game_new_round(role_t role, const char *word) {
         game->round->attr.drawer->selected_color = 0;
         game->round->attr.drawer->selected_thickness = 1;
         if (drawer_init_buttons(game->round->attr.drawer) != OK) {
+            free(game->round->correct_guess);
             delete_word_clue(game->round->word_clue);
             free(game->round->attr.drawer);
             free(game->round);
@@ -450,11 +458,13 @@ int game_new_round(role_t role, const char *word) {
     case GUESSER:
         game->round->attr.guesser = malloc(sizeof(guesser_t));
         if (game->round->attr.guesser == NULL) {
+            free(game->round->correct_guess);
             delete_word_clue(game->round->word_clue);
             free(game->round);
             return 1;
         }
         if (init_text_box(game->round->attr.guesser) != OK) {
+            free(game->round->correct_guess);
             delete_word_clue(game->round->word_clue);
             free(game->round->attr.guesser);
             free(game->round);
@@ -463,6 +473,7 @@ int game_new_round(role_t role, const char *word) {
         break;
 
     default:
+        free(game->round->correct_guess);
         delete_word_clue(game->round->word_clue);
         free(game->round);
         return 1;
@@ -482,6 +493,7 @@ void game_delete_round() {
         free(game->round->guesses[i].guess);
     }
     delete_word_clue(game->round->word_clue);
+    free(game->round->correct_guess);
     
     switch (game->round->role) {
     case DRAWER:

@@ -183,13 +183,12 @@ static int protocol_receive_new_round(size_t content_len, uint8_t *content) {
             return 1;
         }
     } else if (game_is_over()) {
-        free(word);
         if (handle_notify_not_in_game() != OK) {
             return 1;
         }
-    } else {
-        free(word);
-    }
+    } 
+    
+    free(word);
 
     return 0;
 }
