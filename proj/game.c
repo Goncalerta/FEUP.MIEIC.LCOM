@@ -181,33 +181,63 @@ const char *get_random_word() {
 }
 
 int game_load_assets(enum xpm_image_type type) {
+    bool fail = false;
     if (xpm_load_animation(&clock_frames, type, 3, 
                            xpm_clock_red_left, xpm_clock_red_center, xpm_clock_red_right) != OK)
         return 1;
 
-    if (xpm_load(xpm_tick, type, &tick_img) == NULL)
-        return 1;
+    if (xpm_load(xpm_tick, type, &tick_img) == NULL) {
+        xpm_tick.bytes = NULL;
+        fail = true;
+    }
     
-    if (xpm_load(xpm_cross, type, &cross_img) == NULL)
-        return 1;
+    if (xpm_load(xpm_cross, type, &cross_img) == NULL) {
+        xpm_cross.bytes = NULL;
+        fail = true;
+    }
     
-    if (xpm_load(xpm_correct, type, &correct_message) == NULL)
-        return 1;
+    if (xpm_load(xpm_correct, type, &correct_message) == NULL) {
+        xpm_correct.bytes = NULL;
+        fail = true;
+    }
 
-    if (xpm_load(xpm_gameover, type, &game_over_message) == NULL)
-        return 1;
+    if (xpm_load(xpm_gameover, type, &game_over_message) == NULL) {
+        xpm_gameover.bytes = NULL;
+        fail = true;
+    }
     
-    if (xpm_load(xpm_pencil, type, &pencil) == NULL)
-        return 1;
+    if (xpm_load(xpm_pencil, type, &pencil) == NULL) {
+        xpm_pencil.bytes = NULL;
+        fail = true;
+    }
     
-    if (xpm_load(xpm_eraser, type, &eraser) == NULL)
-        return 1;
+    if (xpm_load(xpm_eraser, type, &eraser) == NULL) {
+        xpm_eraser.bytes = NULL;
+        fail = true;
+    }
     
-    if (xpm_load(xpm_undo_arrow, type, &undo_arrow) == NULL)
-        return 1;
+    if (xpm_load(xpm_undo_arrow, type, &undo_arrow) == NULL) {
+        xpm_undo_arrow.bytes = NULL;
+        fail = true;
+    }
     
-    if (xpm_load(xpm_redo_arrow, type, &redo_arrow) == NULL)
+    if (xpm_load(xpm_redo_arrow, type, &redo_arrow) == NULL) {
+        xpm_redo_arrow.bytes = NULL;
+        fail = true;
+    }
+
+    if (fail) {
+        xpm_unload_animation(clock_frames);
+        free(xpm_tick.bytes);
+        free(xpm_cross.bytes);
+        free(xpm_correct.bytes);
+        free(xpm_gameover.bytes);
+        free(xpm_pencil.bytes);
+        free(xpm_eraser.bytes);
+        free(xpm_undo_arrow.bytes);
+        free(xpm_redo_arrow.bytes);
         return 1;
+    }
 
     return 0;
 }

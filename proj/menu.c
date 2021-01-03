@@ -46,39 +46,66 @@ int menu_init(enum xpm_image_type type) {
     uint16_t x = (buf.h_res - MENU_BUTTON_WIDTH)/2;
     uint16_t y = buf.v_res/2 - MENU_BUTTON_DISTANCE/2 - MENU_BUTTON_HEIGHT;
 
-    if (xpm_load(xpm_menu_new_game, type, &xpm_new_game) == NULL)
-        return 1;
+    // Button icons
+    bool fail = false
+    if (xpm_load(xpm_menu_new_game, type, &xpm_new_game) == NULL) {
+        xpm_menu_new_game.bytes = NULL;
+        fail = true;
+    }
+    if (xpm_load(xpm_menu_resume, type, &xpm_resume) == NULL) {
+        xpm_menu_resume.bytes = NULL;
+        fail = true;
+    }
+    if (xpm_load(xpm_menu_exit_game, type, &xpm_exit) == NULL) {
+        xpm_tick.bytes = NULL;
+        fail = true;
+    }
+    if (xpm_load(xpm_menu_main_menu, type, &xpm_main_menu) == NULL) {
+        xpm_tick.bytes = NULL;
+        fail = true;
+    }
+
+    // Buttons
     b_new_game = new_button(x, y, MENU_BUTTON_WIDTH, MENU_BUTTON_HEIGHT, handle_ready_to_play);
-    if (b_new_game == NULL)
-        return 1;
-    button_set_xpm_icon(b_new_game, xpm_new_game);
-    
-    if (xpm_load(xpm_menu_resume, type, &xpm_resume) == NULL)
-        return 1;
+    if (b_new_game == NULL) {
+        fail = true;
+    } else {
+        button_set_xpm_icon(b_new_game, xpm_new_game);
+    }
+
     b_resume = new_button(x, y, MENU_BUTTON_WIDTH, MENU_BUTTON_HEIGHT, game_resume);
-    if (b_resume == NULL)
-        return 1;
-    button_set_xpm_icon(b_resume, xpm_resume);
+    if (b_resume == NULL) {
+        fail = true;
+    } else {
+        button_set_xpm_icon(b_resume, xpm_resume);
+    }
 
     y += MENU_BUTTON_HEIGHT + MENU_BUTTON_DISTANCE;
 
-    if (xpm_load(xpm_menu_exit_game, type, &xpm_exit) == NULL)
-        return 1;
     b_end_program = new_button(x, y, MENU_BUTTON_WIDTH, MENU_BUTTON_HEIGHT, trigger_end_program);
-    if (b_end_program == NULL)
-        return 1;
-    button_set_xpm_icon(b_end_program, xpm_exit);
-
-    if (xpm_load(xpm_menu_main_menu, type, &xpm_main_menu) == NULL)
-        return 1;
-    b_back_to_main_menu = new_button(x, y, MENU_BUTTON_WIDTH, MENU_BUTTON_HEIGHT, handle_leave_game);
-    if (b_back_to_main_menu == NULL)
-        return 1;
-    button_set_xpm_icon(b_back_to_main_menu, xpm_main_menu);
-
-    if (menu_set_main_menu() != OK)
-        return 1;
+    if (b_end_program == NULL) {
+        fail = true;
+    } else {
+        button_set_xpm_icon(b_end_program, xpm_exit);
+    }
     
+    b_back_to_main_menu = new_button(x, y, MENU_BUTTON_WIDTH, MENU_BUTTON_HEIGHT, handle_leave_game);
+    if (b_back_to_main_menu == NULL) {
+        fail = true;
+    } else {
+        button_set_xpm_icon(b_back_to_main_menu, xpm_main_menu);
+    }
+
+    if (fail) {
+        menu_exit();
+        return 1;
+    }
+
+    if (menu_set_main_menu() != OK) {
+        menu_exit();
+        return 1;
+    }
+
     return 0;
 }
 
