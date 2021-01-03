@@ -147,9 +147,9 @@ int rtc_enable_int(rtc_interrupt_t rtc_interrupt, rtc_interrupt_config_t config)
         uint8_t reg_a;
         if (rtc_read_register(RTC_REGISTER_A, &reg_a) != OK)
             return 1;
-        // TODO check if this is correct (can the code be preempted?)
-        // if UIP is set, and meanwhile it becomes unset, does it make a problem? // does it become set? or the RTC corrects it to the correct value?
+
         reg_a = (reg_a & 0xf0) | (config.periodic_RS3210 & 0x0f);
+        
         if (rtc_write_register(RTC_REGISTER_A, reg_a) != OK)
             return 1;
 
