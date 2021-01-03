@@ -21,7 +21,7 @@
  *
  */
 
-#define EVENTS_TO_HANDLE_CAPACITY 16 /**< @brief Starting capacity of events_to_handle queue */
+#define EVENTS_TO_HANDLE_CAPACITY 8 /**< @brief Starting capacity of events_to_handle queue */
 
 static bool end = false; /**< @brief Flag to determine if program should end */
 
