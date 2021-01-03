@@ -1,0 +1,4 @@
+<map id="game_is_round_won" name="game_is_round_won">
+<area shape="rect" id="node1" title="Checks if the round is won." alt="" coords="233,5,373,32"/>
+<area shape="rect" id="node2" href="$group__protocol.html#gae230aad15d015979d1abbc7af9126cc8" title="Handles a received message of type MSG_ROUND_WIN." alt="" coords="5,5,185,32"/>
+</map>

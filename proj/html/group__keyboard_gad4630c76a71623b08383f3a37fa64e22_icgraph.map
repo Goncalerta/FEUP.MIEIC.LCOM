@@ -1,4 +1,5 @@
 <map id="kbd_is_make_code" name="kbd_is_make_code">
-<area shape="rect" id="node1" title="Checks if a given scancode is a make code." alt="" coords="204,5,339,32"/>
-<area shape="rect" id="node2" href="$group__keyboard.html#ga4d4099244ffb934502e579e9ffb8f316" title="Transforms a scancode into organized information about the keys pressed in the form of kbd_event_t." alt="" coords="5,5,156,32"/>
+<area shape="rect" id="node1" title="Checks if a given scancode is a make code." alt="" coords="420,5,555,32"/>
+<area shape="rect" id="node2" href="$group__keyboard.html#ga4d4099244ffb934502e579e9ffb8f316" title="Transforms a scancode into organized information about the keys pressed in the form of kbd_event_t." alt="" coords="221,5,372,32"/>
+<area shape="rect" id="node3" href="$group__dispatcher.html#gaf9683a8eab5011faf80d5235b08efc27" title="Handles and dispatches a keyboard state change, calling relevant application dependent code." alt="" coords="5,5,173,32"/>
 </map>

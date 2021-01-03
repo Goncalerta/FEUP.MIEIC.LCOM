@@ -181,7 +181,7 @@ int handle_this_player_random_number();
  * 
  * @return Return 0 upon success and non-zero otherwise
  */
-int handle_other_player_random_number();
+int handle_other_player_random_number(int random_number);
 
 /**
  * @brief Starts a new round as GUESSER (role_t).

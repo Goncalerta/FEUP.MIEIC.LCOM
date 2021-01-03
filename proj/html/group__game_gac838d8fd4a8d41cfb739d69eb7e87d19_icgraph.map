@@ -1,0 +1,6 @@
+<map id="game_is_round_ongoing_or_tolerance" name="game_is_round_ongoing_or_tolerance">
+<area shape="rect" id="node1" title="Checks if round is ongoing or time&#39;s up." alt="" coords="237,49,400,90"/>
+<area shape="rect" id="node2" href="$group__protocol.html#gaa8067dfbdb6128fe19af3cde2b09e053" title="Handles a received message of type MSG_GAME_OVER." alt="" coords="5,5,189,32"/>
+<area shape="rect" id="node3" href="$group__protocol.html#ga6cc93609643509e6c3fe3f7d4e466f8b" title="Handles a received message of type MSG_GUESS." alt="" coords="19,56,176,83"/>
+<area shape="rect" id="node4" href="$group__protocol.html#gae230aad15d015979d1abbc7af9126cc8" title="Handles a received message of type MSG_ROUND_WIN." alt="" coords="7,107,187,133"/>
+</map>

@@ -1,0 +1,4 @@
+<map id="handle_new_round_as_guesser" name="handle_new_round_as_guesser">
+<area shape="rect" id="node1" title="Starts a new round as GUESSER (role_t)." alt="" coords="199,5,349,47"/>
+<area shape="rect" id="node2" href="$group__protocol.html#ga7e28848e24ede9cf58d5fff11c3c5ba4" title="Handles a received message of type MSG_NEW_ROUND." alt="" coords="5,5,151,47"/>
+</map>

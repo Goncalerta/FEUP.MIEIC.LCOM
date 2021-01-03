@@ -1,6 +1,8 @@
 <map id="uart_send_bytes" name="uart_send_bytes">
-<area shape="rect" id="node1" title="Sends bytes from a software queue into the serial port." alt="" coords="5,21,124,47"/>
-<area shape="rect" id="node2" href="$group__queue.html#ga09a3da9bf84f747356ef8050447bf35a" title="Checks if a given queue is empty." alt="" coords="305,21,423,47"/>
-<area shape="rect" id="node3" href="$group__queue.html#ga81880a2f29871356ccddd8f20ec99e9e" title="Removes the element at the front of the given queue." alt="" coords="172,21,257,47"/>
-<area shape="rect" id="node4" href="$group__queue.html#ga24ec1e60eaa37239a1b49c6f7321c9d9" title="Gets the element at the front of the given queue." alt="" coords="173,71,256,98"/>
+<area shape="rect" id="node1" title="Sends bytes from a software queue into the serial port." alt="" coords="5,48,124,75"/>
+<area shape="rect" id="node2" href="$group__queue.html#ga09a3da9bf84f747356ef8050447bf35a" title="Checks if a given queue is empty." alt="" coords="311,23,428,49"/>
+<area shape="rect" id="node3" href="$group__queue.html#ga81880a2f29871356ccddd8f20ec99e9e" title="Removes the element at the front of the given queue." alt="" coords="175,23,260,49"/>
+<area shape="rect" id="node4" href="$group__queue.html#ga24ec1e60eaa37239a1b49c6f7321c9d9" title="Gets the element at the front of the given queue." alt="" coords="176,73,259,100"/>
+<area shape="rect" id="node6" href="$group__utils.html#ga79a031a8611f5b2d6afa4158e92b0fb4" title="Wraps sys_inb so that it may be called with a uint8_t argument." alt="" coords="172,124,263,151"/>
+<area shape="rect" id="node5" href="$group__queue.html#ga5f221cd3b0a3c04f33ba9fd136a61c8b" title="Returns a pointer to the element of the given queue at the given index." alt="" coords="322,73,417,100"/>
 </map>

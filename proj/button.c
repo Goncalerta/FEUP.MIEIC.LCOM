@@ -46,7 +46,7 @@ typedef struct button_icon {
 } button_icon_t;
 
 /**
- * @brief // Button class implementation.
+ * @brief Button class implementation.
  * 
  */
 struct button {

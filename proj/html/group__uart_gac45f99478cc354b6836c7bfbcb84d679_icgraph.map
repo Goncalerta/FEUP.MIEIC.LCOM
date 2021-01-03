@@ -1,4 +1,6 @@
 <map id="uart_received_bytes" name="uart_received_bytes">
-<area shape="rect" id="node1" title="Checks if there are unread received bytes in the software queue." alt="" coords="220,13,357,39"/>
-<area shape="rect" id="node2" href="$group__protocol.html#ga45e3aa191a3cde90081665be034bba0e" title="Processes received bytes from the serial port." alt="" coords="5,5,172,47"/>
+<area shape="rect" id="node1" title="Checks if there are unread received bytes in the software queue." alt="" coords="711,31,848,57"/>
+<area shape="rect" id="node2" href="$group__protocol.html#gab69f1d7e21cf5751c6ad94139a58b0bd" title="Handles a received byte that is expected to belong to the message body." alt="" coords="455,5,663,32"/>
+<area shape="rect" id="node3" href="$group__protocol.html#ga45e3aa191a3cde90081665be034bba0e" title="Processes received bytes from the serial port." alt="" coords="240,23,407,65"/>
+<area shape="rect" id="node4" href="$group__dispatcher.html#gae25f0cbadee7d53e9593e6a23ef6f8c5" title="Handles received data from serial port, calling relevant application dependent code." alt="" coords="5,31,192,57"/>
 </map>

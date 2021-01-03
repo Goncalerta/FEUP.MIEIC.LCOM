@@ -1,0 +1,4 @@
+<map id="cursor_move" name="cursor_move">
+<area shape="rect" id="node1" title="Moves the cursor by the given displacement." alt="" coords="216,5,311,32"/>
+<area shape="rect" id="node2" href="$group__dispatcher.html#gab9f77cf9ceb2ad8fc95e016d5b293338" title="Retrieves and dispatches a mouse packet, calling relevent application dependent code." alt="" coords="5,5,168,32"/>
+</map>

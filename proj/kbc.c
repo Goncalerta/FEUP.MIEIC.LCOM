@@ -2,7 +2,12 @@
 #include "kbc.h"
 #include "i8042.h"
 
-#define KBC_NUM_TRIES 5
+/** @defgroup kbc kbc
+ * @{
+ *
+ */
+
+#define KBC_NUM_TRIES 5 /**< @brief Maximum number of tries to write to a KBC register */
 
 int kbc_write_reg(int reg, uint8_t write) {
     uint8_t stat;
@@ -74,3 +79,5 @@ int kbc_flush() {
     
     return 0;
 }
+
+/**@}*/

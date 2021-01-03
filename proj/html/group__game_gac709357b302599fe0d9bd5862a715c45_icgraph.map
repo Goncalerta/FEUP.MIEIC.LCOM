@@ -1,0 +1,4 @@
+<map id="game_is_round_unstarted" name="game_is_round_unstarted">
+<area shape="rect" id="node1" title="Checks if the round is unstarted." alt="" coords="201,13,372,39"/>
+<area shape="rect" id="node2" href="$group__protocol.html#ga4ba318073b27ac4dd79ed093ee960b2f" title="Handles a received message of type MSG_START_ROUND." alt="" coords="5,5,153,47"/>
+</map>

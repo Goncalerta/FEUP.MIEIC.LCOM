@@ -1,4 +1,8 @@
 <map id="vb_draw_vline" name="vb_draw_vline">
-<area shape="rect" id="node1" title="Draws a vertical line in the given buffer in the given coordinates with the given color." alt="" coords="160,5,260,32"/>
-<area shape="rect" id="node2" href="$group__text__box.html#ga5cc4f6bd58a30c404c41c54eed705ae3" title="Draws a given text box to the given buffer." alt="" coords="5,5,112,32"/>
+<area shape="rect" id="node1" title="Draws a vertical line in the given buffer in the given coordinates with the given color." alt="" coords="776,5,876,32"/>
+<area shape="rect" id="node2" href="$group__text__box.html#ga5cc4f6bd58a30c404c41c54eed705ae3" title="Draws a given text box to the given buffer." alt="" coords="621,5,728,32"/>
+<area shape="rect" id="node3" href="$group__game.html#gaa66c73919056ab1110c8072cec9a35e3" title="Draws game bar." alt="" coords="460,5,573,32"/>
+<area shape="rect" id="node4" href="$group__game.html#ga656ca85eff33877022fd939d29f23822" title="Draws the game screen to the back buffer." alt="" coords="324,5,412,32"/>
+<area shape="rect" id="node5" href="$group__dispatcher.html#ga1265a5e2843f2b1c45ad05ae61de7000" title="Draws the frame to the back buffer and flips the buffers." alt="" coords="188,5,276,32"/>
+<area shape="rect" id="node6" href="$group__dispatcher.html#gababc3983184c400b85295ddab53388cc" title="Dispatches a timer interrupt, calling relevant application dependent code." alt="" coords="5,5,140,32"/>
 </map>

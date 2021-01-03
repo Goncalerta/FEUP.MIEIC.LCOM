@@ -1,0 +1,5 @@
+<map id="protocol_handle_message_body" name="protocol_handle_message_body">
+<area shape="rect" id="node1" title="Handles a received byte that is expected to belong to the message body." alt="" coords="455,13,663,39"/>
+<area shape="rect" id="node2" href="$group__protocol.html#ga45e3aa191a3cde90081665be034bba0e" title="Processes received bytes from the serial port." alt="" coords="240,5,407,47"/>
+<area shape="rect" id="node3" href="$group__dispatcher.html#gae25f0cbadee7d53e9593e6a23ef6f8c5" title="Handles received data from serial port, calling relevant application dependent code." alt="" coords="5,13,192,39"/>
+</map>

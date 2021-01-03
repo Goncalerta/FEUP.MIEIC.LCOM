@@ -1,0 +1,4 @@
+<map id="game_rtc_pi_tick" name="game_rtc_pi_tick">
+<area shape="rect" id="node1" title="Updates the game due to a rtc periodic interrupt." alt="" coords="220,5,341,32"/>
+<area shape="rect" id="node2" href="$group__dispatcher.html#ga472851ec5e720521f2d714e9c4db0366" title="Dispatches a RTC periodic interrupt, calling relevant application dependent code." alt="" coords="5,5,172,32"/>
+</map>

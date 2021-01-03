@@ -1,0 +1,4 @@
+<map id="kbd_handle_scancode" name="kbd_handle_scancode">
+<area shape="rect" id="node1" title="Transforms a scancode into organized information about the keys pressed in the form of kbd_event_t." alt="" coords="221,5,372,32"/>
+<area shape="rect" id="node2" href="$group__dispatcher.html#gaf9683a8eab5011faf80d5235b08efc27" title="Handles and dispatches a keyboard state change, calling relevant application dependent code." alt="" coords="5,5,173,32"/>
+</map>

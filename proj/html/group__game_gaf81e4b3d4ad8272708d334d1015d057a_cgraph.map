@@ -1,0 +1,11 @@
+<map id="game_draw_buttons" name="game_draw_buttons">
+<area shape="rect" id="node1" title="Draws the buttons of the new round for the given drawer_t." alt="" coords="5,81,144,108"/>
+<area shape="rect" id="node2" href="$group__button.html#gaeebfb159f1fede957040739c91bd1b20" title="Draws a given button to the given buffer." alt="" coords="212,56,304,83"/>
+<area shape="rect" id="node9" href="$group__video__gr.html#gaecb0fe68de84fcbe553f77d62b37c69b" title="Gets the back buffer." alt="" coords="192,107,324,133"/>
+<area shape="rect" id="node3" href="$group__graphics.html#ga1b69ad0e07cfd0697a4cb9c18ba48b67" title="Draws a circle in the given buffer in the given coordinates with the given radius with the given colo..." alt="" coords="569,5,676,32"/>
+<area shape="rect" id="node5" href="$group__graphics.html#gad48647db82bcc8a80196a817c9959a40" title="Draws a given xpm image in the given buffer in the given coordinates." alt="" coords="388,56,484,83"/>
+<area shape="rect" id="node7" href="$group__graphics.html#ga16484c11b9019a2395c4964fe7da3ab1" title="Draws a rectangle in the given buffer in the given coordinates with the given height and width with t..." alt="" coords="372,107,500,133"/>
+<area shape="rect" id="node4" href="$group__graphics.html#ga257b5dac975604f70651e8764ad8acd8" title="Draws a pixel in the given buffer in the given coordinates with the given color." alt="" coords="745,56,848,83"/>
+<area shape="rect" id="node6" href="$group__graphics.html#ga31260a04eb12bc7be5012378500b09b0" title="Draws a portion of a given xpm image in the given buffer in the given coordinates." alt="" coords="548,56,697,83"/>
+<area shape="rect" id="node8" href="$group__graphics.html#ga58454ceb710c0fca6b21c049f0cac3a6" title="Draws a horizontal line in the given buffer in the given coordinates with the given color." alt="" coords="571,107,674,133"/>
+</map>

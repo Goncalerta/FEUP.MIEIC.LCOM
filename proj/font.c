@@ -4,10 +4,15 @@
 #include "graphics.h"
 #include "video_gr.h"
 
-#define FONT_CHAR_SPACE_X 2
-#define FONT_CHAR_SPACE_Y 4
+/** @defgroup font font
+ * @{
+ *
+ */
 
-static xpm_image_t font;
+#define FONT_CHAR_SPACE_X 2 /**< @brief Horizontal space between characters in font XPM */
+#define FONT_CHAR_SPACE_Y 4 /**< @brief Vertical space between characters in font XPM */
+
+static xpm_image_t font; /**< @brief Font XPM */
 
 int font_load(enum xpm_image_type type) {
     if (xpm_load(xpm_font, type, &font) == NULL) {
@@ -77,3 +82,5 @@ int font_draw_string_centered(frame_buffer_t buf, const char string[], uint16_t 
     y -= FONT_CHAR_HEIGHT / 2;
     return font_draw_string_limited(buf, string, x, y, start, size);
 }
+
+/**@}*/

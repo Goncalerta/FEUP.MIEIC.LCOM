@@ -1,0 +1,5 @@
+<map id="date_plus_alarm_time" name="date_plus_alarm_time">
+<area shape="rect" id="node1" title="Adds a date_t to a rtc_alarm_time_t." alt="" coords="5,5,155,32"/>
+<area shape="rect" id="node2" href="$group__date.html#gab23cdeaa635663563fffdf706da2593f" title="Gets the number of days of the month of a given date." alt="" coords="203,5,385,32"/>
+<area shape="rect" id="node3" href="$group__date.html#gae9bf1600b826e5346ec38327c548038e" title="Checks if given year is a leap year." alt="" coords="433,5,560,32"/>
+</map>

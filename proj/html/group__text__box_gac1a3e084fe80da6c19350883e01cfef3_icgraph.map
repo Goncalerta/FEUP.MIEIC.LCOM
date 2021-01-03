@@ -1,4 +1,4 @@
 <map id="text_box_cursor_tick" name="text_box_cursor_tick">
-<area shape="rect" id="node1" title="Switches the visibility of the text cursor of a given text box." alt="" coords="175,5,317,32"/>
-<area shape="rect" id="node2" href="$group__game.html#ga159cd81ebf01a5ccd6a0f96aaffb2530" title="Updates the game due to a rtc periodic interrupt." alt="" coords="5,5,127,32"/>
+<area shape="rect" id="node1" title="Switches the visibility of the text cursor of a given text box." alt="" coords="220,5,363,32"/>
+<area shape="rect" id="node2" href="$group__dispatcher.html#ga472851ec5e720521f2d714e9c4db0366" title="Dispatches a RTC periodic interrupt, calling relevant application dependent code." alt="" coords="5,5,172,32"/>
 </map>

@@ -3,6 +3,11 @@
 #include "vbe.h"
 #include "graphics.h"
 
+/** @defgroup vbe vbe
+ * @{
+ *
+ */
+
 int vbe_change_mode(uint16_t mode) {
     struct reg86 r86;
     
@@ -91,3 +96,5 @@ int vbe_get_mode_inf(uint16_t mode, vbe_mode_info_t *vmi) {
     }
     return 0;
 }
+
+/**@}*/

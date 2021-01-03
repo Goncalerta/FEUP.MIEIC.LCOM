@@ -1,4 +1,5 @@
 <map id="word_clue_hint_at" name="word_clue_hint_at">
-<area shape="rect" id="node1" title="Hints a char in the given word clue in the given position." alt="" coords="185,5,312,32"/>
-<area shape="rect" id="node2" href="$group__game.html#ga2fabe2a29b89674da7806548bbaaa10b" title="Reveals a character in the word clue at the given position." alt="" coords="5,5,137,32"/>
+<area shape="rect" id="node1" title="Hints a char in the given word clue in the given position." alt="" coords="380,5,507,32"/>
+<area shape="rect" id="node2" href="$group__game.html#ga2fabe2a29b89674da7806548bbaaa10b" title="Reveals a character in the word clue at the given position." alt="" coords="200,5,332,32"/>
+<area shape="rect" id="node3" href="$group__protocol.html#gad85741e17c753b18ad013e5e7bf3eb7c" title="Handles a received message of type MSG_CLUE." alt="" coords="5,5,152,32"/>
 </map>

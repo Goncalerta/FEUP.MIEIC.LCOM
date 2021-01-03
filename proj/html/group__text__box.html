@@ -62,9 +62,12 @@ $(function() {
 
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">Data Structures</a> &#124;
 <a href="#define-members">Macros</a> &#124;
 <a href="#typedef-members">Typedefs</a> &#124;
-<a href="#func-members">Functions</a>  </div>
+<a href="#enum-members">Enumerations</a> &#124;
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
 <div class="title">text_box</div>  </div>
 </div><!--header-->
@@ -73,8 +76,54 @@ $(function() {
 <p>Module dedicated to text boxes.  
 <a href="#details">More...</a></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Data Structures</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtext__box.html">text_box</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Text box class implementation.  <a href="structtext__box.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
+<tr class="memitem:ga26b463d5bc9404d1a055d5f6933e5bd7"><td class="memItemLeft" align="right" valign="top"><a id="ga26b463d5bc9404d1a055d5f6933e5bd7"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__text__box.html#ga26b463d5bc9404d1a055d5f6933e5bd7">TEXT_BOX_CURSOR_HEIGHT</a>&#160;&#160;&#160;(<a class="el" href="group__font.html#ga64b6937e243b7b28957a7e096708e95c">FONT_CHAR_HEIGHT</a> + 4)</td></tr>
+<tr class="memdesc:ga26b463d5bc9404d1a055d5f6933e5bd7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Height of the text box cursor. <br /></td></tr>
+<tr class="separator:ga26b463d5bc9404d1a055d5f6933e5bd7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gafccac15e90ea61c1fd6c9291ad4b0da5"><td class="memItemLeft" align="right" valign="top"><a id="gafccac15e90ea61c1fd6c9291ad4b0da5"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__text__box.html#gafccac15e90ea61c1fd6c9291ad4b0da5">TEXT_BOX_CURSOR_COLOR</a>&#160;&#160;&#160;0x000000</td></tr>
+<tr class="memdesc:gafccac15e90ea61c1fd6c9291ad4b0da5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Color of the text box cursor. <br /></td></tr>
+<tr class="separator:gafccac15e90ea61c1fd6c9291ad4b0da5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga781d3f0cdf2707862f376b2648b14261"><td class="memItemLeft" align="right" valign="top"><a id="ga781d3f0cdf2707862f376b2648b14261"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__text__box.html#ga781d3f0cdf2707862f376b2648b14261">TEXT_BOX_BEG_END_SPACE</a>&#160;&#160;&#160;4</td></tr>
+<tr class="memdesc:ga781d3f0cdf2707862f376b2648b14261"><td class="mdescLeft">&#160;</td><td class="mdescRight">Textbox horizontal margin. <br /></td></tr>
+<tr class="separator:ga781d3f0cdf2707862f376b2648b14261"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa77d2fa7aa4cafd55e30dd59d405280f"><td class="memItemLeft" align="right" valign="top"><a id="gaa77d2fa7aa4cafd55e30dd59d405280f"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__text__box.html#gaa77d2fa7aa4cafd55e30dd59d405280f">TEXT_BOX_TOP_BOT_SPACE</a>&#160;&#160;&#160;8</td></tr>
+<tr class="memdesc:gaa77d2fa7aa4cafd55e30dd59d405280f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Textbox vertical margin. <br /></td></tr>
+<tr class="separator:gaa77d2fa7aa4cafd55e30dd59d405280f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga68854e8f52fb32e0117852327e0e4dab"><td class="memItemLeft" align="right" valign="top"><a id="ga68854e8f52fb32e0117852327e0e4dab"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__text__box.html#ga68854e8f52fb32e0117852327e0e4dab">TEXT_BOX_HEIGHT</a>&#160;&#160;&#160;(<a class="el" href="group__font.html#ga64b6937e243b7b28957a7e096708e95c">FONT_CHAR_HEIGHT</a> + 2*<a class="el" href="group__text__box.html#gaa77d2fa7aa4cafd55e30dd59d405280f">TEXT_BOX_TOP_BOT_SPACE</a>)</td></tr>
+<tr class="memdesc:ga68854e8f52fb32e0117852327e0e4dab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Textbox height. <br /></td></tr>
+<tr class="separator:ga68854e8f52fb32e0117852327e0e4dab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2052e14b8eeb81170312b1535ae35406"><td class="memItemLeft" align="right" valign="top"><a id="ga2052e14b8eeb81170312b1535ae35406"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__text__box.html#ga2052e14b8eeb81170312b1535ae35406">TEXT_BOX_WIDTH</a>(display_size)&#160;&#160;&#160;((display_size) * <a class="el" href="group__font.html#gae4e0e1c228bf5bb1d8fe201e8695eb36">CHAR_SPACE</a> + 2*<a class="el" href="group__text__box.html#ga781d3f0cdf2707862f376b2648b14261">TEXT_BOX_BEG_END_SPACE</a>)</td></tr>
+<tr class="memdesc:ga2052e14b8eeb81170312b1535ae35406"><td class="mdescLeft">&#160;</td><td class="mdescRight">Textbox width. <br /></td></tr>
+<tr class="separator:ga2052e14b8eeb81170312b1535ae35406"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga257ae9d8a66a378078760d19f6bfd773"><td class="memItemLeft" align="right" valign="top"><a id="ga257ae9d8a66a378078760d19f6bfd773"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__text__box.html#ga257ae9d8a66a378078760d19f6bfd773">TEXT_BOX_HIGHLIGHTED_TEXT_COLOR</a>&#160;&#160;&#160;0xaaffff</td></tr>
+<tr class="memdesc:ga257ae9d8a66a378078760d19f6bfd773"><td class="mdescLeft">&#160;</td><td class="mdescRight">Color of highlighted text in the text box. <br /></td></tr>
+<tr class="separator:ga257ae9d8a66a378078760d19f6bfd773"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaad0d2a646b30cfb4e9a8f3bfccb6d645"><td class="memItemLeft" align="right" valign="top"><a id="gaad0d2a646b30cfb4e9a8f3bfccb6d645"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__text__box.html#gaad0d2a646b30cfb4e9a8f3bfccb6d645">TEXT_BOX_NORMAL_COLOR</a>&#160;&#160;&#160;0xf7f7f7</td></tr>
+<tr class="memdesc:gaad0d2a646b30cfb4e9a8f3bfccb6d645"><td class="mdescLeft">&#160;</td><td class="mdescRight">Normal color of the text box. <br /></td></tr>
+<tr class="separator:gaad0d2a646b30cfb4e9a8f3bfccb6d645"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa09f218864ac0a13beb18fabb54bf9c2"><td class="memItemLeft" align="right" valign="top"><a id="gaa09f218864ac0a13beb18fabb54bf9c2"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__text__box.html#gaa09f218864ac0a13beb18fabb54bf9c2">TEXT_BOX_HOVERING_COLOR</a>&#160;&#160;&#160;0xffffff</td></tr>
+<tr class="memdesc:gaa09f218864ac0a13beb18fabb54bf9c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Color of the text box when the cursor is hovering. <br /></td></tr>
+<tr class="separator:gaa09f218864ac0a13beb18fabb54bf9c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf1a152fdacdfa016c09833682f5b62b0"><td class="memItemLeft" align="right" valign="top"><a id="gaf1a152fdacdfa016c09833682f5b62b0"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__text__box.html#gaf1a152fdacdfa016c09833682f5b62b0">TEXT_BOX_BORDER_COLOR</a>&#160;&#160;&#160;0x0000aa</td></tr>
+<tr class="memdesc:gaf1a152fdacdfa016c09833682f5b62b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Color of the border of the textbox. <br /></td></tr>
+<tr class="separator:gaf1a152fdacdfa016c09833682f5b62b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga28bf1f8da4a34276ebacd8dbab2f1e4a"><td class="memItemLeft" align="right" valign="top"><a id="ga28bf1f8da4a34276ebacd8dbab2f1e4a"></a>
 #define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__text__box.html#ga28bf1f8da4a34276ebacd8dbab2f1e4a">TEXT_BOX_GUESSER_X</a>&#160;&#160;&#160;30</td></tr>
 <tr class="memdesc:ga28bf1f8da4a34276ebacd8dbab2f1e4a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Guesser text box x coordinate. <br /></td></tr>
@@ -90,6 +139,10 @@ Macros</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
+<tr class="memitem:ga0447273bea95670f6406bbb2cdca2b87"><td class="memItemLeft" align="right" valign="top"><a id="ga0447273bea95670f6406bbb2cdca2b87"></a>
+typedef enum <a class="el" href="group__text__box.html#ga4c6e6a481f55d3cdcf91968e50f378af">text_box_state</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__text__box.html#ga0447273bea95670f6406bbb2cdca2b87">text_box_state_t</a></td></tr>
+<tr class="memdesc:ga0447273bea95670f6406bbb2cdca2b87"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enumerated type for specifying the state of a textbox. <br /></td></tr>
+<tr class="separator:ga0447273bea95670f6406bbb2cdca2b87"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gae229ed303c7247c4c97ab44201d88477"><td class="memItemLeft" align="right" valign="top"><a id="gae229ed303c7247c4c97ab44201d88477"></a>
 typedef int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__text__box.html#gae229ed303c7247c4c97ab44201d88477">text_box_action_t</a>) (char *)</td></tr>
 <tr class="memdesc:gae229ed303c7247c4c97ab44201d88477"><td class="mdescLeft">&#160;</td><td class="mdescRight">Text box action when ENTER is pressed. <br /></td></tr>
@@ -99,42 +152,107 @@ typedef struct <a class="el" href="structtext__box.html">text_box</a>&#160;</td>
 <tr class="memdesc:gaa1fd0a30d7698096cd71ff9535f222a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Text box class. <br /></td></tr>
 <tr class="separator:gaa1fd0a30d7698096cd71ff9535f222a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:ga4c6e6a481f55d3cdcf91968e50f378af"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__text__box.html#ga4c6e6a481f55d3cdcf91968e50f378af">text_box_state</a> { <br />
+&#160;&#160;<a class="el" href="group__text__box.html#gga4c6e6a481f55d3cdcf91968e50f378afaf8dd7deda4a49e40b5aee6959a6d4c8e">TEXT_BOX_NORMAL</a>, 
+<a class="el" href="group__text__box.html#gga4c6e6a481f55d3cdcf91968e50f378afa2459352d588d6c00bf5c1abcdae64afa">TEXT_BOX_HOVERING</a>, 
+<a class="el" href="group__text__box.html#gga4c6e6a481f55d3cdcf91968e50f378afa56b496b48e2190a54ce26430c9ebc6cd">TEXT_BOX_SELECTED_HOVERING</a>, 
+<a class="el" href="group__text__box.html#gga4c6e6a481f55d3cdcf91968e50f378afae7c4872573ac1ddd8729fb64f406d24f">TEXT_BOX_SELECTED_NOT_HOVERING</a>, 
+<br />
+&#160;&#160;<a class="el" href="group__text__box.html#gga4c6e6a481f55d3cdcf91968e50f378afac7aafa1b34c7decb9d9b89961741b8bd">TEXT_BOX_PRESSING</a>
+<br />
+ }</td></tr>
+<tr class="memdesc:ga4c6e6a481f55d3cdcf91968e50f378af"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enumerated type for specifying the state of a textbox.  <a href="group__text__box.html#ga4c6e6a481f55d3cdcf91968e50f378af">More...</a><br /></td></tr>
+<tr class="separator:ga4c6e6a481f55d3cdcf91968e50f378af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:gacc4edd5d207caecfa8359098964e30d8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__text__box.html#gaa1fd0a30d7698096cd71ff9535f222a4">text_box_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__text__box.html#gacc4edd5d207caecfa8359098964e30d8">new_text_box</a> (uint16_t x, uint16_t y, uint8_t display_size, <a class="el" href="group__text__box.html#gae229ed303c7247c4c97ab44201d88477">text_box_action_t</a> action)</td></tr>
-<tr class="memdesc:gacc4edd5d207caecfa8359098964e30d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initiates the content of a new text box.  <a href="group__text__box.html#gacc4edd5d207caecfa8359098964e30d8">More...</a><br /></td></tr>
-<tr class="separator:gacc4edd5d207caecfa8359098964e30d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga2f207c8555da953e14b641615f2d9421"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__text__box.html#ga2f207c8555da953e14b641615f2d9421">delete_text_box</a> (<a class="el" href="group__text__box.html#gaa1fd0a30d7698096cd71ff9535f222a4">text_box_t</a> *<a class="el" href="structtext__box.html">text_box</a>)</td></tr>
-<tr class="memdesc:ga2f207c8555da953e14b641615f2d9421"><td class="mdescLeft">&#160;</td><td class="mdescRight">Frees the space allocated in memory to store the content of a given text box.  <a href="group__text__box.html#ga2f207c8555da953e14b641615f2d9421">More...</a><br /></td></tr>
-<tr class="separator:ga2f207c8555da953e14b641615f2d9421"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga711e4dc920572c101218ef70814c24d2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__text__box.html#gaa1fd0a30d7698096cd71ff9535f222a4">text_box_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__text__box.html#ga711e4dc920572c101218ef70814c24d2">new_text_box</a> (uint16_t x, uint16_t y, uint8_t display_size, <a class="el" href="group__text__box.html#gae229ed303c7247c4c97ab44201d88477">text_box_action_t</a> action)</td></tr>
+<tr class="memdesc:ga711e4dc920572c101218ef70814c24d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initiates the content of a new text box.  <a href="group__text__box.html#ga711e4dc920572c101218ef70814c24d2">More...</a><br /></td></tr>
+<tr class="separator:ga711e4dc920572c101218ef70814c24d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaa2fa2a826d1d881f5c5e374b40a6e9b1"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__text__box.html#gaa2fa2a826d1d881f5c5e374b40a6e9b1">text_box_is_reacting_to_cursor_hovering</a> (<a class="el" href="group__text__box.html#gaa1fd0a30d7698096cd71ff9535f222a4">text_box_t</a> *<a class="el" href="structtext__box.html">text_box</a>)</td></tr>
 <tr class="memdesc:gaa2fa2a826d1d881f5c5e374b40a6e9b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets whether the text box is reacting to the cursor hovering, based on its state.  <a href="group__text__box.html#gaa2fa2a826d1d881f5c5e374b40a6e9b1">More...</a><br /></td></tr>
 <tr class="separator:gaa2fa2a826d1d881f5c5e374b40a6e9b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga4233fbb69c433514936274518e24d523"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__text__box.html#ga4233fbb69c433514936274518e24d523">text_box_clear</a> (<a class="el" href="group__text__box.html#gaa1fd0a30d7698096cd71ff9535f222a4">text_box_t</a> *<a class="el" href="structtext__box.html">text_box</a>)</td></tr>
-<tr class="memdesc:ga4233fbb69c433514936274518e24d523"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clears the content of a given text box.  <a href="group__text__box.html#ga4233fbb69c433514936274518e24d523">More...</a><br /></td></tr>
-<tr class="separator:ga4233fbb69c433514936274518e24d523"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gac1a3e084fe80da6c19350883e01cfef3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__text__box.html#gac1a3e084fe80da6c19350883e01cfef3">text_box_cursor_tick</a> (<a class="el" href="group__text__box.html#gaa1fd0a30d7698096cd71ff9535f222a4">text_box_t</a> *<a class="el" href="structtext__box.html">text_box</a>)</td></tr>
 <tr class="memdesc:gac1a3e084fe80da6c19350883e01cfef3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Switches the visibility of the text cursor of a given text box.  <a href="group__text__box.html#gac1a3e084fe80da6c19350883e01cfef3">More...</a><br /></td></tr>
 <tr class="separator:gac1a3e084fe80da6c19350883e01cfef3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4233fbb69c433514936274518e24d523"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__text__box.html#ga4233fbb69c433514936274518e24d523">text_box_clear</a> (<a class="el" href="group__text__box.html#gaa1fd0a30d7698096cd71ff9535f222a4">text_box_t</a> *<a class="el" href="structtext__box.html">text_box</a>)</td></tr>
+<tr class="memdesc:ga4233fbb69c433514936274518e24d523"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clears the content of a given text box.  <a href="group__text__box.html#ga4233fbb69c433514936274518e24d523">More...</a><br /></td></tr>
+<tr class="separator:ga4233fbb69c433514936274518e24d523"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga5cc4f6bd58a30c404c41c54eed705ae3"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__text__box.html#ga5cc4f6bd58a30c404c41c54eed705ae3">text_box_draw</a> (<a class="el" href="group__graphics.html#gaff8a3cc6e89a00767e506102003663dc">frame_buffer_t</a> buf, <a class="el" href="group__text__box.html#gaa1fd0a30d7698096cd71ff9535f222a4">text_box_t</a> *<a class="el" href="structtext__box.html">text_box</a>)</td></tr>
 <tr class="memdesc:ga5cc4f6bd58a30c404c41c54eed705ae3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draws a given text box to the given buffer.  <a href="group__text__box.html#ga5cc4f6bd58a30c404c41c54eed705ae3">More...</a><br /></td></tr>
 <tr class="separator:ga5cc4f6bd58a30c404c41c54eed705ae3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga97341ed5c3d21db3cb99a6dea33277d6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__text__box.html#ga97341ed5c3d21db3cb99a6dea33277d6">text_box_is_hovering</a> (<a class="el" href="group__text__box.html#gaa1fd0a30d7698096cd71ff9535f222a4">text_box_t</a> *<a class="el" href="structtext__box.html">text_box</a>, uint16_t x, uint16_t y)</td></tr>
 <tr class="memdesc:ga97341ed5c3d21db3cb99a6dea33277d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the given coordinates are inside the limits of a given text box.  <a href="group__text__box.html#ga97341ed5c3d21db3cb99a6dea33277d6">More...</a><br /></td></tr>
 <tr class="separator:ga97341ed5c3d21db3cb99a6dea33277d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaf810b80df21aa5e7259b8fc8815238f5"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__text__box.html#gaf810b80df21aa5e7259b8fc8815238f5">text_box_update_state</a> (<a class="el" href="group__text__box.html#gaa1fd0a30d7698096cd71ff9535f222a4">text_box_t</a> *<a class="el" href="structtext__box.html">text_box</a>, bool hovering, bool lb, bool rb, uint16_t x, uint16_t y)</td></tr>
+<tr class="memitem:ga412d97b36204a9ae1c6d93537f8f7f65"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__text__box.html#ga412d97b36204a9ae1c6d93537f8f7f65">text_box_unselect</a> (<a class="el" href="group__text__box.html#gaa1fd0a30d7698096cd71ff9535f222a4">text_box_t</a> *<a class="el" href="structtext__box.html">text_box</a>)</td></tr>
+<tr class="memdesc:ga412d97b36204a9ae1c6d93537f8f7f65"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns text box to normal state.  <a href="group__text__box.html#ga412d97b36204a9ae1c6d93537f8f7f65">More...</a><br /></td></tr>
+<tr class="separator:ga412d97b36204a9ae1c6d93537f8f7f65"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf810b80df21aa5e7259b8fc8815238f5"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__text__box.html#gaf810b80df21aa5e7259b8fc8815238f5">text_box_update_state</a> (<a class="el" href="group__text__box.html#gaa1fd0a30d7698096cd71ff9535f222a4">text_box_t</a> *<a class="el" href="structtext__box.html">text_box</a>, bool hovering, bool <a class="el" href="group__cursor.html#ga2cc1266e0b4b2162696a91f235034271">lb</a>, bool <a class="el" href="group__cursor.html#gabbf74dbbb9f15eefcd8500a92e0d9385">rb</a>, uint16_t x, uint16_t y)</td></tr>
 <tr class="memdesc:gaf810b80df21aa5e7259b8fc8815238f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the state of a given text box according to given mouse info.  <a href="group__text__box.html#gaf810b80df21aa5e7259b8fc8815238f5">More...</a><br /></td></tr>
 <tr class="separator:gaf810b80df21aa5e7259b8fc8815238f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1bc6818987fa875239c8e67f350b6ed5"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__text__box.html#ga1bc6818987fa875239c8e67f350b6ed5">text_box_delete_selected</a> (<a class="el" href="group__text__box.html#gaa1fd0a30d7698096cd71ff9535f222a4">text_box_t</a> *<a class="el" href="structtext__box.html">text_box</a>)</td></tr>
+<tr class="memdesc:ga1bc6818987fa875239c8e67f350b6ed5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deletes the selected portion of the string in the textbox.  <a href="group__text__box.html#ga1bc6818987fa875239c8e67f350b6ed5">More...</a><br /></td></tr>
+<tr class="separator:ga1bc6818987fa875239c8e67f350b6ed5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6a8095c6c90994772912450085202c92"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__text__box.html#ga6a8095c6c90994772912450085202c92">text_box_copy</a> (<a class="el" href="group__text__box.html#gaa1fd0a30d7698096cd71ff9535f222a4">text_box_t</a> *<a class="el" href="structtext__box.html">text_box</a>)</td></tr>
+<tr class="memdesc:ga6a8095c6c90994772912450085202c92"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies selected portion of the string in the textbox to the clipboard.  <a href="group__text__box.html#ga6a8095c6c90994772912450085202c92">More...</a><br /></td></tr>
+<tr class="separator:ga6a8095c6c90994772912450085202c92"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga61fb6c4833bc465a10acf643b799006f"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__text__box.html#ga61fb6c4833bc465a10acf643b799006f">text_box_retrieve</a> (<a class="el" href="group__text__box.html#gaa1fd0a30d7698096cd71ff9535f222a4">text_box_t</a> *<a class="el" href="structtext__box.html">text_box</a>)</td></tr>
+<tr class="memdesc:ga61fb6c4833bc465a10acf643b799006f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calls the text box callback function (action) with the currently written string as input.  <a href="group__text__box.html#ga61fb6c4833bc465a10acf643b799006f">More...</a><br /></td></tr>
+<tr class="separator:ga61fb6c4833bc465a10acf643b799006f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaaf867825d96509a6e63674d88dac6b5d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__text__box.html#gaaf867825d96509a6e63674d88dac6b5d">text_box_react_kbd</a> (<a class="el" href="group__text__box.html#gaa1fd0a30d7698096cd71ff9535f222a4">text_box_t</a> *<a class="el" href="structtext__box.html">text_box</a>, <a class="el" href="group__keyboard.html#gaf885a18f75458e73bb7dccc1db276bef">kbd_event_t</a> <a class="el" href="structkbd__event.html">kbd_event</a>)</td></tr>
 <tr class="memdesc:gaaf867825d96509a6e63674d88dac6b5d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates a given text box according to a keyboard event.  <a href="group__text__box.html#gaaf867825d96509a6e63674d88dac6b5d">More...</a><br /></td></tr>
 <tr class="separator:gaaf867825d96509a6e63674d88dac6b5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2f207c8555da953e14b641615f2d9421"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__text__box.html#ga2f207c8555da953e14b641615f2d9421">delete_text_box</a> (<a class="el" href="group__text__box.html#gaa1fd0a30d7698096cd71ff9535f222a4">text_box_t</a> *<a class="el" href="structtext__box.html">text_box</a>)</td></tr>
+<tr class="memdesc:ga2f207c8555da953e14b641615f2d9421"><td class="mdescLeft">&#160;</td><td class="mdescRight">Frees the space allocated in memory to store the content of a given text box.  <a href="group__text__box.html#ga2f207c8555da953e14b641615f2d9421">More...</a><br /></td></tr>
+<tr class="separator:ga2f207c8555da953e14b641615f2d9421"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga6f4adb4642596b255b2db1dc2ea88166"><td class="memItemLeft" align="right" valign="top"><a id="ga6f4adb4642596b255b2db1dc2ea88166"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__text__box.html#ga6f4adb4642596b255b2db1dc2ea88166">text_box_clip_board_exit</a> ()</td></tr>
 <tr class="memdesc:ga6f4adb4642596b255b2db1dc2ea88166"><td class="mdescLeft">&#160;</td><td class="mdescRight">Frees the space allocated in memory to store the clip board. <br /></td></tr>
 <tr class="separator:ga6f4adb4642596b255b2db1dc2ea88166"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:gaccd3f4d8c77521ed3429f7312dea67fc"><td class="memItemLeft" align="right" valign="top">static char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__text__box.html#gaccd3f4d8c77521ed3429f7312dea67fc">clip_board</a> = NULL</td></tr>
+<tr class="memdesc:gaccd3f4d8c77521ed3429f7312dea67fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Characters in clip board to be pasted.  <a href="group__text__box.html#gaccd3f4d8c77521ed3429f7312dea67fc">More...</a><br /></td></tr>
+<tr class="separator:gaccd3f4d8c77521ed3429f7312dea67fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga5b9b39145fec1e83236bf4c3a2ec206d"><td class="memItemLeft" align="right" valign="top"><a id="ga5b9b39145fec1e83236bf4c3a2ec206d"></a>
+static uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__text__box.html#ga5b9b39145fec1e83236bf4c3a2ec206d">clip_board_size</a> = 0</td></tr>
+<tr class="memdesc:ga5b9b39145fec1e83236bf4c3a2ec206d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of characters in the clipboard. <br /></td></tr>
+<tr class="separator:ga5b9b39145fec1e83236bf4c3a2ec206d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p>Module dedicated to text boxes. </p>
+<h2 class="groupheader">Enumeration Type Documentation</h2>
+<a id="ga4c6e6a481f55d3cdcf91968e50f378af"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga4c6e6a481f55d3cdcf91968e50f378af">&#9670;&nbsp;</a></span>text_box_state</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="group__text__box.html#ga4c6e6a481f55d3cdcf91968e50f378af">text_box_state</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Enumerated type for specifying the state of a textbox. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="gga4c6e6a481f55d3cdcf91968e50f378afaf8dd7deda4a49e40b5aee6959a6d4c8e"></a>TEXT_BOX_NORMAL&#160;</td><td class="fielddoc"><p>Text box is in normal/base state. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga4c6e6a481f55d3cdcf91968e50f378afa2459352d588d6c00bf5c1abcdae64afa"></a>TEXT_BOX_HOVERING&#160;</td><td class="fielddoc"><p>Text box is not selected and the cursor is hovering it. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga4c6e6a481f55d3cdcf91968e50f378afa56b496b48e2190a54ce26430c9ebc6cd"></a>TEXT_BOX_SELECTED_HOVERING&#160;</td><td class="fielddoc"><p>Text box is selected and the cursor is hovering it. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga4c6e6a481f55d3cdcf91968e50f378afae7c4872573ac1ddd8729fb64f406d24f"></a>TEXT_BOX_SELECTED_NOT_HOVERING&#160;</td><td class="fielddoc"><p>Text box is selected but the cursor is not hovering it. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga4c6e6a481f55d3cdcf91968e50f378afac7aafa1b34c7decb9d9b89961741b8bd"></a>TEXT_BOX_PRESSING&#160;</td><td class="fielddoc"><p>Text box is being pressed. </p>
+</td></tr>
+</table>
+
+</div>
+</div>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="ga2f207c8555da953e14b641615f2d9421"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga2f207c8555da953e14b641615f2d9421">&#9670;&nbsp;</a></span>delete_text_box()</h2>
@@ -155,7 +273,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grou
 <p>Frees the space allocated in memory to store the content of a given text box. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname"><a class="el" href="structtext__box.html">text_box</a></td><td>address of memory of the text box </td></tr>
+    <tr><td class="paramname"><a class="el" href="structtext__box.html" title="Text box class implementation.">text_box</a></td><td>address of memory of the text box </td></tr>
   </table>
   </dd>
 </dl>
@@ -163,32 +281,46 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grou
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="group__text__box_ga2f207c8555da953e14b641615f2d9421_icgraph.png" border="0" usemap="#agroup__text__box_ga2f207c8555da953e14b641615f2d9421_icgraph" alt=""/></div>
-<map name="group__text__box_ga2f207c8555da953e14b641615f2d9421_icgraph" id="group__text__box_ga2f207c8555da953e14b641615f2d9421_icgraph">
-<area shape="rect" title="Frees the space allocated in memory to store the content of a given text box." alt="" coords="715,144,829,171"/>
-<area shape="rect" href="group__game.html#gadede5f1c2e6f4a506c211cd8045dc449" title="Deletes the current game round." alt="" coords="532,144,667,171"/>
-<area shape="rect" href="group__game.html#ga138474d4cfdc04b079ceba8b584ed4e2" title="Deletes the current game." alt="" coords="375,56,471,83"/>
-<area shape="rect" href="group__dispatcher.html#ga9deb57c84899da9b6fa12f3e5d4feccf" title="Ends the current round." alt="" coords="363,144,482,171"/>
-<area shape="rect" href="group__game.html#gab01706a4b71bd825fc64ce7032ff115c" title="Creates a new round." alt="" coords="361,232,484,259"/>
-<area shape="rect" href="group__dispatcher.html#ga0e52394a395110749bc8ce3251ee503c" title="Leaves the game back to the main menu and notifies the other player." alt="" coords="177,5,304,32"/>
-<area shape="rect" href="group__game.html#ga9f3275416ff1d967fcf634e25c09c719" title="Frees the space allocated in memory to store the game assets." alt="" coords="168,56,313,83"/>
-<area shape="rect" href="group__menu.html#gafae9ccfd6e7de562283d6ffc8c3cf066" title="Loads the xpm images of the menu." alt="" coords="23,5,102,32"/>
-<area shape="rect" href="group__dispatcher.html#ga478271b5d6d73f56b8c7c24d7be10cfd" title="Reacts to the event that the other player left the game." alt="" coords="175,107,306,149"/>
-<area shape="rect" href="group__game.html#ga3f61372930dd958f7499a110ce2bd7d6" title="Updates the game due to a rtc alarm interrupt." alt="" coords="5,203,120,229"/>
-<area shape="rect" href="group__dispatcher.html#gabf03a39eb157e349de01d6a6cb7fa196" title="Starts a new round as DRAWER (role_t)." alt="" coords="169,225,312,266"/>
-<area shape="rect" href="group__dispatcher.html#ga0b13ea13708e1b05cd87fecebe747065" title="Starts a new round as GUESSER (role_t)." alt="" coords="169,290,312,331"/>
+<map name="group__text__box_ga2f207c8555da953e14b641615f2d9421_icgraph" id="agroup__text__box_ga2f207c8555da953e14b641615f2d9421_icgraph">
+<area shape="rect" title="Frees the space allocated in memory to store the content of a given text box." alt="" coords="1433,148,1548,175"/>
+<area shape="rect" href="group__game.html#gadede5f1c2e6f4a506c211cd8045dc449" title="Deletes the current game round." alt="" coords="1251,148,1385,175"/>
+<area shape="rect" href="group__game.html#ga138474d4cfdc04b079ceba8b584ed4e2" title="Deletes the current game." alt="" coords="1091,56,1187,83"/>
+<area shape="rect" href="group__game.html#gab01706a4b71bd825fc64ce7032ff115c" title="Creates a new round." alt="" coords="1078,148,1201,175"/>
+<area shape="rect" href="group__dispatcher.html#gabc9d3f0fcbc48e44dcf17afd080ed3af" title="Ends the current round." alt="" coords="1076,239,1203,265"/>
+<area shape="rect" href="group__game.html#ga9f3275416ff1d967fcf634e25c09c719" title="Frees the space allocated in memory to store the game assets." alt="" coords="880,5,1025,32"/>
+<area shape="rect" href="group__dispatcher.html#gaa94a2133718338e297127042cc5e35b4" title="Leaves the game back to the main menu and notifies the other player." alt="" coords="885,56,1020,83"/>
+<area shape="rect" href="group__proj.html#ga2a16f651eccbd248e1ad3b3b924b143b" title="Reacts to the event that the other player sent the random number to decide starting roles." alt="" coords="679,5,789,32"/>
+<area shape="rect" href="group__dispatcher.html#gac40675a6ad33c38fe29637b951581d58" title="Starts a new round as DRAWER (role_t)." alt="" coords="877,173,1028,214"/>
+<area shape="rect" href="group__dispatcher.html#ga3da6507ba1f8568ae9afb4cae96499d5" title="Starts a new round as GUESSER (role_t)." alt="" coords="877,107,1028,149"/>
+<area shape="rect" href="group__dispatcher.html#ga9a4fb415537dbfa13ca9de90327684ba" title="Compares the random numbers generated by both computers, in order to decide roles and start game." alt="" coords="645,177,823,204"/>
+<area shape="rect" href="group__game.html#ga3f61372930dd958f7499a110ce2bd7d6" title="Updates the game due to a rtc alarm interrupt." alt="" coords="677,239,791,265"/>
+<area shape="rect" href="group__dispatcher.html#gabb2070cbc5baff395bef09ac00cb46b6" title="Reacts to the event that the other player sent the random number to decide starting roles." alt="" coords="437,189,575,230"/>
+<area shape="rect" href="group__dispatcher.html#ga05c438abb1a2b811edbac9dd08f57f3c" title="Generates and sends a random number to the other player to decide starting roles." alt="" coords="441,123,571,165"/>
+<area shape="rect" href="group__protocol.html#ga37adc31aadd1ec8fe42b900a3968a90a" title="Handles a received message of type MSG_RANDOM_NUMBER." alt="" coords="208,189,373,230"/>
+<area shape="rect" href="group__dispatcher.html#ga6aefa9a24fd41cb49254b76096c99db3" title="Reacts to the event that the other player is ready to play." alt="" coords="221,69,360,110"/>
+<area shape="rect" href="group__dispatcher.html#ga82e16242d9bfea1af9a18217b66282ef" title="Goes into the &quot;Awaiting other player...&quot; screen and notifies the other player." alt="" coords="217,135,365,161"/>
+<area shape="rect" href="group__protocol.html#ga825c861bde4764ba16b670119d5a9dcb" title="Handles a received message of type MSG_READY_TO_PLAY." alt="" coords="5,69,160,110"/>
+<area shape="rect" href="group__dispatcher.html#ga165d3da39e7ad5173611be1f6689c6c7" title="Dispatches a RTC alarm interrupt, calling relevant application dependent code." alt="" coords="429,255,583,281"/>
+<area shape="rect" href="group__protocol.html#ga7e28848e24ede9cf58d5fff11c3c5ba4" title="Handles a received message of type MSG_NEW_ROUND." alt="" coords="661,107,807,149"/>
+<area shape="rect" href="group__dispatcher.html#ga2f49068b96469a8cb2bb627303e1a002" title="Reacts to the event that the other player left the game." alt="" coords="883,290,1022,331"/>
+<area shape="rect" href="group__protocol.html#gaa4d3d218fe6e125682653e4af1bf6dcd" title="Handles a connection timeout (didn&#39;t receive acknowledgment byte)" alt="" coords="643,345,825,386"/>
+<area shape="rect" href="group__protocol.html#ga1be347af44e7d733b89949a113359fae" title="Handles a received message of type MSG_LEAVE_GAME." alt="" coords="639,293,829,320"/>
+<area shape="rect" href="group__protocol.html#gab7cd551f6c17f5acce557cb11c3a71c9" title="Handles a received message of type MSG_PROGRAM_OPENED." alt="" coords="421,386,591,427"/>
+<area shape="rect" href="group__protocol.html#ga0b3e768da60827fe622bd3932efc82ff" title="Reacts to a timer interrupt to detect timeouts." alt="" coords="458,335,554,361"/>
+<area shape="rect" href="group__dispatcher.html#gababc3983184c400b85295ddab53388cc" title="Dispatches a timer interrupt, calling relevant application dependent code." alt="" coords="223,335,358,361"/>
 </map>
 </div>
 
 </div>
 </div>
-<a id="gacc4edd5d207caecfa8359098964e30d8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gacc4edd5d207caecfa8359098964e30d8">&#9670;&nbsp;</a></span>new_text_box()</h2>
+<a id="ga711e4dc920572c101218ef70814c24d2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga711e4dc920572c101218ef70814c24d2">&#9670;&nbsp;</a></span>new_text_box()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="group__text__box.html#gaa1fd0a30d7698096cd71ff9535f222a4">text_box_t</a>* new_text_box </td>
+          <td class="memname"><a class="el" href="group__text__box.html#gaa1fd0a30d7698096cd71ff9535f222a4">text_box_t</a> * new_text_box </td>
           <td>(</td>
           <td class="paramtype">uint16_t&#160;</td>
           <td class="paramname"><em>x</em>, </td>
@@ -230,6 +362,28 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Address of memory of the text box initialized, or NULL if an error occurred. </dd></dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__text__box_ga711e4dc920572c101218ef70814c24d2_icgraph.png" border="0" usemap="#agroup__text__box_ga711e4dc920572c101218ef70814c24d2_icgraph" alt=""/></div>
+<map name="group__text__box_ga711e4dc920572c101218ef70814c24d2_icgraph" id="group__text__box_ga711e4dc920572c101218ef70814c24d2_icgraph">
+<area shape="rect" title="Initiates the content of a new text box." alt="" coords="1363,162,1465,189"/>
+<area shape="rect" href="group__game.html#ga4ddbf7eb8cd795bad8a0acae94d6c7a3" title="Initializes the text box of the new round for the given guesser_t." alt="" coords="1219,162,1315,189"/>
+<area shape="rect" href="group__game.html#gab01706a4b71bd825fc64ce7032ff115c" title="Creates a new round." alt="" coords="1048,162,1171,189"/>
+<area shape="rect" href="group__dispatcher.html#gac40675a6ad33c38fe29637b951581d58" title="Starts a new round as DRAWER (role_t)." alt="" coords="849,121,1000,163"/>
+<area shape="rect" href="group__dispatcher.html#ga3da6507ba1f8568ae9afb4cae96499d5" title="Starts a new round as GUESSER (role_t)." alt="" coords="849,187,1000,228"/>
+<area shape="rect" href="group__dispatcher.html#ga9a4fb415537dbfa13ca9de90327684ba" title="Compares the random numbers generated by both computers, in order to decide roles and start game." alt="" coords="623,78,801,105"/>
+<area shape="rect" href="group__game.html#ga3f61372930dd958f7499a110ce2bd7d6" title="Updates the game due to a rtc alarm interrupt." alt="" coords="655,133,769,159"/>
+<area shape="rect" href="group__dispatcher.html#gabb2070cbc5baff395bef09ac00cb46b6" title="Reacts to the event that the other player sent the random number to decide starting roles." alt="" coords="429,5,567,47"/>
+<area shape="rect" href="group__dispatcher.html#ga05c438abb1a2b811edbac9dd08f57f3c" title="Generates and sends a random number to the other player to decide starting roles." alt="" coords="433,71,563,112"/>
+<area shape="rect" href="group__protocol.html#ga37adc31aadd1ec8fe42b900a3968a90a" title="Handles a received message of type MSG_RANDOM_NUMBER." alt="" coords="208,5,373,47"/>
+<area shape="rect" href="group__dispatcher.html#ga6aefa9a24fd41cb49254b76096c99db3" title="Reacts to the event that the other player is ready to play." alt="" coords="221,71,360,112"/>
+<area shape="rect" href="group__dispatcher.html#ga82e16242d9bfea1af9a18217b66282ef" title="Goes into the &quot;Awaiting other player...&quot; screen and notifies the other player." alt="" coords="217,137,365,163"/>
+<area shape="rect" href="group__protocol.html#ga825c861bde4764ba16b670119d5a9dcb" title="Handles a received message of type MSG_READY_TO_PLAY." alt="" coords="5,71,160,112"/>
+<area shape="rect" href="group__dispatcher.html#ga165d3da39e7ad5173611be1f6689c6c7" title="Dispatches a RTC alarm interrupt, calling relevant application dependent code." alt="" coords="421,137,575,163"/>
+<area shape="rect" href="group__protocol.html#ga7e28848e24ede9cf58d5fff11c3c5ba4" title="Handles a received message of type MSG_NEW_ROUND." alt="" coords="639,187,785,228"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -252,11 +406,67 @@ Here is the caller graph for this function:</div>
 <p>Clears the content of a given text box. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname"><a class="el" href="structtext__box.html">text_box</a></td><td>address of memory of the text box </td></tr>
+    <tr><td class="paramname"><a class="el" href="structtext__box.html" title="Text box class implementation.">text_box</a></td><td>address of memory of the text box </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Return 0 upon success and non-zero otherwise </dd></dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__text__box_ga4233fbb69c433514936274518e24d523_icgraph.png" border="0" usemap="#agroup__text__box_ga4233fbb69c433514936274518e24d523_icgraph" alt=""/></div>
+<map name="group__text__box_ga4233fbb69c433514936274518e24d523_icgraph" id="group__text__box_ga4233fbb69c433514936274518e24d523_icgraph">
+<area shape="rect" title="Clears the content of a given text box." alt="" coords="573,5,680,32"/>
+<area shape="rect" href="group__text__box.html#ga61fb6c4833bc465a10acf643b799006f" title="Calls the text box callback function (action) with the currently written string as input." alt="" coords="405,5,525,32"/>
+<area shape="rect" href="group__text__box.html#gaaf867825d96509a6e63674d88dac6b5d" title="Updates a given text box according to a keyboard event." alt="" coords="221,5,357,32"/>
+<area shape="rect" href="group__dispatcher.html#gaf9683a8eab5011faf80d5235b08efc27" title="Handles and dispatches a keyboard state change, calling relevant application dependent code." alt="" coords="5,5,173,32"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ga6a8095c6c90994772912450085202c92"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga6a8095c6c90994772912450085202c92">&#9670;&nbsp;</a></span>text_box_copy()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static int text_box_copy </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__text__box.html#gaa1fd0a30d7698096cd71ff9535f222a4">text_box_t</a> *&#160;</td>
+          <td class="paramname"><em>text_box</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Copies selected portion of the string in the textbox to the clipboard. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname"><a class="el" href="structtext__box.html" title="Text box class implementation.">text_box</a></td><td>address of memory of the text box </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Return 0 upon success and non-zero otherwise </dd></dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__text__box_ga6a8095c6c90994772912450085202c92_icgraph.png" border="0" usemap="#agroup__text__box_ga6a8095c6c90994772912450085202c92_icgraph" alt=""/></div>
+<map name="group__text__box_ga6a8095c6c90994772912450085202c92_icgraph" id="group__text__box_ga6a8095c6c90994772912450085202c92_icgraph">
+<area shape="rect" title="Copies selected portion of the string in the textbox to the clipboard." alt="" coords="405,5,512,32"/>
+<area shape="rect" href="group__text__box.html#gaaf867825d96509a6e63674d88dac6b5d" title="Updates a given text box according to a keyboard event." alt="" coords="221,5,357,32"/>
+<area shape="rect" href="group__dispatcher.html#gaf9683a8eab5011faf80d5235b08efc27" title="Handles and dispatches a keyboard state change, calling relevant application dependent code." alt="" coords="5,5,173,32"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -279,7 +489,7 @@ Here is the caller graph for this function:</div>
 <p>Switches the visibility of the text cursor of a given text box. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname"><a class="el" href="structtext__box.html">text_box</a></td><td>address of memory of the text box </td></tr>
+    <tr><td class="paramname"><a class="el" href="structtext__box.html" title="Text box class implementation.">text_box</a></td><td>address of memory of the text box </td></tr>
   </table>
   </dd>
 </dl>
@@ -288,8 +498,53 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="group__text__box_gac1a3e084fe80da6c19350883e01cfef3_icgraph.png" border="0" usemap="#agroup__text__box_gac1a3e084fe80da6c19350883e01cfef3_icgraph" alt=""/></div>
 <map name="group__text__box_gac1a3e084fe80da6c19350883e01cfef3_icgraph" id="group__text__box_gac1a3e084fe80da6c19350883e01cfef3_icgraph">
-<area shape="rect" title="Switches the visibility of the text cursor of a given text box." alt="" coords="175,5,317,32"/>
-<area shape="rect" href="group__game.html#ga159cd81ebf01a5ccd6a0f96aaffb2530" title="Updates the game due to a rtc periodic interrupt." alt="" coords="5,5,127,32"/>
+<area shape="rect" title="Switches the visibility of the text cursor of a given text box." alt="" coords="220,5,363,32"/>
+<area shape="rect" href="group__dispatcher.html#ga472851ec5e720521f2d714e9c4db0366" title="Dispatches a RTC periodic interrupt, calling relevant application dependent code." alt="" coords="5,5,172,32"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ga1bc6818987fa875239c8e67f350b6ed5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga1bc6818987fa875239c8e67f350b6ed5">&#9670;&nbsp;</a></span>text_box_delete_selected()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static int text_box_delete_selected </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__text__box.html#gaa1fd0a30d7698096cd71ff9535f222a4">text_box_t</a> *&#160;</td>
+          <td class="paramname"><em>text_box</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Deletes the selected portion of the string in the textbox. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname"><a class="el" href="structtext__box.html" title="Text box class implementation.">text_box</a></td><td>address of memory of the text box </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Return 0 upon success and non-zero otherwise </dd></dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__text__box_ga1bc6818987fa875239c8e67f350b6ed5_icgraph.png" border="0" usemap="#agroup__text__box_ga1bc6818987fa875239c8e67f350b6ed5_icgraph" alt=""/></div>
+<map name="group__text__box_ga1bc6818987fa875239c8e67f350b6ed5_icgraph" id="group__text__box_ga1bc6818987fa875239c8e67f350b6ed5_icgraph">
+<area shape="rect" title="Deletes the selected portion of the string in the textbox." alt="" coords="405,5,576,32"/>
+<area shape="rect" href="group__text__box.html#gaaf867825d96509a6e63674d88dac6b5d" title="Updates a given text box according to a keyboard event." alt="" coords="221,5,357,32"/>
+<area shape="rect" href="group__dispatcher.html#gaf9683a8eab5011faf80d5235b08efc27" title="Handles and dispatches a keyboard state change, calling relevant application dependent code." alt="" coords="5,5,173,32"/>
 </map>
 </div>
 
@@ -325,7 +580,7 @@ Here is the caller graph for this function:</div>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">buf</td><td>buffer </td></tr>
-    <tr><td class="paramname"><a class="el" href="structtext__box.html">text_box</a></td><td>text box to draw </td></tr>
+    <tr><td class="paramname"><a class="el" href="structtext__box.html" title="Text box class implementation.">text_box</a></td><td>text box to draw </td></tr>
   </table>
   </dd>
 </dl>
@@ -343,6 +598,18 @@ Here is the call graph for this function:</div>
 <area shape="rect" href="group__font.html#gaa049c74a42572fa8713f9d08ddf42fc1" title="Draws a given char to the given coordinates in the given buffer." alt="" coords="369,12,479,39"/>
 <area shape="rect" href="group__graphics.html#ga31260a04eb12bc7be5012378500b09b0" title="Draws a portion of a given xpm image in the given buffer in the given coordinates." alt="" coords="527,19,676,45"/>
 <area shape="rect" href="group__graphics.html#ga257b5dac975604f70651e8764ad8acd8" title="Draws a pixel in the given buffer in the given coordinates with the given color." alt="" coords="724,81,827,108"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__text__box_ga5cc4f6bd58a30c404c41c54eed705ae3_icgraph.png" border="0" usemap="#agroup__text__box_ga5cc4f6bd58a30c404c41c54eed705ae3_icgraph" alt=""/></div>
+<map name="group__text__box_ga5cc4f6bd58a30c404c41c54eed705ae3_icgraph" id="group__text__box_ga5cc4f6bd58a30c404c41c54eed705ae3_icgraph">
+<area shape="rect" title="Draws a given text box to the given buffer." alt="" coords="621,5,728,32"/>
+<area shape="rect" href="group__game.html#gaa66c73919056ab1110c8072cec9a35e3" title="Draws game bar." alt="" coords="460,5,573,32"/>
+<area shape="rect" href="group__game.html#ga656ca85eff33877022fd939d29f23822" title="Draws the game screen to the back buffer." alt="" coords="324,5,412,32"/>
+<area shape="rect" href="group__dispatcher.html#ga1265a5e2843f2b1c45ad05ae61de7000" title="Draws the frame to the back buffer and flips the buffers." alt="" coords="188,5,276,32"/>
+<area shape="rect" href="group__dispatcher.html#gababc3983184c400b85295ddab53388cc" title="Dispatches a timer interrupt, calling relevant application dependent code." alt="" coords="5,5,140,32"/>
 </map>
 </div>
 
@@ -383,7 +650,7 @@ Here is the call graph for this function:</div>
 <p>Checks if the given coordinates are inside the limits of a given text box. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname"><a class="el" href="structtext__box.html">text_box</a></td><td>text box </td></tr>
+    <tr><td class="paramname"><a class="el" href="structtext__box.html" title="Text box class implementation.">text_box</a></td><td>text box </td></tr>
     <tr><td class="paramname">x</td><td>x coordinate </td></tr>
     <tr><td class="paramname">y</td><td>y coordinate </td></tr>
   </table>
@@ -395,25 +662,40 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="group__text__box_ga97341ed5c3d21db3cb99a6dea33277d6_icgraph.png" border="0" usemap="#agroup__text__box_ga97341ed5c3d21db3cb99a6dea33277d6_icgraph" alt=""/></div>
 <map name="group__text__box_ga97341ed5c3d21db3cb99a6dea33277d6_icgraph" id="group__text__box_ga97341ed5c3d21db3cb99a6dea33277d6_icgraph">
-<area shape="rect" title="Checks if the given coordinates are inside the limits of a given text box." alt="" coords="820,228,963,254"/>
-<area shape="rect" href="group__dispatcher.html#ga1870958649b46017847735537a5701e1" title="Updates the cursor state and updates the game according to it." alt="" coords="631,220,772,262"/>
-<area shape="rect" href="group__game.html#ga52118602811d7516e865c66a7410fd58" title="Resumes the game." alt="" coords="423,177,527,204"/>
-<area shape="rect" href="group__menu.html#ga5ed66b2ad288641ccbb969f784a64351" title="Sets the menu to awaiting other player menu." alt="" coords="368,102,583,129"/>
-<area shape="rect" href="group__menu.html#ga6331f4f3fee92d6495fd79aa17f59777" title="Sets the menu to the game over screen." alt="" coords="401,279,549,320"/>
-<area shape="rect" href="group__menu.html#ga6c442e5329ddf932b74a253c15665d75" title="Sets the menu to main menu." alt="" coords="399,26,552,53"/>
-<area shape="rect" href="group__menu.html#ga0b4d8c6b87adac99529e3dce59857aaa" title="Sets the menu to new round screen according to the given player role." alt="" coords="401,344,549,386"/>
-<area shape="rect" href="group__menu.html#gaaf5a9953d8b982736cf01d87adcb3b14" title="Sets the menu to the other player left screen." alt="" coords="397,435,554,476"/>
-<area shape="rect" href="group__menu.html#ga2471e39c56761768b9ceabdd4d5e732f" title="Sets the menu to pause menu." alt="" coords="395,228,555,254"/>
-<area shape="rect" href="group__game.html#gad7c180906d7acb4776f4db147f289d7c" title="Starts the already created round." alt="" coords="185,178,312,205"/>
-<area shape="rect" href="group__menu.html#gafae9ccfd6e7de562283d6ffc8c3cf066" title="Loads the xpm images of the menu." alt="" coords="28,52,107,78"/>
-<area shape="rect" href="group__menu.html#ga9f128e941aaff63bfe944f44504d21cb" title="Updates the menu according to a keyboard event." alt="" coords="189,229,308,256"/>
-<area shape="rect" href="group__dispatcher.html#ga00f3579aee6fd77454373ac309f39675" title="Starts the round." alt="" coords="5,178,129,205"/>
-<area shape="rect" href="group__dispatcher.html#gaeaf290f8252a2b923005262498513787" title="Goes into the &quot;Awaiting other player...&quot; screen and notifies the other player." alt="" coords="179,77,319,104"/>
-<area shape="rect" href="group__game.html#ga3f61372930dd958f7499a110ce2bd7d6" title="Updates the game due to a rtc alarm interrupt." alt="" coords="10,313,125,340"/>
-<area shape="rect" href="group__dispatcher.html#ga0e52394a395110749bc8ce3251ee503c" title="Leaves the game back to the main menu and notifies the other player." alt="" coords="185,26,312,53"/>
-<area shape="rect" href="group__dispatcher.html#gabf03a39eb157e349de01d6a6cb7fa196" title="Starts a new round as DRAWER (role_t)." alt="" coords="177,335,320,376"/>
-<area shape="rect" href="group__dispatcher.html#ga0b13ea13708e1b05cd87fecebe747065" title="Starts a new round as GUESSER (role_t)." alt="" coords="177,400,320,442"/>
-<area shape="rect" href="group__dispatcher.html#ga478271b5d6d73f56b8c7c24d7be10cfd" title="Reacts to the event that the other player left the game." alt="" coords="183,466,314,507"/>
+<area shape="rect" title="Checks if the given coordinates are inside the limits of a given text box." alt="" coords="1548,206,1691,233"/>
+<area shape="rect" href="group__dispatcher.html#ga6b6621fbd0381200f89fc604c79d827c" title="Updates the cursor state and updates the game according to it." alt="" coords="1351,199,1500,240"/>
+<area shape="rect" href="group__dispatcher.html#gab9f77cf9ceb2ad8fc95e016d5b293338" title="Retrieves and dispatches a mouse packet, calling relevent application dependent code." alt="" coords="1140,13,1303,39"/>
+<area shape="rect" href="group__game.html#ga52118602811d7516e865c66a7410fd58" title="Resumes the game." alt="" coords="1169,63,1273,90"/>
+<area shape="rect" href="group__menu.html#ga5ed66b2ad288641ccbb969f784a64351" title="Sets the menu to awaiting other player menu." alt="" coords="877,297,1092,323"/>
+<area shape="rect" href="group__menu.html#ga6331f4f3fee92d6495fd79aa17f59777" title="Sets the menu to the game over screen." alt="" coords="1147,165,1295,207"/>
+<area shape="rect" href="group__menu.html#ga6c442e5329ddf932b74a253c15665d75" title="Sets the menu to main menu." alt="" coords="1145,347,1298,374"/>
+<area shape="rect" href="group__menu.html#ga0b4d8c6b87adac99529e3dce59857aaa" title="Sets the menu to new round screen according to the given player role." alt="" coords="1147,231,1295,272"/>
+<area shape="rect" href="group__menu.html#gaaf5a9953d8b982736cf01d87adcb3b14" title="Sets the menu to the other player left screen." alt="" coords="1143,399,1300,440"/>
+<area shape="rect" href="group__menu.html#ga2471e39c56761768b9ceabdd4d5e732f" title="Sets the menu to pause menu." alt="" coords="1141,114,1301,141"/>
+<area shape="rect" href="group__game.html#gad7c180906d7acb4776f4db147f289d7c" title="Starts the already created round." alt="" coords="921,13,1048,39"/>
+<area shape="rect" href="group__menu.html#ga9f128e941aaff63bfe944f44504d21cb" title="Updates the menu according to a keyboard event." alt="" coords="925,63,1044,90"/>
+<area shape="rect" href="group__dispatcher.html#gafab2be1b5bd6d5f0282e36effcdbf8c2" title="Starts the round." alt="" coords="668,13,800,39"/>
+<area shape="rect" href="group__dispatcher.html#ga165d3da39e7ad5173611be1f6689c6c7" title="Dispatches a RTC alarm interrupt, calling relevant application dependent code." alt="" coords="429,82,583,109"/>
+<area shape="rect" href="group__protocol.html#ga4ba318073b27ac4dd79ed093ee960b2f" title="Handles a received message of type MSG_START_ROUND." alt="" coords="432,5,580,47"/>
+<area shape="rect" href="group__dispatcher.html#gaf9683a8eab5011faf80d5235b08efc27" title="Handles and dispatches a keyboard state change, calling relevant application dependent code." alt="" coords="650,63,818,90"/>
+<area shape="rect" href="group__dispatcher.html#ga82e16242d9bfea1af9a18217b66282ef" title="Goes into the &quot;Awaiting other player...&quot; screen and notifies the other player." alt="" coords="217,291,365,318"/>
+<area shape="rect" href="group__game.html#ga3f61372930dd958f7499a110ce2bd7d6" title="Updates the game due to a rtc alarm interrupt." alt="" coords="677,114,791,141"/>
+<area shape="rect" href="group__dispatcher.html#gaa94a2133718338e297127042cc5e35b4" title="Leaves the game back to the main menu and notifies the other player." alt="" coords="917,347,1052,374"/>
+<area shape="rect" href="group__dispatcher.html#gac40675a6ad33c38fe29637b951581d58" title="Starts a new round as DRAWER (role_t)." alt="" coords="909,165,1060,207"/>
+<area shape="rect" href="group__dispatcher.html#ga3da6507ba1f8568ae9afb4cae96499d5" title="Starts a new round as GUESSER (role_t)." alt="" coords="909,231,1060,272"/>
+<area shape="rect" href="group__dispatcher.html#ga9a4fb415537dbfa13ca9de90327684ba" title="Compares the random numbers generated by both computers, in order to decide roles and start game." alt="" coords="645,175,823,202"/>
+<area shape="rect" href="group__dispatcher.html#gabb2070cbc5baff395bef09ac00cb46b6" title="Reacts to the event that the other player sent the random number to decide starting roles." alt="" coords="437,155,575,196"/>
+<area shape="rect" href="group__dispatcher.html#ga05c438abb1a2b811edbac9dd08f57f3c" title="Generates and sends a random number to the other player to decide starting roles." alt="" coords="441,220,571,261"/>
+<area shape="rect" href="group__protocol.html#ga37adc31aadd1ec8fe42b900a3968a90a" title="Handles a received message of type MSG_RANDOM_NUMBER." alt="" coords="208,155,373,196"/>
+<area shape="rect" href="group__dispatcher.html#ga6aefa9a24fd41cb49254b76096c99db3" title="Reacts to the event that the other player is ready to play." alt="" coords="221,220,360,261"/>
+<area shape="rect" href="group__protocol.html#ga825c861bde4764ba16b670119d5a9dcb" title="Handles a received message of type MSG_READY_TO_PLAY." alt="" coords="5,220,160,261"/>
+<area shape="rect" href="group__protocol.html#ga7e28848e24ede9cf58d5fff11c3c5ba4" title="Handles a received message of type MSG_NEW_ROUND." alt="" coords="661,231,807,272"/>
+<area shape="rect" href="group__dispatcher.html#ga2f49068b96469a8cb2bb627303e1a002" title="Reacts to the event that the other player left the game." alt="" coords="915,399,1054,440"/>
+<area shape="rect" href="group__protocol.html#gaa4d3d218fe6e125682653e4af1bf6dcd" title="Handles a connection timeout (didn&#39;t receive acknowledgment byte)" alt="" coords="643,373,825,415"/>
+<area shape="rect" href="group__protocol.html#ga1be347af44e7d733b89949a113359fae" title="Handles a received message of type MSG_LEAVE_GAME." alt="" coords="639,439,829,466"/>
+<area shape="rect" href="group__protocol.html#gab7cd551f6c17f5acce557cb11c3a71c9" title="Handles a received message of type MSG_PROGRAM_OPENED." alt="" coords="421,403,591,444"/>
+<area shape="rect" href="group__protocol.html#ga0b3e768da60827fe622bd3932efc82ff" title="Reacts to a timer interrupt to detect timeouts." alt="" coords="458,351,554,378"/>
+<area shape="rect" href="group__dispatcher.html#gababc3983184c400b85295ddab53388cc" title="Dispatches a timer interrupt, calling relevant application dependent code." alt="" coords="223,351,358,378"/>
 </map>
 </div>
 
@@ -438,7 +720,7 @@ Here is the caller graph for this function:</div>
 <p>Gets whether the text box is reacting to the cursor hovering, based on its state. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname"><a class="el" href="structtext__box.html">text_box</a></td><td>address of memory of the text box </td></tr>
+    <tr><td class="paramname"><a class="el" href="structtext__box.html" title="Text box class implementation.">text_box</a></td><td>address of memory of the text box </td></tr>
   </table>
   </dd>
 </dl>
@@ -448,25 +730,40 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="group__text__box_gaa2fa2a826d1d881f5c5e374b40a6e9b1_icgraph.png" border="0" usemap="#agroup__text__box_gaa2fa2a826d1d881f5c5e374b40a6e9b1_icgraph" alt=""/></div>
 <map name="group__text__box_gaa2fa2a826d1d881f5c5e374b40a6e9b1_icgraph" id="group__text__box_gaa2fa2a826d1d881f5c5e374b40a6e9b1_icgraph">
-<area shape="rect" title="Gets whether the text box is reacting to the cursor hovering, based on its state." alt="" coords="820,220,963,262"/>
-<area shape="rect" href="group__dispatcher.html#ga1870958649b46017847735537a5701e1" title="Updates the cursor state and updates the game according to it." alt="" coords="631,220,772,262"/>
-<area shape="rect" href="group__game.html#ga52118602811d7516e865c66a7410fd58" title="Resumes the game." alt="" coords="423,177,527,204"/>
-<area shape="rect" href="group__menu.html#ga5ed66b2ad288641ccbb969f784a64351" title="Sets the menu to awaiting other player menu." alt="" coords="368,102,583,129"/>
-<area shape="rect" href="group__menu.html#ga6331f4f3fee92d6495fd79aa17f59777" title="Sets the menu to the game over screen." alt="" coords="401,279,549,320"/>
-<area shape="rect" href="group__menu.html#ga6c442e5329ddf932b74a253c15665d75" title="Sets the menu to main menu." alt="" coords="399,26,552,53"/>
-<area shape="rect" href="group__menu.html#ga0b4d8c6b87adac99529e3dce59857aaa" title="Sets the menu to new round screen according to the given player role." alt="" coords="401,344,549,386"/>
-<area shape="rect" href="group__menu.html#gaaf5a9953d8b982736cf01d87adcb3b14" title="Sets the menu to the other player left screen." alt="" coords="397,435,554,476"/>
-<area shape="rect" href="group__menu.html#ga2471e39c56761768b9ceabdd4d5e732f" title="Sets the menu to pause menu." alt="" coords="395,228,555,254"/>
-<area shape="rect" href="group__game.html#gad7c180906d7acb4776f4db147f289d7c" title="Starts the already created round." alt="" coords="185,178,312,205"/>
-<area shape="rect" href="group__menu.html#gafae9ccfd6e7de562283d6ffc8c3cf066" title="Loads the xpm images of the menu." alt="" coords="28,52,107,78"/>
-<area shape="rect" href="group__menu.html#ga9f128e941aaff63bfe944f44504d21cb" title="Updates the menu according to a keyboard event." alt="" coords="189,229,308,256"/>
-<area shape="rect" href="group__dispatcher.html#ga00f3579aee6fd77454373ac309f39675" title="Starts the round." alt="" coords="5,178,129,205"/>
-<area shape="rect" href="group__dispatcher.html#gaeaf290f8252a2b923005262498513787" title="Goes into the &quot;Awaiting other player...&quot; screen and notifies the other player." alt="" coords="179,77,319,104"/>
-<area shape="rect" href="group__game.html#ga3f61372930dd958f7499a110ce2bd7d6" title="Updates the game due to a rtc alarm interrupt." alt="" coords="10,313,125,340"/>
-<area shape="rect" href="group__dispatcher.html#ga0e52394a395110749bc8ce3251ee503c" title="Leaves the game back to the main menu and notifies the other player." alt="" coords="185,26,312,53"/>
-<area shape="rect" href="group__dispatcher.html#gabf03a39eb157e349de01d6a6cb7fa196" title="Starts a new round as DRAWER (role_t)." alt="" coords="177,335,320,376"/>
-<area shape="rect" href="group__dispatcher.html#ga0b13ea13708e1b05cd87fecebe747065" title="Starts a new round as GUESSER (role_t)." alt="" coords="177,400,320,442"/>
-<area shape="rect" href="group__dispatcher.html#ga478271b5d6d73f56b8c7c24d7be10cfd" title="Reacts to the event that the other player left the game." alt="" coords="183,466,314,507"/>
+<area shape="rect" title="Gets whether the text box is reacting to the cursor hovering, based on its state." alt="" coords="1548,199,1691,240"/>
+<area shape="rect" href="group__dispatcher.html#ga6b6621fbd0381200f89fc604c79d827c" title="Updates the cursor state and updates the game according to it." alt="" coords="1351,199,1500,240"/>
+<area shape="rect" href="group__dispatcher.html#gab9f77cf9ceb2ad8fc95e016d5b293338" title="Retrieves and dispatches a mouse packet, calling relevent application dependent code." alt="" coords="1140,13,1303,39"/>
+<area shape="rect" href="group__game.html#ga52118602811d7516e865c66a7410fd58" title="Resumes the game." alt="" coords="1169,63,1273,90"/>
+<area shape="rect" href="group__menu.html#ga5ed66b2ad288641ccbb969f784a64351" title="Sets the menu to awaiting other player menu." alt="" coords="877,297,1092,323"/>
+<area shape="rect" href="group__menu.html#ga6331f4f3fee92d6495fd79aa17f59777" title="Sets the menu to the game over screen." alt="" coords="1147,165,1295,207"/>
+<area shape="rect" href="group__menu.html#ga6c442e5329ddf932b74a253c15665d75" title="Sets the menu to main menu." alt="" coords="1145,347,1298,374"/>
+<area shape="rect" href="group__menu.html#ga0b4d8c6b87adac99529e3dce59857aaa" title="Sets the menu to new round screen according to the given player role." alt="" coords="1147,231,1295,272"/>
+<area shape="rect" href="group__menu.html#gaaf5a9953d8b982736cf01d87adcb3b14" title="Sets the menu to the other player left screen." alt="" coords="1143,399,1300,440"/>
+<area shape="rect" href="group__menu.html#ga2471e39c56761768b9ceabdd4d5e732f" title="Sets the menu to pause menu." alt="" coords="1141,114,1301,141"/>
+<area shape="rect" href="group__game.html#gad7c180906d7acb4776f4db147f289d7c" title="Starts the already created round." alt="" coords="921,13,1048,39"/>
+<area shape="rect" href="group__menu.html#ga9f128e941aaff63bfe944f44504d21cb" title="Updates the menu according to a keyboard event." alt="" coords="925,63,1044,90"/>
+<area shape="rect" href="group__dispatcher.html#gafab2be1b5bd6d5f0282e36effcdbf8c2" title="Starts the round." alt="" coords="668,13,800,39"/>
+<area shape="rect" href="group__dispatcher.html#ga165d3da39e7ad5173611be1f6689c6c7" title="Dispatches a RTC alarm interrupt, calling relevant application dependent code." alt="" coords="429,82,583,109"/>
+<area shape="rect" href="group__protocol.html#ga4ba318073b27ac4dd79ed093ee960b2f" title="Handles a received message of type MSG_START_ROUND." alt="" coords="432,5,580,47"/>
+<area shape="rect" href="group__dispatcher.html#gaf9683a8eab5011faf80d5235b08efc27" title="Handles and dispatches a keyboard state change, calling relevant application dependent code." alt="" coords="650,63,818,90"/>
+<area shape="rect" href="group__dispatcher.html#ga82e16242d9bfea1af9a18217b66282ef" title="Goes into the &quot;Awaiting other player...&quot; screen and notifies the other player." alt="" coords="217,291,365,318"/>
+<area shape="rect" href="group__game.html#ga3f61372930dd958f7499a110ce2bd7d6" title="Updates the game due to a rtc alarm interrupt." alt="" coords="677,114,791,141"/>
+<area shape="rect" href="group__dispatcher.html#gaa94a2133718338e297127042cc5e35b4" title="Leaves the game back to the main menu and notifies the other player." alt="" coords="917,347,1052,374"/>
+<area shape="rect" href="group__dispatcher.html#gac40675a6ad33c38fe29637b951581d58" title="Starts a new round as DRAWER (role_t)." alt="" coords="909,165,1060,207"/>
+<area shape="rect" href="group__dispatcher.html#ga3da6507ba1f8568ae9afb4cae96499d5" title="Starts a new round as GUESSER (role_t)." alt="" coords="909,231,1060,272"/>
+<area shape="rect" href="group__dispatcher.html#ga9a4fb415537dbfa13ca9de90327684ba" title="Compares the random numbers generated by both computers, in order to decide roles and start game." alt="" coords="645,175,823,202"/>
+<area shape="rect" href="group__dispatcher.html#gabb2070cbc5baff395bef09ac00cb46b6" title="Reacts to the event that the other player sent the random number to decide starting roles." alt="" coords="437,155,575,196"/>
+<area shape="rect" href="group__dispatcher.html#ga05c438abb1a2b811edbac9dd08f57f3c" title="Generates and sends a random number to the other player to decide starting roles." alt="" coords="441,220,571,261"/>
+<area shape="rect" href="group__protocol.html#ga37adc31aadd1ec8fe42b900a3968a90a" title="Handles a received message of type MSG_RANDOM_NUMBER." alt="" coords="208,155,373,196"/>
+<area shape="rect" href="group__dispatcher.html#ga6aefa9a24fd41cb49254b76096c99db3" title="Reacts to the event that the other player is ready to play." alt="" coords="221,220,360,261"/>
+<area shape="rect" href="group__protocol.html#ga825c861bde4764ba16b670119d5a9dcb" title="Handles a received message of type MSG_READY_TO_PLAY." alt="" coords="5,220,160,261"/>
+<area shape="rect" href="group__protocol.html#ga7e28848e24ede9cf58d5fff11c3c5ba4" title="Handles a received message of type MSG_NEW_ROUND." alt="" coords="661,231,807,272"/>
+<area shape="rect" href="group__dispatcher.html#ga2f49068b96469a8cb2bb627303e1a002" title="Reacts to the event that the other player left the game." alt="" coords="915,399,1054,440"/>
+<area shape="rect" href="group__protocol.html#gaa4d3d218fe6e125682653e4af1bf6dcd" title="Handles a connection timeout (didn&#39;t receive acknowledgment byte)" alt="" coords="643,373,825,415"/>
+<area shape="rect" href="group__protocol.html#ga1be347af44e7d733b89949a113359fae" title="Handles a received message of type MSG_LEAVE_GAME." alt="" coords="639,439,829,466"/>
+<area shape="rect" href="group__protocol.html#gab7cd551f6c17f5acce557cb11c3a71c9" title="Handles a received message of type MSG_PROGRAM_OPENED." alt="" coords="421,403,591,444"/>
+<area shape="rect" href="group__protocol.html#ga0b3e768da60827fe622bd3932efc82ff" title="Reacts to a timer interrupt to detect timeouts." alt="" coords="458,351,554,378"/>
+<area shape="rect" href="group__dispatcher.html#gababc3983184c400b85295ddab53388cc" title="Dispatches a timer interrupt, calling relevant application dependent code." alt="" coords="223,351,358,378"/>
 </map>
 </div>
 
@@ -501,12 +798,125 @@ Here is the caller graph for this function:</div>
 <p>Updates a given text box according to a keyboard event. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname"><a class="el" href="structtext__box.html">text_box</a></td><td>address of memory of the text box </td></tr>
+    <tr><td class="paramname"><a class="el" href="structtext__box.html" title="Text box class implementation.">text_box</a></td><td>address of memory of the text box </td></tr>
     <tr><td class="paramname"><a class="el" href="structkbd__event.html" title="Keyboard event.">kbd_event</a></td><td>keyboard event </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Return 0 upon success and non-zero otherwise </dd></dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__text__box_gaaf867825d96509a6e63674d88dac6b5d_cgraph.png" border="0" usemap="#agroup__text__box_gaaf867825d96509a6e63674d88dac6b5d_cgraph" alt=""/></div>
+<map name="group__text__box_gaaf867825d96509a6e63674d88dac6b5d_cgraph" id="group__text__box_gaaf867825d96509a6e63674d88dac6b5d_cgraph">
+<area shape="rect" title="Updates a given text box according to a keyboard event." alt="" coords="5,56,141,83"/>
+<area shape="rect" href="group__text__box.html#ga6a8095c6c90994772912450085202c92" title="Copies selected portion of the string in the textbox to the clipboard." alt="" coords="221,5,328,32"/>
+<area shape="rect" href="group__text__box.html#ga1bc6818987fa875239c8e67f350b6ed5" title="Deletes the selected portion of the string in the textbox." alt="" coords="189,56,360,83"/>
+<area shape="rect" href="group__text__box.html#ga61fb6c4833bc465a10acf643b799006f" title="Calls the text box callback function (action) with the currently written string as input." alt="" coords="215,107,335,133"/>
+<area shape="rect" href="group__text__box.html#ga4233fbb69c433514936274518e24d523" title="Clears the content of a given text box." alt="" coords="408,107,515,133"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__text__box_gaaf867825d96509a6e63674d88dac6b5d_icgraph.png" border="0" usemap="#agroup__text__box_gaaf867825d96509a6e63674d88dac6b5d_icgraph" alt=""/></div>
+<map name="group__text__box_gaaf867825d96509a6e63674d88dac6b5d_icgraph" id="group__text__box_gaaf867825d96509a6e63674d88dac6b5d_icgraph">
+<area shape="rect" title="Updates a given text box according to a keyboard event." alt="" coords="221,5,357,32"/>
+<area shape="rect" href="group__dispatcher.html#gaf9683a8eab5011faf80d5235b08efc27" title="Handles and dispatches a keyboard state change, calling relevant application dependent code." alt="" coords="5,5,173,32"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ga61fb6c4833bc465a10acf643b799006f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga61fb6c4833bc465a10acf643b799006f">&#9670;&nbsp;</a></span>text_box_retrieve()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static int text_box_retrieve </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__text__box.html#gaa1fd0a30d7698096cd71ff9535f222a4">text_box_t</a> *&#160;</td>
+          <td class="paramname"><em>text_box</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Calls the text box callback function (action) with the currently written string as input. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname"><a class="el" href="structtext__box.html" title="Text box class implementation.">text_box</a></td><td>address of memory of the text box </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Return 0 upon success and non-zero otherwise </dd></dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__text__box_ga61fb6c4833bc465a10acf643b799006f_cgraph.png" border="0" usemap="#agroup__text__box_ga61fb6c4833bc465a10acf643b799006f_cgraph" alt=""/></div>
+<map name="group__text__box_ga61fb6c4833bc465a10acf643b799006f_cgraph" id="group__text__box_ga61fb6c4833bc465a10acf643b799006f_cgraph">
+<area shape="rect" title="Calls the text box callback function (action) with the currently written string as input." alt="" coords="5,5,125,32"/>
+<area shape="rect" href="group__text__box.html#ga4233fbb69c433514936274518e24d523" title="Clears the content of a given text box." alt="" coords="173,5,280,32"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__text__box_ga61fb6c4833bc465a10acf643b799006f_icgraph.png" border="0" usemap="#agroup__text__box_ga61fb6c4833bc465a10acf643b799006f_icgraph" alt=""/></div>
+<map name="group__text__box_ga61fb6c4833bc465a10acf643b799006f_icgraph" id="group__text__box_ga61fb6c4833bc465a10acf643b799006f_icgraph">
+<area shape="rect" title="Calls the text box callback function (action) with the currently written string as input." alt="" coords="405,5,525,32"/>
+<area shape="rect" href="group__text__box.html#gaaf867825d96509a6e63674d88dac6b5d" title="Updates a given text box according to a keyboard event." alt="" coords="221,5,357,32"/>
+<area shape="rect" href="group__dispatcher.html#gaf9683a8eab5011faf80d5235b08efc27" title="Handles and dispatches a keyboard state change, calling relevant application dependent code." alt="" coords="5,5,173,32"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ga412d97b36204a9ae1c6d93537f8f7f65"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga412d97b36204a9ae1c6d93537f8f7f65">&#9670;&nbsp;</a></span>text_box_unselect()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void text_box_unselect </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__text__box.html#gaa1fd0a30d7698096cd71ff9535f222a4">text_box_t</a> *&#160;</td>
+          <td class="paramname"><em>text_box</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns text box to normal state. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname"><a class="el" href="structtext__box.html" title="Text box class implementation.">text_box</a></td><td>address of memory of the text box </td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__text__box_ga412d97b36204a9ae1c6d93537f8f7f65_icgraph.png" border="0" usemap="#agroup__text__box_ga412d97b36204a9ae1c6d93537f8f7f65_icgraph" alt=""/></div>
+<map name="group__text__box_ga412d97b36204a9ae1c6d93537f8f7f65_icgraph" id="group__text__box_ga412d97b36204a9ae1c6d93537f8f7f65_icgraph">
+<area shape="rect" title="Returns text box to normal state." alt="" coords="827,13,955,39"/>
+<area shape="rect" href="group__dispatcher.html#gadb81ccc75214fc2c0cc505de1e5c7383" title="Returns all bound buttons, textboxes and canvas to normal state." alt="" coords="596,5,779,47"/>
+<area shape="rect" href="group__menu.html#ga2471e39c56761768b9ceabdd4d5e732f" title="Sets the menu to pause menu." alt="" coords="388,13,548,39"/>
+<area shape="rect" href="group__menu.html#ga9f128e941aaff63bfe944f44504d21cb" title="Updates the menu according to a keyboard event." alt="" coords="221,13,340,39"/>
+<area shape="rect" href="group__dispatcher.html#gaf9683a8eab5011faf80d5235b08efc27" title="Handles and dispatches a keyboard state change, calling relevant application dependent code." alt="" coords="5,13,173,39"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -563,7 +973,7 @@ Here is the caller graph for this function:</div>
 <p>Updates the state of a given text box according to given mouse info. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname"><a class="el" href="structtext__box.html">text_box</a></td><td>address of memory of the text box </td></tr>
+    <tr><td class="paramname"><a class="el" href="structtext__box.html" title="Text box class implementation.">text_box</a></td><td>address of memory of the text box </td></tr>
     <tr><td class="paramname">hovering</td><td>text box is being hovered </td></tr>
     <tr><td class="paramname">lb</td><td>is left button pressed </td></tr>
     <tr><td class="paramname">rb</td><td>is right button pressed </td></tr>
@@ -578,27 +988,68 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="group__text__box_gaf810b80df21aa5e7259b8fc8815238f5_icgraph.png" border="0" usemap="#agroup__text__box_gaf810b80df21aa5e7259b8fc8815238f5_icgraph" alt=""/></div>
 <map name="group__text__box_gaf810b80df21aa5e7259b8fc8815238f5_icgraph" id="group__text__box_gaf810b80df21aa5e7259b8fc8815238f5_icgraph">
-<area shape="rect" title="Updates the state of a given text box according to given mouse info." alt="" coords="820,228,975,254"/>
-<area shape="rect" href="group__dispatcher.html#ga1870958649b46017847735537a5701e1" title="Updates the cursor state and updates the game according to it." alt="" coords="631,220,772,262"/>
-<area shape="rect" href="group__game.html#ga52118602811d7516e865c66a7410fd58" title="Resumes the game." alt="" coords="423,177,527,204"/>
-<area shape="rect" href="group__menu.html#ga5ed66b2ad288641ccbb969f784a64351" title="Sets the menu to awaiting other player menu." alt="" coords="368,102,583,129"/>
-<area shape="rect" href="group__menu.html#ga6331f4f3fee92d6495fd79aa17f59777" title="Sets the menu to the game over screen." alt="" coords="401,279,549,320"/>
-<area shape="rect" href="group__menu.html#ga6c442e5329ddf932b74a253c15665d75" title="Sets the menu to main menu." alt="" coords="399,26,552,53"/>
-<area shape="rect" href="group__menu.html#ga0b4d8c6b87adac99529e3dce59857aaa" title="Sets the menu to new round screen according to the given player role." alt="" coords="401,344,549,386"/>
-<area shape="rect" href="group__menu.html#gaaf5a9953d8b982736cf01d87adcb3b14" title="Sets the menu to the other player left screen." alt="" coords="397,435,554,476"/>
-<area shape="rect" href="group__menu.html#ga2471e39c56761768b9ceabdd4d5e732f" title="Sets the menu to pause menu." alt="" coords="395,228,555,254"/>
-<area shape="rect" href="group__game.html#gad7c180906d7acb4776f4db147f289d7c" title="Starts the already created round." alt="" coords="185,178,312,205"/>
-<area shape="rect" href="group__menu.html#gafae9ccfd6e7de562283d6ffc8c3cf066" title="Loads the xpm images of the menu." alt="" coords="28,52,107,78"/>
-<area shape="rect" href="group__menu.html#ga9f128e941aaff63bfe944f44504d21cb" title="Updates the menu according to a keyboard event." alt="" coords="189,229,308,256"/>
-<area shape="rect" href="group__dispatcher.html#ga00f3579aee6fd77454373ac309f39675" title="Starts the round." alt="" coords="5,178,129,205"/>
-<area shape="rect" href="group__dispatcher.html#gaeaf290f8252a2b923005262498513787" title="Goes into the &quot;Awaiting other player...&quot; screen and notifies the other player." alt="" coords="179,77,319,104"/>
-<area shape="rect" href="group__game.html#ga3f61372930dd958f7499a110ce2bd7d6" title="Updates the game due to a rtc alarm interrupt." alt="" coords="10,313,125,340"/>
-<area shape="rect" href="group__dispatcher.html#ga0e52394a395110749bc8ce3251ee503c" title="Leaves the game back to the main menu and notifies the other player." alt="" coords="185,26,312,53"/>
-<area shape="rect" href="group__dispatcher.html#gabf03a39eb157e349de01d6a6cb7fa196" title="Starts a new round as DRAWER (role_t)." alt="" coords="177,335,320,376"/>
-<area shape="rect" href="group__dispatcher.html#ga0b13ea13708e1b05cd87fecebe747065" title="Starts a new round as GUESSER (role_t)." alt="" coords="177,400,320,442"/>
-<area shape="rect" href="group__dispatcher.html#ga478271b5d6d73f56b8c7c24d7be10cfd" title="Reacts to the event that the other player left the game." alt="" coords="183,466,314,507"/>
+<area shape="rect" title="Updates the state of a given text box according to given mouse info." alt="" coords="1548,206,1703,233"/>
+<area shape="rect" href="group__dispatcher.html#ga6b6621fbd0381200f89fc604c79d827c" title="Updates the cursor state and updates the game according to it." alt="" coords="1351,199,1500,240"/>
+<area shape="rect" href="group__dispatcher.html#gab9f77cf9ceb2ad8fc95e016d5b293338" title="Retrieves and dispatches a mouse packet, calling relevent application dependent code." alt="" coords="1140,13,1303,39"/>
+<area shape="rect" href="group__game.html#ga52118602811d7516e865c66a7410fd58" title="Resumes the game." alt="" coords="1169,63,1273,90"/>
+<area shape="rect" href="group__menu.html#ga5ed66b2ad288641ccbb969f784a64351" title="Sets the menu to awaiting other player menu." alt="" coords="877,297,1092,323"/>
+<area shape="rect" href="group__menu.html#ga6331f4f3fee92d6495fd79aa17f59777" title="Sets the menu to the game over screen." alt="" coords="1147,165,1295,207"/>
+<area shape="rect" href="group__menu.html#ga6c442e5329ddf932b74a253c15665d75" title="Sets the menu to main menu." alt="" coords="1145,347,1298,374"/>
+<area shape="rect" href="group__menu.html#ga0b4d8c6b87adac99529e3dce59857aaa" title="Sets the menu to new round screen according to the given player role." alt="" coords="1147,231,1295,272"/>
+<area shape="rect" href="group__menu.html#gaaf5a9953d8b982736cf01d87adcb3b14" title="Sets the menu to the other player left screen." alt="" coords="1143,399,1300,440"/>
+<area shape="rect" href="group__menu.html#ga2471e39c56761768b9ceabdd4d5e732f" title="Sets the menu to pause menu." alt="" coords="1141,114,1301,141"/>
+<area shape="rect" href="group__game.html#gad7c180906d7acb4776f4db147f289d7c" title="Starts the already created round." alt="" coords="921,13,1048,39"/>
+<area shape="rect" href="group__menu.html#ga9f128e941aaff63bfe944f44504d21cb" title="Updates the menu according to a keyboard event." alt="" coords="925,63,1044,90"/>
+<area shape="rect" href="group__dispatcher.html#gafab2be1b5bd6d5f0282e36effcdbf8c2" title="Starts the round." alt="" coords="668,13,800,39"/>
+<area shape="rect" href="group__dispatcher.html#ga165d3da39e7ad5173611be1f6689c6c7" title="Dispatches a RTC alarm interrupt, calling relevant application dependent code." alt="" coords="429,82,583,109"/>
+<area shape="rect" href="group__protocol.html#ga4ba318073b27ac4dd79ed093ee960b2f" title="Handles a received message of type MSG_START_ROUND." alt="" coords="432,5,580,47"/>
+<area shape="rect" href="group__dispatcher.html#gaf9683a8eab5011faf80d5235b08efc27" title="Handles and dispatches a keyboard state change, calling relevant application dependent code." alt="" coords="650,63,818,90"/>
+<area shape="rect" href="group__dispatcher.html#ga82e16242d9bfea1af9a18217b66282ef" title="Goes into the &quot;Awaiting other player...&quot; screen and notifies the other player." alt="" coords="217,291,365,318"/>
+<area shape="rect" href="group__game.html#ga3f61372930dd958f7499a110ce2bd7d6" title="Updates the game due to a rtc alarm interrupt." alt="" coords="677,114,791,141"/>
+<area shape="rect" href="group__dispatcher.html#gaa94a2133718338e297127042cc5e35b4" title="Leaves the game back to the main menu and notifies the other player." alt="" coords="917,347,1052,374"/>
+<area shape="rect" href="group__dispatcher.html#gac40675a6ad33c38fe29637b951581d58" title="Starts a new round as DRAWER (role_t)." alt="" coords="909,165,1060,207"/>
+<area shape="rect" href="group__dispatcher.html#ga3da6507ba1f8568ae9afb4cae96499d5" title="Starts a new round as GUESSER (role_t)." alt="" coords="909,231,1060,272"/>
+<area shape="rect" href="group__dispatcher.html#ga9a4fb415537dbfa13ca9de90327684ba" title="Compares the random numbers generated by both computers, in order to decide roles and start game." alt="" coords="645,175,823,202"/>
+<area shape="rect" href="group__dispatcher.html#gabb2070cbc5baff395bef09ac00cb46b6" title="Reacts to the event that the other player sent the random number to decide starting roles." alt="" coords="437,155,575,196"/>
+<area shape="rect" href="group__dispatcher.html#ga05c438abb1a2b811edbac9dd08f57f3c" title="Generates and sends a random number to the other player to decide starting roles." alt="" coords="441,220,571,261"/>
+<area shape="rect" href="group__protocol.html#ga37adc31aadd1ec8fe42b900a3968a90a" title="Handles a received message of type MSG_RANDOM_NUMBER." alt="" coords="208,155,373,196"/>
+<area shape="rect" href="group__dispatcher.html#ga6aefa9a24fd41cb49254b76096c99db3" title="Reacts to the event that the other player is ready to play." alt="" coords="221,220,360,261"/>
+<area shape="rect" href="group__protocol.html#ga825c861bde4764ba16b670119d5a9dcb" title="Handles a received message of type MSG_READY_TO_PLAY." alt="" coords="5,220,160,261"/>
+<area shape="rect" href="group__protocol.html#ga7e28848e24ede9cf58d5fff11c3c5ba4" title="Handles a received message of type MSG_NEW_ROUND." alt="" coords="661,231,807,272"/>
+<area shape="rect" href="group__dispatcher.html#ga2f49068b96469a8cb2bb627303e1a002" title="Reacts to the event that the other player left the game." alt="" coords="915,399,1054,440"/>
+<area shape="rect" href="group__protocol.html#gaa4d3d218fe6e125682653e4af1bf6dcd" title="Handles a connection timeout (didn&#39;t receive acknowledgment byte)" alt="" coords="643,373,825,415"/>
+<area shape="rect" href="group__protocol.html#ga1be347af44e7d733b89949a113359fae" title="Handles a received message of type MSG_LEAVE_GAME." alt="" coords="639,439,829,466"/>
+<area shape="rect" href="group__protocol.html#gab7cd551f6c17f5acce557cb11c3a71c9" title="Handles a received message of type MSG_PROGRAM_OPENED." alt="" coords="421,403,591,444"/>
+<area shape="rect" href="group__protocol.html#ga0b3e768da60827fe622bd3932efc82ff" title="Reacts to a timer interrupt to detect timeouts." alt="" coords="458,351,554,378"/>
+<area shape="rect" href="group__dispatcher.html#gababc3983184c400b85295ddab53388cc" title="Dispatches a timer interrupt, calling relevant application dependent code." alt="" coords="223,351,358,378"/>
 </map>
 </div>
+
+</div>
+</div>
+<h2 class="groupheader">Variable Documentation</h2>
+<a id="gaccd3f4d8c77521ed3429f7312dea67fc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaccd3f4d8c77521ed3429f7312dea67fc">&#9670;&nbsp;</a></span>clip_board</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">char* clip_board = NULL</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Characters in clip board to be pasted. </p>
+<p>Note: this is a sequence of characters, NOT a null terminated C string. </p>
 
 </div>
 </div>

@@ -29,7 +29,7 @@ typedef enum cursor_state {
  * 
  * @return Return 0 upon success and non-zero otherwise
  */
-int cursor_init();
+int cursor_init(enum xpm_image_type type);
 
 /**
  * @brief Frees the space allocated in memory to store the cursor images.

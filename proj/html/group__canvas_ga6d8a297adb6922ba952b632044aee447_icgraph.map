@@ -1,0 +1,7 @@
+<map id="canvas_is_initialized" name="canvas_is_initialized">
+<area shape="rect" id="node1" title="Checks if the canvas is initialized." alt="" coords="239,97,379,124"/>
+<area shape="rect" id="node2" href="$group__protocol.html#ga7f3ee31ed577c6fcd4e40c0e726d1626" title="Handles a received message of type MSG_DRAW_ATOM." alt="" coords="5,5,191,32"/>
+<area shape="rect" id="node3" href="$group__protocol.html#ga678e82d674ea0352eaa6452bee464c26" title="Handles a received message of type MSG_NEW_STROKE." alt="" coords="25,57,171,98"/>
+<area shape="rect" id="node4" href="$group__protocol.html#gabeb1b3c096356b3ddbb4d6045b905137" title="Handles a received message of type MSG_REDO_CANVAS." alt="" coords="25,122,171,163"/>
+<area shape="rect" id="node5" href="$group__protocol.html#ga1b91893e90839e8469d25ef32197799d" title="Handles a received message of type MSG_UNDO_CANVAS." alt="" coords="23,187,173,229"/>
+</map>

@@ -64,7 +64,8 @@ $(function() {
   <div class="summary">
 <a href="#typedef-members">Typedefs</a> &#124;
 <a href="#enum-members">Enumerations</a> &#124;
-<a href="#func-members">Functions</a>  </div>
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
 <div class="title">cursor</div>  </div>
 </div><!--header-->
@@ -92,9 +93,9 @@ Enumerations</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:gaf5b033d27a9ea9e64dd8f9098536dd2a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__cursor.html#gaf5b033d27a9ea9e64dd8f9098536dd2a">cursor_init</a> ()</td></tr>
-<tr class="memdesc:gaf5b033d27a9ea9e64dd8f9098536dd2a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads the cursor .xpm images and sets the initial cursor position.  <a href="group__cursor.html#gaf5b033d27a9ea9e64dd8f9098536dd2a">More...</a><br /></td></tr>
-<tr class="separator:gaf5b033d27a9ea9e64dd8f9098536dd2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae411d012061348499f2801b10fcb5721"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__cursor.html#gae411d012061348499f2801b10fcb5721">cursor_init</a> (enum xpm_image_type type)</td></tr>
+<tr class="memdesc:gae411d012061348499f2801b10fcb5721"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads the cursor .xpm images and sets the initial cursor position.  <a href="group__cursor.html#gae411d012061348499f2801b10fcb5721">More...</a><br /></td></tr>
+<tr class="separator:gae411d012061348499f2801b10fcb5721"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga035fbccaf21451086210ff6b516561f1"><td class="memItemLeft" align="right" valign="top"><a id="ga035fbccaf21451086210ff6b516561f1"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__cursor.html#ga035fbccaf21451086210ff6b516561f1">cursor_exit</a> ()</td></tr>
 <tr class="memdesc:ga035fbccaf21451086210ff6b516561f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Frees the space allocated in memory to store the cursor images. <br /></td></tr>
@@ -120,9 +121,44 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grou
 <tr class="memitem:ga1f0539239b1f5a7f3de05af786aeaab2"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__cursor.html#ga1f0539239b1f5a7f3de05af786aeaab2">cursor_draw</a> ()</td></tr>
 <tr class="memdesc:ga1f0539239b1f5a7f3de05af786aeaab2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draws the cursor to the back buffer in its current position according to its current state.  <a href="group__cursor.html#ga1f0539239b1f5a7f3de05af786aeaab2">More...</a><br /></td></tr>
 <tr class="separator:ga1f0539239b1f5a7f3de05af786aeaab2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gacc7f42d69f1210f45a2642c0fb0f11e9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__cursor.html#gacc7f42d69f1210f45a2642c0fb0f11e9">cursor_set_state</a> (<a class="el" href="group__cursor.html#ga73e228782bc4507bea6aff33b6496492">cursor_state_t</a> state)</td></tr>
+<tr class="memitem:gacc7f42d69f1210f45a2642c0fb0f11e9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__cursor.html#gacc7f42d69f1210f45a2642c0fb0f11e9">cursor_set_state</a> (<a class="el" href="group__cursor.html#ga73e228782bc4507bea6aff33b6496492">cursor_state_t</a> <a class="el" href="group__cursor.html#ga6f7e13151bae7f4c7e4cb81c78d8e7db">state</a>)</td></tr>
 <tr class="memdesc:gacc7f42d69f1210f45a2642c0fb0f11e9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the cursor state.  <a href="group__cursor.html#gacc7f42d69f1210f45a2642c0fb0f11e9">More...</a><br /></td></tr>
 <tr class="separator:gacc7f42d69f1210f45a2642c0fb0f11e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:ga6f7e13151bae7f4c7e4cb81c78d8e7db"><td class="memItemLeft" align="right" valign="top"><a id="ga6f7e13151bae7f4c7e4cb81c78d8e7db"></a>
+static <a class="el" href="group__cursor.html#ga73e228782bc4507bea6aff33b6496492">cursor_state_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__cursor.html#ga6f7e13151bae7f4c7e4cb81c78d8e7db">state</a> = <a class="el" href="group__cursor.html#ggae816e2010df6ae9e9f853d0f2c623173a8ecb986da99c3c8f74789613a9858492">CURSOR_ARROW</a></td></tr>
+<tr class="memdesc:ga6f7e13151bae7f4c7e4cb81c78d8e7db"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cursor current state. <br /></td></tr>
+<tr class="separator:ga6f7e13151bae7f4c7e4cb81c78d8e7db"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga5b474ea4c4c40b5fa69b2f35f14f40ca"><td class="memItemLeft" align="right" valign="top"><a id="ga5b474ea4c4c40b5fa69b2f35f14f40ca"></a>
+static int16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__cursor.html#ga5b474ea4c4c40b5fa69b2f35f14f40ca">cursor_x</a> = 0</td></tr>
+<tr class="memdesc:ga5b474ea4c4c40b5fa69b2f35f14f40ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cursor x coordinate. <br /></td></tr>
+<tr class="separator:ga5b474ea4c4c40b5fa69b2f35f14f40ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga23e124fd7b751475406a3940ada3aea4"><td class="memItemLeft" align="right" valign="top"><a id="ga23e124fd7b751475406a3940ada3aea4"></a>
+static int16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__cursor.html#ga23e124fd7b751475406a3940ada3aea4">cursor_y</a> = 0</td></tr>
+<tr class="memdesc:ga23e124fd7b751475406a3940ada3aea4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cursor y coordinate. <br /></td></tr>
+<tr class="separator:ga23e124fd7b751475406a3940ada3aea4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2cc1266e0b4b2162696a91f235034271"><td class="memItemLeft" align="right" valign="top"><a id="ga2cc1266e0b4b2162696a91f235034271"></a>
+static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__cursor.html#ga2cc1266e0b4b2162696a91f235034271">lb</a> = false</td></tr>
+<tr class="memdesc:ga2cc1266e0b4b2162696a91f235034271"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether left mouse button is pressed. <br /></td></tr>
+<tr class="separator:ga2cc1266e0b4b2162696a91f235034271"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gabbf74dbbb9f15eefcd8500a92e0d9385"><td class="memItemLeft" align="right" valign="top"><a id="gabbf74dbbb9f15eefcd8500a92e0d9385"></a>
+static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__cursor.html#gabbf74dbbb9f15eefcd8500a92e0d9385">rb</a> = false</td></tr>
+<tr class="memdesc:gabbf74dbbb9f15eefcd8500a92e0d9385"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether right mouse button is pressed. <br /></td></tr>
+<tr class="separator:gabbf74dbbb9f15eefcd8500a92e0d9385"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gacf33ac99eff77867a7d93028e16fd1f5"><td class="memItemLeft" align="right" valign="top"><a id="gacf33ac99eff77867a7d93028e16fd1f5"></a>
+static xpm_image_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__cursor.html#gacf33ac99eff77867a7d93028e16fd1f5">cursor_arrow</a></td></tr>
+<tr class="memdesc:gacf33ac99eff77867a7d93028e16fd1f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cursor arrow XPM. <br /></td></tr>
+<tr class="separator:gacf33ac99eff77867a7d93028e16fd1f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2a98359b47164a7646e2c221dcbd8d8e"><td class="memItemLeft" align="right" valign="top"><a id="ga2a98359b47164a7646e2c221dcbd8d8e"></a>
+static xpm_image_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__cursor.html#ga2a98359b47164a7646e2c221dcbd8d8e">cursor_write</a></td></tr>
+<tr class="memdesc:ga2a98359b47164a7646e2c221dcbd8d8e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cursor hovering text box XPM. <br /></td></tr>
+<tr class="separator:ga2a98359b47164a7646e2c221dcbd8d8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa9dd3fb16d1fb750ab486413841d96db"><td class="memItemLeft" align="right" valign="top"><a id="gaa9dd3fb16d1fb750ab486413841d96db"></a>
+static xpm_image_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__cursor.html#gaa9dd3fb16d1fb750ab486413841d96db">cursor_disabled</a></td></tr>
+<tr class="memdesc:gaa9dd3fb16d1fb750ab486413841d96db"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cursor disabled XPM. <br /></td></tr>
+<tr class="separator:gaa9dd3fb16d1fb750ab486413841d96db"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p>Module dedicated to the mouse cursor. </p>
@@ -171,6 +207,31 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grou
 
 <p>Draws the cursor to the back buffer in its current position according to its current state. </p>
 <dl class="section return"><dt>Returns</dt><dd>Return 0 upon success and non-zero otherwise </dd></dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__cursor_ga1f0539239b1f5a7f3de05af786aeaab2_cgraph.png" border="0" usemap="#agroup__cursor_ga1f0539239b1f5a7f3de05af786aeaab2_cgraph" alt=""/></div>
+<map name="group__cursor_ga1f0539239b1f5a7f3de05af786aeaab2_cgraph" id="group__cursor_ga1f0539239b1f5a7f3de05af786aeaab2_cgraph">
+<area shape="rect" title="Draws the cursor to the back buffer in its current position according to its current state." alt="" coords="5,137,97,163"/>
+<area shape="rect" href="group__game.html#ga3fd14fd97f9704dccd8f8b0e6e53960f" title="Gets the drawer selected color." alt="" coords="145,5,287,47"/>
+<area shape="rect" href="group__game.html#ga7a01e47255ad988eefbe2e0067a3e26c" title="Gets the drawer selected thickness." alt="" coords="145,71,287,112"/>
+<area shape="rect" href="group__graphics.html#ga1b69ad0e07cfd0697a4cb9c18ba48b67" title="Draws a circle in the given buffer in the given coordinates with the given radius with the given colo..." alt="" coords="356,137,463,163"/>
+<area shape="rect" href="group__graphics.html#gad48647db82bcc8a80196a817c9959a40" title="Draws a given xpm image in the given buffer in the given coordinates." alt="" coords="168,187,264,214"/>
+<area shape="rect" href="group__video__gr.html#gaecb0fe68de84fcbe553f77d62b37c69b" title="Gets the back buffer." alt="" coords="150,238,282,265"/>
+<area shape="rect" href="group__graphics.html#ga257b5dac975604f70651e8764ad8acd8" title="Draws a pixel in the given buffer in the given coordinates with the given color." alt="" coords="532,162,635,189"/>
+<area shape="rect" href="group__graphics.html#ga31260a04eb12bc7be5012378500b09b0" title="Draws a portion of a given xpm image in the given buffer in the given coordinates." alt="" coords="335,187,484,214"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__cursor_ga1f0539239b1f5a7f3de05af786aeaab2_icgraph.png" border="0" usemap="#agroup__cursor_ga1f0539239b1f5a7f3de05af786aeaab2_icgraph" alt=""/></div>
+<map name="group__cursor_ga1f0539239b1f5a7f3de05af786aeaab2_icgraph" id="group__cursor_ga1f0539239b1f5a7f3de05af786aeaab2_icgraph">
+<area shape="rect" title="Draws the cursor to the back buffer in its current position according to its current state." alt="" coords="324,5,416,32"/>
+<area shape="rect" href="group__dispatcher.html#ga1265a5e2843f2b1c45ad05ae61de7000" title="Draws the frame to the back buffer and flips the buffers." alt="" coords="188,5,276,32"/>
+<area shape="rect" href="group__dispatcher.html#gababc3983184c400b85295ddab53388cc" title="Dispatches a timer interrupt, calling relevant application dependent code." alt="" coords="5,5,140,32"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -196,25 +257,40 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="group__cursor_gac0fa742a26e68888018245125c26d5d6_icgraph.png" border="0" usemap="#agroup__cursor_gac0fa742a26e68888018245125c26d5d6_icgraph" alt=""/></div>
 <map name="group__cursor_gac0fa742a26e68888018245125c26d5d6_icgraph" id="group__cursor_gac0fa742a26e68888018245125c26d5d6_icgraph">
-<area shape="rect" title="Gets the left button state. (either pressed or not)" alt="" coords="820,228,920,254"/>
-<area shape="rect" href="group__dispatcher.html#ga1870958649b46017847735537a5701e1" title="Updates the cursor state and updates the game according to it." alt="" coords="631,220,772,262"/>
-<area shape="rect" href="group__game.html#ga52118602811d7516e865c66a7410fd58" title="Resumes the game." alt="" coords="423,177,527,204"/>
-<area shape="rect" href="group__menu.html#ga5ed66b2ad288641ccbb969f784a64351" title="Sets the menu to awaiting other player menu." alt="" coords="368,102,583,129"/>
-<area shape="rect" href="group__menu.html#ga6331f4f3fee92d6495fd79aa17f59777" title="Sets the menu to the game over screen." alt="" coords="401,279,549,320"/>
-<area shape="rect" href="group__menu.html#ga6c442e5329ddf932b74a253c15665d75" title="Sets the menu to main menu." alt="" coords="399,26,552,53"/>
-<area shape="rect" href="group__menu.html#ga0b4d8c6b87adac99529e3dce59857aaa" title="Sets the menu to new round screen according to the given player role." alt="" coords="401,344,549,386"/>
-<area shape="rect" href="group__menu.html#gaaf5a9953d8b982736cf01d87adcb3b14" title="Sets the menu to the other player left screen." alt="" coords="397,435,554,476"/>
-<area shape="rect" href="group__menu.html#ga2471e39c56761768b9ceabdd4d5e732f" title="Sets the menu to pause menu." alt="" coords="395,228,555,254"/>
-<area shape="rect" href="group__game.html#gad7c180906d7acb4776f4db147f289d7c" title="Starts the already created round." alt="" coords="185,178,312,205"/>
-<area shape="rect" href="group__menu.html#gafae9ccfd6e7de562283d6ffc8c3cf066" title="Loads the xpm images of the menu." alt="" coords="28,52,107,78"/>
-<area shape="rect" href="group__menu.html#ga9f128e941aaff63bfe944f44504d21cb" title="Updates the menu according to a keyboard event." alt="" coords="189,229,308,256"/>
-<area shape="rect" href="group__dispatcher.html#ga00f3579aee6fd77454373ac309f39675" title="Starts the round." alt="" coords="5,178,129,205"/>
-<area shape="rect" href="group__dispatcher.html#gaeaf290f8252a2b923005262498513787" title="Goes into the &quot;Awaiting other player...&quot; screen and notifies the other player." alt="" coords="179,77,319,104"/>
-<area shape="rect" href="group__game.html#ga3f61372930dd958f7499a110ce2bd7d6" title="Updates the game due to a rtc alarm interrupt." alt="" coords="10,313,125,340"/>
-<area shape="rect" href="group__dispatcher.html#ga0e52394a395110749bc8ce3251ee503c" title="Leaves the game back to the main menu and notifies the other player." alt="" coords="185,26,312,53"/>
-<area shape="rect" href="group__dispatcher.html#gabf03a39eb157e349de01d6a6cb7fa196" title="Starts a new round as DRAWER (role_t)." alt="" coords="177,335,320,376"/>
-<area shape="rect" href="group__dispatcher.html#ga0b13ea13708e1b05cd87fecebe747065" title="Starts a new round as GUESSER (role_t)." alt="" coords="177,400,320,442"/>
-<area shape="rect" href="group__dispatcher.html#ga478271b5d6d73f56b8c7c24d7be10cfd" title="Reacts to the event that the other player left the game." alt="" coords="183,466,314,507"/>
+<area shape="rect" title="Gets the left button state. (either pressed or not)" alt="" coords="1548,206,1648,233"/>
+<area shape="rect" href="group__dispatcher.html#ga6b6621fbd0381200f89fc604c79d827c" title="Updates the cursor state and updates the game according to it." alt="" coords="1351,199,1500,240"/>
+<area shape="rect" href="group__dispatcher.html#gab9f77cf9ceb2ad8fc95e016d5b293338" title="Retrieves and dispatches a mouse packet, calling relevent application dependent code." alt="" coords="1140,13,1303,39"/>
+<area shape="rect" href="group__game.html#ga52118602811d7516e865c66a7410fd58" title="Resumes the game." alt="" coords="1169,63,1273,90"/>
+<area shape="rect" href="group__menu.html#ga5ed66b2ad288641ccbb969f784a64351" title="Sets the menu to awaiting other player menu." alt="" coords="877,297,1092,323"/>
+<area shape="rect" href="group__menu.html#ga6331f4f3fee92d6495fd79aa17f59777" title="Sets the menu to the game over screen." alt="" coords="1147,165,1295,207"/>
+<area shape="rect" href="group__menu.html#ga6c442e5329ddf932b74a253c15665d75" title="Sets the menu to main menu." alt="" coords="1145,347,1298,374"/>
+<area shape="rect" href="group__menu.html#ga0b4d8c6b87adac99529e3dce59857aaa" title="Sets the menu to new round screen according to the given player role." alt="" coords="1147,231,1295,272"/>
+<area shape="rect" href="group__menu.html#gaaf5a9953d8b982736cf01d87adcb3b14" title="Sets the menu to the other player left screen." alt="" coords="1143,399,1300,440"/>
+<area shape="rect" href="group__menu.html#ga2471e39c56761768b9ceabdd4d5e732f" title="Sets the menu to pause menu." alt="" coords="1141,114,1301,141"/>
+<area shape="rect" href="group__game.html#gad7c180906d7acb4776f4db147f289d7c" title="Starts the already created round." alt="" coords="921,13,1048,39"/>
+<area shape="rect" href="group__menu.html#ga9f128e941aaff63bfe944f44504d21cb" title="Updates the menu according to a keyboard event." alt="" coords="925,63,1044,90"/>
+<area shape="rect" href="group__dispatcher.html#gafab2be1b5bd6d5f0282e36effcdbf8c2" title="Starts the round." alt="" coords="668,13,800,39"/>
+<area shape="rect" href="group__dispatcher.html#ga165d3da39e7ad5173611be1f6689c6c7" title="Dispatches a RTC alarm interrupt, calling relevant application dependent code." alt="" coords="429,82,583,109"/>
+<area shape="rect" href="group__protocol.html#ga4ba318073b27ac4dd79ed093ee960b2f" title="Handles a received message of type MSG_START_ROUND." alt="" coords="432,5,580,47"/>
+<area shape="rect" href="group__dispatcher.html#gaf9683a8eab5011faf80d5235b08efc27" title="Handles and dispatches a keyboard state change, calling relevant application dependent code." alt="" coords="650,63,818,90"/>
+<area shape="rect" href="group__dispatcher.html#ga82e16242d9bfea1af9a18217b66282ef" title="Goes into the &quot;Awaiting other player...&quot; screen and notifies the other player." alt="" coords="217,291,365,318"/>
+<area shape="rect" href="group__game.html#ga3f61372930dd958f7499a110ce2bd7d6" title="Updates the game due to a rtc alarm interrupt." alt="" coords="677,114,791,141"/>
+<area shape="rect" href="group__dispatcher.html#gaa94a2133718338e297127042cc5e35b4" title="Leaves the game back to the main menu and notifies the other player." alt="" coords="917,347,1052,374"/>
+<area shape="rect" href="group__dispatcher.html#gac40675a6ad33c38fe29637b951581d58" title="Starts a new round as DRAWER (role_t)." alt="" coords="909,165,1060,207"/>
+<area shape="rect" href="group__dispatcher.html#ga3da6507ba1f8568ae9afb4cae96499d5" title="Starts a new round as GUESSER (role_t)." alt="" coords="909,231,1060,272"/>
+<area shape="rect" href="group__dispatcher.html#ga9a4fb415537dbfa13ca9de90327684ba" title="Compares the random numbers generated by both computers, in order to decide roles and start game." alt="" coords="645,175,823,202"/>
+<area shape="rect" href="group__dispatcher.html#gabb2070cbc5baff395bef09ac00cb46b6" title="Reacts to the event that the other player sent the random number to decide starting roles." alt="" coords="437,155,575,196"/>
+<area shape="rect" href="group__dispatcher.html#ga05c438abb1a2b811edbac9dd08f57f3c" title="Generates and sends a random number to the other player to decide starting roles." alt="" coords="441,220,571,261"/>
+<area shape="rect" href="group__protocol.html#ga37adc31aadd1ec8fe42b900a3968a90a" title="Handles a received message of type MSG_RANDOM_NUMBER." alt="" coords="208,155,373,196"/>
+<area shape="rect" href="group__dispatcher.html#ga6aefa9a24fd41cb49254b76096c99db3" title="Reacts to the event that the other player is ready to play." alt="" coords="221,220,360,261"/>
+<area shape="rect" href="group__protocol.html#ga825c861bde4764ba16b670119d5a9dcb" title="Handles a received message of type MSG_READY_TO_PLAY." alt="" coords="5,220,160,261"/>
+<area shape="rect" href="group__protocol.html#ga7e28848e24ede9cf58d5fff11c3c5ba4" title="Handles a received message of type MSG_NEW_ROUND." alt="" coords="661,231,807,272"/>
+<area shape="rect" href="group__dispatcher.html#ga2f49068b96469a8cb2bb627303e1a002" title="Reacts to the event that the other player left the game." alt="" coords="915,399,1054,440"/>
+<area shape="rect" href="group__protocol.html#gaa4d3d218fe6e125682653e4af1bf6dcd" title="Handles a connection timeout (didn&#39;t receive acknowledgment byte)" alt="" coords="643,373,825,415"/>
+<area shape="rect" href="group__protocol.html#ga1be347af44e7d733b89949a113359fae" title="Handles a received message of type MSG_LEAVE_GAME." alt="" coords="639,439,829,466"/>
+<area shape="rect" href="group__protocol.html#gab7cd551f6c17f5acce557cb11c3a71c9" title="Handles a received message of type MSG_PROGRAM_OPENED." alt="" coords="421,403,591,444"/>
+<area shape="rect" href="group__protocol.html#ga0b3e768da60827fe622bd3932efc82ff" title="Reacts to a timer interrupt to detect timeouts." alt="" coords="458,351,554,378"/>
+<area shape="rect" href="group__dispatcher.html#gababc3983184c400b85295ddab53388cc" title="Dispatches a timer interrupt, calling relevant application dependent code." alt="" coords="223,351,358,378"/>
 </map>
 </div>
 
@@ -242,25 +318,40 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="group__cursor_ga7da23fec369ac0db044e35d1ff1fb95c_icgraph.png" border="0" usemap="#agroup__cursor_ga7da23fec369ac0db044e35d1ff1fb95c_icgraph" alt=""/></div>
 <map name="group__cursor_ga7da23fec369ac0db044e35d1ff1fb95c_icgraph" id="group__cursor_ga7da23fec369ac0db044e35d1ff1fb95c_icgraph">
-<area shape="rect" title="Gets the right button state. (either pressed or not)" alt="" coords="820,228,921,254"/>
-<area shape="rect" href="group__dispatcher.html#ga1870958649b46017847735537a5701e1" title="Updates the cursor state and updates the game according to it." alt="" coords="631,220,772,262"/>
-<area shape="rect" href="group__game.html#ga52118602811d7516e865c66a7410fd58" title="Resumes the game." alt="" coords="423,177,527,204"/>
-<area shape="rect" href="group__menu.html#ga5ed66b2ad288641ccbb969f784a64351" title="Sets the menu to awaiting other player menu." alt="" coords="368,102,583,129"/>
-<area shape="rect" href="group__menu.html#ga6331f4f3fee92d6495fd79aa17f59777" title="Sets the menu to the game over screen." alt="" coords="401,279,549,320"/>
-<area shape="rect" href="group__menu.html#ga6c442e5329ddf932b74a253c15665d75" title="Sets the menu to main menu." alt="" coords="399,26,552,53"/>
-<area shape="rect" href="group__menu.html#ga0b4d8c6b87adac99529e3dce59857aaa" title="Sets the menu to new round screen according to the given player role." alt="" coords="401,344,549,386"/>
-<area shape="rect" href="group__menu.html#gaaf5a9953d8b982736cf01d87adcb3b14" title="Sets the menu to the other player left screen." alt="" coords="397,435,554,476"/>
-<area shape="rect" href="group__menu.html#ga2471e39c56761768b9ceabdd4d5e732f" title="Sets the menu to pause menu." alt="" coords="395,228,555,254"/>
-<area shape="rect" href="group__game.html#gad7c180906d7acb4776f4db147f289d7c" title="Starts the already created round." alt="" coords="185,178,312,205"/>
-<area shape="rect" href="group__menu.html#gafae9ccfd6e7de562283d6ffc8c3cf066" title="Loads the xpm images of the menu." alt="" coords="28,52,107,78"/>
-<area shape="rect" href="group__menu.html#ga9f128e941aaff63bfe944f44504d21cb" title="Updates the menu according to a keyboard event." alt="" coords="189,229,308,256"/>
-<area shape="rect" href="group__dispatcher.html#ga00f3579aee6fd77454373ac309f39675" title="Starts the round." alt="" coords="5,178,129,205"/>
-<area shape="rect" href="group__dispatcher.html#gaeaf290f8252a2b923005262498513787" title="Goes into the &quot;Awaiting other player...&quot; screen and notifies the other player." alt="" coords="179,77,319,104"/>
-<area shape="rect" href="group__game.html#ga3f61372930dd958f7499a110ce2bd7d6" title="Updates the game due to a rtc alarm interrupt." alt="" coords="10,313,125,340"/>
-<area shape="rect" href="group__dispatcher.html#ga0e52394a395110749bc8ce3251ee503c" title="Leaves the game back to the main menu and notifies the other player." alt="" coords="185,26,312,53"/>
-<area shape="rect" href="group__dispatcher.html#gabf03a39eb157e349de01d6a6cb7fa196" title="Starts a new round as DRAWER (role_t)." alt="" coords="177,335,320,376"/>
-<area shape="rect" href="group__dispatcher.html#ga0b13ea13708e1b05cd87fecebe747065" title="Starts a new round as GUESSER (role_t)." alt="" coords="177,400,320,442"/>
-<area shape="rect" href="group__dispatcher.html#ga478271b5d6d73f56b8c7c24d7be10cfd" title="Reacts to the event that the other player left the game." alt="" coords="183,466,314,507"/>
+<area shape="rect" title="Gets the right button state. (either pressed or not)" alt="" coords="1548,206,1649,233"/>
+<area shape="rect" href="group__dispatcher.html#ga6b6621fbd0381200f89fc604c79d827c" title="Updates the cursor state and updates the game according to it." alt="" coords="1351,199,1500,240"/>
+<area shape="rect" href="group__dispatcher.html#gab9f77cf9ceb2ad8fc95e016d5b293338" title="Retrieves and dispatches a mouse packet, calling relevent application dependent code." alt="" coords="1140,13,1303,39"/>
+<area shape="rect" href="group__game.html#ga52118602811d7516e865c66a7410fd58" title="Resumes the game." alt="" coords="1169,63,1273,90"/>
+<area shape="rect" href="group__menu.html#ga5ed66b2ad288641ccbb969f784a64351" title="Sets the menu to awaiting other player menu." alt="" coords="877,297,1092,323"/>
+<area shape="rect" href="group__menu.html#ga6331f4f3fee92d6495fd79aa17f59777" title="Sets the menu to the game over screen." alt="" coords="1147,165,1295,207"/>
+<area shape="rect" href="group__menu.html#ga6c442e5329ddf932b74a253c15665d75" title="Sets the menu to main menu." alt="" coords="1145,347,1298,374"/>
+<area shape="rect" href="group__menu.html#ga0b4d8c6b87adac99529e3dce59857aaa" title="Sets the menu to new round screen according to the given player role." alt="" coords="1147,231,1295,272"/>
+<area shape="rect" href="group__menu.html#gaaf5a9953d8b982736cf01d87adcb3b14" title="Sets the menu to the other player left screen." alt="" coords="1143,399,1300,440"/>
+<area shape="rect" href="group__menu.html#ga2471e39c56761768b9ceabdd4d5e732f" title="Sets the menu to pause menu." alt="" coords="1141,114,1301,141"/>
+<area shape="rect" href="group__game.html#gad7c180906d7acb4776f4db147f289d7c" title="Starts the already created round." alt="" coords="921,13,1048,39"/>
+<area shape="rect" href="group__menu.html#ga9f128e941aaff63bfe944f44504d21cb" title="Updates the menu according to a keyboard event." alt="" coords="925,63,1044,90"/>
+<area shape="rect" href="group__dispatcher.html#gafab2be1b5bd6d5f0282e36effcdbf8c2" title="Starts the round." alt="" coords="668,13,800,39"/>
+<area shape="rect" href="group__dispatcher.html#ga165d3da39e7ad5173611be1f6689c6c7" title="Dispatches a RTC alarm interrupt, calling relevant application dependent code." alt="" coords="429,82,583,109"/>
+<area shape="rect" href="group__protocol.html#ga4ba318073b27ac4dd79ed093ee960b2f" title="Handles a received message of type MSG_START_ROUND." alt="" coords="432,5,580,47"/>
+<area shape="rect" href="group__dispatcher.html#gaf9683a8eab5011faf80d5235b08efc27" title="Handles and dispatches a keyboard state change, calling relevant application dependent code." alt="" coords="650,63,818,90"/>
+<area shape="rect" href="group__dispatcher.html#ga82e16242d9bfea1af9a18217b66282ef" title="Goes into the &quot;Awaiting other player...&quot; screen and notifies the other player." alt="" coords="217,291,365,318"/>
+<area shape="rect" href="group__game.html#ga3f61372930dd958f7499a110ce2bd7d6" title="Updates the game due to a rtc alarm interrupt." alt="" coords="677,114,791,141"/>
+<area shape="rect" href="group__dispatcher.html#gaa94a2133718338e297127042cc5e35b4" title="Leaves the game back to the main menu and notifies the other player." alt="" coords="917,347,1052,374"/>
+<area shape="rect" href="group__dispatcher.html#gac40675a6ad33c38fe29637b951581d58" title="Starts a new round as DRAWER (role_t)." alt="" coords="909,165,1060,207"/>
+<area shape="rect" href="group__dispatcher.html#ga3da6507ba1f8568ae9afb4cae96499d5" title="Starts a new round as GUESSER (role_t)." alt="" coords="909,231,1060,272"/>
+<area shape="rect" href="group__dispatcher.html#ga9a4fb415537dbfa13ca9de90327684ba" title="Compares the random numbers generated by both computers, in order to decide roles and start game." alt="" coords="645,175,823,202"/>
+<area shape="rect" href="group__dispatcher.html#gabb2070cbc5baff395bef09ac00cb46b6" title="Reacts to the event that the other player sent the random number to decide starting roles." alt="" coords="437,155,575,196"/>
+<area shape="rect" href="group__dispatcher.html#ga05c438abb1a2b811edbac9dd08f57f3c" title="Generates and sends a random number to the other player to decide starting roles." alt="" coords="441,220,571,261"/>
+<area shape="rect" href="group__protocol.html#ga37adc31aadd1ec8fe42b900a3968a90a" title="Handles a received message of type MSG_RANDOM_NUMBER." alt="" coords="208,155,373,196"/>
+<area shape="rect" href="group__dispatcher.html#ga6aefa9a24fd41cb49254b76096c99db3" title="Reacts to the event that the other player is ready to play." alt="" coords="221,220,360,261"/>
+<area shape="rect" href="group__protocol.html#ga825c861bde4764ba16b670119d5a9dcb" title="Handles a received message of type MSG_READY_TO_PLAY." alt="" coords="5,220,160,261"/>
+<area shape="rect" href="group__protocol.html#ga7e28848e24ede9cf58d5fff11c3c5ba4" title="Handles a received message of type MSG_NEW_ROUND." alt="" coords="661,231,807,272"/>
+<area shape="rect" href="group__dispatcher.html#ga2f49068b96469a8cb2bb627303e1a002" title="Reacts to the event that the other player left the game." alt="" coords="915,399,1054,440"/>
+<area shape="rect" href="group__protocol.html#gaa4d3d218fe6e125682653e4af1bf6dcd" title="Handles a connection timeout (didn&#39;t receive acknowledgment byte)" alt="" coords="643,373,825,415"/>
+<area shape="rect" href="group__protocol.html#ga1be347af44e7d733b89949a113359fae" title="Handles a received message of type MSG_LEAVE_GAME." alt="" coords="639,439,829,466"/>
+<area shape="rect" href="group__protocol.html#gab7cd551f6c17f5acce557cb11c3a71c9" title="Handles a received message of type MSG_PROGRAM_OPENED." alt="" coords="421,403,591,444"/>
+<area shape="rect" href="group__protocol.html#ga0b3e768da60827fe622bd3932efc82ff" title="Reacts to a timer interrupt to detect timeouts." alt="" coords="458,351,554,378"/>
+<area shape="rect" href="group__dispatcher.html#gababc3983184c400b85295ddab53388cc" title="Dispatches a timer interrupt, calling relevant application dependent code." alt="" coords="223,351,358,378"/>
 </map>
 </div>
 
@@ -288,25 +379,51 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="group__cursor_ga479cd0880892e002681b109c7a712c04_icgraph.png" border="0" usemap="#agroup__cursor_ga479cd0880892e002681b109c7a712c04_icgraph" alt=""/></div>
 <map name="group__cursor_ga479cd0880892e002681b109c7a712c04_icgraph" id="agroup__cursor_ga479cd0880892e002681b109c7a712c04_icgraph">
-<area shape="rect" title="Gets cursor x coordinate." alt="" coords="820,228,917,254"/>
-<area shape="rect" href="group__dispatcher.html#ga1870958649b46017847735537a5701e1" title="Updates the cursor state and updates the game according to it." alt="" coords="631,220,772,262"/>
-<area shape="rect" href="group__game.html#ga52118602811d7516e865c66a7410fd58" title="Resumes the game." alt="" coords="423,177,527,204"/>
-<area shape="rect" href="group__menu.html#ga5ed66b2ad288641ccbb969f784a64351" title="Sets the menu to awaiting other player menu." alt="" coords="368,102,583,129"/>
-<area shape="rect" href="group__menu.html#ga6331f4f3fee92d6495fd79aa17f59777" title="Sets the menu to the game over screen." alt="" coords="401,279,549,320"/>
-<area shape="rect" href="group__menu.html#ga6c442e5329ddf932b74a253c15665d75" title="Sets the menu to main menu." alt="" coords="399,26,552,53"/>
-<area shape="rect" href="group__menu.html#ga0b4d8c6b87adac99529e3dce59857aaa" title="Sets the menu to new round screen according to the given player role." alt="" coords="401,344,549,386"/>
-<area shape="rect" href="group__menu.html#gaaf5a9953d8b982736cf01d87adcb3b14" title="Sets the menu to the other player left screen." alt="" coords="397,435,554,476"/>
-<area shape="rect" href="group__menu.html#ga2471e39c56761768b9ceabdd4d5e732f" title="Sets the menu to pause menu." alt="" coords="395,228,555,254"/>
-<area shape="rect" href="group__game.html#gad7c180906d7acb4776f4db147f289d7c" title="Starts the already created round." alt="" coords="185,178,312,205"/>
-<area shape="rect" href="group__menu.html#gafae9ccfd6e7de562283d6ffc8c3cf066" title="Loads the xpm images of the menu." alt="" coords="28,52,107,78"/>
-<area shape="rect" href="group__menu.html#ga9f128e941aaff63bfe944f44504d21cb" title="Updates the menu according to a keyboard event." alt="" coords="189,229,308,256"/>
-<area shape="rect" href="group__dispatcher.html#ga00f3579aee6fd77454373ac309f39675" title="Starts the round." alt="" coords="5,178,129,205"/>
-<area shape="rect" href="group__dispatcher.html#gaeaf290f8252a2b923005262498513787" title="Goes into the &quot;Awaiting other player...&quot; screen and notifies the other player." alt="" coords="179,77,319,104"/>
-<area shape="rect" href="group__game.html#ga3f61372930dd958f7499a110ce2bd7d6" title="Updates the game due to a rtc alarm interrupt." alt="" coords="10,313,125,340"/>
-<area shape="rect" href="group__dispatcher.html#ga0e52394a395110749bc8ce3251ee503c" title="Leaves the game back to the main menu and notifies the other player." alt="" coords="185,26,312,53"/>
-<area shape="rect" href="group__dispatcher.html#gabf03a39eb157e349de01d6a6cb7fa196" title="Starts a new round as DRAWER (role_t)." alt="" coords="177,335,320,376"/>
-<area shape="rect" href="group__dispatcher.html#ga0b13ea13708e1b05cd87fecebe747065" title="Starts a new round as GUESSER (role_t)." alt="" coords="177,400,320,442"/>
-<area shape="rect" href="group__dispatcher.html#ga478271b5d6d73f56b8c7c24d7be10cfd" title="Reacts to the event that the other player left the game." alt="" coords="183,466,314,507"/>
+<area shape="rect" title="Gets cursor x coordinate." alt="" coords="1960,275,2057,302"/>
+<area shape="rect" href="group__canvas.html#ga0eb66eb3bbeb104a7de7a880c6cd5d48" title="Undoes a stroke." alt="" coords="1770,71,1910,98"/>
+<area shape="rect" href="group__canvas.html#ga95661aa91869ceace06141f45c078210" title="Updates the state of the canvas according to given mouse info." alt="" coords="1768,326,1912,353"/>
+<area shape="rect" href="group__dispatcher.html#ga6b6621fbd0381200f89fc604c79d827c" title="Updates the cursor state and updates the game according to it." alt="" coords="1351,293,1500,335"/>
+<area shape="rect" href="group__dispatcher.html#ga8d7e76896ea98e9cc288ac7f708ccd50" title="Undoes a canvas stroke and notifies the other player." alt="" coords="1593,71,1687,98"/>
+<area shape="rect" href="group__protocol.html#ga1b91893e90839e8469d25ef32197799d" title="Handles a received message of type MSG_UNDO_CANVAS." alt="" coords="1565,5,1715,47"/>
+<area shape="rect" href="group__canvas.html#ga8ad75f7f8cd0333e14d51a533da88883" title="Updates the canvas according to a keyboard event." alt="" coords="1362,21,1489,47"/>
+<area shape="rect" href="group__game.html#ga870554b4c556a036981d750cce5ab275" title="Initializes the buttons of the new round for the given drawer_t." alt="" coords="1381,71,1470,98"/>
+<area shape="rect" href="group__dispatcher.html#gaf9683a8eab5011faf80d5235b08efc27" title="Handles and dispatches a keyboard state change, calling relevant application dependent code." alt="" coords="650,162,818,189"/>
+<area shape="rect" href="group__game.html#gab01706a4b71bd825fc64ce7032ff115c" title="Creates a new round." alt="" coords="1122,71,1245,98"/>
+<area shape="rect" href="group__dispatcher.html#gac40675a6ad33c38fe29637b951581d58" title="Starts a new round as DRAWER (role_t)." alt="" coords="877,173,1028,215"/>
+<area shape="rect" href="group__dispatcher.html#ga3da6507ba1f8568ae9afb4cae96499d5" title="Starts a new round as GUESSER (role_t)." alt="" coords="877,91,1028,132"/>
+<area shape="rect" href="group__dispatcher.html#ga9a4fb415537dbfa13ca9de90327684ba" title="Compares the random numbers generated by both computers, in order to decide roles and start game." alt="" coords="645,225,823,251"/>
+<area shape="rect" href="group__game.html#ga3f61372930dd958f7499a110ce2bd7d6" title="Updates the game due to a rtc alarm interrupt." alt="" coords="677,458,791,485"/>
+<area shape="rect" href="group__dispatcher.html#gabb2070cbc5baff395bef09ac00cb46b6" title="Reacts to the event that the other player sent the random number to decide starting roles." alt="" coords="437,155,575,196"/>
+<area shape="rect" href="group__dispatcher.html#ga05c438abb1a2b811edbac9dd08f57f3c" title="Generates and sends a random number to the other player to decide starting roles." alt="" coords="441,220,571,261"/>
+<area shape="rect" href="group__protocol.html#ga37adc31aadd1ec8fe42b900a3968a90a" title="Handles a received message of type MSG_RANDOM_NUMBER." alt="" coords="208,155,373,196"/>
+<area shape="rect" href="group__dispatcher.html#ga6aefa9a24fd41cb49254b76096c99db3" title="Reacts to the event that the other player is ready to play." alt="" coords="221,220,360,261"/>
+<area shape="rect" href="group__dispatcher.html#ga82e16242d9bfea1af9a18217b66282ef" title="Goes into the &quot;Awaiting other player...&quot; screen and notifies the other player." alt="" coords="217,289,365,315"/>
+<area shape="rect" href="group__protocol.html#ga825c861bde4764ba16b670119d5a9dcb" title="Handles a received message of type MSG_READY_TO_PLAY." alt="" coords="5,220,160,261"/>
+<area shape="rect" href="group__dispatcher.html#ga165d3da39e7ad5173611be1f6689c6c7" title="Dispatches a RTC alarm interrupt, calling relevant application dependent code." alt="" coords="429,461,583,487"/>
+<area shape="rect" href="group__protocol.html#ga7e28848e24ede9cf58d5fff11c3c5ba4" title="Handles a received message of type MSG_NEW_ROUND." alt="" coords="661,91,807,132"/>
+<area shape="rect" href="group__dispatcher.html#gab72c16c8547625b6dde1d4626b3c9c99" title="Binds or unbinds the canvas to the dispatcher." alt="" coords="1560,409,1720,435"/>
+<area shape="rect" href="group__dispatcher.html#gab9458678bdcdc4f0ff458f8a9b27c638" title="Resets all dispatcher bindings." alt="" coords="1339,409,1512,435"/>
+<area shape="rect" href="group__game.html#ga52118602811d7516e865c66a7410fd58" title="Resumes the game." alt="" coords="1131,523,1235,550"/>
+<area shape="rect" href="group__dispatcher.html#gaf862e6e5a2905c716bf2b701d9ecabc6" title="Deletes all resources allocated to the dispatcher." alt="" coords="1128,574,1239,601"/>
+<area shape="rect" href="group__menu.html#ga5ed66b2ad288641ccbb969f784a64351" title="Sets the menu to awaiting other player menu." alt="" coords="1076,290,1291,317"/>
+<area shape="rect" href="group__menu.html#ga6331f4f3fee92d6495fd79aa17f59777" title="Sets the menu to the game over screen." alt="" coords="1109,407,1257,448"/>
+<area shape="rect" href="group__menu.html#ga6c442e5329ddf932b74a253c15665d75" title="Sets the menu to main menu." alt="" coords="1107,473,1260,499"/>
+<area shape="rect" href="group__menu.html#ga0b4d8c6b87adac99529e3dce59857aaa" title="Sets the menu to new round screen according to the given player role." alt="" coords="1109,173,1257,215"/>
+<area shape="rect" href="group__menu.html#gaaf5a9953d8b982736cf01d87adcb3b14" title="Sets the menu to the other player left screen." alt="" coords="1105,341,1262,383"/>
+<area shape="rect" href="group__menu.html#ga2471e39c56761768b9ceabdd4d5e732f" title="Sets the menu to pause menu." alt="" coords="1103,239,1263,266"/>
+<area shape="rect" href="group__proj.html#ga2a16f651eccbd248e1ad3b3b924b143b" title="Reacts to the event that the other player sent the random number to decide starting roles." alt="" coords="898,574,1007,601"/>
+<area shape="rect" href="group__game.html#gad7c180906d7acb4776f4db147f289d7c" title="Starts the already created round." alt="" coords="889,523,1016,550"/>
+<area shape="rect" href="group__menu.html#ga9f128e941aaff63bfe944f44504d21cb" title="Updates the menu according to a keyboard event." alt="" coords="893,239,1012,266"/>
+<area shape="rect" href="group__dispatcher.html#gafab2be1b5bd6d5f0282e36effcdbf8c2" title="Starts the round." alt="" coords="668,522,800,549"/>
+<area shape="rect" href="group__protocol.html#ga4ba318073b27ac4dd79ed093ee960b2f" title="Handles a received message of type MSG_START_ROUND." alt="" coords="432,515,580,556"/>
+<area shape="rect" href="group__dispatcher.html#gaa94a2133718338e297127042cc5e35b4" title="Leaves the game back to the main menu and notifies the other player." alt="" coords="885,473,1020,499"/>
+<area shape="rect" href="group__dispatcher.html#ga2f49068b96469a8cb2bb627303e1a002" title="Reacts to the event that the other player left the game." alt="" coords="883,341,1022,383"/>
+<area shape="rect" href="group__protocol.html#gaa4d3d218fe6e125682653e4af1bf6dcd" title="Handles a connection timeout (didn&#39;t receive acknowledgment byte)" alt="" coords="643,392,825,433"/>
+<area shape="rect" href="group__protocol.html#ga1be347af44e7d733b89949a113359fae" title="Handles a received message of type MSG_LEAVE_GAME." alt="" coords="639,341,829,367"/>
+<area shape="rect" href="group__protocol.html#gab7cd551f6c17f5acce557cb11c3a71c9" title="Handles a received message of type MSG_PROGRAM_OPENED." alt="" coords="421,393,591,435"/>
+<area shape="rect" href="group__protocol.html#ga0b3e768da60827fe622bd3932efc82ff" title="Reacts to a timer interrupt to detect timeouts." alt="" coords="458,342,554,369"/>
+<area shape="rect" href="group__dispatcher.html#gababc3983184c400b85295ddab53388cc" title="Dispatches a timer interrupt, calling relevant application dependent code." alt="" coords="223,342,358,369"/>
+<area shape="rect" href="group__dispatcher.html#gab9f77cf9ceb2ad8fc95e016d5b293338" title="Retrieves and dispatches a mouse packet, calling relevent application dependent code." alt="" coords="1102,122,1265,149"/>
 </map>
 </div>
 
@@ -334,32 +451,58 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="group__cursor_ga15c1a0816c95ad240b94dc15480b403a_icgraph.png" border="0" usemap="#agroup__cursor_ga15c1a0816c95ad240b94dc15480b403a_icgraph" alt=""/></div>
 <map name="group__cursor_ga15c1a0816c95ad240b94dc15480b403a_icgraph" id="agroup__cursor_ga15c1a0816c95ad240b94dc15480b403a_icgraph">
-<area shape="rect" title="Gets cursor y coordinate." alt="" coords="820,228,917,254"/>
-<area shape="rect" href="group__dispatcher.html#ga1870958649b46017847735537a5701e1" title="Updates the cursor state and updates the game according to it." alt="" coords="631,220,772,262"/>
-<area shape="rect" href="group__game.html#ga52118602811d7516e865c66a7410fd58" title="Resumes the game." alt="" coords="423,177,527,204"/>
-<area shape="rect" href="group__menu.html#ga5ed66b2ad288641ccbb969f784a64351" title="Sets the menu to awaiting other player menu." alt="" coords="368,102,583,129"/>
-<area shape="rect" href="group__menu.html#ga6331f4f3fee92d6495fd79aa17f59777" title="Sets the menu to the game over screen." alt="" coords="401,279,549,320"/>
-<area shape="rect" href="group__menu.html#ga6c442e5329ddf932b74a253c15665d75" title="Sets the menu to main menu." alt="" coords="399,26,552,53"/>
-<area shape="rect" href="group__menu.html#ga0b4d8c6b87adac99529e3dce59857aaa" title="Sets the menu to new round screen according to the given player role." alt="" coords="401,344,549,386"/>
-<area shape="rect" href="group__menu.html#gaaf5a9953d8b982736cf01d87adcb3b14" title="Sets the menu to the other player left screen." alt="" coords="397,435,554,476"/>
-<area shape="rect" href="group__menu.html#ga2471e39c56761768b9ceabdd4d5e732f" title="Sets the menu to pause menu." alt="" coords="395,228,555,254"/>
-<area shape="rect" href="group__game.html#gad7c180906d7acb4776f4db147f289d7c" title="Starts the already created round." alt="" coords="185,178,312,205"/>
-<area shape="rect" href="group__menu.html#gafae9ccfd6e7de562283d6ffc8c3cf066" title="Loads the xpm images of the menu." alt="" coords="28,52,107,78"/>
-<area shape="rect" href="group__menu.html#ga9f128e941aaff63bfe944f44504d21cb" title="Updates the menu according to a keyboard event." alt="" coords="189,229,308,256"/>
-<area shape="rect" href="group__dispatcher.html#ga00f3579aee6fd77454373ac309f39675" title="Starts the round." alt="" coords="5,178,129,205"/>
-<area shape="rect" href="group__dispatcher.html#gaeaf290f8252a2b923005262498513787" title="Goes into the &quot;Awaiting other player...&quot; screen and notifies the other player." alt="" coords="179,77,319,104"/>
-<area shape="rect" href="group__game.html#ga3f61372930dd958f7499a110ce2bd7d6" title="Updates the game due to a rtc alarm interrupt." alt="" coords="10,313,125,340"/>
-<area shape="rect" href="group__dispatcher.html#ga0e52394a395110749bc8ce3251ee503c" title="Leaves the game back to the main menu and notifies the other player." alt="" coords="185,26,312,53"/>
-<area shape="rect" href="group__dispatcher.html#gabf03a39eb157e349de01d6a6cb7fa196" title="Starts a new round as DRAWER (role_t)." alt="" coords="177,335,320,376"/>
-<area shape="rect" href="group__dispatcher.html#ga0b13ea13708e1b05cd87fecebe747065" title="Starts a new round as GUESSER (role_t)." alt="" coords="177,400,320,442"/>
-<area shape="rect" href="group__dispatcher.html#ga478271b5d6d73f56b8c7c24d7be10cfd" title="Reacts to the event that the other player left the game." alt="" coords="183,466,314,507"/>
+<area shape="rect" title="Gets cursor y coordinate." alt="" coords="1960,275,2057,302"/>
+<area shape="rect" href="group__canvas.html#ga0eb66eb3bbeb104a7de7a880c6cd5d48" title="Undoes a stroke." alt="" coords="1770,71,1910,98"/>
+<area shape="rect" href="group__canvas.html#ga95661aa91869ceace06141f45c078210" title="Updates the state of the canvas according to given mouse info." alt="" coords="1768,326,1912,353"/>
+<area shape="rect" href="group__dispatcher.html#ga6b6621fbd0381200f89fc604c79d827c" title="Updates the cursor state and updates the game according to it." alt="" coords="1351,293,1500,335"/>
+<area shape="rect" href="group__dispatcher.html#ga8d7e76896ea98e9cc288ac7f708ccd50" title="Undoes a canvas stroke and notifies the other player." alt="" coords="1593,71,1687,98"/>
+<area shape="rect" href="group__protocol.html#ga1b91893e90839e8469d25ef32197799d" title="Handles a received message of type MSG_UNDO_CANVAS." alt="" coords="1565,5,1715,47"/>
+<area shape="rect" href="group__canvas.html#ga8ad75f7f8cd0333e14d51a533da88883" title="Updates the canvas according to a keyboard event." alt="" coords="1362,21,1489,47"/>
+<area shape="rect" href="group__game.html#ga870554b4c556a036981d750cce5ab275" title="Initializes the buttons of the new round for the given drawer_t." alt="" coords="1381,71,1470,98"/>
+<area shape="rect" href="group__dispatcher.html#gaf9683a8eab5011faf80d5235b08efc27" title="Handles and dispatches a keyboard state change, calling relevant application dependent code." alt="" coords="650,162,818,189"/>
+<area shape="rect" href="group__game.html#gab01706a4b71bd825fc64ce7032ff115c" title="Creates a new round." alt="" coords="1122,71,1245,98"/>
+<area shape="rect" href="group__dispatcher.html#gac40675a6ad33c38fe29637b951581d58" title="Starts a new round as DRAWER (role_t)." alt="" coords="877,173,1028,215"/>
+<area shape="rect" href="group__dispatcher.html#ga3da6507ba1f8568ae9afb4cae96499d5" title="Starts a new round as GUESSER (role_t)." alt="" coords="877,91,1028,132"/>
+<area shape="rect" href="group__dispatcher.html#ga9a4fb415537dbfa13ca9de90327684ba" title="Compares the random numbers generated by both computers, in order to decide roles and start game." alt="" coords="645,225,823,251"/>
+<area shape="rect" href="group__game.html#ga3f61372930dd958f7499a110ce2bd7d6" title="Updates the game due to a rtc alarm interrupt." alt="" coords="677,458,791,485"/>
+<area shape="rect" href="group__dispatcher.html#gabb2070cbc5baff395bef09ac00cb46b6" title="Reacts to the event that the other player sent the random number to decide starting roles." alt="" coords="437,155,575,196"/>
+<area shape="rect" href="group__dispatcher.html#ga05c438abb1a2b811edbac9dd08f57f3c" title="Generates and sends a random number to the other player to decide starting roles." alt="" coords="441,220,571,261"/>
+<area shape="rect" href="group__protocol.html#ga37adc31aadd1ec8fe42b900a3968a90a" title="Handles a received message of type MSG_RANDOM_NUMBER." alt="" coords="208,155,373,196"/>
+<area shape="rect" href="group__dispatcher.html#ga6aefa9a24fd41cb49254b76096c99db3" title="Reacts to the event that the other player is ready to play." alt="" coords="221,220,360,261"/>
+<area shape="rect" href="group__dispatcher.html#ga82e16242d9bfea1af9a18217b66282ef" title="Goes into the &quot;Awaiting other player...&quot; screen and notifies the other player." alt="" coords="217,289,365,315"/>
+<area shape="rect" href="group__protocol.html#ga825c861bde4764ba16b670119d5a9dcb" title="Handles a received message of type MSG_READY_TO_PLAY." alt="" coords="5,220,160,261"/>
+<area shape="rect" href="group__dispatcher.html#ga165d3da39e7ad5173611be1f6689c6c7" title="Dispatches a RTC alarm interrupt, calling relevant application dependent code." alt="" coords="429,461,583,487"/>
+<area shape="rect" href="group__protocol.html#ga7e28848e24ede9cf58d5fff11c3c5ba4" title="Handles a received message of type MSG_NEW_ROUND." alt="" coords="661,91,807,132"/>
+<area shape="rect" href="group__dispatcher.html#gab72c16c8547625b6dde1d4626b3c9c99" title="Binds or unbinds the canvas to the dispatcher." alt="" coords="1560,409,1720,435"/>
+<area shape="rect" href="group__dispatcher.html#gab9458678bdcdc4f0ff458f8a9b27c638" title="Resets all dispatcher bindings." alt="" coords="1339,409,1512,435"/>
+<area shape="rect" href="group__game.html#ga52118602811d7516e865c66a7410fd58" title="Resumes the game." alt="" coords="1131,523,1235,550"/>
+<area shape="rect" href="group__dispatcher.html#gaf862e6e5a2905c716bf2b701d9ecabc6" title="Deletes all resources allocated to the dispatcher." alt="" coords="1128,574,1239,601"/>
+<area shape="rect" href="group__menu.html#ga5ed66b2ad288641ccbb969f784a64351" title="Sets the menu to awaiting other player menu." alt="" coords="1076,290,1291,317"/>
+<area shape="rect" href="group__menu.html#ga6331f4f3fee92d6495fd79aa17f59777" title="Sets the menu to the game over screen." alt="" coords="1109,407,1257,448"/>
+<area shape="rect" href="group__menu.html#ga6c442e5329ddf932b74a253c15665d75" title="Sets the menu to main menu." alt="" coords="1107,473,1260,499"/>
+<area shape="rect" href="group__menu.html#ga0b4d8c6b87adac99529e3dce59857aaa" title="Sets the menu to new round screen according to the given player role." alt="" coords="1109,173,1257,215"/>
+<area shape="rect" href="group__menu.html#gaaf5a9953d8b982736cf01d87adcb3b14" title="Sets the menu to the other player left screen." alt="" coords="1105,341,1262,383"/>
+<area shape="rect" href="group__menu.html#ga2471e39c56761768b9ceabdd4d5e732f" title="Sets the menu to pause menu." alt="" coords="1103,239,1263,266"/>
+<area shape="rect" href="group__proj.html#ga2a16f651eccbd248e1ad3b3b924b143b" title="Reacts to the event that the other player sent the random number to decide starting roles." alt="" coords="898,574,1007,601"/>
+<area shape="rect" href="group__game.html#gad7c180906d7acb4776f4db147f289d7c" title="Starts the already created round." alt="" coords="889,523,1016,550"/>
+<area shape="rect" href="group__menu.html#ga9f128e941aaff63bfe944f44504d21cb" title="Updates the menu according to a keyboard event." alt="" coords="893,239,1012,266"/>
+<area shape="rect" href="group__dispatcher.html#gafab2be1b5bd6d5f0282e36effcdbf8c2" title="Starts the round." alt="" coords="668,522,800,549"/>
+<area shape="rect" href="group__protocol.html#ga4ba318073b27ac4dd79ed093ee960b2f" title="Handles a received message of type MSG_START_ROUND." alt="" coords="432,515,580,556"/>
+<area shape="rect" href="group__dispatcher.html#gaa94a2133718338e297127042cc5e35b4" title="Leaves the game back to the main menu and notifies the other player." alt="" coords="885,473,1020,499"/>
+<area shape="rect" href="group__dispatcher.html#ga2f49068b96469a8cb2bb627303e1a002" title="Reacts to the event that the other player left the game." alt="" coords="883,341,1022,383"/>
+<area shape="rect" href="group__protocol.html#gaa4d3d218fe6e125682653e4af1bf6dcd" title="Handles a connection timeout (didn&#39;t receive acknowledgment byte)" alt="" coords="643,392,825,433"/>
+<area shape="rect" href="group__protocol.html#ga1be347af44e7d733b89949a113359fae" title="Handles a received message of type MSG_LEAVE_GAME." alt="" coords="639,341,829,367"/>
+<area shape="rect" href="group__protocol.html#gab7cd551f6c17f5acce557cb11c3a71c9" title="Handles a received message of type MSG_PROGRAM_OPENED." alt="" coords="421,393,591,435"/>
+<area shape="rect" href="group__protocol.html#ga0b3e768da60827fe622bd3932efc82ff" title="Reacts to a timer interrupt to detect timeouts." alt="" coords="458,342,554,369"/>
+<area shape="rect" href="group__dispatcher.html#gababc3983184c400b85295ddab53388cc" title="Dispatches a timer interrupt, calling relevant application dependent code." alt="" coords="223,342,358,369"/>
+<area shape="rect" href="group__dispatcher.html#gab9f77cf9ceb2ad8fc95e016d5b293338" title="Retrieves and dispatches a mouse packet, calling relevent application dependent code." alt="" coords="1102,122,1265,149"/>
 </map>
 </div>
 
 </div>
 </div>
-<a id="gaf5b033d27a9ea9e64dd8f9098536dd2a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gaf5b033d27a9ea9e64dd8f9098536dd2a">&#9670;&nbsp;</a></span>cursor_init()</h2>
+<a id="gae411d012061348499f2801b10fcb5721"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gae411d012061348499f2801b10fcb5721">&#9670;&nbsp;</a></span>cursor_init()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -367,7 +510,8 @@ Here is the caller graph for this function:</div>
         <tr>
           <td class="memname">int cursor_init </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">enum xpm_image_type&#160;</td>
+          <td class="paramname"><em>type</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -375,6 +519,25 @@ Here is the caller graph for this function:</div>
 
 <p>Loads the cursor .xpm images and sets the initial cursor position. </p>
 <dl class="section return"><dt>Returns</dt><dd>Return 0 upon success and non-zero otherwise </dd></dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__cursor_gae411d012061348499f2801b10fcb5721_cgraph.png" border="0" usemap="#agroup__cursor_gae411d012061348499f2801b10fcb5721_cgraph" alt=""/></div>
+<map name="group__cursor_gae411d012061348499f2801b10fcb5721_cgraph" id="group__cursor_gae411d012061348499f2801b10fcb5721_cgraph">
+<area shape="rect" title="Loads the cursor .xpm images and sets the initial cursor position." alt="" coords="5,31,88,57"/>
+<area shape="rect" href="group__video__gr.html#ga03e56e930917ca4f15ea488838d513a8" title="Gets the horizontal resolution of the buffer." alt="" coords="136,5,227,32"/>
+<area shape="rect" href="group__video__gr.html#gafa08dcecf2adbe49d6a9c28b355c68d1" title="Gets the vertical resolution of the buffer." alt="" coords="137,56,226,83"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__cursor_gae411d012061348499f2801b10fcb5721_icgraph.png" border="0" usemap="#agroup__cursor_gae411d012061348499f2801b10fcb5721_icgraph" alt=""/></div>
+<map name="group__cursor_gae411d012061348499f2801b10fcb5721_icgraph" id="agroup__cursor_gae411d012061348499f2801b10fcb5721_icgraph">
+<area shape="rect" title="Loads the cursor .xpm images and sets the initial cursor position." alt="" coords="163,5,245,32"/>
+<area shape="rect" href="group__proj.html#ga2a16f651eccbd248e1ad3b3b924b143b" title="Reacts to the event that the other player sent the random number to decide starting roles." alt="" coords="5,5,115,32"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -422,6 +585,15 @@ Here is the call graph for this function:</div>
 <area shape="rect" href="group__video__gr.html#gafa08dcecf2adbe49d6a9c28b355c68d1" title="Gets the vertical resolution of the buffer." alt="" coords="149,56,238,83"/>
 </map>
 </div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__cursor_ga1c0e7c8b76a7688af257b5e6fcfb9160_icgraph.png" border="0" usemap="#agroup__cursor_ga1c0e7c8b76a7688af257b5e6fcfb9160_icgraph" alt=""/></div>
+<map name="group__cursor_ga1c0e7c8b76a7688af257b5e6fcfb9160_icgraph" id="group__cursor_ga1c0e7c8b76a7688af257b5e6fcfb9160_icgraph">
+<area shape="rect" title="Moves the cursor by the given displacement." alt="" coords="216,5,311,32"/>
+<area shape="rect" href="group__dispatcher.html#gab9f77cf9ceb2ad8fc95e016d5b293338" title="Retrieves and dispatches a mouse packet, calling relevent application dependent code." alt="" coords="5,5,168,32"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -453,25 +625,40 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="group__cursor_gacc7f42d69f1210f45a2642c0fb0f11e9_icgraph.png" border="0" usemap="#agroup__cursor_gacc7f42d69f1210f45a2642c0fb0f11e9_icgraph" alt=""/></div>
 <map name="group__cursor_gacc7f42d69f1210f45a2642c0fb0f11e9_icgraph" id="group__cursor_gacc7f42d69f1210f45a2642c0fb0f11e9_icgraph">
-<area shape="rect" title="Sets the cursor state." alt="" coords="820,228,939,254"/>
-<area shape="rect" href="group__dispatcher.html#ga1870958649b46017847735537a5701e1" title="Updates the cursor state and updates the game according to it." alt="" coords="631,220,772,262"/>
-<area shape="rect" href="group__game.html#ga52118602811d7516e865c66a7410fd58" title="Resumes the game." alt="" coords="423,177,527,204"/>
-<area shape="rect" href="group__menu.html#ga5ed66b2ad288641ccbb969f784a64351" title="Sets the menu to awaiting other player menu." alt="" coords="368,102,583,129"/>
-<area shape="rect" href="group__menu.html#ga6331f4f3fee92d6495fd79aa17f59777" title="Sets the menu to the game over screen." alt="" coords="401,279,549,320"/>
-<area shape="rect" href="group__menu.html#ga6c442e5329ddf932b74a253c15665d75" title="Sets the menu to main menu." alt="" coords="399,26,552,53"/>
-<area shape="rect" href="group__menu.html#ga0b4d8c6b87adac99529e3dce59857aaa" title="Sets the menu to new round screen according to the given player role." alt="" coords="401,344,549,386"/>
-<area shape="rect" href="group__menu.html#gaaf5a9953d8b982736cf01d87adcb3b14" title="Sets the menu to the other player left screen." alt="" coords="397,435,554,476"/>
-<area shape="rect" href="group__menu.html#ga2471e39c56761768b9ceabdd4d5e732f" title="Sets the menu to pause menu." alt="" coords="395,228,555,254"/>
-<area shape="rect" href="group__game.html#gad7c180906d7acb4776f4db147f289d7c" title="Starts the already created round." alt="" coords="185,178,312,205"/>
-<area shape="rect" href="group__menu.html#gafae9ccfd6e7de562283d6ffc8c3cf066" title="Loads the xpm images of the menu." alt="" coords="28,52,107,78"/>
-<area shape="rect" href="group__menu.html#ga9f128e941aaff63bfe944f44504d21cb" title="Updates the menu according to a keyboard event." alt="" coords="189,229,308,256"/>
-<area shape="rect" href="group__dispatcher.html#ga00f3579aee6fd77454373ac309f39675" title="Starts the round." alt="" coords="5,178,129,205"/>
-<area shape="rect" href="group__dispatcher.html#gaeaf290f8252a2b923005262498513787" title="Goes into the &quot;Awaiting other player...&quot; screen and notifies the other player." alt="" coords="179,77,319,104"/>
-<area shape="rect" href="group__game.html#ga3f61372930dd958f7499a110ce2bd7d6" title="Updates the game due to a rtc alarm interrupt." alt="" coords="10,313,125,340"/>
-<area shape="rect" href="group__dispatcher.html#ga0e52394a395110749bc8ce3251ee503c" title="Leaves the game back to the main menu and notifies the other player." alt="" coords="185,26,312,53"/>
-<area shape="rect" href="group__dispatcher.html#gabf03a39eb157e349de01d6a6cb7fa196" title="Starts a new round as DRAWER (role_t)." alt="" coords="177,335,320,376"/>
-<area shape="rect" href="group__dispatcher.html#ga0b13ea13708e1b05cd87fecebe747065" title="Starts a new round as GUESSER (role_t)." alt="" coords="177,400,320,442"/>
-<area shape="rect" href="group__dispatcher.html#ga478271b5d6d73f56b8c7c24d7be10cfd" title="Reacts to the event that the other player left the game." alt="" coords="183,466,314,507"/>
+<area shape="rect" title="Sets the cursor state." alt="" coords="1548,206,1667,233"/>
+<area shape="rect" href="group__dispatcher.html#ga6b6621fbd0381200f89fc604c79d827c" title="Updates the cursor state and updates the game according to it." alt="" coords="1351,199,1500,240"/>
+<area shape="rect" href="group__dispatcher.html#gab9f77cf9ceb2ad8fc95e016d5b293338" title="Retrieves and dispatches a mouse packet, calling relevent application dependent code." alt="" coords="1140,13,1303,39"/>
+<area shape="rect" href="group__game.html#ga52118602811d7516e865c66a7410fd58" title="Resumes the game." alt="" coords="1169,63,1273,90"/>
+<area shape="rect" href="group__menu.html#ga5ed66b2ad288641ccbb969f784a64351" title="Sets the menu to awaiting other player menu." alt="" coords="877,297,1092,323"/>
+<area shape="rect" href="group__menu.html#ga6331f4f3fee92d6495fd79aa17f59777" title="Sets the menu to the game over screen." alt="" coords="1147,165,1295,207"/>
+<area shape="rect" href="group__menu.html#ga6c442e5329ddf932b74a253c15665d75" title="Sets the menu to main menu." alt="" coords="1145,347,1298,374"/>
+<area shape="rect" href="group__menu.html#ga0b4d8c6b87adac99529e3dce59857aaa" title="Sets the menu to new round screen according to the given player role." alt="" coords="1147,231,1295,272"/>
+<area shape="rect" href="group__menu.html#gaaf5a9953d8b982736cf01d87adcb3b14" title="Sets the menu to the other player left screen." alt="" coords="1143,399,1300,440"/>
+<area shape="rect" href="group__menu.html#ga2471e39c56761768b9ceabdd4d5e732f" title="Sets the menu to pause menu." alt="" coords="1141,114,1301,141"/>
+<area shape="rect" href="group__game.html#gad7c180906d7acb4776f4db147f289d7c" title="Starts the already created round." alt="" coords="921,13,1048,39"/>
+<area shape="rect" href="group__menu.html#ga9f128e941aaff63bfe944f44504d21cb" title="Updates the menu according to a keyboard event." alt="" coords="925,63,1044,90"/>
+<area shape="rect" href="group__dispatcher.html#gafab2be1b5bd6d5f0282e36effcdbf8c2" title="Starts the round." alt="" coords="668,13,800,39"/>
+<area shape="rect" href="group__dispatcher.html#ga165d3da39e7ad5173611be1f6689c6c7" title="Dispatches a RTC alarm interrupt, calling relevant application dependent code." alt="" coords="429,82,583,109"/>
+<area shape="rect" href="group__protocol.html#ga4ba318073b27ac4dd79ed093ee960b2f" title="Handles a received message of type MSG_START_ROUND." alt="" coords="432,5,580,47"/>
+<area shape="rect" href="group__dispatcher.html#gaf9683a8eab5011faf80d5235b08efc27" title="Handles and dispatches a keyboard state change, calling relevant application dependent code." alt="" coords="650,63,818,90"/>
+<area shape="rect" href="group__dispatcher.html#ga82e16242d9bfea1af9a18217b66282ef" title="Goes into the &quot;Awaiting other player...&quot; screen and notifies the other player." alt="" coords="217,291,365,318"/>
+<area shape="rect" href="group__game.html#ga3f61372930dd958f7499a110ce2bd7d6" title="Updates the game due to a rtc alarm interrupt." alt="" coords="677,114,791,141"/>
+<area shape="rect" href="group__dispatcher.html#gaa94a2133718338e297127042cc5e35b4" title="Leaves the game back to the main menu and notifies the other player." alt="" coords="917,347,1052,374"/>
+<area shape="rect" href="group__dispatcher.html#gac40675a6ad33c38fe29637b951581d58" title="Starts a new round as DRAWER (role_t)." alt="" coords="909,165,1060,207"/>
+<area shape="rect" href="group__dispatcher.html#ga3da6507ba1f8568ae9afb4cae96499d5" title="Starts a new round as GUESSER (role_t)." alt="" coords="909,231,1060,272"/>
+<area shape="rect" href="group__dispatcher.html#ga9a4fb415537dbfa13ca9de90327684ba" title="Compares the random numbers generated by both computers, in order to decide roles and start game." alt="" coords="645,175,823,202"/>
+<area shape="rect" href="group__dispatcher.html#gabb2070cbc5baff395bef09ac00cb46b6" title="Reacts to the event that the other player sent the random number to decide starting roles." alt="" coords="437,155,575,196"/>
+<area shape="rect" href="group__dispatcher.html#ga05c438abb1a2b811edbac9dd08f57f3c" title="Generates and sends a random number to the other player to decide starting roles." alt="" coords="441,220,571,261"/>
+<area shape="rect" href="group__protocol.html#ga37adc31aadd1ec8fe42b900a3968a90a" title="Handles a received message of type MSG_RANDOM_NUMBER." alt="" coords="208,155,373,196"/>
+<area shape="rect" href="group__dispatcher.html#ga6aefa9a24fd41cb49254b76096c99db3" title="Reacts to the event that the other player is ready to play." alt="" coords="221,220,360,261"/>
+<area shape="rect" href="group__protocol.html#ga825c861bde4764ba16b670119d5a9dcb" title="Handles a received message of type MSG_READY_TO_PLAY." alt="" coords="5,220,160,261"/>
+<area shape="rect" href="group__protocol.html#ga7e28848e24ede9cf58d5fff11c3c5ba4" title="Handles a received message of type MSG_NEW_ROUND." alt="" coords="661,231,807,272"/>
+<area shape="rect" href="group__dispatcher.html#ga2f49068b96469a8cb2bb627303e1a002" title="Reacts to the event that the other player left the game." alt="" coords="915,399,1054,440"/>
+<area shape="rect" href="group__protocol.html#gaa4d3d218fe6e125682653e4af1bf6dcd" title="Handles a connection timeout (didn&#39;t receive acknowledgment byte)" alt="" coords="643,373,825,415"/>
+<area shape="rect" href="group__protocol.html#ga1be347af44e7d733b89949a113359fae" title="Handles a received message of type MSG_LEAVE_GAME." alt="" coords="639,439,829,466"/>
+<area shape="rect" href="group__protocol.html#gab7cd551f6c17f5acce557cb11c3a71c9" title="Handles a received message of type MSG_PROGRAM_OPENED." alt="" coords="421,403,591,444"/>
+<area shape="rect" href="group__protocol.html#ga0b3e768da60827fe622bd3932efc82ff" title="Reacts to a timer interrupt to detect timeouts." alt="" coords="458,351,554,378"/>
+<area shape="rect" href="group__dispatcher.html#gababc3983184c400b85295ddab53388cc" title="Dispatches a timer interrupt, calling relevant application dependent code." alt="" coords="223,351,358,378"/>
 </map>
 </div>
 
@@ -511,6 +698,15 @@ Here is the caller graph for this function:</div>
   </table>
   </dd>
 </dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__cursor_gac3622b14f35a0d4e51312a582d43fd20_icgraph.png" border="0" usemap="#agroup__cursor_gac3622b14f35a0d4e51312a582d43fd20_icgraph" alt=""/></div>
+<map name="group__cursor_gac3622b14f35a0d4e51312a582d43fd20_icgraph" id="group__cursor_gac3622b14f35a0d4e51312a582d43fd20_icgraph">
+<area shape="rect" title="Updates the buttons state." alt="" coords="216,5,371,32"/>
+<area shape="rect" href="group__dispatcher.html#gab9f77cf9ceb2ad8fc95e016d5b293338" title="Retrieves and dispatches a mouse packet, calling relevent application dependent code." alt="" coords="5,5,168,32"/>
+</map>
+</div>
 
 </div>
 </div>

@@ -5,11 +5,15 @@
 #include "scan_codes.h"
 #include "dispatcher.h"
 
-static int hook_id_kbd = 1;
-static uint8_t scancode_bytes[2];
-static size_t scancode_bytes_counter = 0;
-static kbd_event_t kbd_state = { .key = NO_KEY };
+/** @defgroup keyboard keyboard
+ * @{
+ *
+ */
 
+static int hook_id_kbd = 1; /**< @brief Keyboard interrupts hook id */
+static uint8_t scancode_bytes[2]; /**< @brief Buffer for bytes read from KBC that represent a scancode */
+static size_t scancode_bytes_counter = 0; /**< @brief Number meaningful of bytes in scancode_bytes buffer */
+static kbd_event_t kbd_state = { .key = NO_KEY }; /**< @brief Current keyboard state */
 
 int kbd_subscribe_int(uint8_t *bit_no) {
     *bit_no = hook_id_kbd;
@@ -20,6 +24,10 @@ int kbd_unsubscribe_int() {
     return sys_irqrmpolicy(&hook_id_kbd);
 }
 
+/**
+ * @brief Keyboard interrupt handler.
+ * 
+ */
 void (kbc_ih)() {
     if (kbd_is_scancode_ready()) {
         printf("keyboard interrupt handler failed\n");
@@ -141,3 +149,5 @@ int kbd_enable_interrupts() {
         return 1;
     return 0;
 }
+
+/**@}*/

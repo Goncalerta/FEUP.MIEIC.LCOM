@@ -1,0 +1,4 @@
+<map id="kbc_write_reg" name="kbc_write_reg">
+<area shape="rect" id="node1" title="Writes a byte to a kbc register." alt="" coords="5,5,108,32"/>
+<area shape="rect" id="node2" href="$group__utils.html#ga79a031a8611f5b2d6afa4158e92b0fb4" title="Wraps sys_inb so that it may be called with a uint8_t argument." alt="" coords="156,5,247,32"/>
+</map>

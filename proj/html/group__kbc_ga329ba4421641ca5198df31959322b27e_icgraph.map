@@ -1,0 +1,6 @@
+<map id="kbc_read_data" name="kbc_read_data">
+<area shape="rect" id="node1" title="Reads data from the kbc output buffer." alt="" coords="289,31,396,57"/>
+<area shape="rect" id="node2" href="$group__keyboard.html#gaea970a154161a35f6894898a092ed70a" title="Keyboard interrupt handler." alt="" coords="172,5,232,32"/>
+<area shape="rect" id="node4" href="$group__clue.html#ga210374b50462acdedab00df64d5cea3c" title="Mouse interrupt handler." alt="" coords="163,56,241,83"/>
+<area shape="rect" id="node3" href="$group__proj.html#ga2a16f651eccbd248e1ad3b3b924b143b" title="Reacts to the event that the other player sent the random number to decide starting roles." alt="" coords="5,31,115,57"/>
+</map>

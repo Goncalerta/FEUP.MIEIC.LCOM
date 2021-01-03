@@ -2,45 +2,61 @@
 #include "text_box.h"
 #include "font.h"
 
-#define TEXT_BOX_CURSOR_HEIGHT (FONT_CHAR_HEIGHT + 4)
-#define TEXT_BOX_CURSOR_COLOR 0x000000
+/** @defgroup text_box text_box
+ * @{
+ *
+ */
 
-#define TEXT_BOX_BEG_END_SPACE 4
-#define TEXT_BOX_TOP_BOT_SPACE 8
-#define TEXT_BOX_HEIGHT (FONT_CHAR_HEIGHT + 2*TEXT_BOX_TOP_BOT_SPACE)
-#define TEXT_BOX_WIDTH(display_size) ((display_size) * CHAR_SPACE + 2*TEXT_BOX_BEG_END_SPACE)
+#define TEXT_BOX_CURSOR_HEIGHT (FONT_CHAR_HEIGHT + 4) /**< @brief Height of the text box cursor */
+#define TEXT_BOX_CURSOR_COLOR 0x000000 /**< @brief Color of the text box cursor */
 
-#define TEXT_BOX_HIGHLIGHTED_TEXT_COLOR 0xaaffff
-#define TEXT_BOX_NORMAL_COLOR 0xf7f7f7
-#define TEXT_BOX_HOVERING_COLOR 0xffffff
-#define TEXT_BOX_BORDER_COLOR 0x0000aa
+#define TEXT_BOX_BEG_END_SPACE 4 /**< @brief Textbox horizontal margin */
+#define TEXT_BOX_TOP_BOT_SPACE 8 /**< @brief Textbox vertical margin */
+#define TEXT_BOX_HEIGHT (FONT_CHAR_HEIGHT + 2*TEXT_BOX_TOP_BOT_SPACE) /**< @brief Textbox height */
+#define TEXT_BOX_WIDTH(display_size) ((display_size) * CHAR_SPACE + 2*TEXT_BOX_BEG_END_SPACE) /**< @brief Textbox width */
 
-// Enumerated type for specifying the state of a text box.
+#define TEXT_BOX_HIGHLIGHTED_TEXT_COLOR 0xaaffff /**< @brief Color of highlighted text in the text box */
+#define TEXT_BOX_NORMAL_COLOR 0xf7f7f7 /**< @brief Normal color of the text box */
+#define TEXT_BOX_HOVERING_COLOR 0xffffff /**< @brief Color of the text box when the cursor is hovering */
+#define TEXT_BOX_BORDER_COLOR 0x0000aa /**< @brief Color of the border of the textbox */
+
+/**
+ * @brief Enumerated type for specifying the state of a textbox.
+ * 
+ */
 typedef enum text_box_state {
-    TEXT_BOX_NORMAL, // Text box is in normal/base state.
-    TEXT_BOX_HOVERING, // Text box is not selected and the cursor is hovering it.
-    TEXT_BOX_SELECTED_HOVERING, // Text box is selected and the cursor is hovering it.
-    TEXT_BOX_SELECTED_NOT_HOVERING, // Text box is selected but the cursor is not hovering it.
-    TEXT_BOX_PRESSING // Text box is being pressed.
+    TEXT_BOX_NORMAL, /**< Text box is in normal/base state. */
+    TEXT_BOX_HOVERING, /**< Text box is not selected and the cursor is hovering it. */
+    TEXT_BOX_SELECTED_HOVERING, /**< Text box is selected and the cursor is hovering it. */
+    TEXT_BOX_SELECTED_NOT_HOVERING, /**< Text box is selected but the cursor is not hovering it. */
+    TEXT_BOX_PRESSING /**< Text box is being pressed. */
 } text_box_state_t;
 
-// Text box class implementation.
+/**
+ * @brief Text box class implementation.
+ * 
+ */
 struct text_box {
-    char *word; // Address of memory of the content of the text box.
-    uint8_t word_size; // Content size (not counting with the '\0').
-    uint16_t x; // Left most x coordinate of the text box.
-    uint16_t y; // Top most y coordinate of the text box.
-    uint8_t cursor_pos; // Cursor position relative to its content start.
-    uint8_t select_pos; // Position, relative to content start, from where the content is being selected (== cursor_pos if nothing selected).
-    uint8_t start_display; // First position dispalyed in the text box.
-    uint8_t display_size; // Number of chars displayed at the same time.
-    text_box_state_t state; // State of the text box.
-    bool visible_cursor; // True if the text cursor is visible and false otherwise.
-    text_box_action_t action; // Action to perform when ENTER is pressed.
+    char *word; /**< @brief Address of memory of the content of the text box. */
+    uint8_t word_size; /**< @brief Content size (not counting with the '\0'). */
+    uint16_t x; /**< @brief Left most x coordinate of the text box. */
+    uint16_t y; /**< @brief Top most y coordinate of the text box. */
+    uint8_t cursor_pos; /**< @brief Cursor position relative to its content start. */
+    uint8_t select_pos; /**< @brief Position, relative to content start, from where the content is being selected (== cursor_pos if nothing selected). */
+    uint8_t start_display; /**< @brief First position dispalyed in the text box. */
+    uint8_t display_size; /**< @brief Number of chars displayed at the same time. */
+    text_box_state_t state; /**< @brief State of the text box. */
+    bool visible_cursor; /**< @brief True if the text cursor is visible and false otherwise. */
+    text_box_action_t action; /**< @brief Action to perform when ENTER is pressed. */
 };
 
-static char *clip_board = NULL; // not saving the '\0' char
-static uint8_t clip_board_size = 0;
+/**
+ * Note: this is a sequence of characters, NOT a null terminated C string.
+ * 
+ * @brief Characters in clip board to be pasted
+ */
+static char *clip_board = NULL;
+static uint8_t clip_board_size = 0; /**< @brief Number of characters in the clipboard. */
 
 text_box_t *new_text_box(uint16_t x, uint16_t y, uint8_t display_size, text_box_action_t action) {
     text_box_t *text_box = malloc(sizeof(text_box_t));
@@ -172,6 +188,7 @@ int text_box_update_state(text_box_t *text_box, bool hovering, bool lb, bool rb,
         text_box->visible_cursor = true;
     }
 
+    // Now the state transition begins
     switch (text_box->state) {
     case TEXT_BOX_NORMAL:
         if (hovering && !(lb || rb)) {
@@ -227,6 +244,12 @@ int text_box_update_state(text_box_t *text_box, bool hovering, bool lb, bool rb,
     return 0;
 }
 
+/**
+ * @brief Deletes the selected portion of the string in the textbox
+ * 
+ * @param text_box address of memory of the text box
+ * @return Return 0 upon success and non-zero otherwise
+ */
 static int text_box_delete_selected(text_box_t *text_box) {
     if (text_box->cursor_pos == text_box->select_pos) {
         return 0;
@@ -252,6 +275,12 @@ static int text_box_delete_selected(text_box_t *text_box) {
     return 0;
 }
 
+/**
+ * @brief Copies selected portion of the string in the textbox to the clipboard
+ * 
+ * @param text_box address of memory of the text box
+ * @return Return 0 upon success and non-zero otherwise
+ */
 static int text_box_copy(text_box_t *text_box) {
     if (text_box->cursor_pos == text_box->select_pos) {
         return 0;
@@ -279,6 +308,12 @@ static int text_box_copy(text_box_t *text_box) {
     return 0;
 }
 
+/**
+ * @brief Calls the text box callback function (action) with the currently written string as input.
+ * 
+ * @param text_box address of memory of the text box
+ * @return Return 0 upon success and non-zero otherwise
+ */
 static int text_box_retrieve(text_box_t *text_box) {
     char *content = malloc(text_box->word_size + 1);
     if (content == NULL)
@@ -484,3 +519,5 @@ void text_box_clip_board_exit() {
     free(clip_board);
     clip_board = NULL;
 }
+
+/**@}*/

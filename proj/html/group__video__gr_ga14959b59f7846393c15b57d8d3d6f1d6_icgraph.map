@@ -1,8 +1,11 @@
 <map id="vg_get_bytes_per_pixel" name="vg_get_bytes_per_pixel">
-<area shape="rect" id="node1" title="Gets the number of bytes used to represent a single pixel." alt="" coords="496,31,653,57"/>
-<area shape="rect" id="node2" href="$group__canvas.html#ga7212eaf58fd2e7ff08ae401d340d51cd" title="Draws the canvas to the back buffer." alt="" coords="313,5,448,32"/>
-<area shape="rect" id="node5" href="$group__canvas.html#ga89158f823ed46f7986c46db1ba08578d" title="Initiates the canvas." alt="" coords="337,56,424,83"/>
-<area shape="rect" id="node3" href="$group__game.html#ga656ca85eff33877022fd939d29f23822" title="Draws the game screen to the back buffer." alt="" coords="159,5,247,32"/>
-<area shape="rect" id="node4" href="$group__dispatcher.html#ga1265a5e2843f2b1c45ad05ae61de7000" title="Draws the frame to the back buffer and flips the buffers." alt="" coords="5,5,93,32"/>
-<area shape="rect" id="node6" href="$group__dispatcher.html#ga00f3579aee6fd77454373ac309f39675" title="Starts the round." alt="" coords="141,56,265,83"/>
+<area shape="rect" id="node1" title="Gets the number of bytes used to represent a single pixel." alt="" coords="752,31,909,57"/>
+<area shape="rect" id="node2" href="$group__canvas.html#ga7212eaf58fd2e7ff08ae401d340d51cd" title="Draws the canvas to the back buffer." alt="" coords="569,5,704,32"/>
+<area shape="rect" id="node6" href="$group__canvas.html#ga89158f823ed46f7986c46db1ba08578d" title="Initiates the canvas." alt="" coords="593,56,680,83"/>
+<area shape="rect" id="node3" href="$group__game.html#ga656ca85eff33877022fd939d29f23822" title="Draws the game screen to the back buffer." alt="" coords="411,5,499,32"/>
+<area shape="rect" id="node4" href="$group__dispatcher.html#ga1265a5e2843f2b1c45ad05ae61de7000" title="Draws the frame to the back buffer and flips the buffers." alt="" coords="221,5,309,32"/>
+<area shape="rect" id="node5" href="$group__dispatcher.html#gababc3983184c400b85295ddab53388cc" title="Dispatches a timer interrupt, calling relevant application dependent code." alt="" coords="5,5,140,32"/>
+<area shape="rect" id="node7" href="$group__dispatcher.html#gafab2be1b5bd6d5f0282e36effcdbf8c2" title="Starts the round." alt="" coords="389,56,521,83"/>
+<area shape="rect" id="node8" href="$group__dispatcher.html#ga165d3da39e7ad5173611be1f6689c6c7" title="Dispatches a RTC alarm interrupt, calling relevant application dependent code." alt="" coords="188,56,341,83"/>
+<area shape="rect" id="node9" href="$group__protocol.html#ga4ba318073b27ac4dd79ed093ee960b2f" title="Handles a received message of type MSG_START_ROUND." alt="" coords="191,107,339,149"/>
 </map>

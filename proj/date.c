@@ -4,13 +4,17 @@
 #include "font.h"
 #include "video_gr.h"
 
-#define DATE_CURRENT_X 5 
-#define DATE_CURRENT_Y 5
-#define DATE_STRING_SIZE 20
-#define DATE_DISPLAY_BORDER 4
-#define DATE_BACK_COLOR 0xffffff
-#define DATE_GREETING_MAX_SIZE 15
+/** @defgroup date date
+ * @{
+ *
+ */
 
+#define DATE_CURRENT_X 5 /**< @brief Current date x coordinate on screen */
+#define DATE_CURRENT_Y 5 /**< @brief Current date y coordinate on screen */
+#define DATE_STRING_SIZE 20 /**< @brief Size of a date string */
+#define DATE_DISPLAY_BORDER 4 /**< @brief Date display border on screen */
+#define DATE_BACK_COLOR 0xffffff /**< @brief Date background color */
+#define DATE_GREETING_MAX_SIZE 15 /**< @brief Maximum size of a greeting string */
 
 int date_bcd_to_binary(date_t *date) {
     if (date == NULL)
@@ -84,6 +88,12 @@ bool date_operator_less_than(date_t date1, date_t date2) {
     return date1.second < date2.second;
 }
 
+/**
+ * @brief Checks if given year is a leap year.
+ * 
+ * @param year year to check
+ * @return Whether it is a leap year
+ */
 static bool date_year_is_leap(uint16_t year) {
     if (year <= 1582)
         return 1; // gregorian calendar (15-10-1582)
@@ -94,6 +104,12 @@ static bool date_year_is_leap(uint16_t year) {
     return false;
 }
 
+/**
+ * @brief Gets the number of days of the month of a given date.
+ * 
+ * @param date date to check number of days of the month
+ * @return The number of days of the month
+ */
 static uint8_t date_get_month_num_days(date_t date) {
     if (date.month == 2) {
         if (date_year_is_leap(date.year)) {
@@ -132,3 +148,5 @@ int date_plus_alarm_time(rtc_alarm_time_t alarm, date_t *date) { // values in bi
 
     return 0;
 }
+
+/**@}*/

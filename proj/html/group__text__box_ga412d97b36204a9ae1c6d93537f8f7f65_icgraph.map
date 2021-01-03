@@ -1,0 +1,7 @@
+<map id="text_box_unselect" name="text_box_unselect">
+<area shape="rect" id="node1" title="Returns text box to normal state." alt="" coords="827,13,955,39"/>
+<area shape="rect" id="node2" href="$group__dispatcher.html#gadb81ccc75214fc2c0cc505de1e5c7383" title="Returns all bound buttons, textboxes and canvas to normal state." alt="" coords="596,5,779,47"/>
+<area shape="rect" id="node3" href="$group__menu.html#ga2471e39c56761768b9ceabdd4d5e732f" title="Sets the menu to pause menu." alt="" coords="388,13,548,39"/>
+<area shape="rect" id="node4" href="$group__menu.html#ga9f128e941aaff63bfe944f44504d21cb" title="Updates the menu according to a keyboard event." alt="" coords="221,13,340,39"/>
+<area shape="rect" id="node5" href="$group__dispatcher.html#gaf9683a8eab5011faf80d5235b08efc27" title="Handles and dispatches a keyboard state change, calling relevant application dependent code." alt="" coords="5,13,173,39"/>
+</map>

@@ -3,4 +3,5 @@
 <area shape="rect" id="node2" href="$group__queue.html#ga09a3da9bf84f747356ef8050447bf35a" title="Checks if a given queue is empty." alt="" coords="295,21,412,47"/>
 <area shape="rect" id="node3" href="$group__queue.html#ga81880a2f29871356ccddd8f20ec99e9e" title="Removes the element at the front of the given queue." alt="" coords="161,21,247,47"/>
 <area shape="rect" id="node4" href="$group__queue.html#ga24ec1e60eaa37239a1b49c6f7321c9d9" title="Gets the element at the front of the given queue." alt="" coords="163,71,245,98"/>
+<area shape="rect" id="node5" href="$group__queue.html#ga5f221cd3b0a3c04f33ba9fd136a61c8b" title="Returns a pointer to the element of the given queue at the given index." alt="" coords="306,71,401,98"/>
 </map>

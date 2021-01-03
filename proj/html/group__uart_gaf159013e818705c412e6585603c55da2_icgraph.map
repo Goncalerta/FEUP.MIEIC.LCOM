@@ -1,4 +1,5 @@
 <map id="uart_enable_fifo" name="uart_enable_fifo">
-<area shape="rect" id="node1" title="Enables serial port hardware FIFOs." alt="" coords="192,5,304,32"/>
-<area shape="rect" id="node2" href="$group__protocol.html#ga1b4d0d201e93a7bdf1aaeb6766e304ea" title="Configures the serial port and protocol queues to start communication." alt="" coords="5,5,144,32"/>
+<area shape="rect" id="node1" title="Enables serial port hardware FIFOs." alt="" coords="349,5,461,32"/>
+<area shape="rect" id="node2" href="$group__protocol.html#ga1b4d0d201e93a7bdf1aaeb6766e304ea" title="Configures the serial port and protocol queues to start communication." alt="" coords="163,5,301,32"/>
+<area shape="rect" id="node3" href="$group__proj.html#ga2a16f651eccbd248e1ad3b3b924b143b" title="Reacts to the event that the other player sent the random number to decide starting roles." alt="" coords="5,5,115,32"/>
 </map>

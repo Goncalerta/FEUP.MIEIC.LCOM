@@ -7,31 +7,45 @@
 #include "canvas.h"
 #include "game.h"
 
-#define PROTOCOL_BIT_RATE 9600 // communication bitrate
-#define PROTOCOL_ACK 0xAA // acknowledgment byte (everything OK)
-#define PROTOCOL_NACK 0x55 // non-acknowledgment byte (invalid message)
-#define PROTOCOL_MESSAGE_START_BYTE 0x0F
-#define PROTOCOL_MESSAGE_TRAILING_BYTE 0xF0
-#define PROTOCOL_WAIT_TIMEOUT_TICKS 90 // maximum seconds to timeout (receiving messages or acknowledgments)
-#define PENDING_MESSAGES_CAPACITY 8 // starting capacity of pending_messages queue
+/** @defgroup protocol protocol
+ * @{
+ *
+ */
 
-static queue_t *pending_messages;
-static bool awaiting_ack = false;
-static uint8_t awaiting_ack_ticks = 0;
+#define PROTOCOL_BIT_RATE 9600 /**< @brief Communication bitrate */
+#define PROTOCOL_ACK 0xAA /**< @brief Acknowledgment byte (everything OK) */
+#define PROTOCOL_NACK 0x55 /**< @brief Non-acknowledgment byte (invalid message) */
+#define PROTOCOL_MESSAGE_START_BYTE 0x0F /**< @brief Starting byte of a message */
+#define PROTOCOL_MESSAGE_TRAILING_BYTE 0xF0 /**< @brief Trailing byte of a message */
+#define PROTOCOL_WAIT_TIMEOUT_TICKS 90 /**< @brief Maximum seconds to timeout (receiving messages or acknowledgments) */
+#define PENDING_MESSAGES_CAPACITY 8 /**< @brief Starting capacity of pending_messages queue */
 
+static queue_t *pending_messages; /**< @brief Queue with pending messages to transmit */
+static bool awaiting_ack = false; /**< @brief Whether this computer is awaiting and acknowledgment byte */
+static uint8_t awaiting_ack_ticks = 0; /**< @brief Acknowlegment ticks to control timeout */
+
+/**
+ * @brief Enumerated type for specifying the state of the message being received.
+ * 
+ */
 typedef enum receiving_msg_state {
-    NOT_RECEIVING_MESSAGE,
-    MESSAGE_START_BYTE_DETECTED,
-    RECEIVING_MESSAGE_BODY,
-    EXPECTING_TRAILING_BYTE
+    NOT_RECEIVING_MESSAGE, /**< No message is being received */
+    MESSAGE_START_BYTE_DETECTED, /**< Start byte of message detected */
+    RECEIVING_MESSAGE_BODY, /**< Receiving message body */
+    EXPECTING_TRAILING_BYTE /**< Message body fully received; expecting trailing byte */
 } receiving_msg_state_t;
 
-static receiving_msg_state_t receiving_msg = NOT_RECEIVING_MESSAGE;
-static uint8_t receiving_msg_ticks = 0;
-static uint8_t *receiving_msg_bits = NULL;
-static size_t receiving_msg_len = 0;
-static size_t receiving_msg_read_count = 0;
+static receiving_msg_state_t receiving_msg = NOT_RECEIVING_MESSAGE; /**< @brief Current state of the message being received */
+static uint8_t receiving_msg_ticks = 0; /**< @brief Receiving message ticks to control timeout */
+static uint8_t *receiving_msg_bits = NULL; /**< @brief Received bytes of the message being received */
+static size_t receiving_msg_len = 0; /**< @brief Number of bytes expected in the message being received */
+static size_t receiving_msg_read_count = 0; /**< @brief Number of bytes of the message being received already read */
 
+/**
+ * @brief Handles a connection timeout (didn't receive acknowledgment byte)
+ * 
+ * @return Return 0 upon success and non-zero otherwise
+ */
 static int protocol_handle_connection_timeout() {
     awaiting_ack = false;
     if (handle_other_player_leave_game() != OK)
@@ -41,6 +55,15 @@ static int protocol_handle_connection_timeout() {
     return 0;
 }
 
+/**
+ * @brief Initializes a new message_t
+ * 
+ * @param message memory address of the message being initialized
+ * @param type type of the message being initialized
+ * @param content_len number of bytes in the message content
+ * @param content memory address to the content of the message
+ * @return Return 0 upon success and non-zero otherwise
+ */
 static int protocol_new_message(message_t *message, message_type_t type, size_t content_len, uint8_t *content) {
     message->type = type;
     message->content_len = content_len;
@@ -51,6 +74,13 @@ static int protocol_new_message(message_t *message, message_type_t type, size_t 
     return 0;
 }
 
+/**
+ * @brief Initializes a new message_t without content
+ * 
+ * @param message memory address of the message being initialized
+ * @param type type of the message being initialized
+ * @return Return 0 upon success and non-zero otherwise
+ */
 static int protocol_new_message_no_content(message_t *message, message_type_t type) {
     message->type = type;
     message->content_len = 0;
@@ -58,6 +88,11 @@ static int protocol_new_message_no_content(message_t *message, message_type_t ty
     return 0;
 }
 
+/**
+ * @brief Frees the resources of a message_t instance
+ * 
+ * @param message memory address of the message being deleted
+ */
 static void protocol_delete_message(message_t *message) {
     if (message->content_len != 0 && message->content != NULL) {
         free(message->content);
@@ -65,6 +100,13 @@ static void protocol_delete_message(message_t *message) {
     }
 }
 
+/**
+ * @brief Handles a received message of type MSG_READY_TO_PLAY.
+ * 
+ * @param content_len number of bytes in the content of the message
+ * @param content memory address to the content of the message
+ * @return Return 0 upon success and non-zero otherwise
+ */
 static int protocol_receive_ready_to_play(size_t content_len, uint8_t *content) {
     if (content_len != 0)
             return 1;
@@ -75,6 +117,13 @@ static int protocol_receive_ready_to_play(size_t content_len, uint8_t *content) 
     return 0;
 }
 
+/**
+ * @brief Handles a received message of type MSG_LEAVE_GAME.
+ * 
+ * @param content_len number of bytes in the content of the message
+ * @param content memory address to the content of the message
+ * @return Return 0 upon success and non-zero otherwise
+ */
 static int protocol_receive_leave_game(size_t content_len, uint8_t *content) {
     if (content_len != 0)
             return 1;
@@ -85,6 +134,13 @@ static int protocol_receive_leave_game(size_t content_len, uint8_t *content) {
     return 0;
 }
 
+/**
+ * @brief Handles a received message of type MSG_RANDOM_NUMBER.
+ * 
+ * @param content_len number of bytes in the content of the message
+ * @param content memory address to the content of the message
+ * @return Return 0 upon success and non-zero otherwise
+ */
 static int protocol_receive_random_number(size_t content_len, uint8_t *content) {
     if (content_len != 4)
         return 1;
@@ -98,6 +154,13 @@ static int protocol_receive_random_number(size_t content_len, uint8_t *content) 
     return 0;
 }
 
+/**
+ * @brief Handles a received message of type MSG_NEW_ROUND.
+ * 
+ * @param content_len number of bytes in the content of the message
+ * @param content memory address to the content of the message
+ * @return Return 0 upon success and non-zero otherwise
+ */
 static int protocol_receive_new_round(size_t content_len, uint8_t *content) {
     if (content[content_len-1] != '\0')
         return 1;
@@ -124,6 +187,13 @@ static int protocol_receive_new_round(size_t content_len, uint8_t *content) {
     return 0;
 }
 
+/**
+ * @brief Handles a received message of type MSG_START_ROUND.
+ * 
+ * @param content_len number of bytes in the content of the message
+ * @param content memory address to the content of the message
+ * @return Return 0 upon success and non-zero otherwise
+ */
 static int protocol_receive_start_round(size_t content_len, uint8_t *content) {
     if (content_len != 0)
         return 1;
@@ -139,6 +209,13 @@ static int protocol_receive_start_round(size_t content_len, uint8_t *content) {
     return 0;
 }
 
+/**
+ * @brief Handles a received message of type MSG_NEW_STROKE.
+ * 
+ * @param content_len number of bytes in the content of the message
+ * @param content memory address to the content of the message
+ * @return Return 0 upon success and non-zero otherwise
+ */
 static int protocol_receive_new_stroke(size_t content_len, uint8_t *content) {
     if (content_len != 6)
         return 1;
@@ -156,6 +233,13 @@ static int protocol_receive_new_stroke(size_t content_len, uint8_t *content) {
     return 0;
 }
 
+/**
+ * @brief Handles a received message of type MSG_DRAW_ATOM.
+ * 
+ * @param content_len number of bytes in the content of the message
+ * @param content memory address to the content of the message
+ * @return Return 0 upon success and non-zero otherwise
+ */
 static int protocol_receive_draw_atom(size_t content_len, uint8_t *content) {
     if (content_len != 4)
         return 1;
@@ -172,6 +256,13 @@ static int protocol_receive_draw_atom(size_t content_len, uint8_t *content) {
     return 0;
 }
 
+/**
+ * @brief Handles a received message of type MSG_UNDO_CANVAS.
+ * 
+ * @param content_len number of bytes in the content of the message
+ * @param content memory address to the content of the message
+ * @return Return 0 upon success and non-zero otherwise
+ */
 static int protocol_receive_undo_canvas(size_t content_len, uint8_t *content) {
     if (content_len != 0)
         return 1;
@@ -184,6 +275,13 @@ static int protocol_receive_undo_canvas(size_t content_len, uint8_t *content) {
     return 0;
 }
 
+/**
+ * @brief Handles a received message of type MSG_REDO_CANVAS.
+ * 
+ * @param content_len number of bytes in the content of the message
+ * @param content memory address to the content of the message
+ * @return Return 0 upon success and non-zero otherwise
+ */
 static int protocol_receive_redo_canvas(size_t content_len, uint8_t *content) {
     if (content_len != 0)
         return 1;
@@ -196,6 +294,13 @@ static int protocol_receive_redo_canvas(size_t content_len, uint8_t *content) {
     return 0;
 }
 
+/**
+ * @brief Handles a received message of type MSG_GUESS.
+ * 
+ * @param content_len number of bytes in the content of the message
+ * @param content memory address to the content of the message
+ * @return Return 0 upon success and non-zero otherwise
+ */
 static int protocol_receive_guess(size_t content_len, uint8_t *content) {
     if (content[content_len-1] != '\0')
         return 1;
@@ -222,6 +327,13 @@ static int protocol_receive_guess(size_t content_len, uint8_t *content) {
     return 0;
 }
 
+/**
+ * @brief Handles a received message of type MSG_CLUE.
+ * 
+ * @param content_len number of bytes in the content of the message
+ * @param content memory address to the content of the message
+ * @return Return 0 upon success and non-zero otherwise
+ */
 static int protocol_receive_clue(size_t content_len, uint8_t *content) {
     if (content_len != 1)
         return 1;
@@ -240,6 +352,13 @@ static int protocol_receive_clue(size_t content_len, uint8_t *content) {
     return 0;
 }
 
+/**
+ * @brief Handles a received message of type MSG_ROUND_WIN.
+ * 
+ * @param content_len number of bytes in the content of the message
+ * @param content memory address to the content of the message
+ * @return Return 0 upon success and non-zero otherwise
+ */
 static int protocol_receive_round_win(size_t content_len, uint8_t *content) {
     if (content_len != 4)
         return 1;
@@ -257,6 +376,13 @@ static int protocol_receive_round_win(size_t content_len, uint8_t *content) {
     return 0;
 }
 
+/**
+ * @brief Handles a received message of type MSG_GAME_OVER.
+ * 
+ * @param content_len number of bytes in the content of the message
+ * @param content memory address to the content of the message
+ * @return Return 0 upon success and non-zero otherwise
+ */
 static int protocol_receive_game_over(size_t content_len, uint8_t *content) {
     if (content_len != 0)
         return 1;
@@ -272,6 +398,13 @@ static int protocol_receive_game_over(size_t content_len, uint8_t *content) {
     return 0;
 }
 
+/**
+ * @brief Handles a received message of type MSG_PROGRAM_OPENED.
+ * 
+ * @param content_len number of bytes in the content of the message
+ * @param content memory address to the content of the message
+ * @return Return 0 upon success and non-zero otherwise
+ */
 static int protocol_receive_program_opened(size_t content_len, uint8_t *content) {
     if (content_len != 0)
         return 1;
@@ -286,8 +419,12 @@ static int protocol_receive_program_opened(size_t content_len, uint8_t *content)
     return 0;
 }
 
-typedef int (*message_handle_t)(size_t, uint8_t *);
-#define NUMBER_OF_MESSAGES 14
+typedef int (*message_handle_t)(size_t, uint8_t *); /**< @brief Message handler for a given type function pointer */
+#define NUMBER_OF_MESSAGES 14 /**< @brief Number of possible messages (and thus message handlers) */
+/**
+ * @brief Array of message handlers, indexed by message type
+ * 
+ */
 static const message_handle_t message_handle[NUMBER_OF_MESSAGES] = {
     protocol_receive_ready_to_play,
     protocol_receive_leave_game,
@@ -305,6 +442,11 @@ static const message_handle_t message_handle[NUMBER_OF_MESSAGES] = {
     protocol_receive_program_opened
 };
 
+/**
+ * @brief Sends the next pending message in queue.
+ * 
+ * @return Return 0 upon success and non-zero otherwise
+ */
 static int protocol_send_next_message() {
     if (queue_is_empty(pending_messages))
         return 0;
@@ -336,6 +478,11 @@ static int protocol_send_next_message() {
     return 0;
 }
 
+/**
+ * @brief Adds a new message to the pending messages queue.
+ * 
+ * @return Return 0 upon success and non-zero otherwise
+ */
 static int protocol_add_message(message_t message) {
     if (queue_push(pending_messages, &message) != OK)
         return 1;
@@ -347,6 +494,11 @@ static int protocol_add_message(message_t message) {
     return 0;
 }
 
+/**
+ * @brief Handles a received acknowledgment byte.
+ * 
+ * @return Return 0 upon success and non-zero otherwise
+ */
 static int protocol_handle_ack() {
     message_t msg;
     
@@ -368,6 +520,11 @@ static int protocol_handle_ack() {
     return 0;
 }
 
+/**
+ * @brief Handles a received non-acknowledgment byte.
+ * 
+ * @return Return 0 upon success and non-zero otherwise
+ */
 static int protocol_handle_nack() {
     if (awaiting_ack) {
         if (protocol_send_next_message() != OK)
@@ -377,6 +534,11 @@ static int protocol_handle_nack() {
     return 0;
 }
 
+/**
+ * @brief Handles a received byte when no message is currently being received.
+ * 
+ * @return Return 0 upon success and non-zero otherwise
+ */
 static int protocol_handle_byte_not_receiving_message() {
     uint8_t byte;
     if (uart_read_byte(&byte) != OK)
@@ -396,13 +558,20 @@ static int protocol_handle_byte_not_receiving_message() {
         break;
     default:
         // Unexpected byte. Might be from a process different from this program
-        // That uses a different protocol. Safer to ignore.
+        // That uses a different protocol. Safer to ignore than to try to communicate back.
         break;
     }
 
     return 0;
 }
 
+/**
+ * This byte tells the lenght of the body of the message.
+ * 
+ * @brief Handles a received byte after the starting message byte.
+ * 
+ * @return Return 0 upon success and non-zero otherwise
+ */
 static int protocol_handle_new_msg() {
     uint8_t byte;
     if (uart_read_byte(&byte) != OK)
@@ -426,6 +595,11 @@ static int protocol_handle_new_msg() {
     return 0;
 }
 
+/**
+ * @brief Handles a received byte that is expected to belong to the message body.
+ * 
+ * @return Return 0 upon success and non-zero otherwise
+ */
 static int protocol_handle_message_body() {
     while (uart_received_bytes() && receiving_msg_read_count < receiving_msg_len) {
         uint8_t byte;
@@ -442,6 +616,11 @@ static int protocol_handle_message_body() {
     return 0;
 }
 
+/**
+ * @brief Parse and handle the received message.
+ * 
+ * @return Return 0 upon success and non-zero otherwise
+ */
 static int protocol_parse_received_message() {
     message_t msg;
     if (protocol_new_message(&msg, receiving_msg_bits[0], receiving_msg_len - 1, receiving_msg_bits + 1) != OK)
@@ -460,6 +639,11 @@ static int protocol_parse_received_message() {
     return 0;
 }
 
+/**
+ * @brief Handle a received byte when a trailing message byte is expected.
+ * 
+ * @return Return 0 upon success and non-zero otherwise
+ */
 static int protocol_handle_message_trailing_byte() {
     uint8_t byte;
     if (uart_read_byte(&byte) != OK)
@@ -796,3 +980,5 @@ int protocol_send_program_opened() {
 
     return 0;
 }
+
+/**@}*/

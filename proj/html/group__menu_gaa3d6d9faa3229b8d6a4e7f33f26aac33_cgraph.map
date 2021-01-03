@@ -1,0 +1,11 @@
+<map id="menu_draw_pause_menu" name="menu_draw_pause_menu">
+<area shape="rect" id="node1" title="Draws the pause menu to the back buffer." alt="" coords="5,81,175,108"/>
+<area shape="rect" id="node2" href="$group__button.html#gaeebfb159f1fede957040739c91bd1b20" title="Draws a given button to the given buffer." alt="" coords="243,56,335,83"/>
+<area shape="rect" id="node9" href="$group__video__gr.html#gaecb0fe68de84fcbe553f77d62b37c69b" title="Gets the back buffer." alt="" coords="223,107,355,133"/>
+<area shape="rect" id="node3" href="$group__graphics.html#ga1b69ad0e07cfd0697a4cb9c18ba48b67" title="Draws a circle in the given buffer in the given coordinates with the given radius with the given colo..." alt="" coords="600,5,707,32"/>
+<area shape="rect" id="node5" href="$group__graphics.html#gad48647db82bcc8a80196a817c9959a40" title="Draws a given xpm image in the given buffer in the given coordinates." alt="" coords="419,56,515,83"/>
+<area shape="rect" id="node7" href="$group__graphics.html#ga16484c11b9019a2395c4964fe7da3ab1" title="Draws a rectangle in the given buffer in the given coordinates with the given height and width with t..." alt="" coords="403,107,531,133"/>
+<area shape="rect" id="node4" href="$group__graphics.html#ga257b5dac975604f70651e8764ad8acd8" title="Draws a pixel in the given buffer in the given coordinates with the given color." alt="" coords="776,56,879,83"/>
+<area shape="rect" id="node6" href="$group__graphics.html#ga31260a04eb12bc7be5012378500b09b0" title="Draws a portion of a given xpm image in the given buffer in the given coordinates." alt="" coords="579,56,728,83"/>
+<area shape="rect" id="node8" href="$group__graphics.html#ga58454ceb710c0fca6b21c049f0cac3a6" title="Draws a horizontal line in the given buffer in the given coordinates with the given color." alt="" coords="602,107,705,133"/>
+</map>

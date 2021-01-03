@@ -204,6 +204,13 @@ int uart_config_int(bool received_data_int, bool transmitter_empty_int, bool rec
 int uart_enable_fifo(fifo_int_trigger_level_t trigger_level);
 
 /**
+ * @brief Disables serial port hardware FIFOs.
+ * 
+ * @return Return 0 upon success and non-zero otherwise
+ */
+int uart_disable_fifo();
+
+/**
  * @brief Specifies the bit rate for the serial port.
  * 
  * @param bit_rate the bit rate of the communication

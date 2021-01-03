@@ -1,10 +1,18 @@
 <map id="vb_draw_rectangle" name="vb_draw_rectangle">
-<area shape="rect" id="node1" title="Draws a rectangle in the given buffer in the given coordinates with the given height and width with t..." alt="" coords="344,81,472,108"/>
-<area shape="rect" id="node2" href="$group__button.html#gaeebfb159f1fede957040739c91bd1b20" title="Draws a given button to the given buffer." alt="" coords="193,5,285,32"/>
-<area shape="rect" id="node4" href="$group__date.html#ga4935ca0b464c660a91e7f725da5149ae" title="Draws a date to the given screen coordiantes." alt="" coords="198,56,279,83"/>
-<area shape="rect" id="node6" href="$group__text__box.html#ga5cc4f6bd58a30c404c41c54eed705ae3" title="Draws a given text box to the given buffer." alt="" coords="185,107,292,133"/>
-<area shape="rect" id="node7" href="$group__clue.html#gaf2e81417151218db37a0250f64f2f825" title="Draws a given word clue to the given buffer on the given coordinates." alt="" coords="181,157,296,184"/>
-<area shape="rect" id="node3" href="$group__menu.html#ga35731eaa9442f8db276220d9fc77dcf6" title="Draws the menu according to its state to the back buffer." alt="" coords="25,5,113,32"/>
-<area shape="rect" id="node5" href="$group__date.html#gac6b60c120a9b43280cf175cc7fb7f047" title="Draws the current date to the top left corner of the screen." alt="" coords="5,56,133,83"/>
-<area shape="rect" id="node8" href="$group__game.html#ga656ca85eff33877022fd939d29f23822" title="Draws the game screen to the back buffer." alt="" coords="25,157,113,184"/>
+<area shape="rect" id="node1" title="Draws a rectangle in the given buffer in the given coordinates with the given height and width with t..." alt="" coords="880,107,1008,133"/>
+<area shape="rect" id="node2" href="$group__button.html#gaeebfb159f1fede957040739c91bd1b20" title="Draws a given button to the given buffer." alt="" coords="729,199,821,225"/>
+<area shape="rect" id="node12" href="$group__date.html#ga4935ca0b464c660a91e7f725da5149ae" title="Draws a date to the given screen coordiantes." alt="" coords="734,304,815,331"/>
+<area shape="rect" id="node14" href="$group__game.html#gaa66c73919056ab1110c8072cec9a35e3" title="Draws game bar." alt="" coords="528,5,641,32"/>
+<area shape="rect" id="node15" href="$group__text__box.html#ga5cc4f6bd58a30c404c41c54eed705ae3" title="Draws a given text box to the given buffer." alt="" coords="721,56,828,83"/>
+<area shape="rect" id="node16" href="$group__clue.html#gaf2e81417151218db37a0250f64f2f825" title="Draws a given word clue to the given buffer on the given coordinates." alt="" coords="717,107,832,133"/>
+<area shape="rect" id="node3" href="$group__game.html#gaf81e4b3d4ad8272708d334d1015d057a" title="Draws the buttons of the new round for the given drawer_t." alt="" coords="515,107,654,133"/>
+<area shape="rect" id="node7" href="$group__menu.html#gae762ab55a018410e5ab25728754d1f99" title="Draws the awaiting other player menu to the back buffer." alt="" coords="513,158,656,199"/>
+<area shape="rect" id="node9" href="$group__menu.html#ga37f26e6e20248734fa4c82d06a29e1b1" title="Draws the game over screen to the back buffer." alt="" coords="506,223,663,265"/>
+<area shape="rect" id="node10" href="$group__menu.html#gad8cf1cbb8ad1602f11a9d2d95e583ed5" title="Draws the main menu to the back buffer." alt="" coords="503,289,666,316"/>
+<area shape="rect" id="node11" href="$group__menu.html#gaa3d6d9faa3229b8d6a4e7f33f26aac33" title="Draws the pause menu to the back buffer." alt="" coords="500,340,669,367"/>
+<area shape="rect" id="node4" href="$group__game.html#ga656ca85eff33877022fd939d29f23822" title="Draws the game screen to the back buffer." alt="" coords="344,81,432,108"/>
+<area shape="rect" id="node5" href="$group__dispatcher.html#ga1265a5e2843f2b1c45ad05ae61de7000" title="Draws the frame to the back buffer and flips the buffers." alt="" coords="188,260,276,287"/>
+<area shape="rect" id="node6" href="$group__dispatcher.html#gababc3983184c400b85295ddab53388cc" title="Dispatches a timer interrupt, calling relevant application dependent code." alt="" coords="5,260,140,287"/>
+<area shape="rect" id="node8" href="$group__menu.html#ga35731eaa9442f8db276220d9fc77dcf6" title="Draws the menu according to its state to the back buffer." alt="" coords="344,260,432,287"/>
+<area shape="rect" id="node13" href="$group__date.html#gac6b60c120a9b43280cf175cc7fb7f047" title="Draws the current date to the top left corner of the screen." alt="" coords="324,336,452,363"/>
 </map>

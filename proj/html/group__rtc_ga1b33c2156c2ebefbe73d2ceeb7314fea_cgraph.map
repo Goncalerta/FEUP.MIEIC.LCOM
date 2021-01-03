@@ -1,4 +1,6 @@
 <map id="rtc_read_conf" name="rtc_read_conf">
-<area shape="rect" id="node1" title="Prints the content of RTC registers A, B, C and D." alt="" coords="5,5,105,32"/>
-<area shape="rect" id="node2" href="$group__rtc.html#gaeb22f43773d6e29365a07f7f847dfbb9" title="Reads data from a RTC register." alt="" coords="153,5,272,32"/>
+<area shape="rect" id="node1" title="Prints the content of RTC registers A, B, C and D." alt="" coords="5,42,105,69"/>
+<area shape="rect" id="node2" href="$group__rtc.html#gac88bb0e44e57b8edd30f8460ab4e95c2" title="Prints the given value in binary format." alt="" coords="153,5,296,47"/>
+<area shape="rect" id="node3" href="$group__rtc.html#gaeb22f43773d6e29365a07f7f847dfbb9" title="Reads data from a RTC register." alt="" coords="165,71,284,98"/>
+<area shape="rect" id="node4" href="$group__utils.html#ga79a031a8611f5b2d6afa4158e92b0fb4" title="Wraps sys_inb so that it may be called with a uint8_t argument." alt="" coords="344,71,435,98"/>
 </map>

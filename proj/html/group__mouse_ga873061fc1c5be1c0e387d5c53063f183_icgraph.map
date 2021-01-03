@@ -1,0 +1,5 @@
+<map id="mouse_is_packet_ready" name="mouse_is_packet_ready">
+<area shape="rect" id="node1" title="Checks if there is a mouse packet ready to be processed." alt="" coords="289,5,452,32"/>
+<area shape="rect" id="node2" href="$group__clue.html#ga210374b50462acdedab00df64d5cea3c" title="Mouse interrupt handler." alt="" coords="163,5,241,32"/>
+<area shape="rect" id="node3" href="$group__proj.html#ga2a16f651eccbd248e1ad3b3b924b143b" title="Reacts to the event that the other player sent the random number to decide starting roles." alt="" coords="5,5,115,32"/>
+</map>

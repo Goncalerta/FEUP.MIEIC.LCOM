@@ -1,5 +1,6 @@
 <map id="kbc_read_command_byte" name="kbc_read_command_byte">
-<area shape="rect" id="node1" title="Reads the kbc command byte." alt="" coords="5,5,176,32"/>
+<area shape="rect" id="node1" title="Reads the kbc command byte." alt="" coords="5,31,176,57"/>
 <area shape="rect" id="node2" href="$group__kbc.html#ga978c37bd6eca1b2724372aee45770670" title="Issues a command to the kbc." alt="" coords="224,5,369,32"/>
+<area shape="rect" id="node4" href="$group__utils.html#ga79a031a8611f5b2d6afa4158e92b0fb4" title="Wraps sys_inb so that it may be called with a uint8_t argument." alt="" coords="568,31,659,57"/>
 <area shape="rect" id="node3" href="$group__kbc.html#ga628109931012fdfa144b55cc679a7fe9" title="Writes a byte to a kbc register." alt="" coords="417,5,520,32"/>
 </map>

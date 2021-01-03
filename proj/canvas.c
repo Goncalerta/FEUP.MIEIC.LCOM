@@ -12,14 +12,23 @@
  *
  */
 
-static canvas_state_t state = CANVAS_STATE_NORMAL;
-static stroke_t *first = NULL, *last = NULL, *undone = NULL;
-static frame_buffer_t canvas_buf; // current picture drawn in buffer - copied into vcard back buffer
-// Whether the canvas should allow the user to draw with the cursor.
-static bool enabled = false;
-// Whether canvas_init() has been called since last call to canvas_exit() and canvas functions may be safely used.
-static bool initialized = false;
+static canvas_state_t state = CANVAS_STATE_NORMAL; /**< @brief Canvas current state */
+static stroke_t *first = NULL; /**< @brief Reference to the first stroke drawn */
+static stroke_t *last = NULL; /**< @brief Reference to the last stroke drawn */
+static stroke_t *undone = NULL; /**< @brief Reference to the last stroke undone */
+static frame_buffer_t canvas_buf; /**< @brief Buffer with the current content of the canvas drawn to be copied into the back buffer every frame */
+static bool enabled = false; /**< @brief Whether the canvas should allow the user to draw with the cursor */
+static bool initialized = false; /**< @brief Whether canvas_init() has been called since last call to canvas_exit() and canvas functions may be safely used */
 
+/**
+ * @brief Draws a line between two stroke_atom_t to the canvas buffer.
+ * 
+ * @param atom1 the first atom
+ * @param atom2 the second atom
+ * @param color the color of the line
+ * @param thickness the thickness of the line
+ * @return Return 0 upon success and non-zero otherwise
+ */
 static int canvas_draw_atom_line(stroke_atom_t atom1, stroke_atom_t atom2, uint32_t color, uint16_t thickness) {
     uint16_t x1 = atom1.x;
     uint16_t y1 = atom1.y;
@@ -32,6 +41,13 @@ static int canvas_draw_atom_line(stroke_atom_t atom1, stroke_atom_t atom2, uint3
     return 0;
 }
 
+/**
+ * If it is the only stroke_atom_t in the stroke, draw a circle, else connect it with a line to the previous stroke_atom_t.
+ * 
+ * @brief Draws the last stroke_atom_t in a stroke.
+ * 
+ * @return Return 0 upon success and non-zero otherwise
+ */
 static int canvas_draw_last_atom() {
     if (last->num_atoms == 1) {
         stroke_atom_t atom = last->atoms[0];
@@ -43,6 +59,12 @@ static int canvas_draw_last_atom() {
     }
 }
 
+/**
+ * @brief Draws complete stroke_t into the canvas buffer.
+ * 
+ * @param stroke the stroke to be drawn
+ * @return Return 0 upon success and non-zero otherwise
+ */
 static int canvas_draw_stroke(stroke_t *stroke) {
     stroke_atom_t first_atom = stroke->atoms[0];
     if (vb_draw_circle(canvas_buf, first_atom.x, first_atom.y, stroke->thickness, stroke->color))
@@ -56,6 +78,13 @@ static int canvas_draw_stroke(stroke_t *stroke) {
     return 0;
 }
 
+/**
+ * Useful for undoing a stroke.
+ * 
+ * @brief Redraws all strokes in the canvas.
+ * 
+ * @return Return 0 upon success and non-zero otherwise
+ */
 static int canvas_redraw_strokes() {
     vb_fill_screen(canvas_buf, 0x00ffffff);
 
@@ -88,6 +117,12 @@ int canvas_init(uint16_t width, uint16_t height, bool en) {
     return 0;
 }
 
+/**
+ * 
+ * @brief Deletes all undone strokes.
+ * 
+ * @return Return 0 upon success and non-zero otherwise
+ */
 static void canvas_clear_undone() {
     stroke_t *current = undone;
     while (current != NULL) {
@@ -180,9 +215,8 @@ int canvas_new_stroke_atom(uint16_t x, uint16_t y) {
     last->atoms[last->num_atoms - 1].x = x;
     last->atoms[last->num_atoms - 1].y = y;
     
-    if (canvas_draw_last_atom() != OK) {
+    if (canvas_draw_last_atom() != OK)
         return 1;
-    }
 
     return 0;
 }

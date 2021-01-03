@@ -1,5 +1,4 @@
 <map id="menu_set_awaiting_player_menu" name="menu_set_awaiting_player_menu">
-<area shape="rect" id="node1" title="Sets the menu to awaiting other player menu." alt="" coords="320,5,535,32"/>
-<area shape="rect" id="node2" href="$group__dispatcher.html#gaeaf290f8252a2b923005262498513787" title="Goes into the &quot;Awaiting other player...&quot; screen and notifies the other player." alt="" coords="132,5,272,32"/>
-<area shape="rect" id="node3" href="$group__menu.html#gafae9ccfd6e7de562283d6ffc8c3cf066" title="Loads the xpm images of the menu." alt="" coords="5,5,84,32"/>
+<area shape="rect" id="node1" title="Sets the menu to awaiting other player menu." alt="" coords="201,5,416,32"/>
+<area shape="rect" id="node2" href="$group__dispatcher.html#ga82e16242d9bfea1af9a18217b66282ef" title="Goes into the &quot;Awaiting other player...&quot; screen and notifies the other player." alt="" coords="5,5,153,32"/>
 </map>

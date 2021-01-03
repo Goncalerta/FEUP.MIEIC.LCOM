@@ -1,4 +1,5 @@
 <map id="xpm_load_animation" name="xpm_load_animation">
-<area shape="rect" id="node1" title="Loads an animation witdh the given frames." alt="" coords="184,5,325,32"/>
-<area shape="rect" id="node2" href="$group__game.html#gaaa06563e91c221f5fa003c60ab28cdef" title="Loads the game assets." alt="" coords="5,5,136,32"/>
+<area shape="rect" id="node1" title="Loads an animation witdh the given frames." alt="" coords="341,5,483,32"/>
+<area shape="rect" id="node2" href="$group__game.html#gaaa06563e91c221f5fa003c60ab28cdef" title="Loads the game assets." alt="" coords="163,5,293,32"/>
+<area shape="rect" id="node3" href="$group__proj.html#ga2a16f651eccbd248e1ad3b3b924b143b" title="Reacts to the event that the other player sent the random number to decide starting roles." alt="" coords="5,5,115,32"/>
 </map>

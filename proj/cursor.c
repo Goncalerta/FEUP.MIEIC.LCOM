@@ -9,10 +9,19 @@
 #include "xpm/cursor_write.xpm"
 #include "xpm/cursor_disabled.xpm"
 
-static cursor_state_t state = CURSOR_ARROW;
-static int16_t cursor_x = 0, cursor_y = 0;
-static bool lb = false, rb = false;
-static xpm_image_t cursor_arrow, cursor_write, cursor_disabled;
+/** @defgroup cursor cursor
+ * @{
+ *
+ */
+
+static cursor_state_t state = CURSOR_ARROW; /**< @brief Cursor current state */
+static int16_t cursor_x = 0; /**< @brief Cursor x coordinate */
+static int16_t cursor_y = 0; /**< @brief Cursor y coordinate */
+static bool lb = false; /**< @brief Whether left mouse button is pressed */
+static bool rb = false; /**< @brief Whether right mouse button is pressed */
+static xpm_image_t cursor_arrow; /**< @brief Cursor arrow XPM */
+static xpm_image_t cursor_write; /**< @brief Cursor hovering text box XPM */
+static xpm_image_t cursor_disabled; /**< @brief Cursor disabled XPM */
 
 int cursor_init(enum xpm_image_type type) {
     if (xpm_load(xpm_cursor_arrow, type, &cursor_arrow) == NULL)
@@ -90,3 +99,5 @@ int cursor_draw() {
 void cursor_set_state(cursor_state_t new_state) {
     state = new_state;
 }
+
+/**@}*/

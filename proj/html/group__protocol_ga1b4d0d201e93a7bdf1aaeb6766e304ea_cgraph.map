@@ -1,10 +1,15 @@
 <map id="protocol_config_uart" name="protocol_config_uart">
-<area shape="rect" id="node1" title="Configures the serial port and protocol queues to start communication." alt="" coords="5,107,144,134"/>
-<area shape="rect" id="node2" href="$group__queue.html#gac48edd86870cd2e9c26035f22fdf31d4" title="Initializes of a new queue." alt="" coords="396,57,483,83"/>
-<area shape="rect" id="node3" href="$group__uart.html#gac96631fa37beaf3259b9237b806c1f98" title="Clears both serial port hardware FIFOs." alt="" coords="196,31,328,58"/>
-<area shape="rect" id="node4" href="$group__uart.html#gab5a56e4469594d67651f2b6d9d380f56" title="Configures the interrupts of the serial port." alt="" coords="209,82,315,109"/>
-<area shape="rect" id="node5" href="$group__uart.html#gac56dcef886bb66f75de8fe196316995d" title="Configures the parameters of the serial port." alt="" coords="195,234,329,261"/>
-<area shape="rect" id="node7" href="$group__uart.html#gaf159013e818705c412e6585603c55da2" title="Enables serial port hardware FIFOs." alt="" coords="206,183,318,210"/>
-<area shape="rect" id="node8" href="$group__uart.html#gac3d220a27d08a43a58c904f3f2113d14" title="Initializes serial port software queues." alt="" coords="192,133,332,159"/>
-<area shape="rect" id="node6" href="$group__uart.html#ga1975f8b129ad7fe81b0199dadabc703a" title="Specifies the bit rate for the serial port." alt="" coords="380,234,499,261"/>
+<area shape="rect" id="node1" title="Configures the serial port and protocol queues to start communication." alt="" coords="5,111,144,138"/>
+<area shape="rect" id="node2" href="$group__queue.html#gacfa22645c74c8856e53eb1fdbee701b7" title="Initializes of a new queue." alt="" coords="403,10,489,36"/>
+<area shape="rect" id="node3" href="$group__uart.html#gac96631fa37beaf3259b9237b806c1f98" title="Clears both serial port hardware FIFOs." alt="" coords="380,86,512,112"/>
+<area shape="rect" id="node5" href="$group__uart.html#gab5a56e4469594d67651f2b6d9d380f56" title="Configures the interrupts of the serial port." alt="" coords="209,136,315,163"/>
+<area shape="rect" id="node6" href="$group__uart.html#gac56dcef886bb66f75de8fe196316995d" title="Configures the parameters of the serial port." alt="" coords="195,212,329,239"/>
+<area shape="rect" id="node12" href="$group__uart.html#gaf159013e818705c412e6585603c55da2" title="Enables serial port hardware FIFOs." alt="" coords="390,352,502,379"/>
+<area shape="rect" id="node13" href="$group__uart.html#gac3d220a27d08a43a58c904f3f2113d14" title="Initializes serial port software queues." alt="" coords="192,35,332,62"/>
+<area shape="rect" id="node4" href="$group__utils.html#ga79a031a8611f5b2d6afa4158e92b0fb4" title="Wraps sys_inb so that it may be called with a uint8_t argument." alt="" coords="727,187,817,214"/>
+<area shape="rect" id="node7" href="$group__uart.html#ga1975f8b129ad7fe81b0199dadabc703a" title="Specifies the bit rate for the serial port." alt="" coords="387,238,505,264"/>
+<area shape="rect" id="node8" href="$group__uart.html#gaa4619ca27d356a2a050c00bb1dd4eaa6" title="Selects data in the line control register so that data transmittion registers may be accessed." alt="" coords="560,187,679,214"/>
+<area shape="rect" id="node9" href="$group__uart.html#ga79025c0ba3368f7b2bb35e2bfc24da95" title="Selects dlab in the line control register so that divisor latch registers may be accessed." alt="" coords="561,238,678,264"/>
+<area shape="rect" id="node10" href="$group__utils.html#ga81621440b3d65680979425e39aa8c789" title="Gets the least significant byte of a given half&#45;word." alt="" coords="571,288,667,315"/>
+<area shape="rect" id="node11" href="$group__utils.html#ga6a880076cd2ec468834438b6e0c58836" title="Gets the most significant byte of a given half&#45;word." alt="" coords="569,339,669,366"/>
 </map>

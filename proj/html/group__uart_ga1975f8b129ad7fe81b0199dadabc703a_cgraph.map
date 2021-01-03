@@ -1,0 +1,8 @@
+<map id="uart_set_bit_rate" name="uart_set_bit_rate">
+<area shape="rect" id="node1" title="Specifies the bit rate for the serial port." alt="" coords="5,81,124,108"/>
+<area shape="rect" id="node2" href="$group__uart.html#gaa4619ca27d356a2a050c00bb1dd4eaa6" title="Selects data in the line control register so that data transmittion registers may be accessed." alt="" coords="172,5,291,32"/>
+<area shape="rect" id="node4" href="$group__uart.html#ga79025c0ba3368f7b2bb35e2bfc24da95" title="Selects dlab in the line control register so that divisor latch registers may be accessed." alt="" coords="173,56,290,83"/>
+<area shape="rect" id="node5" href="$group__utils.html#ga81621440b3d65680979425e39aa8c789" title="Gets the least significant byte of a given half&#45;word." alt="" coords="183,107,279,133"/>
+<area shape="rect" id="node6" href="$group__utils.html#ga6a880076cd2ec468834438b6e0c58836" title="Gets the most significant byte of a given half&#45;word." alt="" coords="181,157,281,184"/>
+<area shape="rect" id="node3" href="$group__utils.html#ga79a031a8611f5b2d6afa4158e92b0fb4" title="Wraps sys_inb so that it may be called with a uint8_t argument." alt="" coords="339,31,429,57"/>
+</map>

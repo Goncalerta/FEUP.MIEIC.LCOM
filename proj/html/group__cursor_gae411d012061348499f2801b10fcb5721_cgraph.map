@@ -1,0 +1,5 @@
+<map id="cursor_init" name="cursor_init">
+<area shape="rect" id="node1" title="Loads the cursor .xpm images and sets the initial cursor position." alt="" coords="5,31,88,57"/>
+<area shape="rect" id="node2" href="$group__video__gr.html#ga03e56e930917ca4f15ea488838d513a8" title="Gets the horizontal resolution of the buffer." alt="" coords="136,5,227,32"/>
+<area shape="rect" id="node3" href="$group__video__gr.html#gafa08dcecf2adbe49d6a9c28b355c68d1" title="Gets the vertical resolution of the buffer." alt="" coords="137,56,226,83"/>
+</map>

@@ -1,5 +1,0 @@
-<map id="event_end_round" name="event_end_round">
-<area shape="rect" id="node1" title="Ends the current round." alt="" coords="184,42,303,69"/>
-<area shape="rect" id="node2" href="$group__dispatcher.html#ga478271b5d6d73f56b8c7c24d7be10cfd" title="Reacts to the event that the other player left the game." alt="" coords="5,5,136,47"/>
-<area shape="rect" id="node3" href="$group__game.html#ga3f61372930dd958f7499a110ce2bd7d6" title="Updates the game due to a rtc alarm interrupt." alt="" coords="13,71,128,98"/>
-</map>

@@ -3,7 +3,12 @@
 #include <stdarg.h>
 #include "graphics.h"
 
-#define COLOR_CAP_BYTES_NUM(n) (0xffffffff >> 8*(4-(n))) /* 1 <= n <= 4*/
+/** @defgroup graphics graphics
+ * @{
+ *
+ */
+
+#define COLOR_CAP_BYTES_NUM(n) (0xffffffff >> 8*(4-(n))) /*!< @brief Maximum color value for the given number of bytes per pixel. */
 
 int vb_draw_pixel(frame_buffer_t buf, uint16_t x, uint16_t y, uint32_t color) {
     if ((x >= buf.h_res) || (y >= buf.v_res))
@@ -88,6 +93,8 @@ int vb_draw_circle(frame_buffer_t buf, uint16_t x, uint16_t y, uint16_t radius, 
 }
 
 int vb_draw_line(frame_buffer_t buf, int16_t x1, int16_t y1, int16_t x2, int16_t y2, uint32_t color, uint16_t width) {
+    // Code from this function adapted from http://members.chello.at/~easyfilter/bresenham.html (Alois Zingl)
+    // Check this project's report for more information
     int dx = abs(x2 - x1); 
     int sx = x1 < x2? 1 : -1;
     int dy = abs(y2 - y1); 
@@ -183,3 +190,5 @@ void xpm_unload_animation(xpm_animation_t *anim) {
     }
     free(anim->frames);
 }
+
+/**@}*/

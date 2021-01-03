@@ -1,5 +1,6 @@
 <map id="rtc_disable_int" name="rtc_disable_int">
 <area shape="rect" id="node1" title="Disables a type of interrupt." alt="" coords="5,31,112,57"/>
 <area shape="rect" id="node2" href="$group__rtc.html#gaeb22f43773d6e29365a07f7f847dfbb9" title="Reads data from a RTC register." alt="" coords="161,5,280,32"/>
-<area shape="rect" id="node3" href="$group__rtc.html#ga30aa093c07ae9ee5626c2a50a40641d1" title="Writes data to a RTC register." alt="" coords="160,56,281,83"/>
+<area shape="rect" id="node4" href="$group__rtc.html#ga30aa093c07ae9ee5626c2a50a40641d1" title="Writes data to a RTC register." alt="" coords="160,56,281,83"/>
+<area shape="rect" id="node3" href="$group__utils.html#ga79a031a8611f5b2d6afa4158e92b0fb4" title="Wraps sys_inb so that it may be called with a uint8_t argument." alt="" coords="329,5,420,32"/>
 </map>

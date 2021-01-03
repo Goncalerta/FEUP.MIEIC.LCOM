@@ -1,0 +1,4 @@
+<map id="date_get_month_num_days" name="date_get_month_num_days">
+<area shape="rect" id="node1" title="Gets the number of days of the month of a given date." alt="" coords="5,5,188,32"/>
+<area shape="rect" id="node2" href="$group__date.html#gae9bf1600b826e5346ec38327c548038e" title="Checks if given year is a leap year." alt="" coords="236,5,363,32"/>
+</map>

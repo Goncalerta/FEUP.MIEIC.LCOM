@@ -1,0 +1,12 @@
+<map id="protocol_handle_nack" name="protocol_handle_nack">
+<area shape="rect" id="node1" title="Handles a received non&#45;acknowledgment byte." alt="" coords="889,67,1037,94"/>
+<area shape="rect" id="node2" href="$group__protocol.html#gacc32febde28d20d54c2e1460899a14a3" title="Handles a received byte when no message is currently being received." alt="" coords="677,5,841,47"/>
+<area shape="rect" id="node5" href="$group__protocol.html#ga237c5c08ee5d5008a930af465c7bd5d5" title="Reacts to a serial port error." alt="" coords="686,97,833,123"/>
+<area shape="rect" id="node3" href="$group__protocol.html#ga45e3aa191a3cde90081665be034bba0e" title="Processes received bytes from the serial port." alt="" coords="240,89,407,131"/>
+<area shape="rect" id="node4" href="$group__dispatcher.html#gae25f0cbadee7d53e9593e6a23ef6f8c5" title="Handles received data from serial port, calling relevant application dependent code." alt="" coords="5,97,192,123"/>
+<area shape="rect" id="node6" href="$group__dispatcher.html#ga2d18e4bbf1c627593d6f013434aee9b0" title="Handles a serial port error, calling relevant application dependent code." alt="" coords="475,38,609,65"/>
+<area shape="rect" id="node7" href="$group__protocol.html#ga5b890b1b07d4b86ff872a070e971b7a0" title="Handle a received byte when a trailing message byte is expected." alt="" coords="455,89,629,131"/>
+<area shape="rect" id="node8" href="$group__protocol.html#ga2844b6411ef540af53b228ccc3d325d0" title="Handles a received byte after the starting message byte." alt="" coords="455,155,629,182"/>
+<area shape="rect" id="node9" href="$group__protocol.html#ga0b3e768da60827fe622bd3932efc82ff" title="Reacts to a timer interrupt to detect timeouts." alt="" coords="494,206,590,233"/>
+<area shape="rect" id="node10" href="$group__dispatcher.html#gababc3983184c400b85295ddab53388cc" title="Dispatches a timer interrupt, calling relevant application dependent code." alt="" coords="256,206,391,233"/>
+</map>

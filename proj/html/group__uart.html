@@ -66,7 +66,8 @@ $(function() {
 <a href="#define-members">Macros</a> &#124;
 <a href="#typedef-members">Typedefs</a> &#124;
 <a href="#enum-members">Enumerations</a> &#124;
-<a href="#func-members">Functions</a>  </div>
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
 <div class="title">uart</div>  </div>
 </div><!--header-->
@@ -83,6 +84,10 @@ Data Structures</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
+<tr class="memitem:ga70dec30e926d79dbaf84652e3051b351"><td class="memItemLeft" align="right" valign="top"><a id="ga70dec30e926d79dbaf84652e3051b351"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart.html#ga70dec30e926d79dbaf84652e3051b351">UART_SW_QUEUES_STARTING_CAPACITY</a>&#160;&#160;&#160;16</td></tr>
+<tr class="memdesc:ga70dec30e926d79dbaf84652e3051b351"><td class="mdescLeft">&#160;</td><td class="mdescRight">Starting capacity of software queues. <br /></td></tr>
+<tr class="separator:ga70dec30e926d79dbaf84652e3051b351"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaff2bfed027a9e9c4a9e89485a63356ad"><td class="memItemLeft" align="right" valign="top"><a id="gaff2bfed027a9e9c4a9e89485a63356ad"></a>
 #define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart.html#gaff2bfed027a9e9c4a9e89485a63356ad">COM1_BASE_ADDR</a>&#160;&#160;&#160;0x3F8</td></tr>
 <tr class="memdesc:gaff2bfed027a9e9c4a9e89485a63356ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Base adress of COM1. <br /></td></tr>
@@ -337,38 +342,6 @@ Functions</h2></td></tr>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart.html#ga2820f530017133c17706dbc238f738d9">com1_ih</a> ()</td></tr>
 <tr class="memdesc:ga2820f530017133c17706dbc238f738d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">COM1 interrupt handler. <br /></td></tr>
 <tr class="separator:ga2820f530017133c17706dbc238f738d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gac9e27c3effc4daed84fb28ade5e853cb"><td class="memItemLeft" align="right" valign="top"><a id="gac9e27c3effc4daed84fb28ade5e853cb"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart.html#gac9e27c3effc4daed84fb28ade5e853cb">uart_handle_error</a> ()</td></tr>
-<tr class="memdesc:gac9e27c3effc4daed84fb28ade5e853cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handles a serial port error interrupt. <br /></td></tr>
-<tr class="separator:gac9e27c3effc4daed84fb28ade5e853cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gad4aa4e56e05d1a1907de15efa9f098dd"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart.html#gad4aa4e56e05d1a1907de15efa9f098dd">uart_identify_interrupt</a> (<a class="el" href="group__uart.html#ga166712c10fd306ea6bffdc1926573627">interrupt_identification_t</a> *int_ident)</td></tr>
-<tr class="memdesc:gad4aa4e56e05d1a1907de15efa9f098dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indentifies the serial port interrupt.  <a href="group__uart.html#gad4aa4e56e05d1a1907de15efa9f098dd">More...</a><br /></td></tr>
-<tr class="separator:gad4aa4e56e05d1a1907de15efa9f098dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gac56dcef886bb66f75de8fe196316995d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart.html#gac56dcef886bb66f75de8fe196316995d">uart_config_params</a> (<a class="el" href="group__uart.html#gabe2e24e3b68fa430a865b2b98afa79a4">word_len_t</a> <a class="el" href="group__uart.html#ga54dcfc42834e0f55df8676c5381f64d3">word_len</a>, <a class="el" href="group__uart.html#gabb076254374c4a07f6cbc7385a56f423">parity_t</a> <a class="el" href="group__uart.html#ga62d49d97117baa12d4ccc139f067ffdb">parity</a>, <a class="el" href="group__uart.html#ga4be85794f87bb907dc13afd7cf517f87">no_stop_bits_t</a> <a class="el" href="group__uart.html#ga6aa174597b135a579c4669238f471105">no_stop_bits</a>, uint16_t bit_rate)</td></tr>
-<tr class="memdesc:gac56dcef886bb66f75de8fe196316995d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configures the parameters of the serial port.  <a href="group__uart.html#gac56dcef886bb66f75de8fe196316995d">More...</a><br /></td></tr>
-<tr class="separator:gac56dcef886bb66f75de8fe196316995d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gab5a56e4469594d67651f2b6d9d380f56"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart.html#gab5a56e4469594d67651f2b6d9d380f56">uart_config_int</a> (bool received_data_int, bool transmitter_empty_int, bool receiver_line_status_int)</td></tr>
-<tr class="memdesc:gab5a56e4469594d67651f2b6d9d380f56"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configures the interrupts of the serial port.  <a href="group__uart.html#gab5a56e4469594d67651f2b6d9d380f56">More...</a><br /></td></tr>
-<tr class="separator:gab5a56e4469594d67651f2b6d9d380f56"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaf159013e818705c412e6585603c55da2"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart.html#gaf159013e818705c412e6585603c55da2">uart_enable_fifo</a> (<a class="el" href="group__uart.html#ga1a278341de54ab62d2b4f9dbab137e07">fifo_int_trigger_level_t</a> trigger_level)</td></tr>
-<tr class="memdesc:gaf159013e818705c412e6585603c55da2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables serial port hardware FIFOs.  <a href="group__uart.html#gaf159013e818705c412e6585603c55da2">More...</a><br /></td></tr>
-<tr class="separator:gaf159013e818705c412e6585603c55da2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga1975f8b129ad7fe81b0199dadabc703a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart.html#ga1975f8b129ad7fe81b0199dadabc703a">uart_set_bit_rate</a> (uint16_t bit_rate)</td></tr>
-<tr class="memdesc:ga1975f8b129ad7fe81b0199dadabc703a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Specifies the bit rate for the serial port.  <a href="group__uart.html#ga1975f8b129ad7fe81b0199dadabc703a">More...</a><br /></td></tr>
-<tr class="separator:ga1975f8b129ad7fe81b0199dadabc703a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gac3d220a27d08a43a58c904f3f2113d14"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart.html#gac3d220a27d08a43a58c904f3f2113d14">uart_init_sw_queues</a> ()</td></tr>
-<tr class="memdesc:gac3d220a27d08a43a58c904f3f2113d14"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes serial port software queues.  <a href="group__uart.html#gac3d220a27d08a43a58c904f3f2113d14">More...</a><br /></td></tr>
-<tr class="separator:gac3d220a27d08a43a58c904f3f2113d14"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaffd1e39d413095e8cb2d5026e6232e65"><td class="memItemLeft" align="right" valign="top"><a id="gaffd1e39d413095e8cb2d5026e6232e65"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart.html#gaffd1e39d413095e8cb2d5026e6232e65">uart_delete_sw_queues</a> ()</td></tr>
-<tr class="memdesc:gaffd1e39d413095e8cb2d5026e6232e65"><td class="mdescLeft">&#160;</td><td class="mdescRight">Frees the memory allocated for serial port software queues. <br /></td></tr>
-<tr class="separator:gaffd1e39d413095e8cb2d5026e6232e65"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga044300424f25aaf6d622538cafe79d90"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart.html#ga044300424f25aaf6d622538cafe79d90">uart_receive_bytes</a> ()</td></tr>
-<tr class="memdesc:ga044300424f25aaf6d622538cafe79d90"><td class="mdescLeft">&#160;</td><td class="mdescRight">Receives bytes from the serial port and puts them in a software queue.  <a href="group__uart.html#ga044300424f25aaf6d622538cafe79d90">More...</a><br /></td></tr>
-<tr class="separator:ga044300424f25aaf6d622538cafe79d90"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga8219117bdd64ba6474c847fd89efbd41"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart.html#ga8219117bdd64ba6474c847fd89efbd41">uart_send_bytes</a> ()</td></tr>
-<tr class="memdesc:ga8219117bdd64ba6474c847fd89efbd41"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends bytes from a software queue into the serial port.  <a href="group__uart.html#ga8219117bdd64ba6474c847fd89efbd41">More...</a><br /></td></tr>
-<tr class="separator:ga8219117bdd64ba6474c847fd89efbd41"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga00a2984ead2b73e2871dfda7c1ac49e3"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart.html#ga00a2984ead2b73e2871dfda7c1ac49e3">uart_send_byte</a> (uint8_t byte)</td></tr>
 <tr class="memdesc:ga00a2984ead2b73e2871dfda7c1ac49e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a byte to the software queue of bytes to be sent and tries to send bytes.  <a href="group__uart.html#ga00a2984ead2b73e2871dfda7c1ac49e3">More...</a><br /></td></tr>
 <tr class="separator:ga00a2984ead2b73e2871dfda7c1ac49e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -378,12 +351,76 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grou
 <tr class="memitem:gac45f99478cc354b6836c7bfbcb84d679"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart.html#gac45f99478cc354b6836c7bfbcb84d679">uart_received_bytes</a> ()</td></tr>
 <tr class="memdesc:gac45f99478cc354b6836c7bfbcb84d679"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if there are unread received bytes in the software queue.  <a href="group__uart.html#gac45f99478cc354b6836c7bfbcb84d679">More...</a><br /></td></tr>
 <tr class="separator:gac45f99478cc354b6836c7bfbcb84d679"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gadce4962e8e0ec14a02056e7d8db4eb28"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart.html#gadce4962e8e0ec14a02056e7d8db4eb28">uart_flush_received_bytes</a> (uint8_t *no_bytes, uint8_t *first, uint8_t *last)</td></tr>
+<tr class="memitem:ga044300424f25aaf6d622538cafe79d90"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart.html#ga044300424f25aaf6d622538cafe79d90">uart_receive_bytes</a> ()</td></tr>
+<tr class="memdesc:ga044300424f25aaf6d622538cafe79d90"><td class="mdescLeft">&#160;</td><td class="mdescRight">Receives bytes from the serial port and puts them in a software queue.  <a href="group__uart.html#ga044300424f25aaf6d622538cafe79d90">More...</a><br /></td></tr>
+<tr class="separator:ga044300424f25aaf6d622538cafe79d90"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga8219117bdd64ba6474c847fd89efbd41"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart.html#ga8219117bdd64ba6474c847fd89efbd41">uart_send_bytes</a> ()</td></tr>
+<tr class="memdesc:ga8219117bdd64ba6474c847fd89efbd41"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends bytes from a software queue into the serial port.  <a href="group__uart.html#ga8219117bdd64ba6474c847fd89efbd41">More...</a><br /></td></tr>
+<tr class="separator:ga8219117bdd64ba6474c847fd89efbd41"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga09682e147e1000a4e26f85530986feb9"><td class="memItemLeft" align="right" valign="top"><a id="ga09682e147e1000a4e26f85530986feb9"></a>
+static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart.html#ga09682e147e1000a4e26f85530986feb9">uart_check_error</a> (bool *err)</td></tr>
+<tr class="memdesc:ga09682e147e1000a4e26f85530986feb9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if a serial port error occurred. <br /></td></tr>
+<tr class="separator:ga09682e147e1000a4e26f85530986feb9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac9e27c3effc4daed84fb28ade5e853cb"><td class="memItemLeft" align="right" valign="top"><a id="gac9e27c3effc4daed84fb28ade5e853cb"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart.html#gac9e27c3effc4daed84fb28ade5e853cb">uart_handle_error</a> ()</td></tr>
+<tr class="memdesc:gac9e27c3effc4daed84fb28ade5e853cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handles a serial port error interrupt. <br /></td></tr>
+<tr class="separator:gac9e27c3effc4daed84fb28ade5e853cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac3d220a27d08a43a58c904f3f2113d14"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart.html#gac3d220a27d08a43a58c904f3f2113d14">uart_init_sw_queues</a> ()</td></tr>
+<tr class="memdesc:gac3d220a27d08a43a58c904f3f2113d14"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes serial port software queues.  <a href="group__uart.html#gac3d220a27d08a43a58c904f3f2113d14">More...</a><br /></td></tr>
+<tr class="separator:gac3d220a27d08a43a58c904f3f2113d14"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaffd1e39d413095e8cb2d5026e6232e65"><td class="memItemLeft" align="right" valign="top"><a id="gaffd1e39d413095e8cb2d5026e6232e65"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart.html#gaffd1e39d413095e8cb2d5026e6232e65">uart_delete_sw_queues</a> ()</td></tr>
+<tr class="memdesc:gaffd1e39d413095e8cb2d5026e6232e65"><td class="mdescLeft">&#160;</td><td class="mdescRight">Frees the memory allocated for serial port software queues. <br /></td></tr>
+<tr class="separator:gaffd1e39d413095e8cb2d5026e6232e65"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gadce4962e8e0ec14a02056e7d8db4eb28"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart.html#gadce4962e8e0ec14a02056e7d8db4eb28">uart_flush_received_bytes</a> (uint8_t *no_bytes, uint8_t *<a class="el" href="group__canvas.html#ga68ff4f58382ab8a42f53d17ff22007a3">first</a>, uint8_t *<a class="el" href="group__canvas.html#ga2681df6f3cada25746895f63ffbede9e">last</a>)</td></tr>
 <tr class="memdesc:gadce4962e8e0ec14a02056e7d8db4eb28"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flushes all bytes being received from the serial port.  <a href="group__uart.html#gadce4962e8e0ec14a02056e7d8db4eb28">More...</a><br /></td></tr>
 <tr class="separator:gadce4962e8e0ec14a02056e7d8db4eb28"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad4aa4e56e05d1a1907de15efa9f098dd"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart.html#gad4aa4e56e05d1a1907de15efa9f098dd">uart_identify_interrupt</a> (<a class="el" href="group__uart.html#ga166712c10fd306ea6bffdc1926573627">interrupt_identification_t</a> *int_ident)</td></tr>
+<tr class="memdesc:gad4aa4e56e05d1a1907de15efa9f098dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indentifies the serial port interrupt.  <a href="group__uart.html#gad4aa4e56e05d1a1907de15efa9f098dd">More...</a><br /></td></tr>
+<tr class="separator:gad4aa4e56e05d1a1907de15efa9f098dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gac96631fa37beaf3259b9237b806c1f98"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart.html#gac96631fa37beaf3259b9237b806c1f98">uart_clear_hw_fifos</a> ()</td></tr>
 <tr class="memdesc:gac96631fa37beaf3259b9237b806c1f98"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clears both serial port hardware FIFOs.  <a href="group__uart.html#gac96631fa37beaf3259b9237b806c1f98">More...</a><br /></td></tr>
 <tr class="separator:gac96631fa37beaf3259b9237b806c1f98"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac56dcef886bb66f75de8fe196316995d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart.html#gac56dcef886bb66f75de8fe196316995d">uart_config_params</a> (<a class="el" href="group__uart.html#gabe2e24e3b68fa430a865b2b98afa79a4">word_len_t</a> <a class="el" href="group__uart.html#ga54dcfc42834e0f55df8676c5381f64d3">word_len</a>, <a class="el" href="group__uart.html#gabb076254374c4a07f6cbc7385a56f423">parity_t</a> <a class="el" href="group__uart.html#ga62d49d97117baa12d4ccc139f067ffdb">parity</a>, <a class="el" href="group__uart.html#ga4be85794f87bb907dc13afd7cf517f87">no_stop_bits_t</a> <a class="el" href="group__uart.html#ga6aa174597b135a579c4669238f471105">no_stop_bits</a>, uint16_t bit_rate)</td></tr>
+<tr class="memdesc:gac56dcef886bb66f75de8fe196316995d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configures the parameters of the serial port.  <a href="group__uart.html#gac56dcef886bb66f75de8fe196316995d">More...</a><br /></td></tr>
+<tr class="separator:gac56dcef886bb66f75de8fe196316995d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab5a56e4469594d67651f2b6d9d380f56"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart.html#gab5a56e4469594d67651f2b6d9d380f56">uart_config_int</a> (bool received_data_int, bool transmitter_empty_int, bool receiver_line_status_int)</td></tr>
+<tr class="memdesc:gab5a56e4469594d67651f2b6d9d380f56"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configures the interrupts of the serial port.  <a href="group__uart.html#gab5a56e4469594d67651f2b6d9d380f56">More...</a><br /></td></tr>
+<tr class="separator:gab5a56e4469594d67651f2b6d9d380f56"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf159013e818705c412e6585603c55da2"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart.html#gaf159013e818705c412e6585603c55da2">uart_enable_fifo</a> (<a class="el" href="group__uart.html#ga1a278341de54ab62d2b4f9dbab137e07">fifo_int_trigger_level_t</a> trigger_level)</td></tr>
+<tr class="memdesc:gaf159013e818705c412e6585603c55da2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables serial port hardware FIFOs.  <a href="group__uart.html#gaf159013e818705c412e6585603c55da2">More...</a><br /></td></tr>
+<tr class="separator:gaf159013e818705c412e6585603c55da2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaab82e10e73e8b9986637482bc794f33e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart.html#gaab82e10e73e8b9986637482bc794f33e">uart_disable_fifo</a> ()</td></tr>
+<tr class="memdesc:gaab82e10e73e8b9986637482bc794f33e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disables serial port hardware FIFOs.  <a href="group__uart.html#gaab82e10e73e8b9986637482bc794f33e">More...</a><br /></td></tr>
+<tr class="separator:gaab82e10e73e8b9986637482bc794f33e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga79025c0ba3368f7b2bb35e2bfc24da95"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart.html#ga79025c0ba3368f7b2bb35e2bfc24da95">uart_select_dlab</a> ()</td></tr>
+<tr class="memdesc:ga79025c0ba3368f7b2bb35e2bfc24da95"><td class="mdescLeft">&#160;</td><td class="mdescRight">Selects dlab in the line control register so that divisor latch registers may be accessed.  <a href="group__uart.html#ga79025c0ba3368f7b2bb35e2bfc24da95">More...</a><br /></td></tr>
+<tr class="separator:ga79025c0ba3368f7b2bb35e2bfc24da95"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa4619ca27d356a2a050c00bb1dd4eaa6"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart.html#gaa4619ca27d356a2a050c00bb1dd4eaa6">uart_select_data</a> ()</td></tr>
+<tr class="memdesc:gaa4619ca27d356a2a050c00bb1dd4eaa6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Selects data in the line control register so that data transmittion registers may be accessed.  <a href="group__uart.html#gaa4619ca27d356a2a050c00bb1dd4eaa6">More...</a><br /></td></tr>
+<tr class="separator:gaa4619ca27d356a2a050c00bb1dd4eaa6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1975f8b129ad7fe81b0199dadabc703a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart.html#ga1975f8b129ad7fe81b0199dadabc703a">uart_set_bit_rate</a> (uint16_t bit_rate)</td></tr>
+<tr class="memdesc:ga1975f8b129ad7fe81b0199dadabc703a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Specifies the bit rate for the serial port.  <a href="group__uart.html#ga1975f8b129ad7fe81b0199dadabc703a">More...</a><br /></td></tr>
+<tr class="separator:ga1975f8b129ad7fe81b0199dadabc703a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:gad92e7dbf3a809a92e06bf4fb83c1af5f"><td class="memItemLeft" align="right" valign="top"><a id="gad92e7dbf3a809a92e06bf4fb83c1af5f"></a>
+static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart.html#gad92e7dbf3a809a92e06bf4fb83c1af5f">hook_id_com1</a> = 4</td></tr>
+<tr class="memdesc:gad92e7dbf3a809a92e06bf4fb83c1af5f"><td class="mdescLeft">&#160;</td><td class="mdescRight">COM1 interrupts hook id. <br /></td></tr>
+<tr class="separator:gad92e7dbf3a809a92e06bf4fb83c1af5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad30acc072627a2137752e17b7db1f7bc"><td class="memItemLeft" align="right" valign="top"><a id="gad30acc072627a2137752e17b7db1f7bc"></a>
+static <a class="el" href="group__queue.html#gaa8acf648f3b0c69d7e132fcc61dc58c7">queue_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart.html#gad30acc072627a2137752e17b7db1f7bc">transmitted</a></td></tr>
+<tr class="memdesc:gad30acc072627a2137752e17b7db1f7bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Software queue with bytes to be transmitted to the serial port. <br /></td></tr>
+<tr class="separator:gad30acc072627a2137752e17b7db1f7bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1ac0bc7970f6d379ddb16a984342d971"><td class="memItemLeft" align="right" valign="top"><a id="ga1ac0bc7970f6d379ddb16a984342d971"></a>
+static <a class="el" href="group__queue.html#gaa8acf648f3b0c69d7e132fcc61dc58c7">queue_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart.html#ga1ac0bc7970f6d379ddb16a984342d971">received</a></td></tr>
+<tr class="memdesc:ga1ac0bc7970f6d379ddb16a984342d971"><td class="mdescLeft">&#160;</td><td class="mdescRight">Software queue with received bytes from the serial port. <br /></td></tr>
+<tr class="separator:ga1ac0bc7970f6d379ddb16a984342d971"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga485abcdd78afd6210f6f0cee62f12e1b"><td class="memItemLeft" align="right" valign="top"><a id="ga485abcdd78afd6210f6f0cee62f12e1b"></a>
+static <a class="el" href="group__uart.html#ga1a278341de54ab62d2b4f9dbab137e07">fifo_int_trigger_level_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart.html#ga485abcdd78afd6210f6f0cee62f12e1b">fifo_int_trigger_level</a></td></tr>
+<tr class="memdesc:ga485abcdd78afd6210f6f0cee62f12e1b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Hardware FIFOs interrupt trigger level. <br /></td></tr>
+<tr class="separator:ga485abcdd78afd6210f6f0cee62f12e1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p>Module dedicated to the interaction with the serial port. </p>
@@ -567,6 +604,15 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grou
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Return 0 upon success and non-zero otherwise </dd></dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__uart_gada1e08319ec7cbdee656119d432065a0_icgraph.png" border="0" usemap="#agroup__uart_gada1e08319ec7cbdee656119d432065a0_icgraph" alt=""/></div>
+<map name="group__uart_gada1e08319ec7cbdee656119d432065a0_icgraph" id="agroup__uart_gada1e08319ec7cbdee656119d432065a0_icgraph">
+<area shape="rect" title="Subscribes COM1 interrupts." alt="" coords="163,5,301,32"/>
+<area shape="rect" href="group__proj.html#ga2a16f651eccbd248e1ad3b3b924b143b" title="Reacts to the event that the other player sent the random number to decide starting roles." alt="" coords="5,5,115,32"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -587,6 +633,15 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grou
 
 <p>Unsubscribes COM1 interrupts. </p>
 <dl class="section return"><dt>Returns</dt><dd>Return 0 upon success and non-zero otherwise </dd></dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__uart_ga085298fb12885a08ca7ad943fdd5b22d_icgraph.png" border="0" usemap="#agroup__uart_ga085298fb12885a08ca7ad943fdd5b22d_icgraph" alt=""/></div>
+<map name="group__uart_ga085298fb12885a08ca7ad943fdd5b22d_icgraph" id="agroup__uart_ga085298fb12885a08ca7ad943fdd5b22d_icgraph">
+<area shape="rect" title="Unsubscribes COM1 interrupts." alt="" coords="163,5,315,32"/>
+<area shape="rect" href="group__proj.html#ga2a16f651eccbd248e1ad3b3b924b143b" title="Reacts to the event that the other player sent the random number to decide starting roles." alt="" coords="5,5,115,32"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -608,12 +663,22 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grou
 <p>Clears both serial port hardware FIFOs. </p>
 <dl class="section return"><dt>Returns</dt><dd>Return 0 upon success and non-zero otherwise </dd></dl>
 <div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__uart_gac96631fa37beaf3259b9237b806c1f98_cgraph.png" border="0" usemap="#agroup__uart_gac96631fa37beaf3259b9237b806c1f98_cgraph" alt=""/></div>
+<map name="group__uart_gac96631fa37beaf3259b9237b806c1f98_cgraph" id="group__uart_gac96631fa37beaf3259b9237b806c1f98_cgraph">
+<area shape="rect" title="Clears both serial port hardware FIFOs." alt="" coords="5,5,137,32"/>
+<area shape="rect" href="group__utils.html#ga79a031a8611f5b2d6afa4158e92b0fb4" title="Wraps sys_inb so that it may be called with a uint8_t argument." alt="" coords="185,5,276,32"/>
+</map>
+</div>
+<div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="group__uart_gac96631fa37beaf3259b9237b806c1f98_icgraph.png" border="0" usemap="#agroup__uart_gac96631fa37beaf3259b9237b806c1f98_icgraph" alt=""/></div>
-<map name="group__uart_gac96631fa37beaf3259b9237b806c1f98_icgraph" id="group__uart_gac96631fa37beaf3259b9237b806c1f98_icgraph">
-<area shape="rect" title="Clears both serial port hardware FIFOs." alt="" coords="192,5,324,32"/>
-<area shape="rect" href="group__protocol.html#ga1b4d0d201e93a7bdf1aaeb6766e304ea" title="Configures the serial port and protocol queues to start communication." alt="" coords="5,5,144,32"/>
+<map name="group__uart_gac96631fa37beaf3259b9237b806c1f98_icgraph" id="agroup__uart_gac96631fa37beaf3259b9237b806c1f98_icgraph">
+<area shape="rect" title="Clears both serial port hardware FIFOs." alt="" coords="349,5,481,32"/>
+<area shape="rect" href="group__protocol.html#ga1b4d0d201e93a7bdf1aaeb6766e304ea" title="Configures the serial port and protocol queues to start communication." alt="" coords="163,5,301,32"/>
+<area shape="rect" href="group__proj.html#ga2a16f651eccbd248e1ad3b3b924b143b" title="Reacts to the event that the other player sent the random number to decide starting roles." alt="" coords="5,5,115,32"/>
 </map>
 </div>
 
@@ -662,12 +727,22 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Return 0 upon success and non-zero otherwise </dd></dl>
 <div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__uart_gab5a56e4469594d67651f2b6d9d380f56_cgraph.png" border="0" usemap="#agroup__uart_gab5a56e4469594d67651f2b6d9d380f56_cgraph" alt=""/></div>
+<map name="group__uart_gab5a56e4469594d67651f2b6d9d380f56_cgraph" id="group__uart_gab5a56e4469594d67651f2b6d9d380f56_cgraph">
+<area shape="rect" title="Configures the interrupts of the serial port." alt="" coords="5,5,112,32"/>
+<area shape="rect" href="group__utils.html#ga79a031a8611f5b2d6afa4158e92b0fb4" title="Wraps sys_inb so that it may be called with a uint8_t argument." alt="" coords="160,5,251,32"/>
+</map>
+</div>
+<div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="group__uart_gab5a56e4469594d67651f2b6d9d380f56_icgraph.png" border="0" usemap="#agroup__uart_gab5a56e4469594d67651f2b6d9d380f56_icgraph" alt=""/></div>
-<map name="group__uart_gab5a56e4469594d67651f2b6d9d380f56_icgraph" id="group__uart_gab5a56e4469594d67651f2b6d9d380f56_icgraph">
-<area shape="rect" title="Configures the interrupts of the serial port." alt="" coords="192,5,299,32"/>
-<area shape="rect" href="group__protocol.html#ga1b4d0d201e93a7bdf1aaeb6766e304ea" title="Configures the serial port and protocol queues to start communication." alt="" coords="5,5,144,32"/>
+<map name="group__uart_gab5a56e4469594d67651f2b6d9d380f56_icgraph" id="agroup__uart_gab5a56e4469594d67651f2b6d9d380f56_icgraph">
+<area shape="rect" title="Configures the interrupts of the serial port." alt="" coords="349,5,456,32"/>
+<area shape="rect" href="group__protocol.html#ga1b4d0d201e93a7bdf1aaeb6766e304ea" title="Configures the serial port and protocol queues to start communication." alt="" coords="163,5,301,32"/>
+<area shape="rect" href="group__proj.html#ga2a16f651eccbd248e1ad3b3b924b143b" title="Reacts to the event that the other player sent the random number to decide starting roles." alt="" coords="5,5,115,32"/>
 </map>
 </div>
 
@@ -727,19 +802,45 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="group__uart_gac56dcef886bb66f75de8fe196316995d_cgraph.png" border="0" usemap="#agroup__uart_gac56dcef886bb66f75de8fe196316995d_cgraph" alt=""/></div>
 <map name="group__uart_gac56dcef886bb66f75de8fe196316995d_cgraph" id="group__uart_gac56dcef886bb66f75de8fe196316995d_cgraph">
-<area shape="rect" title="Configures the parameters of the serial port." alt="" coords="5,5,140,32"/>
-<area shape="rect" href="group__uart.html#ga1975f8b129ad7fe81b0199dadabc703a" title="Specifies the bit rate for the serial port." alt="" coords="188,5,307,32"/>
+<area shape="rect" title="Configures the parameters of the serial port." alt="" coords="5,81,140,108"/>
+<area shape="rect" href="group__uart.html#ga1975f8b129ad7fe81b0199dadabc703a" title="Specifies the bit rate for the serial port." alt="" coords="188,81,307,108"/>
+<area shape="rect" href="group__uart.html#gaa4619ca27d356a2a050c00bb1dd4eaa6" title="Selects data in the line control register so that data transmittion registers may be accessed." alt="" coords="355,5,473,32"/>
+<area shape="rect" href="group__uart.html#ga79025c0ba3368f7b2bb35e2bfc24da95" title="Selects dlab in the line control register so that divisor latch registers may be accessed." alt="" coords="355,56,473,83"/>
+<area shape="rect" href="group__utils.html#ga81621440b3d65680979425e39aa8c789" title="Gets the least significant byte of a given half&#45;word." alt="" coords="366,107,462,133"/>
+<area shape="rect" href="group__utils.html#ga6a880076cd2ec468834438b6e0c58836" title="Gets the most significant byte of a given half&#45;word." alt="" coords="364,157,464,184"/>
+<area shape="rect" href="group__utils.html#ga79a031a8611f5b2d6afa4158e92b0fb4" title="Wraps sys_inb so that it may be called with a uint8_t argument." alt="" coords="521,31,612,57"/>
 </map>
 </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="group__uart_gac56dcef886bb66f75de8fe196316995d_icgraph.png" border="0" usemap="#agroup__uart_gac56dcef886bb66f75de8fe196316995d_icgraph" alt=""/></div>
-<map name="group__uart_gac56dcef886bb66f75de8fe196316995d_icgraph" id="group__uart_gac56dcef886bb66f75de8fe196316995d_icgraph">
-<area shape="rect" title="Configures the parameters of the serial port." alt="" coords="192,5,327,32"/>
-<area shape="rect" href="group__protocol.html#ga1b4d0d201e93a7bdf1aaeb6766e304ea" title="Configures the serial port and protocol queues to start communication." alt="" coords="5,5,144,32"/>
+<map name="group__uart_gac56dcef886bb66f75de8fe196316995d_icgraph" id="agroup__uart_gac56dcef886bb66f75de8fe196316995d_icgraph">
+<area shape="rect" title="Configures the parameters of the serial port." alt="" coords="349,5,484,32"/>
+<area shape="rect" href="group__protocol.html#ga1b4d0d201e93a7bdf1aaeb6766e304ea" title="Configures the serial port and protocol queues to start communication." alt="" coords="163,5,301,32"/>
+<area shape="rect" href="group__proj.html#ga2a16f651eccbd248e1ad3b3b924b143b" title="Reacts to the event that the other player sent the random number to decide starting roles." alt="" coords="5,5,115,32"/>
 </map>
 </div>
+
+</div>
+</div>
+<a id="gaab82e10e73e8b9986637482bc794f33e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaab82e10e73e8b9986637482bc794f33e">&#9670;&nbsp;</a></span>uart_disable_fifo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int uart_disable_fifo </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Disables serial port hardware FIFOs. </p>
+<dl class="section return"><dt>Returns</dt><dd>Return 0 upon success and non-zero otherwise </dd></dl>
 
 </div>
 </div>
@@ -768,12 +869,22 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Return 0 upon success and non-zero otherwise </dd></dl>
 <div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__uart_gaf159013e818705c412e6585603c55da2_cgraph.png" border="0" usemap="#agroup__uart_gaf159013e818705c412e6585603c55da2_cgraph" alt=""/></div>
+<map name="group__uart_gaf159013e818705c412e6585603c55da2_cgraph" id="group__uart_gaf159013e818705c412e6585603c55da2_cgraph">
+<area shape="rect" title="Enables serial port hardware FIFOs." alt="" coords="5,5,117,32"/>
+<area shape="rect" href="group__utils.html#ga79a031a8611f5b2d6afa4158e92b0fb4" title="Wraps sys_inb so that it may be called with a uint8_t argument." alt="" coords="165,5,256,32"/>
+</map>
+</div>
+<div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="group__uart_gaf159013e818705c412e6585603c55da2_icgraph.png" border="0" usemap="#agroup__uart_gaf159013e818705c412e6585603c55da2_icgraph" alt=""/></div>
-<map name="group__uart_gaf159013e818705c412e6585603c55da2_icgraph" id="group__uart_gaf159013e818705c412e6585603c55da2_icgraph">
-<area shape="rect" title="Enables serial port hardware FIFOs." alt="" coords="192,5,304,32"/>
-<area shape="rect" href="group__protocol.html#ga1b4d0d201e93a7bdf1aaeb6766e304ea" title="Configures the serial port and protocol queues to start communication." alt="" coords="5,5,144,32"/>
+<map name="group__uart_gaf159013e818705c412e6585603c55da2_icgraph" id="agroup__uart_gaf159013e818705c412e6585603c55da2_icgraph">
+<area shape="rect" title="Enables serial port hardware FIFOs." alt="" coords="349,5,461,32"/>
+<area shape="rect" href="group__protocol.html#ga1b4d0d201e93a7bdf1aaeb6766e304ea" title="Configures the serial port and protocol queues to start communication." alt="" coords="163,5,301,32"/>
+<area shape="rect" href="group__proj.html#ga2a16f651eccbd248e1ad3b3b924b143b" title="Reacts to the event that the other player sent the random number to decide starting roles." alt="" coords="5,5,115,32"/>
 </map>
 </div>
 
@@ -823,6 +934,36 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Return 0 upon success and non-zero otherwise </dd></dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__uart_gadce4962e8e0ec14a02056e7d8db4eb28_cgraph.png" border="0" usemap="#agroup__uart_gadce4962e8e0ec14a02056e7d8db4eb28_cgraph" alt=""/></div>
+<map name="group__uart_gadce4962e8e0ec14a02056e7d8db4eb28_cgraph" id="group__uart_gadce4962e8e0ec14a02056e7d8db4eb28_cgraph">
+<area shape="rect" title="Flushes all bytes being received from the serial port." alt="" coords="5,40,137,81"/>
+<area shape="rect" href="group__queue.html#ga09a3da9bf84f747356ef8050447bf35a" title="Checks if a given queue is empty." alt="" coords="324,22,441,49"/>
+<area shape="rect" href="group__queue.html#ga81880a2f29871356ccddd8f20ec99e9e" title="Removes the element at the front of the given queue." alt="" coords="188,22,273,49"/>
+<area shape="rect" href="group__queue.html#ga24ec1e60eaa37239a1b49c6f7321c9d9" title="Gets the element at the front of the given queue." alt="" coords="189,73,272,99"/>
+<area shape="rect" href="group__utils.html#ga79a031a8611f5b2d6afa4158e92b0fb4" title="Wraps sys_inb so that it may be called with a uint8_t argument." alt="" coords="185,123,276,150"/>
+<area shape="rect" href="group__queue.html#ga5f221cd3b0a3c04f33ba9fd136a61c8b" title="Returns a pointer to the element of the given queue at the given index." alt="" coords="335,73,430,99"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__uart_gadce4962e8e0ec14a02056e7d8db4eb28_icgraph.png" border="0" usemap="#agroup__uart_gadce4962e8e0ec14a02056e7d8db4eb28_icgraph" alt=""/></div>
+<map name="group__uart_gadce4962e8e0ec14a02056e7d8db4eb28_icgraph" id="agroup__uart_gadce4962e8e0ec14a02056e7d8db4eb28_icgraph">
+<area shape="rect" title="Flushes all bytes being received from the serial port." alt="" coords="872,61,1004,102"/>
+<area shape="rect" href="group__proj.html#ga2a16f651eccbd248e1ad3b3b924b143b" title="Reacts to the event that the other player sent the random number to decide starting roles." alt="" coords="696,43,805,69"/>
+<area shape="rect" href="group__protocol.html#ga237c5c08ee5d5008a930af465c7bd5d5" title="Reacts to a serial port error." alt="" coords="677,93,824,120"/>
+<area shape="rect" href="group__dispatcher.html#ga2d18e4bbf1c627593d6f013434aee9b0" title="Handles a serial port error, calling relevant application dependent code." alt="" coords="475,5,609,32"/>
+<area shape="rect" href="group__protocol.html#ga5b890b1b07d4b86ff872a070e971b7a0" title="Handle a received byte when a trailing message byte is expected." alt="" coords="455,57,629,98"/>
+<area shape="rect" href="group__protocol.html#ga2844b6411ef540af53b228ccc3d325d0" title="Handles a received byte after the starting message byte." alt="" coords="455,123,629,149"/>
+<area shape="rect" href="group__protocol.html#ga0b3e768da60827fe622bd3932efc82ff" title="Reacts to a timer interrupt to detect timeouts." alt="" coords="494,173,590,200"/>
+<area shape="rect" href="group__protocol.html#ga45e3aa191a3cde90081665be034bba0e" title="Processes received bytes from the serial port." alt="" coords="240,82,407,123"/>
+<area shape="rect" href="group__dispatcher.html#gae25f0cbadee7d53e9593e6a23ef6f8c5" title="Handles received data from serial port, calling relevant application dependent code." alt="" coords="5,89,192,116"/>
+<area shape="rect" href="group__dispatcher.html#gababc3983184c400b85295ddab53388cc" title="Dispatches a timer interrupt, calling relevant application dependent code." alt="" coords="256,173,391,200"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -851,12 +992,22 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Return 0 upon success and non-zero otherwise </dd></dl>
 <div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__uart_gad4aa4e56e05d1a1907de15efa9f098dd_cgraph.png" border="0" usemap="#agroup__uart_gad4aa4e56e05d1a1907de15efa9f098dd_cgraph" alt=""/></div>
+<map name="group__uart_gad4aa4e56e05d1a1907de15efa9f098dd_cgraph" id="group__uart_gad4aa4e56e05d1a1907de15efa9f098dd_cgraph">
+<area shape="rect" title="Indentifies the serial port interrupt." alt="" coords="5,5,152,32"/>
+<area shape="rect" href="group__utils.html#ga79a031a8611f5b2d6afa4158e92b0fb4" title="Wraps sys_inb so that it may be called with a uint8_t argument." alt="" coords="200,5,291,32"/>
+</map>
+</div>
+<div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="group__uart_gad4aa4e56e05d1a1907de15efa9f098dd_icgraph.png" border="0" usemap="#agroup__uart_gad4aa4e56e05d1a1907de15efa9f098dd_icgraph" alt=""/></div>
-<map name="group__uart_gad4aa4e56e05d1a1907de15efa9f098dd_icgraph" id="group__uart_gad4aa4e56e05d1a1907de15efa9f098dd_icgraph">
-<area shape="rect" title="Indentifies the serial port interrupt." alt="" coords="124,5,271,32"/>
-<area shape="rect" href="group__uart.html#ga2820f530017133c17706dbc238f738d9" title="COM1 interrupt handler." alt="" coords="5,5,76,32"/>
+<map name="group__uart_gad4aa4e56e05d1a1907de15efa9f098dd_icgraph" id="agroup__uart_gad4aa4e56e05d1a1907de15efa9f098dd_icgraph">
+<area shape="rect" title="Indentifies the serial port interrupt." alt="" coords="281,5,428,32"/>
+<area shape="rect" href="group__uart.html#ga2820f530017133c17706dbc238f738d9" title="COM1 interrupt handler." alt="" coords="163,5,233,32"/>
+<area shape="rect" href="group__proj.html#ga2a16f651eccbd248e1ad3b3b924b143b" title="Reacts to the event that the other player sent the random number to decide starting roles." alt="" coords="5,5,115,32"/>
 </map>
 </div>
 
@@ -885,16 +1036,17 @@ Here is the call graph for this function:</div>
 <div class="center"><img src="group__uart_gac3d220a27d08a43a58c904f3f2113d14_cgraph.png" border="0" usemap="#agroup__uart_gac3d220a27d08a43a58c904f3f2113d14_cgraph" alt=""/></div>
 <map name="group__uart_gac3d220a27d08a43a58c904f3f2113d14_cgraph" id="group__uart_gac3d220a27d08a43a58c904f3f2113d14_cgraph">
 <area shape="rect" title="Initializes serial port software queues." alt="" coords="5,5,145,32"/>
-<area shape="rect" href="group__queue.html#gac48edd86870cd2e9c26035f22fdf31d4" title="Initializes of a new queue." alt="" coords="193,5,280,32"/>
+<area shape="rect" href="group__queue.html#gacfa22645c74c8856e53eb1fdbee701b7" title="Initializes of a new queue." alt="" coords="193,5,280,32"/>
 </map>
 </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="group__uart_gac3d220a27d08a43a58c904f3f2113d14_icgraph.png" border="0" usemap="#agroup__uart_gac3d220a27d08a43a58c904f3f2113d14_icgraph" alt=""/></div>
-<map name="group__uart_gac3d220a27d08a43a58c904f3f2113d14_icgraph" id="group__uart_gac3d220a27d08a43a58c904f3f2113d14_icgraph">
-<area shape="rect" title="Initializes serial port software queues." alt="" coords="192,5,332,32"/>
-<area shape="rect" href="group__protocol.html#ga1b4d0d201e93a7bdf1aaeb6766e304ea" title="Configures the serial port and protocol queues to start communication." alt="" coords="5,5,144,32"/>
+<map name="group__uart_gac3d220a27d08a43a58c904f3f2113d14_icgraph" id="agroup__uart_gac3d220a27d08a43a58c904f3f2113d14_icgraph">
+<area shape="rect" title="Initializes serial port software queues." alt="" coords="349,5,489,32"/>
+<area shape="rect" href="group__protocol.html#ga1b4d0d201e93a7bdf1aaeb6766e304ea" title="Configures the serial port and protocol queues to start communication." alt="" coords="163,5,301,32"/>
+<area shape="rect" href="group__proj.html#ga2a16f651eccbd248e1ad3b3b924b143b" title="Reacts to the event that the other player sent the random number to decide starting roles." alt="" coords="5,5,115,32"/>
 </map>
 </div>
 
@@ -933,6 +1085,7 @@ Here is the call graph for this function:</div>
 <area shape="rect" href="group__queue.html#ga09a3da9bf84f747356ef8050447bf35a" title="Checks if a given queue is empty." alt="" coords="295,21,412,47"/>
 <area shape="rect" href="group__queue.html#ga81880a2f29871356ccddd8f20ec99e9e" title="Removes the element at the front of the given queue." alt="" coords="161,21,247,47"/>
 <area shape="rect" href="group__queue.html#ga24ec1e60eaa37239a1b49c6f7321c9d9" title="Gets the element at the front of the given queue." alt="" coords="163,71,245,98"/>
+<area shape="rect" href="group__queue.html#ga5f221cd3b0a3c04f33ba9fd136a61c8b" title="Returns a pointer to the element of the given queue at the given index." alt="" coords="306,71,401,98"/>
 </map>
 </div>
 <div class="dynheader">
@@ -940,8 +1093,13 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="group__uart_gac447d0f6cdbf08eb8522cebae17e7e77_icgraph.png" border="0" usemap="#agroup__uart_gac447d0f6cdbf08eb8522cebae17e7e77_icgraph" alt=""/></div>
 <map name="group__uart_gac447d0f6cdbf08eb8522cebae17e7e77_icgraph" id="group__uart_gac447d0f6cdbf08eb8522cebae17e7e77_icgraph">
-<area shape="rect" title="Reads a byte from the software queue of bytes received." alt="" coords="220,13,328,39"/>
-<area shape="rect" href="group__protocol.html#ga45e3aa191a3cde90081665be034bba0e" title="Processes received bytes from the serial port." alt="" coords="5,5,172,47"/>
+<area shape="rect" title="Reads a byte from the software queue of bytes received." alt="" coords="711,101,819,127"/>
+<area shape="rect" href="group__protocol.html#gacc32febde28d20d54c2e1460899a14a3" title="Handles a received byte when no message is currently being received." alt="" coords="477,5,641,47"/>
+<area shape="rect" href="group__protocol.html#gab69f1d7e21cf5751c6ad94139a58b0bd" title="Handles a received byte that is expected to belong to the message body." alt="" coords="455,71,663,98"/>
+<area shape="rect" href="group__protocol.html#ga5b890b1b07d4b86ff872a070e971b7a0" title="Handle a received byte when a trailing message byte is expected." alt="" coords="472,123,645,164"/>
+<area shape="rect" href="group__protocol.html#ga2844b6411ef540af53b228ccc3d325d0" title="Handles a received byte after the starting message byte." alt="" coords="471,189,646,215"/>
+<area shape="rect" href="group__protocol.html#ga45e3aa191a3cde90081665be034bba0e" title="Processes received bytes from the serial port." alt="" coords="240,93,407,135"/>
+<area shape="rect" href="group__dispatcher.html#gae25f0cbadee7d53e9593e6a23ef6f8c5" title="Handles received data from serial port, calling relevant application dependent code." alt="" coords="5,101,192,127"/>
 </map>
 </div>
 
@@ -969,18 +1127,22 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="group__uart_ga044300424f25aaf6d622538cafe79d90_cgraph.png" border="0" usemap="#agroup__uart_ga044300424f25aaf6d622538cafe79d90_cgraph" alt=""/></div>
 <map name="group__uart_ga044300424f25aaf6d622538cafe79d90_cgraph" id="group__uart_ga044300424f25aaf6d622538cafe79d90_cgraph">
-<area shape="rect" title="Receives bytes from the serial port and puts them in a software queue." alt="" coords="5,5,136,32"/>
-<area shape="rect" href="group__queue.html#gaa54578828a1b5676bb99a535c617e1a2" title="Adds an element to the back of the given queue." alt="" coords="184,5,276,32"/>
-<area shape="rect" href="group__queue.html#gae1cd6b62453b7f57525be17a53885800" title="Checks if a given queue is full." alt="" coords="324,5,421,32"/>
+<area shape="rect" title="Receives bytes from the serial port and puts them in a software queue." alt="" coords="5,56,136,83"/>
+<area shape="rect" href="group__queue.html#gaa54578828a1b5676bb99a535c617e1a2" title="Adds an element to the back of the given queue." alt="" coords="184,31,276,57"/>
+<area shape="rect" href="group__utils.html#ga79a031a8611f5b2d6afa4158e92b0fb4" title="Wraps sys_inb so that it may be called with a uint8_t argument." alt="" coords="185,81,275,108"/>
+<area shape="rect" href="group__queue.html#ga5f221cd3b0a3c04f33ba9fd136a61c8b" title="Returns a pointer to the element of the given queue at the given index." alt="" coords="472,5,567,32"/>
+<area shape="rect" href="group__queue.html#gae1cd6b62453b7f57525be17a53885800" title="Checks if a given queue is full." alt="" coords="471,68,568,95"/>
+<area shape="rect" href="group__queue.html#gabf50b2659d4139679a639a78c217f7fa" title="Resizes the given queue so that it has double the capacity without losing data." alt="" coords="324,31,423,57"/>
 </map>
 </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="group__uart_ga044300424f25aaf6d622538cafe79d90_icgraph.png" border="0" usemap="#agroup__uart_ga044300424f25aaf6d622538cafe79d90_icgraph" alt=""/></div>
-<map name="group__uart_ga044300424f25aaf6d622538cafe79d90_icgraph" id="group__uart_ga044300424f25aaf6d622538cafe79d90_icgraph">
-<area shape="rect" title="Receives bytes from the serial port and puts them in a software queue." alt="" coords="124,5,255,32"/>
-<area shape="rect" href="group__uart.html#ga2820f530017133c17706dbc238f738d9" title="COM1 interrupt handler." alt="" coords="5,5,76,32"/>
+<map name="group__uart_ga044300424f25aaf6d622538cafe79d90_icgraph" id="agroup__uart_ga044300424f25aaf6d622538cafe79d90_icgraph">
+<area shape="rect" title="Receives bytes from the serial port and puts them in a software queue." alt="" coords="281,5,412,32"/>
+<area shape="rect" href="group__uart.html#ga2820f530017133c17706dbc238f738d9" title="COM1 interrupt handler." alt="" coords="163,5,233,32"/>
+<area shape="rect" href="group__proj.html#ga2a16f651eccbd248e1ad3b3b924b143b" title="Reacts to the event that the other player sent the random number to decide starting roles." alt="" coords="5,5,115,32"/>
 </map>
 </div>
 
@@ -1017,8 +1179,108 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="group__uart_gac45f99478cc354b6836c7bfbcb84d679_icgraph.png" border="0" usemap="#agroup__uart_gac45f99478cc354b6836c7bfbcb84d679_icgraph" alt=""/></div>
 <map name="group__uart_gac45f99478cc354b6836c7bfbcb84d679_icgraph" id="group__uart_gac45f99478cc354b6836c7bfbcb84d679_icgraph">
-<area shape="rect" title="Checks if there are unread received bytes in the software queue." alt="" coords="220,13,357,39"/>
-<area shape="rect" href="group__protocol.html#ga45e3aa191a3cde90081665be034bba0e" title="Processes received bytes from the serial port." alt="" coords="5,5,172,47"/>
+<area shape="rect" title="Checks if there are unread received bytes in the software queue." alt="" coords="711,31,848,57"/>
+<area shape="rect" href="group__protocol.html#gab69f1d7e21cf5751c6ad94139a58b0bd" title="Handles a received byte that is expected to belong to the message body." alt="" coords="455,5,663,32"/>
+<area shape="rect" href="group__protocol.html#ga45e3aa191a3cde90081665be034bba0e" title="Processes received bytes from the serial port." alt="" coords="240,23,407,65"/>
+<area shape="rect" href="group__dispatcher.html#gae25f0cbadee7d53e9593e6a23ef6f8c5" title="Handles received data from serial port, calling relevant application dependent code." alt="" coords="5,31,192,57"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="gaa4619ca27d356a2a050c00bb1dd4eaa6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaa4619ca27d356a2a050c00bb1dd4eaa6">&#9670;&nbsp;</a></span>uart_select_data()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static int uart_select_data </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Selects data in the line control register so that data transmittion registers may be accessed. </p>
+<dl class="section return"><dt>Returns</dt><dd>Return 0 upon success and non-zero otherwise </dd></dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__uart_gaa4619ca27d356a2a050c00bb1dd4eaa6_cgraph.png" border="0" usemap="#agroup__uart_gaa4619ca27d356a2a050c00bb1dd4eaa6_cgraph" alt=""/></div>
+<map name="group__uart_gaa4619ca27d356a2a050c00bb1dd4eaa6_cgraph" id="group__uart_gaa4619ca27d356a2a050c00bb1dd4eaa6_cgraph">
+<area shape="rect" title="Selects data in the line control register so that data transmittion registers may be accessed." alt="" coords="5,5,124,32"/>
+<area shape="rect" href="group__utils.html#ga79a031a8611f5b2d6afa4158e92b0fb4" title="Wraps sys_inb so that it may be called with a uint8_t argument." alt="" coords="172,5,263,32"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__uart_gaa4619ca27d356a2a050c00bb1dd4eaa6_icgraph.png" border="0" usemap="#agroup__uart_gaa4619ca27d356a2a050c00bb1dd4eaa6_icgraph" alt=""/></div>
+<map name="group__uart_gaa4619ca27d356a2a050c00bb1dd4eaa6_icgraph" id="agroup__uart_gaa4619ca27d356a2a050c00bb1dd4eaa6_icgraph">
+<area shape="rect" title="Selects data in the line control register so that data transmittion registers may be accessed." alt="" coords="699,5,817,32"/>
+<area shape="rect" href="group__uart.html#ga1975f8b129ad7fe81b0199dadabc703a" title="Specifies the bit rate for the serial port." alt="" coords="532,5,651,32"/>
+<area shape="rect" href="group__uart.html#gac56dcef886bb66f75de8fe196316995d" title="Configures the parameters of the serial port." alt="" coords="349,5,484,32"/>
+<area shape="rect" href="group__protocol.html#ga1b4d0d201e93a7bdf1aaeb6766e304ea" title="Configures the serial port and protocol queues to start communication." alt="" coords="163,5,301,32"/>
+<area shape="rect" href="group__proj.html#ga2a16f651eccbd248e1ad3b3b924b143b" title="Reacts to the event that the other player sent the random number to decide starting roles." alt="" coords="5,5,115,32"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ga79025c0ba3368f7b2bb35e2bfc24da95"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga79025c0ba3368f7b2bb35e2bfc24da95">&#9670;&nbsp;</a></span>uart_select_dlab()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static int uart_select_dlab </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Selects dlab in the line control register so that divisor latch registers may be accessed. </p>
+<dl class="section return"><dt>Returns</dt><dd>Return 0 upon success and non-zero otherwise </dd></dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__uart_ga79025c0ba3368f7b2bb35e2bfc24da95_cgraph.png" border="0" usemap="#agroup__uart_ga79025c0ba3368f7b2bb35e2bfc24da95_cgraph" alt=""/></div>
+<map name="group__uart_ga79025c0ba3368f7b2bb35e2bfc24da95_cgraph" id="group__uart_ga79025c0ba3368f7b2bb35e2bfc24da95_cgraph">
+<area shape="rect" title="Selects dlab in the line control register so that divisor latch registers may be accessed." alt="" coords="5,5,123,32"/>
+<area shape="rect" href="group__utils.html#ga79a031a8611f5b2d6afa4158e92b0fb4" title="Wraps sys_inb so that it may be called with a uint8_t argument." alt="" coords="171,5,261,32"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__uart_ga79025c0ba3368f7b2bb35e2bfc24da95_icgraph.png" border="0" usemap="#agroup__uart_ga79025c0ba3368f7b2bb35e2bfc24da95_icgraph" alt=""/></div>
+<map name="group__uart_ga79025c0ba3368f7b2bb35e2bfc24da95_icgraph" id="agroup__uart_ga79025c0ba3368f7b2bb35e2bfc24da95_icgraph">
+<area shape="rect" title="Selects dlab in the line control register so that divisor latch registers may be accessed." alt="" coords="699,5,816,32"/>
+<area shape="rect" href="group__uart.html#ga1975f8b129ad7fe81b0199dadabc703a" title="Specifies the bit rate for the serial port." alt="" coords="532,5,651,32"/>
+<area shape="rect" href="group__uart.html#gac56dcef886bb66f75de8fe196316995d" title="Configures the parameters of the serial port." alt="" coords="349,5,484,32"/>
+<area shape="rect" href="group__protocol.html#ga1b4d0d201e93a7bdf1aaeb6766e304ea" title="Configures the serial port and protocol queues to start communication." alt="" coords="163,5,301,32"/>
+<area shape="rect" href="group__proj.html#ga2a16f651eccbd248e1ad3b3b924b143b" title="Reacts to the event that the other player sent the random number to decide starting roles." alt="" coords="5,5,115,32"/>
 </map>
 </div>
 
@@ -1053,13 +1315,73 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="group__uart_ga00a2984ead2b73e2871dfda7c1ac49e3_cgraph.png" border="0" usemap="#agroup__uart_ga00a2984ead2b73e2871dfda7c1ac49e3_cgraph" alt=""/></div>
 <map name="group__uart_ga00a2984ead2b73e2871dfda7c1ac49e3_cgraph" id="group__uart_ga00a2984ead2b73e2871dfda7c1ac49e3_cgraph">
-<area shape="rect" title="Adds a byte to the software queue of bytes to be sent and tries to send bytes." alt="" coords="5,56,116,83"/>
-<area shape="rect" href="group__queue.html#gaa54578828a1b5676bb99a535c617e1a2" title="Adds an element to the back of the given queue." alt="" coords="177,19,269,45"/>
-<area shape="rect" href="group__uart.html#ga8219117bdd64ba6474c847fd89efbd41" title="Sends bytes from a software queue into the serial port." alt="" coords="164,81,283,108"/>
-<area shape="rect" href="group__queue.html#gae1cd6b62453b7f57525be17a53885800" title="Checks if a given queue is full." alt="" coords="331,5,428,32"/>
-<area shape="rect" href="group__queue.html#ga09a3da9bf84f747356ef8050447bf35a" title="Checks if a given queue is empty." alt="" coords="476,107,593,133"/>
-<area shape="rect" href="group__queue.html#ga81880a2f29871356ccddd8f20ec99e9e" title="Removes the element at the front of the given queue." alt="" coords="337,107,422,133"/>
-<area shape="rect" href="group__queue.html#ga24ec1e60eaa37239a1b49c6f7321c9d9" title="Gets the element at the front of the given queue." alt="" coords="338,157,421,184"/>
+<area shape="rect" title="Adds a byte to the software queue of bytes to be sent and tries to send bytes." alt="" coords="5,132,116,159"/>
+<area shape="rect" href="group__queue.html#gaa54578828a1b5676bb99a535c617e1a2" title="Adds an element to the back of the given queue." alt="" coords="177,56,269,83"/>
+<area shape="rect" href="group__uart.html#ga8219117bdd64ba6474c847fd89efbd41" title="Sends bytes from a software queue into the serial port." alt="" coords="164,183,283,209"/>
+<area shape="rect" href="group__queue.html#ga5f221cd3b0a3c04f33ba9fd136a61c8b" title="Returns a pointer to the element of the given queue at the given index." alt="" coords="489,81,583,108"/>
+<area shape="rect" href="group__queue.html#gae1cd6b62453b7f57525be17a53885800" title="Checks if a given queue is full." alt="" coords="487,5,585,32"/>
+<area shape="rect" href="group__queue.html#gabf50b2659d4139679a639a78c217f7fa" title="Resizes the given queue so that it has double the capacity without losing data." alt="" coords="331,31,429,57"/>
+<area shape="rect" href="group__queue.html#ga09a3da9bf84f747356ef8050447bf35a" title="Checks if a given queue is empty." alt="" coords="477,183,595,209"/>
+<area shape="rect" href="group__queue.html#ga81880a2f29871356ccddd8f20ec99e9e" title="Removes the element at the front of the given queue." alt="" coords="337,284,423,311"/>
+<area shape="rect" href="group__queue.html#ga24ec1e60eaa37239a1b49c6f7321c9d9" title="Gets the element at the front of the given queue." alt="" coords="339,132,421,159"/>
+<area shape="rect" href="group__utils.html#ga79a031a8611f5b2d6afa4158e92b0fb4" title="Wraps sys_inb so that it may be called with a uint8_t argument." alt="" coords="335,233,425,260"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__uart_ga00a2984ead2b73e2871dfda7c1ac49e3_icgraph.png" border="0" usemap="#agroup__uart_ga00a2984ead2b73e2871dfda7c1ac49e3_icgraph" alt=""/></div>
+<map name="group__uart_ga00a2984ead2b73e2871dfda7c1ac49e3_icgraph" id="agroup__uart_ga00a2984ead2b73e2871dfda7c1ac49e3_icgraph">
+<area shape="rect" title="Adds a byte to the software queue of bytes to be sent and tries to send bytes." alt="" coords="1312,94,1423,121"/>
+<area shape="rect" href="group__protocol.html#ga237c5c08ee5d5008a930af465c7bd5d5" title="Reacts to a serial port error." alt="" coords="715,122,861,149"/>
+<area shape="rect" href="group__protocol.html#ga5b890b1b07d4b86ff872a070e971b7a0" title="Handle a received byte when a trailing message byte is expected." alt="" coords="475,5,648,47"/>
+<area shape="rect" href="group__protocol.html#gaca49d55d34fe635af7f3822f4b01bdc6" title="Sends the next pending message in queue." alt="" coords="1129,167,1264,208"/>
+<area shape="rect" href="group__dispatcher.html#ga2d18e4bbf1c627593d6f013434aee9b0" title="Handles a serial port error, calling relevant application dependent code." alt="" coords="495,71,628,98"/>
+<area shape="rect" href="group__protocol.html#ga2844b6411ef540af53b228ccc3d325d0" title="Handles a received byte after the starting message byte." alt="" coords="474,122,649,149"/>
+<area shape="rect" href="group__protocol.html#ga0b3e768da60827fe622bd3932efc82ff" title="Reacts to a timer interrupt to detect timeouts." alt="" coords="513,173,609,199"/>
+<area shape="rect" href="group__protocol.html#ga45e3aa191a3cde90081665be034bba0e" title="Processes received bytes from the serial port." alt="" coords="249,111,415,152"/>
+<area shape="rect" href="group__dispatcher.html#gae25f0cbadee7d53e9593e6a23ef6f8c5" title="Handles received data from serial port, calling relevant application dependent code." alt="" coords="5,118,192,145"/>
+<area shape="rect" href="group__dispatcher.html#gababc3983184c400b85295ddab53388cc" title="Dispatches a timer interrupt, calling relevant application dependent code." alt="" coords="265,177,399,203"/>
+<area shape="rect" href="group__protocol.html#gaa8c3d5620d3e7c609513d9372296a6d3" title="Adds a new message to the pending messages queue." alt="" coords="925,598,1081,625"/>
+<area shape="rect" href="group__protocol.html#gaf7347ac4b90b70acf886e391fefb9344" title="Handles a received acknowledgment byte." alt="" coords="933,145,1074,171"/>
+<area shape="rect" href="group__protocol.html#ga992ebf810171104f964f94e6d5652e2b" title="Handles a received non&#45;acknowledgment byte." alt="" coords="929,195,1077,222"/>
+<area shape="rect" href="group__protocol.html#gafadb8c0242e740b68757640ed9d026fd" title="Sends a message of type MSG_CLUE." alt="" coords="721,598,855,625"/>
+<area shape="rect" href="group__protocol.html#ga22df7885a195f3daaf976fb322a6273a" title="Sends a message of type MSG_GAME_OVER." alt="" coords="702,497,874,523"/>
+<area shape="rect" href="group__protocol.html#ga7ecf39afd738fd733192d8efa3b72543" title="Sends a message of type MSG_GUESS." alt="" coords="715,547,861,574"/>
+<area shape="rect" href="group__protocol.html#gafd70b73fc60dd896c0da7fd62d71eff5" title="Sends a message of type MSG_LEAVE_GAME." alt="" coords="699,867,877,894"/>
+<area shape="rect" href="group__protocol.html#ga0ef9e0d21713f79d9c42f68b435d209a" title="Sends a message of type MSG_DRAW_ATOM." alt="" coords="703,649,873,675"/>
+<area shape="rect" href="group__protocol.html#ga01435947f6aba6894dd82d6ec005f9fe" title="Sends a message of type MSG_NEW_ROUND." alt="" coords="702,699,874,726"/>
+<area shape="rect" href="group__protocol.html#ga48456102bf88a8974c153a8b117f9480" title="Sends a message of type MSG_NEW_STROKE." alt="" coords="700,750,876,777"/>
+<area shape="rect" href="group__protocol.html#ga3a3be26c74eba4938a47e2b67bb83ed6" title="Sends a message of type MSG_PROGRAM_OPENED." alt="" coords="709,801,867,843"/>
+<area shape="rect" href="group__protocol.html#ga00413c9178c939b16024863a7e953932" title="Sends a message of type MSG_RANDOM_NUMBER." alt="" coords="711,1031,865,1072"/>
+<area shape="rect" href="group__protocol.html#gaf65bf51204d728ca74e8d86ae0af4b4b" title="Sends a message of type MSG_READY_TO_PLAY." alt="" coords="717,940,859,981"/>
+<area shape="rect" href="group__protocol.html#ga37492ace0b61aeb7b426d4ba9fd7e7b9" title="Sends a message of type MSG_REDO_CANVAS." alt="" coords="721,263,855,304"/>
+<area shape="rect" href="group__protocol.html#gacfefff6d72000e2ec5cf3060d675a64a" title="Sends a message of type MSG_ROUND_WIN." alt="" coords="704,329,872,355"/>
+<area shape="rect" href="group__protocol.html#gafa6e663c85862f19e985661e8f69af7a" title="Sends a message of type MSG_START_ROUND." alt="" coords="264,397,400,439"/>
+<area shape="rect" href="group__protocol.html#ga3388b3fbc456a7f5ce244bf9e8875752" title="Sends a message of type MSG_UNDO_CANVAS." alt="" coords="719,431,857,472"/>
+<area shape="rect" href="group__game.html#ga82a8aa816fdf22cb3d705dfa56c594f7" title="Reveals another character in the word clue and notifies the other player." alt="" coords="504,590,619,617"/>
+<area shape="rect" href="group__game.html#ga3f61372930dd958f7499a110ce2bd7d6" title="Updates the game due to a rtc alarm interrupt." alt="" coords="275,590,389,617"/>
+<area shape="rect" href="group__dispatcher.html#ga165d3da39e7ad5173611be1f6689c6c7" title="Dispatches a RTC alarm interrupt, calling relevant application dependent code." alt="" coords="22,497,175,523"/>
+<area shape="rect" href="group__game.html#ga159cd81ebf01a5ccd6a0f96aaffb2530" title="Updates the game due to a rtc periodic interrupt." alt="" coords="501,489,622,515"/>
+<area shape="rect" href="group__dispatcher.html#ga472851ec5e720521f2d714e9c4db0366" title="Dispatches a RTC periodic interrupt, calling relevant application dependent code." alt="" coords="249,489,415,515"/>
+<area shape="rect" href="group__dispatcher.html#gac874797e644c008b7aac6fa73c6c97f2" title="Tries to guess the word and notifies the other player." alt="" coords="493,539,629,566"/>
+<area shape="rect" href="group__game.html#ga4ddbf7eb8cd795bad8a0acae94d6c7a3" title="Initializes the text box of the new round for the given guesser_t." alt="" coords="284,539,380,566"/>
+<area shape="rect" href="group__dispatcher.html#gaa94a2133718338e297127042cc5e35b4" title="Leaves the game back to the main menu and notifies the other player." alt="" coords="494,859,629,886"/>
+<area shape="rect" href="group__dispatcher.html#gaf04611df318bda3c0f0d88268a47736d" title="Notify the other player that this player is not currently in the game." alt="" coords="472,910,651,937"/>
+<area shape="rect" href="group__protocol.html#gad85741e17c753b18ad013e5e7bf3eb7c" title="Handles a received message of type MSG_CLUE." alt="" coords="259,910,405,937"/>
+<area shape="rect" href="group__protocol.html#gaa8067dfbdb6128fe19af3cde2b09e053" title="Handles a received message of type MSG_GAME_OVER." alt="" coords="240,961,424,987"/>
+<area shape="rect" href="group__protocol.html#ga6cc93609643509e6c3fe3f7d4e466f8b" title="Handles a received message of type MSG_GUESS." alt="" coords="253,859,411,886"/>
+<area shape="rect" href="group__dispatcher.html#gad508b46cafff5282731b452d032f5267" title="Adds a new atom to the stroke being drawn in the canvas and notifies the other player." alt="" coords="498,641,625,667"/>
+<area shape="rect" href="group__dispatcher.html#gac40675a6ad33c38fe29637b951581d58" title="Starts a new round as DRAWER (role_t)." alt="" coords="486,692,637,733"/>
+<area shape="rect" href="group__dispatcher.html#ga2a6213346685a0167e6ff3c86d126106" title="Starts drawing new stroke in the canvas and notifies the other player." alt="" coords="495,758,628,785"/>
+<area shape="rect" href="group__proj.html#ga2a16f651eccbd248e1ad3b3b924b143b" title="Reacts to the event that the other player sent the random number to decide starting roles." alt="" coords="507,809,616,835"/>
+<area shape="rect" href="group__dispatcher.html#ga05c438abb1a2b811edbac9dd08f57f3c" title="Generates and sends a random number to the other player to decide starting roles." alt="" coords="496,1079,627,1120"/>
+<area shape="rect" href="group__dispatcher.html#ga82e16242d9bfea1af9a18217b66282ef" title="Goes into the &quot;Awaiting other player...&quot; screen and notifies the other player." alt="" coords="258,1057,406,1083"/>
+<area shape="rect" href="group__dispatcher.html#ga1333dd4f74fe83a8e4b6c7c40e23b88a" title="Reacts to the event that the other player opened the program." alt="" coords="492,961,631,1003"/>
+<area shape="rect" href="group__dispatcher.html#ga0dd9d47f03b474d5b5f6350299a63079" title="Redoes a canvas stroke and notifies the other player." alt="" coords="515,274,607,301"/>
+<area shape="rect" href="group__dispatcher.html#ga1fbc6470ac3036a964c81e5a167af362" title="Sets the round as won, updates the score and notifies the other player." alt="" coords="499,329,624,355"/>
+<area shape="rect" href="group__dispatcher.html#ga8d7e76896ea98e9cc288ac7f708ccd50" title="Undoes a canvas stroke and notifies the other player." alt="" coords="514,438,609,465"/>
+<area shape="rect" href="group__protocol.html#gacc32febde28d20d54c2e1460899a14a3" title="Handles a received byte when no message is currently being received." alt="" coords="706,188,870,229"/>
 </map>
 </div>
 
@@ -1087,10 +1409,12 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="group__uart_ga8219117bdd64ba6474c847fd89efbd41_cgraph.png" border="0" usemap="#agroup__uart_ga8219117bdd64ba6474c847fd89efbd41_cgraph" alt=""/></div>
 <map name="group__uart_ga8219117bdd64ba6474c847fd89efbd41_cgraph" id="group__uart_ga8219117bdd64ba6474c847fd89efbd41_cgraph">
-<area shape="rect" title="Sends bytes from a software queue into the serial port." alt="" coords="5,21,124,47"/>
-<area shape="rect" href="group__queue.html#ga09a3da9bf84f747356ef8050447bf35a" title="Checks if a given queue is empty." alt="" coords="305,21,423,47"/>
-<area shape="rect" href="group__queue.html#ga81880a2f29871356ccddd8f20ec99e9e" title="Removes the element at the front of the given queue." alt="" coords="172,21,257,47"/>
-<area shape="rect" href="group__queue.html#ga24ec1e60eaa37239a1b49c6f7321c9d9" title="Gets the element at the front of the given queue." alt="" coords="173,71,256,98"/>
+<area shape="rect" title="Sends bytes from a software queue into the serial port." alt="" coords="5,48,124,75"/>
+<area shape="rect" href="group__queue.html#ga09a3da9bf84f747356ef8050447bf35a" title="Checks if a given queue is empty." alt="" coords="311,23,428,49"/>
+<area shape="rect" href="group__queue.html#ga81880a2f29871356ccddd8f20ec99e9e" title="Removes the element at the front of the given queue." alt="" coords="175,23,260,49"/>
+<area shape="rect" href="group__queue.html#ga24ec1e60eaa37239a1b49c6f7321c9d9" title="Gets the element at the front of the given queue." alt="" coords="176,73,259,100"/>
+<area shape="rect" href="group__utils.html#ga79a031a8611f5b2d6afa4158e92b0fb4" title="Wraps sys_inb so that it may be called with a uint8_t argument." alt="" coords="172,124,263,151"/>
+<area shape="rect" href="group__queue.html#ga5f221cd3b0a3c04f33ba9fd136a61c8b" title="Returns a pointer to the element of the given queue at the given index." alt="" coords="322,73,417,100"/>
 </map>
 </div>
 <div class="dynheader">
@@ -1098,9 +1422,56 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="group__uart_ga8219117bdd64ba6474c847fd89efbd41_icgraph.png" border="0" usemap="#agroup__uart_ga8219117bdd64ba6474c847fd89efbd41_icgraph" alt=""/></div>
 <map name="group__uart_ga8219117bdd64ba6474c847fd89efbd41_icgraph" id="agroup__uart_ga8219117bdd64ba6474c847fd89efbd41_icgraph">
-<area shape="rect" title="Sends bytes from a software queue into the serial port." alt="" coords="164,31,283,57"/>
-<area shape="rect" href="group__uart.html#ga2820f530017133c17706dbc238f738d9" title="COM1 interrupt handler." alt="" coords="25,5,96,32"/>
-<area shape="rect" href="group__uart.html#ga00a2984ead2b73e2871dfda7c1ac49e3" title="Adds a byte to the software queue of bytes to be sent and tries to send bytes." alt="" coords="5,56,116,83"/>
+<area shape="rect" title="Sends bytes from a software queue into the serial port." alt="" coords="1453,979,1572,1006"/>
+<area shape="rect" href="group__uart.html#ga2820f530017133c17706dbc238f738d9" title="COM1 interrupt handler." alt="" coords="1144,445,1215,471"/>
+<area shape="rect" href="group__uart.html#ga00a2984ead2b73e2871dfda7c1ac49e3" title="Adds a byte to the software queue of bytes to be sent and tries to send bytes." alt="" coords="1295,1005,1405,1031"/>
+<area shape="rect" href="group__proj.html#ga2a16f651eccbd248e1ad3b3b924b143b" title="Reacts to the event that the other player sent the random number to decide starting roles." alt="" coords="489,23,599,50"/>
+<area shape="rect" href="group__protocol.html#ga237c5c08ee5d5008a930af465c7bd5d5" title="Reacts to a serial port error." alt="" coords="697,1034,844,1061"/>
+<area shape="rect" href="group__protocol.html#ga5b890b1b07d4b86ff872a070e971b7a0" title="Handle a received byte when a trailing message byte is expected." alt="" coords="457,1136,631,1177"/>
+<area shape="rect" href="group__protocol.html#gaca49d55d34fe635af7f3822f4b01bdc6" title="Sends the next pending message in queue." alt="" coords="1112,947,1247,988"/>
+<area shape="rect" href="group__dispatcher.html#ga2d18e4bbf1c627593d6f013434aee9b0" title="Handles a serial port error, calling relevant application dependent code." alt="" coords="477,1034,611,1061"/>
+<area shape="rect" href="group__protocol.html#ga2844b6411ef540af53b228ccc3d325d0" title="Handles a received byte after the starting message byte." alt="" coords="457,983,631,1010"/>
+<area shape="rect" href="group__protocol.html#ga0b3e768da60827fe622bd3932efc82ff" title="Reacts to a timer interrupt to detect timeouts." alt="" coords="496,1085,592,1111"/>
+<area shape="rect" href="group__protocol.html#ga45e3aa191a3cde90081665be034bba0e" title="Processes received bytes from the serial port." alt="" coords="240,976,407,1017"/>
+<area shape="rect" href="group__dispatcher.html#gae25f0cbadee7d53e9593e6a23ef6f8c5" title="Handles received data from serial port, calling relevant application dependent code." alt="" coords="5,983,192,1010"/>
+<area shape="rect" href="group__dispatcher.html#gababc3983184c400b85295ddab53388cc" title="Dispatches a timer interrupt, calling relevant application dependent code." alt="" coords="256,1085,391,1111"/>
+<area shape="rect" href="group__protocol.html#gaa8c3d5620d3e7c609513d9372296a6d3" title="Adds a new message to the pending messages queue." alt="" coords="908,446,1064,473"/>
+<area shape="rect" href="group__protocol.html#gaf7347ac4b90b70acf886e391fefb9344" title="Handles a received acknowledgment byte." alt="" coords="915,983,1057,1010"/>
+<area shape="rect" href="group__protocol.html#ga992ebf810171104f964f94e6d5652e2b" title="Handles a received non&#45;acknowledgment byte." alt="" coords="912,933,1060,959"/>
+<area shape="rect" href="group__protocol.html#gafadb8c0242e740b68757640ed9d026fd" title="Sends a message of type MSG_CLUE." alt="" coords="703,547,838,574"/>
+<area shape="rect" href="group__protocol.html#ga22df7885a195f3daaf976fb322a6273a" title="Sends a message of type MSG_GAME_OVER." alt="" coords="685,345,857,371"/>
+<area shape="rect" href="group__protocol.html#ga7ecf39afd738fd733192d8efa3b72543" title="Sends a message of type MSG_GUESS." alt="" coords="698,395,843,422"/>
+<area shape="rect" href="group__protocol.html#gafd70b73fc60dd896c0da7fd62d71eff5" title="Sends a message of type MSG_LEAVE_GAME." alt="" coords="681,649,860,675"/>
+<area shape="rect" href="group__protocol.html#ga0ef9e0d21713f79d9c42f68b435d209a" title="Sends a message of type MSG_DRAW_ATOM." alt="" coords="686,497,855,523"/>
+<area shape="rect" href="group__protocol.html#ga01435947f6aba6894dd82d6ec005f9fe" title="Sends a message of type MSG_NEW_ROUND." alt="" coords="685,446,857,473"/>
+<area shape="rect" href="group__protocol.html#ga48456102bf88a8974c153a8b117f9480" title="Sends a message of type MSG_NEW_STROKE." alt="" coords="683,598,859,625"/>
+<area shape="rect" href="group__protocol.html#ga3a3be26c74eba4938a47e2b67bb83ed6" title="Sends a message of type MSG_PROGRAM_OPENED." alt="" coords="692,45,849,87"/>
+<area shape="rect" href="group__protocol.html#ga00413c9178c939b16024863a7e953932" title="Sends a message of type MSG_RANDOM_NUMBER." alt="" coords="694,812,847,853"/>
+<area shape="rect" href="group__protocol.html#gaf65bf51204d728ca74e8d86ae0af4b4b" title="Sends a message of type MSG_READY_TO_PLAY." alt="" coords="699,721,842,763"/>
+<area shape="rect" href="group__protocol.html#ga37492ace0b61aeb7b426d4ba9fd7e7b9" title="Sends a message of type MSG_REDO_CANVAS." alt="" coords="703,111,838,152"/>
+<area shape="rect" href="group__protocol.html#gacfefff6d72000e2ec5cf3060d675a64a" title="Sends a message of type MSG_ROUND_WIN." alt="" coords="687,177,855,203"/>
+<area shape="rect" href="group__protocol.html#gafa6e663c85862f19e985661e8f69af7a" title="Sends a message of type MSG_START_ROUND." alt="" coords="255,241,391,283"/>
+<area shape="rect" href="group__protocol.html#ga3388b3fbc456a7f5ce244bf9e8875752" title="Sends a message of type MSG_UNDO_CANVAS." alt="" coords="701,279,840,320"/>
+<area shape="rect" href="group__game.html#ga82a8aa816fdf22cb3d705dfa56c594f7" title="Reveals another character in the word clue and notifies the other player." alt="" coords="487,547,601,574"/>
+<area shape="rect" href="group__game.html#ga3f61372930dd958f7499a110ce2bd7d6" title="Updates the game due to a rtc alarm interrupt." alt="" coords="266,438,381,465"/>
+<area shape="rect" href="group__dispatcher.html#ga165d3da39e7ad5173611be1f6689c6c7" title="Dispatches a RTC alarm interrupt, calling relevant application dependent code." alt="" coords="22,343,175,370"/>
+<area shape="rect" href="group__game.html#ga159cd81ebf01a5ccd6a0f96aaffb2530" title="Updates the game due to a rtc periodic interrupt." alt="" coords="483,329,605,355"/>
+<area shape="rect" href="group__dispatcher.html#ga472851ec5e720521f2d714e9c4db0366" title="Dispatches a RTC periodic interrupt, calling relevant application dependent code." alt="" coords="240,329,407,355"/>
+<area shape="rect" href="group__dispatcher.html#gac874797e644c008b7aac6fa73c6c97f2" title="Tries to guess the word and notifies the other player." alt="" coords="476,379,612,406"/>
+<area shape="rect" href="group__game.html#ga4ddbf7eb8cd795bad8a0acae94d6c7a3" title="Initializes the text box of the new round for the given guesser_t." alt="" coords="275,379,371,406"/>
+<area shape="rect" href="group__dispatcher.html#gaa94a2133718338e297127042cc5e35b4" title="Leaves the game back to the main menu and notifies the other player." alt="" coords="477,649,611,675"/>
+<area shape="rect" href="group__dispatcher.html#gaf04611df318bda3c0f0d88268a47736d" title="Notify the other player that this player is not currently in the game." alt="" coords="455,699,633,726"/>
+<area shape="rect" href="group__protocol.html#gad85741e17c753b18ad013e5e7bf3eb7c" title="Handles a received message of type MSG_CLUE." alt="" coords="250,699,397,726"/>
+<area shape="rect" href="group__dispatcher.html#gad508b46cafff5282731b452d032f5267" title="Adds a new atom to the stroke being drawn in the canvas and notifies the other player." alt="" coords="481,497,607,523"/>
+<area shape="rect" href="group__dispatcher.html#gac40675a6ad33c38fe29637b951581d58" title="Starts a new round as DRAWER (role_t)." alt="" coords="469,431,619,472"/>
+<area shape="rect" href="group__dispatcher.html#ga2a6213346685a0167e6ff3c86d126106" title="Starts drawing new stroke in the canvas and notifies the other player." alt="" coords="477,598,611,625"/>
+<area shape="rect" href="group__dispatcher.html#ga05c438abb1a2b811edbac9dd08f57f3c" title="Generates and sends a random number to the other player to decide starting roles." alt="" coords="479,867,609,908"/>
+<area shape="rect" href="group__dispatcher.html#ga82e16242d9bfea1af9a18217b66282ef" title="Goes into the &quot;Awaiting other player...&quot; screen and notifies the other player." alt="" coords="249,811,397,838"/>
+<area shape="rect" href="group__dispatcher.html#ga1333dd4f74fe83a8e4b6c7c40e23b88a" title="Reacts to the event that the other player opened the program." alt="" coords="475,801,613,843"/>
+<area shape="rect" href="group__dispatcher.html#ga0dd9d47f03b474d5b5f6350299a63079" title="Redoes a canvas stroke and notifies the other player." alt="" coords="498,118,590,145"/>
+<area shape="rect" href="group__dispatcher.html#ga1fbc6470ac3036a964c81e5a167af362" title="Sets the round as won, updates the score and notifies the other player." alt="" coords="481,177,607,203"/>
+<area shape="rect" href="group__dispatcher.html#ga8d7e76896ea98e9cc288ac7f708ccd50" title="Undoes a canvas stroke and notifies the other player." alt="" coords="497,278,591,305"/>
+<area shape="rect" href="group__protocol.html#gacc32febde28d20d54c2e1460899a14a3" title="Handles a received byte when no message is currently being received." alt="" coords="689,925,853,967"/>
 </map>
 </div>
 
@@ -1131,13 +1502,27 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Return 0 upon success and non-zero otherwise </dd></dl>
 <div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__uart_ga1975f8b129ad7fe81b0199dadabc703a_cgraph.png" border="0" usemap="#agroup__uart_ga1975f8b129ad7fe81b0199dadabc703a_cgraph" alt=""/></div>
+<map name="group__uart_ga1975f8b129ad7fe81b0199dadabc703a_cgraph" id="group__uart_ga1975f8b129ad7fe81b0199dadabc703a_cgraph">
+<area shape="rect" title="Specifies the bit rate for the serial port." alt="" coords="5,81,124,108"/>
+<area shape="rect" href="group__uart.html#gaa4619ca27d356a2a050c00bb1dd4eaa6" title="Selects data in the line control register so that data transmittion registers may be accessed." alt="" coords="172,5,291,32"/>
+<area shape="rect" href="group__uart.html#ga79025c0ba3368f7b2bb35e2bfc24da95" title="Selects dlab in the line control register so that divisor latch registers may be accessed." alt="" coords="173,56,290,83"/>
+<area shape="rect" href="group__utils.html#ga81621440b3d65680979425e39aa8c789" title="Gets the least significant byte of a given half&#45;word." alt="" coords="183,107,279,133"/>
+<area shape="rect" href="group__utils.html#ga6a880076cd2ec468834438b6e0c58836" title="Gets the most significant byte of a given half&#45;word." alt="" coords="181,157,281,184"/>
+<area shape="rect" href="group__utils.html#ga79a031a8611f5b2d6afa4158e92b0fb4" title="Wraps sys_inb so that it may be called with a uint8_t argument." alt="" coords="339,31,429,57"/>
+</map>
+</div>
+<div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="group__uart_ga1975f8b129ad7fe81b0199dadabc703a_icgraph.png" border="0" usemap="#agroup__uart_ga1975f8b129ad7fe81b0199dadabc703a_icgraph" alt=""/></div>
-<map name="group__uart_ga1975f8b129ad7fe81b0199dadabc703a_icgraph" id="group__uart_ga1975f8b129ad7fe81b0199dadabc703a_icgraph">
-<area shape="rect" title="Specifies the bit rate for the serial port." alt="" coords="375,5,493,32"/>
-<area shape="rect" href="group__uart.html#gac56dcef886bb66f75de8fe196316995d" title="Configures the parameters of the serial port." alt="" coords="192,5,327,32"/>
-<area shape="rect" href="group__protocol.html#ga1b4d0d201e93a7bdf1aaeb6766e304ea" title="Configures the serial port and protocol queues to start communication." alt="" coords="5,5,144,32"/>
+<map name="group__uart_ga1975f8b129ad7fe81b0199dadabc703a_icgraph" id="agroup__uart_ga1975f8b129ad7fe81b0199dadabc703a_icgraph">
+<area shape="rect" title="Specifies the bit rate for the serial port." alt="" coords="532,5,651,32"/>
+<area shape="rect" href="group__uart.html#gac56dcef886bb66f75de8fe196316995d" title="Configures the parameters of the serial port." alt="" coords="349,5,484,32"/>
+<area shape="rect" href="group__protocol.html#ga1b4d0d201e93a7bdf1aaeb6766e304ea" title="Configures the serial port and protocol queues to start communication." alt="" coords="163,5,301,32"/>
+<area shape="rect" href="group__proj.html#ga2a16f651eccbd248e1ad3b3b924b143b" title="Reacts to the event that the other player sent the random number to decide starting roles." alt="" coords="5,5,115,32"/>
 </map>
 </div>
 

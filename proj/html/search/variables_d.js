@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['second_1003',['second',['../structdate.html#a8459fc4e94de7eefc74991e41779c8fc',1,'date']]],
-  ['seconds_1004',['seconds',['../structrtc__alarm__time.html#a46729a903be1a03cdb248fb48d84d4f5',1,'rtc_alarm_time']]],
-  ['state_1005',['state',['../structbutton.html#a6f71f07fedcc14f72433fea54407ce9c',1,'button']]]
+  ['origin_1428',['origin',['../structinterrupt__identification.html#acc6557358acdd656053c08514939715a',1,'interrupt_identification']]],
+  ['other_5fplayer_5fgame_5fover_1429',['other_player_game_over',['../structround.html#aa81874593aeabab79f0b6146feb6248b',1,'round']]],
+  ['other_5fplayer_5frandom_5fnumber_1430',['other_player_random_number',['../group__dispatcher.html#ga4d5652b67bdb9c9246b6d36510da5c07',1,'dispatcher.c']]],
+  ['other_5fplayer_5fstate_1431',['other_player_state',['../group__dispatcher.html#ga6234b592a97c44b365d12fd117bd2ce2',1,'dispatcher.c']]]
 ];

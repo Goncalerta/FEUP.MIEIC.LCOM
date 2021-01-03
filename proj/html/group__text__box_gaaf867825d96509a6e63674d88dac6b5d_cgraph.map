@@ -1,0 +1,7 @@
+<map id="text_box_react_kbd" name="text_box_react_kbd">
+<area shape="rect" id="node1" title="Updates a given text box according to a keyboard event." alt="" coords="5,56,141,83"/>
+<area shape="rect" id="node2" href="$group__text__box.html#ga6a8095c6c90994772912450085202c92" title="Copies selected portion of the string in the textbox to the clipboard." alt="" coords="221,5,328,32"/>
+<area shape="rect" id="node3" href="$group__text__box.html#ga1bc6818987fa875239c8e67f350b6ed5" title="Deletes the selected portion of the string in the textbox." alt="" coords="189,56,360,83"/>
+<area shape="rect" id="node4" href="$group__text__box.html#ga61fb6c4833bc465a10acf643b799006f" title="Calls the text box callback function (action) with the currently written string as input." alt="" coords="215,107,335,133"/>
+<area shape="rect" id="node5" href="$group__text__box.html#ga4233fbb69c433514936274518e24d523" title="Clears the content of a given text box." alt="" coords="408,107,515,133"/>
+</map>

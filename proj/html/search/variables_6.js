@@ -1,6 +1,8 @@
 var searchData=
 [
-  ['icon_988',['icon',['../structbutton.html#ad21a46c657f719a4bf34e828a2c86b46',1,'button']]],
-  ['img_989',['img',['../structbutton__icon.html#ac16ac5b5982366cbba9038d9e97c250d',1,'button_icon']]],
-  ['is_5fctrl_5fpressed_990',['is_ctrl_pressed',['../structkbd__event.html#a327f1f147008f529a2889fb013f0f63e',1,'kbd_event']]]
+  ['game_1390',['game',['../group__game.html#ga76176e88b0b13650fed2c5f873eb7d45',1,'game.c']]],
+  ['game_5fover_5fmessage_1391',['game_over_message',['../group__game.html#gae6e860cb7033528b2f2a0bedf95fcb65',1,'game.c']]],
+  ['guess_1392',['guess',['../structguess.html#abe9474d0c8e95e689c242ac1a6717b65',1,'guess']]],
+  ['guesser_1393',['guesser',['../unionrole__attr.html#a70ffe221e4baf959c87f7b6547218c8d',1,'role_attr']]],
+  ['guesses_1394',['guesses',['../structround.html#a68ca02c86858892184357912aa419d56',1,'round']]]
 ];

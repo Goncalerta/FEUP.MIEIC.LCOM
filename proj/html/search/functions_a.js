@@ -1,9 +1,8 @@
 var searchData=
 [
-  ['queue_5fempty_898',['queue_empty',['../group__queue.html#gabcd667a1a044aab36d9dbd6af2e152fb',1,'queue_empty(queue_t *queue):&#160;queue.c'],['../group__queue.html#gabcd667a1a044aab36d9dbd6af2e152fb',1,'queue_empty(queue_t *queue):&#160;queue.c']]],
-  ['queue_5fis_5fempty_899',['queue_is_empty',['../group__queue.html#ga09a3da9bf84f747356ef8050447bf35a',1,'queue_is_empty(queue_t *queue):&#160;queue.c'],['../group__queue.html#ga09a3da9bf84f747356ef8050447bf35a',1,'queue_is_empty(queue_t *queue):&#160;queue.c']]],
-  ['queue_5fis_5ffull_900',['queue_is_full',['../group__queue.html#gae1cd6b62453b7f57525be17a53885800',1,'queue_is_full(queue_t *queue):&#160;queue.c'],['../group__queue.html#gae1cd6b62453b7f57525be17a53885800',1,'queue_is_full(queue_t *queue):&#160;queue.c']]],
-  ['queue_5fpop_901',['queue_pop',['../group__queue.html#ga81880a2f29871356ccddd8f20ec99e9e',1,'queue_pop(queue_t *queue):&#160;queue.c'],['../group__queue.html#ga81880a2f29871356ccddd8f20ec99e9e',1,'queue_pop(queue_t *queue):&#160;queue.c']]],
-  ['queue_5fpush_902',['queue_push',['../group__queue.html#gaa54578828a1b5676bb99a535c617e1a2',1,'queue_push(queue_t *queue, void *el):&#160;queue.c'],['../group__queue.html#gaa54578828a1b5676bb99a535c617e1a2',1,'queue_push(queue_t *queue, void *el):&#160;queue.c']]],
-  ['queue_5ftop_903',['queue_top',['../group__queue.html#ga24ec1e60eaa37239a1b49c6f7321c9d9',1,'queue_top(queue_t *queue, void *el):&#160;queue.c'],['../group__queue.html#ga24ec1e60eaa37239a1b49c6f7321c9d9',1,'queue_top(queue_t *queue, void *el):&#160;queue.c']]]
+  ['new_5fbutton_1177',['new_button',['../group__button.html#ga0b91c542f65989702204add07d7a970c',1,'button.c']]],
+  ['new_5fgame_1178',['new_game',['../group__game.html#gac92edafae871c9f669c388fad89e4b34',1,'game.c']]],
+  ['new_5fqueue_1179',['new_queue',['../group__queue.html#gacfa22645c74c8856e53eb1fdbee701b7',1,'queue.c']]],
+  ['new_5ftext_5fbox_1180',['new_text_box',['../group__text__box.html#ga711e4dc920572c101218ef70814c24d2',1,'text_box.c']]],
+  ['new_5fword_5fclue_1181',['new_word_clue',['../group__clue.html#ga5fad31b7a35520879cff41d6e9a1f27a',1,'clue.c']]]
 ];

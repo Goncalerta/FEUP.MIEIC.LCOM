@@ -1,5 +1,6 @@
 <map id="date_bcd_to_binary" name="date_bcd_to_binary">
-<area shape="rect" id="node1" title="Converts a date_t from BCD to binary format." alt="" coords="257,5,392,32"/>
-<area shape="rect" id="node2" href="$group__rtc.html#ga4c1a7a6487a05aec45012e5298134758" title="Reads the current date from the RTC and stores it inside the rtc module." alt="" coords="108,5,209,32"/>
-<area shape="rect" id="node3" href="$group__rtc.html#ga75dad42881d64cf07cf1bdc2979a7056" title="RTC interrupt handler." alt="" coords="5,5,60,32"/>
+<area shape="rect" id="node1" title="Converts a date_t from BCD to binary format." alt="" coords="415,5,549,32"/>
+<area shape="rect" id="node2" href="$group__rtc.html#ga4c1a7a6487a05aec45012e5298134758" title="Reads the current date from the RTC and stores it inside the rtc module." alt="" coords="265,5,367,32"/>
+<area shape="rect" id="node3" href="$group__proj.html#ga2a16f651eccbd248e1ad3b3b924b143b" title="Reacts to the event that the other player sent the random number to decide starting roles." alt="" coords="5,5,115,32"/>
+<area shape="rect" id="node4" href="$group__rtc.html#ga75dad42881d64cf07cf1bdc2979a7056" title="RTC interrupt handler." alt="" coords="163,31,217,57"/>
 </map>

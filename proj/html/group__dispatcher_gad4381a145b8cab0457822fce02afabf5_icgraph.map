@@ -1,6 +1,0 @@
-<map id="handle_this_player_random_number" name="handle_this_player_random_number">
-<area shape="rect" id="node1" title="Generates and sends a random number to the other player to decide starting roles." alt="" coords="320,35,492,76"/>
-<area shape="rect" id="node2" href="$group__dispatcher.html#gafd3373905ec27311207b6c592fae056e" title="Reacts to the event that the other player is ready to play." alt="" coords="137,5,267,47"/>
-<area shape="rect" id="node3" href="$group__dispatcher.html#gaeaf290f8252a2b923005262498513787" title="Goes into the &quot;Awaiting other player...&quot; screen and notifies the other player." alt="" coords="132,71,272,98"/>
-<area shape="rect" id="node4" href="$group__menu.html#gafae9ccfd6e7de562283d6ffc8c3cf066" title="Loads the xpm images of the menu." alt="" coords="5,71,84,98"/>
-</map>

@@ -1,0 +1,4 @@
+<map id="game_give_clue_at" name="game_give_clue_at">
+<area shape="rect" id="node1" title="Reveals a character in the word clue at the given position." alt="" coords="200,5,332,32"/>
+<area shape="rect" id="node2" href="$group__protocol.html#gad85741e17c753b18ad013e5e7bf3eb7c" title="Handles a received message of type MSG_CLUE." alt="" coords="5,5,152,32"/>
+</map>

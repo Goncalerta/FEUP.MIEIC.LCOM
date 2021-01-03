@@ -26,21 +26,26 @@
 #include "xpm/correct.xpm"
 #include "xpm/gameover.xpm"
 
-#define GAME_BAR_COLOR 0x00dddddd
-#define GAME_BAR_COLOR_DARK 0x00aaaaaa
-#define GAME_BAR_PADDING 5
-#define GAME_BAR_INNER_HEIGHT ((GAME_BAR_HEIGHT) - (GAME_BAR_PADDING))
-#define MAX_GUESSES 5 // historic being displayed
+/** @defgroup game game
+ * @{
+ *
+ */
 
-#define MAX_SCORE 99999
-#define TICKS_PER_SECOND 2
-#define ROUND_SECONDS 60
-#define ROUND_TICKS ((ROUND_SECONDS) * (TICKS_PER_SECOND))
-#define WRONG_GUESS_PENALTY 5
-#define BUTTONS_LEN 75
-#define GUESS_CHARACTER_LIMIT 14
+#define GAME_BAR_COLOR 0x00dddddd /**< @brief Color of the game bar */
+#define GAME_BAR_COLOR_DARK 0x00aaaaaa /**< @brief Color of the game bar border */
+#define GAME_BAR_PADDING 5 /**< @brief Width of the game bar border */
+#define GAME_BAR_INNER_HEIGHT ((GAME_BAR_HEIGHT) - (GAME_BAR_PADDING)) /**< @brief Height of the inner part of the game board */
+#define MAX_GUESSES 5 /**< @brief Maximum number of last guesses displayed at a time */
 
-#define WORD_LIST_SIZE 46
+#define MAX_SCORE 99999 /**< @brief Maximum displayable score */
+#define GUESS_CHARACTER_LIMIT 14 /**< @brief Maximum number of caracters displayable per guess */
+#define ROUND_SECONDS 60 /**< @brief Number of seconds in a round */
+#define TICKS_PER_SECOND 2 /**< @brief Ticks per second */
+#define ROUND_TICKS ((ROUND_SECONDS) * (TICKS_PER_SECOND)) /**< @brief Number of ticks in a round */
+#define WRONG_GUESS_PENALTY 5 /**< @brief Number of seconds subtracted per wrong guess */
+#define BUTTONS_LEN 75 /**< @brief Width and height of the (square) canvas buttons */
+
+#define WORD_LIST_SIZE 46 /**< @brief Number of words in word_list */
 static char *word_list[WORD_LIST_SIZE] = {
     "HOUSE", "TORNADO", "SHOELACE", "TRUCK", "FEAR", "CAREER", "LAKE", "CHRISTMAS",
     "WALLET", "BALL", "IMAGINATION", "HEAL", "MIND", "ROAR", "WEATHER", "EAT", "CAT",
@@ -48,82 +53,128 @@ static char *word_list[WORD_LIST_SIZE] = {
     "VOLLEYBALL", "PORTUGAL", "CHOCOLATE", "BEAUTIFUL", "DANGER", "ACCIDENT",
     "DEMOCRACY", "FAMILY", "ALIEN", "MARS", "VENUS", "JUPITER", "SUN", "BOOK",
     "PEN", "UNIVERSITY", "FISH", "DOCTOR", "SPIDER", "NEWSPAPER", "HALLOWEEN"
-};
+}; /**< @brief List of words that may be chosen for the correct guess at the start of the round */
 
-#define NUM_COLORS_AVAILABLE 10
+#define NUM_COLORS_AVAILABLE 10 /**< @brief Number of colors in canvas_pallete */
 static const uint32_t canvas_pallete[NUM_COLORS_AVAILABLE] = {
     // black, blue, red, green, yellow, pink, purple, orange, brown, gray
     0x000000, 0x1E88E5, 0xD50000, 0x2E7D32, 0xFFEB3B, 0xEC407A, 0x4A148C, 0xFF6D00, 0x5d4037, 0x424242
-};
+}; /**< @brief Colors that may be used by the drawer */
 
-#define NUM_THICKNESSES_AVAILABLE 3
+#define NUM_THICKNESSES_AVAILABLE 3 /**< @brief Number of thicknesses in valid_thickness */
 static const uint16_t valid_thickness[NUM_THICKNESSES_AVAILABLE] = {
     1, 10, 20
-};
+}; /**< @brief Line thicknesses that may be used by the drawer */
 
+/**
+ * @brief Enumerated type for specifying the state of the game.
+ * 
+ */
 typedef enum game_state {
-    ROUND_UNSTARTED,
-    ROUND_ONGOING,
-    GAME_OVER,
-    TIMES_UP,
-    ROUND_CORRECT_GUESS
+    ROUND_UNSTARTED, /**< @brief Round has not yet started. */
+    ROUND_ONGOING, /**< @brief Round is ongoing. */
+    GAME_OVER, /**< @brief Game is over (round lost). */
+    TIMES_UP, /**< @brief Time is up (waiting for other computer before declaring game over). */
+    ROUND_CORRECT_GUESS /**< @brief Correct guess (round win). */
 } game_state_t;
 
+/**
+ * @brief Attributes exclusive to the DRAWER.
+ * 
+ */
 typedef struct drawer {
-    bool is_pencil_primary;
-    size_t selected_color;
-    size_t selected_thickness;
-    button_t *b_pencil, *b_eraser, *b_color, *b_thickness, *b_undo, *b_redo;
+    bool is_pencil_primary; /**< @brief Pencil is selected as the primary (left button) tool. */
+    size_t selected_color; /**< @brief Selected color. */
+    size_t selected_thickness; /**< @brief Selected line thickness. */
+    button_t *b_pencil; /**< @brief Button for selecting pencil tool. */
+    button_t *b_eraser; /**< @brief Button for selecting eraser tool. */
+    button_t *b_color; /**< @brief Button for selecting color. */
+    button_t *b_thickness; /**< @brief Button for selecting line thickness. */
+    button_t *b_undo; /**< @brief Button for undoing stroke. */
+    button_t *b_redo; /**< @brief Button for redoing stroke. */
 } drawer_t;
 
+/**
+ * @brief Attributes exclusive to the GUESSER.
+ * 
+ */
 typedef struct guesser {
-    text_box_t *text_box;
+    text_box_t *text_box; /**< @brief Text box to guess word. */
 } guesser_t;
 
+/**
+ * @brief Role specific attributes.
+ * 
+ */
 typedef union role_attr {
-    drawer_t *drawer;
-    guesser_t *guesser;
+    drawer_t *drawer; /**< @brief DRAWER specific attributes. */
+    guesser_t *guesser; /**< @brief GUESSER specific attributes. */
 } role_attr_t;
 
+/**
+ * @brief Represents a guess, which may be right or wrong.
+ * 
+ */
 typedef struct guess {
-    char *guess;
-    bool correct;
+    char *guess; /**< @brief Guessed word. */
+    bool correct; /**< @brief Whether the guess is correct. */
 } guess_t;
 
+/**
+ * @brief Holds information about the round in a game.
+ * 
+ */
 typedef struct round {
-    bool other_player_game_over;
-    int round_timer;
-    int ticker;
+    bool other_player_game_over; /**< @brief Whether the other player has declared that the round should end (time's up). */
+    int round_timer; /**< @brief Number of seconds to end round. */
+    int ticker; /**< @brief Ticker for game animations. */
 
     // GUESSES
-    size_t num_guesses;
-    guess_t guesses[MAX_GUESSES];
-    const char *correct_guess;
+    size_t num_guesses; /**< @brief Number of previous guesses being displayed. */
+    guess_t guesses[MAX_GUESSES]; /**< @brief Previous guesses being displayed. */
+    const char *correct_guess; /**< @brief String with the correct guess. */
     
     // CLUES
-    word_clue_t *word_clue;
+    word_clue_t *word_clue; /**< @brief Word clue. */
 
     // ROLE
-    role_t role;
-    role_attr_t attr;
+    role_t role; /**< @brief Role of this player in the round. */
+    role_attr_t attr; /**< @brief Role specific attributes. */
 } round_t;
 
+/**
+ * @brief Holds information about a game.
+ * 
+ */
 typedef struct game {
-    game_state_t state;
-    round_t *round;
-    uint32_t score;
-    uint32_t round_number;
+    game_state_t state; /**< @brief Current state of the game. */
+    round_t *round; /**< @brief Current round of the game. */
+    uint32_t score; /**< @brief Score. */
+    uint32_t round_number; /**< @brief Number of the current round. */
 } game_t;
 
+/**
+ * @brief Time between each hint being given in the word clue
+ * 
+ */
 static const rtc_alarm_time_t clue_time_interval = {.hours = 0, .minutes = 0, .seconds = 16};
+/**
+ * @brief Time before leaving the game screen after round ending
+ * 
+ */
 static const rtc_alarm_time_t end_round_delay = {.hours = 0, .minutes = 0, .seconds = 3};
 
-static xpm_image_t tick_img, cross_img;
-static xpm_image_t correct_message, game_over_message;
-static xpm_image_t pencil, eraser, undo_arrow, redo_arrow;
-static xpm_animation_t clock_frames;
+static xpm_image_t tick_img; /**< @brief Green tick XPM */
+static xpm_image_t cross_img; /**< @brief Red cross XPM */
+static xpm_image_t correct_message; /**< @brief "CORRECT" message XPM */
+static xpm_image_t game_over_message; /**< @brief "GAMEOVER" message XPM */
+static xpm_image_t pencil; /**< @brief Pencil tool XPM */
+static xpm_image_t eraser; /**< @brief Eraser tool XPM */
+static xpm_image_t undo_arrow; /**< @brief Undo arrow XPM */
+static xpm_image_t redo_arrow; /**< @brief Redo arrow XPM */
+static xpm_animation_t clock_frames; /**< @brief Clock animation */
 
-static game_t *game = NULL;
+static game_t *game = NULL; /**< @brief Instance of game */
 
 const char *get_random_word() {
     return word_list[rand() % WORD_LIST_SIZE];
@@ -194,6 +245,12 @@ void delete_game() {
     }
 }
 
+/**
+ * @brief Initializes the buttons of the new round for the given drawer_t.
+ * 
+ * @param drawer drawer_t to initialize the buttons to.
+ * @return Return 0 upon success and non-zero otherwise
+ */
 static int init_buttons(drawer_t *drawer) {
     frame_buffer_t buf = vg_get_back_buffer();
     uint16_t button_margin = 10;
@@ -299,6 +356,12 @@ void game_set_over() {
         game->state = GAME_OVER;
 }
 
+/**
+ * @brief Initializes the text box of the new round for the given guesser_t.
+ * 
+ * @param drawer guesser_t to initialize the text box to.
+ * @return Return 0 upon success and non-zero otherwise
+ */
 static int init_text_box(guesser_t *guesser) {
     guesser->text_box = new_text_box(TEXT_BOX_GUESSER_X + 4, TEXT_BOX_GUESSER_Y, 
                                      TEXT_BOX_GUESSER_DISPLAY_SIZE, handle_guess_word);
@@ -439,6 +502,11 @@ int game_start_round() {
     return 0;
 }
 
+/**
+ * @brief Draws game bar.
+ * 
+ * @return Return 0 upon success and non-zero otherwise
+ */
 static int game_draw_bar() {
     if (game == NULL || game->round == NULL)
         return 1;
@@ -544,6 +612,12 @@ static int game_draw_bar() {
     return 0;
 }
 
+/**
+ * @brief Draws the buttons of the new round for the given drawer_t.
+ * 
+ * @param drawer drawer_t instance from which to get the buttons.
+ * @return Return 0 upon success and non-zero otherwise
+ */
 static int game_draw_buttons(drawer_t *drawer) {
     frame_buffer_t buf = vg_get_back_buffer();
 
@@ -637,11 +711,16 @@ int game_round_over(uint32_t current_score, bool win) {
 
     clue_reveal(game->round->word_clue);
 
+    // Disable next clue alarm interrupt
     if (game->round->role == DRAWER) {
         if (rtc_disable_int(ALARM_INTERRUPT) != OK)
             return 1;
     }
 
+    // Enable alarm to leave game screen
+    // If the game is lost, each player will independently set their alarm
+    // Otherwise, only the GUESSER of the current round sets it (the DRAWER
+    // awaits for a GUESSER's serial port message)
     if (game->round->role == GUESSER || !win) {
         if (rtc_set_alarm_in(end_round_delay) != OK)
             return 1;
@@ -657,7 +736,10 @@ int game_guess_word(char *guess) {
     guess_t g;
     g.guess = guess;
     g.correct = strcmp(guess, game->round->correct_guess) == 0;
+
+    // Add the guess to the list of previous guesses.
     if (game->round->num_guesses == MAX_GUESSES) {
+        // Too many guesses, delete the oldest one.
         free(game->round->guesses[0].guess);
         for (int i = 1; i < MAX_GUESSES; i++) {
             game->round->guesses[i-1] = game->round->guesses[i];
@@ -671,6 +753,7 @@ int game_guess_word(char *guess) {
     if (g.correct) {
         game->state = ROUND_CORRECT_GUESS;
         if (game->round->role == DRAWER) {
+            // DRAWER must calculate the new score and send it to the GUESSER.
             uint32_t new_score = game->score + 100 + game->round->round_timer * 4;
             if (new_score > MAX_SCORE)
                 new_score = MAX_SCORE;
@@ -688,12 +771,14 @@ int game_guess_word(char *guess) {
 int game_rtc_alarm() {
     switch (game->state) {
         case ROUND_ONGOING:
+            // Alarm in the middle of the round means a new hint should be given
             if (game->round->role == DRAWER) {
                 if (game_give_clue() != OK)
                     return 1;
             }
             break;
         case GAME_OVER:
+            // Alarm after game over should send player to game over screen
             if (rtc_disable_int(ALARM_INTERRUPT) != OK)
                 return 1;
             if (handle_end_round() != OK)
@@ -702,6 +787,7 @@ int game_rtc_alarm() {
                 return 1;
             break;
         case ROUND_CORRECT_GUESS:
+            // Alarm after correct guess should send player should start a new round
             if (rtc_disable_int(ALARM_INTERRUPT) != OK)
                 return 1;
             if (game->round->role == GUESSER) {
@@ -735,6 +821,7 @@ int game_rtc_pi_tick() {
 
     if (game->state == ROUND_ONGOING) {
         if (game->round->round_timer == 0) {
+            // Timer is now 0, stop clock and notify the other player
             game->state = TIMES_UP;
             clock_frames.current_frame = 1;
             if (protocol_send_game_over() != OK)
@@ -849,3 +936,5 @@ int drawer_set_eraser_primary() {
     button_unset_border_active(drawer->b_pencil);
     return 0;
 }
+
+/**@}*/

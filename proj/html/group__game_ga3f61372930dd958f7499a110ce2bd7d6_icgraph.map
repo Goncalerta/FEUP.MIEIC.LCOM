@@ -1,0 +1,4 @@
+<map id="game_rtc_alarm" name="game_rtc_alarm">
+<area shape="rect" id="node1" title="Updates the game due to a rtc alarm interrupt." alt="" coords="207,5,321,32"/>
+<area shape="rect" id="node2" href="$group__dispatcher.html#ga165d3da39e7ad5173611be1f6689c6c7" title="Dispatches a RTC alarm interrupt, calling relevant application dependent code." alt="" coords="5,5,159,32"/>
+</map>

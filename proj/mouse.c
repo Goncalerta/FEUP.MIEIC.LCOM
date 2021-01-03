@@ -4,10 +4,21 @@
 #include "i8042.h"
 #include "dispatcher.h"
 
-static int hook_id_mouse = 2;
-static uint8_t raw_packet[3] = {0, 0, 0};
-static size_t packet_byte_counter = 0;
+/** @defgroup clue clue
+ * @{
+ *
+ */
 
+static int hook_id_mouse = 2; /**< @brief Mouse interrupts hook id */
+static uint8_t raw_packet[3] = {0, 0, 0}; /**< @brief Buffer for bytes read from KBC that represent a mouse packet */
+static size_t packet_byte_counter = 0; /**< @brief Number meaningful of bytes in raw_packet buffer */
+
+/**
+ * @brief Returns whether the given byte is valid for the first byte of a mouse packet.
+ * 
+ * @param byte the byte being check
+ * @return Whether the given byte is valid for the first byte of a mouse packet
+ */
 static bool mouse_is_valid_first_byte_packet(uint8_t byte) {
     return (byte & BIT(3));
 }
@@ -21,6 +32,10 @@ int mouse_unsubscribe_int() {
   return sys_irqrmpolicy(&hook_id_mouse);
 }
 
+/**
+ * @brief Mouse interrupt handler.
+ * 
+ */
 void (mouse_ih)() {
     if (packet_byte_counter >= 3) {
         printf("mouse interrupt handler failed\n");
@@ -101,3 +116,5 @@ int mouse_disable_dr() {
 int mouse_set_stream_mode() {
     return write_byte_to_mouse(MS_SET_STREAM_MODE);
 }
+
+/**@}*/

@@ -1,0 +1,6 @@
+<map id="vg_init" name="vg_init">
+<area shape="rect" id="node1" title="Initialize video graphics with the given mode." alt="" coords="5,56,64,83"/>
+<area shape="rect" id="node2" href="$group__vbe.html#ga351c3690346f0033fb66e74667e61b09" title="VBE function 0x02 SET VBE MODE." alt="" coords="132,5,261,32"/>
+<area shape="rect" id="node3" href="$group__vbe.html#gab9b4916bfbf61a863de3f81c19f58be2" title="VBE function 0x01 RETURN VBE MODE INFORMATION." alt="" coords="134,56,259,83"/>
+<area shape="rect" id="node4" href="$group__video__gr.html#ga9ca1dfb29dea0d7e177b052955b3e727" title="Initialize video graphics buffers from the given vbe_mode_info_t." alt="" coords="112,107,281,133"/>
+</map>

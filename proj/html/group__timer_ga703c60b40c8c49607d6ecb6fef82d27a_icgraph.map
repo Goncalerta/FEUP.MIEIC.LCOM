@@ -1,0 +1,4 @@
+<map id="timer_get_conf" name="timer_get_conf">
+<area shape="rect" id="node1" title="Gets the configuration of the given timer." alt="" coords="192,5,299,32"/>
+<area shape="rect" id="node2" href="$group__timer.html#gaf2c04fa8e97ffa748fd3f612886a92a7" title="Sets the frequency of the given timer." alt="" coords="5,5,144,32"/>
+</map>

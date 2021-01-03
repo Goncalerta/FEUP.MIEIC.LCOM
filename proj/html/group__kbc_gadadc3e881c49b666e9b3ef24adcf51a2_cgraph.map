@@ -1,0 +1,4 @@
+<map id="kbc_flush" name="kbc_flush">
+<area shape="rect" id="node1" title="Flushes the kbc output buffer." alt="" coords="5,5,83,32"/>
+<area shape="rect" id="node2" href="$group__utils.html#ga79a031a8611f5b2d6afa4158e92b0fb4" title="Wraps sys_inb so that it may be called with a uint8_t argument." alt="" coords="131,5,221,32"/>
+</map>

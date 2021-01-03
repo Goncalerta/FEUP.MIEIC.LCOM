@@ -1,0 +1,4 @@
+<map id="uart_select_dlab" name="uart_select_dlab">
+<area shape="rect" id="node1" title="Selects dlab in the line control register so that divisor latch registers may be accessed." alt="" coords="5,5,123,32"/>
+<area shape="rect" id="node2" href="$group__utils.html#ga79a031a8611f5b2d6afa4158e92b0fb4" title="Wraps sys_inb so that it may be called with a uint8_t argument." alt="" coords="171,5,261,32"/>
+</map>

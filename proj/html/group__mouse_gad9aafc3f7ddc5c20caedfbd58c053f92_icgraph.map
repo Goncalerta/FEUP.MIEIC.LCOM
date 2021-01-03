@@ -1,0 +1,4 @@
+<map id="mouse_retrieve_packet" name="mouse_retrieve_packet">
+<area shape="rect" id="node1" title="Retrieves a mouse packet." alt="" coords="216,5,371,32"/>
+<area shape="rect" id="node2" href="$group__dispatcher.html#gab9f77cf9ceb2ad8fc95e016d5b293338" title="Retrieves and dispatches a mouse packet, calling relevent application dependent code." alt="" coords="5,5,168,32"/>
+</map>

@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['next_995',['next',['../structstroke.html#a54b64fb17aedbf91cd1f3316931cf25f',1,'stroke']]],
-  ['num_5fatoms_996',['num_atoms',['../structstroke.html#a0b768f30266ace490da512934adc8da1',1,'stroke']]],
-  ['number_5fof_5fframes_997',['number_of_frames',['../structxpm__animation.html#a5ee08d5f0f1fcd6d85aba4d2654cffc7',1,'xpm_animation']]]
+  ['kbd_5fstate_1409',['kbd_state',['../group__keyboard.html#ga2be586b7abc03f4a6607c5cea210a4ba',1,'keyboard.c']]],
+  ['key_1410',['key',['../structkbd__event.html#ad33d244fd237d5b07422c30c95fce8bd',1,'kbd_event']]]
 ];

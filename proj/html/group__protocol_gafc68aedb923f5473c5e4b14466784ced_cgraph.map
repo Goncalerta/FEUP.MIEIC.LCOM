@@ -1,0 +1,5 @@
+<map id="protocol_parse_received_message" name="protocol_parse_received_message">
+<area shape="rect" id="node1" title="Parse and handle the received message." alt="" coords="5,23,167,65"/>
+<area shape="rect" id="node2" href="$group__protocol.html#ga0356a7fc0e7c30b8001ea92e5608314f" title="Frees the resources of a message_t instance." alt="" coords="215,5,385,32"/>
+<area shape="rect" id="node3" href="$group__protocol.html#ga46939f58a097b24e703e1eb6523b6439" title="Initializes a new message_t." alt="" coords="221,56,379,83"/>
+</map>

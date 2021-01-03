@@ -1,6 +1,8 @@
 <map id="rtc_enable_update_int" name="rtc_enable_update_int">
-<area shape="rect" id="node1" title="Enables RTC update interrupts." alt="" coords="5,31,155,57"/>
-<area shape="rect" id="node2" href="$group__rtc.html#ga2780c6d57b30b6d1804927a1d5c1dd1b" title="Enables a type of interrupt with the given configuration." alt="" coords="203,31,305,57"/>
-<area shape="rect" id="node3" href="$group__rtc.html#gaeb22f43773d6e29365a07f7f847dfbb9" title="Reads data from a RTC register." alt="" coords="355,5,473,32"/>
-<area shape="rect" id="node4" href="$group__rtc.html#ga30aa093c07ae9ee5626c2a50a40641d1" title="Writes data to a RTC register." alt="" coords="353,56,475,83"/>
+<area shape="rect" id="node1" title="Enables RTC update interrupts." alt="" coords="5,56,155,83"/>
+<area shape="rect" id="node2" href="$group__rtc.html#ga2780c6d57b30b6d1804927a1d5c1dd1b" title="Enables a type of interrupt with the given configuration." alt="" coords="203,56,305,83"/>
+<area shape="rect" id="node3" href="$group__rtc.html#ga136979db2b9ea9ee0a346b21b28307f6" title="Converts the given alarm time from binary into bcd." alt="" coords="353,5,528,32"/>
+<area shape="rect" id="node4" href="$group__rtc.html#gaeb22f43773d6e29365a07f7f847dfbb9" title="Reads data from a RTC register." alt="" coords="381,56,500,83"/>
+<area shape="rect" id="node6" href="$group__rtc.html#ga30aa093c07ae9ee5626c2a50a40641d1" title="Writes data to a RTC register." alt="" coords="380,107,501,133"/>
+<area shape="rect" id="node5" href="$group__utils.html#ga79a031a8611f5b2d6afa4158e92b0fb4" title="Wraps sys_inb so that it may be called with a uint8_t argument." alt="" coords="576,56,667,83"/>
 </map>

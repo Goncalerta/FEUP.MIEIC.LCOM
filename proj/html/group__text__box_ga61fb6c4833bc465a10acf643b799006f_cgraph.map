@@ -1,0 +1,4 @@
+<map id="text_box_retrieve" name="text_box_retrieve">
+<area shape="rect" id="node1" title="Calls the text box callback function (action) with the currently written string as input." alt="" coords="5,5,125,32"/>
+<area shape="rect" id="node2" href="$group__text__box.html#ga4233fbb69c433514936274518e24d523" title="Clears the content of a given text box." alt="" coords="173,5,280,32"/>
+</map>

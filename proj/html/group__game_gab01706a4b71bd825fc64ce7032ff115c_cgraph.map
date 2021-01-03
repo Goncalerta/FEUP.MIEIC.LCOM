@@ -1,9 +1,52 @@
 <map id="game_new_round" name="game_new_round">
-<area shape="rect" id="node1" title="Creates a new round." alt="" coords="5,115,128,141"/>
-<area shape="rect" id="node2" href="$group__game.html#gadede5f1c2e6f4a506c211cd8045dc449" title="Deletes the current game round." alt="" coords="188,56,323,83"/>
-<area shape="rect" id="node6" href="$group__game.html#gaaf13ffc234d82a3a9acf2206c7e09e48" title="Checks if a new round may be created." alt="" coords="176,107,335,149"/>
-<area shape="rect" id="node7" href="$group__clue.html#gaf0cd9064ea524a4ee9c2123f443c1297" title="Initializes new word clue." alt="" coords="200,173,311,200"/>
-<area shape="rect" id="node3" href="$group__button.html#ga48a96f09e1170ecdb6340f1b125daef9" title="Initializes a button." alt="" coords="394,5,494,32"/>
-<area shape="rect" id="node4" href="$group__text__box.html#ga2f207c8555da953e14b641615f2d9421" title="Frees the space allocated in memory to store the content of a given text box." alt="" coords="387,56,501,83"/>
-<area shape="rect" id="node5" href="$group__clue.html#ga0425307d69028408fcaad6cf23e7a13a" title="Frees the space allocated in memory to store the content of a given word clue." alt="" coords="383,107,505,133"/>
+<area shape="rect" id="node1" title="Creates a new round." alt="" coords="5,563,128,589"/>
+<area shape="rect" id="node2" href="$group__game.html#gadede5f1c2e6f4a506c211cd8045dc449" title="Deletes the current game round." alt="" coords="188,107,323,133"/>
+<area shape="rect" id="node7" href="$group__game.html#gaaf13ffc234d82a3a9acf2206c7e09e48" title="Checks if a new round may be created." alt="" coords="176,614,335,655"/>
+<area shape="rect" id="node8" href="$group__game.html#ga870554b4c556a036981d750cce5ab275" title="Initializes the buttons of the new round for the given drawer_t." alt="" coords="211,563,300,589"/>
+<area shape="rect" id="node43" href="$group__game.html#ga4ddbf7eb8cd795bad8a0acae94d6c7a3" title="Initializes the text box of the new round for the given guesser_t." alt="" coords="207,259,303,285"/>
+<area shape="rect" id="node50" href="$group__clue.html#ga5fad31b7a35520879cff41d6e9a1f27a" title="Initializes new word clue." alt="" coords="200,680,311,707"/>
+<area shape="rect" id="node3" href="$group__button.html#ga48a96f09e1170ecdb6340f1b125daef9" title="Initializes a button." alt="" coords="422,157,522,184"/>
+<area shape="rect" id="node4" href="$group__text__box.html#ga2f207c8555da953e14b641615f2d9421" title="Frees the space allocated in memory to store the content of a given text box." alt="" coords="415,5,529,32"/>
+<area shape="rect" id="node5" href="$group__clue.html#ga0425307d69028408fcaad6cf23e7a13a" title="Frees the space allocated in memory to store the content of a given word clue." alt="" coords="411,56,533,83"/>
+<area shape="rect" id="node6" href="$structguess.html#abe9474d0c8e95e689c242ac1a6717b65" title="Guessed word." alt="" coords="853,132,953,159"/>
+<area shape="rect" id="node9" href="$group__button.html#ga6fdbd6cb9f7febe9bc371326f96f365d" title="Sets the border of a given button active." alt="" coords="609,808,776,835"/>
+<area shape="rect" id="node10" href="$group__button.html#ga851787864a8ca2d5085673f4916056ed" title="Sets a circle icon to a given button." alt="" coords="617,461,769,488"/>
+<area shape="rect" id="node11" href="$group__button.html#ga61409efef36d6fc472383d25706e44af" title="Sets a xpm image icon to a given button." alt="" coords="399,563,545,589"/>
+<area shape="rect" id="node12" href="$group__game.html#gab537b849307e8169410c0a5ee34fbc3c" title="Changes the selected color if this player is the drawer." alt="" coords="389,497,555,538"/>
+<area shape="rect" id="node13" href="$group__game.html#ga799729f35345ff1cb4992ba19aaa28a9" title="Changes the selected thickness if this player is the drawer." alt="" coords="389,379,555,421"/>
+<area shape="rect" id="node14" href="$group__game.html#gad2612affb6e1d0b40f1972a751ad6674" title="Sets the eraser primary if this player is the drawer." alt="" coords="383,867,561,893"/>
+<area shape="rect" id="node16" href="$group__game.html#gab09c1e5c83d1408799b41ae9863259ef" title="Sets the pencil primary if this player is the drawer." alt="" coords="384,816,560,843"/>
+<area shape="rect" id="node17" href="$group__dispatcher.html#ga0dd9d47f03b474d5b5f6350299a63079" title="Redoes a canvas stroke and notifies the other player." alt="" coords="647,700,739,727"/>
+<area shape="rect" id="node27" href="$group__dispatcher.html#ga8d7e76896ea98e9cc288ac7f708ccd50" title="Undoes a canvas stroke and notifies the other player." alt="" coords="425,328,519,355"/>
+<area shape="rect" id="node41" href="$group__button.html#ga0b91c542f65989702204add07d7a970c" title="Initializes a new button." alt="" coords="428,613,516,640"/>
+<area shape="rect" id="node42" href="$group__video__gr.html#gaecb0fe68de84fcbe553f77d62b37c69b" title="Gets the back buffer." alt="" coords="406,664,538,691"/>
+<area shape="rect" id="node15" href="$group__button.html#ga0425667543e54af67fe4010a57476d05" title="Sets the border of a given button inactive." alt="" coords="623,859,763,901"/>
+<area shape="rect" id="node18" href="$group__canvas.html#ga452896dd62b95f6f577aa40d01771440" title="Redoes a stroke." alt="" coords="834,700,971,727"/>
+<area shape="rect" id="node22" href="$group__protocol.html#ga37492ace0b61aeb7b426d4ba9fd7e7b9" title="Sends a message of type MSG_REDO_CANVAS." alt="" coords="835,583,970,625"/>
+<area shape="rect" id="node19" href="$group__canvas.html#ga719e67eb93c82bcb74cfc953e1717c3d" title="Draws complete stroke_t into the canvas buffer." alt="" coords="1045,700,1184,727"/>
+<area shape="rect" id="node20" href="$group__canvas.html#ga9c795224c49051c1ed6c52f34f1cbc80" title="Draws a line between two stroke_atom_t to the canvas buffer." alt="" coords="1248,725,1407,752"/>
+<area shape="rect" id="node21" href="$group__graphics.html#ga1b69ad0e07cfd0697a4cb9c18ba48b67" title="Draws a circle in the given buffer in the given coordinates with the given radius with the given colo..." alt="" coords="1274,675,1381,701"/>
+<area shape="rect" id="node23" href="$group__protocol.html#gaa8c3d5620d3e7c609513d9372296a6d3" title="Adds a new message to the pending messages queue." alt="" coords="1249,393,1405,420"/>
+<area shape="rect" id="node26" href="$group__protocol.html#ga08996dc9e6a9d1e9c96ca365d70c28a9" title="Initializes a new message_t without content." alt="" coords="1035,529,1194,570"/>
+<area shape="rect" id="node24" href="$group__protocol.html#gaca49d55d34fe635af7f3822f4b01bdc6" title="Sends the next pending message in queue." alt="" coords="1455,357,1589,398"/>
+<area shape="rect" id="node25" href="$group__queue.html#gaa54578828a1b5676bb99a535c617e1a2" title="Adds an element to the back of the given queue." alt="" coords="1476,423,1568,449"/>
+<area shape="rect" id="node28" href="$group__canvas.html#ga0eb66eb3bbeb104a7de7a880c6cd5d48" title="Undoes a stroke." alt="" coords="623,360,763,387"/>
+<area shape="rect" id="node40" href="$group__protocol.html#ga3388b3fbc456a7f5ce244bf9e8875752" title="Sends a message of type MSG_UNDO_CANVAS." alt="" coords="833,513,972,554"/>
+<area shape="rect" id="node29" href="$group__canvas.html#ga253a543571bc56fda010caa89e2ca511" title="Redraws all strokes in the canvas." alt="" coords="824,649,981,676"/>
+<area shape="rect" id="node31" href="$group__cursor.html#ga479cd0880892e002681b109c7a712c04" title="Gets cursor x coordinate." alt="" coords="854,461,951,488"/>
+<area shape="rect" id="node32" href="$group__cursor.html#ga15c1a0816c95ad240b94dc15480b403a" title="Gets cursor y coordinate." alt="" coords="854,411,951,437"/>
+<area shape="rect" id="node33" href="$group__dispatcher.html#gad508b46cafff5282731b452d032f5267" title="Adds a new atom to the stroke being drawn in the canvas and notifies the other player." alt="" coords="839,309,966,336"/>
+<area shape="rect" id="node37" href="$group__dispatcher.html#ga2a6213346685a0167e6ff3c86d126106" title="Starts drawing new stroke in the canvas and notifies the other player." alt="" coords="836,360,969,387"/>
+<area shape="rect" id="node30" href="$group__graphics.html#ga1c6f059671dcd7284a5e4edda52ce870" title="Fills the given buffer with the given color." alt="" coords="1065,649,1164,676"/>
+<area shape="rect" id="node34" href="$group__canvas.html#ga9635fd19e44c814f55f50eb213d6b6b3" title="Adds a new atom to the current stroke." alt="" coords="1029,309,1200,336"/>
+<area shape="rect" id="node35" href="$group__protocol.html#ga0ef9e0d21713f79d9c42f68b435d209a" title="Sends a message of type MSG_DRAW_ATOM." alt="" coords="1030,259,1199,285"/>
+<area shape="rect" id="node36" href="$group__protocol.html#ga46939f58a097b24e703e1eb6523b6439" title="Initializes a new message_t." alt="" coords="1248,233,1407,260"/>
+<area shape="rect" id="node38" href="$group__canvas.html#ga79691af660bfc7d635d4727f2cbfd59a" title="Starts a new stroke in the canvas." alt="" coords="1047,360,1182,387"/>
+<area shape="rect" id="node39" href="$group__game.html#ga3fd14fd97f9704dccd8f8b0e6e53960f" title="Gets the drawer selected color." alt="" coords="1044,411,1185,453"/>
+<area shape="rect" id="node44" href="$group__dispatcher.html#gac874797e644c008b7aac6fa73c6c97f2" title="Tries to guess the word and notifies the other player." alt="" coords="404,259,540,285"/>
+<area shape="rect" id="node49" href="$group__text__box.html#ga711e4dc920572c101218ef70814c24d2" title="Initiates the content of a new text box." alt="" coords="421,208,523,235"/>
+<area shape="rect" id="node45" href="$group__game.html#ga5a725e3c48e6564fd75d04c2e4d163ba" title="Adds a word guess. And reacts according to weather it is correct." alt="" coords="627,208,758,235"/>
+<area shape="rect" id="node47" href="$group__game.html#gac02470c210dcf7be41d128ba5e9940d8" title="Checks if the round is ongoing." alt="" coords="611,157,774,184"/>
+<area shape="rect" id="node48" href="$group__protocol.html#ga7ecf39afd738fd733192d8efa3b72543" title="Sends a message of type MSG_GUESS." alt="" coords="1042,208,1187,235"/>
+<area shape="rect" id="node46" href="$group__dispatcher.html#ga1fbc6470ac3036a964c81e5a167af362" title="Sets the round as won, updates the score and notifies the other player." alt="" coords="840,208,965,235"/>
 </map>

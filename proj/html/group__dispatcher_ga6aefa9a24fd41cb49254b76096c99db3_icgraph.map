@@ -1,0 +1,4 @@
+<map id="handle_other_player_ready_to_play" name="handle_other_player_ready_to_play">
+<area shape="rect" id="node1" title="Reacts to the event that the other player is ready to play." alt="" coords="208,5,347,47"/>
+<area shape="rect" id="node2" href="$group__protocol.html#ga825c861bde4764ba16b670119d5a9dcb" title="Handles a received message of type MSG_READY_TO_PLAY." alt="" coords="5,5,160,47"/>
+</map>

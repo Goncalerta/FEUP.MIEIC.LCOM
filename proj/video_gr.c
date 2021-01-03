@@ -4,8 +4,14 @@
 #include "video_gr.h"
 #include "vbe.h"
 
-static frame_buffer_t buf1, buf2;
-static bool buf1_is_primary = true;
+/** @defgroup video_gr video_gr
+ * @{
+ *
+ */
+
+static frame_buffer_t buf1; /**< @brief First video graphics frame buffer */
+static frame_buffer_t buf2; /**< @brief Second video graphics frame buffer */
+static bool buf1_is_primary = true; /**< @brief Whether buf1 is the primary (front) buffer */
 
 frame_buffer_t vg_get_back_buffer() {
     if (buf1_is_primary) {
@@ -15,12 +21,24 @@ frame_buffer_t vg_get_back_buffer() {
     }
 }
 
+
+/**
+ * @brief Initialize video graphics buffers from the given vbe_mode_info_t.
+ * 
+ * @param vmi memory address to the vbe_mode_info_t used to initialize the buffers
+ */
 static void vg_set_global_var_screen(vbe_mode_info_t *vmi) {
     buf1.h_res = buf2.h_res = vmi->XResolution;
     buf1.v_res = buf2.v_res = vmi->YResolution;
     buf1.bytes_per_pixel = buf2.bytes_per_pixel = ceil(vmi->BitsPerPixel / 8.0);
 }
 
+/**
+ * @brief Initialize video graphics with the given mode.
+ * 
+ * @param mode mode to be set.
+ * @return Memory adress to the first video graphics frame buffer, or NULL if an error occurs
+ */
 void *(vg_init)(uint16_t mode) {
     struct minix_mem_range mr1;
     struct minix_mem_range mr2;
@@ -90,3 +108,5 @@ int vg_flip_page() {
     buf1_is_primary = !buf1_is_primary;
     return 0;
 }
+
+/**@}*/

@@ -1,0 +1,11 @@
+<map id="handle_end_round" name="handle_end_round">
+<area shape="rect" id="node1" title="Ends the current round." alt="" coords="831,35,957,61"/>
+<area shape="rect" id="node2" href="$group__game.html#ga3f61372930dd958f7499a110ce2bd7d6" title="Updates the game due to a rtc alarm interrupt." alt="" coords="656,5,771,32"/>
+<area shape="rect" id="node4" href="$group__dispatcher.html#ga2f49068b96469a8cb2bb627303e1a002" title="Reacts to the event that the other player left the game." alt="" coords="644,57,783,98"/>
+<area shape="rect" id="node3" href="$group__dispatcher.html#ga165d3da39e7ad5173611be1f6689c6c7" title="Dispatches a RTC alarm interrupt, calling relevant application dependent code." alt="" coords="424,5,577,32"/>
+<area shape="rect" id="node5" href="$group__protocol.html#gaa4d3d218fe6e125682653e4af1bf6dcd" title="Handles a connection timeout (didn&#39;t receive acknowledgment byte)" alt="" coords="409,57,592,98"/>
+<area shape="rect" id="node9" href="$group__protocol.html#ga1be347af44e7d733b89949a113359fae" title="Handles a received message of type MSG_LEAVE_GAME." alt="" coords="405,123,596,149"/>
+<area shape="rect" id="node6" href="$group__protocol.html#gab7cd551f6c17f5acce557cb11c3a71c9" title="Handles a received message of type MSG_PROGRAM_OPENED." alt="" coords="188,27,357,69"/>
+<area shape="rect" id="node7" href="$group__protocol.html#ga0b3e768da60827fe622bd3932efc82ff" title="Reacts to a timer interrupt to detect timeouts." alt="" coords="225,93,321,120"/>
+<area shape="rect" id="node8" href="$group__dispatcher.html#gababc3983184c400b85295ddab53388cc" title="Dispatches a timer interrupt, calling relevant application dependent code." alt="" coords="5,93,140,120"/>
+</map>

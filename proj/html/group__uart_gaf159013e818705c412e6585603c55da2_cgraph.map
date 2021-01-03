@@ -1,0 +1,4 @@
+<map id="uart_enable_fifo" name="uart_enable_fifo">
+<area shape="rect" id="node1" title="Enables serial port hardware FIFOs." alt="" coords="5,5,117,32"/>
+<area shape="rect" id="node2" href="$group__utils.html#ga79a031a8611f5b2d6afa4158e92b0fb4" title="Wraps sys_inb so that it may be called with a uint8_t argument." alt="" coords="165,5,256,32"/>
+</map>

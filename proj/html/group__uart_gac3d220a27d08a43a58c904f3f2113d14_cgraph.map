@@ -1,4 +1,4 @@
 <map id="uart_init_sw_queues" name="uart_init_sw_queues">
 <area shape="rect" id="node1" title="Initializes serial port software queues." alt="" coords="5,5,145,32"/>
-<area shape="rect" id="node2" href="$group__queue.html#gac48edd86870cd2e9c26035f22fdf31d4" title="Initializes of a new queue." alt="" coords="193,5,280,32"/>
+<area shape="rect" id="node2" href="$group__queue.html#gacfa22645c74c8856e53eb1fdbee701b7" title="Initializes of a new queue." alt="" coords="193,5,280,32"/>
 </map>

@@ -1,4 +1,5 @@
 <map id="queue_top" name="queue_top">
-<area shape="rect" id="node1" title="Gets the element at the front of the given queue." alt="" coords="5,5,88,32"/>
-<area shape="rect" id="node2" href="$group__queue.html#ga09a3da9bf84f747356ef8050447bf35a" title="Checks if a given queue is empty." alt="" coords="136,5,253,32"/>
+<area shape="rect" id="node1" title="Gets the element at the front of the given queue." alt="" coords="5,31,88,57"/>
+<area shape="rect" id="node2" href="$group__queue.html#ga5f221cd3b0a3c04f33ba9fd136a61c8b" title="Returns a pointer to the element of the given queue at the given index." alt="" coords="147,5,242,32"/>
+<area shape="rect" id="node3" href="$group__queue.html#ga09a3da9bf84f747356ef8050447bf35a" title="Checks if a given queue is empty." alt="" coords="136,56,253,83"/>
 </map>

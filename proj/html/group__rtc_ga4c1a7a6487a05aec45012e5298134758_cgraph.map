@@ -2,4 +2,5 @@
 <area shape="rect" id="node1" title="Reads the current date from the RTC and stores it inside the rtc module." alt="" coords="5,31,107,57"/>
 <area shape="rect" id="node2" href="$group__date.html#gab8a1344035dcb8da360949a3899c2f87" title="Converts a date_t from BCD to binary format." alt="" coords="155,5,289,32"/>
 <area shape="rect" id="node3" href="$group__rtc.html#gaeb22f43773d6e29365a07f7f847dfbb9" title="Reads data from a RTC register." alt="" coords="163,56,281,83"/>
+<area shape="rect" id="node4" href="$group__utils.html#ga79a031a8611f5b2d6afa4158e92b0fb4" title="Wraps sys_inb so that it may be called with a uint8_t argument." alt="" coords="337,56,428,83"/>
 </map>

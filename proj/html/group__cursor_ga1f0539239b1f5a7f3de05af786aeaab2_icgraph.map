@@ -1,4 +1,5 @@
 <map id="cursor_draw" name="cursor_draw">
-<area shape="rect" id="node1" title="Draws the cursor to the back buffer in its current position according to its current state." alt="" coords="141,5,233,32"/>
-<area shape="rect" id="node2" href="$group__dispatcher.html#ga1265a5e2843f2b1c45ad05ae61de7000" title="Draws the frame to the back buffer and flips the buffers." alt="" coords="5,5,93,32"/>
+<area shape="rect" id="node1" title="Draws the cursor to the back buffer in its current position according to its current state." alt="" coords="324,5,416,32"/>
+<area shape="rect" id="node2" href="$group__dispatcher.html#ga1265a5e2843f2b1c45ad05ae61de7000" title="Draws the frame to the back buffer and flips the buffers." alt="" coords="188,5,276,32"/>
+<area shape="rect" id="node3" href="$group__dispatcher.html#gababc3983184c400b85295ddab53388cc" title="Dispatches a timer interrupt, calling relevant application dependent code." alt="" coords="5,5,140,32"/>
 </map>

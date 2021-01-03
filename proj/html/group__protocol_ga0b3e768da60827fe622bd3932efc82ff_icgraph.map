@@ -1,0 +1,4 @@
+<map id="protocol_tick" name="protocol_tick">
+<area shape="rect" id="node1" title="Reacts to a timer interrupt to detect timeouts." alt="" coords="188,5,284,32"/>
+<area shape="rect" id="node2" href="$group__dispatcher.html#gababc3983184c400b85295ddab53388cc" title="Dispatches a timer interrupt, calling relevant application dependent code." alt="" coords="5,5,140,32"/>
+</map>

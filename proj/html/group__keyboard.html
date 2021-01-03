@@ -65,7 +65,8 @@ $(function() {
 <a href="#nested-classes">Data Structures</a> &#124;
 <a href="#typedef-members">Typedefs</a> &#124;
 <a href="#enum-members">Enumerations</a> &#124;
-<a href="#func-members">Functions</a>  </div>
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
 <div class="title">keyboard</div>  </div>
 </div><!--header-->
@@ -120,18 +121,41 @@ Functions</h2></td></tr>
 <tr class="memitem:ga5bdf6cfb570c375192b0d87913b65c57"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__keyboard.html#ga5bdf6cfb570c375192b0d87913b65c57">kbd_unsubscribe_int</a> ()</td></tr>
 <tr class="memdesc:ga5bdf6cfb570c375192b0d87913b65c57"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unsubscribes Keyboard interrupts.  <a href="group__keyboard.html#ga5bdf6cfb570c375192b0d87913b65c57">More...</a><br /></td></tr>
 <tr class="separator:ga5bdf6cfb570c375192b0d87913b65c57"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaea970a154161a35f6894898a092ed70a"><td class="memItemLeft" align="right" valign="top"><a id="gaea970a154161a35f6894898a092ed70a"></a>
+void()&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__keyboard.html#gaea970a154161a35f6894898a092ed70a">kbc_ih</a> ()</td></tr>
+<tr class="memdesc:gaea970a154161a35f6894898a092ed70a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Keyboard interrupt handler. <br /></td></tr>
+<tr class="separator:gaea970a154161a35f6894898a092ed70a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gad4630c76a71623b08383f3a37fa64e22"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__keyboard.html#gad4630c76a71623b08383f3a37fa64e22">kbd_is_make_code</a> (uint8_t scancode)</td></tr>
 <tr class="memdesc:gad4630c76a71623b08383f3a37fa64e22"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if a given scancode is a make code.  <a href="group__keyboard.html#gad4630c76a71623b08383f3a37fa64e22">More...</a><br /></td></tr>
 <tr class="separator:gad4630c76a71623b08383f3a37fa64e22"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga4d4099244ffb934502e579e9ffb8f316"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__keyboard.html#ga4d4099244ffb934502e579e9ffb8f316">kbd_handle_scancode</a> (<a class="el" href="group__keyboard.html#gaf885a18f75458e73bb7dccc1db276bef">kbd_event_t</a> *kbd_state)</td></tr>
+<tr class="memitem:ga40686bc8c972ac0d6534fe4b418f68e9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__keyboard.html#ga40686bc8c972ac0d6534fe4b418f68e9">kbd_is_scancode_ready</a> ()</td></tr>
+<tr class="memdesc:ga40686bc8c972ac0d6534fe4b418f68e9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if a complete scancode is ready to be processed.  <a href="group__keyboard.html#ga40686bc8c972ac0d6534fe4b418f68e9">More...</a><br /></td></tr>
+<tr class="separator:ga40686bc8c972ac0d6534fe4b418f68e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4d4099244ffb934502e579e9ffb8f316"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__keyboard.html#ga4d4099244ffb934502e579e9ffb8f316">kbd_handle_scancode</a> (<a class="el" href="group__keyboard.html#gaf885a18f75458e73bb7dccc1db276bef">kbd_event_t</a> *<a class="el" href="group__keyboard.html#ga2be586b7abc03f4a6607c5cea210a4ba">kbd_state</a>)</td></tr>
 <tr class="memdesc:ga4d4099244ffb934502e579e9ffb8f316"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transforms a scancode into organized information about the keys pressed in the form of kbd_event_t.  <a href="group__keyboard.html#ga4d4099244ffb934502e579e9ffb8f316">More...</a><br /></td></tr>
 <tr class="separator:ga4d4099244ffb934502e579e9ffb8f316"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga0d28d7309ad45de4fe79c9de3fbeb3d8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__keyboard.html#ga0d28d7309ad45de4fe79c9de3fbeb3d8">kbd_enable_interrupts</a> ()</td></tr>
 <tr class="memdesc:ga0d28d7309ad45de4fe79c9de3fbeb3d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables keyboard interrupts.  <a href="group__keyboard.html#ga0d28d7309ad45de4fe79c9de3fbeb3d8">More...</a><br /></td></tr>
 <tr class="separator:ga0d28d7309ad45de4fe79c9de3fbeb3d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga40686bc8c972ac0d6534fe4b418f68e9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__keyboard.html#ga40686bc8c972ac0d6534fe4b418f68e9">kbd_is_scancode_ready</a> ()</td></tr>
-<tr class="memdesc:ga40686bc8c972ac0d6534fe4b418f68e9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if a complete scancode is ready to be processed.  <a href="group__keyboard.html#ga40686bc8c972ac0d6534fe4b418f68e9">More...</a><br /></td></tr>
-<tr class="separator:ga40686bc8c972ac0d6534fe4b418f68e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:ga7d15e4ad49d56102e73bfb92c6e43a22"><td class="memItemLeft" align="right" valign="top"><a id="ga7d15e4ad49d56102e73bfb92c6e43a22"></a>
+static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__keyboard.html#ga7d15e4ad49d56102e73bfb92c6e43a22">hook_id_kbd</a> = 1</td></tr>
+<tr class="memdesc:ga7d15e4ad49d56102e73bfb92c6e43a22"><td class="mdescLeft">&#160;</td><td class="mdescRight">Keyboard interrupts hook id. <br /></td></tr>
+<tr class="separator:ga7d15e4ad49d56102e73bfb92c6e43a22"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga16100e9ba69291e8b3384f3dae2152c3"><td class="memItemLeft" align="right" valign="top"><a id="ga16100e9ba69291e8b3384f3dae2152c3"></a>
+static uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__keyboard.html#ga16100e9ba69291e8b3384f3dae2152c3">scancode_bytes</a> [2]</td></tr>
+<tr class="memdesc:ga16100e9ba69291e8b3384f3dae2152c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Buffer for bytes read from KBC that represent a scancode. <br /></td></tr>
+<tr class="separator:ga16100e9ba69291e8b3384f3dae2152c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga09f0e6ebb8abef046b37970f8b15726c"><td class="memItemLeft" align="right" valign="top"><a id="ga09f0e6ebb8abef046b37970f8b15726c"></a>
+static size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__keyboard.html#ga09f0e6ebb8abef046b37970f8b15726c">scancode_bytes_counter</a> = 0</td></tr>
+<tr class="memdesc:ga09f0e6ebb8abef046b37970f8b15726c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number meaningful of bytes in scancode_bytes buffer. <br /></td></tr>
+<tr class="separator:ga09f0e6ebb8abef046b37970f8b15726c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2be586b7abc03f4a6607c5cea210a4ba"><td class="memItemLeft" align="right" valign="top"><a id="ga2be586b7abc03f4a6607c5cea210a4ba"></a>
+static <a class="el" href="group__keyboard.html#gaf885a18f75458e73bb7dccc1db276bef">kbd_event_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__keyboard.html#ga2be586b7abc03f4a6607c5cea210a4ba">kbd_state</a> = { .key = <a class="el" href="group__keyboard.html#gga635055f02cc43001acef32526cac2a45aec8a3617311ffdac328944fe1e482708">NO_KEY</a> }</td></tr>
+<tr class="memdesc:ga2be586b7abc03f4a6607c5cea210a4ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Current keyboard state. <br /></td></tr>
+<tr class="separator:ga2be586b7abc03f4a6607c5cea210a4ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p>Module to interact with the PC's Keyboard. </p>
@@ -200,10 +224,11 @@ Here is the call graph for this function:</div>
 <div class="center"><img src="group__keyboard_ga0d28d7309ad45de4fe79c9de3fbeb3d8_cgraph.png" border="0" usemap="#agroup__keyboard_ga0d28d7309ad45de4fe79c9de3fbeb3d8_cgraph" alt=""/></div>
 <map name="group__keyboard_ga0d28d7309ad45de4fe79c9de3fbeb3d8_cgraph" id="group__keyboard_ga0d28d7309ad45de4fe79c9de3fbeb3d8_cgraph">
 <area shape="rect" title="Enables keyboard interrupts." alt="" coords="5,31,155,57"/>
-<area shape="rect" href="group__kbc.html#ga4996d0950caa2122c3a9aa731a5f52d9" title="Reads the kbc command byte." alt="" coords="204,5,375,32"/>
-<area shape="rect" href="group__kbc.html#gad22fa061f412af69b9d8f777ca55b04e" title="Writes the kbc command byte." alt="" coords="203,56,376,83"/>
-<area shape="rect" href="group__kbc.html#ga978c37bd6eca1b2724372aee45770670" title="Issues a command to the kbc." alt="" coords="424,31,569,57"/>
-<area shape="rect" href="group__kbc.html#ga628109931012fdfa144b55cc679a7fe9" title="Writes a byte to a kbc register." alt="" coords="617,31,720,57"/>
+<area shape="rect" href="group__kbc.html#ga4996d0950caa2122c3a9aa731a5f52d9" title="Reads the kbc command byte." alt="" coords="204,56,375,83"/>
+<area shape="rect" href="group__kbc.html#gad22fa061f412af69b9d8f777ca55b04e" title="Writes the kbc command byte." alt="" coords="203,5,376,32"/>
+<area shape="rect" href="group__kbc.html#ga978c37bd6eca1b2724372aee45770670" title="Issues a command to the kbc." alt="" coords="424,5,569,32"/>
+<area shape="rect" href="group__utils.html#ga79a031a8611f5b2d6afa4158e92b0fb4" title="Wraps sys_inb so that it may be called with a uint8_t argument." alt="" coords="768,31,859,57"/>
+<area shape="rect" href="group__kbc.html#ga628109931012fdfa144b55cc679a7fe9" title="Writes a byte to a kbc register." alt="" coords="617,5,720,32"/>
 </map>
 </div>
 
@@ -243,6 +268,15 @@ Here is the call graph for this function:</div>
 <area shape="rect" href="group__keyboard.html#ga40686bc8c972ac0d6534fe4b418f68e9" title="Checks if a complete scancode is ready to be processed." alt="" coords="204,56,367,83"/>
 </map>
 </div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__keyboard_ga4d4099244ffb934502e579e9ffb8f316_icgraph.png" border="0" usemap="#agroup__keyboard_ga4d4099244ffb934502e579e9ffb8f316_icgraph" alt=""/></div>
+<map name="group__keyboard_ga4d4099244ffb934502e579e9ffb8f316_icgraph" id="group__keyboard_ga4d4099244ffb934502e579e9ffb8f316_icgraph">
+<area shape="rect" title="Transforms a scancode into organized information about the keys pressed in the form of kbd_event_t." alt="" coords="221,5,372,32"/>
+<area shape="rect" href="group__dispatcher.html#gaf9683a8eab5011faf80d5235b08efc27" title="Handles and dispatches a keyboard state change, calling relevant application dependent code." alt="" coords="5,5,173,32"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -275,8 +309,9 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="group__keyboard_gad4630c76a71623b08383f3a37fa64e22_icgraph.png" border="0" usemap="#agroup__keyboard_gad4630c76a71623b08383f3a37fa64e22_icgraph" alt=""/></div>
 <map name="group__keyboard_gad4630c76a71623b08383f3a37fa64e22_icgraph" id="group__keyboard_gad4630c76a71623b08383f3a37fa64e22_icgraph">
-<area shape="rect" title="Checks if a given scancode is a make code." alt="" coords="204,5,339,32"/>
-<area shape="rect" href="group__keyboard.html#ga4d4099244ffb934502e579e9ffb8f316" title="Transforms a scancode into organized information about the keys pressed in the form of kbd_event_t." alt="" coords="5,5,156,32"/>
+<area shape="rect" title="Checks if a given scancode is a make code." alt="" coords="420,5,555,32"/>
+<area shape="rect" href="group__keyboard.html#ga4d4099244ffb934502e579e9ffb8f316" title="Transforms a scancode into organized information about the keys pressed in the form of kbd_event_t." alt="" coords="221,5,372,32"/>
+<area shape="rect" href="group__dispatcher.html#gaf9683a8eab5011faf80d5235b08efc27" title="Handles and dispatches a keyboard state change, calling relevant application dependent code." alt="" coords="5,5,173,32"/>
 </map>
 </div>
 
@@ -303,9 +338,12 @@ Here is the caller graph for this function:</div>
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="group__keyboard_ga40686bc8c972ac0d6534fe4b418f68e9_icgraph.png" border="0" usemap="#agroup__keyboard_ga40686bc8c972ac0d6534fe4b418f68e9_icgraph" alt=""/></div>
-<map name="group__keyboard_ga40686bc8c972ac0d6534fe4b418f68e9_icgraph" id="group__keyboard_ga40686bc8c972ac0d6534fe4b418f68e9_icgraph">
-<area shape="rect" title="Checks if a complete scancode is ready to be processed." alt="" coords="204,5,367,32"/>
-<area shape="rect" href="group__keyboard.html#ga4d4099244ffb934502e579e9ffb8f316" title="Transforms a scancode into organized information about the keys pressed in the form of kbd_event_t." alt="" coords="5,5,156,32"/>
+<map name="group__keyboard_ga40686bc8c972ac0d6534fe4b418f68e9_icgraph" id="agroup__keyboard_ga40686bc8c972ac0d6534fe4b418f68e9_icgraph">
+<area shape="rect" title="Checks if a complete scancode is ready to be processed." alt="" coords="420,31,583,57"/>
+<area shape="rect" href="group__keyboard.html#gaea970a154161a35f6894898a092ed70a" title="Keyboard interrupt handler." alt="" coords="267,5,327,32"/>
+<area shape="rect" href="group__keyboard.html#ga4d4099244ffb934502e579e9ffb8f316" title="Transforms a scancode into organized information about the keys pressed in the form of kbd_event_t." alt="" coords="221,56,372,83"/>
+<area shape="rect" href="group__proj.html#ga2a16f651eccbd248e1ad3b3b924b143b" title="Reacts to the event that the other player sent the random number to decide starting roles." alt="" coords="35,5,144,32"/>
+<area shape="rect" href="group__dispatcher.html#gaf9683a8eab5011faf80d5235b08efc27" title="Handles and dispatches a keyboard state change, calling relevant application dependent code." alt="" coords="5,56,173,83"/>
 </map>
 </div>
 
@@ -335,6 +373,15 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Return 0 upon success and non-zero otherwise </dd></dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__keyboard_gaa7a491d4d95eab5ca5326c4000ad67f8_icgraph.png" border="0" usemap="#agroup__keyboard_gaa7a491d4d95eab5ca5326c4000ad67f8_icgraph" alt=""/></div>
+<map name="group__keyboard_gaa7a491d4d95eab5ca5326c4000ad67f8_icgraph" id="agroup__keyboard_gaa7a491d4d95eab5ca5326c4000ad67f8_icgraph">
+<area shape="rect" title="Subscribes Keyboard interrupts." alt="" coords="163,5,289,32"/>
+<area shape="rect" href="group__proj.html#ga2a16f651eccbd248e1ad3b3b924b143b" title="Reacts to the event that the other player sent the random number to decide starting roles." alt="" coords="5,5,115,32"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -355,6 +402,15 @@ Here is the caller graph for this function:</div>
 
 <p>Unsubscribes Keyboard interrupts. </p>
 <dl class="section return"><dt>Returns</dt><dd>Return 0 upon success and non-zero otherwise </dd></dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__keyboard_ga5bdf6cfb570c375192b0d87913b65c57_icgraph.png" border="0" usemap="#agroup__keyboard_ga5bdf6cfb570c375192b0d87913b65c57_icgraph" alt=""/></div>
+<map name="group__keyboard_ga5bdf6cfb570c375192b0d87913b65c57_icgraph" id="agroup__keyboard_ga5bdf6cfb570c375192b0d87913b65c57_icgraph">
+<area shape="rect" title="Unsubscribes Keyboard interrupts." alt="" coords="163,5,304,32"/>
+<area shape="rect" href="group__proj.html#ga2a16f651eccbd248e1ad3b3b924b143b" title="Reacts to the event that the other player sent the random number to decide starting roles." alt="" coords="5,5,115,32"/>
+</map>
+</div>
 
 </div>
 </div>

@@ -1,22 +1,52 @@
 <map id="menu_set_game_over_screen" name="menu_set_game_over_screen">
-<area shape="rect" id="node1" title="Sets the menu to the game over screen." alt="" coords="5,49,153,90"/>
-<area shape="rect" id="node2" href="$group__dispatcher.html#ga09a194e07832b8e7984e1b50d9722a80" title="Binds the given buttons to the dispatcher." alt="" coords="423,5,585,32"/>
-<area shape="rect" id="node3" href="$group__dispatcher.html#gab9458678bdcdc4f0ff458f8a9b27c638" title="Resets all dispatcher bindings." alt="" coords="201,56,375,83"/>
-<area shape="rect" id="node7" href="$group__dispatcher.html#ga1870958649b46017847735537a5701e1" title="Updates the cursor state and updates the game according to it." alt="" coords="217,470,359,511"/>
-<area shape="rect" id="node4" href="$group__dispatcher.html#gab72c16c8547625b6dde1d4626b3c9c99" title="Binds or unbinds the canvas to the dispatcher." alt="" coords="424,56,584,83"/>
-<area shape="rect" id="node6" href="$group__dispatcher.html#ga4701c82e8ae5bf8fa045347e26aefb74" title="Binds the given text boxes to the dispatcher." alt="" coords="433,107,575,149"/>
-<area shape="rect" id="node5" href="$group__canvas.html#ga95661aa91869ceace06141f45c078210" title="Updates the state of the canvas according to given mouse info." alt="" coords="633,115,777,141"/>
-<area shape="rect" id="node8" href="$group__button.html#gacfab11fbd0b4e1ff3848728f2b3ad7d5" title="Checks if the given coordinates are inside the limits of a given button." alt="" coords="439,224,569,251"/>
-<area shape="rect" id="node9" href="$group__button.html#ga9d70332e21de7ab70afff4fa96fb69d4" title="Updates the state of a given button according to given mouse info." alt="" coords="434,275,574,301"/>
-<area shape="rect" id="node10" href="$group__canvas.html#ga2f87deffc6dca6f0ee25d5cd1c3bdd40" title="Gets the current canvas state." alt="" coords="443,325,565,352"/>
-<area shape="rect" id="node11" href="$group__canvas.html#gaff7e5e6e51cce443e068e88722d00bbb" title="Checks if canvas is enabled, that is, if it allows the user to draw." alt="" coords="439,376,569,403"/>
-<area shape="rect" id="node12" href="$group__canvas.html#ga4b7509d83889d7a4a67e0d72e6f2e096" title="Checks if the given coordinates are inside the limits of the canvas." alt="" coords="437,427,571,453"/>
-<area shape="rect" id="node13" href="$group__cursor.html#gac0fa742a26e68888018245125c26d5d6" title="Gets the left button state. (either pressed or not)" alt="" coords="454,477,554,504"/>
-<area shape="rect" id="node14" href="$group__cursor.html#ga7da23fec369ac0db044e35d1ff1fb95c" title="Gets the right button state. (either pressed or not)" alt="" coords="453,528,555,555"/>
-<area shape="rect" id="node15" href="$group__cursor.html#ga479cd0880892e002681b109c7a712c04" title="Gets cursor x coordinate." alt="" coords="455,579,553,605"/>
-<area shape="rect" id="node16" href="$group__cursor.html#ga15c1a0816c95ad240b94dc15480b403a" title="Gets cursor y coordinate." alt="" coords="455,629,553,656"/>
-<area shape="rect" id="node17" href="$group__cursor.html#gacc7f42d69f1210f45a2642c0fb0f11e9" title="Sets the cursor state." alt="" coords="445,680,563,707"/>
-<area shape="rect" id="node18" href="$group__text__box.html#ga97341ed5c3d21db3cb99a6dea33277d6" title="Checks if the given coordinates are inside the limits of a given text box." alt="" coords="433,731,575,757"/>
-<area shape="rect" id="node19" href="$group__text__box.html#gaa2fa2a826d1d881f5c5e374b40a6e9b1" title="Gets whether the text box is reacting to the cursor hovering, based on its state." alt="" coords="433,782,575,823"/>
-<area shape="rect" id="node20" href="$group__text__box.html#gaf810b80df21aa5e7259b8fc8815238f5" title="Updates the state of a given text box according to given mouse info." alt="" coords="427,848,581,875"/>
+<area shape="rect" id="node1" title="Sets the menu to the game over screen." alt="" coords="5,231,153,273"/>
+<area shape="rect" id="node2" href="$group__dispatcher.html#ga09a194e07832b8e7984e1b50d9722a80" title="Binds the given buttons to the dispatcher." alt="" coords="423,188,585,215"/>
+<area shape="rect" id="node3" href="$group__dispatcher.html#gab9458678bdcdc4f0ff458f8a9b27c638" title="Resets all dispatcher bindings." alt="" coords="201,239,375,265"/>
+<area shape="rect" id="node39" href="$group__dispatcher.html#ga6b6621fbd0381200f89fc604c79d827c" title="Updates the cursor state and updates the game according to it." alt="" coords="429,419,579,461"/>
+<area shape="rect" id="node4" href="$group__dispatcher.html#gab72c16c8547625b6dde1d4626b3c9c99" title="Binds or unbinds the canvas to the dispatcher." alt="" coords="424,239,584,265"/>
+<area shape="rect" id="node38" href="$group__dispatcher.html#ga4701c82e8ae5bf8fa045347e26aefb74" title="Binds the given text boxes to the dispatcher." alt="" coords="433,290,575,331"/>
+<area shape="rect" id="node5" href="$group__canvas.html#ga95661aa91869ceace06141f45c078210" title="Updates the state of the canvas according to given mouse info." alt="" coords="639,173,783,200"/>
+<area shape="rect" id="node6" href="$group__cursor.html#ga479cd0880892e002681b109c7a712c04" title="Gets cursor x coordinate." alt="" coords="859,56,956,83"/>
+<area shape="rect" id="node7" href="$group__cursor.html#ga15c1a0816c95ad240b94dc15480b403a" title="Gets cursor y coordinate." alt="" coords="859,275,956,301"/>
+<area shape="rect" id="node8" href="$group__game.html#ga2a86959de5de66b3881ada72cf3a5850" title="Switches the tool used (pencil/eraser) if this player is the drawer." alt="" coords="836,107,979,149"/>
+<area shape="rect" id="node13" href="$group__dispatcher.html#gad508b46cafff5282731b452d032f5267" title="Adds a new atom to the stroke being drawn in the canvas and notifies the other player." alt="" coords="844,173,971,200"/>
+<area shape="rect" id="node32" href="$group__dispatcher.html#ga2a6213346685a0167e6ff3c86d126106" title="Starts drawing new stroke in the canvas and notifies the other player." alt="" coords="841,224,974,251"/>
+<area shape="rect" id="node9" href="$group__game.html#gad2612affb6e1d0b40f1972a751ad6674" title="Sets the eraser primary if this player is the drawer." alt="" coords="1027,17,1205,44"/>
+<area shape="rect" id="node12" href="$group__game.html#gab09c1e5c83d1408799b41ae9863259ef" title="Sets the pencil primary if this player is the drawer." alt="" coords="1028,68,1204,95"/>
+<area shape="rect" id="node10" href="$group__button.html#ga6fdbd6cb9f7febe9bc371326f96f365d" title="Sets the border of a given button active." alt="" coords="1253,5,1420,32"/>
+<area shape="rect" id="node11" href="$group__button.html#ga0425667543e54af67fe4010a57476d05" title="Sets the border of a given button inactive." alt="" coords="1267,57,1407,98"/>
+<area shape="rect" id="node14" href="$group__canvas.html#ga9635fd19e44c814f55f50eb213d6b6b3" title="Adds a new atom to the current stroke." alt="" coords="1031,123,1201,149"/>
+<area shape="rect" id="node20" href="$group__protocol.html#ga0ef9e0d21713f79d9c42f68b435d209a" title="Sends a message of type MSG_DRAW_ATOM." alt="" coords="1031,173,1201,200"/>
+<area shape="rect" id="node15" href="$group__canvas.html#ga20e5e8baf8049f9c089f77de3c155249" title="Draws the last stroke_atom_t in a stroke." alt="" coords="1257,123,1417,149"/>
+<area shape="rect" id="node16" href="$group__canvas.html#ga9c795224c49051c1ed6c52f34f1cbc80" title="Draws a line between two stroke_atom_t to the canvas buffer." alt="" coords="1468,115,1627,141"/>
+<area shape="rect" id="node18" href="$group__graphics.html#ga1b69ad0e07cfd0697a4cb9c18ba48b67" title="Draws a circle in the given buffer in the given coordinates with the given radius with the given colo..." alt="" coords="1839,68,1946,95"/>
+<area shape="rect" id="node17" href="$group__graphics.html#ga656f35ff9a04a0e66245aed5babc1209" title="Draws a line in the given buffer from the given coordinates to other given coordinates with the given..." alt="" coords="1683,93,1777,120"/>
+<area shape="rect" id="node19" href="$group__graphics.html#ga257b5dac975604f70651e8764ad8acd8" title="Draws a pixel in the given buffer in the given coordinates with the given color." alt="" coords="2000,68,2103,95"/>
+<area shape="rect" id="node21" href="$group__protocol.html#gaa8c3d5620d3e7c609513d9372296a6d3" title="Adds a new message to the pending messages queue." alt="" coords="1259,173,1415,200"/>
+<area shape="rect" id="node31" href="$group__protocol.html#ga46939f58a097b24e703e1eb6523b6439" title="Initializes a new message_t." alt="" coords="1257,224,1416,251"/>
+<area shape="rect" id="node22" href="$group__protocol.html#gaca49d55d34fe635af7f3822f4b01bdc6" title="Sends the next pending message in queue." alt="" coords="1480,181,1615,222"/>
+<area shape="rect" id="node27" href="$group__queue.html#gaa54578828a1b5676bb99a535c617e1a2" title="Adds an element to the back of the given queue." alt="" coords="1847,296,1939,323"/>
+<area shape="rect" id="node23" href="$group__queue.html#ga09a3da9bf84f747356ef8050447bf35a" title="Checks if a given queue is empty." alt="" coords="2151,195,2268,221"/>
+<area shape="rect" id="node24" href="$group__queue.html#ga24ec1e60eaa37239a1b49c6f7321c9d9" title="Gets the element at the front of the given queue." alt="" coords="2010,195,2093,221"/>
+<area shape="rect" id="node26" href="$group__uart.html#ga00a2984ead2b73e2871dfda7c1ac49e3" title="Adds a byte to the software queue of bytes to be sent and tries to send bytes." alt="" coords="1675,245,1785,272"/>
+<area shape="rect" id="node25" href="$group__queue.html#ga5f221cd3b0a3c04f33ba9fd136a61c8b" title="Returns a pointer to the element of the given queue at the given index." alt="" coords="2162,296,2257,323"/>
+<area shape="rect" id="node30" href="$group__uart.html#ga8219117bdd64ba6474c847fd89efbd41" title="Sends bytes from a software queue into the serial port." alt="" coords="1833,245,1952,272"/>
+<area shape="rect" id="node28" href="$group__queue.html#gae1cd6b62453b7f57525be17a53885800" title="Checks if a given queue is full." alt="" coords="2161,372,2258,399"/>
+<area shape="rect" id="node29" href="$group__queue.html#gabf50b2659d4139679a639a78c217f7fa" title="Resizes the given queue so that it has double the capacity without losing data." alt="" coords="2002,347,2101,373"/>
+<area shape="rect" id="node33" href="$group__canvas.html#ga79691af660bfc7d635d4727f2cbfd59a" title="Starts a new stroke in the canvas." alt="" coords="1049,275,1183,301"/>
+<area shape="rect" id="node35" href="$group__game.html#ga3fd14fd97f9704dccd8f8b0e6e53960f" title="Gets the drawer selected color." alt="" coords="1045,326,1187,367"/>
+<area shape="rect" id="node36" href="$group__game.html#ga7a01e47255ad988eefbe2e0067a3e26c" title="Gets the drawer selected thickness." alt="" coords="1045,391,1187,433"/>
+<area shape="rect" id="node37" href="$group__protocol.html#ga48456102bf88a8974c153a8b117f9480" title="Sends a message of type MSG_NEW_STROKE." alt="" coords="1028,224,1204,251"/>
+<area shape="rect" id="node34" href="$group__canvas.html#ga6bf721599d651d3d7cb19bf578d2a20a" title="Deletes all undone strokes." alt="" coords="1263,275,1410,301"/>
+<area shape="rect" id="node40" href="$group__button.html#gacfab11fbd0b4e1ff3848728f2b3ad7d5" title="Checks if the given coordinates are inside the limits of a given button." alt="" coords="646,275,775,301"/>
+<area shape="rect" id="node41" href="$group__button.html#ga9d70332e21de7ab70afff4fa96fb69d4" title="Updates the state of a given button according to given mouse info." alt="" coords="641,325,781,352"/>
+<area shape="rect" id="node42" href="$group__canvas.html#ga2f87deffc6dca6f0ee25d5cd1c3bdd40" title="Gets the current canvas state." alt="" coords="649,376,772,403"/>
+<area shape="rect" id="node43" href="$group__canvas.html#gaff7e5e6e51cce443e068e88722d00bbb" title="Checks if canvas is enabled, that is, if it allows the user to draw." alt="" coords="645,427,776,453"/>
+<area shape="rect" id="node44" href="$group__canvas.html#ga4b7509d83889d7a4a67e0d72e6f2e096" title="Checks if the given coordinates are inside the limits of the canvas." alt="" coords="644,477,777,504"/>
+<area shape="rect" id="node45" href="$group__cursor.html#gac0fa742a26e68888018245125c26d5d6" title="Gets the left button state. (either pressed or not)" alt="" coords="661,528,761,555"/>
+<area shape="rect" id="node46" href="$group__cursor.html#ga7da23fec369ac0db044e35d1ff1fb95c" title="Gets the right button state. (either pressed or not)" alt="" coords="660,579,761,605"/>
+<area shape="rect" id="node47" href="$group__cursor.html#gacc7f42d69f1210f45a2642c0fb0f11e9" title="Sets the cursor state." alt="" coords="651,629,770,656"/>
+<area shape="rect" id="node48" href="$group__text__box.html#ga97341ed5c3d21db3cb99a6dea33277d6" title="Checks if the given coordinates are inside the limits of a given text box." alt="" coords="639,680,782,707"/>
+<area shape="rect" id="node49" href="$group__text__box.html#gaa2fa2a826d1d881f5c5e374b40a6e9b1" title="Gets whether the text box is reacting to the cursor hovering, based on its state." alt="" coords="639,731,782,773"/>
+<area shape="rect" id="node50" href="$group__text__box.html#gaf810b80df21aa5e7259b8fc8815238f5" title="Updates the state of a given text box according to given mouse info." alt="" coords="633,797,788,824"/>
 </map>

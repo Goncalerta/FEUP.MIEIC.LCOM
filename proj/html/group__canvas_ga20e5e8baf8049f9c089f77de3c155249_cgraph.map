@@ -1,0 +1,7 @@
+<map id="canvas_draw_last_atom" name="canvas_draw_last_atom">
+<area shape="rect" id="node1" title="Draws the last stroke_atom_t in a stroke." alt="" coords="5,31,165,57"/>
+<area shape="rect" id="node2" href="$group__canvas.html#ga9c795224c49051c1ed6c52f34f1cbc80" title="Draws a line between two stroke_atom_t to the canvas buffer." alt="" coords="213,5,372,32"/>
+<area shape="rect" id="node4" href="$group__graphics.html#ga1b69ad0e07cfd0697a4cb9c18ba48b67" title="Draws a circle in the given buffer in the given coordinates with the given radius with the given colo..." alt="" coords="563,31,669,57"/>
+<area shape="rect" id="node3" href="$group__graphics.html#ga656f35ff9a04a0e66245aed5babc1209" title="Draws a line in the given buffer from the given coordinates to other given coordinates with the given..." alt="" coords="420,5,515,32"/>
+<area shape="rect" id="node5" href="$group__graphics.html#ga257b5dac975604f70651e8764ad8acd8" title="Draws a pixel in the given buffer in the given coordinates with the given color." alt="" coords="717,31,820,57"/>
+</map>

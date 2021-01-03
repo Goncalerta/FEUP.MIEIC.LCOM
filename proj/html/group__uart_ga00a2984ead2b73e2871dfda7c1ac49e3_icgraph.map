@@ -1,5 +1,52 @@
 <map id="uart_send_byte" name="uart_send_byte">
-<area shape="rect" id="node1" title="Adds a byte to the software queue of bytes to be sent and tries to send bytes." alt="" coords="344,5,455,32"/>
-<area shape="rect" id="node2" href="$group__protocol.html#ga237c5c08ee5d5008a930af465c7bd5d5" title="Reacts to a serial port error." alt="" coords="149,5,296,32"/>
-<area shape="rect" id="node3" href="$group__protocol.html#ga0b3e768da60827fe622bd3932efc82ff" title="Reacts to a timer interrupt to detect timeouts." alt="" coords="5,5,101,32"/>
+<area shape="rect" id="node1" title="Adds a byte to the software queue of bytes to be sent and tries to send bytes." alt="" coords="1312,94,1423,121"/>
+<area shape="rect" id="node2" href="$group__protocol.html#ga237c5c08ee5d5008a930af465c7bd5d5" title="Reacts to a serial port error." alt="" coords="715,122,861,149"/>
+<area shape="rect" id="node4" href="$group__protocol.html#ga5b890b1b07d4b86ff872a070e971b7a0" title="Handle a received byte when a trailing message byte is expected." alt="" coords="475,5,648,47"/>
+<area shape="rect" id="node10" href="$group__protocol.html#gaca49d55d34fe635af7f3822f4b01bdc6" title="Sends the next pending message in queue." alt="" coords="1129,167,1264,208"/>
+<area shape="rect" id="node3" href="$group__dispatcher.html#ga2d18e4bbf1c627593d6f013434aee9b0" title="Handles a serial port error, calling relevant application dependent code." alt="" coords="495,71,628,98"/>
+<area shape="rect" id="node7" href="$group__protocol.html#ga2844b6411ef540af53b228ccc3d325d0" title="Handles a received byte after the starting message byte." alt="" coords="474,122,649,149"/>
+<area shape="rect" id="node8" href="$group__protocol.html#ga0b3e768da60827fe622bd3932efc82ff" title="Reacts to a timer interrupt to detect timeouts." alt="" coords="513,173,609,199"/>
+<area shape="rect" id="node5" href="$group__protocol.html#ga45e3aa191a3cde90081665be034bba0e" title="Processes received bytes from the serial port." alt="" coords="249,111,415,152"/>
+<area shape="rect" id="node6" href="$group__dispatcher.html#gae25f0cbadee7d53e9593e6a23ef6f8c5" title="Handles received data from serial port, calling relevant application dependent code." alt="" coords="5,118,192,145"/>
+<area shape="rect" id="node9" href="$group__dispatcher.html#gababc3983184c400b85295ddab53388cc" title="Dispatches a timer interrupt, calling relevant application dependent code." alt="" coords="265,177,399,203"/>
+<area shape="rect" id="node11" href="$group__protocol.html#gaa8c3d5620d3e7c609513d9372296a6d3" title="Adds a new message to the pending messages queue." alt="" coords="925,598,1081,625"/>
+<area shape="rect" id="node48" href="$group__protocol.html#gaf7347ac4b90b70acf886e391fefb9344" title="Handles a received acknowledgment byte." alt="" coords="933,145,1074,171"/>
+<area shape="rect" id="node50" href="$group__protocol.html#ga992ebf810171104f964f94e6d5652e2b" title="Handles a received non&#45;acknowledgment byte." alt="" coords="929,195,1077,222"/>
+<area shape="rect" id="node12" href="$group__protocol.html#gafadb8c0242e740b68757640ed9d026fd" title="Sends a message of type MSG_CLUE." alt="" coords="721,598,855,625"/>
+<area shape="rect" id="node16" href="$group__protocol.html#ga22df7885a195f3daaf976fb322a6273a" title="Sends a message of type MSG_GAME_OVER." alt="" coords="702,497,874,523"/>
+<area shape="rect" id="node19" href="$group__protocol.html#ga7ecf39afd738fd733192d8efa3b72543" title="Sends a message of type MSG_GUESS." alt="" coords="715,547,861,574"/>
+<area shape="rect" id="node22" href="$group__protocol.html#gafd70b73fc60dd896c0da7fd62d71eff5" title="Sends a message of type MSG_LEAVE_GAME." alt="" coords="699,867,877,894"/>
+<area shape="rect" id="node28" href="$group__protocol.html#ga0ef9e0d21713f79d9c42f68b435d209a" title="Sends a message of type MSG_DRAW_ATOM." alt="" coords="703,649,873,675"/>
+<area shape="rect" id="node30" href="$group__protocol.html#ga01435947f6aba6894dd82d6ec005f9fe" title="Sends a message of type MSG_NEW_ROUND." alt="" coords="702,699,874,726"/>
+<area shape="rect" id="node32" href="$group__protocol.html#ga48456102bf88a8974c153a8b117f9480" title="Sends a message of type MSG_NEW_STROKE." alt="" coords="700,750,876,777"/>
+<area shape="rect" id="node34" href="$group__protocol.html#ga3a3be26c74eba4938a47e2b67bb83ed6" title="Sends a message of type MSG_PROGRAM_OPENED." alt="" coords="709,801,867,843"/>
+<area shape="rect" id="node36" href="$group__protocol.html#ga00413c9178c939b16024863a7e953932" title="Sends a message of type MSG_RANDOM_NUMBER." alt="" coords="711,1031,865,1072"/>
+<area shape="rect" id="node39" href="$group__protocol.html#gaf65bf51204d728ca74e8d86ae0af4b4b" title="Sends a message of type MSG_READY_TO_PLAY." alt="" coords="717,940,859,981"/>
+<area shape="rect" id="node41" href="$group__protocol.html#ga37492ace0b61aeb7b426d4ba9fd7e7b9" title="Sends a message of type MSG_REDO_CANVAS." alt="" coords="721,263,855,304"/>
+<area shape="rect" id="node43" href="$group__protocol.html#gacfefff6d72000e2ec5cf3060d675a64a" title="Sends a message of type MSG_ROUND_WIN." alt="" coords="704,329,872,355"/>
+<area shape="rect" id="node45" href="$group__protocol.html#gafa6e663c85862f19e985661e8f69af7a" title="Sends a message of type MSG_START_ROUND." alt="" coords="264,397,400,439"/>
+<area shape="rect" id="node46" href="$group__protocol.html#ga3388b3fbc456a7f5ce244bf9e8875752" title="Sends a message of type MSG_UNDO_CANVAS." alt="" coords="719,431,857,472"/>
+<area shape="rect" id="node13" href="$group__game.html#ga82a8aa816fdf22cb3d705dfa56c594f7" title="Reveals another character in the word clue and notifies the other player." alt="" coords="504,590,619,617"/>
+<area shape="rect" id="node14" href="$group__game.html#ga3f61372930dd958f7499a110ce2bd7d6" title="Updates the game due to a rtc alarm interrupt." alt="" coords="275,590,389,617"/>
+<area shape="rect" id="node15" href="$group__dispatcher.html#ga165d3da39e7ad5173611be1f6689c6c7" title="Dispatches a RTC alarm interrupt, calling relevant application dependent code." alt="" coords="22,497,175,523"/>
+<area shape="rect" id="node17" href="$group__game.html#ga159cd81ebf01a5ccd6a0f96aaffb2530" title="Updates the game due to a rtc periodic interrupt." alt="" coords="501,489,622,515"/>
+<area shape="rect" id="node18" href="$group__dispatcher.html#ga472851ec5e720521f2d714e9c4db0366" title="Dispatches a RTC periodic interrupt, calling relevant application dependent code." alt="" coords="249,489,415,515"/>
+<area shape="rect" id="node20" href="$group__dispatcher.html#gac874797e644c008b7aac6fa73c6c97f2" title="Tries to guess the word and notifies the other player." alt="" coords="493,539,629,566"/>
+<area shape="rect" id="node21" href="$group__game.html#ga4ddbf7eb8cd795bad8a0acae94d6c7a3" title="Initializes the text box of the new round for the given guesser_t." alt="" coords="284,539,380,566"/>
+<area shape="rect" id="node23" href="$group__dispatcher.html#gaa94a2133718338e297127042cc5e35b4" title="Leaves the game back to the main menu and notifies the other player." alt="" coords="494,859,629,886"/>
+<area shape="rect" id="node24" href="$group__dispatcher.html#gaf04611df318bda3c0f0d88268a47736d" title="Notify the other player that this player is not currently in the game." alt="" coords="472,910,651,937"/>
+<area shape="rect" id="node25" href="$group__protocol.html#gad85741e17c753b18ad013e5e7bf3eb7c" title="Handles a received message of type MSG_CLUE." alt="" coords="259,910,405,937"/>
+<area shape="rect" id="node26" href="$group__protocol.html#gaa8067dfbdb6128fe19af3cde2b09e053" title="Handles a received message of type MSG_GAME_OVER." alt="" coords="240,961,424,987"/>
+<area shape="rect" id="node27" href="$group__protocol.html#ga6cc93609643509e6c3fe3f7d4e466f8b" title="Handles a received message of type MSG_GUESS." alt="" coords="253,859,411,886"/>
+<area shape="rect" id="node29" href="$group__dispatcher.html#gad508b46cafff5282731b452d032f5267" title="Adds a new atom to the stroke being drawn in the canvas and notifies the other player." alt="" coords="498,641,625,667"/>
+<area shape="rect" id="node31" href="$group__dispatcher.html#gac40675a6ad33c38fe29637b951581d58" title="Starts a new round as DRAWER (role_t)." alt="" coords="486,692,637,733"/>
+<area shape="rect" id="node33" href="$group__dispatcher.html#ga2a6213346685a0167e6ff3c86d126106" title="Starts drawing new stroke in the canvas and notifies the other player." alt="" coords="495,758,628,785"/>
+<area shape="rect" id="node35" href="$group__proj.html#ga2a16f651eccbd248e1ad3b3b924b143b" title="Reacts to the event that the other player sent the random number to decide starting roles." alt="" coords="507,809,616,835"/>
+<area shape="rect" id="node37" href="$group__dispatcher.html#ga05c438abb1a2b811edbac9dd08f57f3c" title="Generates and sends a random number to the other player to decide starting roles." alt="" coords="496,1079,627,1120"/>
+<area shape="rect" id="node38" href="$group__dispatcher.html#ga82e16242d9bfea1af9a18217b66282ef" title="Goes into the &quot;Awaiting other player...&quot; screen and notifies the other player." alt="" coords="258,1057,406,1083"/>
+<area shape="rect" id="node40" href="$group__dispatcher.html#ga1333dd4f74fe83a8e4b6c7c40e23b88a" title="Reacts to the event that the other player opened the program." alt="" coords="492,961,631,1003"/>
+<area shape="rect" id="node42" href="$group__dispatcher.html#ga0dd9d47f03b474d5b5f6350299a63079" title="Redoes a canvas stroke and notifies the other player." alt="" coords="515,274,607,301"/>
+<area shape="rect" id="node44" href="$group__dispatcher.html#ga1fbc6470ac3036a964c81e5a167af362" title="Sets the round as won, updates the score and notifies the other player." alt="" coords="499,329,624,355"/>
+<area shape="rect" id="node47" href="$group__dispatcher.html#ga8d7e76896ea98e9cc288ac7f708ccd50" title="Undoes a canvas stroke and notifies the other player." alt="" coords="514,438,609,465"/>
+<area shape="rect" id="node49" href="$group__protocol.html#gacc32febde28d20d54c2e1460899a14a3" title="Handles a received byte when no message is currently being received." alt="" coords="706,188,870,229"/>
 </map>

@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['role_1057',['role',['../group__game.html#ga4e0cdb878325d53ad79a74504bf97a96',1,'game.h']]],
-  ['rtc_5finterrupt_1058',['rtc_interrupt',['../group__rtc.html#ga5da53acff0f9cf2c56c39488da2a21cf',1,'rtc.h']]]
+  ['parity_1544',['parity',['../group__uart.html#ga62d49d97117baa12d4ccc139f067ffdb',1,'uart.h']]],
+  ['player_5fstate_1545',['player_state',['../group__dispatcher.html#gaf03955f98200c8b8b31487211de65e09',1,'dispatcher.c']]]
 ];

@@ -1,0 +1,15 @@
+<map id="menu_draw_new_round_screen" name="menu_draw_new_round_screen">
+<area shape="rect" id="node1" title="Draws the new round screen for the given role to the back buffer." alt="" coords="5,175,163,217"/>
+<area shape="rect" id="node2" href="$group__font.html#ga84590018142e55d772b7ce9733c06ecf" title="Draws a given string to the given coordinates in the given buffer." alt="" coords="455,5,571,32"/>
+<area shape="rect" id="node6" href="$group__font.html#ga76f55190cabfad9be834e7f9b435441d" title="Draws a substring of a string centered in the given coordinates in the given buffer." alt="" coords="211,56,384,83"/>
+<area shape="rect" id="node8" href="$group__game.html#ga3dca5c3dd4c70b5bc633c0904310dc3f" title="Gets the correct word of the round." alt="" coords="217,107,377,133"/>
+<area shape="rect" id="node9" href="$group__game.html#gab251c3559982ac0e5ffb364b9dce7ef3" title="Gets the round number." alt="" coords="213,157,381,184"/>
+<area shape="rect" id="node10" href="$group__game.html#ga92c56edd6169eb969123defe3aec8d23" title="Gets the game score." alt="" coords="238,208,357,235"/>
+<area shape="rect" id="node11" href="$group__graphics.html#ga1c6f059671dcd7284a5e4edda52ce870" title="Fills the given buffer with the given color." alt="" coords="248,259,347,285"/>
+<area shape="rect" id="node12" href="$group__video__gr.html#gaecb0fe68de84fcbe553f77d62b37c69b" title="Gets the back buffer." alt="" coords="231,309,363,336"/>
+<area shape="rect" id="node13" href="$group__video__gr.html#ga03e56e930917ca4f15ea488838d513a8" title="Gets the horizontal resolution of the buffer." alt="" coords="252,360,343,387"/>
+<area shape="rect" id="node3" href="$group__font.html#gaa049c74a42572fa8713f9d08ddf42fc1" title="Draws a given char to the given coordinates in the given buffer." alt="" coords="641,31,751,57"/>
+<area shape="rect" id="node4" href="$group__graphics.html#ga31260a04eb12bc7be5012378500b09b0" title="Draws a portion of a given xpm image in the given buffer in the given coordinates." alt="" coords="799,31,948,57"/>
+<area shape="rect" id="node5" href="$group__graphics.html#ga257b5dac975604f70651e8764ad8acd8" title="Draws a pixel in the given buffer in the given coordinates with the given color." alt="" coords="996,31,1099,57"/>
+<area shape="rect" id="node7" href="$group__font.html#ga9b434230690465196da266df4141511d" title="Draws a substring of a string to the given coordinates in the given buffer." alt="" coords="432,56,593,83"/>
+</map>

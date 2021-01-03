@@ -1,4 +1,6 @@
 <map id="canvas_init" name="canvas_init">
-<area shape="rect" id="node1" title="Initiates the canvas." alt="" coords="177,5,264,32"/>
-<area shape="rect" id="node2" href="$group__dispatcher.html#ga00f3579aee6fd77454373ac309f39675" title="Starts the round." alt="" coords="5,5,129,32"/>
+<area shape="rect" id="node1" title="Initiates the canvas." alt="" coords="387,35,473,61"/>
+<area shape="rect" id="node2" href="$group__dispatcher.html#gafab2be1b5bd6d5f0282e36effcdbf8c2" title="Starts the round." alt="" coords="207,35,339,61"/>
+<area shape="rect" id="node3" href="$group__dispatcher.html#ga165d3da39e7ad5173611be1f6689c6c7" title="Dispatches a RTC alarm interrupt, calling relevant application dependent code." alt="" coords="5,5,159,32"/>
+<area shape="rect" id="node4" href="$group__protocol.html#ga4ba318073b27ac4dd79ed093ee960b2f" title="Handles a received message of type MSG_START_ROUND." alt="" coords="8,57,156,98"/>
 </map>

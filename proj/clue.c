@@ -6,12 +6,20 @@
 #define CLUE_BAR_MARGIN 5
 #define RECTANGLE_HEIGHT 5
 
-// Word clue class implementation.
+/** @defgroup clue clue
+ * @{
+ *
+ */
+
+/**
+ * @brief Word clue class implementation.
+ * 
+ */
 struct word_clue {
-    char *word; // Address of memory of the word to give clues of.
-    char *clue; // Address of memory of the clues already given.
-    size_t size; // Size of word.
-    size_t missing; // Number of chars that were not hinted.
+    char *word; /**< @brief Address of memory of the word to give clues of. */
+    char *clue; /**< @brief Address of memory of the clues already given. */
+    size_t size; /**< @brief Size of word. */
+    size_t missing; /**< @brief Number of chars that were not hinted. */
 };
 
 word_clue_t *new_word_clue(const char *word) {
@@ -113,3 +121,5 @@ void delete_word_clue(word_clue_t *clue) {
 
     free(clue);
 }
+
+/**@}*/

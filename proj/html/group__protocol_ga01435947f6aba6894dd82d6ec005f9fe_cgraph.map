@@ -1,0 +1,16 @@
+<map id="protocol_send_new_round" name="protocol_send_new_round">
+<area shape="rect" id="node1" title="Sends a message of type MSG_NEW_ROUND." alt="" coords="5,212,177,239"/>
+<area shape="rect" id="node2" href="$group__protocol.html#gaa8c3d5620d3e7c609513d9372296a6d3" title="Adds a new message to the pending messages queue." alt="" coords="227,187,383,213"/>
+<area shape="rect" id="node14" href="$group__protocol.html#ga46939f58a097b24e703e1eb6523b6439" title="Initializes a new message_t." alt="" coords="225,237,384,264"/>
+<area shape="rect" id="node3" href="$group__protocol.html#gaca49d55d34fe635af7f3822f4b01bdc6" title="Sends the next pending message in queue." alt="" coords="432,139,567,181"/>
+<area shape="rect" id="node8" href="$group__queue.html#gaa54578828a1b5676bb99a535c617e1a2" title="Adds an element to the back of the given queue." alt="" coords="787,227,879,253"/>
+<area shape="rect" id="node4" href="$group__queue.html#ga09a3da9bf84f747356ef8050447bf35a" title="Checks if a given queue is empty." alt="" coords="1087,49,1204,76"/>
+<area shape="rect" id="node5" href="$group__queue.html#ga24ec1e60eaa37239a1b49c6f7321c9d9" title="Gets the element at the front of the given queue." alt="" coords="948,176,1031,203"/>
+<area shape="rect" id="node7" href="$group__uart.html#ga00a2984ead2b73e2871dfda7c1ac49e3" title="Adds a byte to the software queue of bytes to be sent and tries to send bytes." alt="" coords="615,125,725,152"/>
+<area shape="rect" id="node6" href="$group__queue.html#ga5f221cd3b0a3c04f33ba9fd136a61c8b" title="Returns a pointer to the element of the given queue at the given index." alt="" coords="1098,227,1193,253"/>
+<area shape="rect" id="node11" href="$group__uart.html#ga8219117bdd64ba6474c847fd89efbd41" title="Sends bytes from a software queue into the serial port." alt="" coords="773,125,892,152"/>
+<area shape="rect" id="node9" href="$group__queue.html#gae1cd6b62453b7f57525be17a53885800" title="Checks if a given queue is full." alt="" coords="1097,303,1194,329"/>
+<area shape="rect" id="node10" href="$group__queue.html#gabf50b2659d4139679a639a78c217f7fa" title="Resizes the given queue so that it has double the capacity without losing data." alt="" coords="940,277,1039,304"/>
+<area shape="rect" id="node12" href="$group__queue.html#ga81880a2f29871356ccddd8f20ec99e9e" title="Removes the element at the front of the given queue." alt="" coords="947,24,1032,51"/>
+<area shape="rect" id="node13" href="$group__utils.html#ga79a031a8611f5b2d6afa4158e92b0fb4" title="Wraps sys_inb so that it may be called with a uint8_t argument." alt="" coords="944,125,1035,152"/>
+</map>

@@ -4,10 +4,21 @@
 #include "dispatcher.h"
 #include "date.h"
 
-static int hook_id_rtc = 3;
-static date_t current_date;
-static date_t last_alarm_set_to = {.year = 0, .month = 0, .day = 0, .hour = 0, .minute = 0, .second = 0};
+/** @defgroup rtc rtc 
+ * @{
+ *
+ */
 
+static int hook_id_rtc = 3; /**< @brief RTC interrupts hook id */
+static date_t current_date; /**< @brief Current date */
+static date_t last_alarm_set_to = {.year = 0, .month = 0, .day = 0, .hour = 0, .minute = 0, .second = 0}; /**< @brief Date the last alarm interrupt was set to */
+
+/**
+ * @brief Prints the given value in binary format.
+ * 
+ * @param val value to print
+ * 
+ */
 static void rtc_print_byte_binary_format(uint8_t val) {
     for (int i = 7; i >= 0; i--) {
         printf("%d", (val>>i) & 0x1);
@@ -38,6 +49,12 @@ int rtc_read_conf() {
     return 0;
 }
 
+/**
+ * @brief Converts the given alarm time from binary into bcd.
+ * 
+ * @param time the time to convert
+ * @return Return 0 upon success and non-zero otherwise
+ */
 static int alarm_time_binary_to_bcd(rtc_alarm_time_t * time) {
     if (time == NULL)
         return 1;
@@ -266,3 +283,5 @@ unsigned int rtc_get_seed() {
 
     return seed;
 }
+
+/**@}*/

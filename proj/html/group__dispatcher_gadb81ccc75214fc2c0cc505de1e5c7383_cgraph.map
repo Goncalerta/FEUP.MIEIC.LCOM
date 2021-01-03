@@ -1,0 +1,6 @@
+<map id="dispatcher_unselect_buttons_textboxes_canvas" name="dispatcher_unselect_buttons_textboxes_canvas">
+<area shape="rect" id="node1" title="Returns all bound buttons, textboxes and canvas to normal state." alt="" coords="5,49,188,90"/>
+<area shape="rect" id="node2" href="$group__button.html#ga1fd05a274a5ab9c8cfbee07fa4a31fa6" title="Returns button to normal state." alt="" coords="243,5,357,32"/>
+<area shape="rect" id="node3" href="$group__canvas.html#ga7d01d5f1286fc480b5206c8c22e43d18" title="Returns canvas to normal state." alt="" coords="241,56,359,83"/>
+<area shape="rect" id="node4" href="$group__text__box.html#ga412d97b36204a9ae1c6d93537f8f7f65" title="Returns text box to normal state." alt="" coords="236,107,364,133"/>
+</map>

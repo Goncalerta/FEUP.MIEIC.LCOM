@@ -1,0 +1,12 @@
+<map id="handle_end_round" name="handle_end_round">
+<area shape="rect" id="node1" title="Ends the current round." alt="" coords="5,107,132,133"/>
+<area shape="rect" id="node2" href="$group__canvas.html#ga70d19351c72c49f89e040a1fb90897c3" title="Exits the canvas and frees the space allocated in memory to store its buffer." alt="" coords="202,56,293,83"/>
+<area shape="rect" id="node6" href="$group__game.html#gadede5f1c2e6f4a506c211cd8045dc449" title="Deletes the current game round." alt="" coords="180,132,315,159"/>
+<area shape="rect" id="node3" href="$group__canvas.html#ga5b31467d787bcd9102fc76dff6aaa4ab" title="Clears all the canvas strokes." alt="" coords="375,31,473,57"/>
+<area shape="rect" id="node4" href="$group__canvas.html#ga6bf721599d651d3d7cb19bf578d2a20a" title="Deletes all undone strokes." alt="" coords="533,5,680,32"/>
+<area shape="rect" id="node5" href="$group__graphics.html#ga1c6f059671dcd7284a5e4edda52ce870" title="Fills the given buffer with the given color." alt="" coords="557,56,656,83"/>
+<area shape="rect" id="node7" href="$group__button.html#ga48a96f09e1170ecdb6340f1b125daef9" title="Initializes a button." alt="" coords="374,81,474,108"/>
+<area shape="rect" id="node8" href="$group__text__box.html#ga2f207c8555da953e14b641615f2d9421" title="Frees the space allocated in memory to store the content of a given text box." alt="" coords="367,132,481,159"/>
+<area shape="rect" id="node9" href="$group__clue.html#ga0425307d69028408fcaad6cf23e7a13a" title="Frees the space allocated in memory to store the content of a given word clue." alt="" coords="363,183,485,209"/>
+<area shape="rect" id="node10" href="$structguess.html#abe9474d0c8e95e689c242ac1a6717b65" title="Guessed word." alt="" coords="374,233,474,260"/>
+</map>

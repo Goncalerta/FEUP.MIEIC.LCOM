@@ -1,9 +1,12 @@
 <map id="uart_send_byte" name="uart_send_byte">
-<area shape="rect" id="node1" title="Adds a byte to the software queue of bytes to be sent and tries to send bytes." alt="" coords="5,56,116,83"/>
-<area shape="rect" id="node2" href="$group__queue.html#gaa54578828a1b5676bb99a535c617e1a2" title="Adds an element to the back of the given queue." alt="" coords="177,19,269,45"/>
-<area shape="rect" id="node4" href="$group__uart.html#ga8219117bdd64ba6474c847fd89efbd41" title="Sends bytes from a software queue into the serial port." alt="" coords="164,81,283,108"/>
-<area shape="rect" id="node3" href="$group__queue.html#gae1cd6b62453b7f57525be17a53885800" title="Checks if a given queue is full." alt="" coords="331,5,428,32"/>
-<area shape="rect" id="node5" href="$group__queue.html#ga09a3da9bf84f747356ef8050447bf35a" title="Checks if a given queue is empty." alt="" coords="476,107,593,133"/>
-<area shape="rect" id="node6" href="$group__queue.html#ga81880a2f29871356ccddd8f20ec99e9e" title="Removes the element at the front of the given queue." alt="" coords="337,107,422,133"/>
-<area shape="rect" id="node7" href="$group__queue.html#ga24ec1e60eaa37239a1b49c6f7321c9d9" title="Gets the element at the front of the given queue." alt="" coords="338,157,421,184"/>
+<area shape="rect" id="node1" title="Adds a byte to the software queue of bytes to be sent and tries to send bytes." alt="" coords="5,132,116,159"/>
+<area shape="rect" id="node2" href="$group__queue.html#gaa54578828a1b5676bb99a535c617e1a2" title="Adds an element to the back of the given queue." alt="" coords="177,56,269,83"/>
+<area shape="rect" id="node6" href="$group__uart.html#ga8219117bdd64ba6474c847fd89efbd41" title="Sends bytes from a software queue into the serial port." alt="" coords="164,183,283,209"/>
+<area shape="rect" id="node3" href="$group__queue.html#ga5f221cd3b0a3c04f33ba9fd136a61c8b" title="Returns a pointer to the element of the given queue at the given index." alt="" coords="489,81,583,108"/>
+<area shape="rect" id="node4" href="$group__queue.html#gae1cd6b62453b7f57525be17a53885800" title="Checks if a given queue is full." alt="" coords="487,5,585,32"/>
+<area shape="rect" id="node5" href="$group__queue.html#gabf50b2659d4139679a639a78c217f7fa" title="Resizes the given queue so that it has double the capacity without losing data." alt="" coords="331,31,429,57"/>
+<area shape="rect" id="node7" href="$group__queue.html#ga09a3da9bf84f747356ef8050447bf35a" title="Checks if a given queue is empty." alt="" coords="477,183,595,209"/>
+<area shape="rect" id="node8" href="$group__queue.html#ga81880a2f29871356ccddd8f20ec99e9e" title="Removes the element at the front of the given queue." alt="" coords="337,284,423,311"/>
+<area shape="rect" id="node9" href="$group__queue.html#ga24ec1e60eaa37239a1b49c6f7321c9d9" title="Gets the element at the front of the given queue." alt="" coords="339,132,421,159"/>
+<area shape="rect" id="node10" href="$group__utils.html#ga79a031a8611f5b2d6afa4158e92b0fb4" title="Wraps sys_inb so that it may be called with a uint8_t argument." alt="" coords="335,233,425,260"/>
 </map>

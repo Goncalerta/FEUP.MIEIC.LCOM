@@ -15,26 +15,31 @@
 #include "xpm/menu_resume.xpm"
 #include "xpm/menu_main_menu.xpm"
 
-#define MENU_BUTTON_WIDTH 320
-#define MENU_BUTTON_HEIGHT 100
-#define MENU_BUTTON_DISTANCE 50
-#define MENU_BACKGROUND_COLOR 0x8c2d19
-#define MENU_GREETING_Y 180
+/** @defgroup menu menu
+ * @{
+ *
+ */
 
-static menu_state_t menu_state = MAIN_MENU;
+#define MENU_BUTTON_WIDTH 320 /*!< @brief Width of menu buttons */
+#define MENU_BUTTON_HEIGHT 100 /*!< @brief Height of menu buttons */
+#define MENU_BUTTON_DISTANCE 50 /*!< @brief Distance between menu buttons */
+#define MENU_BACKGROUND_COLOR 0x8c2d19 /*!< @brief Menu background color */
+#define MENU_GREETING_Y 180 /*!< @brief Y coordinate of main menu greeting */
 
-// MAIN MENU:
-static button_t *b_new_game;
-static button_t *b_end_program;
+static menu_state_t menu_state = MAIN_MENU; /*!< @brief Current menu state */
 
-// PAUSE_MENU:
-static button_t *b_resume;
-static button_t *b_back_to_main_menu;
+static button_t *b_new_game; /*!< @brief Button to start a new game (main menu) */
+static button_t *b_end_program; /*!< @brief Button close program (main menu) */
 
-// AWAITING PLAYER:
-static uint8_t awaiting_player_tick = 0;
+static button_t *b_resume; /*!< @brief Button to resume game (pause menu) */
+static button_t *b_back_to_main_menu; /*!< @brief Button to return to main menu (awaiting player and pause menu) */
 
-static xpm_image_t xpm_new_game, xpm_resume, xpm_exit, xpm_main_menu;
+static uint8_t awaiting_player_tick = 0; /*!< @brief Ticks for animating "AWAITING OTHER PLAYER..." text */
+
+static xpm_image_t xpm_new_game; /*!< @brief b_new_game icon XPM */
+static xpm_image_t xpm_resume; /*!< @brief b_resume icon XPM */
+static xpm_image_t xpm_exit; /*!< @brief b_end_program icon XPM */
+static xpm_image_t xpm_main_menu; /*!< @brief b_back_to_main_menu icon XPM */
 
 int menu_init(enum xpm_image_type type) {
     frame_buffer_t buf = vg_get_back_buffer();
@@ -107,6 +112,45 @@ bool menu_is_game_ongoing() {
         || menu_state == GAME || menu_state == PAUSE_MENU;
 }
 
+/**
+ * @brief Draws the main menu to the back buffer.
+ * 
+ * @return Return 0 upon success and non-zero otherwise
+ */
+static int menu_draw_main_menu() {
+    frame_buffer_t buf = vg_get_back_buffer();
+
+    if (vb_fill_screen(buf, MENU_BACKGROUND_COLOR) != OK)
+        return 1;
+    if (button_draw(buf, b_new_game) != OK)
+        return 1;
+    if (button_draw(buf, b_end_program) != OK)
+        return 1;
+    if (date_draw_greeting(vg_get_hres()/2, MENU_GREETING_Y) != OK)
+        return 1;
+}
+
+/**
+ * @brief Draws the pause menu to the back buffer.
+ * 
+ * @return Return 0 upon success and non-zero otherwise
+ */
+static int menu_draw_pause_menu() {
+    frame_buffer_t buf = vg_get_back_buffer();
+
+    if (button_draw(buf, b_resume) != OK)
+        return 1;
+    if (button_draw(buf, b_back_to_main_menu) != OK)
+        return 1;
+}
+
+/**
+ * @brief Draws the game over screen to the back buffer.
+ * 
+ * @param reason String with the reason why the game ended
+ * @param reason_size size of reason string
+ * @return Return 0 upon success and non-zero otherwise
+ */
 static int menu_draw_game_over_screen(const char *reason, size_t reason_size) {
     frame_buffer_t buf = vg_get_back_buffer();
     
@@ -139,6 +183,12 @@ static int menu_draw_game_over_screen(const char *reason, size_t reason_size) {
     return 0;
 }
 
+/**
+ * @brief Draws the new round screen for the given role to the back buffer.
+ * 
+ * @param role role of the player in the new round
+ * @return Return 0 upon success and non-zero otherwise
+ */
 static int menu_draw_new_round_screen(role_t role) {
     frame_buffer_t buf = vg_get_back_buffer();
     
@@ -185,60 +235,58 @@ static int menu_draw_new_round_screen(role_t role) {
     return 0;
 }
 
-int menu_draw() {
+/**
+ * @brief Draws the awaiting other player menu to the back buffer.
+ * 
+ * @return Return 0 upon success and non-zero otherwise
+ */
+static int menu_draw_awaiting_other_player_menu() {
     frame_buffer_t buf = vg_get_back_buffer();
+    
+    if (vb_fill_screen(buf, MENU_BACKGROUND_COLOR) != OK)
+        return 1;
 
+    size_t str_size;
+    if (awaiting_player_tick < 60) {
+        str_size = 25;
+    } else if (awaiting_player_tick < 120) {
+        str_size = 26;
+    } else if (awaiting_player_tick < 180) {
+        str_size = 27;
+    } else {
+        str_size = 25;
+        awaiting_player_tick = 0;
+    }
+
+    awaiting_player_tick++;
+    
+    if (font_draw_string_centered(buf, "WAITING FOR OTHER PLAYER...", vg_get_hres()/2, vg_get_vres()/2 - 50, 0, str_size) != OK)
+        return 1;
+    
+    if (button_draw(buf, b_back_to_main_menu) != OK)
+        return 1;
+}
+
+int menu_draw() {
     switch (menu_state) {
     case MAIN_MENU:
-        if (vb_fill_screen(buf, MENU_BACKGROUND_COLOR) != OK)
-            return 1;
-        if (button_draw(buf, b_new_game) != OK)
-            return 1;
-        if (button_draw(buf, b_end_program) != OK)
-            return 1;
-        if (date_draw_greeting(vg_get_hres()/2, MENU_GREETING_Y) != OK)
+        if (menu_draw_main_menu() != OK)
             return 1;
         break;
-
     case PAUSE_MENU:
-        if (button_draw(buf, b_resume) != OK)
-            return 1;
-        if (button_draw(buf, b_back_to_main_menu) != OK)
+        if (menu_draw_pause_menu() != OK)
             return 1;
         break;
-    
     case DRAWER_NEW_ROUND_SCREEN:
         if (menu_draw_new_round_screen(DRAWER) != OK)
             return 1;
         break;
-
     case GUESSER_NEW_ROUND_SCREEN:
         if (menu_draw_new_round_screen(GUESSER) != OK)
             return 1;
         break;
-
     case AWAITING_OTHER_PLAYER:
-        if (vb_fill_screen(buf, MENU_BACKGROUND_COLOR) != OK)
-            return 1;
-
-        size_t str_size;
-        if (awaiting_player_tick < 60) {
-            str_size = 25;
-        } else if (awaiting_player_tick < 120) {
-            str_size = 26;
-        } else if (awaiting_player_tick < 180) {
-            str_size = 27;
-        } else {
-            str_size = 25;
-            awaiting_player_tick = 0;
-        }
-
-        awaiting_player_tick++;
-        
-        if (font_draw_string_centered(buf, "WAITING FOR OTHER PLAYER...", vg_get_hres()/2, vg_get_vres()/2 - 50, 0, str_size) != OK)
-            return 1;
-        
-        if (button_draw(buf, b_back_to_main_menu) != OK)
+        if (menu_draw_awaiting_other_player_menu() != OK)
             return 1;
         break;
     case GAME_OVER_SCREEN:
@@ -352,3 +400,5 @@ int menu_set_other_player_left_screen() {
     menu_state = OTHER_PLAYER_LEFT_SCREEN;
     return 0;
 }
+
+/**@}*/

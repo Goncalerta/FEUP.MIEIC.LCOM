@@ -1,0 +1,4 @@
+<map id="rtc_print_byte_binary_format" name="rtc_print_byte_binary_format">
+<area shape="rect" id="node1" title="Prints the given value in binary format." alt="" coords="153,5,296,47"/>
+<area shape="rect" id="node2" href="$group__rtc.html#ga1b33c2156c2ebefbe73d2ceeb7314fea" title="Prints the content of RTC registers A, B, C and D." alt="" coords="5,13,105,39"/>
+</map>

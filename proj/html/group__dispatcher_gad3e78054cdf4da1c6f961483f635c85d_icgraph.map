@@ -1,4 +1,0 @@
-<map id="handle_redo" name="handle_redo">
-<area shape="rect" id="node1" title="Redoes a canvas stroke and notifies the other player." alt="" coords="180,5,264,32"/>
-<area shape="rect" id="node2" href="$group__canvas.html#ga8ad75f7f8cd0333e14d51a533da88883" title="Updates the canvas according to a keyboard event." alt="" coords="5,5,132,32"/>
-</map>

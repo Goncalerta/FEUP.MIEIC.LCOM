@@ -1,0 +1,4 @@
+<map id="game_other_player_game_over" name="game_other_player_game_over">
+<area shape="rect" id="node1" title="Reacts to the game over notification of another player." alt="" coords="237,5,439,32"/>
+<area shape="rect" id="node2" href="$group__protocol.html#gaa8067dfbdb6128fe19af3cde2b09e053" title="Handles a received message of type MSG_GAME_OVER." alt="" coords="5,5,189,32"/>
+</map>

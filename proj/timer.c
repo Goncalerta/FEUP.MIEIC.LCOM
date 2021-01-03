@@ -6,8 +6,21 @@
 #include "i8254.h"
 #include "dispatcher.h"
 
-static int hook_id_timer = 0;
+/** @defgroup timer timer
+ * @{
+ *
+ * @brief Module to interact with the PC's Timer.
+ */
 
+static int hook_id_timer = 0; /**< @brief Timer hook id */
+
+/**
+ * @brief Sets the frequency of the given timer.
+ * 
+ * @param timer the timer to change
+ * @param freq the new frequency
+ * @return Return 0 upon success and non-zero otherwise
+ */
 int (timer_set_frequency)(uint8_t timer, uint32_t freq) {
     if (timer > 2 || freq < 19 || freq > TIMER_FREQ)
         return 1;
@@ -49,21 +62,43 @@ int (timer_set_frequency)(uint8_t timer, uint32_t freq) {
     return 0;
 }
 
+/**
+ * @brief Subscribes Timer interrupts.
+ * 
+ * @param bit_no address of memory to be initialized with the bit number to be set in the mask returned upon an interrupt
+ * @return Return 0 upon success and non-zero otherwise
+ */
 int (timer_subscribe_int)(uint8_t *bit_no) {
     *bit_no = hook_id_timer;
     return sys_irqsetpolicy(TIMER0_IRQ, IRQ_REENABLE, &hook_id_timer);
 }
 
+/**
+ * @brief Unsubscribes Timer interrupts.
+ * 
+ * @return Return 0 upon success and non-zero otherwise
+ */
 int (timer_unsubscribe_int)() {
     return sys_irqrmpolicy(&hook_id_timer);
 }
 
+/**
+ * @brief Timer interrupt handler.
+ * 
+ */
 void (timer_int_handler)() {
     if (dispatcher_queue_event(TIMER_TICK_EVENT) != OK) {
         printf("Failed to queue timer tick event\n");
     }
 }
 
+/**
+ * @brief Gets the configuration of the given timer.
+ * 
+ * @param timer the timer to get the configuration from
+ * @param st memory address to be initialized with the new configuration
+ * @return Return 0 upon success and non-zero otherwise
+ */
 int (timer_get_conf)(uint8_t timer, uint8_t *st) {
     if (timer > 2) 
         return 1;
@@ -78,6 +113,14 @@ int (timer_get_conf)(uint8_t timer, uint8_t *st) {
     return 0;
 }
 
+/**
+ * @brief Displays the configuration of the given timer to the standard output.
+ * 
+ * @param timer the timer to get the configuration from
+ * @param st the configuration of the timer
+ * @param field the field of the configuration to be shown
+ * @return Return 0 upon success and non-zero otherwise
+ */
 int (timer_display_conf)(uint8_t timer, uint8_t st,
                          enum timer_status_field field) {
     if (timer > 2) 
@@ -117,3 +160,5 @@ int (timer_display_conf)(uint8_t timer, uint8_t st,
 
     return timer_print_config(timer, field, conf);
 }
+
+/**@}*/

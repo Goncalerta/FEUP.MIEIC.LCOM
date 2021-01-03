@@ -2,14 +2,22 @@
 
 #include "queue.h"
 
-// Queue class implementation
+/** @defgroup queue queue
+ * @{
+ *
+ */
+
+/**
+ * @brief Queue class implementation.
+ * 
+ */
 struct queue {
-    void *data; // Address of memory of the content of the queue.
-    size_t element_size; // Size of each queue element.
-    size_t front; // Index of queue front element.
-    size_t back; // Index of queue back element.
-    size_t size; // Queue size.
-    size_t capacity; // Queue capacity.
+    void *data; /**< @brief Address of memory of the content of the queue. */
+    size_t element_size; /**< @brief Size of each queue element. */
+    size_t front; /**< @brief Index of queue front element. */
+    size_t back; /**< @brief Index of queue back element. */
+    size_t size; /**< @brief Queue size. */
+    size_t capacity; /**< @brief Queue capacity. */
 };
 
 queue_t *new_queue(size_t element_size, size_t capacity) {
@@ -43,12 +51,23 @@ void delete_queue(queue_t *queue) {
     free(queue);
 }
 
-// Returns a pointer to the element of the given queue at the given index.
+/**
+ * @brief Returns a pointer to the element of the given queue at the given index.
+ * 
+ * @param queue the queue to access
+ * @param i the index of the element
+ * @return Address of memory of the element of the given queue at the given index
+ */
 static void *queue_index(queue_t *queue, size_t i) {
     return (uint8_t*) queue->data + i * queue->element_size;
 }
 
-// Doubles the capacity of the queue without losing its current data.
+/**
+ * @brief Resizes the given queue so that it has double the capacity without losing data.
+ * 
+ * @param queue address of memory of the queue
+ * @return Return 0 upon success and non-zero otherwise
+ */
 static int queue_resize(queue_t *queue) {
     size_t new_capacity = 2 * queue->capacity;
     
@@ -108,3 +127,5 @@ int queue_pop(queue_t *queue) {
     queue->size--;
     return 0;
 }
+
+/**@}*/

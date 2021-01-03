@@ -1,0 +1,7 @@
+<map id="timer_set_frequency" name="timer_set_frequency">
+<area shape="rect" id="node1" title="Sets the frequency of the given timer." alt="" coords="5,56,144,83"/>
+<area shape="rect" id="node2" href="$group__timer.html#ga703c60b40c8c49607d6ecb6fef82d27a" title="Gets the configuration of the given timer." alt="" coords="192,5,299,32"/>
+<area shape="rect" id="node4" href="$group__utils.html#ga81621440b3d65680979425e39aa8c789" title="Gets the least significant byte of a given half&#45;word." alt="" coords="197,56,293,83"/>
+<area shape="rect" id="node5" href="$group__utils.html#ga6a880076cd2ec468834438b6e0c58836" title="Gets the most significant byte of a given half&#45;word." alt="" coords="195,107,295,133"/>
+<area shape="rect" id="node3" href="$group__utils.html#ga79a031a8611f5b2d6afa4158e92b0fb4" title="Wraps sys_inb so that it may be called with a uint8_t argument." alt="" coords="347,5,437,32"/>
+</map>

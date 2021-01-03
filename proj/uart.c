@@ -4,11 +4,17 @@
 #include "queue.h"
 #include "dispatcher.h"
 
-#define UART_SW_QUEUES_STARTING_CAPACITY 16
+/** @defgroup uart uart
+ * @{
+ *
+ */
 
-static int hook_id_com1 = 4;
-static queue_t *transmitted, *received;
-static fifo_int_trigger_level_t fifo_int_trigger_level;
+#define UART_SW_QUEUES_STARTING_CAPACITY 16 /**< @brief Starting capacity of software queues */
+
+static int hook_id_com1 = 4; /**< @brief COM1 interrupts hook id */
+static queue_t *transmitted; /**< @brief Software queue with bytes to be transmitted to the serial port */
+static queue_t *received; /**< @brief Software queue with received bytes from the serial port */
+static fifo_int_trigger_level_t fifo_int_trigger_level; /**< @brief Hardware FIFOs interrupt trigger level */
 
 int com1_subscribe_int(uint8_t *bit_no) {
     *bit_no = hook_id_com1;
@@ -119,7 +125,11 @@ int uart_send_bytes() {
     return 0;
 }
 
-int uart_check_error(bool *err) {
+/**
+ * @brief Checks if a serial port error occurred.
+ * 
+ */
+static int uart_check_error(bool *err) {
     uint8_t lsr_byte;
     
     if (util_sys_inb(COM1_BASE_ADDR + LINE_STATUS_REG, &lsr_byte) != OK)
@@ -297,6 +307,11 @@ int uart_disable_fifo() {
     return 0;
 }
 
+/**
+ * @brief Selects dlab in the line control register so that divisor latch registers may be accessed.
+ * 
+ * @return Return 0 upon success and non-zero otherwise
+ */
 static int uart_select_dlab() {
     uint8_t lcr_byte;
     if (util_sys_inb(COM1_BASE_ADDR + LINE_CTRL_REG, &lcr_byte) != OK)
@@ -309,6 +324,11 @@ static int uart_select_dlab() {
     return 0;
 }
 
+/**
+ * @brief Selects data in the line control register so that data transmittion registers may be accessed.
+ * 
+ * @return Return 0 upon success and non-zero otherwise
+ */
 static int uart_select_data() {
     uint8_t lcr_byte;
     if (util_sys_inb(COM1_BASE_ADDR + LINE_CTRL_REG, &lcr_byte) != OK)
@@ -322,9 +342,11 @@ static int uart_select_data() {
 }
 
 int uart_set_bit_rate(uint16_t bit_rate) {
+    // Select dlab to access divisor latch registers
     if (uart_select_dlab() != OK)
         return 1;
 
+    // Parse bit_rate into divisor latch value bytes
     uint16_t divisor_latch_value = DIVISOR_LATCH_DIVIDEND / bit_rate;
     uint8_t divisor_latch_lsb, divisor_latch_msb;
     
@@ -338,6 +360,7 @@ int uart_set_bit_rate(uint16_t bit_rate) {
         return 1;
     }
 
+    // Send divisor latch value bytes to the corresponding registers
     if (sys_outb(COM1_BASE_ADDR + DIVISOR_LATCH_LSB, divisor_latch_lsb) != OK) {
         uart_select_data();
         return 1;
@@ -348,8 +371,11 @@ int uart_set_bit_rate(uint16_t bit_rate) {
         return 1;
     }
 
+    // Finally, dlab selection
     if (uart_select_data() != OK)
         return 1;
     
     return 0;
 }
+
+/**@}*/

@@ -1,4 +1,6 @@
 <map id="queue_push" name="queue_push">
-<area shape="rect" id="node1" title="Adds an element to the back of the given queue." alt="" coords="5,5,97,32"/>
-<area shape="rect" id="node2" href="$group__queue.html#gae1cd6b62453b7f57525be17a53885800" title="Checks if a given queue is full." alt="" coords="145,5,243,32"/>
+<area shape="rect" id="node1" title="Adds an element to the back of the given queue." alt="" coords="5,31,97,57"/>
+<area shape="rect" id="node2" href="$group__queue.html#ga5f221cd3b0a3c04f33ba9fd136a61c8b" title="Returns a pointer to the element of the given queue at the given index." alt="" coords="293,5,388,32"/>
+<area shape="rect" id="node3" href="$group__queue.html#gae1cd6b62453b7f57525be17a53885800" title="Checks if a given queue is full." alt="" coords="292,68,389,95"/>
+<area shape="rect" id="node4" href="$group__queue.html#gabf50b2659d4139679a639a78c217f7fa" title="Resizes the given queue so that it has double the capacity without losing data." alt="" coords="145,31,244,57"/>
 </map>
