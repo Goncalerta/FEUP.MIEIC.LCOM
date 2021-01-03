@@ -12,7 +12,7 @@
  *
  */
 
-#define MAXIMUM_UNDOABLE_ATOMS 30 //1024
+#define MAXIMUM_UNDOABLE_ATOMS 50 //1024
 
 static canvas_state_t state = CANVAS_STATE_NORMAL; /**< @brief Canvas current state */
 static stroke_t *first = NULL; /**< @brief Reference to the first stroke drawn */
@@ -87,7 +87,7 @@ static int canvas_draw_stroke(frame_buffer_t buf, stroke_t *stroke) {
 }
 
 static int canvas_draw_excess_strokes(frame_buffer_t buf) {
-    while (undo_atoms_limit_count >= MAXIMUM_UNDOABLE_ATOMS) {
+    while (undo_atoms_limit_count > MAXIMUM_UNDOABLE_ATOMS) {
         stroke_t *s = first;
         first = s->next;
         first->prev = NULL;
@@ -165,13 +165,13 @@ int canvas_init(uint16_t width, uint16_t height, bool en) {
  */
 static void canvas_clear_undone() {
     stroke_t *current = undone;
-    if (current != NULL) {
-        undo_atoms_limit_count += current->num_atoms;
-    }
     
     while (current != NULL) {
         stroke_t *prev = current->prev;
-        undo_atoms_limit_count -= current->num_atoms;
+        if (prev != NULL) {
+            undo_atoms_limit_count -= current->num_atoms;
+        }
+        
         free(current);
         current = prev;
     }
@@ -228,11 +228,13 @@ int canvas_new_stroke(uint32_t color, uint16_t thickness) {
     s->num_atoms = 0;
 
     if (first == NULL) {
-        undo_atoms_limit_count = 0;
         first = s;
         last = s;
     } else {
-        undo_atoms_limit_count += last->num_atoms;
+        if (undone == NULL) {
+            undo_atoms_limit_count += last->num_atoms;
+        }
+        
         s->prev = last;
         last->next = s;
         last = s;
