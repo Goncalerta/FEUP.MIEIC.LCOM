@@ -33,6 +33,7 @@ queue_t *new_queue(size_t element_size, size_t capacity) {
     queue->capacity = capacity;
     queue->data = malloc(element_size * capacity);
     if (queue->data == NULL) {
+        free(queue);
         return NULL;
     }
     queue->front = queue->back = queue->size = 0;

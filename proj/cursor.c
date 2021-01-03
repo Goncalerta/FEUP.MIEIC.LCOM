@@ -26,10 +26,15 @@ static xpm_image_t cursor_disabled; /**< @brief Cursor disabled XPM */
 int cursor_init(enum xpm_image_type type) {
     if (xpm_load(xpm_cursor_arrow, type, &cursor_arrow) == NULL)
         return 1;
-    if (xpm_load(xpm_cursor_write, type, &cursor_write) == NULL)
+    if (xpm_load(xpm_cursor_write, type, &cursor_write) == NULL) {
+        free(cursor_arrow.bytes);
         return 1;
-    if (xpm_load(xpm_cursor_disabled, type, &cursor_disabled) == NULL)
+    }
+    if (xpm_load(xpm_cursor_disabled, type, &cursor_disabled) == NULL) {
+        free(cursor_arrow.bytes);
+        free(cursor_write.bytes);
         return 1;
+    }
     cursor_x = vg_get_hres() / 2;
     cursor_y = vg_get_vres() / 2;
     lb = false;

@@ -64,8 +64,10 @@ text_box_t *new_text_box(uint16_t x, uint16_t y, uint8_t display_size, text_box_
         return NULL;
     
     text_box->word = malloc(sizeof('\0'));
-    if (text_box->word == NULL)
+    if (text_box->word == NULL) {
+        free(text_box);
         return NULL;
+    }
     text_box->word[0] = '\0';
     text_box->word_size = 0;
     text_box->cursor_pos = 0;
@@ -321,14 +323,15 @@ static int text_box_retrieve(text_box_t *text_box) {
 
     if (memcpy(content, text_box->word, text_box->word_size + 1) == NULL) {
         printf("Error while retrieving word\n");
+        free(content);
         return 1;
     }
 
     if (text_box->action(content) != OK)
-        return 1;
+        return 1; // content cleared in action
     
     if (text_box_clear(text_box) != OK)
-        return 1;
+        return 1; // content cleared in action
 
     return 0;
 }

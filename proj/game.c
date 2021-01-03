@@ -246,31 +246,56 @@ void delete_game() {
 }
 
 /**
+ * @brief Deletes the buttons of the new round for the given drawer_t.
+ * 
+ * @param drawer drawer_t to delete de buttons
+ * @return Return 0 upon success and non-zero otherwise
+ */
+static void drawer_delete_buttons(drawer_t *drawer) {
+    delete_button(drawer->b_pencil);
+    delete_button(drawer->b_eraser);
+    delete_button(drawer->b_color);
+    delete_button(drawer->b_thickness);
+    delete_button(drawer->b_undo);
+    delete_button(drawer->b_redo);
+}
+
+/**
  * @brief Initializes the buttons of the new round for the given drawer_t.
  * 
  * @param drawer drawer_t to initialize the buttons to.
  * @return Return 0 upon success and non-zero otherwise
  */
-static int init_buttons(drawer_t *drawer) {
+static int drawer_init_buttons(drawer_t *drawer) {
     frame_buffer_t buf = vg_get_back_buffer();
     uint16_t button_margin = 10;
 
+    // Set them as null so they are not freed if not initialized (in case of an error)
+    drawer->b_pencil = NULL;
+    drawer->b_eraser = NULL;
+    drawer->b_color = NULL;
+    drawer->b_thickness = NULL;
+    drawer->b_undo = NULL;
+    drawer->b_redo = NULL;
 
     uint16_t button_y = button_margin;
     drawer->b_pencil = new_button(buf.h_res - BUTTONS_LEN - button_margin, button_y, 
                                   BUTTONS_LEN, BUTTONS_LEN, drawer_set_pencil_primary);
-    if (drawer->b_pencil == NULL)
+    if (drawer->b_pencil == NULL) {
+        drawer_delete_buttons(drawer);
         return 1;
+    }
     
     button_set_xpm_icon(drawer->b_pencil, pencil);
     button_set_border_active(drawer->b_pencil);
-
     
     button_y += BUTTONS_LEN + button_margin;
     drawer->b_eraser = new_button(buf.h_res - BUTTONS_LEN - button_margin, button_y, 
                                   BUTTONS_LEN, BUTTONS_LEN, drawer_set_eraser_primary);
-    if (drawer->b_eraser == NULL)
+    if (drawer->b_eraser == NULL) {
+        drawer_delete_buttons(drawer);
         return 1;
+    }
     
     button_set_xpm_icon(drawer->b_eraser, eraser);
 
@@ -278,8 +303,10 @@ static int init_buttons(drawer_t *drawer) {
     button_y += BUTTONS_LEN + button_margin;
     drawer->b_color = new_button(buf.h_res - BUTTONS_LEN - button_margin, button_y, 
                                  BUTTONS_LEN, BUTTONS_LEN, drawer_change_selected_color);
-    if (drawer->b_color == NULL)
+    if (drawer->b_color == NULL) {
+        drawer_delete_buttons(drawer);
         return 1;
+    }
     
     button_set_circle_icon(drawer->b_color, BUTTON_CIRCLE_RADIUS_DEFAULT, canvas_pallete[drawer->selected_color]);
 
@@ -287,24 +314,30 @@ static int init_buttons(drawer_t *drawer) {
     button_y += BUTTONS_LEN + button_margin;
     drawer->b_thickness = new_button(buf.h_res - BUTTONS_LEN - button_margin, button_y, 
                                      BUTTONS_LEN, BUTTONS_LEN, drawer_change_selected_thickness);
-    if (drawer->b_thickness == NULL)
+    if (drawer->b_thickness == NULL) {
+        drawer_delete_buttons(drawer);
         return 1;
+    }
     
     button_set_circle_icon(drawer->b_thickness, valid_thickness[drawer->selected_thickness], BUTTON_CIRCLE_DEFAULT_COLOR);
 
     button_y += BUTTONS_LEN + button_margin;
     drawer->b_undo = new_button(buf.h_res - BUTTONS_LEN - button_margin, 
                                 button_y, BUTTONS_LEN, BUTTONS_LEN, handle_undo);
-    if (drawer->b_undo == NULL)
+    if (drawer->b_undo == NULL) {
+        drawer_delete_buttons(drawer);
         return 1;
+    }
 
     button_set_xpm_icon(drawer->b_undo, undo_arrow);
 
     button_y += BUTTONS_LEN + button_margin;
     drawer->b_redo = new_button(buf.h_res - BUTTONS_LEN - button_margin, button_y, 
                                 BUTTONS_LEN, BUTTONS_LEN, handle_redo);
-    if (drawer->b_redo == NULL)
+    if (drawer->b_redo == NULL) {
+        drawer_delete_buttons(drawer);
         return 1;
+    }
 
     button_set_xpm_icon(drawer->b_redo, redo_arrow);
 
@@ -378,8 +411,6 @@ int game_new_round(role_t role, const char *word) {
         game_delete_round();
     }
 
-    game->round_number++;
-    game->state = ROUND_UNSTARTED;
     game->round = malloc(sizeof(round_t));
     if (game->round == NULL)
         return 1;
@@ -390,33 +421,55 @@ int game_new_round(role_t role, const char *word) {
     game->round->num_guesses = 0;
     game->round->correct_guess = word;
     game->round->role = role;
+
+    game->round->word_clue = new_word_clue(word);
+    if (game->round->word_clue == NULL) {
+        free(game->round);
+        return 1;
+    }
+
     switch (role) {
     case DRAWER:
         game->round->attr.drawer = malloc(sizeof(drawer_t));
-        if (game->round->attr.drawer == NULL)
+        if (game->round->attr.drawer == NULL) {
+            delete_word_clue(game->round->word_clue);
+            free(game->round);
             return 1;
+        }
         game->round->attr.drawer->is_pencil_primary = true;
         game->round->attr.drawer->selected_color = 0;
         game->round->attr.drawer->selected_thickness = 1;
-        if (init_buttons(game->round->attr.drawer) != OK)
+        if (drawer_init_buttons(game->round->attr.drawer) != OK) {
+            delete_word_clue(game->round->word_clue);
+            free(game->round->attr.drawer);
+            free(game->round);
             return 1;
+        }
         break;
 
     case GUESSER:
         game->round->attr.guesser = malloc(sizeof(guesser_t));
-        if (game->round->attr.guesser == NULL)
+        if (game->round->attr.guesser == NULL) {
+            delete_word_clue(game->round->word_clue);
+            free(game->round);
             return 1;
-        if (init_text_box(game->round->attr.guesser) != OK)
+        }
+        if (init_text_box(game->round->attr.guesser) != OK) {
+            delete_word_clue(game->round->word_clue);
+            free(game->round->attr.guesser);
+            free(game->round);
             return 1;
+        }
         break;
 
     default:
+        delete_word_clue(game->round->word_clue);
+        free(game->round);
         return 1;
     }
 
-    game->round->word_clue = new_word_clue(word);
-    if (game->round->word_clue == NULL)
-        return 1;
+    game->round_number++;
+    game->state = ROUND_UNSTARTED;
 
     return 0;
 }
@@ -432,12 +485,7 @@ void game_delete_round() {
     
     switch (game->round->role) {
     case DRAWER:
-        delete_button(game->round->attr.drawer->b_pencil);
-        delete_button(game->round->attr.drawer->b_eraser);
-        delete_button(game->round->attr.drawer->b_color);
-        delete_button(game->round->attr.drawer->b_thickness);
-        delete_button(game->round->attr.drawer->b_undo);
-        delete_button(game->round->attr.drawer->b_redo);
+        drawer_delete_buttons(game->round->attr.drawer);
         free(game->round->attr.drawer);
         break;
     case GUESSER:

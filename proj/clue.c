@@ -27,15 +27,20 @@ word_clue_t *new_word_clue(const char *word) {
     if (clue == NULL)
         return NULL;
     clue->word = malloc((strlen(word) + 1) * sizeof(char));
-    if (clue->word == NULL)
+    if (clue->word == NULL) {
+        free(clue);
         return NULL;
+    }
     strcpy(clue->word, word);
     clue->size = strlen(word);
     clue->missing = clue->size;
 
     clue->clue = malloc(sizeof(char) * clue->size + 1);
-    if (clue->clue == NULL)
+    if (clue->clue == NULL) {
+        free(clue->word);
+        free(clue);
         return NULL;
+    }
 
     memset(clue->clue, '?', clue->size);
     clue->clue[clue->size] = '\0';

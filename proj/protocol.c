@@ -179,11 +179,16 @@ static int protocol_receive_new_round(size_t content_len, uint8_t *content) {
 
     strncpy(word, (char *) content, word_len);
     if (game_may_create_new_round()) {
-        if (handle_new_round_as_guesser(word) != OK)
+        if (handle_new_round_as_guesser(word) != OK) {
             return 1;
+        }
     } else if (game_is_over()) {
-        if (handle_notify_not_in_game() != OK)
+        free(word);
+        if (handle_notify_not_in_game() != OK) {
             return 1;
+        }
+    } else {
+        free(word);
     }
 
     return 0;
@@ -322,8 +327,11 @@ static int protocol_receive_guess(size_t content_len, uint8_t *content) {
         if (game_guess_word(guess) != OK)
             return 1;
     } else if (game_is_over()) {
+        free(guess);
         if (handle_notify_not_in_game() != OK)
             return 1;
+    } else {
+        free(guess);
     }
 
     return 0;

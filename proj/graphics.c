@@ -168,6 +168,11 @@ int xpm_load_animation(xpm_animation_t *anim, enum xpm_image_type type, size_t n
         xpm_map_t frame = va_arg(ap, xpm_map_t);
         if (xpm_load(frame, type, &img) == NULL) {
             va_end(ap);
+            // Delete previous xpms
+            for (size_t j = 0; j < i; j++) {
+                free(anim->frames[j].bytes);
+            }
+            free(anim->frames);
             return 1;
         }
         

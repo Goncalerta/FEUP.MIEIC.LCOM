@@ -164,8 +164,10 @@ int uart_init_sw_queues() {
         return 1;
 
     received = new_queue(sizeof(uint8_t), UART_SW_QUEUES_STARTING_CAPACITY);
-    if (received == NULL)
+    if (received == NULL) {
+        delete_queue(transmitted);
         return 1;
+    }
 
     return 0;
 }
