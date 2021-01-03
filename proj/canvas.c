@@ -12,18 +12,18 @@
  *
  */
 
-#define MAXIMUM_UNDOABLE_ATOMS 50 //1024
+#define MAXIMUM_UNDOABLE_ATOMS 1024 /**< @brief Maximum number of atoms that can be drawn before starting to limiting undo. */
 
 static canvas_state_t state = CANVAS_STATE_NORMAL; /**< @brief Canvas current state */
 static stroke_t *first = NULL; /**< @brief Reference to the first stroke drawn */
 static stroke_t *last = NULL; /**< @brief Reference to the last stroke drawn */
 static stroke_t *undone = NULL; /**< @brief Reference to the last stroke undone */
 static frame_buffer_t canvas_buf; /**< @brief Buffer with the current content of the canvas drawn to be copied into the back buffer every frame */
-static frame_buffer_t canvas_base_buf;
+static frame_buffer_t canvas_base_buf; /**< @brief Buffer with the part of the image that can't be undone. It is copied to the base buffer everytime a redraw is needed. */
 static bool enabled = false; /**< @brief Whether the canvas should allow the user to draw with the cursor */
 static bool initialized = false; /**< @brief Whether canvas_init() has been called since last call to canvas_exit() and canvas functions may be safely used */
 
-static size_t undo_atoms_limit_count = 0;
+static size_t atoms_undo_limit_count = 0; /**< @brief Current count of atoms to control when to start limiting undo. */
 
 /**
  * @brief Draws a line between two stroke_atom_t to the given buffer.
@@ -86,20 +86,24 @@ static int canvas_draw_stroke(frame_buffer_t buf, stroke_t *stroke) {
     return 0;
 }
 
+/**
+ * @brief Draws oldest strokes into the given buffer, removing them from the stroke list.
+ * 
+ * @param buf buffer to draw
+ * @return Return 0 upon success and non-zero otherwise
+ */
 static int canvas_draw_excess_strokes(frame_buffer_t buf) {
-    while (undo_atoms_limit_count > MAXIMUM_UNDOABLE_ATOMS) {
+    while (atoms_undo_limit_count > MAXIMUM_UNDOABLE_ATOMS) {
         stroke_t *s = first;
         first = s->next;
         first->prev = NULL;
-        undo_atoms_limit_count -= s->num_atoms;
+        atoms_undo_limit_count -= s->num_atoms;
         if (canvas_draw_stroke(buf, s) != OK) {
             free(s);
             return 1;
         }
         free(s);
     }
-
-    printf("%d\n", undo_atoms_limit_count);
     
     return 0;
 }
@@ -152,7 +156,7 @@ int canvas_init(uint16_t width, uint16_t height, bool en) {
     first = NULL;
     last = NULL;
     undone = NULL;
-    undo_atoms_limit_count = 0;
+    atoms_undo_limit_count = 0;
 
     return 0;
 }
@@ -169,13 +173,12 @@ static void canvas_clear_undone() {
     while (current != NULL) {
         stroke_t *prev = current->prev;
         if (prev != NULL) {
-            undo_atoms_limit_count -= current->num_atoms;
+            atoms_undo_limit_count -= current->num_atoms;
         }
         
         free(current);
         current = prev;
     }
-    printf("CLEAR UNDONE %d\n", undo_atoms_limit_count);
     
     undone = NULL;
 }
@@ -192,7 +195,7 @@ void clear_canvas() {
     last = NULL;
 
     canvas_clear_undone();
-    undo_atoms_limit_count = 0;
+    atoms_undo_limit_count = 0;
     vb_fill_screen(canvas_base_buf, 0x00ffffff);
     memcpy(canvas_buf.buf, canvas_base_buf.buf, 
            sizeof(uint8_t) * canvas_buf.h_res * canvas_buf.v_res * canvas_buf.bytes_per_pixel);
@@ -232,15 +235,16 @@ int canvas_new_stroke(uint32_t color, uint16_t thickness) {
         last = s;
     } else {
         if (undone == NULL) {
-            undo_atoms_limit_count += last->num_atoms;
+            // If undone isn't empty, it means that last has been previously counted so
+            // it shouldn't be counted twice.
+            atoms_undo_limit_count += last->num_atoms;
         }
         
         s->prev = last;
         last->next = s;
         last = s;
 
-        printf("%d\n", undo_atoms_limit_count);
-        if (undo_atoms_limit_count > MAXIMUM_UNDOABLE_ATOMS) {
+        if (atoms_undo_limit_count > MAXIMUM_UNDOABLE_ATOMS) {
             if (canvas_draw_excess_strokes(canvas_base_buf) != OK)
                 return 1;
         }
