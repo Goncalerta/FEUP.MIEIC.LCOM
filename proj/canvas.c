@@ -12,30 +12,36 @@
  *
  */
 
+#define MAXIMUM_UNDOABLE_ATOMS 30 //1024
+
 static canvas_state_t state = CANVAS_STATE_NORMAL; /**< @brief Canvas current state */
 static stroke_t *first = NULL; /**< @brief Reference to the first stroke drawn */
 static stroke_t *last = NULL; /**< @brief Reference to the last stroke drawn */
 static stroke_t *undone = NULL; /**< @brief Reference to the last stroke undone */
 static frame_buffer_t canvas_buf; /**< @brief Buffer with the current content of the canvas drawn to be copied into the back buffer every frame */
+static frame_buffer_t canvas_base_buf;
 static bool enabled = false; /**< @brief Whether the canvas should allow the user to draw with the cursor */
 static bool initialized = false; /**< @brief Whether canvas_init() has been called since last call to canvas_exit() and canvas functions may be safely used */
 
+static size_t undo_atoms_limit_count = 0;
+
 /**
- * @brief Draws a line between two stroke_atom_t to the canvas buffer.
+ * @brief Draws a line between two stroke_atom_t to the given buffer.
  * 
+ * @param buf buffer to draw
  * @param atom1 the first atom
  * @param atom2 the second atom
  * @param color the color of the line
  * @param thickness the thickness of the line
  * @return Return 0 upon success and non-zero otherwise
  */
-static int canvas_draw_atom_line(stroke_atom_t atom1, stroke_atom_t atom2, uint32_t color, uint16_t thickness) {
+static int canvas_draw_atom_line(frame_buffer_t buf, stroke_atom_t atom1, stroke_atom_t atom2, uint32_t color, uint16_t thickness) {
     uint16_t x1 = atom1.x;
     uint16_t y1 = atom1.y;
     uint16_t x2 = atom2.x;
     uint16_t y2 = atom2.y;
 
-    if (vb_draw_line(canvas_buf, x1, y1, x2, y2, color, thickness) != OK)
+    if (vb_draw_line(buf, x1, y1, x2, y2, color, thickness) != OK)
         return 1;
     
     return 0;
@@ -46,51 +52,72 @@ static int canvas_draw_atom_line(stroke_atom_t atom1, stroke_atom_t atom2, uint3
  * 
  * @brief Draws the last stroke_atom_t in a stroke.
  * 
+ * @param buf buffer to draw
  * @return Return 0 upon success and non-zero otherwise
  */
-static int canvas_draw_last_atom() {
+static int canvas_draw_last_atom(frame_buffer_t buf) {
     if (last->num_atoms == 1) {
         stroke_atom_t atom = last->atoms[0];
-        return vb_draw_circle(canvas_buf, atom.x, atom.y, last->thickness, last->color);
+        return vb_draw_circle(buf, atom.x, atom.y, last->thickness, last->color);
     } else {
         stroke_atom_t atom1 = last->atoms[last->num_atoms-2];
         stroke_atom_t atom2 = last->atoms[last->num_atoms-1];
-        return canvas_draw_atom_line(atom1, atom2, last->color, last->thickness);
+        return canvas_draw_atom_line(buf, atom1, atom2, last->color, last->thickness);
     }
 }
 
 /**
  * @brief Draws complete stroke_t into the canvas buffer.
  * 
+ * @param buf buffer to draw
  * @param stroke the stroke to be drawn
  * @return Return 0 upon success and non-zero otherwise
  */
-static int canvas_draw_stroke(stroke_t *stroke) {
+static int canvas_draw_stroke(frame_buffer_t buf, stroke_t *stroke) {
     stroke_atom_t first_atom = stroke->atoms[0];
-    if (vb_draw_circle(canvas_buf, first_atom.x, first_atom.y, stroke->thickness, stroke->color))
+    if (vb_draw_circle(buf, first_atom.x, first_atom.y, stroke->thickness, stroke->color))
         return 1;
 
     for (size_t i = 1; i < stroke->num_atoms; i++) {
-        if (canvas_draw_atom_line(stroke->atoms[i-1], stroke->atoms[i], stroke->color, stroke->thickness) != OK)
+        if (canvas_draw_atom_line(buf, stroke->atoms[i-1], stroke->atoms[i], stroke->color, stroke->thickness) != OK)
             return 1;
     }
 
     return 0;
 }
 
+static int canvas_draw_excess_strokes(frame_buffer_t buf) {
+    while (undo_atoms_limit_count >= MAXIMUM_UNDOABLE_ATOMS) {
+        stroke_t *s = first;
+        first = s->next;
+        first->prev = NULL;
+        undo_atoms_limit_count -= s->num_atoms;
+        if (canvas_draw_stroke(buf, s) != OK) {
+            free(s);
+            return 1;
+        }
+        free(s);
+    }
+
+    printf("%d\n", undo_atoms_limit_count);
+    
+    return 0;
+}
+
 /**
  * Useful for undoing a stroke.
  * 
- * @brief Redraws all strokes in the canvas.
+ * @brief Redraws all strokes in the canvas buffer.
  * 
  * @return Return 0 upon success and non-zero otherwise
  */
 static int canvas_redraw_strokes() {
-    vb_fill_screen(canvas_buf, 0x00ffffff);
+    memcpy(canvas_buf.buf, canvas_base_buf.buf, 
+           sizeof(uint8_t) * canvas_buf.h_res * canvas_buf.v_res * canvas_buf.bytes_per_pixel);
 
     stroke_t *current = first;
     while (current != NULL) {
-        canvas_draw_stroke(current);
+        canvas_draw_stroke(canvas_buf, current);
 
         current = current->next;
     }
@@ -99,20 +126,33 @@ static int canvas_redraw_strokes() {
 }
 
 int canvas_init(uint16_t width, uint16_t height, bool en) {
-    initialized = true;
-    enabled = en;
-    state = CANVAS_STATE_NORMAL;
-
+    canvas_base_buf.h_res = width;
+    canvas_base_buf.v_res = height;
+    canvas_base_buf.bytes_per_pixel = vg_get_bytes_per_pixel();
+    canvas_base_buf.buf = malloc(sizeof(uint8_t) * width * height * canvas_base_buf.bytes_per_pixel);
+    if (canvas_base_buf.buf == NULL)
+        return 1;
+    
     canvas_buf.h_res = width;
     canvas_buf.v_res = height;
     canvas_buf.bytes_per_pixel = vg_get_bytes_per_pixel();
     canvas_buf.buf = malloc(sizeof(uint8_t) * width * height * canvas_buf.bytes_per_pixel);
+    if (canvas_buf.buf == NULL) {
+        free(canvas_base_buf.buf);
+        return 1;
+    }
     
-    vb_fill_screen(canvas_buf, 0x00ffffff);
+    vb_fill_screen(canvas_base_buf, 0x00ffffff);
+    memcpy(canvas_buf.buf, canvas_base_buf.buf, sizeof(uint8_t) * width * height * canvas_buf.bytes_per_pixel);
+
+    initialized = true;
+    enabled = en;
+    state = CANVAS_STATE_NORMAL;
 
     first = NULL;
     last = NULL;
     undone = NULL;
+    undo_atoms_limit_count = 0;
 
     return 0;
 }
@@ -125,11 +165,17 @@ int canvas_init(uint16_t width, uint16_t height, bool en) {
  */
 static void canvas_clear_undone() {
     stroke_t *current = undone;
+    if (current != NULL) {
+        undo_atoms_limit_count += current->num_atoms;
+    }
+    
     while (current != NULL) {
         stroke_t *prev = current->prev;
+        undo_atoms_limit_count -= current->num_atoms;
         free(current);
         current = prev;
     }
+    printf("CLEAR UNDONE %d\n", undo_atoms_limit_count);
     
     undone = NULL;
 }
@@ -146,7 +192,10 @@ void clear_canvas() {
     last = NULL;
 
     canvas_clear_undone();
-    vb_fill_screen(canvas_buf, 0x00ffffff);
+    undo_atoms_limit_count = 0;
+    vb_fill_screen(canvas_base_buf, 0x00ffffff);
+    memcpy(canvas_buf.buf, canvas_base_buf.buf, 
+           sizeof(uint8_t) * canvas_buf.h_res * canvas_buf.v_res * canvas_buf.bytes_per_pixel);
 }
 
 void canvas_exit() {
@@ -155,6 +204,7 @@ void canvas_exit() {
     initialized = false;
     clear_canvas();
     free(canvas_buf.buf);
+    free(canvas_base_buf.buf);
 }
 
 bool canvas_is_initialized() {
@@ -167,6 +217,9 @@ bool canvas_is_enabled() {
 
 int canvas_new_stroke(uint32_t color, uint16_t thickness) {
     stroke_t *s = malloc(sizeof(stroke_t));
+    if (s == NULL)
+        return 1;
+
     s->atoms = NULL;
     s->color = color;
     s->thickness = thickness;
@@ -175,12 +228,20 @@ int canvas_new_stroke(uint32_t color, uint16_t thickness) {
     s->num_atoms = 0;
 
     if (first == NULL) {
+        undo_atoms_limit_count = 0;
         first = s;
         last = s;
     } else {
+        undo_atoms_limit_count += last->num_atoms;
         s->prev = last;
         last->next = s;
         last = s;
+
+        printf("%d\n", undo_atoms_limit_count);
+        if (undo_atoms_limit_count > MAXIMUM_UNDOABLE_ATOMS) {
+            if (canvas_draw_excess_strokes(canvas_base_buf) != OK)
+                return 1;
+        }
     }
 
     canvas_clear_undone();
@@ -215,7 +276,7 @@ int canvas_new_stroke_atom(uint16_t x, uint16_t y) {
     last->atoms[last->num_atoms - 1].x = x;
     last->atoms[last->num_atoms - 1].y = y;
     
-    if (canvas_draw_last_atom() != OK)
+    if (canvas_draw_last_atom(canvas_buf) != OK)
         return 1;
 
     return 0;
@@ -274,7 +335,7 @@ int canvas_redo_stroke() {
     }
     
 
-    if (canvas_draw_stroke(u) != OK)
+    if (canvas_draw_stroke(canvas_buf, u) != OK)
         return 1;
 
     return 0;
