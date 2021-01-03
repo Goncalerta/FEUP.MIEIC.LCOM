@@ -47,21 +47,21 @@ int menu_init(enum xpm_image_type type) {
     uint16_t y = buf.v_res/2 - MENU_BUTTON_DISTANCE/2 - MENU_BUTTON_HEIGHT;
 
     // Button icons
-    bool fail = false
+    bool fail = false;
     if (xpm_load(xpm_menu_new_game, type, &xpm_new_game) == NULL) {
-        xpm_menu_new_game.bytes = NULL;
+        xpm_new_game.bytes = NULL;
         fail = true;
     }
     if (xpm_load(xpm_menu_resume, type, &xpm_resume) == NULL) {
-        xpm_menu_resume.bytes = NULL;
+        xpm_resume.bytes = NULL;
         fail = true;
     }
     if (xpm_load(xpm_menu_exit_game, type, &xpm_exit) == NULL) {
-        xpm_tick.bytes = NULL;
+        xpm_exit.bytes = NULL;
         fail = true;
     }
     if (xpm_load(xpm_menu_main_menu, type, &xpm_main_menu) == NULL) {
-        xpm_tick.bytes = NULL;
+        xpm_main_menu.bytes = NULL;
         fail = true;
     }
 

@@ -187,55 +187,55 @@ int game_load_assets(enum xpm_image_type type) {
         return 1;
 
     if (xpm_load(xpm_tick, type, &tick_img) == NULL) {
-        xpm_tick.bytes = NULL;
+        tick_img.bytes = NULL;
         fail = true;
     }
     
     if (xpm_load(xpm_cross, type, &cross_img) == NULL) {
-        xpm_cross.bytes = NULL;
+        cross_img.bytes = NULL;
         fail = true;
     }
     
     if (xpm_load(xpm_correct, type, &correct_message) == NULL) {
-        xpm_correct.bytes = NULL;
+        correct_message.bytes = NULL;
         fail = true;
     }
 
     if (xpm_load(xpm_gameover, type, &game_over_message) == NULL) {
-        xpm_gameover.bytes = NULL;
+        game_over_message.bytes = NULL;
         fail = true;
     }
     
     if (xpm_load(xpm_pencil, type, &pencil) == NULL) {
-        xpm_pencil.bytes = NULL;
+        pencil.bytes = NULL;
         fail = true;
     }
     
     if (xpm_load(xpm_eraser, type, &eraser) == NULL) {
-        xpm_eraser.bytes = NULL;
+        eraser.bytes = NULL;
         fail = true;
     }
     
     if (xpm_load(xpm_undo_arrow, type, &undo_arrow) == NULL) {
-        xpm_undo_arrow.bytes = NULL;
+        undo_arrow.bytes = NULL;
         fail = true;
     }
     
     if (xpm_load(xpm_redo_arrow, type, &redo_arrow) == NULL) {
-        xpm_redo_arrow.bytes = NULL;
+        redo_arrow.bytes = NULL;
         fail = true;
     }
 
     if (fail) {
-        xpm_unload_animation(clock_frames);
-        free(xpm_tick.bytes);
-        free(xpm_cross.bytes);
-        free(xpm_correct.bytes);
-        free(xpm_gameover.bytes);
-        free(xpm_pencil.bytes);
-        free(xpm_eraser.bytes);
-        free(xpm_undo_arrow.bytes);
-        free(xpm_redo_arrow.bytes);
+        xpm_unload_animation(&clock_frames);
+        free(tick_img.bytes);
+        free(cross_img.bytes);
+        free(correct_message.bytes);
+        free(game_over_message.bytes);
+        free(pencil.bytes);
+        free(eraser.bytes);
+        free(undo_arrow.bytes);
+        free(redo_arrow.bytes);
         return 1;
     }
 
