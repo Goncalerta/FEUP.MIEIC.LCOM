@@ -46,6 +46,20 @@ int main(int argc, char *argv[]) {
   return 0;
 }
 
+/** @defgroup proj proj
+ * @{
+ *
+ * @brief Module with the proj_main_loop() function.
+ */
+
+/**
+ * 
+ * @brief Handles the initialization and termination of the program. Runs the main loop.
+ * 
+ * @param argc number of command-line arguments (not relevant for this program)
+ * @param argv command-line arguments (not relevant for this program)
+ * @return Return 0 if program is terminated without errors and non-zero otherwise
+ */
 int (proj_main_loop)(int argc, char *argv[]) {
     uint16_t mode = 0x118; // 1024x768
     enum xpm_image_type image_type = XPM_8_8_8;
@@ -217,3 +231,5 @@ int (proj_main_loop)(int argc, char *argv[]) {
 
     return 0;
 }
+
+/**@}*/

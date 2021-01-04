@@ -1,7 +1,0 @@
-<map id="write_byte_to_mouse" name="write_byte_to_mouse">
-<area shape="rect" id="node1" title="Issues a command to the mouse using the kbc." alt="" coords="383,56,528,83"/>
-<area shape="rect" id="node2" href="$group__mouse.html#gac285c81dd076eb18e01d7f22d353daaa" title="Disables mouse data reporting." alt="" coords="185,5,312,32"/>
-<area shape="rect" id="node4" href="$group__mouse.html#ga12afbe04f7fbd32a063b13d45ffcd602" title="Enables mouse data reporting." alt="" coords="187,56,311,83"/>
-<area shape="rect" id="node5" href="$group__mouse.html#ga16a521d1919cbd8f434d8b5d535a639b" title="Sets the mouse to stream mode." alt="" coords="163,107,335,133"/>
-<area shape="rect" id="node3" href="$group__proj.html#ga2a16f651eccbd248e1ad3b3b924b143b" title="Reacts to the event that the other player sent the random number to decide starting roles." alt="" coords="5,31,115,57"/>
-</map>

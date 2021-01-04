@@ -422,7 +422,7 @@ void game_set_over() {
 /**
  * @brief Initializes the text box of the new round for the given guesser_t.
  * 
- * @param drawer guesser_t to initialize the text box to.
+ * @param guesser guesser_t to initialize the text box to.
  * @return Return 0 upon success and non-zero otherwise
  */
 static int init_text_box(guesser_t *guesser) {

@@ -1,8 +1,0 @@
-<map id="util_get_LSB" name="util_get_LSB">
-<area shape="rect" id="node1" title="Gets the least significant byte of a given half&#45;word." alt="" coords="719,31,815,57"/>
-<area shape="rect" id="node2" href="$group__timer.html#gaf2c04fa8e97ffa748fd3f612886a92a7" title="Sets the frequency of the given timer." alt="" coords="532,5,671,32"/>
-<area shape="rect" id="node3" href="$group__uart.html#ga1975f8b129ad7fe81b0199dadabc703a" title="Specifies the bit rate for the serial port." alt="" coords="542,56,661,83"/>
-<area shape="rect" id="node4" href="$group__uart.html#gac56dcef886bb66f75de8fe196316995d" title="Configures the parameters of the serial port." alt="" coords="349,56,484,83"/>
-<area shape="rect" id="node5" href="$group__protocol.html#ga1b4d0d201e93a7bdf1aaeb6766e304ea" title="Configures the serial port and protocol queues to start communication." alt="" coords="163,56,301,83"/>
-<area shape="rect" id="node6" href="$group__proj.html#ga2a16f651eccbd248e1ad3b3b924b143b" title="Reacts to the event that the other player sent the random number to decide starting roles." alt="" coords="5,56,115,83"/>
-</map>

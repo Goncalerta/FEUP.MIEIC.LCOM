@@ -1,0 +1,4 @@
+<map id="drawer_delete_buttons" name="drawer_delete_buttons">
+<area shape="rect" id="node1" title="Deletes the buttons of the new round for the given drawer_t." alt="" coords="5,5,157,32"/>
+<area shape="rect" id="node2" href="$group__button.html#ga48a96f09e1170ecdb6340f1b125daef9" title="Initializes a button." alt="" coords="205,5,305,32"/>
+</map>

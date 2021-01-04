@@ -1,0 +1,4 @@
+<map id="cursor_init" name="cursor_init">
+<area shape="rect" id="node1" title="Loads the cursor .xpm images and sets the initial cursor position." alt="" coords="163,5,245,32"/>
+<area shape="rect" id="node2" href="$group__proj.html#ga2a16f651eccbd248e1ad3b3b924b143b" title="Handles the initialization and termination of the program. Runs the main loop." alt="" coords="5,5,115,32"/>
+</map>

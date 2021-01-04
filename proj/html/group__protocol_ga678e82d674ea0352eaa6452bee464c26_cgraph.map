@@ -1,7 +1,0 @@
-<map id="protocol_receive_new_stroke" name="protocol_receive_new_stroke">
-<area shape="rect" id="node1" title="Handles a received message of type MSG_NEW_STROKE." alt="" coords="5,49,151,90"/>
-<area shape="rect" id="node2" href="$group__canvas.html#ga6d8a297adb6922ba952b632044aee447" title="Checks if the canvas is initialized." alt="" coords="199,5,339,32"/>
-<area shape="rect" id="node3" href="$group__canvas.html#ga79691af660bfc7d635d4727f2cbfd59a" title="Starts a new stroke in the canvas." alt="" coords="201,56,336,83"/>
-<area shape="rect" id="node5" href="$group__game.html#ga1bbafe14576a2268744d74eea12cb1a3" title="Gets this player role." alt="" coords="215,107,322,133"/>
-<area shape="rect" id="node4" href="$group__canvas.html#ga6bf721599d651d3d7cb19bf578d2a20a" title="Deletes all undone strokes." alt="" coords="387,56,533,83"/>
-</map>

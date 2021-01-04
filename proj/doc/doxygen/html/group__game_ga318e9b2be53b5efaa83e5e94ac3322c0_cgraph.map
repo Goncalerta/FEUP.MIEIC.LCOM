@@ -1,0 +1,39 @@
+<map id="drawer_init_buttons" name="drawer_init_buttons">
+<area shape="rect" id="node1" title="Initializes the buttons of the new round for the given drawer_t." alt="" coords="5,302,140,329"/>
+<area shape="rect" id="node2" href="$group__button.html#ga6fdbd6cb9f7febe9bc371326f96f365d" title="Sets the border of a given button active." alt="" coords="415,40,581,66"/>
+<area shape="rect" id="node3" href="$group__button.html#ga851787864a8ca2d5085673f4916056ed" title="Sets a circle icon to a given button." alt="" coords="422,208,574,234"/>
+<area shape="rect" id="node4" href="$group__button.html#ga61409efef36d6fc472383d25706e44af" title="Sets a xpm image icon to a given button." alt="" coords="204,332,351,358"/>
+<area shape="rect" id="node5" href="$group__game.html#gab537b849307e8169410c0a5ee34fbc3c" title="Changes the selected color if this player is the drawer." alt="" coords="195,200,360,242"/>
+<area shape="rect" id="node6" href="$group__game.html#ga799729f35345ff1cb4992ba19aaa28a9" title="Changes the selected thickness if this player is the drawer." alt="" coords="195,266,360,307"/>
+<area shape="rect" id="node7" href="$group__game.html#ga18f1c087a3c89be7008ca3f6efc012f1" title="Deletes the buttons of the new round for the given drawer_t." alt="" coords="201,382,353,409"/>
+<area shape="rect" id="node9" href="$group__game.html#gad2612affb6e1d0b40f1972a751ad6674" title="Sets the eraser primary if this player is the drawer." alt="" coords="188,98,367,125"/>
+<area shape="rect" id="node11" href="$group__game.html#gab09c1e5c83d1408799b41ae9863259ef" title="Sets the pencil primary if this player is the drawer." alt="" coords="189,48,365,74"/>
+<area shape="rect" id="node12" href="$group__dispatcher.html#ga0dd9d47f03b474d5b5f6350299a63079" title="Redoes a canvas stroke and notifies the other player." alt="" coords="231,484,323,510"/>
+<area shape="rect" id="node32" href="$group__dispatcher.html#ga8d7e76896ea98e9cc288ac7f708ccd50" title="Undoes a canvas stroke and notifies the other player." alt="" coords="230,433,325,460"/>
+<area shape="rect" id="node36" href="$group__button.html#ga0b91c542f65989702204add07d7a970c" title="Initializes a new button." alt="" coords="233,534,321,561"/>
+<area shape="rect" id="node37" href="$group__video__gr.html#gaecb0fe68de84fcbe553f77d62b37c69b" title="Gets the back buffer." alt="" coords="211,585,343,612"/>
+<area shape="rect" id="node8" href="$group__button.html#ga48a96f09e1170ecdb6340f1b125daef9" title="Initializes a button." alt="" coords="448,382,548,409"/>
+<area shape="rect" id="node10" href="$group__button.html#ga0425667543e54af67fe4010a57476d05" title="Sets the border of a given button inactive." alt="" coords="428,91,568,132"/>
+<area shape="rect" id="node13" href="$group__canvas.html#ga452896dd62b95f6f577aa40d01771440" title="Redoes a stroke." alt="" coords="640,477,777,504"/>
+<area shape="rect" id="node18" href="$group__protocol.html#ga37492ace0b61aeb7b426d4ba9fd7e7b9" title="Sends a message of type MSG_REDO_CANVAS." alt="" coords="431,602,565,643"/>
+<area shape="rect" id="node14" href="$group__canvas.html#ga1f756b76343ba69e011d82c0a591e6a9" title="Draws complete stroke_t into the canvas buffer." alt="" coords="836,397,975,424"/>
+<area shape="rect" id="node15" href="$group__canvas.html#ga8861d72f9b3cec4c0f210d645e1e18e7" title="Draws a line between two stroke_atom_t to the given buffer." alt="" coords="1023,332,1181,358"/>
+<area shape="rect" id="node16" href="$group__graphics.html#ga1b69ad0e07cfd0697a4cb9c18ba48b67" title="Draws a circle in the given buffer in the given coordinates with the given radius with the given colo..." alt="" coords="1049,382,1155,409"/>
+<area shape="rect" id="node17" href="$group__graphics.html#ga257b5dac975604f70651e8764ad8acd8" title="Draws a pixel in the given buffer in the given coordinates with the given color." alt="" coords="1237,382,1340,409"/>
+<area shape="rect" id="node19" href="$group__protocol.html#gaa8c3d5620d3e7c609513d9372296a6d3" title="Adds a new message to the pending messages queue." alt="" coords="631,580,787,606"/>
+<area shape="rect" id="node31" href="$group__protocol.html#ga08996dc9e6a9d1e9c96ca365d70c28a9" title="Initializes a new message_t without content." alt="" coords="629,631,788,672"/>
+<area shape="rect" id="node20" href="$group__protocol.html#gaca49d55d34fe635af7f3822f4b01bdc6" title="Sends the next pending message in queue." alt="" coords="838,576,973,618"/>
+<area shape="rect" id="node25" href="$group__queue.html#gaa54578828a1b5676bb99a535c617e1a2" title="Adds an element to the back of the given queue." alt="" coords="1243,686,1335,713"/>
+<area shape="rect" id="node21" href="$group__queue.html#ga09a3da9bf84f747356ef8050447bf35a" title="Checks if a given queue is empty." alt="" coords="1543,560,1660,586"/>
+<area shape="rect" id="node22" href="$group__queue.html#ga24ec1e60eaa37239a1b49c6f7321c9d9" title="Gets the element at the front of the given queue." alt="" coords="1404,636,1487,662"/>
+<area shape="rect" id="node24" href="$group__uart.html#ga00a2984ead2b73e2871dfda7c1ac49e3" title="Adds a byte to the software queue of bytes to be sent and tries to send bytes." alt="" coords="1047,585,1157,612"/>
+<area shape="rect" id="node23" href="$group__queue.html#ga5f221cd3b0a3c04f33ba9fd136a61c8b" title="Returns a pointer to the element of the given queue at the given index." alt="" coords="1554,686,1649,713"/>
+<area shape="rect" id="node28" href="$group__uart.html#ga8219117bdd64ba6474c847fd89efbd41" title="Sends bytes from a software queue into the serial port." alt="" coords="1229,585,1348,612"/>
+<area shape="rect" id="node26" href="$group__queue.html#gae1cd6b62453b7f57525be17a53885800" title="Checks if a given queue is full." alt="" coords="1553,762,1650,789"/>
+<area shape="rect" id="node27" href="$group__queue.html#gabf50b2659d4139679a639a78c217f7fa" title="Resizes the given queue so that it has double the capacity without losing data." alt="" coords="1396,737,1495,764"/>
+<area shape="rect" id="node29" href="$group__queue.html#ga81880a2f29871356ccddd8f20ec99e9e" title="Removes the element at the front of the given queue." alt="" coords="1403,534,1488,561"/>
+<area shape="rect" id="node30" href="$group__utils.html#ga79a031a8611f5b2d6afa4158e92b0fb4" title="Wraps sys_inb so that it may be called with a uint8_t argument." alt="" coords="1400,484,1491,510"/>
+<area shape="rect" id="node33" href="$group__canvas.html#ga0eb66eb3bbeb104a7de7a880c6cd5d48" title="Undoes a stroke." alt="" coords="428,433,568,460"/>
+<area shape="rect" id="node35" href="$group__protocol.html#ga3388b3fbc456a7f5ce244bf9e8875752" title="Sends a message of type MSG_UNDO_CANVAS." alt="" coords="429,536,567,578"/>
+<area shape="rect" id="node34" href="$group__canvas.html#ga253a543571bc56fda010caa89e2ca511" title="Redraws all strokes in the canvas buffer." alt="" coords="630,398,787,425"/>
+</map>

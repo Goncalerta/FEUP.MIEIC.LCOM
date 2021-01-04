@@ -1,5 +1,0 @@
-<map id="xpm_unload_animation" name="xpm_unload_animation">
-<area shape="rect" id="node1" title="Frees the space allocated in memory to store the image frames of a given animation." alt="" coords="356,5,511,32"/>
-<area shape="rect" id="node2" href="$group__game.html#ga9f3275416ff1d967fcf634e25c09c719" title="Frees the space allocated in memory to store the game assets." alt="" coords="163,5,308,32"/>
-<area shape="rect" id="node3" href="$group__proj.html#ga2a16f651eccbd248e1ad3b3b924b143b" title="Reacts to the event that the other player sent the random number to decide starting roles." alt="" coords="5,5,115,32"/>
-</map>

@@ -1,0 +1,6 @@
+<map id="xpm_unload_animation" name="xpm_unload_animation">
+<area shape="rect" id="node1" title="Frees the space allocated in memory to store the image frames of a given animation." alt="" coords="356,31,511,57"/>
+<area shape="rect" id="node2" href="$group__game.html#gaaa06563e91c221f5fa003c60ab28cdef" title="Loads the game assets." alt="" coords="170,5,301,32"/>
+<area shape="rect" id="node4" href="$group__game.html#ga9f3275416ff1d967fcf634e25c09c719" title="Frees the space allocated in memory to store the game assets." alt="" coords="163,56,308,83"/>
+<area shape="rect" id="node3" href="$group__proj.html#ga2a16f651eccbd248e1ad3b3b924b143b" title="Handles the initialization and termination of the program. Runs the main loop." alt="" coords="5,31,115,57"/>
+</map>

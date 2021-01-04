@@ -1,4 +1,0 @@
-<map id="mouse_enable_dr" name="mouse_enable_dr">
-<area shape="rect" id="node1" title="Enables mouse data reporting." alt="" coords="163,5,287,32"/>
-<area shape="rect" id="node2" href="$group__proj.html#ga2a16f651eccbd248e1ad3b3b924b143b" title="Reacts to the event that the other player sent the random number to decide starting roles." alt="" coords="5,5,115,32"/>
-</map>

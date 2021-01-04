@@ -1,0 +1,5 @@
+<map id="mouse_is_valid_first_byte_packet" name="mouse_is_valid_first_byte_packet">
+<area shape="rect" id="node1" title="Returns whether the given byte is valid for the first byte of a mouse packet." alt="" coords="289,5,428,47"/>
+<area shape="rect" id="node2" href="$group__clue.html#ga210374b50462acdedab00df64d5cea3c" title="Mouse interrupt handler." alt="" coords="163,13,241,39"/>
+<area shape="rect" id="node3" href="$group__proj.html#ga2a16f651eccbd248e1ad3b3b924b143b" title="Handles the initialization and termination of the program. Runs the main loop." alt="" coords="5,13,115,39"/>
+</map>

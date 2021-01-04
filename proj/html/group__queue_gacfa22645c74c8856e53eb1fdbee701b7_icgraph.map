@@ -1,7 +1,0 @@
-<map id="new_queue" name="new_queue">
-<area shape="rect" id="node1" title="Initializes of a new queue." alt="" coords="537,56,624,83"/>
-<area shape="rect" id="node2" href="$group__dispatcher.html#ga1422eac167c82252d0b953a295f494f5" title="Initializes the dispatcher, creating an event queue." alt="" coords="179,5,285,32"/>
-<area shape="rect" id="node4" href="$group__protocol.html#ga1b4d0d201e93a7bdf1aaeb6766e304ea" title="Configures the serial port and protocol queues to start communication." alt="" coords="163,56,301,83"/>
-<area shape="rect" id="node5" href="$group__uart.html#gac3d220a27d08a43a58c904f3f2113d14" title="Initializes serial port software queues." alt="" coords="349,107,489,133"/>
-<area shape="rect" id="node3" href="$group__proj.html#ga2a16f651eccbd248e1ad3b3b924b143b" title="Reacts to the event that the other player sent the random number to decide starting roles." alt="" coords="5,31,115,57"/>
-</map>

@@ -1,4 +1,0 @@
-<map id="handle_other_player_random_number" name="handle_other_player_random_number">
-<area shape="rect" id="node1" title="Reacts to the event that the other player sent the random number to decide starting roles." alt="" coords="219,5,357,47"/>
-<area shape="rect" id="node2" href="$group__protocol.html#ga37adc31aadd1ec8fe42b900a3968a90a" title="Handles a received message of type MSG_RANDOM_NUMBER." alt="" coords="5,5,171,47"/>
-</map>

@@ -1,0 +1,9 @@
+<map id="delete_queue" name="delete_queue">
+<area shape="rect" id="node1" title="Frees the space allocated in memory to store the content of a given queue." alt="" coords="556,68,655,95"/>
+<area shape="rect" id="node2" href="$group__dispatcher.html#gaf862e6e5a2905c716bf2b701d9ecabc6" title="Deletes all resources allocated to the dispatcher." alt="" coords="177,5,287,32"/>
+<area shape="rect" id="node4" href="$group__protocol.html#gad92f8f0203e9bf95564f51e3ab965221" title="Frees the memory allocated for the protocol and serial port software queues." alt="" coords="184,68,280,95"/>
+<area shape="rect" id="node5" href="$group__uart.html#gaffd1e39d413095e8cb2d5026e6232e65" title="Frees the memory allocated for serial port software queues." alt="" coords="349,93,508,120"/>
+<area shape="rect" id="node6" href="$group__uart.html#gac3d220a27d08a43a58c904f3f2113d14" title="Initializes serial port software queues." alt="" coords="359,144,499,171"/>
+<area shape="rect" id="node3" href="$group__proj.html#ga2a16f651eccbd248e1ad3b3b924b143b" title="Handles the initialization and termination of the program. Runs the main loop." alt="" coords="5,68,115,95"/>
+<area shape="rect" id="node7" href="$group__protocol.html#ga1b4d0d201e93a7bdf1aaeb6766e304ea" title="Configures the serial port and protocol queues to start communication." alt="" coords="163,131,301,157"/>
+</map>

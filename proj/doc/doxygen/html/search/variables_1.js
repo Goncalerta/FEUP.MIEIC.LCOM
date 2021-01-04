@@ -1,0 +1,20 @@
+var searchData=
+[
+  ['b_5fback_5fto_5fmain_5fmenu_1345',['b_back_to_main_menu',['../group__menu.html#gaa03829031bcfc7614af7053a15f01a47',1,'menu.c']]],
+  ['b_5fcolor_1346',['b_color',['../structdrawer.html#ac0fcaec59cfc636ebbc282b40250d4e4',1,'drawer']]],
+  ['b_5fend_5fprogram_1347',['b_end_program',['../group__menu.html#gadd16ac0b502fb909e9d4ea4afa539a76',1,'menu.c']]],
+  ['b_5feraser_1348',['b_eraser',['../structdrawer.html#a95eadbd64e532ee6344a72de77141559',1,'drawer']]],
+  ['b_5fnew_5fgame_1349',['b_new_game',['../group__menu.html#gaf88caab7dca726e7eda913b227437588',1,'menu.c']]],
+  ['b_5fpencil_1350',['b_pencil',['../structdrawer.html#a727717b4e59fad56838ebc860d31f748',1,'drawer']]],
+  ['b_5fredo_1351',['b_redo',['../structdrawer.html#a8a91a1680e8aab245fe888f21b3c5977',1,'drawer']]],
+  ['b_5fresume_1352',['b_resume',['../group__menu.html#ga5dadc1bb31ea92b9bc30c61c3b6aef2f',1,'menu.c']]],
+  ['b_5fthickness_1353',['b_thickness',['../structdrawer.html#a8d81d8596bec75964edf90f6051dd181',1,'drawer']]],
+  ['b_5fundo_1354',['b_undo',['../structdrawer.html#a63214a047588b11f876c991422c89872',1,'drawer']]],
+  ['back_1355',['back',['../structqueue.html#aa185c5e9eee32898d06143bbd95f77a8',1,'queue']]],
+  ['bound_5fcanvas_1356',['bound_canvas',['../group__dispatcher.html#ga2470bb299d38a28f8c6a89fc05a0a275',1,'dispatcher.c']]],
+  ['buf_1357',['buf',['../structframe__buffer.html#a5bc5fa69bee375df074734a2c4858604',1,'frame_buffer']]],
+  ['buf1_1358',['buf1',['../group__video__gr.html#ga7487435321658a719c054d81b6e3fc16',1,'video_gr.c']]],
+  ['buf1_5fis_5fprimary_1359',['buf1_is_primary',['../group__video__gr.html#ga6a78aaf7d62705fa1af04def9944c72c',1,'video_gr.c']]],
+  ['buf2_1360',['buf2',['../group__video__gr.html#gae7ada07ec73b623c7f1273cb53b170ea',1,'video_gr.c']]],
+  ['bytes_5fper_5fpixel_1361',['bytes_per_pixel',['../structframe__buffer.html#af21e69741161ac4f308c04bd3d471dd2',1,'frame_buffer']]]
+];

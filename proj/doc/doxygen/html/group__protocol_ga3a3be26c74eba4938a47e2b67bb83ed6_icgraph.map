@@ -1,0 +1,4 @@
+<map id="protocol_send_program_opened" name="protocol_send_program_opened">
+<area shape="rect" id="node1" title="Sends a message of type MSG_PROGRAM_OPENED." alt="" coords="163,5,320,47"/>
+<area shape="rect" id="node2" href="$group__proj.html#ga2a16f651eccbd248e1ad3b3b924b143b" title="Handles the initialization and termination of the program. Runs the main loop." alt="" coords="5,13,115,39"/>
+</map>

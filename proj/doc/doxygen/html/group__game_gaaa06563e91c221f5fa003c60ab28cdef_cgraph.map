@@ -1,0 +1,5 @@
+<map id="game_load_assets" name="game_load_assets">
+<area shape="rect" id="node1" title="Loads the game assets." alt="" coords="5,31,136,57"/>
+<area shape="rect" id="node2" href="$group__graphics.html#gabd7a4856522b529654a66fdad6efffa2" title="Loads an animation witdh the given frames." alt="" coords="191,5,332,32"/>
+<area shape="rect" id="node3" href="$group__graphics.html#gaeefe9ec70774ac7c4985c207072375d3" title="Frees the space allocated in memory to store the image frames of a given animation." alt="" coords="184,56,339,83"/>
+</map>

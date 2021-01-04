@@ -1,0 +1,7 @@
+<map id="canvas_redraw_strokes" name="canvas_redraw_strokes">
+<area shape="rect" id="node1" title="Redraws all strokes in the canvas buffer." alt="" coords="5,31,163,57"/>
+<area shape="rect" id="node2" href="$group__canvas.html#ga1f756b76343ba69e011d82c0a591e6a9" title="Draws complete stroke_t into the canvas buffer." alt="" coords="211,31,349,57"/>
+<area shape="rect" id="node3" href="$group__canvas.html#ga8861d72f9b3cec4c0f210d645e1e18e7" title="Draws a line between two stroke_atom_t to the given buffer." alt="" coords="397,5,556,32"/>
+<area shape="rect" id="node4" href="$group__graphics.html#ga1b69ad0e07cfd0697a4cb9c18ba48b67" title="Draws a circle in the given buffer in the given coordinates with the given radius with the given colo..." alt="" coords="423,56,530,83"/>
+<area shape="rect" id="node5" href="$group__graphics.html#ga257b5dac975604f70651e8764ad8acd8" title="Draws a pixel in the given buffer in the given coordinates with the given color." alt="" coords="604,56,707,83"/>
+</map>

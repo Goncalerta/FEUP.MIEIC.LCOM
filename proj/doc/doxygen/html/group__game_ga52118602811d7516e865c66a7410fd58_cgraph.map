@@ -1,0 +1,56 @@
+<map id="game_resume" name="game_resume">
+<area shape="rect" id="node1" title="Resumes the game." alt="" coords="5,463,109,490"/>
+<area shape="rect" id="node2" href="$group__dispatcher.html#ga09a194e07832b8e7984e1b50d9722a80" title="Binds the given buttons to the dispatcher." alt="" coords="379,337,541,363"/>
+<area shape="rect" id="node3" href="$group__dispatcher.html#gab72c16c8547625b6dde1d4626b3c9c99" title="Binds or unbinds the canvas to the dispatcher." alt="" coords="380,387,540,414"/>
+<area shape="rect" id="node40" href="$group__dispatcher.html#ga4701c82e8ae5bf8fa045347e26aefb74" title="Binds the given text boxes to the dispatcher." alt="" coords="389,460,531,501"/>
+<area shape="rect" id="node41" href="$group__dispatcher.html#gab9458678bdcdc4f0ff458f8a9b27c638" title="Resets all dispatcher bindings." alt="" coords="157,438,331,465"/>
+<area shape="rect" id="node42" href="$group__dispatcher.html#ga6b6621fbd0381200f89fc604c79d827c" title="Updates the cursor state and updates the game according to it." alt="" coords="385,601,535,643"/>
+<area shape="rect" id="node54" href="$group__menu.html#gaa2f9ad11fdc632d1a6cb3d2ab271f776" title="Sets the menu to the game screen." alt="" coords="162,590,326,617"/>
+<area shape="rect" id="node4" href="$group__canvas.html#ga95661aa91869ceace06141f45c078210" title="Updates the state of the canvas according to given mouse info." alt="" coords="595,289,739,315"/>
+<area shape="rect" id="node5" href="$group__cursor.html#ga479cd0880892e002681b109c7a712c04" title="Gets cursor x coordinate." alt="" coords="815,406,912,433"/>
+<area shape="rect" id="node6" href="$group__cursor.html#ga15c1a0816c95ad240b94dc15480b403a" title="Gets cursor y coordinate." alt="" coords="815,482,912,509"/>
+<area shape="rect" id="node7" href="$group__game.html#ga2a86959de5de66b3881ada72cf3a5850" title="Switches the tool used (pencil/eraser) if this player is the drawer." alt="" coords="792,340,935,381"/>
+<area shape="rect" id="node12" href="$group__dispatcher.html#gad508b46cafff5282731b452d032f5267" title="Adds a new atom to the stroke being drawn in the canvas and notifies the other player." alt="" coords="800,289,927,315"/>
+<area shape="rect" id="node32" href="$group__dispatcher.html#ga2a6213346685a0167e6ff3c86d126106" title="Starts drawing new stroke in the canvas and notifies the other player." alt="" coords="797,137,930,163"/>
+<area shape="rect" id="node8" href="$group__game.html#gad2612affb6e1d0b40f1972a751ad6674" title="Sets the eraser primary if this player is the drawer." alt="" coords="983,398,1161,425"/>
+<area shape="rect" id="node11" href="$group__game.html#gab09c1e5c83d1408799b41ae9863259ef" title="Sets the pencil primary if this player is the drawer." alt="" coords="984,347,1160,374"/>
+<area shape="rect" id="node9" href="$group__button.html#ga6fdbd6cb9f7febe9bc371326f96f365d" title="Sets the border of a given button active." alt="" coords="1209,347,1376,374"/>
+<area shape="rect" id="node10" href="$group__button.html#ga0425667543e54af67fe4010a57476d05" title="Sets the border of a given button inactive." alt="" coords="1223,399,1363,440"/>
+<area shape="rect" id="node13" href="$group__canvas.html#ga9635fd19e44c814f55f50eb213d6b6b3" title="Adds a new atom to the current stroke." alt="" coords="987,195,1157,222"/>
+<area shape="rect" id="node18" href="$group__protocol.html#ga0ef9e0d21713f79d9c42f68b435d209a" title="Sends a message of type MSG_DRAW_ATOM." alt="" coords="987,297,1157,323"/>
+<area shape="rect" id="node14" href="$group__canvas.html#gaf38c6e1b2d96275fa150cee2bc32b4da" title="Draws the last stroke_atom_t in a stroke." alt="" coords="1424,111,1584,138"/>
+<area shape="rect" id="node15" href="$group__canvas.html#ga8861d72f9b3cec4c0f210d645e1e18e7" title="Draws a line between two stroke_atom_t to the given buffer." alt="" coords="1632,61,1791,87"/>
+<area shape="rect" id="node16" href="$group__graphics.html#ga1b69ad0e07cfd0697a4cb9c18ba48b67" title="Draws a circle in the given buffer in the given coordinates with the given radius with the given colo..." alt="" coords="1658,111,1765,138"/>
+<area shape="rect" id="node17" href="$group__graphics.html#ga257b5dac975604f70651e8764ad8acd8" title="Draws a pixel in the given buffer in the given coordinates with the given color." alt="" coords="1847,111,1949,138"/>
+<area shape="rect" id="node19" href="$group__protocol.html#gaa8c3d5620d3e7c609513d9372296a6d3" title="Adds a new message to the pending messages queue." alt="" coords="1215,246,1371,273"/>
+<area shape="rect" id="node31" href="$group__protocol.html#ga46939f58a097b24e703e1eb6523b6439" title="Initializes a new message_t." alt="" coords="1213,297,1372,323"/>
+<area shape="rect" id="node20" href="$group__protocol.html#gaca49d55d34fe635af7f3822f4b01bdc6" title="Sends the next pending message in queue." alt="" coords="1437,279,1571,320"/>
+<area shape="rect" id="node25" href="$group__queue.html#gaa54578828a1b5676bb99a535c617e1a2" title="Adds an element to the back of the given queue." alt="" coords="1852,206,1944,233"/>
+<area shape="rect" id="node21" href="$group__queue.html#ga09a3da9bf84f747356ef8050447bf35a" title="Checks if a given queue is empty." alt="" coords="2152,409,2269,435"/>
+<area shape="rect" id="node22" href="$group__queue.html#ga24ec1e60eaa37239a1b49c6f7321c9d9" title="Gets the element at the front of the given queue." alt="" coords="2013,307,2096,334"/>
+<area shape="rect" id="node24" href="$group__uart.html#ga00a2984ead2b73e2871dfda7c1ac49e3" title="Adds a byte to the software queue of bytes to be sent and tries to send bytes." alt="" coords="1656,257,1767,283"/>
+<area shape="rect" id="node23" href="$group__queue.html#ga5f221cd3b0a3c04f33ba9fd136a61c8b" title="Returns a pointer to the element of the given queue at the given index." alt="" coords="2163,257,2258,283"/>
+<area shape="rect" id="node28" href="$group__uart.html#ga8219117bdd64ba6474c847fd89efbd41" title="Sends bytes from a software queue into the serial port." alt="" coords="1839,358,1957,385"/>
+<area shape="rect" id="node26" href="$group__queue.html#gae1cd6b62453b7f57525be17a53885800" title="Checks if a given queue is full." alt="" coords="2162,181,2259,207"/>
+<area shape="rect" id="node27" href="$group__queue.html#gabf50b2659d4139679a639a78c217f7fa" title="Resizes the given queue so that it has double the capacity without losing data." alt="" coords="2005,206,2104,233"/>
+<area shape="rect" id="node29" href="$group__queue.html#ga81880a2f29871356ccddd8f20ec99e9e" title="Removes the element at the front of the given queue." alt="" coords="2012,358,2097,385"/>
+<area shape="rect" id="node30" href="$group__utils.html#ga79a031a8611f5b2d6afa4158e92b0fb4" title="Wraps sys_inb so that it may be called with a uint8_t argument." alt="" coords="2009,409,2100,435"/>
+<area shape="rect" id="node33" href="$group__canvas.html#ga79691af660bfc7d635d4727f2cbfd59a" title="Starts a new stroke in the canvas." alt="" coords="1005,13,1139,39"/>
+<area shape="rect" id="node37" href="$group__game.html#ga3fd14fd97f9704dccd8f8b0e6e53960f" title="Gets the drawer selected color." alt="" coords="1001,64,1143,105"/>
+<area shape="rect" id="node38" href="$group__game.html#ga7a01e47255ad988eefbe2e0067a3e26c" title="Gets the drawer selected thickness." alt="" coords="1001,129,1143,171"/>
+<area shape="rect" id="node39" href="$group__protocol.html#ga48456102bf88a8974c153a8b117f9480" title="Sends a message of type MSG_NEW_STROKE." alt="" coords="984,246,1160,273"/>
+<area shape="rect" id="node34" href="$group__canvas.html#ga6bf721599d651d3d7cb19bf578d2a20a" title="Deletes all undone strokes." alt="" coords="1219,71,1366,98"/>
+<area shape="rect" id="node35" href="$group__canvas.html#ga88c19d7bda9793af32f9f8fa13b0a754" title="Draws oldest strokes into the given buffer, removing them from the stroke list." alt="" coords="1220,5,1365,47"/>
+<area shape="rect" id="node36" href="$group__canvas.html#ga1f756b76343ba69e011d82c0a591e6a9" title="Draws complete stroke_t into the canvas buffer." alt="" coords="1435,61,1573,87"/>
+<area shape="rect" id="node43" href="$group__button.html#gacfab11fbd0b4e1ff3848728f2b3ad7d5" title="Checks if the given coordinates are inside the limits of a given button." alt="" coords="602,558,731,585"/>
+<area shape="rect" id="node44" href="$group__button.html#ga9d70332e21de7ab70afff4fa96fb69d4" title="Updates the state of a given button according to given mouse info." alt="" coords="597,609,737,635"/>
+<area shape="rect" id="node45" href="$group__canvas.html#ga2f87deffc6dca6f0ee25d5cd1c3bdd40" title="Gets the current canvas state." alt="" coords="605,659,728,686"/>
+<area shape="rect" id="node46" href="$group__canvas.html#gaff7e5e6e51cce443e068e88722d00bbb" title="Checks if canvas is enabled, that is, if it allows the user to draw." alt="" coords="601,710,732,737"/>
+<area shape="rect" id="node47" href="$group__canvas.html#ga4b7509d83889d7a4a67e0d72e6f2e096" title="Checks if the given coordinates are inside the limits of the canvas." alt="" coords="600,761,733,787"/>
+<area shape="rect" id="node48" href="$group__cursor.html#gac0fa742a26e68888018245125c26d5d6" title="Gets the left button state. (either pressed or not)" alt="" coords="617,811,717,838"/>
+<area shape="rect" id="node49" href="$group__cursor.html#ga7da23fec369ac0db044e35d1ff1fb95c" title="Gets the right button state. (either pressed or not)" alt="" coords="616,862,717,889"/>
+<area shape="rect" id="node50" href="$group__cursor.html#gacc7f42d69f1210f45a2642c0fb0f11e9" title="Sets the cursor state." alt="" coords="607,913,726,939"/>
+<area shape="rect" id="node51" href="$group__text__box.html#ga97341ed5c3d21db3cb99a6dea33277d6" title="Checks if the given coordinates are inside the limits of a given text box." alt="" coords="595,963,738,990"/>
+<area shape="rect" id="node52" href="$group__text__box.html#gaa2fa2a826d1d881f5c5e374b40a6e9b1" title="Gets whether the text box is reacting to the cursor hovering, based on its state." alt="" coords="595,340,738,381"/>
+<area shape="rect" id="node53" href="$group__text__box.html#gaf810b80df21aa5e7259b8fc8815238f5" title="Updates the state of a given text box according to given mouse info." alt="" coords="589,457,744,483"/>
+</map>

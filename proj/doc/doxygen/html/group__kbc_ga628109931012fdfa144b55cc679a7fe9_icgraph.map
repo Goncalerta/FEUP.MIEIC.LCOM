@@ -1,0 +1,13 @@
+<map id="kbc_write_reg" name="kbc_write_reg">
+<area shape="rect" id="node1" title="Writes a byte to a kbc register." alt="" coords="797,81,900,108"/>
+<area shape="rect" id="node2" href="$group__kbc.html#gaa0559188b6e62f1b72bd50ba1915d914" title="Issues an argument to the kbc." alt="" coords="605,56,748,83"/>
+<area shape="rect" id="node8" href="$group__kbc.html#ga978c37bd6eca1b2724372aee45770670" title="Issues a command to the kbc." alt="" coords="604,107,749,133"/>
+<area shape="rect" id="node3" href="$group__mouse.html#gadc968ef8cbf8660fe0bac8237d65183e" title="Issues a command to the mouse using the kbc." alt="" coords="397,56,542,83"/>
+<area shape="rect" id="node4" href="$group__mouse.html#gac285c81dd076eb18e01d7f22d353daaa" title="Disables mouse data reporting." alt="" coords="185,5,312,32"/>
+<area shape="rect" id="node6" href="$group__mouse.html#ga12afbe04f7fbd32a063b13d45ffcd602" title="Enables mouse data reporting." alt="" coords="187,56,311,83"/>
+<area shape="rect" id="node7" href="$group__mouse.html#ga16a521d1919cbd8f434d8b5d535a639b" title="Sets the mouse to stream mode." alt="" coords="163,107,335,133"/>
+<area shape="rect" id="node5" href="$group__proj.html#ga2a16f651eccbd248e1ad3b3b924b143b" title="Handles the initialization and termination of the program. Runs the main loop." alt="" coords="5,31,115,57"/>
+<area shape="rect" id="node9" href="$group__kbc.html#ga4996d0950caa2122c3a9aa731a5f52d9" title="Reads the kbc command byte." alt="" coords="384,107,555,133"/>
+<area shape="rect" id="node11" href="$group__kbc.html#gad22fa061f412af69b9d8f777ca55b04e" title="Writes the kbc command byte." alt="" coords="383,157,556,184"/>
+<area shape="rect" id="node10" href="$group__keyboard.html#ga0d28d7309ad45de4fe79c9de3fbeb3d8" title="Enables keyboard interrupts." alt="" coords="174,157,323,184"/>
+</map>

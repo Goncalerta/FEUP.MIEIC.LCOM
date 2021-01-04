@@ -1,0 +1,9 @@
+<map id="canvas_new_stroke" name="canvas_new_stroke">
+<area shape="rect" id="node1" title="Starts a new stroke in the canvas." alt="" coords="5,35,140,61"/>
+<area shape="rect" id="node2" href="$group__canvas.html#ga6bf721599d651d3d7cb19bf578d2a20a" title="Deletes all undone strokes." alt="" coords="188,5,335,32"/>
+<area shape="rect" id="node3" href="$group__canvas.html#ga88c19d7bda9793af32f9f8fa13b0a754" title="Draws oldest strokes into the given buffer, removing them from the stroke list." alt="" coords="189,57,334,98"/>
+<area shape="rect" id="node4" href="$group__canvas.html#ga1f756b76343ba69e011d82c0a591e6a9" title="Draws complete stroke_t into the canvas buffer." alt="" coords="383,64,521,91"/>
+<area shape="rect" id="node5" href="$group__canvas.html#ga8861d72f9b3cec4c0f210d645e1e18e7" title="Draws a line between two stroke_atom_t to the given buffer." alt="" coords="569,39,728,65"/>
+<area shape="rect" id="node6" href="$group__graphics.html#ga1b69ad0e07cfd0697a4cb9c18ba48b67" title="Draws a circle in the given buffer in the given coordinates with the given radius with the given colo..." alt="" coords="595,89,702,116"/>
+<area shape="rect" id="node7" href="$group__graphics.html#ga257b5dac975604f70651e8764ad8acd8" title="Draws a pixel in the given buffer in the given coordinates with the given color." alt="" coords="776,89,879,116"/>
+</map>

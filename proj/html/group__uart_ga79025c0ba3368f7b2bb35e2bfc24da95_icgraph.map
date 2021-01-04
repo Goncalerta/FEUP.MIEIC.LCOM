@@ -1,7 +1,0 @@
-<map id="uart_select_dlab" name="uart_select_dlab">
-<area shape="rect" id="node1" title="Selects dlab in the line control register so that divisor latch registers may be accessed." alt="" coords="699,5,816,32"/>
-<area shape="rect" id="node2" href="$group__uart.html#ga1975f8b129ad7fe81b0199dadabc703a" title="Specifies the bit rate for the serial port." alt="" coords="532,5,651,32"/>
-<area shape="rect" id="node3" href="$group__uart.html#gac56dcef886bb66f75de8fe196316995d" title="Configures the parameters of the serial port." alt="" coords="349,5,484,32"/>
-<area shape="rect" id="node4" href="$group__protocol.html#ga1b4d0d201e93a7bdf1aaeb6766e304ea" title="Configures the serial port and protocol queues to start communication." alt="" coords="163,5,301,32"/>
-<area shape="rect" id="node5" href="$group__proj.html#ga2a16f651eccbd248e1ad3b3b924b143b" title="Reacts to the event that the other player sent the random number to decide starting roles." alt="" coords="5,5,115,32"/>
-</map>

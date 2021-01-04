@@ -1,8 +1,0 @@
-<map id="canvas_new_stroke_atom" name="canvas_new_stroke_atom">
-<area shape="rect" id="node1" title="Adds a new atom to the current stroke." alt="" coords="5,31,176,57"/>
-<area shape="rect" id="node2" href="$group__canvas.html#ga20e5e8baf8049f9c089f77de3c155249" title="Draws the last stroke_atom_t in a stroke." alt="" coords="224,31,384,57"/>
-<area shape="rect" id="node3" href="$group__canvas.html#ga9c795224c49051c1ed6c52f34f1cbc80" title="Draws a line between two stroke_atom_t to the canvas buffer." alt="" coords="432,5,591,32"/>
-<area shape="rect" id="node5" href="$group__graphics.html#ga1b69ad0e07cfd0697a4cb9c18ba48b67" title="Draws a circle in the given buffer in the given coordinates with the given radius with the given colo..." alt="" coords="781,31,888,57"/>
-<area shape="rect" id="node4" href="$group__graphics.html#ga656f35ff9a04a0e66245aed5babc1209" title="Draws a line in the given buffer from the given coordinates to other given coordinates with the given..." alt="" coords="639,5,733,32"/>
-<area shape="rect" id="node6" href="$group__graphics.html#ga257b5dac975604f70651e8764ad8acd8" title="Draws a pixel in the given buffer in the given coordinates with the given color." alt="" coords="936,31,1039,57"/>
-</map>

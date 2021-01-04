@@ -1,4 +1,0 @@
-<map id="vg_init" name="vg_init">
-<area shape="rect" id="node1" title="Initialize video graphics with the given mode." alt="" coords="163,5,221,32"/>
-<area shape="rect" id="node2" href="$group__proj.html#ga2a16f651eccbd248e1ad3b3b924b143b" title="Reacts to the event that the other player sent the random number to decide starting roles." alt="" coords="5,5,115,32"/>
-</map>

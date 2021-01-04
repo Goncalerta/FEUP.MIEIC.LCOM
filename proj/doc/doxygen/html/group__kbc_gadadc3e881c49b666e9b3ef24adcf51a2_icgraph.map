@@ -1,0 +1,4 @@
+<map id="kbc_flush" name="kbc_flush">
+<area shape="rect" id="node1" title="Flushes the kbc output buffer." alt="" coords="163,5,240,32"/>
+<area shape="rect" id="node2" href="$group__proj.html#ga2a16f651eccbd248e1ad3b3b924b143b" title="Handles the initialization and termination of the program. Runs the main loop." alt="" coords="5,5,115,32"/>
+</map>

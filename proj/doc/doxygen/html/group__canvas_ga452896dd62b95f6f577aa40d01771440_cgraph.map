@@ -1,0 +1,7 @@
+<map id="canvas_redo_stroke" name="canvas_redo_stroke">
+<area shape="rect" id="node1" title="Redoes a stroke." alt="" coords="5,31,143,57"/>
+<area shape="rect" id="node2" href="$group__canvas.html#ga1f756b76343ba69e011d82c0a591e6a9" title="Draws complete stroke_t into the canvas buffer." alt="" coords="191,31,329,57"/>
+<area shape="rect" id="node3" href="$group__canvas.html#ga8861d72f9b3cec4c0f210d645e1e18e7" title="Draws a line between two stroke_atom_t to the given buffer." alt="" coords="377,5,536,32"/>
+<area shape="rect" id="node4" href="$group__graphics.html#ga1b69ad0e07cfd0697a4cb9c18ba48b67" title="Draws a circle in the given buffer in the given coordinates with the given radius with the given colo..." alt="" coords="403,56,510,83"/>
+<area shape="rect" id="node5" href="$group__graphics.html#ga257b5dac975604f70651e8764ad8acd8" title="Draws a pixel in the given buffer in the given coordinates with the given color." alt="" coords="584,56,687,83"/>
+</map>
