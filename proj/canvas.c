@@ -57,9 +57,11 @@ static int canvas_draw_atom_line(frame_buffer_t buf, stroke_atom_t atom1, stroke
  */
 static int canvas_draw_last_atom(frame_buffer_t buf) {
     if (last->num_atoms == 1) {
+        // Single atom in stroke; just draw a circle
         stroke_atom_t atom = last->atoms[0];
         return vb_draw_circle(buf, atom.x, atom.y, last->thickness, last->color);
     } else {
+        // Not a single atom; a line may be drawn
         stroke_atom_t atom1 = last->atoms[last->num_atoms-2];
         stroke_atom_t atom2 = last->atoms[last->num_atoms-1];
         return canvas_draw_atom_line(buf, atom1, atom2, last->color, last->thickness);
@@ -184,6 +186,7 @@ static void canvas_clear_undone() {
 }
 
 void clear_canvas() {
+    // Clear strokes
     stroke_t *current = last;
     while (current != NULL) {
         stroke_t *prev = current->prev;
@@ -196,6 +199,8 @@ void clear_canvas() {
 
     canvas_clear_undone();
     atoms_undo_limit_count = 0;
+
+    // Clear buffers
     vb_fill_screen(canvas_base_buf, 0x00ffffff);
     memcpy(canvas_buf.buf, canvas_base_buf.buf, 
            sizeof(uint8_t) * canvas_buf.h_res * canvas_buf.v_res * canvas_buf.bytes_per_pixel);
@@ -231,6 +236,7 @@ int canvas_new_stroke(uint32_t color, uint16_t thickness) {
     s->num_atoms = 0;
 
     if (first == NULL) {
+        // Only stroke in canvas: both first and last
         first = s;
         last = s;
     } else {
@@ -250,6 +256,7 @@ int canvas_new_stroke(uint32_t color, uint16_t thickness) {
         }
     }
 
+    // A new stroke means the drawer is no longer allowed to redo
     canvas_clear_undone();
     return 0;
 }
@@ -292,11 +299,13 @@ int canvas_undo_stroke() {
     stroke_t *u = last;
 
     if (u == NULL)
-        return 0;
+        return 0; // Nothing to undo; do nothing
     
     if (u->prev == NULL) {
+        // No more strokes in canvas
         first = last = NULL;
     } else {
+        // Previous stroke is now the last one
         u->prev->next = NULL;
         last = u->prev;
     }
@@ -307,11 +316,13 @@ int canvas_undo_stroke() {
     }
     undone = u;
 
+    // Because a stroke was removed from the screen, strokes must be redrawn
     if (canvas_redraw_strokes() != OK) 
         return 1;
     
+    // In case the user was in the middle of a stroke, immediately start a new one
     if (state == CANVAS_STATE_PRESSING_LB || state == CANVAS_STATE_PRESSING_RB) {
-        if (handle_new_stroke(true) != OK)
+        if (handle_new_stroke() != OK)
             return 1;
         if (handle_new_atom(cursor_get_x(), cursor_get_y()) != OK)
             return 1;
@@ -323,9 +334,10 @@ int canvas_undo_stroke() {
 int canvas_redo_stroke() {
     stroke_t *u = undone;
     if (u == NULL)
-        return 0;
+        return 0; // Nothing to redo; do nothing
 
     if (u->prev == NULL) {
+        // No more strokes to redo
         undone = NULL;
     } else {
         u->prev->next = NULL;
@@ -334,9 +346,11 @@ int canvas_redo_stroke() {
 
     u->prev = last;
     if (last != NULL) {
+        // This stroke should now be the last one
         last->next = u;
         last = u;
     } else {
+        // Only stroke in canvas
         first = last = u;
     }
     
@@ -384,7 +398,7 @@ int canvas_update_state(bool hovering, bool lb, bool rb) {
             } else if (lb && !rb) {
                 state = CANVAS_STATE_PRESSING_LB;
                 if (enabled) {
-                    if (handle_new_stroke(true) != OK)
+                    if (handle_new_stroke() != OK)
                         return 1;
                     if (handle_new_atom(cursor_get_x(), cursor_get_y()) != OK)
                         return 1;
@@ -394,7 +408,7 @@ int canvas_update_state(bool hovering, bool lb, bool rb) {
                 if (enabled) {
                     if (drawer_toggle_pencil_eraser() != OK)
                         return 1;
-                    if (handle_new_stroke(false) != OK)
+                    if (handle_new_stroke() != OK)
                         return 1;
                     if (handle_new_atom(cursor_get_x(), cursor_get_y()) != OK)
                         return 1;
@@ -418,7 +432,7 @@ int canvas_update_state(bool hovering, bool lb, bool rb) {
             if (enabled) {
                 if (drawer_toggle_pencil_eraser() != OK)
                     return 1;
-                if (handle_new_stroke(false) != OK)
+                if (handle_new_stroke() != OK)
                     return 1;
                 if (handle_new_atom(cursor_get_x(), cursor_get_y()) != OK)
                     return 1;
@@ -445,7 +459,7 @@ int canvas_update_state(bool hovering, bool lb, bool rb) {
             if (enabled) {
                 if (drawer_toggle_pencil_eraser() != OK)
                     return 1;
-                if (handle_new_stroke(true) != OK)
+                if (handle_new_stroke() != OK)
                     return 1;
                 if (handle_new_atom(cursor_get_x(), cursor_get_y()) != OK)
                     return 1;
