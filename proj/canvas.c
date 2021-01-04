@@ -319,14 +319,6 @@ int canvas_undo_stroke() {
     // Because a stroke was removed from the screen, strokes must be redrawn
     if (canvas_redraw_strokes() != OK) 
         return 1;
-    
-    // In case the user was in the middle of a stroke, immediately start a new one
-    if (state == CANVAS_STATE_PRESSING_LB || state == CANVAS_STATE_PRESSING_RB) {
-        if (handle_new_stroke() != OK)
-            return 1;
-        if (handle_new_atom(cursor_get_x(), cursor_get_y()) != OK)
-            return 1;
-    }
 
     return 0;
 }
@@ -482,6 +474,13 @@ int canvas_react_kbd(kbd_event_t kbd_event) {
         if (kbd_event.key == CHAR && kbd_event.char_key == 'Z' && kbd_event.is_ctrl_pressed) {
             if (handle_undo() != OK)
                 return 1;
+            // In case the user was in the middle of a stroke, immediately start a new one
+            if (state == CANVAS_STATE_PRESSING_LB || state == CANVAS_STATE_PRESSING_RB) {
+                if (handle_new_stroke() != OK)
+                    return 1;
+                if (handle_new_atom(cursor_get_x(), cursor_get_y()) != OK)
+                    return 1;
+            }
         }
 
         if (kbd_event.key == CHAR && kbd_event.char_key == 'Y' && kbd_event.is_ctrl_pressed) {
@@ -492,21 +491,49 @@ int canvas_react_kbd(kbd_event_t kbd_event) {
         if (kbd_event.key == CHAR && kbd_event.char_key == 'P' && !kbd_event.is_ctrl_pressed) {
             if (drawer_set_pencil_primary() != OK)
                 return 1;
+            // In case the user was in the middle of a stroke, immediately start a new one
+            if (state == CANVAS_STATE_PRESSING_LB || state == CANVAS_STATE_PRESSING_RB) {
+                if (handle_new_stroke() != OK)
+                    return 1;
+                if (handle_new_atom(cursor_get_x(), cursor_get_y()) != OK)
+                    return 1;
+            }
         }
 
         if (kbd_event.key == CHAR && kbd_event.char_key == 'E' && !kbd_event.is_ctrl_pressed) {
             if (drawer_set_eraser_primary() != OK)
                 return 1;
+            // In case the user was in the middle of a stroke, immediately start a new one
+            if (state == CANVAS_STATE_PRESSING_LB || state == CANVAS_STATE_PRESSING_RB) {
+                if (handle_new_stroke() != OK)
+                    return 1;
+                if (handle_new_atom(cursor_get_x(), cursor_get_y()) != OK)
+                    return 1;
+            }
         }
 
         if (kbd_event.key == CHAR && kbd_event.char_key == 'C' && !kbd_event.is_ctrl_pressed) {
             if (drawer_change_selected_color() != OK)
                 return 1;
+            // In case the user was in the middle of a stroke, immediately start a new one
+            if (state == CANVAS_STATE_PRESSING_LB || state == CANVAS_STATE_PRESSING_RB) {
+                if (handle_new_stroke() != OK)
+                    return 1;
+                if (handle_new_atom(cursor_get_x(), cursor_get_y()) != OK)
+                    return 1;
+            }
         }
 
         if (kbd_event.key == CHAR && kbd_event.char_key == 'T' && !kbd_event.is_ctrl_pressed) {
             if (drawer_change_selected_thickness() != OK)
                 return 1;
+            // In case the user was in the middle of a stroke, immediately start a new one
+            if (state == CANVAS_STATE_PRESSING_LB || state == CANVAS_STATE_PRESSING_RB) {
+                if (handle_new_stroke() != OK)
+                    return 1;
+                if (handle_new_atom(cursor_get_x(), cursor_get_y()) != OK)
+                    return 1;
+            }
         }
     }
 
